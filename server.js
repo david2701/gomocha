@@ -6,4 +6,4 @@ function requestHandler(request, response) {
     response.sendFile(__dirname + '/index.html');
 }
 app.get('/', requestHandler);
-app.listen(4000);
+app..listen(process.env.PORT || 4000)
