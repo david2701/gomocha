@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "dependencies": {
+    "express": "^4.13.4",
+    "nodemon": "^1.9.1"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -17,11 +22,5 @@
   "bugs": {
     "url": "https://github.com/amituuush/gomocha/issues"
   },
-  "homepage": "https://github.com/amituuush/gomocha#readme",
-  "devDependencies": {
-    "nodemon": "^1.9.1"
-  },
-  "dependencies": {
-    "express": "^4.13.4"
-  }
+  "homepage": "https://github.com/amituuush/gomocha#readme"
 }
