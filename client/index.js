@@ -1,1 +1,1 @@
-document.getElementById('content').innerHTML = "hey!";
+import sass from './style.scss'

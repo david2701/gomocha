@@ -1,0 +1,49 @@
+nav.main-nav ul li {
+    display: inline-block;
+    border: 1px solid black;
+}
+h1 {
+    text-align: center;
+}
+h2 {
+    font-weight: 400;
+}
+
+section.menu section h2 {
+}
+
+section.menu {
+    border: 1px solid red;
+    width: 90%;
+    margin: 0 auto;
+}
+
+#hot-drinks, #cold-drinks, #tea, #bakery, #special-instructions {
+    border: 1px solid blue;
+}
+
+.drink-item {
+    margin-bottom: 1.2em;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+.next-button {
+    margin-top: 1em;
+    padding: 1.2em 3em;
+    border-radius: 5px;
+    border: none;
+    box-shadow: none;
+    background: #3879D9;
+    color: #fff;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+}
