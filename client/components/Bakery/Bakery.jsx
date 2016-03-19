@@ -4,7 +4,7 @@ var BakeryItem = React.createClass({
     render: function() {
         return (
             <div className="drink-item">
-                <label htmlFor="bakery">Croissant</label><br />
+                <label htmlFor="bakery">{this.props.name}</label><br />
                 <select name="quantity" defaultValue="Qty">
                     <option value="Qty" disabled>Qty</option>
                     <option value="1">1</option>

@@ -20574,7 +20574,7 @@
 	            _react2.default.createElement(
 	                "label",
 	                { htmlFor: "bakery" },
-	                "Croissant"
+	                this.props.name
 	            ),
 	            _react2.default.createElement("br", null),
 	            _react2.default.createElement(
