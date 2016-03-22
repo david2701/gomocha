@@ -43,10 +43,6 @@ section.menu {
     display: block;
 }
 
-.drink-item {
-    margin-bottom: 1.2em;
-}
-
 #special-instructions textarea {
 
 }
@@ -81,6 +77,45 @@ button:focus {
     border-bottom: 1px solid black;
 }
 
+.drink-item {
+    margin-bottom: 1.2em;
+    select {
+        margin-right: 0.5em;
+    }
+}
+
+.item-price {
+    display: inline-block;
+    padding-left: 2em;
+}
+
+.item-top-row {
+    margin-bottom: 0.5em;
+}
+.drink-item {
+    background: #eee;
+}
+
+.decaf-option {
+    display: inline-block;
+}
+
+.decaf-input {
+    margin-left: 0.5em;
+}
+
+.hot-or-cold-option {
+    display: inline-block;
+    margin-left: 2em;
+}
+
+.hot-or-cold-option label {
+    margin-left: 1em;
+}
+
+.hot-input, .cold-input {
+    margin-left: 0.4em;
+}
 
 /* ------- NORMALIZE CSS ----------*/
 

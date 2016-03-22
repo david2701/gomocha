@@ -1,0 +1,159 @@
+{
+    "shops": [
+        {
+            "name": "starbucks",
+            "address": "123 4th St. Santa Monica, CA 90234",
+            "phone": "(818) 438-9832",
+            "imageUrl": "http://www.fodors.com/ee/files/slideshows/9-colectivo-coffee.jpg",
+            "menu": [
+                {
+                    "displayName": "Hot Drinks",
+                    "slug": "hot-drinks",
+                    "items": [
+                        {
+                            "name": "Latte",
+                            "price": 2.95,
+                            "options": ["milk-type", "size", "quantity"],
+                            "id": "latte"
+                        },
+                        {
+                            "name": "Americano",
+                            "price": 2.50,
+                            "options": ["size", "quantity"],
+                            "id": "americano"
+                        },
+                        {
+                            "name": "Cappucino",
+                            "price": 3.05,
+                            "options": ["milk-type", "size", "quantity"],
+                            "id": "cappucino"
+                        },
+                        {
+                            "name": "Espresso",
+                            "price": 2.50,
+                            "options": ["milk-type", "size", "quantity"],
+                            "id": "espresso"
+                        },
+                        {
+                            "name": "Macchiato",
+                            "price": 3.50,
+                            "options": ["milk-type", "size", "quantity"],
+                            "id": "macchiato"
+                        }
+                    ]
+                },
+
+                {
+                    "displayName": "Cold Drinks",
+                    "slug": "cold-drinks",
+                    "items": [
+                        {
+                            "name": "Iced Latte",
+                            "price": 2.95,
+                            "options": ["milk-type", "size", "quantity"],
+                            "id": "iced-latte"
+                        },
+                        {
+                            "name": "Iced Mocha",
+                            "price": 2.50,
+                            "options": ["milk-type", "size", "quantity"],
+                            "id": "iced-mocha"
+                        },
+                        {
+                            "name": "Iced Chai",
+                            "price": 3.05,
+                            "options": ["milk-type", "size", "quantity"],
+                            "id": "iced-chai"
+                        },
+                        {
+                            "name": "Iced Coffee",
+                            "price": 2.50,
+                            "options": ["milk-type", "size", "quantity"],
+                            "id": ""
+                        },
+                        {
+                            "name": "Frappe",
+                            "price": 3.50,
+                            "options": ["milk-type", "size", "quantity"],
+                            "id": "frappe"
+                        }
+                    ]
+                },
+
+                {
+                    "displayName": "Tea",
+                    "slug": "tea",
+                    "items": [
+                        {
+                            "name": "Green",
+                            "price": 2.95,
+                            "options": ["size", "quantity"],
+                            "id": "green"
+                        },
+                        {
+                            "name": "Jasmine Green",
+                            "price": 2.50,
+                            "options": ["size", "quantity"],
+                            "id": "jasmine-green"
+                        },
+                        {
+                            "name": "Chai",
+                            "price": 3.05,
+                            "options": ["size", "quantity"],
+                            "id": "chai"
+                        },
+                        {
+                            "name": "Mint",
+                            "price": 2.50,
+                            "options": ["size", "quantity"],
+                            "id": "mint"
+                        },
+                        {
+                            "name": "Chamomile",
+                            "price": 3.50,
+                            "options": ["size", "quantity"],
+                            "id": "chamomile"
+                        }
+                    ]
+                },
+
+                {
+                    "displayName": "Bakery",
+                    "slug": "bakery",
+                    "items": [
+                        {
+                            "name": "Croissant",
+                            "price": 2.95,
+                            "options": ["quantity"],
+                            "id": "croissant"
+                        },
+                        {
+                            "name": "Banana Muffin",
+                            "price": 2.50,
+                            "options": ["quantity"],
+                            "id": "banana-muffin"
+                        },
+                        {
+                            "name": "Blueberry Scone",
+                            "price": 3.05,
+                            "options": ["quantity"],
+                            "id": "blueberry-scone"
+                        },
+                        {
+                            "name": "Carrot Cake",
+                            "price": 2.50,
+                            "options": ["quantity"],
+                            "id": "carrot-cake"
+                        },
+                        {
+                            "name": "Home-Made Cookies",
+                            "price": 3.50,
+                            "options": ["quantity"],
+                            "id": "home-made-cookies"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
