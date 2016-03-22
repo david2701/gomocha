@@ -1,6 +1,6 @@
 import React from 'react'
 import NavAndTitle from '../NavAndTitle/NavAndTitle'
-import MenuSection from '../HotDrinks/MenuSection'
+import MenuSection from '../MenuSection/MenuSection'
 import SpecialInstructions from '../SpecialInstructions/SpecialInstructions'
 import OrderTotal from '../OrderTotal/OrderTotal'
 

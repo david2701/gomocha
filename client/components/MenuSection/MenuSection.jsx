@@ -4,6 +4,7 @@ import Size from '../Options/Size'
 import Quantity from '../Options/Quantity'
 import Decaf from '../Options/Decaf'
 import HotOrCold from '../Options/HotOrCold'
+import _ from 'lodash'
 
 var HotDrinkItem = React.createClass({
 
@@ -36,19 +37,22 @@ var HotDrinkItem = React.createClass({
     // },
 
     render: function() {
+
+        // var options = this.props.data.shops[0].menu.map()
+
         return (
             <div className="drink-item">
                 <label htmlFor="hot-drink">{this.props.drinkName}</label><br />
 
                 <div className="item-top-row">
-                    {["milk-type", "size", "quantity"].map(this._renderOption)}
+                    {this.props.options.map(this._renderOption)}
 
                     <div className="item-price">
                         ${this.props.price.toFixed(2)}
                     </div>
                 </div>
 
-                {["decaf", "hot-or-cold"].map(this._renderOption2)}
+                {this.props.options.map(this._renderOption2)}
 
             </div>
         )
@@ -66,28 +70,41 @@ var HotDrinkItem = React.createClass({
 
 
 var MenuSection = React.createClass({
+
     render: function() {
 
-        var drinkItems = this.props.data.shops[0].menu.map(
-            (menuSection, index) => {
+        var menuSection = _.find(this.props.data.shops[0].menu, {"slug": this.props.slug});
 
-                if (menuSection.slug === this.props.slug) {
-                return menuSection.items.map(
-                    (item, index) => {
-                        return <HotDrinkItem
-                            drinkName={item.name}
-                            price={item.price}
-                            options={item.options}
-                            key={item.id} />
-                    })
-                }
+        var sectionTitle = menuSection.display;
+
+        var drinkItems = menuSection.items.map(
+            (item, index) => {
+                return <HotDrinkItem
+                    drinkName={item.name}
+                    price={item.price}
+                    options={item.options}
+                    key={item.id} />
             });
+
+        // var drinkItems = this.props.data.shops[0].menu.map(
+        //     (menuSection, index) => {
+        //
+        //         if (menuSection.slug === this.props.slug) {
+        //             sectionTitle = menuSection.displayName;
+        //             return menuSection.items.map(
+        //                 (item, index) => {
+        //                     return <HotDrinkItem
+        //                         drinkName={item.name}
+        //                         price={item.price}
+        //                         options={item.options}
+        //                         key={item.id} />
+        //             })
+        //         }
+        //     });
 
         return (
             <section id="hot-drinks">
-                <h2>
-                    Hot Drinks
-                </h2>
+                <h2>{sectionTitle}</h2>
                     {drinkItems}
                 <div className="divider"></div>
             </section>
