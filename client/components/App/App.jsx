@@ -1,37 +1,33 @@
 import React from 'react'
 import NavAndTitle from '../NavAndTitle/NavAndTitle'
-import MenuSection from '../MenuSection/MenuSection'
-import SpecialInstructions from '../SpecialInstructions/SpecialInstructions'
+import MenuFormContainer from '../MenuFormContainer/MenuFormContainer'
 import OrderTotal from '../OrderTotal/OrderTotal'
 
-
-
 var App = React.createClass({
+    getInitialState: function() {
+        return {
+            items: []
+        }
+    },
+
+    _handleAddItemToOrder: function(itemDetails) {
+        this.setState({
+            items: this.state.items.concat(itemDetails)
+        })
+    },
 
     render: function() {
         return (
             <div>
                 <NavAndTitle />
-                <form>
-                <MenuSection
+                <MenuFormContainer
                     data={this.props.data}
-                    slug="hot-drinks" />
-                <MenuSection
-                    data={this.props.data}
-                    slug="cold-drinks" />
-                <MenuSection
-                    data={this.props.data}
-                    slug="tea" />
-                <MenuSection
-                    data={this.props.data}
-                    slug="bakery" />
-                <SpecialInstructions />
-                <OrderTotal />
-                </form>
+                    handleAddItemToOrder={this._handleAddItemToOrder}
+                     />
+                 <OrderTotal orderItems={this.state.items} />
             </div>
         )
     }
 });
-
 
 module.exports = App;

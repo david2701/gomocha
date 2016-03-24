@@ -62,7 +62,7 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _dummyData = __webpack_require__(174);
+	var _dummyData = __webpack_require__(179);
 
 	var _dummyData2 = _interopRequireDefault(_dummyData);
 
@@ -105,7 +105,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  padding: 1em; }\n\nnav.main-nav {\n  width: 90%;\n  margin: 0 auto;\n  text-align: center; }\n\nnav.main-nav ul {\n  width: 80%;\n  margin: 0 auto;\n  padding: 0; }\n\nnav.main-nav ul li {\n  display: inline-block;\n  padding: 1em;\n  background: #1987FE;\n  color: #fff;\n  border-radius: 5px; }\n\nh1 {\n  text-align: center; }\n\nh2 {\n  font-weight: 400; }\n\nsection.menu {\n  width: 90%;\n  margin: 0 auto; }\n\n#hot-drinks, #cold-drinks, #tea, #bakery, #special-instructions, #order-total {\n  display: block; }\n\ninput:focus,\nselect:focus,\ntextarea:focus,\nbutton:focus {\n  outline: none; }\n\n.next-button {\n  margin-top: 1em;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer; }\n\n.divider {\n  width: 20em;\n  border-bottom: 1px solid black; }\n\n.drink-item {\n  margin-bottom: 1.2em; }\n  .drink-item select {\n    margin-right: 0.5em; }\n\n.item-price {\n  display: inline-block;\n  padding-left: 2em; }\n\n.item-top-row {\n  margin-bottom: 0.5em; }\n\n.drink-item {\n  background: #eee; }\n\n.decaf-option {\n  display: inline-block; }\n\n.decaf-input {\n  margin-left: 0.5em; }\n\n.hot-or-cold-option {\n  display: inline-block;\n  margin-left: 2em; }\n\n.hot-or-cold-option label {\n  margin-left: 1em; }\n\n.hot-input, .cold-input {\n  margin-left: 0.4em; }\n\n/* ------- NORMALIZE CSS ----------*/\nhtml {\n  font-family: sans-serif;\n  /* 1 */\n  -ms-text-size-adjust: 100%;\n  /* 2 */\n  -webkit-text-size-adjust: 100%;\n  /* 2 */ }\n\n/**\n * Remove default margin (opinionated).\n */\nbody {\n  margin: 0; }\n\n/* HTML5 display definitions\n   ========================================================================== */\n/**\n * Correct `block` display not defined for any HTML5 element in IE 8/9.\n * Correct `block` display not defined for `details` or `summary` in IE 10/11\n * and Firefox.\n * Correct `block` display not defined for `main` in IE 11.\n */\narticle,\naside,\ndetails,\nfigcaption,\nfigure,\nfooter,\nheader,\nmain,\nmenu,\nnav,\nsection,\nsummary {\n  display: block; }\n\n/**\n * 1. Correct `inline-block` display not defined in IE 8/9.\n * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.\n */\naudio,\ncanvas,\nprogress,\nvideo {\n  display: inline-block;\n  /* 1 */\n  vertical-align: baseline;\n  /* 2 */ }\n\n/**\n * Prevent displaying `audio` without controls in Mobile Safari 4/5/6/7.\n */\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n/**\n * Address `[hidden]` styling not present in IE 8/9/10.\n * Hide the `template` element in IE 8/9/10/11, Safari, and Firefox < 22.\n */\n[hidden],\ntemplate {\n  display: none; }\n\n/* Links\n   ========================================================================== */\n/**\n * Remove the gray background color from active links in IE 10.\n */\na {\n  background-color: transparent; }\n\n/**\n * Improve readability of focused elements when they are also in an\n * active/hover state (opinionated).\n */\na:active,\na:hover {\n  outline-width: 0; }\n\n/* Text-level semantics\n   ========================================================================== */\n/**\n * Address inconsistent styling of `abbr[title]`.\n * 1. Correct styling in Firefox 39 and Opera 12.\n * 2. Correct missing styling in Chrome, Edge, IE, Opera, and Safari.\n */\nabbr[title] {\n  border-bottom: none;\n  /* 1 */\n  text-decoration: underline;\n  /* 2 */\n  text-decoration: underline dotted;\n  /* 2 */ }\n\n/**\n * Address inconsistent styling of b and strong.\n * 1. Correct duplicate application of `bolder` in Safari 6.0.2.\n * 2. Correct style set to `bold` in Edge 12+, Safari 6.2+, and Chrome 18+.\n */\nb,\nstrong {\n  font-weight: inherit;\n  /* 1 */ }\n\nb,\nstrong {\n  font-weight: bolder;\n  /* 2 */ }\n\n/**\n * Address styling not present in Android < 4.4.\n */\ndfn {\n  font-style: italic; }\n\n/**\n * Address variable `h1` font-size and margin within `section` and `article`\n * contexts in Firefox 4+, Safari, and Chrome.\n */\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\n/**\n * Address styling not present in IE 8/9.\n */\nmark {\n  background-color: #ff0;\n  color: #000; }\n\n/**\n * Address inconsistent and variable font size in all browsers.\n */\nsmall {\n  font-size: 80%; }\n\n/**\n * Prevent `sub` and `sup` affecting `line-height` in all browsers.\n */\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsup {\n  top: -0.5em; }\n\nsub {\n  bottom: -0.25em; }\n\n/* Embedded content\n   ========================================================================== */\n/**\n * Correct border-style given when inside `a` element in IE 8/9/10.\n */\nimg {\n  border-style: none; }\n\n/**\n * Correct overflow not hidden in IE 9/10/11.\n */\nsvg:not(:root) {\n  overflow: hidden; }\n\n/* Grouping content\n   ========================================================================== */\n/**\n * Address margin not present in IE 8/9 and Safari.\n */\nfigure {\n  margin: 1em 40px; }\n\n/**\n * Address inconsistent styling of `hr`.\n * 1. Correct `box-sizing` set to `border-box` in Firefox.\n * 2. Correct `overflow` set to `hidden` in IE 8/9/10/11 and Edge 12.\n */\nhr {\n  box-sizing: content-box;\n  /* 1 */\n  height: 0;\n  /* 1 */\n  overflow: visible;\n  /* 2 */ }\n\n/**\n * Contain overflow in all browsers.\n */\npre {\n  overflow: auto; }\n\n/**\n * 1. Correct inheritance and scaling of font-size for preformatted text.\n * 2. Address odd `em`-unit font size rendering in all browsers.\n */\ncode,\nkbd,\npre,\nsamp {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/* Forms\n   ========================================================================== */\n/**\n * Known limitation: by default, Chrome and Safari on OS X allow very limited\n * styling of `select`, unless a `border` property is set.\n */\n/**\n * 1. Correct font properties not being inherited.\n * 2. Address margins set differently in Firefox 4+, Safari, and Chrome.\n */\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font: inherit;\n  /* 1 */\n  margin: 0;\n  /* 2 */ }\n\n/**\n * Address `overflow` set to `hidden` in IE 8/9/10/11.\n */\nbutton {\n  overflow: visible; }\n\n/**\n * Address inconsistent `text-transform` inheritance for `button` and `select`.\n * All other form control elements do not inherit `text-transform` values.\n * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.\n * Correct `select` style inheritance in Firefox.\n */\nbutton,\nselect {\n  text-transform: none; }\n\n/**\n * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`\n *    and `video` controls.\n * 2. Correct inability to style clickable `input` types in iOS.\n * 3. Improve usability and consistency of cursor style between image-type\n *    `input` and others.\n */\nbutton,\nhtml input[type=\"button\"],\ninput[type=\"reset\"],\ninput[type=\"submit\"] {\n  -webkit-appearance: button;\n  /* 2 */\n  cursor: pointer;\n  /* 3 */ }\n\n/**\n * Re-set default cursor for disabled elements.\n */\nbutton[disabled],\nhtml input[disabled] {\n  cursor: default; }\n\n/**\n * Remove inner padding and border in Firefox 4+.\n */\nbutton::-moz-focus-inner,\ninput::-moz-focus-inner {\n  border: 0;\n  padding: 0; }\n\n/**\n * Restore focus style in Firefox 4+ (unset by a rule above)\n */\nbutton:-moz-focusring,\ninput:-moz-focusring {\n  outline: 1px dotted ButtonText; }\n\n/**\n * It's recommended that you don't attempt to style these elements.\n * Firefox's implementation doesn't respect box-sizing, padding, or width.\n *\n * 1. Address box sizing set to `content-box` in IE 8/9/10.\n * 2. Remove excess padding in IE 8/9/10.\n */\ninput[type=\"checkbox\"],\ninput[type=\"radio\"] {\n  box-sizing: border-box;\n  /* 1 */\n  padding: 0;\n  /* 2 */ }\n\n/**\n * Fix the cursor style for Chrome's increment/decrement buttons. For certain\n * `font-size` values of the `input`, it causes the cursor style of the\n * decrement button to change from `default` to `text`.\n */\ninput[type=\"number\"]::-webkit-inner-spin-button,\ninput[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\n/**\n * Address `appearance` set to `searchfield` in Safari and Chrome.\n */\ninput[type=\"search\"] {\n  -webkit-appearance: textfield; }\n\n/**\n * Remove inner padding and search cancel button in Safari and Chrome on OS X.\n * Safari (but not Chrome) clips the cancel button when the search input has\n * padding (and `textfield` appearance).\n */\ninput[type=\"search\"]::-webkit-search-cancel-button,\ninput[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\n/**\n * Define consistent border, margin, and padding.\n */\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em; }\n\n/**\n * 1. Correct `color` not being inherited from fieldset in IE 8/9/10/11.\n * 2. Remove padding so people aren't caught out if they zero out fieldsets.\n */\nlegend {\n  color: inherit;\n  /* 1 */\n  padding: 0;\n  /* 2 */ }\n\n/**\n * Remove default vertical scrollbar in IE 8/9/10/11.\n */\ntextarea {\n  overflow: auto; }\n\n/**\n * Restore font weight (unset by a rule above).\n * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.\n */\noptgroup {\n  font-weight: bold; }\n", ""]);
+	exports.push([module.id, "body {\n  padding: 1em; }\n\nnav.main-nav {\n  width: 90%;\n  margin: 0 auto;\n  text-align: center; }\n\nnav.main-nav ul {\n  width: 80%;\n  margin: 0 auto;\n  padding: 0; }\n\nnav.main-nav ul li {\n  display: inline-block;\n  padding: 1em;\n  background: #1987FE;\n  color: #fff;\n  border-radius: 5px; }\n\nh1 {\n  text-align: center; }\n\nh2 {\n  font-weight: 400; }\n\nsection.menu {\n  width: 90%;\n  margin: 0 auto; }\n\n#hot-drinks, #cold-drinks, #tea, #bakery, #special-instructions, #order-total {\n  display: block; }\n\ninput:focus,\nselect:focus,\ntextarea:focus,\nbutton:focus {\n  outline: none; }\n\n.next-button {\n  margin-top: 1em;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer; }\n\n.divider {\n  width: 20em;\n  border-bottom: 1px solid black; }\n\n.drink-item {\n  margin-bottom: 1.2em; }\n  .drink-item select {\n    margin-right: 0.5em; }\n\n.item-price {\n  display: inline-block;\n  padding-left: 2em; }\n\n.item-top-row {\n  margin-bottom: 0.5em; }\n\n.drink-item {\n  background: #eee; }\n\n.decaf-option {\n  display: inline-block; }\n\n.decaf-input {\n  margin-left: 0.5em; }\n\n.hot-or-cold-option {\n  display: inline-block;\n  margin-left: 2em; }\n\n.hot-or-cold-option label {\n  margin-left: 1em; }\n\n.hot-input, .cold-input {\n  margin-left: 0.4em; }\n\n.add-to-order {\n  display: inline-block;\n  border: 1px solid #1987FE;\n  background: #1987FE;\n  border-radius: 3px;\n  color: #fff;\n  padding: 0.1em 0.3em; }\n  .add-to-order:hover {\n    cursor: pointer; }\n\n/* ------- NORMALIZE CSS ----------*/\nhtml {\n  font-family: sans-serif;\n  /* 1 */\n  -ms-text-size-adjust: 100%;\n  /* 2 */\n  -webkit-text-size-adjust: 100%;\n  /* 2 */ }\n\n/**\n * Remove default margin (opinionated).\n */\nbody {\n  margin: 0; }\n\n/* HTML5 display definitions\n   ========================================================================== */\n/**\n * Correct `block` display not defined for any HTML5 element in IE 8/9.\n * Correct `block` display not defined for `details` or `summary` in IE 10/11\n * and Firefox.\n * Correct `block` display not defined for `main` in IE 11.\n */\narticle,\naside,\ndetails,\nfigcaption,\nfigure,\nfooter,\nheader,\nmain,\nmenu,\nnav,\nsection,\nsummary {\n  display: block; }\n\n/**\n * 1. Correct `inline-block` display not defined in IE 8/9.\n * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.\n */\naudio,\ncanvas,\nprogress,\nvideo {\n  display: inline-block;\n  /* 1 */\n  vertical-align: baseline;\n  /* 2 */ }\n\n/**\n * Prevent displaying `audio` without controls in Mobile Safari 4/5/6/7.\n */\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n/**\n * Address `[hidden]` styling not present in IE 8/9/10.\n * Hide the `template` element in IE 8/9/10/11, Safari, and Firefox < 22.\n */\n[hidden],\ntemplate {\n  display: none; }\n\n/* Links\n   ========================================================================== */\n/**\n * Remove the gray background color from active links in IE 10.\n */\na {\n  background-color: transparent; }\n\n/**\n * Improve readability of focused elements when they are also in an\n * active/hover state (opinionated).\n */\na:active,\na:hover {\n  outline-width: 0; }\n\n/* Text-level semantics\n   ========================================================================== */\n/**\n * Address inconsistent styling of `abbr[title]`.\n * 1. Correct styling in Firefox 39 and Opera 12.\n * 2. Correct missing styling in Chrome, Edge, IE, Opera, and Safari.\n */\nabbr[title] {\n  border-bottom: none;\n  /* 1 */\n  text-decoration: underline;\n  /* 2 */\n  text-decoration: underline dotted;\n  /* 2 */ }\n\n/**\n * Address inconsistent styling of b and strong.\n * 1. Correct duplicate application of `bolder` in Safari 6.0.2.\n * 2. Correct style set to `bold` in Edge 12+, Safari 6.2+, and Chrome 18+.\n */\nb,\nstrong {\n  font-weight: inherit;\n  /* 1 */ }\n\nb,\nstrong {\n  font-weight: bolder;\n  /* 2 */ }\n\n/**\n * Address styling not present in Android < 4.4.\n */\ndfn {\n  font-style: italic; }\n\n/**\n * Address variable `h1` font-size and margin within `section` and `article`\n * contexts in Firefox 4+, Safari, and Chrome.\n */\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\n/**\n * Address styling not present in IE 8/9.\n */\nmark {\n  background-color: #ff0;\n  color: #000; }\n\n/**\n * Address inconsistent and variable font size in all browsers.\n */\nsmall {\n  font-size: 80%; }\n\n/**\n * Prevent `sub` and `sup` affecting `line-height` in all browsers.\n */\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsup {\n  top: -0.5em; }\n\nsub {\n  bottom: -0.25em; }\n\n/* Embedded content\n   ========================================================================== */\n/**\n * Correct border-style given when inside `a` element in IE 8/9/10.\n */\nimg {\n  border-style: none; }\n\n/**\n * Correct overflow not hidden in IE 9/10/11.\n */\nsvg:not(:root) {\n  overflow: hidden; }\n\n/* Grouping content\n   ========================================================================== */\n/**\n * Address margin not present in IE 8/9 and Safari.\n */\nfigure {\n  margin: 1em 40px; }\n\n/**\n * Address inconsistent styling of `hr`.\n * 1. Correct `box-sizing` set to `border-box` in Firefox.\n * 2. Correct `overflow` set to `hidden` in IE 8/9/10/11 and Edge 12.\n */\nhr {\n  box-sizing: content-box;\n  /* 1 */\n  height: 0;\n  /* 1 */\n  overflow: visible;\n  /* 2 */ }\n\n/**\n * Contain overflow in all browsers.\n */\npre {\n  overflow: auto; }\n\n/**\n * 1. Correct inheritance and scaling of font-size for preformatted text.\n * 2. Address odd `em`-unit font size rendering in all browsers.\n */\ncode,\nkbd,\npre,\nsamp {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/* Forms\n   ========================================================================== */\n/**\n * Known limitation: by default, Chrome and Safari on OS X allow very limited\n * styling of `select`, unless a `border` property is set.\n */\n/**\n * 1. Correct font properties not being inherited.\n * 2. Address margins set differently in Firefox 4+, Safari, and Chrome.\n */\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font: inherit;\n  /* 1 */\n  margin: 0;\n  /* 2 */ }\n\n/**\n * Address `overflow` set to `hidden` in IE 8/9/10/11.\n */\nbutton {\n  overflow: visible; }\n\n/**\n * Address inconsistent `text-transform` inheritance for `button` and `select`.\n * All other form control elements do not inherit `text-transform` values.\n * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.\n * Correct `select` style inheritance in Firefox.\n */\nbutton,\nselect {\n  text-transform: none; }\n\n/**\n * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`\n *    and `video` controls.\n * 2. Correct inability to style clickable `input` types in iOS.\n * 3. Improve usability and consistency of cursor style between image-type\n *    `input` and others.\n */\nbutton,\nhtml input[type=\"button\"],\ninput[type=\"reset\"],\ninput[type=\"submit\"] {\n  -webkit-appearance: button;\n  /* 2 */\n  cursor: pointer;\n  /* 3 */ }\n\n/**\n * Re-set default cursor for disabled elements.\n */\nbutton[disabled],\nhtml input[disabled] {\n  cursor: default; }\n\n/**\n * Remove inner padding and border in Firefox 4+.\n */\nbutton::-moz-focus-inner,\ninput::-moz-focus-inner {\n  border: 0;\n  padding: 0; }\n\n/**\n * Restore focus style in Firefox 4+ (unset by a rule above)\n */\nbutton:-moz-focusring,\ninput:-moz-focusring {\n  outline: 1px dotted ButtonText; }\n\n/**\n * It's recommended that you don't attempt to style these elements.\n * Firefox's implementation doesn't respect box-sizing, padding, or width.\n *\n * 1. Address box sizing set to `content-box` in IE 8/9/10.\n * 2. Remove excess padding in IE 8/9/10.\n */\ninput[type=\"checkbox\"],\ninput[type=\"radio\"] {\n  box-sizing: border-box;\n  /* 1 */\n  padding: 0;\n  /* 2 */ }\n\n/**\n * Fix the cursor style for Chrome's increment/decrement buttons. For certain\n * `font-size` values of the `input`, it causes the cursor style of the\n * decrement button to change from `default` to `text`.\n */\ninput[type=\"number\"]::-webkit-inner-spin-button,\ninput[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\n/**\n * Address `appearance` set to `searchfield` in Safari and Chrome.\n */\ninput[type=\"search\"] {\n  -webkit-appearance: textfield; }\n\n/**\n * Remove inner padding and search cancel button in Safari and Chrome on OS X.\n * Safari (but not Chrome) clips the cancel button when the search input has\n * padding (and `textfield` appearance).\n */\ninput[type=\"search\"]::-webkit-search-cancel-button,\ninput[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\n/**\n * Define consistent border, margin, and padding.\n */\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em; }\n\n/**\n * 1. Correct `color` not being inherited from fieldset in IE 8/9/10/11.\n * 2. Remove padding so people aren't caught out if they zero out fieldsets.\n */\nlegend {\n  color: inherit;\n  /* 1 */\n  padding: 0;\n  /* 2 */ }\n\n/**\n * Remove default vertical scrollbar in IE 8/9/10/11.\n */\ntextarea {\n  overflow: auto; }\n\n/**\n * Restore font weight (unset by a rule above).\n * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.\n */\noptgroup {\n  font-weight: bold; }\n", ""]);
 
 	// exports
 
@@ -20035,15 +20035,11 @@
 
 	var _NavAndTitle2 = _interopRequireDefault(_NavAndTitle);
 
-	var _MenuSection = __webpack_require__(178);
+	var _MenuFormContainer = __webpack_require__(165);
 
-	var _MenuSection2 = _interopRequireDefault(_MenuSection);
+	var _MenuFormContainer2 = _interopRequireDefault(_MenuFormContainer);
 
-	var _SpecialInstructions = __webpack_require__(172);
-
-	var _SpecialInstructions2 = _interopRequireDefault(_SpecialInstructions);
-
-	var _OrderTotal = __webpack_require__(173);
+	var _OrderTotal = __webpack_require__(177);
 
 	var _OrderTotal2 = _interopRequireDefault(_OrderTotal);
 
@@ -20052,30 +20048,28 @@
 	var App = _react2.default.createClass({
 	    displayName: 'App',
 
+	    getInitialState: function getInitialState() {
+	        return {
+	            items: []
+	        };
+	    },
+
+	    _handleAddItemToOrder: function _handleAddItemToOrder(itemDetails) {
+	        this.setState({
+	            items: this.state.items.concat(itemDetails)
+	        });
+	    },
 
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
 	            null,
 	            _react2.default.createElement(_NavAndTitle2.default, null),
-	            _react2.default.createElement(
-	                'form',
-	                null,
-	                _react2.default.createElement(_MenuSection2.default, {
-	                    data: this.props.data,
-	                    slug: 'hot-drinks' }),
-	                _react2.default.createElement(_MenuSection2.default, {
-	                    data: this.props.data,
-	                    slug: 'cold-drinks' }),
-	                _react2.default.createElement(_MenuSection2.default, {
-	                    data: this.props.data,
-	                    slug: 'tea' }),
-	                _react2.default.createElement(_MenuSection2.default, {
-	                    data: this.props.data,
-	                    slug: 'bakery' }),
-	                _react2.default.createElement(_SpecialInstructions2.default, null),
-	                _react2.default.createElement(_OrderTotal2.default, null)
-	            )
+	            _react2.default.createElement(_MenuFormContainer2.default, {
+	                data: this.props.data,
+	                handleAddItemToOrder: this._handleAddItemToOrder
+	            }),
+	            _react2.default.createElement(_OrderTotal2.default, { orderItems: this.state.items })
 	        );
 	    }
 	});
@@ -20137,606 +20131,7 @@
 	module.exports = NavAndTitle;
 
 /***/ },
-/* 165 */,
-/* 166 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var MilkType = _react2.default.createClass({
-	    displayName: "MilkType",
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            "select",
-	            { name: "milk-type", defaultValue: "Milk Type" },
-	            _react2.default.createElement(
-	                "option",
-	                { value: "Milk Type", disabled: true },
-	                "Milk Type"
-	            ),
-	            _react2.default.createElement(
-	                "option",
-	                { value: "almond-milk" },
-	                "Almond Milk"
-	            ),
-	            _react2.default.createElement(
-	                "option",
-	                { value: "soy-milk" },
-	                "Soy Milk"
-	            ),
-	            _react2.default.createElement(
-	                "option",
-	                { value: "rice-milk" },
-	                "Rice Milk"
-	            ),
-	            _react2.default.createElement(
-	                "option",
-	                { value: "whole-milk" },
-	                "Whole Milk"
-	            ),
-	            _react2.default.createElement(
-	                "option",
-	                { value: "non-fat-milk" },
-	                "Non-Fat Milk"
-	            )
-	        );
-	    }
-	});
-
-	module.exports = MilkType;
-
-/***/ },
-/* 167 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Size = _react2.default.createClass({
-	    displayName: "Size",
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            "select",
-	            { name: "size" },
-	            _react2.default.createElement(
-	                "option",
-	                { value: "", disabled: true, selected: true },
-	                "Size"
-	            ),
-	            _react2.default.createElement(
-	                "option",
-	                { value: "12oz" },
-	                "12 oz."
-	            ),
-	            _react2.default.createElement(
-	                "option",
-	                { value: "16oz" },
-	                "16 oz."
-	            ),
-	            _react2.default.createElement(
-	                "option",
-	                { value: "20oz" },
-	                "20 oz."
-	            )
-	        );
-	    }
-	});
-
-	module.exports = Size;
-
-/***/ },
-/* 168 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Quantity = _react2.default.createClass({
-	    displayName: "Quantity",
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            "select",
-	            { name: "quantity" },
-	            _react2.default.createElement(
-	                "option",
-	                { value: "", disabled: true, selected: true },
-	                "Qty"
-	            ),
-	            _react2.default.createElement(
-	                "option",
-	                { value: "1" },
-	                "1"
-	            ),
-	            _react2.default.createElement(
-	                "option",
-	                { value: "2" },
-	                "2"
-	            ),
-	            _react2.default.createElement(
-	                "option",
-	                { value: "3" },
-	                "3"
-	            ),
-	            _react2.default.createElement(
-	                "option",
-	                { value: "4" },
-	                "4"
-	            ),
-	            _react2.default.createElement(
-	                "option",
-	                { value: "5" },
-	                "5"
-	            )
-	        );
-	    }
-	});
-
-	module.exports = Quantity;
-
-/***/ },
-/* 169 */,
-/* 170 */,
-/* 171 */,
-/* 172 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var SpecialInstructions = _react2.default.createClass({
-	    displayName: "SpecialInstructions",
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            "section",
-	            { id: "special-instructions" },
-	            _react2.default.createElement(
-	                "h2",
-	                null,
-	                "Special Instructions"
-	            ),
-	            _react2.default.createElement("textarea", { rows: "6", cols: "40" }),
-	            _react2.default.createElement("div", { className: "divider" })
-	        );
-	    }
-	});
-
-	module.exports = SpecialInstructions;
-
-/***/ },
-/* 173 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var OrderTotal = _react2.default.createClass({
-	    displayName: "OrderTotal",
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            "div",
-	            null,
-	            _react2.default.createElement(
-	                "section",
-	                { id: "order-total" },
-	                _react2.default.createElement(
-	                    "h2",
-	                    null,
-	                    "Order Total"
-	                ),
-	                _react2.default.createElement(
-	                    "table",
-	                    { className: "order-total-table" },
-	                    _react2.default.createElement(
-	                        "tbody",
-	                        null,
-	                        _react2.default.createElement(
-	                            "tr",
-	                            null,
-	                            _react2.default.createElement(
-	                                "td",
-	                                null,
-	                                "1 - 16oz. Frappe"
-	                            ),
-	                            _react2.default.createElement(
-	                                "td",
-	                                null,
-	                                "$3.95"
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            "tr",
-	                            null,
-	                            _react2.default.createElement(
-	                                "td",
-	                                null,
-	                                "1 - 12oz. Green Tea"
-	                            ),
-	                            _react2.default.createElement(
-	                                "td",
-	                                null,
-	                                "$2.95"
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            "tr",
-	                            null,
-	                            _react2.default.createElement(
-	                                "td",
-	                                null,
-	                                "2 - Blueberry Scone"
-	                            ),
-	                            _react2.default.createElement(
-	                                "td",
-	                                null,
-	                                "$3.95"
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            "tr",
-	                            null,
-	                            _react2.default.createElement(
-	                                "td",
-	                                null,
-	                                "Tax"
-	                            ),
-	                            _react2.default.createElement(
-	                                "td",
-	                                null,
-	                                "$2.00"
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            "tr",
-	                            null,
-	                            _react2.default.createElement(
-	                                "td",
-	                                null,
-	                                "Total"
-	                            ),
-	                            _react2.default.createElement(
-	                                "td",
-	                                null,
-	                                "$12.85"
-	                            )
-	                        )
-	                    )
-	                )
-	            ),
-	            _react2.default.createElement("input", { className: "next-button", type: "submit", value: "Next" })
-	        );
-	    }
-	});
-
-	module.exports = OrderTotal;
-
-/***/ },
-/* 174 */
-/***/ function(module, exports) {
-
-	module.exports = {
-		"shops": [
-			{
-				"name": "starbucks",
-				"address": "123 4th St. Santa Monica, CA 90234",
-				"phone": "(818) 438-9832",
-				"imageUrl": "http://www.fodors.com/ee/files/slideshows/9-colectivo-coffee.jpg",
-				"menu": [
-					{
-						"displayName": "Hot Drinks",
-						"slug": "hot-drinks",
-						"items": [
-							{
-								"name": "Latte",
-								"price": 2.95,
-								"options": [
-									"milk-type",
-									"size",
-									"quantity"
-								],
-								"id": "latte"
-							},
-							{
-								"name": "Americano",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity"
-								],
-								"id": "americano"
-							},
-							{
-								"name": "Cappucino",
-								"price": 3.05,
-								"options": [
-									"milk-type",
-									"size",
-									"quantity"
-								],
-								"id": "cappucino"
-							},
-							{
-								"name": "Espresso",
-								"price": 2.5,
-								"options": [
-									"milk-type",
-									"size",
-									"quantity"
-								],
-								"id": "espresso"
-							},
-							{
-								"name": "Macchiato",
-								"price": 3.5,
-								"options": [
-									"milk-type",
-									"size",
-									"quantity"
-								],
-								"id": "macchiato"
-							}
-						]
-					},
-					{
-						"displayName": "Cold Drinks",
-						"slug": "cold-drinks",
-						"items": [
-							{
-								"name": "Iced Latte",
-								"price": 2.95,
-								"options": [
-									"milk-type",
-									"size",
-									"quantity"
-								],
-								"id": "iced-latte"
-							},
-							{
-								"name": "Iced Mocha",
-								"price": 2.5,
-								"options": [
-									"milk-type",
-									"size",
-									"quantity"
-								],
-								"id": "iced-mocha"
-							},
-							{
-								"name": "Iced Chai",
-								"price": 3.05,
-								"options": [
-									"milk-type",
-									"size",
-									"quantity"
-								],
-								"id": "iced-chai"
-							},
-							{
-								"name": "Iced Coffee",
-								"price": 2.5,
-								"options": [
-									"milk-type",
-									"size",
-									"quantity"
-								],
-								"id": ""
-							},
-							{
-								"name": "Frappe",
-								"price": 3.5,
-								"options": [
-									"milk-type",
-									"size",
-									"quantity"
-								],
-								"id": "frappe"
-							}
-						]
-					},
-					{
-						"displayName": "Tea",
-						"slug": "tea",
-						"items": [
-							{
-								"name": "Green",
-								"price": 2.95,
-								"options": [
-									"size",
-									"quantity"
-								],
-								"id": "green"
-							},
-							{
-								"name": "Jasmine Green",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity"
-								],
-								"id": "jasmine-green"
-							},
-							{
-								"name": "Chai",
-								"price": 3.05,
-								"options": [
-									"size",
-									"quantity"
-								],
-								"id": "chai"
-							},
-							{
-								"name": "Mint",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity"
-								],
-								"id": "mint"
-							},
-							{
-								"name": "Chamomile",
-								"price": 3.5,
-								"options": [
-									"size",
-									"quantity"
-								],
-								"id": "chamomile"
-							}
-						]
-					},
-					{
-						"displayName": "Bakery",
-						"slug": "bakery",
-						"items": [
-							{
-								"name": "Croissant",
-								"price": 2.95,
-								"options": [
-									"quantity"
-								],
-								"id": "croissant"
-							},
-							{
-								"name": "Banana Muffin",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "banana-muffin"
-							},
-							{
-								"name": "Blueberry Scone",
-								"price": 3.05,
-								"options": [
-									"quantity"
-								],
-								"id": "blueberry-scone"
-							},
-							{
-								"name": "Carrot Cake",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "carrot-cake"
-							},
-							{
-								"name": "Home-Made Cookies",
-								"price": 3.5,
-								"options": [
-									"quantity"
-								],
-								"id": "home-made-cookies"
-							}
-						]
-					}
-				]
-			}
-		]
-	};
-
-/***/ },
-/* 175 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Decaf = _react2.default.createClass({
-	    displayName: "Decaf",
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            "div",
-	            { className: "decaf-option" },
-	            _react2.default.createElement(
-	                "label",
-	                null,
-	                "Decaf?",
-	                _react2.default.createElement("input", { className: "decaf-input", type: "checkbox", value: "decaf" })
-	            ),
-	            _react2.default.createElement("br", null)
-	        );
-	    }
-	});
-
-	module.exports = Decaf;
-
-/***/ },
-/* 176 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var HotOrCold = _react2.default.createClass({
-	    displayName: "HotOrCold",
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            "div",
-	            { className: "hot-or-cold-option" },
-	            _react2.default.createElement(
-	                "label",
-	                null,
-	                "Hot",
-	                _react2.default.createElement("input", { className: "hot-input", type: "radio", name: "hot-or-cold", value: "hot" })
-	            ),
-	            _react2.default.createElement(
-	                "label",
-	                null,
-	                "Cold",
-	                _react2.default.createElement("input", { className: "cold-input", type: "radio", name: "hot-or-cold", value: "cold" })
-	            )
-	        );
-	    }
-	});
-
-	module.exports = HotOrCold;
-
-/***/ },
-/* 177 */,
-/* 178 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20745,79 +20140,229 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _MilkType = __webpack_require__(166);
+	var _MenuSection = __webpack_require__(166);
 
-	var _MilkType2 = _interopRequireDefault(_MilkType);
+	var _MenuSection2 = _interopRequireDefault(_MenuSection);
 
-	var _Size = __webpack_require__(167);
+	var _SpecialInstructions = __webpack_require__(176);
 
-	var _Size2 = _interopRequireDefault(_Size);
+	var _SpecialInstructions2 = _interopRequireDefault(_SpecialInstructions);
 
-	var _Quantity = __webpack_require__(168);
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var _Quantity2 = _interopRequireDefault(_Quantity);
+	var MenuFormContainer = _react2.default.createClass({
+	    displayName: 'MenuFormContainer',
 
-	var _Decaf = __webpack_require__(175);
 
-	var _Decaf2 = _interopRequireDefault(_Decaf);
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'form',
+	            null,
+	            _react2.default.createElement(_MenuSection2.default, {
+	                data: this.props.data,
+	                slug: 'hot-drinks',
+	                handleAddItemToOrder: this.props.handleAddItemToOrder }),
+	            _react2.default.createElement(_MenuSection2.default, {
+	                data: this.props.data,
+	                slug: 'cold-drinks',
+	                handleAddItemToOrder: this.props.handleAddItemToOrder }),
+	            _react2.default.createElement(_MenuSection2.default, {
+	                data: this.props.data,
+	                slug: 'tea',
+	                handleAddItemToOrder: this.props.handleAddItemToOrder }),
+	            _react2.default.createElement(_MenuSection2.default, {
+	                data: this.props.data,
+	                slug: 'bakery',
+	                handleAddItemToOrder: this.props.handleAddItemToOrder }),
+	            _react2.default.createElement(_SpecialInstructions2.default, null)
+	        );
+	    }
+	});
 
-	var _HotOrCold = __webpack_require__(176);
+	module.exports = MenuFormContainer;
 
-	var _HotOrCold2 = _interopRequireDefault(_HotOrCold);
+/***/ },
+/* 166 */
+/***/ function(module, exports, __webpack_require__) {
 
-	var _lodash = __webpack_require__(179);
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _MenuItem = __webpack_require__(167);
+
+	var _MenuItem2 = _interopRequireDefault(_MenuItem);
+
+	var _lodash = __webpack_require__(169);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var HotDrinkItem = _react2.default.createClass({
-	    displayName: 'HotDrinkItem',
+	var MenuSection = _react2.default.createClass({
+	    displayName: 'MenuSection',
+
+
+	    render: function render() {
+	        var _this = this;
+
+	        var menuSection = _lodash2.default.find(this.props.data.shops[0].menu, { "slug": this.props.slug });
+	        var sectionTitle = menuSection.displayName;
+	        var menuItems = menuSection.items.map(function (item, index) {
+	            return _react2.default.createElement(_MenuItem2.default, {
+	                itemName: item.name,
+	                price: item.price,
+	                options: item.options,
+	                key: item.id,
+	                handleAddItemToOrder: _this.props.handleAddItemToOrder });
+	        });
+
+	        return _react2.default.createElement(
+	            'section',
+	            { id: 'hot-drinks' },
+	            _react2.default.createElement(
+	                'h2',
+	                null,
+	                sectionTitle
+	            ),
+	            menuItems,
+	            _react2.default.createElement('div', { className: 'divider' })
+	        );
+	    }
+	});
+
+	module.exports = MenuSection;
+
+/***/ },
+/* 167 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _AddToOrderButton = __webpack_require__(168);
+
+	var _AddToOrderButton2 = _interopRequireDefault(_AddToOrderButton);
+
+	var _MilkType = __webpack_require__(171);
+
+	var _MilkType2 = _interopRequireDefault(_MilkType);
+
+	var _Size = __webpack_require__(172);
+
+	var _Size2 = _interopRequireDefault(_Size);
+
+	var _Quantity = __webpack_require__(173);
+
+	var _Quantity2 = _interopRequireDefault(_Quantity);
+
+	var _Decaf = __webpack_require__(174);
+
+	var _Decaf2 = _interopRequireDefault(_Decaf);
+
+	var _HotOrCold = __webpack_require__(175);
+
+	var _HotOrCold2 = _interopRequireDefault(_HotOrCold);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var MenuItem = _react2.default.createClass({
+	    displayName: 'MenuItem',
+
+
+	    getInitialState: function getInitialState() {
+	        return {};
+	    },
+
+	    _handleMilkTypeChange: function _handleMilkTypeChange(event) {
+	        this.setState({
+	            milkType: event.target.value
+	        });
+	    },
+
+	    _handleSizeChange: function _handleSizeChange(event) {
+	        this.setState({
+	            size: event.target.value
+	        });
+	    },
+
+	    _handleQuantityChange: function _handleQuantityChange(event) {
+	        this.setState({
+	            quantity: event.target.value
+	        });
+	    },
+
+	    _handleDecafChange: function _handleDecafChange(event) {
+	        this.setState({
+	            decaf: !this.state.decaf
+	        });
+	    },
+
+	    _handleHotOrColdChange: function _handleHotOrColdChange(event) {
+	        this.setState({
+	            hotOrCold: event.target.value
+	        });
+	    },
+
+	    _handleAddToOrderButton: function _handleAddToOrderButton() {
+	        // if (document.querySelector(".quantity-select").value > 0) {
+	        //     this.setState({
+	        //         addToOrderButton: true
+	        //     })
+	        // }
+	        console.log(this.state.addToOrderButton);
+	    },
+
 	    _renderOption: function _renderOption(option) {
 	        switch (option) {
 	            case 'milk-type':
-	                return _react2.default.createElement(_MilkType2.default, null);
+	                return _react2.default.createElement(_MilkType2.default, {
+	                    handleChange: this._handleMilkTypeChange });
 	            case 'size':
-	                return _react2.default.createElement(_Size2.default, null);
+	                return _react2.default.createElement(_Size2.default, {
+	                    handleChange: this._handleSizeChange });
 	            case 'quantity':
-	                return _react2.default.createElement(_Quantity2.default, null);
-	            case 'decaf':
-	                return _react2.default.createElement(_Decaf2.default, null);
+	                return _react2.default.createElement(_Quantity2.default, {
+	                    handleChange: this._handleQuantityChange,
+	                    handleAddToOrderButton: this._handleAddToOrderButton });
 	        }
 	    },
+
 	    _renderOption2: function _renderOption2(option) {
 	        switch (option) {
 	            case 'decaf':
-	                return _react2.default.createElement(_Decaf2.default, null);
+	                return _react2.default.createElement(_Decaf2.default, {
+	                    handleChange: this._handleDecafChange });
 	            case 'hot-or-cold':
-	                return _react2.default.createElement(_HotOrCold2.default, null);
+	                return _react2.default.createElement(_HotOrCold2.default, {
+	                    handleChange: this._handleHotOrColdChange });
 	        }
 	    },
 
-	    //
-	    // getInitialState: function() {
-	    //     return {
-	    //         options: this.props.data.shops[0].menu[0].items.options
-	    //     }
-	    // },
-
 	    render: function render() {
-
-	        // var options = this.props.data.shops[0].menu.map()
-
 	        return _react2.default.createElement(
 	            'div',
 	            { className: 'drink-item' },
 	            _react2.default.createElement(
 	                'label',
 	                { htmlFor: 'hot-drink' },
-	                this.props.drinkName
+	                this.props.itemName
 	            ),
 	            _react2.default.createElement('br', null),
 	            _react2.default.createElement(
 	                'div',
 	                { className: 'item-top-row' },
 	                this.props.options.map(this._renderOption),
+	                _react2.default.createElement(_AddToOrderButton2.default, {
+	                    handleAddItemToOrder: this.props.handleAddItemToOrder,
+	                    itemName: this.props.itemName,
+	                    price: this.props.price,
+	                    itemDetails: this.state }),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'item-price' },
@@ -20830,75 +20375,48 @@
 	    }
 	});
 
-	// DONE create options array on each menu item
-	// DONE change id property on each menu item
-	// DONE complete all Options components
-	// pull together all section components to one flexible component
+	module.exports = MenuItem;
 
-	// iterate over menu to create MenuSection component
+/***/ },
+/* 168 */
+/***/ function(module, exports, __webpack_require__) {
 
-	// create OrderTotal component using callbacks
+	'use strict';
 
-	var MenuSection = _react2.default.createClass({
-	    displayName: 'MenuSection',
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _lodash = __webpack_require__(169);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AddToOrderButton = _react2.default.createClass({
+	    displayName: 'AddToOrderButton',
 
 
 	    render: function render() {
+	        var _this = this;
 
-	        var menuSection = _lodash2.default.find(this.props.data.shops[0].menu, { "slug": this.props.slug });
-
-	        var sectionTitle = menuSection.display;
-
-	        var drinkItems = menuSection.items.map(function (item, index) {
-	            return _react2.default.createElement(HotDrinkItem, {
-	                drinkName: item.name,
-	                price: item.price,
-	                options: item.options,
-	                key: item.id });
-	        });
-
-	        // var drinkItems = this.props.data.shops[0].menu.map(
-	        //     (menuSection, index) => {
-	        //
-	        //         if (menuSection.slug === this.props.slug) {
-	        //             sectionTitle = menuSection.displayName;
-	        //             return menuSection.items.map(
-	        //                 (item, index) => {
-	        //                     return <HotDrinkItem
-	        //                         drinkName={item.name}
-	        //                         price={item.price}
-	        //                         options={item.options}
-	        //                         key={item.id} />
-	        //             })
-	        //         }
-	        //     });
+	        var itemDetails = _lodash2.default.assign({ itemName: this.props.itemName, price: this.props.price }, this.props.itemDetails);
 
 	        return _react2.default.createElement(
-	            'section',
-	            { id: 'hot-drinks' },
-	            _react2.default.createElement(
-	                'h2',
-	                null,
-	                sectionTitle
-	            ),
-	            drinkItems,
-	            _react2.default.createElement('div', { className: 'divider' })
+	            'div',
+	            { className: 'add-to-order',
+	                onClick: function onClick() {
+	                    return _this.props.handleAddItemToOrder(itemDetails);
+	                } },
+	            'Add to order'
 	        );
 	    }
 	});
 
-	// {this.props.data.shops[0].menu.map(
-	//     function(menuSection) {
-	//         if (menuSection.slug === this.props.slug) {
-	//             return menuSection.displayName
-	//         }
-	//     }
-	// )}
-
-	module.exports = MenuSection;
+	module.exports = AddToOrderButton;
 
 /***/ },
-/* 179 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
@@ -35975,10 +35493,10 @@
 	  }
 	}.call(this));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(180)(module), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(170)(module), (function() { return this; }())))
 
 /***/ },
-/* 180 */
+/* 170 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -35992,6 +35510,637 @@
 		return module;
 	}
 
+
+/***/ },
+/* 171 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var MilkType = _react2.default.createClass({
+	    displayName: "MilkType",
+
+
+	    render: function render() {
+
+	        return _react2.default.createElement(
+	            "select",
+	            { name: "milk-type", defaultValue: "Milk Type", onChange: this.props.handleChange },
+	            _react2.default.createElement(
+	                "option",
+	                { value: "Milk Type", disabled: true },
+	                "Milk Type"
+	            ),
+	            _react2.default.createElement(
+	                "option",
+	                { value: "almond-milk" },
+	                "Almond Milk"
+	            ),
+	            _react2.default.createElement(
+	                "option",
+	                { value: "soy-milk" },
+	                "Soy Milk"
+	            ),
+	            _react2.default.createElement(
+	                "option",
+	                { value: "rice-milk" },
+	                "Rice Milk"
+	            ),
+	            _react2.default.createElement(
+	                "option",
+	                { value: "whole-milk" },
+	                "Whole Milk"
+	            ),
+	            _react2.default.createElement(
+	                "option",
+	                { value: "non-fat-milk" },
+	                "Non-Fat Milk"
+	            )
+	        );
+	    }
+	});
+
+	module.exports = MilkType;
+
+/***/ },
+/* 172 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Size = _react2.default.createClass({
+	    displayName: "Size",
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            "select",
+	            { name: "size", onChange: this.props.handleChange },
+	            _react2.default.createElement(
+	                "option",
+	                { value: "", disabled: true, selected: true },
+	                "Size"
+	            ),
+	            _react2.default.createElement(
+	                "option",
+	                { value: "12oz" },
+	                "12 oz."
+	            ),
+	            _react2.default.createElement(
+	                "option",
+	                { value: "16oz" },
+	                "16 oz."
+	            ),
+	            _react2.default.createElement(
+	                "option",
+	                { value: "20oz" },
+	                "20 oz."
+	            )
+	        );
+	    }
+	});
+
+	module.exports = Size;
+
+/***/ },
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Quantity = _react2.default.createClass({
+	    displayName: "Quantity",
+
+	    render: function render() {
+	        var _this = this;
+
+	        return _react2.default.createElement(
+	            "select",
+	            { name: "quantity", className: "quantity-select", onChange: function onChange(e) {
+	                    console.log('quantity changed');
+	                    _this.props.handleAddToOrderButton();
+	                    _this.props.handleChange(e);
+	                } },
+	            _react2.default.createElement(
+	                "option",
+	                { value: "", disabled: true, selected: true },
+	                "Qty"
+	            ),
+	            _react2.default.createElement(
+	                "option",
+	                { value: "1" },
+	                "1"
+	            ),
+	            _react2.default.createElement(
+	                "option",
+	                { value: "2" },
+	                "2"
+	            ),
+	            _react2.default.createElement(
+	                "option",
+	                { value: "3" },
+	                "3"
+	            ),
+	            _react2.default.createElement(
+	                "option",
+	                { value: "4" },
+	                "4"
+	            ),
+	            _react2.default.createElement(
+	                "option",
+	                { value: "5" },
+	                "5"
+	            )
+	        );
+	    }
+	});
+
+	module.exports = Quantity;
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Decaf = _react2.default.createClass({
+	    displayName: "Decaf",
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            "div",
+	            { className: "decaf-option" },
+	            _react2.default.createElement(
+	                "label",
+	                null,
+	                "Decaf?",
+	                _react2.default.createElement("input", { className: "decaf-input", type: "checkbox", value: "decaf", onChange: this.props.handleChange })
+	            ),
+	            _react2.default.createElement("br", null)
+	        );
+	    }
+	});
+
+	module.exports = Decaf;
+
+/***/ },
+/* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var HotOrCold = _react2.default.createClass({
+	    displayName: "HotOrCold",
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            "div",
+	            { className: "hot-or-cold-option" },
+	            _react2.default.createElement(
+	                "label",
+	                null,
+	                "Hot",
+	                _react2.default.createElement("input", { className: "hot-input", type: "radio", name: "hot-or-cold", value: "hot", onChange: this.props.handleChange })
+	            ),
+	            _react2.default.createElement(
+	                "label",
+	                null,
+	                "Cold",
+	                _react2.default.createElement("input", { className: "cold-input", type: "radio", name: "hot-or-cold", value: "cold", onChange: this.props.handleChange })
+	            )
+	        );
+	    }
+	});
+
+	module.exports = HotOrCold;
+
+/***/ },
+/* 176 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SpecialInstructions = _react2.default.createClass({
+	    displayName: "SpecialInstructions",
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            "section",
+	            { id: "special-instructions" },
+	            _react2.default.createElement(
+	                "h2",
+	                null,
+	                "Special Instructions"
+	            ),
+	            _react2.default.createElement("textarea", { rows: "6", cols: "40" }),
+	            _react2.default.createElement("div", { className: "divider" })
+	        );
+	    }
+	});
+
+	module.exports = SpecialInstructions;
+
+/***/ },
+/* 177 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _OrderTotalRow = __webpack_require__(178);
+
+	var _OrderTotalRow2 = _interopRequireDefault(_OrderTotalRow);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// after user clicks add to order button -> notification confirms -- callback
+	// after user clicks add to order button -> quantity, size, drink name, and price are sent to table row component -- state callback
+	// order total is calculated with each add to order click by summing all component prices -- state callback
+	// onChange, plus button appears to add item to order -- callback
+
+	// tax is included in order total calculation
+	// after adding item to order, another button appears to add similar menu item with different option choices
+	// after user clicks add item button -> identical menu item is created in its default state
+
+	// Question: {} means JS within anything React/JSX?
+	// Question: `key` property is a requirement only on React components that are generated using .map?
+
+	var OrderTotal = _react2.default.createClass({
+	    displayName: 'OrderTotal',
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	                'section',
+	                { id: 'order-total' },
+	                _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    'Order Total'
+	                ),
+	                _react2.default.createElement(
+	                    'table',
+	                    { className: 'order-total-table' },
+	                    _react2.default.createElement(
+	                        'tbody',
+	                        null,
+	                        _react2.default.createElement(_OrderTotalRow2.default, {
+	                            orderItems: this.props.orderItems }),
+	                        _react2.default.createElement(
+	                            'tr',
+	                            null,
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                'Tax'
+	                            ),
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                '$2.00'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'tr',
+	                            null,
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                'Total'
+	                            ),
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                '$12.85'
+	                            )
+	                        )
+	                    )
+	                )
+	            ),
+	            _react2.default.createElement('input', { className: 'next-button', type: 'submit', value: 'Next' })
+	        );
+	    }
+	});
+
+	module.exports = OrderTotal;
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var OrderTotalRow = _react2.default.createClass({
+	    displayName: 'OrderTotalRow',
+
+	    render: function render() {
+
+	        // var quantity = this.props.data.shops[0].menu
+
+	        return _react2.default.createElement(
+	            'tr',
+	            null,
+	            _react2.default.createElement(
+	                'td',
+	                null,
+	                '1 - 16oz. Frappe'
+	            ),
+	            _react2.default.createElement(
+	                'td',
+	                null,
+	                '$3.95'
+	            )
+	        );
+	    }
+	});
+
+	module.exports = OrderTotalRow;
+
+/***/ },
+/* 179 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"shops": [
+			{
+				"name": "starbucks",
+				"address": "123 4th St. Santa Monica, CA 90234",
+				"phone": "(818) 438-9832",
+				"imageUrl": "http://www.fodors.com/ee/files/slideshows/9-colectivo-coffee.jpg",
+				"menu": [
+					{
+						"displayName": "Hot Drinks",
+						"slug": "hot-drinks",
+						"items": [
+							{
+								"name": "Latte",
+								"price": 2.95,
+								"options": [
+									"milk-type",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "latte"
+							},
+							{
+								"name": "Americano",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "americano"
+							},
+							{
+								"name": "Cappucino",
+								"price": 3.05,
+								"options": [
+									"milk-type",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "cappucino"
+							},
+							{
+								"name": "Espresso",
+								"price": 2.5,
+								"options": [
+									"milk-type",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "espresso"
+							},
+							{
+								"name": "Macchiato",
+								"price": 3.5,
+								"options": [
+									"milk-type",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "macchiato"
+							}
+						]
+					},
+					{
+						"displayName": "Cold Drinks",
+						"slug": "cold-drinks",
+						"items": [
+							{
+								"name": "Iced Latte",
+								"price": 2.95,
+								"options": [
+									"milk-type",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-latte"
+							},
+							{
+								"name": "Iced Mocha",
+								"price": 2.5,
+								"options": [
+									"milk-type",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-mocha"
+							},
+							{
+								"name": "Iced Chai",
+								"price": 3.05,
+								"options": [
+									"milk-type",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-chai"
+							},
+							{
+								"name": "Iced Coffee",
+								"price": 2.5,
+								"options": [
+									"milk-type",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": ""
+							},
+							{
+								"name": "Frappe",
+								"price": 3.5,
+								"options": [
+									"milk-type",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "frappe"
+							}
+						]
+					},
+					{
+						"displayName": "Tea",
+						"slug": "tea",
+						"items": [
+							{
+								"name": "Green",
+								"price": 2.95,
+								"options": [
+									"size",
+									"quantity",
+									"hot-or-cold"
+								],
+								"id": "green"
+							},
+							{
+								"name": "Jasmine Green",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hot-or-cold"
+								],
+								"id": "jasmine-green"
+							},
+							{
+								"name": "Chai",
+								"price": 3.05,
+								"options": [
+									"size",
+									"quantity",
+									"hot-or-cold"
+								],
+								"id": "chai"
+							},
+							{
+								"name": "Mint",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hot-or-cold"
+								],
+								"id": "mint"
+							},
+							{
+								"name": "Chamomile",
+								"price": 3.5,
+								"options": [
+									"size",
+									"quantity",
+									"hot-or-cold"
+								],
+								"id": "chamomile"
+							}
+						]
+					},
+					{
+						"displayName": "Bakery",
+						"slug": "bakery",
+						"items": [
+							{
+								"name": "Croissant",
+								"price": 2.95,
+								"options": [
+									"quantity"
+								],
+								"id": "croissant"
+							},
+							{
+								"name": "Banana Muffin",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "banana-muffin"
+							},
+							{
+								"name": "Blueberry Scone",
+								"price": 3.05,
+								"options": [
+									"quantity"
+								],
+								"id": "blueberry-scone"
+							},
+							{
+								"name": "Carrot Cake",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "carrot-cake"
+							},
+							{
+								"name": "Home-Made Cookies",
+								"price": 3.5,
+								"options": [
+									"quantity"
+								],
+								"id": "home-made-cookies"
+							}
+						]
+					}
+				]
+			}
+		]
+	};
 
 /***/ }
 /******/ ]);

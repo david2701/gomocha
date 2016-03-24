@@ -117,6 +117,20 @@ button:focus {
     margin-left: 0.4em;
 }
 
+.add-to-order {
+    display: inline-block;
+    border: 1px solid #1987FE;
+    background: #1987FE;
+    border-radius: 3px;
+    color: #fff;
+    padding: 0.1em 0.3em;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+
 /* ------- NORMALIZE CSS ----------*/
 
 html {

@@ -6,7 +6,7 @@ var Decaf = React.createClass({
             <div className="decaf-option">
                 <label>
                 Decaf?
-                <input className="decaf-input" type="checkbox" value="decaf" />
+                <input className="decaf-input" type="checkbox" value="decaf" onChange={this.props.handleChange} />
                 </label><br />
             </div>
         )

@@ -6,11 +6,11 @@ var HotOrCold = React.createClass({
             <div className="hot-or-cold-option">
                 <label>
                     Hot
-                <input className="hot-input" type="radio" name="hot-or-cold" value="hot" />
+                <input className="hot-input" type="radio" name="hot-or-cold" value="hot" onChange={this.props.handleChange} />
                 </label>
                 <label>
                     Cold
-                <input className="cold-input" type="radio" name="hot-or-cold" value="cold" />
+                <input className="cold-input" type="radio" name="hot-or-cold" value="cold" onChange={this.props.handleChange} />
                 </label>
             </div>
         )
