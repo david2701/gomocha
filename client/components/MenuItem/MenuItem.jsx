@@ -48,7 +48,7 @@ var MenuItem = React.createClass({
         //         addToOrderButton: true
         //     })
         // }
-            console.log(this.state.addToOrderButton);
+            // console.log(this.state.addToOrderButton);
 
     },
 

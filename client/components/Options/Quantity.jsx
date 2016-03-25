@@ -5,7 +5,6 @@ var Quantity = React.createClass({
         return (
             <select name="quantity" className="quantity-select" onChange={
                     (e) => {
-                        console.log('quantity changed');
                         this.props.handleAddToOrderButton()
                         this.props.handleChange(e)
                     }}>

@@ -6,15 +6,21 @@ import OrderTotal from '../OrderTotal/OrderTotal'
 var App = React.createClass({
     getInitialState: function() {
         return {
-            items: []
+            items: [],
+            orderTotal: {
+                total: 0,
+                tax: 0,
+                orderTotal: 0
+            }
         }
     },
 
     _handleAddItemToOrder: function(itemDetails) {
         this.setState({
-            items: this.state.items.concat(itemDetails)
-        })
+            items: this.state.items.concat(itemDetails),
+        });
     },
+
 
     render: function() {
         return (
@@ -22,8 +28,7 @@ var App = React.createClass({
                 <NavAndTitle />
                 <MenuFormContainer
                     data={this.props.data}
-                    handleAddItemToOrder={this._handleAddItemToOrder}
-                     />
+                    handleAddItemToOrder={this._handleAddItemToOrder}/>
                  <OrderTotal orderItems={this.state.items} />
             </div>
         )

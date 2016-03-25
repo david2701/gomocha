@@ -1,14 +1,17 @@
 import React from 'react'
+import sass from './order-total-row.scss'
 
 var OrderTotalRow = React.createClass({
     render: function() {
-
-        // var quantity = this.props.data.shops[0].menu
-
         return (
             <tr>
-                <td>1 - 16oz. Frappe</td>
-                <td>$3.95</td>
+                <td>{this.props.itemDetails.quantity}
+                    <span> - </span>
+                    {this.props.itemDetails.size}
+                    <span> </span>
+                    {this.props.itemDetails.itemName}
+                </td>
+                <td>${this.props.itemDetails.price.toFixed(2)}</td>
             </tr>
         )
     }

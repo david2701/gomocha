@@ -11,7 +11,7 @@ var MenuFormContainer = React.createClass({
                 <MenuSection
                     data={this.props.data}
                     slug="hot-drinks"
-                    handleAddItemToOrder={this.props.handleAddItemToOrder} />
+                    handleAddItemToOrder={this.props.handleAddItemToOrder}/>
                 <MenuSection
                     data={this.props.data}
                     slug="cold-drinks"
