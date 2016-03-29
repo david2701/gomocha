@@ -1,14 +1,14 @@
 import React from 'react'
+import sass from './options.scss'
 
 var Quantity = React.createClass({
     render: function() {
         return (
-            <select name="quantity" className="quantity-select" onChange={
+            <select value={this.props.value} name="quantity" className="quantity-select" onChange={
                     (e) => {
-                        this.props.handleAddToOrderButton()
                         this.props.handleChange(e)
                     }}>
-                <option value="" disabled selected>Qty</option>
+                <option value="default" disabled>Qty</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

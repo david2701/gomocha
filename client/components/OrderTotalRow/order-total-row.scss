@@ -1,3 +1,28 @@
 .order-total-table td {
-    padding: 1em 2em;
+    padding: 0.75em 1.5em;
+}
+
+.order-total-table tr {
+    background: #EEEEEE;
+}
+
+tr.order-total-row {
+
+    .delete-item {
+        color: #962D2D;
+        margin-left: 20px;
+        display: none;
+        cursor: pointer;
+    }
+
+    &:hover {
+
+        .delete-item {
+            display: inline-block;
+        }
+    }
+}
+
+.td-price {
+    width: 75px;
 }

@@ -13,7 +13,7 @@
                         {
                             "name": "Latte",
                             "price": 2.95,
-                            "options": ["milk-type", "size", "quantity", "decaf"],
+                            "options": ["milkType", "size", "quantity", "decaf"],
                             "id": "latte"
                         },
                         {
@@ -25,19 +25,19 @@
                         {
                             "name": "Cappucino",
                             "price": 3.05,
-                            "options": ["milk-type", "size", "quantity", "decaf"],
+                            "options": ["milkType", "size", "quantity", "decaf"],
                             "id": "cappucino"
                         },
                         {
                             "name": "Espresso",
                             "price": 2.50,
-                            "options": ["milk-type", "size", "quantity", "decaf"],
+                            "options": ["milkType", "size", "quantity", "decaf"],
                             "id": "espresso"
                         },
                         {
                             "name": "Macchiato",
                             "price": 3.50,
-                            "options": ["milk-type", "size", "quantity", "decaf"],
+                            "options": ["milkType", "size", "quantity", "decaf"],
                             "id": "macchiato"
                         }
                     ]
@@ -50,31 +50,31 @@
                         {
                             "name": "Iced Latte",
                             "price": 2.95,
-                            "options": ["milk-type", "size", "quantity", "decaf"],
+                            "options": ["milkType", "size", "quantity", "decaf"],
                             "id": "iced-latte"
                         },
                         {
                             "name": "Iced Mocha",
                             "price": 2.50,
-                            "options": ["milk-type", "size", "quantity", "decaf"],
+                            "options": ["milkType", "size", "quantity", "decaf"],
                             "id": "iced-mocha"
                         },
                         {
                             "name": "Iced Chai",
                             "price": 3.05,
-                            "options": ["milk-type", "size", "quantity", "decaf"],
+                            "options": ["milkType", "size", "quantity", "decaf"],
                             "id": "iced-chai"
                         },
                         {
                             "name": "Iced Coffee",
                             "price": 2.50,
-                            "options": ["milk-type", "size", "quantity", "decaf"],
+                            "options": ["milkType", "size", "quantity", "decaf"],
                             "id": ""
                         },
                         {
                             "name": "Frappe",
                             "price": 3.50,
-                            "options": ["milk-type", "size", "quantity", "decaf"],
+                            "options": ["milkType", "size", "quantity", "decaf"],
                             "id": "frappe"
                         }
                     ]
@@ -87,31 +87,31 @@
                         {
                             "name": "Green",
                             "price": 2.95,
-                            "options": ["size", "quantity", "hot-or-cold"],
+                            "options": ["size", "quantity", "hotOrCold"],
                             "id": "green"
                         },
                         {
                             "name": "Jasmine Green",
                             "price": 2.50,
-                            "options": ["size", "quantity", "hot-or-cold"],
+                            "options": ["size", "quantity", "hotOrCold"],
                             "id": "jasmine-green"
                         },
                         {
                             "name": "Chai",
                             "price": 3.05,
-                            "options": ["size", "quantity", "hot-or-cold"],
+                            "options": ["size", "quantity", "hotOrCold"],
                             "id": "chai"
                         },
                         {
                             "name": "Mint",
                             "price": 2.50,
-                            "options": ["size", "quantity", "hot-or-cold"],
+                            "options": ["size", "quantity", "hotOrCold"],
                             "id": "mint"
                         },
                         {
                             "name": "Chamomile",
                             "price": 3.50,
-                            "options": ["size", "quantity", "hot-or-cold"],
+                            "options": ["size", "quantity", "hotOrCold"],
                             "id": "chamomile"
                         }
                     ]

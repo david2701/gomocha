@@ -1,6 +1,7 @@
 import React from 'react'
 import MenuSection from '../MenuSection/MenuSection'
 import SpecialInstructions from '../SpecialInstructions/SpecialInstructions'
+import sass from './menu-form-container.scss'
 
 var MenuFormContainer = React.createClass({
 

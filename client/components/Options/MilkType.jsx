@@ -1,12 +1,13 @@
 import React from 'react'
+import sass from './options.scss'
 
 var MilkType = React.createClass({
 
     render: function() {
 
         return (
-            <select name="milk-type" defaultValue="Milk Type" onChange={this.props.handleChange}>
-                <option value="Milk Type" disabled>Milk Type</option>
+            <select name="milk-type" value={this.props.value} onChange={this.props.handleChange}>
+                <option value="default" disabled>Milk Type</option>
                 <option value="almond-milk">Almond Milk</option>
                 <option value="soy-milk">Soy Milk</option>
                 <option value="rice-milk">Rice Milk</option>

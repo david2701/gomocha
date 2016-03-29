@@ -1,7 +1,7 @@
 import React from 'react'
 import MenuItem from '../MenuItem/MenuItem'
 import _ from 'lodash'
-
+import sass from './menu-section.scss'
 
 var MenuSection = React.createClass({
 

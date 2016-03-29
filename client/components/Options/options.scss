@@ -1,0 +1,34 @@
+.decaf-option {
+    display: inline-block;
+}
+
+.decaf-input {
+    margin-left: 0.5em;
+}
+
+.hot-or-cold-option {
+    display: inline-block;
+    margin-left: 2em;
+}
+
+.hot-or-cold-option label {
+    margin-left: 1em;
+}
+
+.hot-input, .cold-input {
+    margin-left: 0.4em;
+}
+
+.add-to-order {
+    color: #fff;
+    margin-left: 1em;
+    display: inline-block;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.add-item-icon {
+    color: #3FB083;
+}

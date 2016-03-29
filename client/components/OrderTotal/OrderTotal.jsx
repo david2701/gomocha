@@ -2,22 +2,8 @@ import React from 'react'
 import OrderTotalRow from '../OrderTotalRow/OrderTotalRow'
 import OrderTax from '../OrderTax/OrderTax'
 import OrderTotalTotal from '../OrderTotalTotal/OrderTotalTotal'
+import sass from './order-total.scss'
 
-// after user clicks add to order button -> notification confirms -- callback
-// DONE after user clicks add to order button -> quantity, size, drink name, and price are sent to table row component -- state callback
-// order total is calculated with each add to order click by summing all component prices -- state callback
-// onChange, plus button appears to add item to order -- callback
-
-
-
-// tax is included in order total calculation
-// after adding item to order, another button appears to add similar menu item with different option choices
-// after user clicks add item button -> identical menu item is created in its default state
-// user cannot add item unless all form elements are filled out
-
-
-// Question: {} means JS within anything React/JSX?
-// Question: `key` property is a requirement only on React components that are generated using .map?
 
 var OrderTotal = React.createClass({
     render: function() {
@@ -26,10 +12,13 @@ var OrderTotal = React.createClass({
             (item, index) => {
                 return <OrderTotalRow
                 itemDetails={item}
-                key={index} />
+                handleDeleteItemFromOrder={this.props.handleDeleteItemFromOrder}
+                key={index}
+                index={index} />
             }
         );
 
+        // ORDER TOTAL AND TAX CALCULATION //
         var total = this.props.orderItems.reduce((sum, current) =>
             sum + current.price, 0);
         var orderTax = (total * 0.1);

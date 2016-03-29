@@ -1,5 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
+import sass from './options.scss'
 
 var AddToOrderButton = React.createClass({
 
@@ -8,10 +9,10 @@ var AddToOrderButton = React.createClass({
 
         return(
             <div className='add-to-order'
-                 onClick={() =>
+                 onClick={() => {
                      this.props.handleAddItemToOrder(itemDetails)
-                 }>
-                Add to order
+                 }}>
+                <span title='Add item to order'><i className="fa fa-plus-circle add-item-icon fa-lg"></i></span>
             </div>
         )
     }

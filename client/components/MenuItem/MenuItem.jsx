@@ -5,6 +5,8 @@ import Size from '../Options/Size'
 import Quantity from '../Options/Quantity'
 import Decaf from '../Options/Decaf'
 import HotOrCold from '../Options/HotOrCold'
+import sass from './menu-item.scss'
+import _ from 'lodash'
 
 var MenuItem = React.createClass({
 
@@ -12,74 +14,89 @@ var MenuItem = React.createClass({
         return {}
     },
 
+    _checkFormComplete: function() {
+        var optionsCheck = this.props.options.map(function(option) {
+            return this.state.hasOwnProperty(option)
+        }, this);
+        return optionsCheck.reduce(function(prev, current) {
+            return prev && current
+        }, true);
+    },
+
     _handleMilkTypeChange: function(event) {
         this.setState({
-            milkType: event.target.value
+            milkType: event.target.value,
         })
     },
 
     _handleSizeChange: function(event) {
         this.setState({
-            size: event.target.value
+            size: event.target.value,
         })
     },
 
     _handleQuantityChange: function(event) {
         this.setState({
-            quantity: event.target.value
+            quantity: event.target.value,
         })
     },
 
     _handleDecafChange: function(event) {
         this.setState({
-            decaf: !this.state.decaf
+            decaf: !this.state.decaf,
         })
     },
 
     _handleHotOrColdChange: function(event) {
         this.setState({
-            hotOrCold: event.target.value
+            hotOrCold: event.target.value,
         })
     },
 
-    _handleAddToOrderButton: function() {
-        // if (document.querySelector(".quantity-select").value > 0) {
-        //     this.setState({
-        //         addToOrderButton: true
-        //     })
-        // }
-            // console.log(this.state.addToOrderButton);
-
+    _handleAddItemToOrder: function(itemDetails) {
+        this.props.handleAddItemToOrder(itemDetails)
+        this.replaceState({})
     },
 
-    _renderOption: function(option) {
+
+    _renderOption: function(option, index) {
         switch (option) {
-            case 'milk-type':
+            case 'milkType':
                 return <MilkType
-                            handleChange={this._handleMilkTypeChange} />
+                            handleChange={this._handleMilkTypeChange}
+                            key={index}
+                            value={this.state.milkType || 'default'} />
             case 'size':
                 return <Size
-                            handleChange={this._handleSizeChange} />
+                            handleChange={this._handleSizeChange}
+                            key={index}
+                            value={this.state.size || 'default'} />
             case 'quantity':
                 return <Quantity
                             handleChange={this._handleQuantityChange}
-                            handleAddToOrderButton={this._handleAddToOrderButton} />
+                            value={this.state.quantity || 'default'}
+                            key={index} />
         }
     },
 
-    _renderOption2: function(option) {
+    _renderOption2: function(option, index) {
         switch (option) {
             case 'decaf':
                 return <Decaf
-                            handleChange={this._handleDecafChange} />
-            case 'hot-or-cold':
+                            handleChange={this._handleDecafChange}
+                            key={index}
+                            value={this.state.decaf || false} />
+            case 'hotOrCold':
                 return <HotOrCold
-                            handleChange={this._handleHotOrColdChange} />
+                            handleChange={this._handleHotOrColdChange}
+                            key={index}
+                            value={this.state.hotOrCold || false} />
         }
     },
 
 
     render: function() {
+        console.log(this._checkFormComplete());
         return (
             <div className="drink-item">
                 {/* Item Label */}
@@ -90,15 +107,17 @@ var MenuItem = React.createClass({
                     {this.props.options.map(this._renderOption)}
 
                     {/* AddToOrderButton */}
-                    <AddToOrderButton
-                        handleAddItemToOrder={this.props.handleAddItemToOrder}
+
+                    {this._checkFormComplete() ? <AddToOrderButton
+                        handleAddItemToOrder={this._handleAddItemToOrder}
+                        handleItemFormComplete={this._handleItemFormComplete}
                         itemName={this.props.itemName}
                         price={this.props.price}
-                        itemDetails={this.state} />
-
+                        itemDetails={this.state} /> : ''}
                     {/* Price */}
                     <div className="item-price">
                         ${this.props.price.toFixed(2)}
+
                     </div>
                 </div>
 

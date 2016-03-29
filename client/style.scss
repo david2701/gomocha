@@ -7,25 +7,6 @@ body {
 
 }
 
-nav.main-nav{
-    width: 90%;
-    margin: 0 auto;
-    text-align: center;
-}
-
-nav.main-nav ul{
-    width: 80%;
-    margin: 0 auto;
-    padding: 0;
-}
-
-nav.main-nav ul li {
-    display: inline-block;
-    padding: 1em;
-    background: #1987FE;
-    color: #fff;
-    border-radius: 5px;
-}
 
 h1 {
     text-align: center;
@@ -35,100 +16,13 @@ h2 {
     font-weight: 400;
 }
 
-section.menu {
-    width: 90%;
-    margin: 0 auto;
-}
 
-#hot-drinks, #cold-drinks, #tea, #bakery, #special-instructions, #order-total {
-    display: block;
-}
-
-#special-instructions textarea {
-
-}
-
-table.order-total-table tr {
-}
 
 input:focus,
 select:focus,
 textarea:focus,
 button:focus {
     outline: none;
-}
-
-.next-button {
-    margin-top: 1em;
-    padding: 1.2em 3em;
-    border-radius: 5px;
-    border: none;
-    box-shadow: none;
-    background: #3879D9;
-    color: #fff;
-
-    &:hover {
-        cursor: pointer;
-    }
-
-}
-
-.divider {
-    width: 20em;
-    border-bottom: 1px solid black;
-}
-
-.drink-item {
-    margin-bottom: 1.2em;
-    select {
-        margin-right: 0.5em;
-    }
-}
-
-.item-price {
-    display: inline-block;
-    padding-left: 2em;
-}
-
-.item-top-row {
-    margin-bottom: 0.5em;
-}
-.drink-item {
-    background: #eee;
-}
-
-.decaf-option {
-    display: inline-block;
-}
-
-.decaf-input {
-    margin-left: 0.5em;
-}
-
-.hot-or-cold-option {
-    display: inline-block;
-    margin-left: 2em;
-}
-
-.hot-or-cold-option label {
-    margin-left: 1em;
-}
-
-.hot-input, .cold-input {
-    margin-left: 0.4em;
-}
-
-.add-to-order {
-    display: inline-block;
-    border: 1px solid #1987FE;
-    background: #1987FE;
-    border-radius: 3px;
-    color: #fff;
-    padding: 0.1em 0.3em;
-
-    &:hover {
-        cursor: pointer;
-    }
 }
 
 

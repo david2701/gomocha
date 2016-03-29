@@ -1,4 +1,5 @@
 import React from 'react'
+import sass from './nav-and-title.scss'
 
 var NavAndTitle = React.createClass({
 

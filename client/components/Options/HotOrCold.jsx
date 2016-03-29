@@ -1,4 +1,5 @@
 import React from 'react'
+import sass from './options.scss'
 
 var HotOrCold = React.createClass({
     render: function() {
@@ -6,11 +7,13 @@ var HotOrCold = React.createClass({
             <div className="hot-or-cold-option">
                 <label>
                     Hot
-                <input className="hot-input" type="radio" name="hot-or-cold" value="hot" onChange={this.props.handleChange} />
+                <input className="hot-input" type="radio" name="hot-or-cold" value="hot"
+                    checked={this.props.value === 'hot'} onChange={this.props.handleChange} />
                 </label>
                 <label>
                     Cold
-                <input className="cold-input" type="radio" name="hot-or-cold" value="cold" onChange={this.props.handleChange} />
+                <input className="cold-input" type="radio" name="hot-or-cold" value="cold"
+                    checked={this.props.value === 'cold'} onChange={this.props.handleChange} />
                 </label>
             </div>
         )
