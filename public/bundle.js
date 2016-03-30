@@ -20071,6 +20071,20 @@
 	        };
 	    },
 
+	    _toggleNotification: function _toggleNotification() {
+	        var _this = this;
+
+	        this.setState({
+	            notification: !this.state.notification
+	        });
+	        var clearNotification = function clearNotification() {
+	            _this.setState({
+	                notification: false
+	            });
+	        };
+	        setTimeout(clearNotification, 3000);
+	    },
+
 	    _handleAddItemToOrder: function _handleAddItemToOrder(itemDetails) {
 	        this.setState({
 	            items: this.state.items.concat(itemDetails)
@@ -20089,10 +20103,13 @@
 	        return _react2.default.createElement(
 	            'div',
 	            null,
-	            _react2.default.createElement(_NavAndTitle2.default, null),
+	            _react2.default.createElement(_NavAndTitle2.default, {
+	                toggleNotification: this._toggleNotification,
+	                notificationState: this.state.notification }),
 	            _react2.default.createElement(_MenuFormContainer2.default, {
 	                data: this.props.data,
-	                handleAddItemToOrder: this._handleAddItemToOrder }),
+	                handleAddItemToOrder: this._handleAddItemToOrder,
+	                toggleNotification: this._toggleNotification }),
 	            _react2.default.createElement(_OrderTotal2.default, {
 	                orderItems: this.state.items,
 	                handleDeleteItemFromOrder: this._handleDeleteItemFromOrder })
@@ -20116,6 +20133,10 @@
 
 	var _navAndTitle2 = _interopRequireDefault(_navAndTitle);
 
+	var _AddItemNotification = __webpack_require__(198);
+
+	var _AddItemNotification2 = _interopRequireDefault(_AddItemNotification);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var NavAndTitle = _react2.default.createClass({
@@ -20126,6 +20147,9 @@
 	        return _react2.default.createElement(
 	            'div',
 	            null,
+	            _react2.default.createElement(_AddItemNotification2.default, {
+	                toggleNotification: this.props.toggleNotification,
+	                notificationState: this.props.notificationState }),
 	            _react2.default.createElement(
 	                'nav',
 	                { className: 'main-nav' },
@@ -20195,19 +20219,23 @@
 	            _react2.default.createElement(_MenuSection2.default, {
 	                data: this.props.data,
 	                slug: 'hot-drinks',
-	                handleAddItemToOrder: this.props.handleAddItemToOrder }),
+	                handleAddItemToOrder: this.props.handleAddItemToOrder,
+	                toggleNotification: this.props.toggleNotification }),
 	            _react2.default.createElement(_MenuSection2.default, {
 	                data: this.props.data,
 	                slug: 'cold-drinks',
-	                handleAddItemToOrder: this.props.handleAddItemToOrder }),
+	                handleAddItemToOrder: this.props.handleAddItemToOrder,
+	                toggleNotification: this.props.toggleNotification }),
 	            _react2.default.createElement(_MenuSection2.default, {
 	                data: this.props.data,
 	                slug: 'tea',
-	                handleAddItemToOrder: this.props.handleAddItemToOrder }),
+	                handleAddItemToOrder: this.props.handleAddItemToOrder,
+	                toggleNotification: this.props.toggleNotification }),
 	            _react2.default.createElement(_MenuSection2.default, {
 	                data: this.props.data,
 	                slug: 'bakery',
-	                handleAddItemToOrder: this.props.handleAddItemToOrder }),
+	                handleAddItemToOrder: this.props.handleAddItemToOrder,
+	                toggleNotification: this.props.toggleNotification }),
 	            _react2.default.createElement(_SpecialInstructions2.default, null)
 	        );
 	    }
@@ -20255,7 +20283,8 @@
 	                options: item.options,
 	                key: item.id,
 	                handleAddItemToOrder: _this.props.handleAddItemToOrder,
-	                calculateTotalAndTax: _this.props.calculateTotalAndTax });
+	                calculateTotalAndTax: _this.props.calculateTotalAndTax,
+	                toggleNotification: _this.props.toggleNotification });
 	        });
 
 	        return _react2.default.createElement(
@@ -20406,7 +20435,6 @@
 	    },
 
 	    render: function render() {
-	        console.log(this._checkFormComplete());
 	        return _react2.default.createElement(
 	            'div',
 	            { className: 'drink-item' },
@@ -20423,6 +20451,7 @@
 	                this._checkFormComplete() ? _react2.default.createElement(_AddToOrderButton2.default, {
 	                    handleAddItemToOrder: this._handleAddItemToOrder,
 	                    handleItemFormComplete: this._handleItemFormComplete,
+	                    toggleNotification: this.props.toggleNotification,
 	                    itemName: this.props.itemName,
 	                    price: this.props.price,
 	                    itemDetails: this.state }) : '',
@@ -20474,7 +20503,7 @@
 	            { className: 'add-to-order',
 	                onClick: function onClick() {
 	                    _this.props.handleAddItemToOrder(itemDetails);
-	                    document.getElementbyClassName('add-item-notification').display = 'block';
+	                    _this.props.toggleNotification();
 	                } },
 	            _react2.default.createElement(
 	                'span',
@@ -36600,6 +36629,87 @@
 
 	// module
 	exports.push([module.id, ".decaf-option {\n  display: inline-block; }\n\n.decaf-input {\n  margin-left: 0.5em; }\n\n.hot-or-cold-option {\n  display: inline-block;\n  margin-left: 2em; }\n\n.hot-or-cold-option label {\n  margin-left: 1em; }\n\n.hot-input, .cold-input {\n  margin-left: 0.4em; }\n\n.add-to-order {\n  color: #fff;\n  margin-left: 1em;\n  display: inline-block; }\n  .add-to-order:hover {\n    cursor: pointer; }\n\n.add-item-icon {\n  color: #3FB083; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 197 */,
+/* 198 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _addItemNotification = __webpack_require__(199);
+
+	var _addItemNotification2 = _interopRequireDefault(_addItemNotification);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AddItemNotification = _react2.default.createClass({
+	    displayName: 'AddItemNotification',
+
+
+	    render: function render() {
+	        var _this = this;
+
+	        return _react2.default.createElement(
+	            'div',
+	            { className: this.props.notificationState ? 'add-item-notification add-item-notification-show' : 'add-item-notification add-item-notification-hide',
+	                onClick: function onClick() {
+	                    return _this.props.toggleNotification();
+	                } },
+	            _react2.default.createElement(
+	                'a',
+	                { className: 'add-item-notification-text' },
+	                'Item added to order'
+	            )
+	        );
+	    }
+	});
+
+	module.exports = AddItemNotification;
+
+/***/ },
+/* 199 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(200);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./add-item-notification.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./add-item-notification.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 200 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".add-item-notification-text {\n  color: #f6f6f6;\n  font: bold 16px/40px sans-serif;\n  text-align: center;\n  text-decoration: none; }\n\n.add-item-notification {\n  background-color: #3FB083;\n  color: #f6f6f6;\n  font: bold 16px/40px sans-serif;\n  height: 40px;\n  position: fixed;\n  left: 0;\n  text-align: center;\n  text-decoration: none;\n  top: -45px;\n  width: 100%;\n  animation: add-item-notification 1s ease forwards;\n  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.1); }\n\n.add-item-notification-show {\n  display: block; }\n\n.add-item-notification-hide {\n  display: none; }\n\n@keyframes add-item-notification {\n  0% {\n    opacity: 0; }\n  50% {\n    opacity: 1; }\n  100% {\n    top: 0; } }\n\n@keyframes add-item-notification-hide {\n  0% {\n    top: 0; }\n  50% {\n    top: -25; }\n  100% {\n    top: -45; } }\n", ""]);
 
 	// exports
 

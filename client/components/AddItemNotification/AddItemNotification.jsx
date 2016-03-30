@@ -5,9 +5,14 @@ var AddItemNotification = React.createClass({
 
     render: function() {
         return (
-            <div id="add-item-notification">
-                <a className="add-item-notification" href="#add-item-notification">Item added to order</a>
+            <div className={this.props.notificationState ? 'add-item-notification add-item-notification-show' : 'add-item-notification add-item-notification-hide'}
+                onClick={() =>
+                    this.props.toggleNotification()
+                }>
+                <a className="add-item-notification-text">Item added to order</a>
             </div>
         )
     }
 });
+
+module.exports = AddItemNotification;

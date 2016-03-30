@@ -28,6 +28,18 @@ var App = React.createClass({
         }
     },
 
+    _toggleNotification: function() {
+        this.setState({
+            notification: !this.state.notification
+        });
+        var clearNotification = () => {
+            this.setState({
+                notification: false
+            })
+        };
+        setTimeout(clearNotification, 3000);
+    },
+
     _handleAddItemToOrder: function(itemDetails) {
         this.setState({
             items: this.state.items.concat(itemDetails),
@@ -45,10 +57,13 @@ var App = React.createClass({
     render: function() {
         return (
             <div>
-                <NavAndTitle />
+                <NavAndTitle
+                    toggleNotification={this._toggleNotification}
+                    notificationState={this.state.notification} />
                 <MenuFormContainer
                     data={this.props.data}
-                    handleAddItemToOrder={this._handleAddItemToOrder}/>
+                    handleAddItemToOrder={this._handleAddItemToOrder}
+                    toggleNotification={this._toggleNotification} />
                  <OrderTotal
                      orderItems={this.state.items}
                      handleDeleteItemFromOrder={this._handleDeleteItemFromOrder} />

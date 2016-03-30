@@ -1,11 +1,16 @@
 import React from 'react'
 import sass from './nav-and-title.scss'
+import AddItemNotification from '../AddItemNotification/AddItemNotification'
 
 var NavAndTitle = React.createClass({
 
     render: function() {
         return (
             <div>
+                <AddItemNotification
+                toggleNotification={this.props.toggleNotification}
+                notificationState={this.props.notificationState} />
+
                 <nav className="main-nav">
                     <ul>
                         <li>Home</li>
