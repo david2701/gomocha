@@ -1,5 +1,5 @@
 import React from 'react'
-import NavAndTitle from '../NavAndTitle/NavAndTitle'
+import NavAndTitle from '../../NavAndTitle/NavAndTitle'
 import MenuFormContainer from '../MenuFormContainer/MenuFormContainer'
 import OrderTotal from '../OrderTotal/OrderTotal'
 

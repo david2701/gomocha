@@ -2,7 +2,7 @@ import React from 'react'
 import OrderTotalRow from '../OrderTotalRow/OrderTotalRow'
 import OrderTax from '../OrderTax/OrderTax'
 import OrderTotalTotal from '../OrderTotalTotal/OrderTotalTotal'
-import NextButton from '../NextButton/NextButton'
+import NextButton from '../../NextButton/NextButton'
 import sass from './order-total.scss'
 
 
