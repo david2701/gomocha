@@ -24,6 +24,7 @@ var App = React.createClass({
     getInitialState: function() {
         return {
             items: [],
+            notification: false
         }
     },
 

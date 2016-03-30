@@ -20066,7 +20066,8 @@
 
 	    getInitialState: function getInitialState() {
 	        return {
-	            items: []
+	            items: [],
+	            notification: false
 	        };
 	    },
 
@@ -20473,6 +20474,7 @@
 	            { className: 'add-to-order',
 	                onClick: function onClick() {
 	                    _this.props.handleAddItemToOrder(itemDetails);
+	                    document.getElementbyClassName('add-item-notification').display = 'block';
 	                } },
 	            _react2.default.createElement(
 	                'span',

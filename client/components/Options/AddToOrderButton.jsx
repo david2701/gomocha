@@ -11,6 +11,7 @@ var AddToOrderButton = React.createClass({
             <div className='add-to-order'
                  onClick={() => {
                      this.props.handleAddItemToOrder(itemDetails)
+                     document.getElementbyClassName('add-item-notification').display='block'
                  }}>
                 <span title='Add item to order'><i className="fa fa-plus-circle add-item-icon fa-lg"></i></span>
             </div>
