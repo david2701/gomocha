@@ -62,13 +62,19 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
+	var _SelectShop = __webpack_require__(204);
+
+	var _SelectShop2 = _interopRequireDefault(_SelectShop);
+
 	var _dummyData = __webpack_require__(179);
 
 	var _dummyData2 = _interopRequireDefault(_dummyData);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_reactDom2.default.render(_react2.default.createElement(_App2.default, { data: _dummyData2.default }), document.getElementById('root'));
+	_reactDom2.default.render(_react2.default.createElement(_SelectShop2.default, { data: _dummyData2.default }),
+	// <App data={dummyData}/>,
+	document.getElementById('root'));
 
 /***/ },
 /* 1 */
@@ -20046,12 +20052,13 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// NEXT STEPS:
-	// use setTimeout for add item to order notification/confirmation
-	// combine dummyData into single file
+
+	// ???? combine dummyData into single file
 	// create views for other pages and switch out root component in meantime
 	// react router implementation
 	// implement propTypes to components
 
+	// DONE use setTimeout for add item to order notification/confirmation
 	// DONE user cannot add item unless all form elements are filled out
 	// DONE clear all form elements after add to order button is clicked
 	// DONE delete functionality on orderTotal
@@ -20063,6 +20070,7 @@
 
 	var App = _react2.default.createClass({
 	    displayName: 'App',
+
 
 	    getInitialState: function getInitialState() {
 	        return {
@@ -20099,11 +20107,20 @@
 	        });
 	    },
 
+	    propTypes: {
+	        toggleNotification: _react2.default.PropTypes.func,
+	        notificationState: _react2.default.PropTypes.bool,
+	        handleAddItemToOrder: _react2.default.PropTypes.func,
+	        orderItems: _react2.default.PropTypes.array,
+	        handleDeleteItemFromOrder: _react2.default.PropTypes.func
+	    },
+
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
 	            null,
 	            _react2.default.createElement(_NavAndTitle2.default, {
+	                title: 'Create Your Order',
 	                toggleNotification: this._toggleNotification,
 	                notificationState: this.state.notification }),
 	            _react2.default.createElement(_MenuFormContainer2.default, {
@@ -20143,6 +20160,11 @@
 	    displayName: 'NavAndTitle',
 
 
+	    propTypes: {
+	        toggleNotification: _react2.default.PropTypes.func,
+	        notificationState: _react2.default.PropTypes.bool
+	    },
+
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
@@ -20176,7 +20198,7 @@
 	            _react2.default.createElement(
 	                'h1',
 	                null,
-	                'Create your order'
+	                this.props.title
 	            )
 	        );
 	    }
@@ -20211,6 +20233,12 @@
 	var MenuFormContainer = _react2.default.createClass({
 	    displayName: 'MenuFormContainer',
 
+
+	    propTypes: {
+	        slug: _react2.default.PropTypes.string,
+	        handleAddItemToOrder: _react2.default.PropTypes.func,
+	        toggleNotification: _react2.default.PropTypes.func
+	    },
 
 	    render: function render() {
 	        return _react2.default.createElement(
@@ -35918,6 +35946,10 @@
 
 	var _OrderTotalTotal2 = _interopRequireDefault(_OrderTotalTotal);
 
+	var _NextButton = __webpack_require__(201);
+
+	var _NextButton2 = _interopRequireDefault(_NextButton);
+
 	var _orderTotal = __webpack_require__(189);
 
 	var _orderTotal2 = _interopRequireDefault(_orderTotal);
@@ -35970,7 +36002,7 @@
 	                    )
 	                )
 	            ),
-	            _react2.default.createElement('input', { className: 'next-button', type: 'submit', value: 'Next' })
+	            _react2.default.createElement(_NextButton2.default, null)
 	        );
 	    }
 	});
@@ -36046,6 +36078,930 @@
 
 	module.exports = {
 		"shops": [
+			{
+				"name": "starbucks",
+				"address": "123 4th St. Santa Monica, CA 90234",
+				"phone": "(818) 438-9832",
+				"imageUrl": "http://www.fodors.com/ee/files/slideshows/9-colectivo-coffee.jpg",
+				"menu": [
+					{
+						"displayName": "Hot Drinks",
+						"slug": "hot-drinks",
+						"items": [
+							{
+								"name": "Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "latte"
+							},
+							{
+								"name": "Americano",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "americano"
+							},
+							{
+								"name": "Cappucino",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "cappucino"
+							},
+							{
+								"name": "Espresso",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "espresso"
+							},
+							{
+								"name": "Macchiato",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "macchiato"
+							}
+						]
+					},
+					{
+						"displayName": "Cold Drinks",
+						"slug": "cold-drinks",
+						"items": [
+							{
+								"name": "Iced Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-latte"
+							},
+							{
+								"name": "Iced Mocha",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-mocha"
+							},
+							{
+								"name": "Iced Chai",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-chai"
+							},
+							{
+								"name": "Iced Coffee",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": ""
+							},
+							{
+								"name": "Frappe",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "frappe"
+							}
+						]
+					},
+					{
+						"displayName": "Tea",
+						"slug": "tea",
+						"items": [
+							{
+								"name": "Green",
+								"price": 2.95,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "green"
+							},
+							{
+								"name": "Jasmine Green",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "jasmine-green"
+							},
+							{
+								"name": "Chai",
+								"price": 3.05,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chai"
+							},
+							{
+								"name": "Mint",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "mint"
+							},
+							{
+								"name": "Chamomile",
+								"price": 3.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chamomile"
+							}
+						]
+					},
+					{
+						"displayName": "Bakery",
+						"slug": "bakery",
+						"items": [
+							{
+								"name": "Croissant",
+								"price": 2.95,
+								"options": [
+									"quantity"
+								],
+								"id": "croissant"
+							},
+							{
+								"name": "Banana Muffin",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "banana-muffin"
+							},
+							{
+								"name": "Blueberry Scone",
+								"price": 3.05,
+								"options": [
+									"quantity"
+								],
+								"id": "blueberry-scone"
+							},
+							{
+								"name": "Carrot Cake",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "carrot-cake"
+							},
+							{
+								"name": "Home-Made Cookies",
+								"price": 3.5,
+								"options": [
+									"quantity"
+								],
+								"id": "home-made-cookies"
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "beanscene",
+				"address": "255 Alvera St. Los Angeles, CA 98654",
+				"phone": "(818) 438-9832",
+				"imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Inside_the_Coffee_Shop,_Parliament_House,_Dolgellau_-_geograph.org.uk_-_1708041.jpg",
+				"menu": [
+					{
+						"displayName": "Hot Drinks",
+						"slug": "hot-drinks",
+						"items": [
+							{
+								"name": "Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "latte"
+							},
+							{
+								"name": "Americano",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "americano"
+							},
+							{
+								"name": "Cappucino",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "cappucino"
+							},
+							{
+								"name": "Espresso",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "espresso"
+							},
+							{
+								"name": "Macchiato",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "macchiato"
+							}
+						]
+					},
+					{
+						"displayName": "Cold Drinks",
+						"slug": "cold-drinks",
+						"items": [
+							{
+								"name": "Iced Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-latte"
+							},
+							{
+								"name": "Iced Mocha",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-mocha"
+							},
+							{
+								"name": "Iced Chai",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-chai"
+							},
+							{
+								"name": "Iced Coffee",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": ""
+							},
+							{
+								"name": "Frappe",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "frappe"
+							}
+						]
+					},
+					{
+						"displayName": "Tea",
+						"slug": "tea",
+						"items": [
+							{
+								"name": "Green",
+								"price": 2.95,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "green"
+							},
+							{
+								"name": "Jasmine Green",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "jasmine-green"
+							},
+							{
+								"name": "Chai",
+								"price": 3.05,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chai"
+							},
+							{
+								"name": "Mint",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "mint"
+							},
+							{
+								"name": "Chamomile",
+								"price": 3.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chamomile"
+							}
+						]
+					},
+					{
+						"displayName": "Bakery",
+						"slug": "bakery",
+						"items": [
+							{
+								"name": "Croissant",
+								"price": 2.95,
+								"options": [
+									"quantity"
+								],
+								"id": "croissant"
+							},
+							{
+								"name": "Banana Muffin",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "banana-muffin"
+							},
+							{
+								"name": "Blueberry Scone",
+								"price": 3.05,
+								"options": [
+									"quantity"
+								],
+								"id": "blueberry-scone"
+							},
+							{
+								"name": "Carrot Cake",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "carrot-cake"
+							},
+							{
+								"name": "Home-Made Cookies",
+								"price": 3.5,
+								"options": [
+									"quantity"
+								],
+								"id": "home-made-cookies"
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "tifa",
+				"address": "6785 Huntington St. Venice, CA 90233",
+				"phone": "(818) 438-9832",
+				"imageUrl": "https://cdn1.vox-cdn.com/thumbor/D7jAbLqhca3vAJ20SbXyJH_Dv3I=/0x120:960x840/800x600/filters:format(webp)/cdn0.vox-cdn.com/uploads/chorus_image/image/45736528/compass_coffee.0.0.jpg",
+				"menu": [
+					{
+						"displayName": "Hot Drinks",
+						"slug": "hot-drinks",
+						"items": [
+							{
+								"name": "Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "latte"
+							},
+							{
+								"name": "Americano",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "americano"
+							},
+							{
+								"name": "Cappucino",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "cappucino"
+							},
+							{
+								"name": "Espresso",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "espresso"
+							},
+							{
+								"name": "Macchiato",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "macchiato"
+							}
+						]
+					},
+					{
+						"displayName": "Cold Drinks",
+						"slug": "cold-drinks",
+						"items": [
+							{
+								"name": "Iced Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-latte"
+							},
+							{
+								"name": "Iced Mocha",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-mocha"
+							},
+							{
+								"name": "Iced Chai",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-chai"
+							},
+							{
+								"name": "Iced Coffee",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": ""
+							},
+							{
+								"name": "Frappe",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "frappe"
+							}
+						]
+					},
+					{
+						"displayName": "Tea",
+						"slug": "tea",
+						"items": [
+							{
+								"name": "Green",
+								"price": 2.95,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "green"
+							},
+							{
+								"name": "Jasmine Green",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "jasmine-green"
+							},
+							{
+								"name": "Chai",
+								"price": 3.05,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chai"
+							},
+							{
+								"name": "Mint",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "mint"
+							},
+							{
+								"name": "Chamomile",
+								"price": 3.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chamomile"
+							}
+						]
+					},
+					{
+						"displayName": "Bakery",
+						"slug": "bakery",
+						"items": [
+							{
+								"name": "Croissant",
+								"price": 2.95,
+								"options": [
+									"quantity"
+								],
+								"id": "croissant"
+							},
+							{
+								"name": "Banana Muffin",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "banana-muffin"
+							},
+							{
+								"name": "Blueberry Scone",
+								"price": 3.05,
+								"options": [
+									"quantity"
+								],
+								"id": "blueberry-scone"
+							},
+							{
+								"name": "Carrot Cake",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "carrot-cake"
+							},
+							{
+								"name": "Home-Made Cookies",
+								"price": 3.5,
+								"options": [
+									"quantity"
+								],
+								"id": "home-made-cookies"
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "coffeeBean",
+				"address": "2433 Soju st. Venice, CA 90235",
+				"phone": "(818) 438-9832",
+				"imageUrl": "http://cdn.offtrackplanet.com/legacy/uploads/2010/08/coffee.jpg",
+				"menu": [
+					{
+						"displayName": "Hot Drinks",
+						"slug": "hot-drinks",
+						"items": [
+							{
+								"name": "Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "latte"
+							},
+							{
+								"name": "Americano",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "americano"
+							},
+							{
+								"name": "Cappucino",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "cappucino"
+							},
+							{
+								"name": "Espresso",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "espresso"
+							},
+							{
+								"name": "Macchiato",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "macchiato"
+							}
+						]
+					},
+					{
+						"displayName": "Cold Drinks",
+						"slug": "cold-drinks",
+						"items": [
+							{
+								"name": "Iced Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-latte"
+							},
+							{
+								"name": "Iced Mocha",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-mocha"
+							},
+							{
+								"name": "Iced Chai",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-chai"
+							},
+							{
+								"name": "Iced Coffee",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": ""
+							},
+							{
+								"name": "Frappe",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "frappe"
+							}
+						]
+					},
+					{
+						"displayName": "Tea",
+						"slug": "tea",
+						"items": [
+							{
+								"name": "Green",
+								"price": 2.95,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "green"
+							},
+							{
+								"name": "Jasmine Green",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "jasmine-green"
+							},
+							{
+								"name": "Chai",
+								"price": 3.05,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chai"
+							},
+							{
+								"name": "Mint",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "mint"
+							},
+							{
+								"name": "Chamomile",
+								"price": 3.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chamomile"
+							}
+						]
+					},
+					{
+						"displayName": "Bakery",
+						"slug": "bakery",
+						"items": [
+							{
+								"name": "Croissant",
+								"price": 2.95,
+								"options": [
+									"quantity"
+								],
+								"id": "croissant"
+							},
+							{
+								"name": "Banana Muffin",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "banana-muffin"
+							},
+							{
+								"name": "Blueberry Scone",
+								"price": 3.05,
+								"options": [
+									"quantity"
+								],
+								"id": "blueberry-scone"
+							},
+							{
+								"name": "Carrot Cake",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "carrot-cake"
+							},
+							{
+								"name": "Home-Made Cookies",
+								"price": 3.5,
+								"options": [
+									"quantity"
+								],
+								"id": "home-made-cookies"
+							}
+						]
+					}
+				]
+			},
 			{
 				"name": "starbucks",
 				"address": "123 4th St. Santa Monica, CA 90234",
@@ -36508,7 +37464,7 @@
 
 
 	// module
-	exports.push([module.id, ".next-button {\n  margin-top: 1em;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer; }\n", ""]);
+	exports.push([module.id, "", ""]);
 
 	// exports
 
@@ -36710,6 +37666,447 @@
 
 	// module
 	exports.push([module.id, ".add-item-notification-text {\n  color: #f6f6f6;\n  font: bold 16px/40px sans-serif;\n  text-align: center;\n  text-decoration: none; }\n\n.add-item-notification {\n  background-color: #3FB083;\n  color: #f6f6f6;\n  font: bold 16px/40px sans-serif;\n  height: 40px;\n  position: fixed;\n  left: 0;\n  text-align: center;\n  text-decoration: none;\n  top: -45px;\n  width: 100%;\n  animation: add-item-notification 1s ease forwards;\n  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.1); }\n\n.add-item-notification-show {\n  display: block; }\n\n.add-item-notification-hide {\n  display: none; }\n\n@keyframes add-item-notification {\n  0% {\n    opacity: 0; }\n  50% {\n    opacity: 1; }\n  100% {\n    top: 0; } }\n\n@keyframes add-item-notification-hide {\n  0% {\n    top: 0; }\n  50% {\n    top: -25; }\n  100% {\n    top: -45; } }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 201 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _nextButton = __webpack_require__(202);
+
+	var _nextButton2 = _interopRequireDefault(_nextButton);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var NextButton = _react2.default.createClass({
+	    displayName: 'NextButton',
+
+
+	    render: function render() {
+	        return _react2.default.createElement('input', { className: 'next-button', type: 'submit', value: 'Next' });
+	    }
+	});
+
+	module.exports = NextButton;
+
+/***/ },
+/* 202 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(203);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./next-button.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./next-button.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 203 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".next-button {\n  margin-top: 1em;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 204 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _NavAndTitle = __webpack_require__(164);
+
+	var _NavAndTitle2 = _interopRequireDefault(_NavAndTitle);
+
+	var _ShopSearch = __webpack_require__(208);
+
+	var _ShopSearch2 = _interopRequireDefault(_ShopSearch);
+
+	var _ShopList = __webpack_require__(211);
+
+	var _ShopList2 = _interopRequireDefault(_ShopList);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SelectShop = _react2.default.createClass({
+	    displayName: 'SelectShop',
+
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(_NavAndTitle2.default, { title: 'Select a Coffee Shop!' }),
+	            _react2.default.createElement(_ShopSearch2.default, null),
+	            _react2.default.createElement(_ShopList2.default, null)
+	        );
+	    }
+	});
+
+	module.exports = SelectShop;
+
+/***/ },
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _shopSearch = __webpack_require__(209);
+
+	var _shopSearch2 = _interopRequireDefault(_shopSearch);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ShopSearch = _react2.default.createClass({
+	    displayName: 'ShopSearch',
+
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'shop-search-container' },
+	            _react2.default.createElement(
+	                'form',
+	                null,
+	                _react2.default.createElement('input', { type: 'text' }),
+	                _react2.default.createElement('input', { type: 'submit', value: 'Search' })
+	            )
+	        );
+	    }
+	});
+
+	module.exports = ShopSearch;
+
+/***/ },
+/* 209 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(210);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./shop-search.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./shop-search.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 210 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".shop-search-container {\n  margin: 4em auto 2em auto;\n  width: 15em; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _shopList = __webpack_require__(212);
+
+	var _shopList2 = _interopRequireDefault(_shopList);
+
+	var _ShopListItem = __webpack_require__(214);
+
+	var _ShopListItem2 = _interopRequireDefault(_ShopListItem);
+
+	var _ClickForMore = __webpack_require__(217);
+
+	var _ClickForMore2 = _interopRequireDefault(_ClickForMore);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ShopList = _react2.default.createClass({
+	    displayName: 'ShopList',
+
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(_ShopListItem2.default, null),
+	            _react2.default.createElement(_ShopListItem2.default, null),
+	            _react2.default.createElement(_ShopListItem2.default, null),
+	            _react2.default.createElement(_ClickForMore2.default, null)
+	        );
+	    }
+	});
+
+	module.exports = ShopList;
+
+/***/ },
+/* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(213);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./shop-list.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./shop-list.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "", ""]);
+
+	// exports
+
+
+/***/ },
+/* 214 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _shopListItem = __webpack_require__(215);
+
+	var _shopListItem2 = _interopRequireDefault(_shopListItem);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ShopListItem = _react2.default.createClass({
+	    displayName: 'ShopListItem',
+
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'shop-list-item-container' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'shop-list-item-details' },
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        'Coffee Company XYZ'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        '123 Main St.'
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'Santa Monica, CA 90238'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'p',
+	                    { className: 'shop-list-distance' },
+	                    '2.3 mi.'
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = ShopListItem;
+
+/***/ },
+/* 215 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(216);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./shop-list-item.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./shop-list-item.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 216 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".shop-list-item-container {\n  border: 1px solid black;\n  width: 20em;\n  padding: 1em;\n  border-radius: 3px;\n  margin: 0 auto; }\n\n.shop-list-item-details {\n  display: inline-block;\n  border: 1px solid blue;\n  border-radius: 3px; }\n\n.shop-list-distance {\n  display: inline-block;\n  border: 1px solid red;\n  border-radius: 3px;\n  margin-left: 2em; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 217 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _clickForMore = __webpack_require__(218);
+
+	var _clickForMore2 = _interopRequireDefault(_clickForMore);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ClickForMore = _react2.default.createClass({
+	    displayName: 'ClickForMore',
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'click-for-more-container' },
+	            _react2.default.createElement(
+	                'button',
+	                null,
+	                'Click for more results'
+	            )
+	        );
+	    }
+	});
+
+	module.exports = ClickForMore;
+
+/***/ },
+/* 218 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(219);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./click-for-more.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./click-for-more.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 219 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".click-for-more-container {\n  width: 11em;\n  margin: 3em auto 0 auto; }\n", ""]);
 
 	// exports
 

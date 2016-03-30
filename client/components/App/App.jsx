@@ -5,12 +5,13 @@ import OrderTotal from '../OrderTotal/OrderTotal'
 
 
 // NEXT STEPS:
-// use setTimeout for add item to order notification/confirmation
-// combine dummyData into single file
+
+// ???? combine dummyData into single file
 // create views for other pages and switch out root component in meantime
 // react router implementation
 // implement propTypes to components
 
+// DONE use setTimeout for add item to order notification/confirmation
 // DONE user cannot add item unless all form elements are filled out
 // DONE clear all form elements after add to order button is clicked
 // DONE delete functionality on orderTotal
@@ -21,6 +22,7 @@ import OrderTotal from '../OrderTotal/OrderTotal'
 // DONE tax is included in order total calculation
 
 var App = React.createClass({
+
     getInitialState: function() {
         return {
             items: [],
@@ -54,10 +56,19 @@ var App = React.createClass({
         })
     },
 
+    propTypes: {
+        toggleNotification: React.PropTypes.func,
+        notificationState: React.PropTypes.bool,
+        handleAddItemToOrder: React.PropTypes.func,
+        orderItems: React.PropTypes.array,
+        handleDeleteItemFromOrder: React.PropTypes.func
+  },
+
     render: function() {
         return (
             <div>
                 <NavAndTitle
+                    title='Create Your Order'
                     toggleNotification={this._toggleNotification}
                     notificationState={this.state.notification} />
                 <MenuFormContainer

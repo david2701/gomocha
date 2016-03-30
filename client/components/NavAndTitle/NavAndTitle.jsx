@@ -4,6 +4,12 @@ import AddItemNotification from '../AddItemNotification/AddItemNotification'
 
 var NavAndTitle = React.createClass({
 
+
+    propTypes: {
+        toggleNotification: React.PropTypes.func,
+        notificationState: React.PropTypes.bool
+    },
+
     render: function() {
         return (
             <div>
@@ -18,7 +24,7 @@ var NavAndTitle = React.createClass({
                         <li>Log Out</li>
                     </ul>
                 </nav>
-                <h1>Create your order</h1>
+                <h1>{this.props.title}</h1>
             </div>
         )
     }

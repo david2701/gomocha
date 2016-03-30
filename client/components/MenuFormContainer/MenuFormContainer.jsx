@@ -5,6 +5,11 @@ import sass from './menu-form-container.scss'
 
 var MenuFormContainer = React.createClass({
 
+    propTypes: {
+        slug: React.PropTypes.string,
+        handleAddItemToOrder: React.PropTypes.func,
+        toggleNotification: React.PropTypes.func
+    },
 
     render: function() {
         return (
