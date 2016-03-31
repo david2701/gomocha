@@ -16,7 +16,8 @@ var MenuSection = React.createClass({
                     options={item.options}
                     key={item.id}
                     handleAddItemToOrder={this.props.handleAddItemToOrder}
-                    calculateTotalAndTax={this.props.calculateTotalAndTax} />
+                    calculateTotalAndTax={this.props.calculateTotalAndTax}
+                    toggleNotification={this.props.toggleNotification} />
             });
 
         return (

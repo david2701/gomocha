@@ -1,16 +1,17 @@
 import React from 'react'
-import NavAndTitle from '../NavAndTitle/NavAndTitle'
+import NavAndTitle from '../../NavAndTitle/NavAndTitle'
 import MenuFormContainer from '../MenuFormContainer/MenuFormContainer'
 import OrderTotal from '../OrderTotal/OrderTotal'
 
 
 // NEXT STEPS:
-// use setTimeout for add item to order notification/confirmation
-// combine dummyData into single file
+
+// ???? combine dummyData into single file
 // create views for other pages and switch out root component in meantime
 // react router implementation
 // implement propTypes to components
 
+// DONE use setTimeout for add item to order notification/confirmation
 // DONE user cannot add item unless all form elements are filled out
 // DONE clear all form elements after add to order button is clicked
 // DONE delete functionality on orderTotal
@@ -21,11 +22,24 @@ import OrderTotal from '../OrderTotal/OrderTotal'
 // DONE tax is included in order total calculation
 
 var App = React.createClass({
+
     getInitialState: function() {
         return {
             items: [],
             notification: false
         }
+    },
+
+    _toggleNotification: function() {
+        this.setState({
+            notification: !this.state.notification
+        });
+        var clearNotification = () => {
+            this.setState({
+                notification: false
+            })
+        };
+        setTimeout(clearNotification, 3000);
     },
 
     _handleAddItemToOrder: function(itemDetails) {
@@ -42,13 +56,25 @@ var App = React.createClass({
         })
     },
 
+    propTypes: {
+        toggleNotification: React.PropTypes.func,
+        notificationState: React.PropTypes.bool,
+        handleAddItemToOrder: React.PropTypes.func,
+        orderItems: React.PropTypes.array,
+        handleDeleteItemFromOrder: React.PropTypes.func
+  },
+
     render: function() {
         return (
             <div>
-                <NavAndTitle />
+                <NavAndTitle
+                    title='Create Your Order'
+                    toggleNotification={this._toggleNotification}
+                    notificationState={this.state.notification} />
                 <MenuFormContainer
                     data={this.props.data}
-                    handleAddItemToOrder={this._handleAddItemToOrder}/>
+                    handleAddItemToOrder={this._handleAddItemToOrder}
+                    toggleNotification={this._toggleNotification} />
                  <OrderTotal
                      orderItems={this.state.items}
                      handleDeleteItemFromOrder={this._handleDeleteItemFromOrder} />

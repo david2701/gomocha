@@ -2,6 +2,7 @@ import React from 'react'
 import OrderTotalRow from '../OrderTotalRow/OrderTotalRow'
 import OrderTax from '../OrderTax/OrderTax'
 import OrderTotalTotal from '../OrderTotalTotal/OrderTotalTotal'
+import NextButton from '../../NextButton/NextButton'
 import sass from './order-total.scss'
 
 
@@ -38,7 +39,7 @@ var OrderTotal = React.createClass({
                         </tbody>
                     </table>
                 </section>
-                <input className="next-button" type="submit" value="Next" />
+                <NextButton />
             </div>
         )
     }

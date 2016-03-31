@@ -96,7 +96,7 @@ var MenuItem = React.createClass({
 
 
     render: function() {
-        console.log(this._checkFormComplete());
+        // console.log(this._checkFormComplete());
         return (
             <div className="drink-item">
                 {/* Item Label */}
@@ -111,6 +111,7 @@ var MenuItem = React.createClass({
                     {this._checkFormComplete() ? <AddToOrderButton
                         handleAddItemToOrder={this._handleAddItemToOrder}
                         handleItemFormComplete={this._handleItemFormComplete}
+                        toggleNotification={this.props.toggleNotification}
                         itemName={this.props.itemName}
                         price={this.props.price}
                         itemDetails={this.state} /> : ''}

@@ -1,0 +1,20 @@
+.shop-list-item-container {
+    border: 1px solid black;
+    width: 20em;
+    padding: 1em;
+    border-radius: 3px;
+    margin: 0 auto 1em auto;
+}
+
+.shop-list-item-details {
+    display: inline-block;
+    border: 1px solid blue;
+    border-radius: 3px;
+}
+
+.shop-list-distance {
+    display: inline-block;
+    border: 1px solid red;
+    border-radius: 3px;
+    margin-left: 2em;
+}

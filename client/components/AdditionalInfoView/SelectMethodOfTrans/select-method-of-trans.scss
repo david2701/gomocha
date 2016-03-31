@@ -1,0 +1,19 @@
+.method-of-trans {
+    border: 1px solid blue;
+    display: inline-block;
+    width: 32%;
+    height: 10em;
+    border-radius: 5px;
+}
+
+.method-of-trans p {
+    padding-top: 3.5em;
+}
+
+.method-of-trans-container {
+    text-align: center;
+}
+
+.method-of-trans-container > h2 {
+    text-align: left;
+}
