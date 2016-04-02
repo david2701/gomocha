@@ -10,6 +10,7 @@ import OrderTotal from '../OrderTotal/OrderTotal'
 // create views for other pages and switch out root component in meantime
 // react router implementation
 // implement propTypes to components
+// ???? remove bundle from commit
 
 // DONE use setTimeout for add item to order notification/confirmation
 // DONE user cannot add item unless all form elements are filled out

@@ -15,7 +15,10 @@ var MenuItem = React.createClass({
     },
 
     _checkFormComplete: function() {
-        var optionsCheck = this.props.options.map(function(option) {
+        var requiredOptions = this.props.options.filter(function(option){
+            return option !== 'decaf'
+        })
+        var optionsCheck = requiredOptions.map(function(option) {
             return this.state.hasOwnProperty(option)
         }, this);
         return optionsCheck.reduce(function(prev, current) {

@@ -1,6 +1,6 @@
 import React from 'react'
 import sass from './nav-and-title.scss'
-import AddItemNotification from '../AddItemNotification/AddItemNotification'
+import AddItemNotification from '../CustomOrderView/AddItemNotification/AddItemNotification'
 
 var NavAndTitle = React.createClass({
 

@@ -8,8 +8,8 @@ import dummyData from '../dummy-data.json'
 
 
 ReactDOM.render(
-    <SelectShop data={dummyData} />,
+    // <SelectShop data={dummyData} />,
     // <App data={dummyData}/>,
-    // <AdditionalInfo />,
+    <AdditionalInfo />,
     document.getElementById('root')
 )
