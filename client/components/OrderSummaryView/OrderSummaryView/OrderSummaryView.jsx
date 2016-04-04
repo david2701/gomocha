@@ -1,4 +1,6 @@
 import React from 'react'
+import NavAndTitle from '../../NavAndTitle/NavAndTitle'
+import OrderTotalOS from '../OrderTotalOS/OrderTotalOS'
 
 var OrderSummaryView = React.createClass({
 
@@ -14,8 +16,11 @@ var OrderSummaryView = React.createClass({
     render: function() {
         return (
             <div>
-                Order Summary
-                <button onClick={this._handleNext} className="next-button">Next</button>
+                <NavAndTitle title='Order Summary' />
+                <OrderTotalOS />
+
+                <button onClick={this._handleNext} className="next-button">Submit Order</button>
+                <button className="next-button">Edit my order</button>
             </div>
         )
     }

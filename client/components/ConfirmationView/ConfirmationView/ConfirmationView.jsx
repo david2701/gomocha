@@ -1,4 +1,8 @@
 import React from 'react'
+import NavAndTitle from '../../NavAndTitle/NavAndTitle'
+import OrderReadyTime from '../OrderReadyTime/OrderReadyTime'
+import ShopDetails from '../ShopDetails/ShopDetails'
+import DirectionsAndCall from '../DirectionsAndCall/DirectionsAndCall'
 
 var ConfirmationView = React.createClass({
 
@@ -14,7 +18,10 @@ var ConfirmationView = React.createClass({
     render: function() {
         return (
             <div>
-                Confirmation View
+                <NavAndTitle title="Order Confirmation" />
+                <OrderReadyTime />
+                <ShopDetails />
+                <DirectionsAndCall />
                 <button onClick={this._handleNext} className="next-button">Back to Dashboard</button>
             </div>
         )
