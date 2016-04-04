@@ -6,7 +6,17 @@ import SelectIfFavorite from '../SelectIfFavorite/SelectIfFavorite'
 import EnterPaymentInfo from '../EnterPaymentInfo/EnterPaymentInfo'
 import NextButton from '../../NextButton/NextButton'
 
-var AdditionalInfo = React.createClass({
+var AdditionalInfoView = React.createClass({
+
+    contextTypes: {
+      router: React.PropTypes.object
+    },
+
+    _handleNext: function() {
+        const path = `/order-summary`
+        this.context.router.push(path)
+    },
+
     render: function() {
         return (
             <div>
@@ -16,11 +26,11 @@ var AdditionalInfo = React.createClass({
                 <SelectPickUpTime />
                 <SelectIfFavorite />
                 <EnterPaymentInfo />
-                <NextButton />
+                <button onClick={this._handleNext} className="next-button">Next</button>
             </form>
             </div>
         )
     }
 });
 
-module.exports = AdditionalInfo;
+module.exports = AdditionalInfoView;

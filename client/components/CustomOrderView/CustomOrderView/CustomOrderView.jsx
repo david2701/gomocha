@@ -4,31 +4,22 @@ import MenuFormContainer from '../MenuFormContainer/MenuFormContainer'
 import OrderTotal from '../OrderTotal/OrderTotal'
 
 
-// NEXT STEPS:
-
-// ???? combine dummyData into single file
-// create views for other pages and switch out root component in meantime
-// react router implementation
-// implement propTypes to components
-// ???? remove bundle from commit
-
-// DONE use setTimeout for add item to order notification/confirmation
-// DONE user cannot add item unless all form elements are filled out
-// DONE clear all form elements after add to order button is clicked
-// DONE delete functionality on orderTotal
-// DONE onChange, plus button appears to add item to order -- callback
-// DONE onChange, plus button appears to add item to order -- callback
-// DONE after user clicks add to order button -> quantity, size, drink name, and price are sent to table row component -- state callback
-// DONE order total is calculated with each add to order click by summing all component prices -- state callback
-// DONE tax is included in order total calculation
-
-var App = React.createClass({
+var CustomOrderView = React.createClass({
 
     getInitialState: function() {
         return {
             items: [],
             notification: false
         }
+    },
+
+    contextTypes: {
+      router: React.PropTypes.object
+    },
+
+    _handleNext: function() {
+        const path = `/additional-info`
+        this.context.router.push(path)
     },
 
     _toggleNotification: function() {
@@ -79,9 +70,10 @@ var App = React.createClass({
                  <OrderTotal
                      orderItems={this.state.items}
                      handleDeleteItemFromOrder={this._handleDeleteItemFromOrder} />
+                 <button onClick={this._handleNext} className="next-button">Next</button>
             </div>
         )
     }
 });
 
-module.exports = App;
+module.exports = CustomOrderView;

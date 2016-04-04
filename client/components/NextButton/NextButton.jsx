@@ -5,7 +5,7 @@ var NextButton = React.createClass({
 
     render: function() {
         return (
-            <input className="next-button" type="submit" value="Next" />
+            <button className="next-button">Next</button>
 
         )
     }

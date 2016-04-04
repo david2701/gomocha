@@ -39,7 +39,6 @@ var OrderTotal = React.createClass({
                         </tbody>
                     </table>
                 </section>
-                <NextButton />
             </div>
         )
     }
