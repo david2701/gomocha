@@ -1,25 +1,17 @@
 import React from 'react'
-import NavAndTitle from '../../NavAndTitle/NavAndTitle'
 import OrderTotalOS from '../OrderTotalOS/OrderTotalOS'
+import { Link } from 'react-router'
+import sass from '../../App/app.scss'
 
 var OrderSummaryView = React.createClass({
-
-    contextTypes: {
-      router: React.PropTypes.object
-    },
-
-    _handleNext: function() {
-        const path = `/confirmation`
-        this.context.router.push(path)
-    },
 
     render: function() {
         return (
             <div>
-                <NavAndTitle title='Order Summary' />
+                <h1>Order Summary</h1>
                 <OrderTotalOS />
 
-                <button onClick={this._handleNext} className="next-button">Submit Order</button>
+                <Link to="/confirmation"><button className="next-button">Submit Order</button></Link>
                 <button className="next-button">Edit my order</button>
             </div>
         )

@@ -77,12 +77,14 @@
 
 	// NEXT STEPS:
 
-	// ???? combine dummyData into single file
-	// create views for other pages and switch out root component in meantime
-	// react router implementation
 	// implement propTypes to components
 	// add quantity * price feature when calculating total
 
+	// add conditions to Link buttons
+	// look into Locu and Google Maps API
+	// create state for remaining views on App component state. Pass down to children components
+
+	// DONE add Link to remaining View components
 	// DONE use setTimeout for add item to order notification/confirmation
 	// DONE user cannot add item unless all form elements are filled out
 	// DONE clear all form elements after add to order button is clicked
@@ -20056,6 +20058,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _App = __webpack_require__(311);
+
+	var _App2 = _interopRequireDefault(_App);
+
 	var _DashboardView = __webpack_require__(289);
 
 	var _DashboardView2 = _interopRequireDefault(_DashboardView);
@@ -20080,33 +20086,17 @@
 
 	var _ConfirmationView2 = _interopRequireDefault(_ConfirmationView);
 
-	var _dummyData = __webpack_require__(285);
-
-	var _dummyData2 = _interopRequireDefault(_dummyData);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var App = _react2.default.createClass({
-	    displayName: 'App',
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.cloneElement(this.props.children, { data: _dummyData2.default })
-	        );
-	    }
-	});
-
 	var Routes = _react2.default.createElement(
-	    _reactRouter.Route,
-	    { path: '/', component: App },
-	    _react2.default.createElement(_reactRouter.Route, { path: 'dashboard', component: _DashboardView2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'select-shop', component: _SelectShopView2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'custom-order', component: _CustomOrderView2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'additional-info', component: _AdditionalInfoView2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'order-summary', component: _OrderSummaryView2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'confirmation', component: _ConfirmationView2.default })
+	                _reactRouter.Route,
+	                { path: '/', component: _App2.default },
+	                _react2.default.createElement(_reactRouter.IndexRoute, { component: _DashboardView2.default }),
+	                _react2.default.createElement(_reactRouter.Route, { path: 'select-shop', component: _SelectShopView2.default }),
+	                _react2.default.createElement(_reactRouter.Route, { path: 'custom-order', component: _CustomOrderView2.default }),
+	                _react2.default.createElement(_reactRouter.Route, { path: 'additional-info', component: _AdditionalInfoView2.default }),
+	                _react2.default.createElement(_reactRouter.Route, { path: 'order-summary', component: _OrderSummaryView2.default }),
+	                _react2.default.createElement(_reactRouter.Route, { path: 'confirmation', component: _ConfirmationView2.default })
 	);
 
 	module.exports = Routes;
@@ -25176,116 +25166,9 @@
 
 /***/ },
 /* 221 */,
-/* 222 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _navAndTitle = __webpack_require__(223);
-
-	var _navAndTitle2 = _interopRequireDefault(_navAndTitle);
-
-	var _AddItemNotification = __webpack_require__(225);
-
-	var _AddItemNotification2 = _interopRequireDefault(_AddItemNotification);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var NavAndTitle = _react2.default.createClass({
-	    displayName: 'NavAndTitle',
-
-
-	    propTypes: {
-	        toggleNotification: _react2.default.PropTypes.func,
-	        notificationState: _react2.default.PropTypes.bool
-	    },
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(_AddItemNotification2.default, {
-	                toggleNotification: this.props.toggleNotification,
-	                notificationState: this.props.notificationState }),
-	            _react2.default.createElement(
-	                'nav',
-	                { className: 'main-nav' },
-	                _react2.default.createElement(
-	                    'ul',
-	                    null,
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        'Home'
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        'My Account'
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        'Log Out'
-	                    )
-	                )
-	            ),
-	            _react2.default.createElement(
-	                'h1',
-	                null,
-	                this.props.title
-	            )
-	        );
-	    }
-	});
-
-	module.exports = NavAndTitle;
-
-/***/ },
-/* 223 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(224);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./nav-and-title.scss", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./nav-and-title.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 224 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "nav.main-nav {\n  width: 90%;\n  margin: 0 auto;\n  text-align: center; }\n\nnav.main-nav ul {\n  width: 80%;\n  margin: 0 auto;\n  padding: 0; }\n\nnav.main-nav ul li {\n  display: inline-block;\n  padding: 1em;\n  background: #1987FE;\n  color: #fff;\n  border-radius: 5px;\n  margin-right: 5px; }\n", ""]);
-
-	// exports
-
-
-/***/ },
+/* 222 */,
+/* 223 */,
+/* 224 */,
 /* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -41268,10 +41151,6 @@
 
 	var _OrderTotalTotal2 = _interopRequireDefault(_OrderTotalTotal);
 
-	var _NextButton = __webpack_require__(254);
-
-	var _NextButton2 = _interopRequireDefault(_NextButton);
-
 	var _orderTotal = __webpack_require__(257);
 
 	var _orderTotal2 = _interopRequireDefault(_orderTotal);
@@ -41506,77 +41385,9 @@
 	module.exports = OrderTotalTotal;
 
 /***/ },
-/* 254 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _nextButton = __webpack_require__(255);
-
-	var _nextButton2 = _interopRequireDefault(_nextButton);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var NextButton = _react2.default.createClass({
-	    displayName: 'NextButton',
-
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'button',
-	            { className: 'next-button' },
-	            'Next'
-	        );
-	    }
-	});
-
-	module.exports = NextButton;
-
-/***/ },
-/* 255 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(256);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./next-button.scss", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./next-button.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 256 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".next-button {\n  margin-top: 1em;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer; }\n", ""]);
-
-	// exports
-
-
-/***/ },
+/* 254 */,
+/* 255 */,
+/* 256 */,
 /* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -43608,10 +43419,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _NavAndTitle = __webpack_require__(222);
-
-	var _NavAndTitle2 = _interopRequireDefault(_NavAndTitle);
-
 	var _SelectMethodOfTrans = __webpack_require__(273);
 
 	var _SelectMethodOfTrans2 = _interopRequireDefault(_SelectMethodOfTrans);
@@ -43628,9 +43435,11 @@
 
 	var _EnterPaymentInfo2 = _interopRequireDefault(_EnterPaymentInfo);
 
-	var _NextButton = __webpack_require__(254);
+	var _reactRouter = __webpack_require__(164);
 
-	var _NextButton2 = _interopRequireDefault(_NextButton);
+	var _app = __webpack_require__(312);
+
+	var _app2 = _interopRequireDefault(_app);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43638,20 +43447,15 @@
 	    displayName: 'AdditionalInfoView',
 
 
-	    contextTypes: {
-	        router: _react2.default.PropTypes.object
-	    },
-
-	    _handleNext: function _handleNext() {
-	        var path = '/order-summary';
-	        this.context.router.push(path);
-	    },
-
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
 	            null,
-	            _react2.default.createElement(_NavAndTitle2.default, { title: 'Additional Info' }),
+	            _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Tell us a little more!'
+	            ),
 	            _react2.default.createElement(
 	                'form',
 	                null,
@@ -43660,9 +43464,13 @@
 	                _react2.default.createElement(_SelectIfFavorite2.default, null),
 	                _react2.default.createElement(_EnterPaymentInfo2.default, null),
 	                _react2.default.createElement(
-	                    'button',
-	                    { onClick: this._handleNext, className: 'next-button' },
-	                    'Next'
+	                    _reactRouter.Link,
+	                    { to: '/order-summary' },
+	                    _react2.default.createElement(
+	                        'button',
+	                        { className: 'next-button' },
+	                        'Next'
+	                    )
 	                )
 	            )
 	        );
@@ -43681,10 +43489,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _NavAndTitle = __webpack_require__(222);
-
-	var _NavAndTitle2 = _interopRequireDefault(_NavAndTitle);
-
 	var _MenuFormContainer = __webpack_require__(228);
 
 	var _MenuFormContainer2 = _interopRequireDefault(_MenuFormContainer);
@@ -43693,83 +43497,49 @@
 
 	var _OrderTotal2 = _interopRequireDefault(_OrderTotal);
 
+	var _AddItemNotification = __webpack_require__(225);
+
+	var _AddItemNotification2 = _interopRequireDefault(_AddItemNotification);
+
+	var _reactRouter = __webpack_require__(164);
+
+	var _app = __webpack_require__(312);
+
+	var _app2 = _interopRequireDefault(_app);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var CustomOrderView = _react2.default.createClass({
 	    displayName: 'CustomOrderView',
 
 
-	    getInitialState: function getInitialState() {
-	        return {
-	            items: [],
-	            notification: false
-	        };
-	    },
-
-	    contextTypes: {
-	        router: _react2.default.PropTypes.object
-	    },
-
-	    _handleNext: function _handleNext() {
-	        var path = '/additional-info';
-	        this.context.router.push(path);
-	    },
-
-	    _toggleNotification: function _toggleNotification() {
-	        var _this = this;
-
-	        this.setState({
-	            notification: !this.state.notification
-	        });
-	        var clearNotification = function clearNotification() {
-	            _this.setState({
-	                notification: false
-	            });
-	        };
-	        setTimeout(clearNotification, 3000);
-	    },
-
-	    _handleAddItemToOrder: function _handleAddItemToOrder(itemDetails) {
-	        this.setState({
-	            items: this.state.items.concat(itemDetails)
-	        });
-	    },
-
-	    _handleDeleteItemFromOrder: function _handleDeleteItemFromOrder(index) {
-	        var items = this.state.items;
-	        items.splice(index, 1);
-	        this.setState({
-	            items: items
-	        });
-	    },
-
-	    propTypes: {
-	        toggleNotification: _react2.default.PropTypes.func,
-	        notificationState: _react2.default.PropTypes.bool,
-	        handleAddItemToOrder: _react2.default.PropTypes.func,
-	        orderItems: _react2.default.PropTypes.array,
-	        handleDeleteItemFromOrder: _react2.default.PropTypes.func
-	    },
-
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
 	            null,
-	            _react2.default.createElement(_NavAndTitle2.default, {
-	                title: 'Create Your Order',
-	                toggleNotification: this._toggleNotification,
-	                notificationState: this.state.notification }),
+	            _react2.default.createElement(_AddItemNotification2.default, {
+	                toggleNotification: this.props.toggleNotification,
+	                notificationState: this.props.notification }),
+	            _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Place Your Order'
+	            ),
 	            _react2.default.createElement(_MenuFormContainer2.default, {
 	                data: this.props.data,
-	                handleAddItemToOrder: this._handleAddItemToOrder,
-	                toggleNotification: this._toggleNotification }),
+	                handleAddItemToOrder: this.props.handleAddItemToOrder,
+	                toggleNotification: this.props.toggleNotification }),
 	            _react2.default.createElement(_OrderTotal2.default, {
-	                orderItems: this.state.items,
-	                handleDeleteItemFromOrder: this._handleDeleteItemFromOrder }),
+	                orderItems: this.props.items,
+	                handleDeleteItemFromOrder: this.props.handleDeleteItemFromOrder }),
 	            _react2.default.createElement(
-	                'button',
-	                { onClick: this._handleNext, className: 'next-button' },
-	                'Next'
+	                _reactRouter.Link,
+	                { to: '/additional-info' },
+	                _react2.default.createElement(
+	                    'button',
+	                    { className: 'next-button' },
+	                    'Next'
+	                )
 	            )
 	        );
 	    }
@@ -43787,10 +43557,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _NavAndTitle = __webpack_require__(222);
-
-	var _NavAndTitle2 = _interopRequireDefault(_NavAndTitle);
-
 	var _ShopSearch = __webpack_require__(260);
 
 	var _ShopSearch2 = _interopRequireDefault(_ShopSearch);
@@ -43799,9 +43565,11 @@
 
 	var _ShopList2 = _interopRequireDefault(_ShopList);
 
-	var _NextButton = __webpack_require__(254);
+	var _reactRouter = __webpack_require__(164);
 
-	var _NextButton2 = _interopRequireDefault(_NextButton);
+	var _app = __webpack_require__(312);
+
+	var _app2 = _interopRequireDefault(_app);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43809,26 +43577,25 @@
 	    displayName: 'SelectShopView',
 
 
-	    contextTypes: {
-	        router: _react2.default.PropTypes.object
-	    },
-
-	    _handleNext: function _handleNext() {
-	        var path = '/custom-order';
-	        this.context.router.push(path);
-	    },
-
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
 	            null,
-	            _react2.default.createElement(_NavAndTitle2.default, { title: 'Select a Coffee Shop!' }),
+	            _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Select a Shop'
+	            ),
 	            _react2.default.createElement(_ShopSearch2.default, null),
 	            _react2.default.createElement(_ShopList2.default, null),
 	            _react2.default.createElement(
-	                'button',
-	                { onClick: this._handleNext, className: 'next-button' },
-	                'Next'
+	                _reactRouter.Link,
+	                { to: '/custom-order' },
+	                _react2.default.createElement(
+	                    'button',
+	                    { className: 'next-button' },
+	                    'Next'
+	                )
 	            )
 	        );
 	    }
@@ -43846,10 +43613,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _NavAndTitle = __webpack_require__(222);
-
-	var _NavAndTitle2 = _interopRequireDefault(_NavAndTitle);
-
 	var _SearchShop = __webpack_require__(292);
 
 	var _SearchShop2 = _interopRequireDefault(_SearchShop);
@@ -43858,32 +43621,37 @@
 
 	var _PrevAndFavorites2 = _interopRequireDefault(_PrevAndFavorites);
 
+	var _reactRouter = __webpack_require__(164);
+
+	var _app = __webpack_require__(312);
+
+	var _app2 = _interopRequireDefault(_app);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var DashboardView = _react2.default.createClass({
 	    displayName: 'DashboardView',
 
 
-	    contextTypes: {
-	        router: _react2.default.PropTypes.object
-	    },
-
-	    _handleNext: function _handleNext() {
-	        var path = '/select-shop';
-	        this.context.router.push(path);
-	    },
-
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
 	            null,
-	            _react2.default.createElement(_NavAndTitle2.default, { title: 'Dashboard' }),
+	            _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Start - Search for a Coffee Shop!'
+	            ),
 	            _react2.default.createElement(_SearchShop2.default, null),
 	            _react2.default.createElement(_PrevAndFavorites2.default, null),
 	            _react2.default.createElement(
-	                'button',
-	                { onClick: this._handleNext, className: 'next-button' },
-	                'Next'
+	                _reactRouter.Link,
+	                { to: '/select-shop' },
+	                _react2.default.createElement(
+	                    'button',
+	                    { className: 'next-button' },
+	                    'Next'
+	                )
 	            )
 	        );
 	    }
@@ -43901,13 +43669,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _NavAndTitle = __webpack_require__(222);
-
-	var _NavAndTitle2 = _interopRequireDefault(_NavAndTitle);
-
 	var _OrderTotalOS = __webpack_require__(296);
 
 	var _OrderTotalOS2 = _interopRequireDefault(_OrderTotalOS);
+
+	var _reactRouter = __webpack_require__(164);
+
+	var _app = __webpack_require__(312);
+
+	var _app2 = _interopRequireDefault(_app);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43915,25 +43685,24 @@
 	    displayName: 'OrderSummaryView',
 
 
-	    contextTypes: {
-	        router: _react2.default.PropTypes.object
-	    },
-
-	    _handleNext: function _handleNext() {
-	        var path = '/confirmation';
-	        this.context.router.push(path);
-	    },
-
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
 	            null,
-	            _react2.default.createElement(_NavAndTitle2.default, { title: 'Order Summary' }),
+	            _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Order Summary'
+	            ),
 	            _react2.default.createElement(_OrderTotalOS2.default, null),
 	            _react2.default.createElement(
-	                'button',
-	                { onClick: this._handleNext, className: 'next-button' },
-	                'Submit Order'
+	                _reactRouter.Link,
+	                { to: '/confirmation' },
+	                _react2.default.createElement(
+	                    'button',
+	                    { className: 'next-button' },
+	                    'Submit Order'
+	                )
 	            ),
 	            _react2.default.createElement(
 	                'button',
@@ -43956,10 +43725,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _NavAndTitle = __webpack_require__(222);
-
-	var _NavAndTitle2 = _interopRequireDefault(_NavAndTitle);
-
 	var _OrderReadyTime = __webpack_require__(304);
 
 	var _OrderReadyTime2 = _interopRequireDefault(_OrderReadyTime);
@@ -43972,33 +43737,34 @@
 
 	var _DirectionsAndCall2 = _interopRequireDefault(_DirectionsAndCall);
 
+	var _reactRouter = __webpack_require__(164);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var ConfirmationView = _react2.default.createClass({
 	    displayName: 'ConfirmationView',
 
 
-	    contextTypes: {
-	        router: _react2.default.PropTypes.object
-	    },
-
-	    _handleNext: function _handleNext() {
-	        var path = '/dashboard';
-	        this.context.router.push(path);
-	    },
-
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
 	            null,
-	            _react2.default.createElement(_NavAndTitle2.default, { title: 'Order Confirmation' }),
+	            _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Order Confirmation'
+	            ),
 	            _react2.default.createElement(_OrderReadyTime2.default, null),
 	            _react2.default.createElement(_ShopDetails2.default, null),
 	            _react2.default.createElement(_DirectionsAndCall2.default, null),
 	            _react2.default.createElement(
-	                'button',
-	                { onClick: this._handleNext, className: 'next-button' },
-	                'Back to Dashboard'
+	                _reactRouter.Link,
+	                { to: '/' },
+	                _react2.default.createElement(
+	                    'button',
+	                    { className: 'next-button' },
+	                    'Back to Dashboard'
+	                )
 	            )
 	        );
 	    }
@@ -44603,6 +44369,175 @@
 
 	// module
 	exports.push([module.id, ".shop-details-container {\n  border: 1px solid blue; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 311 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(164);
+
+	var _dummyData = __webpack_require__(285);
+
+	var _dummyData2 = _interopRequireDefault(_dummyData);
+
+	var _app = __webpack_require__(312);
+
+	var _app2 = _interopRequireDefault(_app);
+
+	var _AddItemNotification = __webpack_require__(225);
+
+	var _AddItemNotification2 = _interopRequireDefault(_AddItemNotification);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var App = _react2.default.createClass({
+	    displayName: 'App',
+
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            items: [],
+	            notification: false
+	        };
+	    },
+
+	    _toggleNotification: function _toggleNotification() {
+	        var _this = this;
+
+	        this.setState({
+	            notification: !this.state.notification
+	        });
+	        var clearNotification = function clearNotification() {
+	            _this.setState({
+	                notification: false
+	            });
+	        };
+	        setTimeout(clearNotification, 3000);
+	    },
+
+	    _handleAddItemToOrder: function _handleAddItemToOrder(itemDetails) {
+	        this.setState({
+	            items: this.state.items.concat(itemDetails)
+	        });
+	    },
+
+	    _handleDeleteItemFromOrder: function _handleDeleteItemFromOrder(index) {
+	        var items = this.state.items;
+	        items.splice(index, 1);
+	        this.setState({
+	            items: items
+	        });
+	    },
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(_AddItemNotification2.default, {
+	                toggleNotification: this.props.toggleNotification,
+	                notificationState: this.props.notificationState }),
+	            _react2.default.createElement(
+	                'nav',
+	                { className: 'main-nav' },
+	                _react2.default.createElement(
+	                    'ul',
+	                    { role: 'nav' },
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: '/', onlyActiveOnIndex: true, className: 'router-link' },
+	                        _react2.default.createElement(
+	                            'li',
+	                            null,
+	                            'Dashboard'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: '/account', className: 'router-link' },
+	                        _react2.default.createElement(
+	                            'li',
+	                            null,
+	                            'Account'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: '/log-out', className: 'router-link' },
+	                        _react2.default.createElement(
+	                            'li',
+	                            null,
+	                            'Log Out'
+	                        )
+	                    )
+	                )
+	            ),
+	            _react2.default.cloneElement(this.props.children, {
+	                data: _dummyData2.default,
+	                items: this.state.items,
+	                notification: this.state.notification,
+	                toggleNotification: this._toggleNotification,
+	                handleAddItemToOrder: this._handleAddItemToOrder,
+	                handleDeleteItemFromOrder: this._handleDeleteItemFromOrder
+	            })
+	        );
+	    }
+	});
+
+	module.exports = App;
+
+	//   propTypes: {
+	//       toggleNotification: React.PropTypes.func,
+	//       notificationState: React.PropTypes.bool,
+	//       handleAddItemToOrder: React.PropTypes.func,
+	//       orderItems: React.PropTypes.array,
+	//       handleDeleteItemFromOrder: React.PropTypes.func
+	// },
+
+/***/ },
+/* 312 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(313);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./app.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./app.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 313 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "nav.main-nav {\n  width: 90%;\n  margin: 0 auto;\n  text-align: center; }\n\nnav.main-nav ul {\n  width: 80%;\n  margin: 0 auto;\n  padding: 0; }\n\nnav.main-nav ul li {\n  display: inline-block;\n  padding: 1em;\n  background: #1987FE;\n  border-radius: 5px;\n  margin-right: 5px; }\n\n.router-link {\n  text-decoration: none;\n  color: #fff; }\n\n.next-button {\n  margin-top: 1em;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer; }\n", ""]);
 
 	// exports
 

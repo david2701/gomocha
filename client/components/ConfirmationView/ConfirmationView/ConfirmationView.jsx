@@ -1,28 +1,19 @@
 import React from 'react'
-import NavAndTitle from '../../NavAndTitle/NavAndTitle'
 import OrderReadyTime from '../OrderReadyTime/OrderReadyTime'
 import ShopDetails from '../ShopDetails/ShopDetails'
 import DirectionsAndCall from '../DirectionsAndCall/DirectionsAndCall'
+import { Link } from 'react-router'
 
 var ConfirmationView = React.createClass({
-
-    contextTypes: {
-      router: React.PropTypes.object
-    },
-
-    _handleNext: function() {
-        const path = `/dashboard`
-        this.context.router.push(path)
-    },
 
     render: function() {
         return (
             <div>
-                <NavAndTitle title="Order Confirmation" />
+                <h1>Order Confirmation</h1>
                 <OrderReadyTime />
                 <ShopDetails />
                 <DirectionsAndCall />
-                <button onClick={this._handleNext} className="next-button">Back to Dashboard</button>
+                <Link to="/"><button className="next-button">Back to Dashboard</button></Link>
             </div>
         )
     }

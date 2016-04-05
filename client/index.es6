@@ -17,14 +17,18 @@ ReactDOM.render(
 
 // NEXT STEPS:
 
-// ???? combine dummyData into single file
-// create views for other pages and switch out root component in meantime
-// react router implementation
 // implement propTypes to components
 // add quantity * price feature when calculating total
 
 
+// add conditions to Link buttons
+// look into Locu and Google Maps API
+// create state for remaining views on App component state. Pass down to children components
 
+
+
+
+// DONE add Link to remaining View components
 // DONE use setTimeout for add item to order notification/confirmation
 // DONE user cannot add item unless all form elements are filled out
 // DONE clear all form elements after add to order button is clicked
