@@ -7,7 +7,11 @@ var SelectIfFavorite = React.createClass({
             <div>
                 <h2>Favorite this order?</h2>
             <div className="select-if-favorite">
-                    <label>Yes! <input type="checkbox" /></label>
+                    <label>Yes! <input
+                                    onChange={this.props.handleFavorite}
+                                    type="checkbox"
+                                    value={this.props.value} />
+                    </label>
                 </div>
             </div>
         )

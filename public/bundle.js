@@ -80,6 +80,7 @@
 	// implement propTypes to components
 	// add quantity * price feature when calculating total
 
+	// pickUp time can't be set if "now" is checked, if someone checks pickup time and then decided now after already clicking now
 	// add conditions to Link buttons
 	// look into Locu and Google Maps API
 	// create state for remaining views on App component state. Pass down to children components
@@ -20058,31 +20059,31 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _App = __webpack_require__(311);
+	var _App = __webpack_require__(221);
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _DashboardView = __webpack_require__(289);
+	var _DashboardView = __webpack_require__(230);
 
 	var _DashboardView2 = _interopRequireDefault(_DashboardView);
 
-	var _CustomOrderView = __webpack_require__(287);
+	var _CustomOrderView = __webpack_require__(235);
 
 	var _CustomOrderView2 = _interopRequireDefault(_CustomOrderView);
 
-	var _SelectShopView = __webpack_require__(288);
+	var _SelectShopView = __webpack_require__(262);
 
 	var _SelectShopView2 = _interopRequireDefault(_SelectShopView);
 
-	var _AdditionalInfoView = __webpack_require__(286);
+	var _AdditionalInfoView = __webpack_require__(275);
 
 	var _AdditionalInfoView2 = _interopRequireDefault(_AdditionalInfoView);
 
-	var _OrderSummaryView = __webpack_require__(290);
+	var _OrderSummaryView = __webpack_require__(288);
 
 	var _OrderSummaryView2 = _interopRequireDefault(_OrderSummaryView);
 
-	var _ConfirmationView = __webpack_require__(291);
+	var _ConfirmationView = __webpack_require__(297);
 
 	var _ConfirmationView2 = _interopRequireDefault(_ConfirmationView);
 
@@ -25165,10 +25166,1418 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 221 */,
-/* 222 */,
-/* 223 */,
-/* 224 */,
+/* 221 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(164);
+
+	var _dummyData = __webpack_require__(222);
+
+	var _dummyData2 = _interopRequireDefault(_dummyData);
+
+	var _app = __webpack_require__(223);
+
+	var _app2 = _interopRequireDefault(_app);
+
+	var _AddItemNotification = __webpack_require__(225);
+
+	var _AddItemNotification2 = _interopRequireDefault(_AddItemNotification);
+
+	var _lodash = __webpack_require__(228);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var App = _react2.default.createClass({
+	    displayName: 'App',
+
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            items: [],
+	            notification: false,
+	            methodOfTrans: '',
+	            pickupTime: '',
+	            favorite: false,
+	            paymentInfo: {
+	                nameOnCard: '',
+	                cardNumber: undefined,
+	                expMonth: '',
+	                expYear: '',
+	                cvv: undefined
+	            }
+	        };
+	    },
+
+	    _handleMethodOfTrans: function _handleMethodOfTrans(event) {
+	        this.setState({
+	            methodOfTrans: event.target.value
+	        });
+	    },
+
+	    _handlePickupTime: function _handlePickupTime(event) {
+	        this.setState({
+	            pickupTime: event.target.value
+	        });
+	    },
+
+	    _handleFavorite: function _handleFavorite() {
+	        this.setState({
+	            favorite: !this.state.favorite
+	        });
+	    },
+
+	    _handleCCName: function _handleCCName(event) {
+	        var newPaymentInfo = _lodash2.default.assign({}, this.state.paymentInfo, { nameOnCard: event.target.value });
+	        this.setState({
+	            paymentInfo: newPaymentInfo
+	        });
+	    },
+
+	    _handleCCNumber: function _handleCCNumber(event) {
+	        var newPaymentInfo = _lodash2.default.assign({}, this.state.paymentInfo, { cardNumber: event.target.value });
+	        this.setState({
+	            paymentInfo: newPaymentInfo
+	        });
+	    },
+
+	    _handleCCExpMonth: function _handleCCExpMonth(event) {
+	        var newPaymentInfo = _lodash2.default.assign({}, this.state.paymentInfo, { expMonth: event.target.value });
+	        this.setState({
+	            paymentInfo: newPaymentInfo
+	        });
+	    },
+
+	    _handleCCExpYear: function _handleCCExpYear(event) {
+	        var newPaymentInfo = _lodash2.default.assign({}, this.state.paymentInfo, { expYear: event.target.value });
+	        this.setState({
+	            paymentInfo: newPaymentInfo
+	        });
+	    },
+
+	    _handleCCCVV: function _handleCCCVV(event) {
+	        var newPaymentInfo = _lodash2.default.assign({}, this.state.paymentInfo, { cvv: event.target.value });
+	        this.setState({
+	            paymentInfo: newPaymentInfo
+	        });
+	    },
+
+	    _toggleNotification: function _toggleNotification() {
+	        var _this = this;
+
+	        this.setState({
+	            notification: !this.state.notification
+	        });
+	        var clearNotification = function clearNotification() {
+	            _this.setState({
+	                notification: false
+	            });
+	        };
+	        setTimeout(clearNotification, 3000);
+	    },
+
+	    _handleAddItemToOrder: function _handleAddItemToOrder(itemDetails) {
+	        this.setState({
+	            items: this.state.items.concat(itemDetails)
+	        });
+	    },
+
+	    _handleDeleteItemFromOrder: function _handleDeleteItemFromOrder(index) {
+	        var items = this.state.items;
+	        items.splice(index, 1);
+	        this.setState({
+	            items: items
+	        });
+	    },
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(_AddItemNotification2.default, {
+	                toggleNotification: this.props.toggleNotification,
+	                notificationState: this.props.notificationState }),
+	            _react2.default.createElement(
+	                'nav',
+	                { className: 'main-nav' },
+	                _react2.default.createElement(
+	                    'ul',
+	                    { role: 'nav' },
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: '/', onlyActiveOnIndex: true, className: 'router-link' },
+	                        _react2.default.createElement(
+	                            'li',
+	                            null,
+	                            'Dashboard'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: '/account', className: 'router-link' },
+	                        _react2.default.createElement(
+	                            'li',
+	                            null,
+	                            'Account'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: '/log-out', className: 'router-link' },
+	                        _react2.default.createElement(
+	                            'li',
+	                            null,
+	                            'Log Out'
+	                        )
+	                    )
+	                )
+	            ),
+	            _react2.default.cloneElement(this.props.children, {
+	                data: _dummyData2.default,
+	                items: this.state.items,
+	                notification: this.state.notification,
+	                toggleNotification: this._toggleNotification,
+	                handleAddItemToOrder: this._handleAddItemToOrder,
+	                handleDeleteItemFromOrder: this._handleDeleteItemFromOrder,
+	                handleMethodOfTrans: this._handleMethodOfTrans,
+	                handlePickupTime: this._handlePickupTime,
+	                pickupTime: this.state.pickupTime,
+	                handleFavorite: this._handleFavorite,
+	                favorite: this.state.favorite,
+	                handleCCName: this._handleCCName,
+	                handleCCNumber: this._handleCCNumber,
+	                handleCCExpMonth: this._handleCCExpMonth,
+	                expMonth: this.state.paymentInfo.expMonth,
+	                handleCCExpYear: this._handleCCExpYear,
+	                expYear: this.state.paymentInfo.expYear,
+	                handleCCCVV: this._handleCCCVV
+	            })
+	        );
+	    }
+	});
+
+	module.exports = App;
+
+	//   propTypes: {
+	//       toggleNotification: React.PropTypes.func,
+	//       notificationState: React.PropTypes.bool,
+	//       handleAddItemToOrder: React.PropTypes.func,
+	//       orderItems: React.PropTypes.array,
+	//       handleDeleteItemFromOrder: React.PropTypes.func
+	// },
+
+/***/ },
+/* 222 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"shops": [
+			{
+				"name": "starbucks",
+				"address": "123 4th St. Santa Monica, CA 90234",
+				"phone": "(818) 438-9832",
+				"imageUrl": "http://www.fodors.com/ee/files/slideshows/9-colectivo-coffee.jpg",
+				"menu": [
+					{
+						"displayName": "Hot Drinks",
+						"slug": "hot-drinks",
+						"items": [
+							{
+								"name": "Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "latte"
+							},
+							{
+								"name": "Americano",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "americano"
+							},
+							{
+								"name": "Cappucino",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "cappucino"
+							},
+							{
+								"name": "Espresso",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "espresso"
+							},
+							{
+								"name": "Macchiato",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "macchiato"
+							}
+						]
+					},
+					{
+						"displayName": "Cold Drinks",
+						"slug": "cold-drinks",
+						"items": [
+							{
+								"name": "Iced Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-latte"
+							},
+							{
+								"name": "Iced Mocha",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-mocha"
+							},
+							{
+								"name": "Iced Chai",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-chai"
+							},
+							{
+								"name": "Iced Coffee",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": ""
+							},
+							{
+								"name": "Frappe",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "frappe"
+							}
+						]
+					},
+					{
+						"displayName": "Tea",
+						"slug": "tea",
+						"items": [
+							{
+								"name": "Green",
+								"price": 2.95,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "green"
+							},
+							{
+								"name": "Jasmine Green",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "jasmine-green"
+							},
+							{
+								"name": "Chai",
+								"price": 3.05,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chai"
+							},
+							{
+								"name": "Mint",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "mint"
+							},
+							{
+								"name": "Chamomile",
+								"price": 3.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chamomile"
+							}
+						]
+					},
+					{
+						"displayName": "Bakery",
+						"slug": "bakery",
+						"items": [
+							{
+								"name": "Croissant",
+								"price": 2.95,
+								"options": [
+									"quantity"
+								],
+								"id": "croissant"
+							},
+							{
+								"name": "Banana Muffin",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "banana-muffin"
+							},
+							{
+								"name": "Blueberry Scone",
+								"price": 3.05,
+								"options": [
+									"quantity"
+								],
+								"id": "blueberry-scone"
+							},
+							{
+								"name": "Carrot Cake",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "carrot-cake"
+							},
+							{
+								"name": "Home-Made Cookies",
+								"price": 3.5,
+								"options": [
+									"quantity"
+								],
+								"id": "home-made-cookies"
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "beanscene",
+				"address": "255 Alvera St. Los Angeles, CA 98654",
+				"phone": "(818) 438-9832",
+				"imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Inside_the_Coffee_Shop,_Parliament_House,_Dolgellau_-_geograph.org.uk_-_1708041.jpg",
+				"menu": [
+					{
+						"displayName": "Hot Drinks",
+						"slug": "hot-drinks",
+						"items": [
+							{
+								"name": "Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "latte"
+							},
+							{
+								"name": "Americano",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "americano"
+							},
+							{
+								"name": "Cappucino",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "cappucino"
+							},
+							{
+								"name": "Espresso",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "espresso"
+							},
+							{
+								"name": "Macchiato",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "macchiato"
+							}
+						]
+					},
+					{
+						"displayName": "Cold Drinks",
+						"slug": "cold-drinks",
+						"items": [
+							{
+								"name": "Iced Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-latte"
+							},
+							{
+								"name": "Iced Mocha",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-mocha"
+							},
+							{
+								"name": "Iced Chai",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-chai"
+							},
+							{
+								"name": "Iced Coffee",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": ""
+							},
+							{
+								"name": "Frappe",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "frappe"
+							}
+						]
+					},
+					{
+						"displayName": "Tea",
+						"slug": "tea",
+						"items": [
+							{
+								"name": "Green",
+								"price": 2.95,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "green"
+							},
+							{
+								"name": "Jasmine Green",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "jasmine-green"
+							},
+							{
+								"name": "Chai",
+								"price": 3.05,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chai"
+							},
+							{
+								"name": "Mint",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "mint"
+							},
+							{
+								"name": "Chamomile",
+								"price": 3.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chamomile"
+							}
+						]
+					},
+					{
+						"displayName": "Bakery",
+						"slug": "bakery",
+						"items": [
+							{
+								"name": "Croissant",
+								"price": 2.95,
+								"options": [
+									"quantity"
+								],
+								"id": "croissant"
+							},
+							{
+								"name": "Banana Muffin",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "banana-muffin"
+							},
+							{
+								"name": "Blueberry Scone",
+								"price": 3.05,
+								"options": [
+									"quantity"
+								],
+								"id": "blueberry-scone"
+							},
+							{
+								"name": "Carrot Cake",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "carrot-cake"
+							},
+							{
+								"name": "Home-Made Cookies",
+								"price": 3.5,
+								"options": [
+									"quantity"
+								],
+								"id": "home-made-cookies"
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "tifa",
+				"address": "6785 Huntington St. Venice, CA 90233",
+				"phone": "(818) 438-9832",
+				"imageUrl": "https://cdn1.vox-cdn.com/thumbor/D7jAbLqhca3vAJ20SbXyJH_Dv3I=/0x120:960x840/800x600/filters:format(webp)/cdn0.vox-cdn.com/uploads/chorus_image/image/45736528/compass_coffee.0.0.jpg",
+				"menu": [
+					{
+						"displayName": "Hot Drinks",
+						"slug": "hot-drinks",
+						"items": [
+							{
+								"name": "Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "latte"
+							},
+							{
+								"name": "Americano",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "americano"
+							},
+							{
+								"name": "Cappucino",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "cappucino"
+							},
+							{
+								"name": "Espresso",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "espresso"
+							},
+							{
+								"name": "Macchiato",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "macchiato"
+							}
+						]
+					},
+					{
+						"displayName": "Cold Drinks",
+						"slug": "cold-drinks",
+						"items": [
+							{
+								"name": "Iced Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-latte"
+							},
+							{
+								"name": "Iced Mocha",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-mocha"
+							},
+							{
+								"name": "Iced Chai",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-chai"
+							},
+							{
+								"name": "Iced Coffee",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": ""
+							},
+							{
+								"name": "Frappe",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "frappe"
+							}
+						]
+					},
+					{
+						"displayName": "Tea",
+						"slug": "tea",
+						"items": [
+							{
+								"name": "Green",
+								"price": 2.95,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "green"
+							},
+							{
+								"name": "Jasmine Green",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "jasmine-green"
+							},
+							{
+								"name": "Chai",
+								"price": 3.05,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chai"
+							},
+							{
+								"name": "Mint",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "mint"
+							},
+							{
+								"name": "Chamomile",
+								"price": 3.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chamomile"
+							}
+						]
+					},
+					{
+						"displayName": "Bakery",
+						"slug": "bakery",
+						"items": [
+							{
+								"name": "Croissant",
+								"price": 2.95,
+								"options": [
+									"quantity"
+								],
+								"id": "croissant"
+							},
+							{
+								"name": "Banana Muffin",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "banana-muffin"
+							},
+							{
+								"name": "Blueberry Scone",
+								"price": 3.05,
+								"options": [
+									"quantity"
+								],
+								"id": "blueberry-scone"
+							},
+							{
+								"name": "Carrot Cake",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "carrot-cake"
+							},
+							{
+								"name": "Home-Made Cookies",
+								"price": 3.5,
+								"options": [
+									"quantity"
+								],
+								"id": "home-made-cookies"
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "coffeeBean",
+				"address": "2433 Soju st. Venice, CA 90235",
+				"phone": "(818) 438-9832",
+				"imageUrl": "http://cdn.offtrackplanet.com/legacy/uploads/2010/08/coffee.jpg",
+				"menu": [
+					{
+						"displayName": "Hot Drinks",
+						"slug": "hot-drinks",
+						"items": [
+							{
+								"name": "Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "latte"
+							},
+							{
+								"name": "Americano",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "americano"
+							},
+							{
+								"name": "Cappucino",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "cappucino"
+							},
+							{
+								"name": "Espresso",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "espresso"
+							},
+							{
+								"name": "Macchiato",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "macchiato"
+							}
+						]
+					},
+					{
+						"displayName": "Cold Drinks",
+						"slug": "cold-drinks",
+						"items": [
+							{
+								"name": "Iced Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-latte"
+							},
+							{
+								"name": "Iced Mocha",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-mocha"
+							},
+							{
+								"name": "Iced Chai",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-chai"
+							},
+							{
+								"name": "Iced Coffee",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": ""
+							},
+							{
+								"name": "Frappe",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "frappe"
+							}
+						]
+					},
+					{
+						"displayName": "Tea",
+						"slug": "tea",
+						"items": [
+							{
+								"name": "Green",
+								"price": 2.95,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "green"
+							},
+							{
+								"name": "Jasmine Green",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "jasmine-green"
+							},
+							{
+								"name": "Chai",
+								"price": 3.05,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chai"
+							},
+							{
+								"name": "Mint",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "mint"
+							},
+							{
+								"name": "Chamomile",
+								"price": 3.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chamomile"
+							}
+						]
+					},
+					{
+						"displayName": "Bakery",
+						"slug": "bakery",
+						"items": [
+							{
+								"name": "Croissant",
+								"price": 2.95,
+								"options": [
+									"quantity"
+								],
+								"id": "croissant"
+							},
+							{
+								"name": "Banana Muffin",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "banana-muffin"
+							},
+							{
+								"name": "Blueberry Scone",
+								"price": 3.05,
+								"options": [
+									"quantity"
+								],
+								"id": "blueberry-scone"
+							},
+							{
+								"name": "Carrot Cake",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "carrot-cake"
+							},
+							{
+								"name": "Home-Made Cookies",
+								"price": 3.5,
+								"options": [
+									"quantity"
+								],
+								"id": "home-made-cookies"
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "starbucks",
+				"address": "123 4th St. Santa Monica, CA 90234",
+				"phone": "(818) 438-9832",
+				"imageUrl": "http://www.fodors.com/ee/files/slideshows/9-colectivo-coffee.jpg",
+				"menu": [
+					{
+						"displayName": "Hot Drinks",
+						"slug": "hot-drinks",
+						"items": [
+							{
+								"name": "Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "latte"
+							},
+							{
+								"name": "Americano",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "americano"
+							},
+							{
+								"name": "Cappucino",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "cappucino"
+							},
+							{
+								"name": "Espresso",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "espresso"
+							},
+							{
+								"name": "Macchiato",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "macchiato"
+							}
+						]
+					},
+					{
+						"displayName": "Cold Drinks",
+						"slug": "cold-drinks",
+						"items": [
+							{
+								"name": "Iced Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-latte"
+							},
+							{
+								"name": "Iced Mocha",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-mocha"
+							},
+							{
+								"name": "Iced Chai",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-chai"
+							},
+							{
+								"name": "Iced Coffee",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": ""
+							},
+							{
+								"name": "Frappe",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "frappe"
+							}
+						]
+					},
+					{
+						"displayName": "Tea",
+						"slug": "tea",
+						"items": [
+							{
+								"name": "Green",
+								"price": 2.95,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "green"
+							},
+							{
+								"name": "Jasmine Green",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "jasmine-green"
+							},
+							{
+								"name": "Chai",
+								"price": 3.05,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chai"
+							},
+							{
+								"name": "Mint",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "mint"
+							},
+							{
+								"name": "Chamomile",
+								"price": 3.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chamomile"
+							}
+						]
+					},
+					{
+						"displayName": "Bakery",
+						"slug": "bakery",
+						"items": [
+							{
+								"name": "Croissant",
+								"price": 2.95,
+								"options": [
+									"quantity"
+								],
+								"id": "croissant"
+							},
+							{
+								"name": "Banana Muffin",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "banana-muffin"
+							},
+							{
+								"name": "Blueberry Scone",
+								"price": 3.05,
+								"options": [
+									"quantity"
+								],
+								"id": "blueberry-scone"
+							},
+							{
+								"name": "Carrot Cake",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "carrot-cake"
+							},
+							{
+								"name": "Home-Made Cookies",
+								"price": 3.5,
+								"options": [
+									"quantity"
+								],
+								"id": "home-made-cookies"
+							}
+						]
+					}
+				]
+			}
+		]
+	};
+
+/***/ },
+/* 223 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(224);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./app.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./app.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 224 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "nav.main-nav {\n  width: 90%;\n  margin: 0 auto;\n  text-align: center; }\n\nnav.main-nav ul {\n  width: 80%;\n  margin: 0 auto;\n  padding: 0; }\n\nnav.main-nav ul li {\n  display: inline-block;\n  padding: 1em;\n  background: #1987FE;\n  border-radius: 5px;\n  margin-right: 5px; }\n\n.router-link {\n  text-decoration: none;\n  color: #fff; }\n\n.next-button {\n  margin-top: 1em;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer; }\n", ""]);
+
+	// exports
+
+
+/***/ },
 /* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -25250,347 +26659,6 @@
 
 /***/ },
 /* 228 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _MenuSection = __webpack_require__(229);
-
-	var _MenuSection2 = _interopRequireDefault(_MenuSection);
-
-	var _SpecialInstructions = __webpack_require__(245);
-
-	var _SpecialInstructions2 = _interopRequireDefault(_SpecialInstructions);
-
-	var _menuFormContainer = __webpack_require__(246);
-
-	var _menuFormContainer2 = _interopRequireDefault(_menuFormContainer);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var MenuFormContainer = _react2.default.createClass({
-	    displayName: 'MenuFormContainer',
-
-
-	    propTypes: {
-	        slug: _react2.default.PropTypes.string,
-	        handleAddItemToOrder: _react2.default.PropTypes.func,
-	        toggleNotification: _react2.default.PropTypes.func
-	    },
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'form',
-	            null,
-	            _react2.default.createElement(_MenuSection2.default, {
-	                data: this.props.data,
-	                slug: 'hot-drinks',
-	                handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                toggleNotification: this.props.toggleNotification }),
-	            _react2.default.createElement(_MenuSection2.default, {
-	                data: this.props.data,
-	                slug: 'cold-drinks',
-	                handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                toggleNotification: this.props.toggleNotification }),
-	            _react2.default.createElement(_MenuSection2.default, {
-	                data: this.props.data,
-	                slug: 'tea',
-	                handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                toggleNotification: this.props.toggleNotification }),
-	            _react2.default.createElement(_MenuSection2.default, {
-	                data: this.props.data,
-	                slug: 'bakery',
-	                handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                toggleNotification: this.props.toggleNotification }),
-	            _react2.default.createElement(_SpecialInstructions2.default, null)
-	        );
-	    }
-	});
-
-	module.exports = MenuFormContainer;
-
-/***/ },
-/* 229 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _MenuItem = __webpack_require__(230);
-
-	var _MenuItem2 = _interopRequireDefault(_MenuItem);
-
-	var _lodash = __webpack_require__(232);
-
-	var _lodash2 = _interopRequireDefault(_lodash);
-
-	var _menuSection = __webpack_require__(243);
-
-	var _menuSection2 = _interopRequireDefault(_menuSection);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var MenuSection = _react2.default.createClass({
-	    displayName: 'MenuSection',
-
-
-	    render: function render() {
-	        var _this = this;
-
-	        var menuSection = _lodash2.default.find(this.props.data.shops[0].menu, { "slug": this.props.slug });
-	        var sectionTitle = menuSection.displayName;
-	        var menuItems = menuSection.items.map(function (item, index) {
-	            return _react2.default.createElement(_MenuItem2.default, {
-	                itemName: item.name,
-	                price: item.price,
-	                options: item.options,
-	                key: item.id,
-	                handleAddItemToOrder: _this.props.handleAddItemToOrder,
-	                calculateTotalAndTax: _this.props.calculateTotalAndTax,
-	                toggleNotification: _this.props.toggleNotification });
-	        });
-
-	        return _react2.default.createElement(
-	            'section',
-	            { id: 'hot-drinks' },
-	            _react2.default.createElement(
-	                'h2',
-	                null,
-	                sectionTitle
-	            ),
-	            menuItems,
-	            _react2.default.createElement('div', { className: 'divider' })
-	        );
-	    }
-	});
-
-	module.exports = MenuSection;
-
-/***/ },
-/* 230 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _AddToOrderButton = __webpack_require__(231);
-
-	var _AddToOrderButton2 = _interopRequireDefault(_AddToOrderButton);
-
-	var _MilkType = __webpack_require__(236);
-
-	var _MilkType2 = _interopRequireDefault(_MilkType);
-
-	var _Size = __webpack_require__(237);
-
-	var _Size2 = _interopRequireDefault(_Size);
-
-	var _Quantity = __webpack_require__(238);
-
-	var _Quantity2 = _interopRequireDefault(_Quantity);
-
-	var _Decaf = __webpack_require__(239);
-
-	var _Decaf2 = _interopRequireDefault(_Decaf);
-
-	var _HotOrCold = __webpack_require__(240);
-
-	var _HotOrCold2 = _interopRequireDefault(_HotOrCold);
-
-	var _menuItem = __webpack_require__(241);
-
-	var _menuItem2 = _interopRequireDefault(_menuItem);
-
-	var _lodash = __webpack_require__(232);
-
-	var _lodash2 = _interopRequireDefault(_lodash);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var MenuItem = _react2.default.createClass({
-	    displayName: 'MenuItem',
-
-
-	    getInitialState: function getInitialState() {
-	        return {};
-	    },
-
-	    _checkFormComplete: function _checkFormComplete() {
-	        var requiredOptions = this.props.options.filter(function (option) {
-	            return option !== 'decaf';
-	        });
-	        var optionsCheck = requiredOptions.map(function (option) {
-	            return this.state.hasOwnProperty(option);
-	        }, this);
-	        return optionsCheck.reduce(function (prev, current) {
-	            return prev && current;
-	        }, true);
-	    },
-
-	    _handleMilkTypeChange: function _handleMilkTypeChange(event) {
-	        this.setState({
-	            milkType: event.target.value
-	        });
-	    },
-
-	    _handleSizeChange: function _handleSizeChange(event) {
-	        this.setState({
-	            size: event.target.value
-	        });
-	    },
-
-	    _handleQuantityChange: function _handleQuantityChange(event) {
-	        this.setState({
-	            quantity: event.target.value
-	        });
-	    },
-
-	    _handleDecafChange: function _handleDecafChange(event) {
-	        this.setState({
-	            decaf: !this.state.decaf
-	        });
-	    },
-
-	    _handleHotOrColdChange: function _handleHotOrColdChange(event) {
-	        this.setState({
-	            hotOrCold: event.target.value
-	        });
-	    },
-
-	    _handleAddItemToOrder: function _handleAddItemToOrder(itemDetails) {
-	        this.props.handleAddItemToOrder(itemDetails);
-	        this.replaceState({});
-	    },
-
-	    _renderOption: function _renderOption(option, index) {
-	        switch (option) {
-	            case 'milkType':
-	                return _react2.default.createElement(_MilkType2.default, {
-	                    handleChange: this._handleMilkTypeChange,
-	                    key: index,
-	                    value: this.state.milkType || 'default' });
-	            case 'size':
-	                return _react2.default.createElement(_Size2.default, {
-	                    handleChange: this._handleSizeChange,
-	                    key: index,
-	                    value: this.state.size || 'default' });
-	            case 'quantity':
-	                return _react2.default.createElement(_Quantity2.default, {
-	                    handleChange: this._handleQuantityChange,
-	                    value: this.state.quantity || 'default',
-	                    key: index });
-	        }
-	    },
-
-	    _renderOption2: function _renderOption2(option, index) {
-	        switch (option) {
-	            case 'decaf':
-	                return _react2.default.createElement(_Decaf2.default, {
-	                    handleChange: this._handleDecafChange,
-	                    key: index,
-	                    value: this.state.decaf || false });
-	            case 'hotOrCold':
-	                return _react2.default.createElement(_HotOrCold2.default, {
-	                    handleChange: this._handleHotOrColdChange,
-	                    key: index,
-	                    value: this.state.hotOrCold || false });
-	        }
-	    },
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            { className: 'drink-item' },
-	            _react2.default.createElement(
-	                'label',
-	                { htmlFor: 'hot-drink' },
-	                this.props.itemName
-	            ),
-	            _react2.default.createElement('br', null),
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'item-top-row' },
-	                this.props.options.map(this._renderOption),
-	                this._checkFormComplete() ? _react2.default.createElement(_AddToOrderButton2.default, {
-	                    handleAddItemToOrder: this._handleAddItemToOrder,
-	                    handleItemFormComplete: this._handleItemFormComplete,
-	                    toggleNotification: this.props.toggleNotification,
-	                    itemName: this.props.itemName,
-	                    price: this.props.price,
-	                    itemDetails: this.state }) : '',
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'item-price' },
-	                    '$',
-	                    this.props.price.toFixed(2)
-	                )
-	            ),
-	            this.props.options.map(this._renderOption2)
-	        );
-	    }
-	});
-
-	module.exports = MenuItem;
-
-/***/ },
-/* 231 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _lodash = __webpack_require__(232);
-
-	var _lodash2 = _interopRequireDefault(_lodash);
-
-	var _options = __webpack_require__(234);
-
-	var _options2 = _interopRequireDefault(_options);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var AddToOrderButton = _react2.default.createClass({
-	    displayName: 'AddToOrderButton',
-
-
-	    render: function render() {
-	        var _this = this;
-
-	        var itemDetails = _lodash2.default.assign({ itemName: this.props.itemName, price: this.props.price }, this.props.itemDetails);
-
-	        return _react2.default.createElement(
-	            'div',
-	            { className: 'add-to-order',
-	                onClick: function onClick() {
-	                    _this.props.handleAddItemToOrder(itemDetails);
-	                    _this.props.toggleNotification();
-	                } },
-	            _react2.default.createElement(
-	                'span',
-	                { title: 'Add item to order' },
-	                _react2.default.createElement('i', { className: 'fa fa-plus-circle add-item-icon fa-lg' })
-	            )
-	        );
-	    }
-	});
-
-	module.exports = AddToOrderButton;
-
-/***/ },
-/* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
@@ -40667,10 +41735,10 @@
 	  }
 	}.call(this));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(233)(module), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(229)(module), (function() { return this; }())))
 
 /***/ },
-/* 233 */
+/* 229 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -40686,13 +41754,588 @@
 
 
 /***/ },
-/* 234 */
+/* 230 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _SearchShop = __webpack_require__(231);
+
+	var _SearchShop2 = _interopRequireDefault(_SearchShop);
+
+	var _PrevAndFavorites = __webpack_require__(232);
+
+	var _PrevAndFavorites2 = _interopRequireDefault(_PrevAndFavorites);
+
+	var _reactRouter = __webpack_require__(164);
+
+	var _app = __webpack_require__(223);
+
+	var _app2 = _interopRequireDefault(_app);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var DashboardView = _react2.default.createClass({
+	    displayName: 'DashboardView',
+
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Start - Search for a Coffee Shop!'
+	            ),
+	            _react2.default.createElement(_SearchShop2.default, null),
+	            _react2.default.createElement(_PrevAndFavorites2.default, null),
+	            _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/select-shop' },
+	                _react2.default.createElement(
+	                    'button',
+	                    { className: 'next-button' },
+	                    'Next'
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = DashboardView;
+
+/***/ },
+/* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SearchShop = _react2.default.createClass({
+	    displayName: "SearchShop",
+
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            "div",
+	            null,
+	            _react2.default.createElement("input", { type: "text" }),
+	            _react2.default.createElement("input", { type: "submit" })
+	        );
+	    }
+	});
+
+	module.exports = SearchShop;
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _prevAndFavorites = __webpack_require__(233);
+
+	var _prevAndFavorites2 = _interopRequireDefault(_prevAndFavorites);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var PrevAndFavorites = _react2.default.createClass({
+	    displayName: 'PrevAndFavorites',
+
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'prev-orders-button' },
+	                _react2.default.createElement('i', { className: 'fa fa-reply fa-lg' }),
+	                ' Previous Orders'
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'fav-orders-button' },
+	                _react2.default.createElement('i', { className: 'fa fa-heart fa-lg' }),
+	                ' Fav Orders'
+	            )
+	        );
+	    }
+	});
+
+	module.exports = PrevAndFavorites;
+
+/***/ },
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(235);
+	var content = __webpack_require__(234);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./prev-and-favorites.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./prev-and-favorites.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 234 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".prev-orders-button, .fav-orders-button {\n  width: 15em;\n  display: inline-block;\n  border: 1px solid blue;\n  text-align: center;\n  padding-top: 5em;\n  padding-bottom: 5em;\n  border-radius: 5px;\n  margin-top: 2em; }\n\n.fav-orders-button {\n  margin-left: 2em; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 235 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _MenuFormContainer = __webpack_require__(236);
+
+	var _MenuFormContainer2 = _interopRequireDefault(_MenuFormContainer);
+
+	var _OrderTotal = __webpack_require__(254);
+
+	var _OrderTotal2 = _interopRequireDefault(_OrderTotal);
+
+	var _AddItemNotification = __webpack_require__(225);
+
+	var _AddItemNotification2 = _interopRequireDefault(_AddItemNotification);
+
+	var _reactRouter = __webpack_require__(164);
+
+	var _app = __webpack_require__(223);
+
+	var _app2 = _interopRequireDefault(_app);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CustomOrderView = _react2.default.createClass({
+	    displayName: 'CustomOrderView',
+
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(_AddItemNotification2.default, {
+	                toggleNotification: this.props.toggleNotification,
+	                notificationState: this.props.notification }),
+	            _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Place Your Order'
+	            ),
+	            _react2.default.createElement(_MenuFormContainer2.default, {
+	                data: this.props.data,
+	                handleAddItemToOrder: this.props.handleAddItemToOrder,
+	                toggleNotification: this.props.toggleNotification }),
+	            _react2.default.createElement(_OrderTotal2.default, {
+	                orderItems: this.props.items,
+	                handleDeleteItemFromOrder: this.props.handleDeleteItemFromOrder }),
+	            _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/additional-info' },
+	                _react2.default.createElement(
+	                    'button',
+	                    { className: 'next-button' },
+	                    'Next'
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = CustomOrderView;
+
+/***/ },
+/* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _MenuSection = __webpack_require__(237);
+
+	var _MenuSection2 = _interopRequireDefault(_MenuSection);
+
+	var _SpecialInstructions = __webpack_require__(251);
+
+	var _SpecialInstructions2 = _interopRequireDefault(_SpecialInstructions);
+
+	var _menuFormContainer = __webpack_require__(252);
+
+	var _menuFormContainer2 = _interopRequireDefault(_menuFormContainer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var MenuFormContainer = _react2.default.createClass({
+	    displayName: 'MenuFormContainer',
+
+
+	    propTypes: {
+	        slug: _react2.default.PropTypes.string,
+	        handleAddItemToOrder: _react2.default.PropTypes.func,
+	        toggleNotification: _react2.default.PropTypes.func
+	    },
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'form',
+	            null,
+	            _react2.default.createElement(_MenuSection2.default, {
+	                data: this.props.data,
+	                slug: 'hot-drinks',
+	                handleAddItemToOrder: this.props.handleAddItemToOrder,
+	                toggleNotification: this.props.toggleNotification }),
+	            _react2.default.createElement(_MenuSection2.default, {
+	                data: this.props.data,
+	                slug: 'cold-drinks',
+	                handleAddItemToOrder: this.props.handleAddItemToOrder,
+	                toggleNotification: this.props.toggleNotification }),
+	            _react2.default.createElement(_MenuSection2.default, {
+	                data: this.props.data,
+	                slug: 'tea',
+	                handleAddItemToOrder: this.props.handleAddItemToOrder,
+	                toggleNotification: this.props.toggleNotification }),
+	            _react2.default.createElement(_MenuSection2.default, {
+	                data: this.props.data,
+	                slug: 'bakery',
+	                handleAddItemToOrder: this.props.handleAddItemToOrder,
+	                toggleNotification: this.props.toggleNotification }),
+	            _react2.default.createElement(_SpecialInstructions2.default, null)
+	        );
+	    }
+	});
+
+	module.exports = MenuFormContainer;
+
+/***/ },
+/* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _MenuItem = __webpack_require__(238);
+
+	var _MenuItem2 = _interopRequireDefault(_MenuItem);
+
+	var _lodash = __webpack_require__(228);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
+	var _menuSection = __webpack_require__(249);
+
+	var _menuSection2 = _interopRequireDefault(_menuSection);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var MenuSection = _react2.default.createClass({
+	    displayName: 'MenuSection',
+
+
+	    render: function render() {
+	        var _this = this;
+
+	        var menuSection = _lodash2.default.find(this.props.data.shops[0].menu, { "slug": this.props.slug });
+	        var sectionTitle = menuSection.displayName;
+	        var menuItems = menuSection.items.map(function (item, index) {
+	            return _react2.default.createElement(_MenuItem2.default, {
+	                itemName: item.name,
+	                price: item.price,
+	                options: item.options,
+	                key: item.id,
+	                handleAddItemToOrder: _this.props.handleAddItemToOrder,
+	                calculateTotalAndTax: _this.props.calculateTotalAndTax,
+	                toggleNotification: _this.props.toggleNotification });
+	        });
+
+	        return _react2.default.createElement(
+	            'section',
+	            { id: 'hot-drinks' },
+	            _react2.default.createElement(
+	                'h2',
+	                null,
+	                sectionTitle
+	            ),
+	            menuItems,
+	            _react2.default.createElement('div', { className: 'divider' })
+	        );
+	    }
+	});
+
+	module.exports = MenuSection;
+
+/***/ },
+/* 238 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _AddToOrderButton = __webpack_require__(239);
+
+	var _AddToOrderButton2 = _interopRequireDefault(_AddToOrderButton);
+
+	var _MilkType = __webpack_require__(242);
+
+	var _MilkType2 = _interopRequireDefault(_MilkType);
+
+	var _Size = __webpack_require__(243);
+
+	var _Size2 = _interopRequireDefault(_Size);
+
+	var _Quantity = __webpack_require__(244);
+
+	var _Quantity2 = _interopRequireDefault(_Quantity);
+
+	var _Decaf = __webpack_require__(245);
+
+	var _Decaf2 = _interopRequireDefault(_Decaf);
+
+	var _HotOrCold = __webpack_require__(246);
+
+	var _HotOrCold2 = _interopRequireDefault(_HotOrCold);
+
+	var _menuItem = __webpack_require__(247);
+
+	var _menuItem2 = _interopRequireDefault(_menuItem);
+
+	var _lodash = __webpack_require__(228);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var MenuItem = _react2.default.createClass({
+	    displayName: 'MenuItem',
+
+
+	    getInitialState: function getInitialState() {
+	        return {};
+	    },
+
+	    _checkFormComplete: function _checkFormComplete() {
+	        var requiredOptions = this.props.options.filter(function (option) {
+	            return option !== 'decaf';
+	        });
+	        var optionsCheck = requiredOptions.map(function (option) {
+	            return this.state.hasOwnProperty(option);
+	        }, this);
+	        return optionsCheck.reduce(function (prev, current) {
+	            return prev && current;
+	        }, true);
+	    },
+
+	    _handleMilkTypeChange: function _handleMilkTypeChange(event) {
+	        this.setState({
+	            milkType: event.target.value
+	        });
+	    },
+
+	    _handleSizeChange: function _handleSizeChange(event) {
+	        this.setState({
+	            size: event.target.value
+	        });
+	    },
+
+	    _handleQuantityChange: function _handleQuantityChange(event) {
+	        this.setState({
+	            quantity: event.target.value
+	        });
+	    },
+
+	    _handleDecafChange: function _handleDecafChange(event) {
+	        this.setState({
+	            decaf: !this.state.decaf
+	        });
+	    },
+
+	    _handleHotOrColdChange: function _handleHotOrColdChange(event) {
+	        this.setState({
+	            hotOrCold: event.target.value
+	        });
+	    },
+
+	    _handleAddItemToOrder: function _handleAddItemToOrder(itemDetails) {
+	        this.props.handleAddItemToOrder(itemDetails);
+	        this.replaceState({});
+	    },
+
+	    _renderOption: function _renderOption(option, index) {
+	        switch (option) {
+	            case 'milkType':
+	                return _react2.default.createElement(_MilkType2.default, {
+	                    handleChange: this._handleMilkTypeChange,
+	                    key: index,
+	                    value: this.state.milkType || 'default' });
+	            case 'size':
+	                return _react2.default.createElement(_Size2.default, {
+	                    handleChange: this._handleSizeChange,
+	                    key: index,
+	                    value: this.state.size || 'default' });
+	            case 'quantity':
+	                return _react2.default.createElement(_Quantity2.default, {
+	                    handleChange: this._handleQuantityChange,
+	                    value: this.state.quantity || 'default',
+	                    key: index });
+	        }
+	    },
+
+	    _renderOption2: function _renderOption2(option, index) {
+	        switch (option) {
+	            case 'decaf':
+	                return _react2.default.createElement(_Decaf2.default, {
+	                    handleChange: this._handleDecafChange,
+	                    key: index,
+	                    value: this.state.decaf || false });
+	            case 'hotOrCold':
+	                return _react2.default.createElement(_HotOrCold2.default, {
+	                    handleChange: this._handleHotOrColdChange,
+	                    key: index,
+	                    value: this.state.hotOrCold || false });
+	        }
+	    },
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'drink-item' },
+	            _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'hot-drink' },
+	                this.props.itemName
+	            ),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'item-top-row' },
+	                this.props.options.map(this._renderOption),
+	                this._checkFormComplete() ? _react2.default.createElement(_AddToOrderButton2.default, {
+	                    handleAddItemToOrder: this._handleAddItemToOrder,
+	                    handleItemFormComplete: this._handleItemFormComplete,
+	                    toggleNotification: this.props.toggleNotification,
+	                    itemName: this.props.itemName,
+	                    price: this.props.price,
+	                    itemDetails: this.state }) : '',
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'item-price' },
+	                    '$',
+	                    this.props.price.toFixed(2)
+	                )
+	            ),
+	            this.props.options.map(this._renderOption2)
+	        );
+	    }
+	});
+
+	module.exports = MenuItem;
+
+/***/ },
+/* 239 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _lodash = __webpack_require__(228);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
+	var _options = __webpack_require__(240);
+
+	var _options2 = _interopRequireDefault(_options);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AddToOrderButton = _react2.default.createClass({
+	    displayName: 'AddToOrderButton',
+
+
+	    render: function render() {
+	        var _this = this;
+
+	        var itemDetails = _lodash2.default.assign({ itemName: this.props.itemName, price: this.props.price }, this.props.itemDetails);
+
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'add-to-order',
+	                onClick: function onClick() {
+	                    _this.props.handleAddItemToOrder(itemDetails);
+	                    _this.props.toggleNotification();
+	                } },
+	            _react2.default.createElement(
+	                'span',
+	                { title: 'Add item to order' },
+	                _react2.default.createElement('i', { className: 'fa fa-plus-circle add-item-icon fa-lg' })
+	            )
+	        );
+	    }
+	});
+
+	module.exports = AddToOrderButton;
+
+/***/ },
+/* 240 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(241);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -40712,7 +42355,7 @@
 	}
 
 /***/ },
-/* 235 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -40726,7 +42369,7 @@
 
 
 /***/ },
-/* 236 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40735,7 +42378,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _options = __webpack_require__(234);
+	var _options = __webpack_require__(240);
 
 	var _options2 = _interopRequireDefault(_options);
 
@@ -40787,7 +42430,7 @@
 	module.exports = MilkType;
 
 /***/ },
-/* 237 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40796,7 +42439,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _options = __webpack_require__(234);
+	var _options = __webpack_require__(240);
 
 	var _options2 = _interopRequireDefault(_options);
 
@@ -40836,7 +42479,7 @@
 	module.exports = Size;
 
 /***/ },
-/* 238 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40845,7 +42488,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _options = __webpack_require__(234);
+	var _options = __webpack_require__(240);
 
 	var _options2 = _interopRequireDefault(_options);
 
@@ -40899,7 +42542,7 @@
 	module.exports = Quantity;
 
 /***/ },
-/* 239 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40908,7 +42551,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _options = __webpack_require__(234);
+	var _options = __webpack_require__(240);
 
 	var _options2 = _interopRequireDefault(_options);
 
@@ -40935,7 +42578,7 @@
 	module.exports = Decaf;
 
 /***/ },
-/* 240 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40944,7 +42587,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _options = __webpack_require__(234);
+	var _options = __webpack_require__(240);
 
 	var _options2 = _interopRequireDefault(_options);
 
@@ -40978,13 +42621,13 @@
 	module.exports = HotOrCold;
 
 /***/ },
-/* 241 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(242);
+	var content = __webpack_require__(248);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -41004,7 +42647,7 @@
 	}
 
 /***/ },
-/* 242 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -41018,13 +42661,13 @@
 
 
 /***/ },
-/* 243 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(244);
+	var content = __webpack_require__(250);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -41044,7 +42687,7 @@
 	}
 
 /***/ },
-/* 244 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -41058,7 +42701,7 @@
 
 
 /***/ },
-/* 245 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -41090,13 +42733,13 @@
 	module.exports = SpecialInstructions;
 
 /***/ },
-/* 246 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(247);
+	var content = __webpack_require__(253);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -41116,7 +42759,7 @@
 	}
 
 /***/ },
-/* 247 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -41130,7 +42773,7 @@
 
 
 /***/ },
-/* 248 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41139,19 +42782,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _OrderTotalRow = __webpack_require__(249);
+	var _OrderTotalRow = __webpack_require__(255);
 
 	var _OrderTotalRow2 = _interopRequireDefault(_OrderTotalRow);
 
-	var _OrderTax = __webpack_require__(252);
+	var _OrderTax = __webpack_require__(258);
 
 	var _OrderTax2 = _interopRequireDefault(_OrderTax);
 
-	var _OrderTotalTotal = __webpack_require__(253);
+	var _OrderTotalTotal = __webpack_require__(259);
 
 	var _OrderTotalTotal2 = _interopRequireDefault(_OrderTotalTotal);
 
-	var _orderTotal = __webpack_require__(257);
+	var _orderTotal = __webpack_require__(260);
 
 	var _orderTotal2 = _interopRequireDefault(_orderTotal);
 
@@ -41210,7 +42853,7 @@
 	module.exports = OrderTotal;
 
 /***/ },
-/* 249 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41219,7 +42862,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _orderTotalRow = __webpack_require__(250);
+	var _orderTotalRow = __webpack_require__(256);
 
 	var _orderTotalRow2 = _interopRequireDefault(_orderTotalRow);
 
@@ -41273,13 +42916,13 @@
 	module.exports = OrderTotalRow;
 
 /***/ },
-/* 250 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(251);
+	var content = __webpack_require__(257);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -41299,7 +42942,7 @@
 	}
 
 /***/ },
-/* 251 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -41313,7 +42956,7 @@
 
 
 /***/ },
-/* 252 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41349,7 +42992,7 @@
 	module.exports = OrderTax;
 
 /***/ },
-/* 253 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41385,16 +43028,13 @@
 	module.exports = OrderTotalTotal;
 
 /***/ },
-/* 254 */,
-/* 255 */,
-/* 256 */,
-/* 257 */
+/* 260 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(258);
+	var content = __webpack_require__(261);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -41414,7 +43054,7 @@
 	}
 
 /***/ },
-/* 258 */
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -41428,8 +43068,7 @@
 
 
 /***/ },
-/* 259 */,
-/* 260 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41438,7 +43077,63 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _shopSearch = __webpack_require__(261);
+	var _ShopSearch = __webpack_require__(263);
+
+	var _ShopSearch2 = _interopRequireDefault(_ShopSearch);
+
+	var _ShopList = __webpack_require__(266);
+
+	var _ShopList2 = _interopRequireDefault(_ShopList);
+
+	var _reactRouter = __webpack_require__(164);
+
+	var _app = __webpack_require__(223);
+
+	var _app2 = _interopRequireDefault(_app);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SelectShopView = _react2.default.createClass({
+	    displayName: 'SelectShopView',
+
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Select a Shop'
+	            ),
+	            _react2.default.createElement(_ShopSearch2.default, null),
+	            _react2.default.createElement(_ShopList2.default, null),
+	            _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/custom-order' },
+	                _react2.default.createElement(
+	                    'button',
+	                    { className: 'next-button' },
+	                    'Next'
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = SelectShopView;
+
+/***/ },
+/* 263 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _shopSearch = __webpack_require__(264);
 
 	var _shopSearch2 = _interopRequireDefault(_shopSearch);
 
@@ -41465,13 +43160,13 @@
 	module.exports = ShopSearch;
 
 /***/ },
-/* 261 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(262);
+	var content = __webpack_require__(265);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -41491,7 +43186,7 @@
 	}
 
 /***/ },
-/* 262 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -41505,7 +43200,7 @@
 
 
 /***/ },
-/* 263 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41514,15 +43209,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _shopList = __webpack_require__(264);
+	var _shopList = __webpack_require__(267);
 
 	var _shopList2 = _interopRequireDefault(_shopList);
 
-	var _ShopListItem = __webpack_require__(266);
+	var _ShopListItem = __webpack_require__(269);
 
 	var _ShopListItem2 = _interopRequireDefault(_ShopListItem);
 
-	var _ClickForMore = __webpack_require__(269);
+	var _ClickForMore = __webpack_require__(272);
 
 	var _ClickForMore2 = _interopRequireDefault(_ClickForMore);
 
@@ -41547,13 +43242,13 @@
 	module.exports = ShopList;
 
 /***/ },
-/* 264 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(265);
+	var content = __webpack_require__(268);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -41573,7 +43268,7 @@
 	}
 
 /***/ },
-/* 265 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -41587,7 +43282,7 @@
 
 
 /***/ },
-/* 266 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41596,7 +43291,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _shopListItem = __webpack_require__(267);
+	var _shopListItem = __webpack_require__(270);
 
 	var _shopListItem2 = _interopRequireDefault(_shopListItem);
 
@@ -41645,13 +43340,13 @@
 	module.exports = ShopListItem;
 
 /***/ },
-/* 267 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(268);
+	var content = __webpack_require__(271);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -41671,7 +43366,7 @@
 	}
 
 /***/ },
-/* 268 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -41685,7 +43380,7 @@
 
 
 /***/ },
-/* 269 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41694,7 +43389,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _clickForMore = __webpack_require__(270);
+	var _clickForMore = __webpack_require__(273);
 
 	var _clickForMore2 = _interopRequireDefault(_clickForMore);
 
@@ -41719,13 +43414,13 @@
 	module.exports = ClickForMore;
 
 /***/ },
-/* 270 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(271);
+	var content = __webpack_require__(274);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -41745,7 +43440,7 @@
 	}
 
 /***/ },
-/* 271 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -41759,8 +43454,7 @@
 
 
 /***/ },
-/* 272 */,
-/* 273 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41769,7 +43463,89 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _selectMethodOfTrans = __webpack_require__(274);
+	var _SelectMethodOfTrans = __webpack_require__(276);
+
+	var _SelectMethodOfTrans2 = _interopRequireDefault(_SelectMethodOfTrans);
+
+	var _SelectPickUpTime = __webpack_require__(279);
+
+	var _SelectPickUpTime2 = _interopRequireDefault(_SelectPickUpTime);
+
+	var _SelectIfFavorite = __webpack_require__(282);
+
+	var _SelectIfFavorite2 = _interopRequireDefault(_SelectIfFavorite);
+
+	var _EnterPaymentInfo = __webpack_require__(285);
+
+	var _EnterPaymentInfo2 = _interopRequireDefault(_EnterPaymentInfo);
+
+	var _reactRouter = __webpack_require__(164);
+
+	var _app = __webpack_require__(223);
+
+	var _app2 = _interopRequireDefault(_app);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AdditionalInfoView = _react2.default.createClass({
+	    displayName: 'AdditionalInfoView',
+
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Tell us a little more!'
+	            ),
+	            _react2.default.createElement(
+	                'form',
+	                null,
+	                _react2.default.createElement(_SelectMethodOfTrans2.default, {
+	                    handleMethodOfTrans: this.props.handleMethodOfTrans }),
+	                _react2.default.createElement(_SelectPickUpTime2.default, {
+	                    handlePickupTime: this.props.handlePickupTime,
+	                    value: this.props.pickupTime || 'default' }),
+	                _react2.default.createElement(_SelectIfFavorite2.default, {
+	                    handleFavorite: this.props.handleFavorite,
+	                    value: this.props.favorite || false }),
+	                _react2.default.createElement(_EnterPaymentInfo2.default, {
+	                    handleCCName: this.props.handleCCName,
+	                    handleCCNumber: this.props.handleCCNumber,
+	                    handleCCExpMonth: this.props.handleCCExpMonth,
+	                    expMonthValue: this.props.expMonth || 'default',
+	                    handleCCExpYear: this.props.handleCCExpYear,
+	                    expYearValue: this.props.expYear || 'default',
+	                    handleCCCVV: this.props.handleCCCVV }),
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/order-summary' },
+	                    _react2.default.createElement(
+	                        'button',
+	                        { className: 'next-button' },
+	                        'Next'
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = AdditionalInfoView;
+
+/***/ },
+/* 276 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _selectMethodOfTrans = __webpack_require__(277);
 
 	var _selectMethodOfTrans2 = _interopRequireDefault(_selectMethodOfTrans);
 
@@ -41788,31 +43564,37 @@
 	                'Select Method of Transportation'
 	            ),
 	            _react2.default.createElement(
-	                'div',
-	                { className: 'method-of-trans' },
-	                _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    'Walking'
-	                )
+	                'label',
+	                { className: 'method-of-trans', htmlFor: 'walking' },
+	                _react2.default.createElement('input', {
+	                    onChange: this.props.handleMethodOfTrans,
+	                    type: 'radio',
+	                    name: 'methodOfTrans',
+	                    className: 'method-of-trans-input',
+	                    value: 'walking' }),
+	                ' Walking'
 	            ),
 	            _react2.default.createElement(
-	                'div',
-	                { className: 'method-of-trans' },
-	                _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    'Biking'
-	                )
+	                'label',
+	                { className: 'method-of-trans', htmlFor: 'biking' },
+	                _react2.default.createElement('input', {
+	                    onChange: this.props.handleMethodOfTrans,
+	                    type: 'radio',
+	                    name: 'methodOfTrans',
+	                    className: 'method-of-trans-input',
+	                    value: 'biking' }),
+	                ' Biking'
 	            ),
 	            _react2.default.createElement(
-	                'div',
-	                { className: 'method-of-trans' },
-	                _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    'Driving'
-	                )
+	                'label',
+	                { className: 'method-of-trans', htmlFor: 'driving' },
+	                _react2.default.createElement('input', {
+	                    onChange: this.props.handleMethodOfTrans,
+	                    type: 'radio',
+	                    name: 'methodOfTrans',
+	                    className: 'method-of-trans-input',
+	                    value: 'driving' }),
+	                ' Driving'
 	            )
 	        );
 	    }
@@ -41821,13 +43603,13 @@
 	module.exports = SelectMethodOfTrans;
 
 /***/ },
-/* 274 */
+/* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(275);
+	var content = __webpack_require__(278);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -41847,7 +43629,7 @@
 	}
 
 /***/ },
-/* 275 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -41861,7 +43643,7 @@
 
 
 /***/ },
-/* 276 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41870,7 +43652,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _selectPickUpTime = __webpack_require__(277);
+	var _selectPickUpTime = __webpack_require__(280);
 
 	var _selectPickUpTime2 = _interopRequireDefault(_selectPickUpTime);
 
@@ -41895,7 +43677,10 @@
 	                    'label',
 	                    null,
 	                    'Now: ',
-	                    _react2.default.createElement('input', { type: 'checkbox' })
+	                    _react2.default.createElement('input', {
+	                        onChange: this.props.handlePickupTime,
+	                        type: 'checkbox',
+	                        value: true })
 	                )
 	            ),
 	            _react2.default.createElement(
@@ -41904,8 +43689,164 @@
 	                _react2.default.createElement(
 	                    'label',
 	                    null,
-	                    'Pick up at: ',
-	                    _react2.default.createElement('input', { type: 'time' })
+	                    'Pick up at:',
+	                    _react2.default.createElement(
+	                        'select',
+	                        {
+	                            onChange: this.props.handlePickupTime,
+	                            name: 'pickup-time',
+	                            value: this.props.value },
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: 'default', disabled: true },
+	                            'Time'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '5:00am' },
+	                            '5:00am'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '5:30am' },
+	                            '5:30am'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '6:00am' },
+	                            '6:00am'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '6:30am' },
+	                            '6:30am'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '7:00am' },
+	                            '7:00am'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '7:30am' },
+	                            '7:30am'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '8:00am' },
+	                            '8:00am'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '8:30am' },
+	                            '8:30am'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '9:00am' },
+	                            '9:00am'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '9:30am' },
+	                            '9:30am'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '10:00am' },
+	                            '10:00am'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '10:30am' },
+	                            '10:30am'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '11:00am' },
+	                            '11:00am'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '11:30am' },
+	                            '11:30am'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '12:00pm' },
+	                            '12:00pm'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '12:30pm' },
+	                            '12:30pm'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '1:00pm' },
+	                            '1:00pm'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '1:30pm' },
+	                            '1:30pm'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '2:00pm' },
+	                            '2:00pm'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '2:30pm' },
+	                            '2:30pm'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '3:00pm' },
+	                            '3:00pm'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '3:30pm' },
+	                            '3:30pm'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '4:00pm' },
+	                            '4:00pm'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '4:30pm' },
+	                            '4:30pm'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '5:00pm' },
+	                            '5:00pm'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '5:30pm' },
+	                            '5:30pm'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '6:00pm' },
+	                            '6:00pm'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '6:30pm' },
+	                            '6:30pm'
+	                        ),
+	                        _react2.default.createElement(
+	                            'option',
+	                            { value: '7:00pm' },
+	                            '7:00pm'
+	                        )
+	                    )
 	                )
 	            )
 	        );
@@ -41915,13 +43856,13 @@
 	module.exports = SelectPickUpTime;
 
 /***/ },
-/* 277 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(278);
+	var content = __webpack_require__(281);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -41941,7 +43882,7 @@
 	}
 
 /***/ },
-/* 278 */
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -41955,7 +43896,7 @@
 
 
 /***/ },
-/* 279 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41964,7 +43905,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _selectIfFavorite = __webpack_require__(280);
+	var _selectIfFavorite = __webpack_require__(283);
 
 	var _selectIfFavorite2 = _interopRequireDefault(_selectIfFavorite);
 
@@ -41989,7 +43930,10 @@
 	                    'label',
 	                    null,
 	                    'Yes! ',
-	                    _react2.default.createElement('input', { type: 'checkbox' })
+	                    _react2.default.createElement('input', {
+	                        onChange: this.props.handleFavorite,
+	                        type: 'checkbox',
+	                        value: this.props.value })
 	                )
 	            )
 	        );
@@ -41999,13 +43943,13 @@
 	module.exports = SelectIfFavorite;
 
 /***/ },
-/* 280 */
+/* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(281);
+	var content = __webpack_require__(284);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -42025,7 +43969,7 @@
 	}
 
 /***/ },
-/* 281 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -42039,7 +43983,7 @@
 
 
 /***/ },
-/* 282 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42048,7 +43992,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _enterPaymentInfo = __webpack_require__(283);
+	var _enterPaymentInfo = __webpack_require__(286);
 
 	var _enterPaymentInfo2 = _interopRequireDefault(_enterPaymentInfo);
 
@@ -42073,14 +44017,23 @@
 	                    'label',
 	                    null,
 	                    'Name on Card',
-	                    _react2.default.createElement('input', { type: 'text', placeholder: 'Card Holder\'s Name', required: true })
+	                    _react2.default.createElement('input', {
+	                        onChange: this.props.handleCCName,
+	                        type: 'text',
+	                        placeholder: 'Card Holder\'s Name',
+	                        required: true })
 	                ),
 	                _react2.default.createElement('br', null),
 	                _react2.default.createElement(
 	                    'label',
 	                    null,
 	                    'Card Number',
-	                    _react2.default.createElement('input', { type: 'number', placeholder: 'Debit/Credit Card Number', maxLength: '16', required: true })
+	                    _react2.default.createElement('input', {
+	                        onChange: this.props.handleCCNumber,
+	                        type: 'number',
+	                        placeholder: 'Debit/Credit Card Number',
+	                        maxLength: '16',
+	                        required: true })
 	                ),
 	                _react2.default.createElement('br', null),
 	                _react2.default.createElement(
@@ -42090,7 +44043,16 @@
 	                ),
 	                _react2.default.createElement(
 	                    'select',
-	                    null,
+	                    {
+	                        onChange: this.props.handleCCExpMonth,
+	                        value: this.props.expMonthValue,
+	                        name: 'exp-month'
+	                    },
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: 'default' },
+	                        'Month'
+	                    ),
 	                    _react2.default.createElement(
 	                        'option',
 	                        { value: '01' },
@@ -42154,7 +44116,15 @@
 	                ),
 	                _react2.default.createElement(
 	                    'select',
-	                    null,
+	                    {
+	                        onChange: this.props.handleCCExpYear,
+	                        value: this.props.expYearValue,
+	                        name: 'exp-year' },
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: 'default' },
+	                        'Year'
+	                    ),
 	                    _react2.default.createElement(
 	                        'option',
 	                        { value: '2016' },
@@ -42196,7 +44166,12 @@
 	                    'label',
 	                    null,
 	                    'CVV',
-	                    _react2.default.createElement('input', { type: 'number', placeholder: 'Security Code', maxLength: '3', required: true })
+	                    _react2.default.createElement('input', {
+	                        onChange: this.props.handleCCCVV,
+	                        type: 'number',
+	                        placeholder: 'Security Code',
+	                        maxLength: '3',
+	                        required: true })
 	                )
 	            )
 	        );
@@ -42206,13 +44181,13 @@
 	module.exports = EnterPaymentInfo;
 
 /***/ },
-/* 283 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(284);
+	var content = __webpack_require__(287);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -42232,7 +44207,7 @@
 	}
 
 /***/ },
-/* 284 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -42246,1308 +44221,6 @@
 
 
 /***/ },
-/* 285 */
-/***/ function(module, exports) {
-
-	module.exports = {
-		"shops": [
-			{
-				"name": "starbucks",
-				"address": "123 4th St. Santa Monica, CA 90234",
-				"phone": "(818) 438-9832",
-				"imageUrl": "http://www.fodors.com/ee/files/slideshows/9-colectivo-coffee.jpg",
-				"menu": [
-					{
-						"displayName": "Hot Drinks",
-						"slug": "hot-drinks",
-						"items": [
-							{
-								"name": "Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "latte"
-							},
-							{
-								"name": "Americano",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "americano"
-							},
-							{
-								"name": "Cappucino",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "cappucino"
-							},
-							{
-								"name": "Espresso",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "espresso"
-							},
-							{
-								"name": "Macchiato",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "macchiato"
-							}
-						]
-					},
-					{
-						"displayName": "Cold Drinks",
-						"slug": "cold-drinks",
-						"items": [
-							{
-								"name": "Iced Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-latte"
-							},
-							{
-								"name": "Iced Mocha",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-mocha"
-							},
-							{
-								"name": "Iced Chai",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-chai"
-							},
-							{
-								"name": "Iced Coffee",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": ""
-							},
-							{
-								"name": "Frappe",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "frappe"
-							}
-						]
-					},
-					{
-						"displayName": "Tea",
-						"slug": "tea",
-						"items": [
-							{
-								"name": "Green",
-								"price": 2.95,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "green"
-							},
-							{
-								"name": "Jasmine Green",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "jasmine-green"
-							},
-							{
-								"name": "Chai",
-								"price": 3.05,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chai"
-							},
-							{
-								"name": "Mint",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "mint"
-							},
-							{
-								"name": "Chamomile",
-								"price": 3.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chamomile"
-							}
-						]
-					},
-					{
-						"displayName": "Bakery",
-						"slug": "bakery",
-						"items": [
-							{
-								"name": "Croissant",
-								"price": 2.95,
-								"options": [
-									"quantity"
-								],
-								"id": "croissant"
-							},
-							{
-								"name": "Banana Muffin",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "banana-muffin"
-							},
-							{
-								"name": "Blueberry Scone",
-								"price": 3.05,
-								"options": [
-									"quantity"
-								],
-								"id": "blueberry-scone"
-							},
-							{
-								"name": "Carrot Cake",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "carrot-cake"
-							},
-							{
-								"name": "Home-Made Cookies",
-								"price": 3.5,
-								"options": [
-									"quantity"
-								],
-								"id": "home-made-cookies"
-							}
-						]
-					}
-				]
-			},
-			{
-				"name": "beanscene",
-				"address": "255 Alvera St. Los Angeles, CA 98654",
-				"phone": "(818) 438-9832",
-				"imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Inside_the_Coffee_Shop,_Parliament_House,_Dolgellau_-_geograph.org.uk_-_1708041.jpg",
-				"menu": [
-					{
-						"displayName": "Hot Drinks",
-						"slug": "hot-drinks",
-						"items": [
-							{
-								"name": "Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "latte"
-							},
-							{
-								"name": "Americano",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "americano"
-							},
-							{
-								"name": "Cappucino",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "cappucino"
-							},
-							{
-								"name": "Espresso",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "espresso"
-							},
-							{
-								"name": "Macchiato",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "macchiato"
-							}
-						]
-					},
-					{
-						"displayName": "Cold Drinks",
-						"slug": "cold-drinks",
-						"items": [
-							{
-								"name": "Iced Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-latte"
-							},
-							{
-								"name": "Iced Mocha",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-mocha"
-							},
-							{
-								"name": "Iced Chai",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-chai"
-							},
-							{
-								"name": "Iced Coffee",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": ""
-							},
-							{
-								"name": "Frappe",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "frappe"
-							}
-						]
-					},
-					{
-						"displayName": "Tea",
-						"slug": "tea",
-						"items": [
-							{
-								"name": "Green",
-								"price": 2.95,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "green"
-							},
-							{
-								"name": "Jasmine Green",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "jasmine-green"
-							},
-							{
-								"name": "Chai",
-								"price": 3.05,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chai"
-							},
-							{
-								"name": "Mint",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "mint"
-							},
-							{
-								"name": "Chamomile",
-								"price": 3.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chamomile"
-							}
-						]
-					},
-					{
-						"displayName": "Bakery",
-						"slug": "bakery",
-						"items": [
-							{
-								"name": "Croissant",
-								"price": 2.95,
-								"options": [
-									"quantity"
-								],
-								"id": "croissant"
-							},
-							{
-								"name": "Banana Muffin",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "banana-muffin"
-							},
-							{
-								"name": "Blueberry Scone",
-								"price": 3.05,
-								"options": [
-									"quantity"
-								],
-								"id": "blueberry-scone"
-							},
-							{
-								"name": "Carrot Cake",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "carrot-cake"
-							},
-							{
-								"name": "Home-Made Cookies",
-								"price": 3.5,
-								"options": [
-									"quantity"
-								],
-								"id": "home-made-cookies"
-							}
-						]
-					}
-				]
-			},
-			{
-				"name": "tifa",
-				"address": "6785 Huntington St. Venice, CA 90233",
-				"phone": "(818) 438-9832",
-				"imageUrl": "https://cdn1.vox-cdn.com/thumbor/D7jAbLqhca3vAJ20SbXyJH_Dv3I=/0x120:960x840/800x600/filters:format(webp)/cdn0.vox-cdn.com/uploads/chorus_image/image/45736528/compass_coffee.0.0.jpg",
-				"menu": [
-					{
-						"displayName": "Hot Drinks",
-						"slug": "hot-drinks",
-						"items": [
-							{
-								"name": "Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "latte"
-							},
-							{
-								"name": "Americano",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "americano"
-							},
-							{
-								"name": "Cappucino",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "cappucino"
-							},
-							{
-								"name": "Espresso",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "espresso"
-							},
-							{
-								"name": "Macchiato",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "macchiato"
-							}
-						]
-					},
-					{
-						"displayName": "Cold Drinks",
-						"slug": "cold-drinks",
-						"items": [
-							{
-								"name": "Iced Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-latte"
-							},
-							{
-								"name": "Iced Mocha",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-mocha"
-							},
-							{
-								"name": "Iced Chai",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-chai"
-							},
-							{
-								"name": "Iced Coffee",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": ""
-							},
-							{
-								"name": "Frappe",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "frappe"
-							}
-						]
-					},
-					{
-						"displayName": "Tea",
-						"slug": "tea",
-						"items": [
-							{
-								"name": "Green",
-								"price": 2.95,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "green"
-							},
-							{
-								"name": "Jasmine Green",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "jasmine-green"
-							},
-							{
-								"name": "Chai",
-								"price": 3.05,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chai"
-							},
-							{
-								"name": "Mint",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "mint"
-							},
-							{
-								"name": "Chamomile",
-								"price": 3.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chamomile"
-							}
-						]
-					},
-					{
-						"displayName": "Bakery",
-						"slug": "bakery",
-						"items": [
-							{
-								"name": "Croissant",
-								"price": 2.95,
-								"options": [
-									"quantity"
-								],
-								"id": "croissant"
-							},
-							{
-								"name": "Banana Muffin",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "banana-muffin"
-							},
-							{
-								"name": "Blueberry Scone",
-								"price": 3.05,
-								"options": [
-									"quantity"
-								],
-								"id": "blueberry-scone"
-							},
-							{
-								"name": "Carrot Cake",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "carrot-cake"
-							},
-							{
-								"name": "Home-Made Cookies",
-								"price": 3.5,
-								"options": [
-									"quantity"
-								],
-								"id": "home-made-cookies"
-							}
-						]
-					}
-				]
-			},
-			{
-				"name": "coffeeBean",
-				"address": "2433 Soju st. Venice, CA 90235",
-				"phone": "(818) 438-9832",
-				"imageUrl": "http://cdn.offtrackplanet.com/legacy/uploads/2010/08/coffee.jpg",
-				"menu": [
-					{
-						"displayName": "Hot Drinks",
-						"slug": "hot-drinks",
-						"items": [
-							{
-								"name": "Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "latte"
-							},
-							{
-								"name": "Americano",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "americano"
-							},
-							{
-								"name": "Cappucino",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "cappucino"
-							},
-							{
-								"name": "Espresso",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "espresso"
-							},
-							{
-								"name": "Macchiato",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "macchiato"
-							}
-						]
-					},
-					{
-						"displayName": "Cold Drinks",
-						"slug": "cold-drinks",
-						"items": [
-							{
-								"name": "Iced Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-latte"
-							},
-							{
-								"name": "Iced Mocha",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-mocha"
-							},
-							{
-								"name": "Iced Chai",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-chai"
-							},
-							{
-								"name": "Iced Coffee",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": ""
-							},
-							{
-								"name": "Frappe",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "frappe"
-							}
-						]
-					},
-					{
-						"displayName": "Tea",
-						"slug": "tea",
-						"items": [
-							{
-								"name": "Green",
-								"price": 2.95,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "green"
-							},
-							{
-								"name": "Jasmine Green",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "jasmine-green"
-							},
-							{
-								"name": "Chai",
-								"price": 3.05,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chai"
-							},
-							{
-								"name": "Mint",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "mint"
-							},
-							{
-								"name": "Chamomile",
-								"price": 3.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chamomile"
-							}
-						]
-					},
-					{
-						"displayName": "Bakery",
-						"slug": "bakery",
-						"items": [
-							{
-								"name": "Croissant",
-								"price": 2.95,
-								"options": [
-									"quantity"
-								],
-								"id": "croissant"
-							},
-							{
-								"name": "Banana Muffin",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "banana-muffin"
-							},
-							{
-								"name": "Blueberry Scone",
-								"price": 3.05,
-								"options": [
-									"quantity"
-								],
-								"id": "blueberry-scone"
-							},
-							{
-								"name": "Carrot Cake",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "carrot-cake"
-							},
-							{
-								"name": "Home-Made Cookies",
-								"price": 3.5,
-								"options": [
-									"quantity"
-								],
-								"id": "home-made-cookies"
-							}
-						]
-					}
-				]
-			},
-			{
-				"name": "starbucks",
-				"address": "123 4th St. Santa Monica, CA 90234",
-				"phone": "(818) 438-9832",
-				"imageUrl": "http://www.fodors.com/ee/files/slideshows/9-colectivo-coffee.jpg",
-				"menu": [
-					{
-						"displayName": "Hot Drinks",
-						"slug": "hot-drinks",
-						"items": [
-							{
-								"name": "Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "latte"
-							},
-							{
-								"name": "Americano",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "americano"
-							},
-							{
-								"name": "Cappucino",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "cappucino"
-							},
-							{
-								"name": "Espresso",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "espresso"
-							},
-							{
-								"name": "Macchiato",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "macchiato"
-							}
-						]
-					},
-					{
-						"displayName": "Cold Drinks",
-						"slug": "cold-drinks",
-						"items": [
-							{
-								"name": "Iced Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-latte"
-							},
-							{
-								"name": "Iced Mocha",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-mocha"
-							},
-							{
-								"name": "Iced Chai",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-chai"
-							},
-							{
-								"name": "Iced Coffee",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": ""
-							},
-							{
-								"name": "Frappe",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "frappe"
-							}
-						]
-					},
-					{
-						"displayName": "Tea",
-						"slug": "tea",
-						"items": [
-							{
-								"name": "Green",
-								"price": 2.95,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "green"
-							},
-							{
-								"name": "Jasmine Green",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "jasmine-green"
-							},
-							{
-								"name": "Chai",
-								"price": 3.05,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chai"
-							},
-							{
-								"name": "Mint",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "mint"
-							},
-							{
-								"name": "Chamomile",
-								"price": 3.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chamomile"
-							}
-						]
-					},
-					{
-						"displayName": "Bakery",
-						"slug": "bakery",
-						"items": [
-							{
-								"name": "Croissant",
-								"price": 2.95,
-								"options": [
-									"quantity"
-								],
-								"id": "croissant"
-							},
-							{
-								"name": "Banana Muffin",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "banana-muffin"
-							},
-							{
-								"name": "Blueberry Scone",
-								"price": 3.05,
-								"options": [
-									"quantity"
-								],
-								"id": "blueberry-scone"
-							},
-							{
-								"name": "Carrot Cake",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "carrot-cake"
-							},
-							{
-								"name": "Home-Made Cookies",
-								"price": 3.5,
-								"options": [
-									"quantity"
-								],
-								"id": "home-made-cookies"
-							}
-						]
-					}
-				]
-			}
-		]
-	};
-
-/***/ },
-/* 286 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _SelectMethodOfTrans = __webpack_require__(273);
-
-	var _SelectMethodOfTrans2 = _interopRequireDefault(_SelectMethodOfTrans);
-
-	var _SelectPickUpTime = __webpack_require__(276);
-
-	var _SelectPickUpTime2 = _interopRequireDefault(_SelectPickUpTime);
-
-	var _SelectIfFavorite = __webpack_require__(279);
-
-	var _SelectIfFavorite2 = _interopRequireDefault(_SelectIfFavorite);
-
-	var _EnterPaymentInfo = __webpack_require__(282);
-
-	var _EnterPaymentInfo2 = _interopRequireDefault(_EnterPaymentInfo);
-
-	var _reactRouter = __webpack_require__(164);
-
-	var _app = __webpack_require__(312);
-
-	var _app2 = _interopRequireDefault(_app);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var AdditionalInfoView = _react2.default.createClass({
-	    displayName: 'AdditionalInfoView',
-
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(
-	                'h1',
-	                null,
-	                'Tell us a little more!'
-	            ),
-	            _react2.default.createElement(
-	                'form',
-	                null,
-	                _react2.default.createElement(_SelectMethodOfTrans2.default, null),
-	                _react2.default.createElement(_SelectPickUpTime2.default, null),
-	                _react2.default.createElement(_SelectIfFavorite2.default, null),
-	                _react2.default.createElement(_EnterPaymentInfo2.default, null),
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: '/order-summary' },
-	                    _react2.default.createElement(
-	                        'button',
-	                        { className: 'next-button' },
-	                        'Next'
-	                    )
-	                )
-	            )
-	        );
-	    }
-	});
-
-	module.exports = AdditionalInfoView;
-
-/***/ },
-/* 287 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _MenuFormContainer = __webpack_require__(228);
-
-	var _MenuFormContainer2 = _interopRequireDefault(_MenuFormContainer);
-
-	var _OrderTotal = __webpack_require__(248);
-
-	var _OrderTotal2 = _interopRequireDefault(_OrderTotal);
-
-	var _AddItemNotification = __webpack_require__(225);
-
-	var _AddItemNotification2 = _interopRequireDefault(_AddItemNotification);
-
-	var _reactRouter = __webpack_require__(164);
-
-	var _app = __webpack_require__(312);
-
-	var _app2 = _interopRequireDefault(_app);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var CustomOrderView = _react2.default.createClass({
-	    displayName: 'CustomOrderView',
-
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(_AddItemNotification2.default, {
-	                toggleNotification: this.props.toggleNotification,
-	                notificationState: this.props.notification }),
-	            _react2.default.createElement(
-	                'h1',
-	                null,
-	                'Place Your Order'
-	            ),
-	            _react2.default.createElement(_MenuFormContainer2.default, {
-	                data: this.props.data,
-	                handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                toggleNotification: this.props.toggleNotification }),
-	            _react2.default.createElement(_OrderTotal2.default, {
-	                orderItems: this.props.items,
-	                handleDeleteItemFromOrder: this.props.handleDeleteItemFromOrder }),
-	            _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/additional-info' },
-	                _react2.default.createElement(
-	                    'button',
-	                    { className: 'next-button' },
-	                    'Next'
-	                )
-	            )
-	        );
-	    }
-	});
-
-	module.exports = CustomOrderView;
-
-/***/ },
 /* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -43557,125 +44230,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ShopSearch = __webpack_require__(260);
-
-	var _ShopSearch2 = _interopRequireDefault(_ShopSearch);
-
-	var _ShopList = __webpack_require__(263);
-
-	var _ShopList2 = _interopRequireDefault(_ShopList);
-
-	var _reactRouter = __webpack_require__(164);
-
-	var _app = __webpack_require__(312);
-
-	var _app2 = _interopRequireDefault(_app);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var SelectShopView = _react2.default.createClass({
-	    displayName: 'SelectShopView',
-
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(
-	                'h1',
-	                null,
-	                'Select a Shop'
-	            ),
-	            _react2.default.createElement(_ShopSearch2.default, null),
-	            _react2.default.createElement(_ShopList2.default, null),
-	            _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/custom-order' },
-	                _react2.default.createElement(
-	                    'button',
-	                    { className: 'next-button' },
-	                    'Next'
-	                )
-	            )
-	        );
-	    }
-	});
-
-	module.exports = SelectShopView;
-
-/***/ },
-/* 289 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _SearchShop = __webpack_require__(292);
-
-	var _SearchShop2 = _interopRequireDefault(_SearchShop);
-
-	var _PrevAndFavorites = __webpack_require__(293);
-
-	var _PrevAndFavorites2 = _interopRequireDefault(_PrevAndFavorites);
-
-	var _reactRouter = __webpack_require__(164);
-
-	var _app = __webpack_require__(312);
-
-	var _app2 = _interopRequireDefault(_app);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var DashboardView = _react2.default.createClass({
-	    displayName: 'DashboardView',
-
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(
-	                'h1',
-	                null,
-	                'Start - Search for a Coffee Shop!'
-	            ),
-	            _react2.default.createElement(_SearchShop2.default, null),
-	            _react2.default.createElement(_PrevAndFavorites2.default, null),
-	            _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/select-shop' },
-	                _react2.default.createElement(
-	                    'button',
-	                    { className: 'next-button' },
-	                    'Next'
-	                )
-	            )
-	        );
-	    }
-	});
-
-	module.exports = DashboardView;
-
-/***/ },
-/* 290 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _OrderTotalOS = __webpack_require__(296);
+	var _OrderTotalOS = __webpack_require__(289);
 
 	var _OrderTotalOS2 = _interopRequireDefault(_OrderTotalOS);
 
 	var _reactRouter = __webpack_require__(164);
 
-	var _app = __webpack_require__(312);
+	var _app = __webpack_require__(223);
 
 	var _app2 = _interopRequireDefault(_app);
 
@@ -43716,7 +44277,7 @@
 	module.exports = OrderSummaryView;
 
 /***/ },
-/* 291 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43725,186 +44286,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _OrderReadyTime = __webpack_require__(304);
-
-	var _OrderReadyTime2 = _interopRequireDefault(_OrderReadyTime);
-
-	var _ShopDetails = __webpack_require__(307);
-
-	var _ShopDetails2 = _interopRequireDefault(_ShopDetails);
-
-	var _DirectionsAndCall = __webpack_require__(308);
-
-	var _DirectionsAndCall2 = _interopRequireDefault(_DirectionsAndCall);
-
-	var _reactRouter = __webpack_require__(164);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var ConfirmationView = _react2.default.createClass({
-	    displayName: 'ConfirmationView',
-
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(
-	                'h1',
-	                null,
-	                'Order Confirmation'
-	            ),
-	            _react2.default.createElement(_OrderReadyTime2.default, null),
-	            _react2.default.createElement(_ShopDetails2.default, null),
-	            _react2.default.createElement(_DirectionsAndCall2.default, null),
-	            _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/' },
-	                _react2.default.createElement(
-	                    'button',
-	                    { className: 'next-button' },
-	                    'Back to Dashboard'
-	                )
-	            )
-	        );
-	    }
-	});
-
-	module.exports = ConfirmationView;
-
-/***/ },
-/* 292 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var SearchShop = _react2.default.createClass({
-	    displayName: "SearchShop",
-
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            "div",
-	            null,
-	            _react2.default.createElement("input", { type: "text" }),
-	            _react2.default.createElement("input", { type: "submit" })
-	        );
-	    }
-	});
-
-	module.exports = SearchShop;
-
-/***/ },
-/* 293 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _prevAndFavorites = __webpack_require__(294);
-
-	var _prevAndFavorites2 = _interopRequireDefault(_prevAndFavorites);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var PrevAndFavorites = _react2.default.createClass({
-	    displayName: 'PrevAndFavorites',
-
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'prev-orders-button' },
-	                _react2.default.createElement('i', { className: 'fa fa-reply fa-lg' }),
-	                ' Previous Orders'
-	            ),
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'fav-orders-button' },
-	                _react2.default.createElement('i', { className: 'fa fa-heart fa-lg' }),
-	                ' Fav Orders'
-	            )
-	        );
-	    }
-	});
-
-	module.exports = PrevAndFavorites;
-
-/***/ },
-/* 294 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(295);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./prev-and-favorites.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./prev-and-favorites.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 295 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".prev-orders-button, .fav-orders-button {\n  width: 15em;\n  display: inline-block;\n  border: 1px solid blue;\n  text-align: center;\n  padding-top: 5em;\n  padding-bottom: 5em;\n  border-radius: 5px;\n  margin-top: 2em; }\n\n.fav-orders-button {\n  margin-left: 2em; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 296 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _OrderTotalRowOS = __webpack_require__(299);
+	var _OrderTotalRowOS = __webpack_require__(290);
 
 	var _OrderTotalRowOS2 = _interopRequireDefault(_OrderTotalRowOS);
 
-	var _OrderTaxOS = __webpack_require__(302);
+	var _OrderTaxOS = __webpack_require__(293);
 
 	var _OrderTaxOS2 = _interopRequireDefault(_OrderTaxOS);
 
-	var _OrderTotalTotalOS = __webpack_require__(303);
+	var _OrderTotalTotalOS = __webpack_require__(294);
 
 	var _OrderTotalTotalOS2 = _interopRequireDefault(_OrderTotalTotalOS);
 
-	var _orderTotal = __webpack_require__(297);
+	var _orderTotal = __webpack_require__(295);
 
 	var _orderTotal2 = _interopRequireDefault(_orderTotal);
 
@@ -43945,47 +44339,7 @@
 	module.exports = OrderTotal;
 
 /***/ },
-/* 297 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(298);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-total.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-total.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 298 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "", ""]);
-
-	// exports
-
-
-/***/ },
-/* 299 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43994,7 +44348,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _orderTotalRow = __webpack_require__(300);
+	var _orderTotalRow = __webpack_require__(291);
 
 	var _orderTotalRow2 = _interopRequireDefault(_orderTotalRow);
 
@@ -44046,13 +44400,13 @@
 	module.exports = OrderTotalRow;
 
 /***/ },
-/* 300 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(301);
+	var content = __webpack_require__(292);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -44072,7 +44426,7 @@
 	}
 
 /***/ },
-/* 301 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -44086,7 +44440,7 @@
 
 
 /***/ },
-/* 302 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44121,7 +44475,7 @@
 	module.exports = OrderTax;
 
 /***/ },
-/* 303 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44156,7 +44510,47 @@
 	module.exports = OrderTotalTotal;
 
 /***/ },
-/* 304 */
+/* 295 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(296);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-total.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-total.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 296 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "", ""]);
+
+	// exports
+
+
+/***/ },
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44165,7 +44559,64 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _orderReadyTime = __webpack_require__(305);
+	var _OrderReadyTime = __webpack_require__(298);
+
+	var _OrderReadyTime2 = _interopRequireDefault(_OrderReadyTime);
+
+	var _ShopDetails = __webpack_require__(301);
+
+	var _ShopDetails2 = _interopRequireDefault(_ShopDetails);
+
+	var _DirectionsAndCall = __webpack_require__(304);
+
+	var _DirectionsAndCall2 = _interopRequireDefault(_DirectionsAndCall);
+
+	var _reactRouter = __webpack_require__(164);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ConfirmationView = _react2.default.createClass({
+	    displayName: 'ConfirmationView',
+
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Order Confirmation'
+	            ),
+	            _react2.default.createElement(_OrderReadyTime2.default, null),
+	            _react2.default.createElement(_ShopDetails2.default, null),
+	            _react2.default.createElement(_DirectionsAndCall2.default, null),
+	            _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/' },
+	                _react2.default.createElement(
+	                    'button',
+	                    { className: 'next-button' },
+	                    'Back to Dashboard'
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = ConfirmationView;
+
+/***/ },
+/* 298 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _orderReadyTime = __webpack_require__(299);
 
 	var _orderReadyTime2 = _interopRequireDefault(_orderReadyTime);
 
@@ -44205,13 +44656,13 @@
 	module.exports = OrderReadyTime;
 
 /***/ },
-/* 305 */
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(306);
+	var content = __webpack_require__(300);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -44231,7 +44682,7 @@
 	}
 
 /***/ },
-/* 306 */
+/* 300 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -44245,7 +44696,7 @@
 
 
 /***/ },
-/* 307 */
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44254,7 +44705,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _shopDetails = __webpack_require__(309);
+	var _shopDetails = __webpack_require__(302);
 
 	var _shopDetails2 = _interopRequireDefault(_shopDetails);
 
@@ -44299,7 +44750,47 @@
 	module.exports = ShopDetails;
 
 /***/ },
-/* 308 */
+/* 302 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(303);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./shop-details.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./shop-details.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 303 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".shop-details-container {\n  border: 1px solid blue; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -44332,215 +44823,6 @@
 	});
 
 	module.exports = DirectionsAndCall;
-
-/***/ },
-/* 309 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(310);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./shop-details.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./shop-details.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 310 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".shop-details-container {\n  border: 1px solid blue; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 311 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(164);
-
-	var _dummyData = __webpack_require__(285);
-
-	var _dummyData2 = _interopRequireDefault(_dummyData);
-
-	var _app = __webpack_require__(312);
-
-	var _app2 = _interopRequireDefault(_app);
-
-	var _AddItemNotification = __webpack_require__(225);
-
-	var _AddItemNotification2 = _interopRequireDefault(_AddItemNotification);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var App = _react2.default.createClass({
-	    displayName: 'App',
-
-
-	    getInitialState: function getInitialState() {
-	        return {
-	            items: [],
-	            notification: false
-	        };
-	    },
-
-	    _toggleNotification: function _toggleNotification() {
-	        var _this = this;
-
-	        this.setState({
-	            notification: !this.state.notification
-	        });
-	        var clearNotification = function clearNotification() {
-	            _this.setState({
-	                notification: false
-	            });
-	        };
-	        setTimeout(clearNotification, 3000);
-	    },
-
-	    _handleAddItemToOrder: function _handleAddItemToOrder(itemDetails) {
-	        this.setState({
-	            items: this.state.items.concat(itemDetails)
-	        });
-	    },
-
-	    _handleDeleteItemFromOrder: function _handleDeleteItemFromOrder(index) {
-	        var items = this.state.items;
-	        items.splice(index, 1);
-	        this.setState({
-	            items: items
-	        });
-	    },
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(_AddItemNotification2.default, {
-	                toggleNotification: this.props.toggleNotification,
-	                notificationState: this.props.notificationState }),
-	            _react2.default.createElement(
-	                'nav',
-	                { className: 'main-nav' },
-	                _react2.default.createElement(
-	                    'ul',
-	                    { role: 'nav' },
-	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: '/', onlyActiveOnIndex: true, className: 'router-link' },
-	                        _react2.default.createElement(
-	                            'li',
-	                            null,
-	                            'Dashboard'
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: '/account', className: 'router-link' },
-	                        _react2.default.createElement(
-	                            'li',
-	                            null,
-	                            'Account'
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: '/log-out', className: 'router-link' },
-	                        _react2.default.createElement(
-	                            'li',
-	                            null,
-	                            'Log Out'
-	                        )
-	                    )
-	                )
-	            ),
-	            _react2.default.cloneElement(this.props.children, {
-	                data: _dummyData2.default,
-	                items: this.state.items,
-	                notification: this.state.notification,
-	                toggleNotification: this._toggleNotification,
-	                handleAddItemToOrder: this._handleAddItemToOrder,
-	                handleDeleteItemFromOrder: this._handleDeleteItemFromOrder
-	            })
-	        );
-	    }
-	});
-
-	module.exports = App;
-
-	//   propTypes: {
-	//       toggleNotification: React.PropTypes.func,
-	//       notificationState: React.PropTypes.bool,
-	//       handleAddItemToOrder: React.PropTypes.func,
-	//       orderItems: React.PropTypes.array,
-	//       handleDeleteItemFromOrder: React.PropTypes.func
-	// },
-
-/***/ },
-/* 312 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(313);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./app.scss", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./app.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 313 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "nav.main-nav {\n  width: 90%;\n  margin: 0 auto;\n  text-align: center; }\n\nnav.main-nav ul {\n  width: 80%;\n  margin: 0 auto;\n  padding: 0; }\n\nnav.main-nav ul li {\n  display: inline-block;\n  padding: 1em;\n  background: #1987FE;\n  border-radius: 5px;\n  margin-right: 5px; }\n\n.router-link {\n  text-decoration: none;\n  color: #fff; }\n\n.next-button {\n  margin-top: 1em;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer; }\n", ""]);
-
-	// exports
-
 
 /***/ }
 /******/ ]);

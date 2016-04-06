@@ -99,7 +99,6 @@ var MenuItem = React.createClass({
 
 
     render: function() {
-        // console.log(this._checkFormComplete());
         return (
             <div className="drink-item">
                 {/* Item Label */}

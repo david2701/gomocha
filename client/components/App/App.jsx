@@ -3,14 +3,98 @@ import { Link } from 'react-router'
 import dummyData from '../../../dummy-data.json'
 import sass from './app.scss'
 import AddItemNotification from '../CustomOrderView/AddItemNotification/AddItemNotification'
+import _ from 'lodash'
 
 var App = React.createClass({
 
     getInitialState: function() {
         return {
             items: [],
-            notification: false
+            notification: false,
+            methodOfTrans: '',
+            pickupTime: '',
+            favorite: false,
+            paymentInfo: {
+                nameOnCard: '',
+                cardNumber: undefined,
+                expMonth: '',
+                expYear: '',
+                cvv: undefined
+            }
         }
+    },
+
+    _handleMethodOfTrans: function(event) {
+        this.setState({
+            methodOfTrans: event.target.value
+        })
+    },
+
+    _handlePickupTime: function(event) {
+        this.setState({
+            pickupTime: event.target.value
+        })
+    },
+
+    _handleFavorite: function() {
+        this.setState({
+            favorite: !this.state.favorite
+        })
+    },
+
+    _handleCCName: function(event) {
+        var newPaymentInfo = _.assign(
+            {},
+            this.state.paymentInfo,
+            {nameOnCard: event.target.value}
+        )
+        this.setState({
+            paymentInfo: newPaymentInfo
+        })
+    },
+
+    _handleCCNumber: function(event) {
+        var newPaymentInfo = _.assign(
+            {},
+            this.state.paymentInfo,
+            {cardNumber: event.target.value}
+        )
+        this.setState({
+            paymentInfo: newPaymentInfo
+        })
+    },
+
+    _handleCCExpMonth: function(event) {
+        var newPaymentInfo = _.assign(
+            {},
+            this.state.paymentInfo,
+            {expMonth: event.target.value}
+        )
+        this.setState({
+            paymentInfo: newPaymentInfo
+        })
+    },
+
+    _handleCCExpYear: function(event) {
+        var newPaymentInfo = _.assign(
+            {},
+            this.state.paymentInfo,
+            {expYear: event.target.value}
+        )
+        this.setState({
+            paymentInfo: newPaymentInfo
+        })
+    },
+
+    _handleCCCVV: function(event) {
+        var newPaymentInfo = _.assign(
+            {},
+            this.state.paymentInfo,
+            {cvv: event.target.value}
+        )
+        this.setState({
+            paymentInfo: newPaymentInfo
+        })
     },
 
     _toggleNotification: function() {
@@ -60,7 +144,19 @@ var App = React.createClass({
                          notification: this.state.notification,
                          toggleNotification: this._toggleNotification,
                          handleAddItemToOrder: this._handleAddItemToOrder,
-                         handleDeleteItemFromOrder: this._handleDeleteItemFromOrder
+                         handleDeleteItemFromOrder: this._handleDeleteItemFromOrder,
+                         handleMethodOfTrans: this._handleMethodOfTrans,
+                         handlePickupTime: this._handlePickupTime,
+                         pickupTime: this.state.pickupTime,
+                         handleFavorite: this._handleFavorite,
+                         favorite: this.state.favorite,
+                         handleCCName: this._handleCCName,
+                         handleCCNumber: this._handleCCNumber,
+                         handleCCExpMonth: this._handleCCExpMonth,
+                         expMonth: this.state.paymentInfo.expMonth,
+                         handleCCExpYear: this._handleCCExpYear,
+                         expYear: this.state.paymentInfo.expYear,
+                         handleCCCVV: this._handleCCCVV
                      })
                     }
             </div>

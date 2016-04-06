@@ -20,7 +20,7 @@ ReactDOM.render(
 // implement propTypes to components
 // add quantity * price feature when calculating total
 
-
+// pickUp time can't be set if "now" is checked, if someone checks pickup time and then decided now after already clicking now
 // add conditions to Link buttons
 // look into Locu and Google Maps API
 // create state for remaining views on App component state. Pass down to children components

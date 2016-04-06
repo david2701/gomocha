@@ -7,12 +7,30 @@ var EnterPaymentInfo = React.createClass({
             <div>
                 <h2>Enter Payment Info</h2>
                 <div className="">
-                    <label>Name on Card<input type="text" placeholder="Card Holder's Name" required /></label>
+                    <label>Name on Card
+                        <input
+                            onChange={this.props.handleCCName}
+                            type="text"
+                            placeholder="Card Holder's Name"
+                            required />
+                    </label>
                 <br />
-                    <label>Card Number<input type="number" placeholder="Debit/Credit Card Number" maxLength="16" required /></label>
+                    <label>Card Number
+                        <input
+                            onChange={this.props.handleCCNumber}
+                            type="number"
+                            placeholder="Debit/Credit Card Number"
+                            maxLength="16"
+                            required />
+                        </label>
                 <br />
             <label>Expiration Date</label>
-            <select>
+            <select
+                onChange={this.props.handleCCExpMonth}
+                value={this.props.expMonthValue}
+                name="exp-month"
+                 >
+                <option value="default">Month</option>
                 <option value="01">Jan (01)</option>
                 <option value="02">Feb (02)</option>
                 <option value="03">Mar (03)</option>
@@ -26,7 +44,11 @@ var EnterPaymentInfo = React.createClass({
                 <option value="11">Nov (11)</option>
                 <option value="12">Dec (12)</option>
             </select>
-            <select>
+            <select
+                onChange={this.props.handleCCExpYear}
+                value={this.props.expYearValue}
+                name="exp-year" >
+                <option value="default">Year</option>
                 <option value="2016">2016</option>
                 <option value="2017">2017</option>
                 <option value="2018">2018</option>
@@ -36,7 +58,14 @@ var EnterPaymentInfo = React.createClass({
                 <option value="2022">2022</option>
             </select>
                 <br />
-                    <label>CVV<input type="number" placeholder="Security Code" maxLength="3" required /></label>
+                    <label>CVV
+                        <input
+                            onChange={this.props.handleCCCVV}
+                            type="number"
+                            placeholder="Security Code"
+                            maxLength="3"
+                            required />
+                        </label>
                 </div>
             </div>
         )

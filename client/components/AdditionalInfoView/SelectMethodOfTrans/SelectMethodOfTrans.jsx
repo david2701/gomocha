@@ -6,9 +6,30 @@ var SelectMethodOfTrans = React.createClass({
         return (
             <div className="method-of-trans-container">
                 <h2>Select Method of Transportation</h2>
-                <div className="method-of-trans"><p>Walking</p></div>
-                <div className="method-of-trans"><p>Biking</p></div>
-                <div className="method-of-trans"><p>Driving</p></div>
+                <label className="method-of-trans" htmlFor="walking">
+                    <input
+                        onChange={this.props.handleMethodOfTrans}
+                        type="radio"
+                        name="methodOfTrans"
+                        className="method-of-trans-input"
+                        value="walking" /> Walking
+                </label>
+                <label className="method-of-trans" htmlFor="biking">
+                    <input
+                        onChange={this.props.handleMethodOfTrans}
+                        type="radio"
+                        name="methodOfTrans"
+                        className="method-of-trans-input"
+                        value="biking" /> Biking
+                </label>
+                <label className="method-of-trans" htmlFor="driving">
+                    <input
+                        onChange={this.props.handleMethodOfTrans}
+                        type="radio"
+                        name="methodOfTrans"
+                        className="method-of-trans-input"
+                        value="driving" /> Driving
+                </label>
             </div>
         )
     }
