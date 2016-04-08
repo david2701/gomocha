@@ -8,6 +8,10 @@ var OrderTotalRow = React.createClass({
     },
 
     render: function() {
+
+        var price = this.props.itemDetails.price;
+        var quantity = this.props.itemDetails.quantity;
+
         return (
             <tr className='order-total-row'>
                 <td>{this.props.itemDetails.quantity}
@@ -17,7 +21,7 @@ var OrderTotalRow = React.createClass({
                     {this.props.itemDetails.itemName}
                 </td>
                 <td className='td-price'>
-                    ${this.props.itemDetails.price.toFixed(2)}
+                    ${(price * quantity).toFixed(2)}
                     <span title='Delete item from order'
                         onClick={this._handleDeleteItem} >
                         <i className="fa fa-trash delete-item hide"></i>

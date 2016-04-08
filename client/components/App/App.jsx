@@ -10,6 +10,7 @@ var App = React.createClass({
     getInitialState: function() {
         return {
             items: [],
+            specialInstructions: '',
             notification: false,
             methodOfTrans: '',
             pickupTime: '',
@@ -20,7 +21,7 @@ var App = React.createClass({
                 expMonth: '',
                 expYear: '',
                 cvv: undefined
-            }
+            },
         }
     },
 
@@ -109,6 +110,12 @@ var App = React.createClass({
         setTimeout(clearNotification, 3000);
     },
 
+    _handleSpecialInstructions: function(event) {
+        this.setState({
+            specialInstructions: event.target.value
+        })
+    },
+
     _handleAddItemToOrder: function(itemDetails) {
         this.setState({
             items: this.state.items.concat(itemDetails),
@@ -141,6 +148,7 @@ var App = React.createClass({
                      ,{
                          data: dummyData,
                          items: this.state.items,
+                         handleSpecialInstructions: this._handleSpecialInstructions,
                          notification: this.state.notification,
                          toggleNotification: this._toggleNotification,
                          handleAddItemToOrder: this._handleAddItemToOrder,

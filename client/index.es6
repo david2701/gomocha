@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 // import dummyData from '../dummy-data.json'
 import Routes from './routes'
 import { Router, browserHistory } from 'react-router'
+import superagent from 'superagent'
 
 ReactDOM.render(
     <Router routes={Routes} history={browserHistory}></Router>
@@ -11,14 +12,17 @@ ReactDOM.render(
     ,document.getElementById('root')
 )
 
+
+
 // QUESTIONS:
-// 1. How does react-router fit into the whole idea of single page web apps?
+// 1.
 // 2.
 
 // NEXT STEPS:
 
 // implement propTypes to components
-// add quantity * price feature when calculating total
+// add milk type, decaf, hot or cold options to order total row
+
 
 // pickUp time can't be set if "now" is checked, if someone checks pickup time and then decided now after already clicking now
 // add conditions to Link buttons
@@ -26,8 +30,8 @@ ReactDOM.render(
 // create state for remaining views on App component state. Pass down to children components
 
 
-
-
+// DONE add quantity * price feature when calculating total
+// DONE reuse OrderTotal components for both CustomOrderView and OrderSummaryView
 // DONE add Link to remaining View components
 // DONE use setTimeout for add item to order notification/confirmation
 // DONE user cannot add item unless all form elements are filled out

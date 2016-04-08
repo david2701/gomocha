@@ -16,6 +16,7 @@ var CustomOrderView = React.createClass({
             <h1>Place Your Order</h1>
                 <MenuFormContainer
                     data={this.props.data}
+                    handleSpecialInstructions={this.props.handleSpecialInstructions}
                     handleAddItemToOrder={this.props.handleAddItemToOrder}
                     toggleNotification={this.props.toggleNotification} />
                  <OrderTotal

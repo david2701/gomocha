@@ -20,7 +20,7 @@ var OrderTotal = React.createClass({
 
         // ORDER TOTAL AND TAX CALCULATION //
         var total = this.props.orderItems.reduce((sum, current) =>
-            sum + current.price, 0);
+            sum + (current.price * current.quantity), 0);
         var orderTax = (total * 0.1);
         var orderTotal = (total + orderTax).toFixed(2);
 

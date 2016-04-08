@@ -34,7 +34,8 @@ var MenuFormContainer = React.createClass({
                     slug="bakery"
                     handleAddItemToOrder={this.props.handleAddItemToOrder}
                     toggleNotification={this.props.toggleNotification} />
-                <SpecialInstructions />
+                <SpecialInstructions
+                    handleSpecialInstructions={this.props.handleSpecialInstructions} />
             </form>
         )
     }
