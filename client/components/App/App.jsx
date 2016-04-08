@@ -149,6 +149,7 @@ var App = React.createClass({
                          data: dummyData,
                          items: this.state.items,
                          handleSpecialInstructions: this._handleSpecialInstructions,
+                         specialInstructions: this.state.specialInstructions,
                          notification: this.state.notification,
                          toggleNotification: this._toggleNotification,
                          handleAddItemToOrder: this._handleAddItemToOrder,

@@ -21,7 +21,6 @@ ReactDOM.render(
 // NEXT STEPS:
 
 // implement propTypes to components
-// add milk type, decaf, hot or cold options to order total row
 
 
 // pickUp time can't be set if "now" is checked, if someone checks pickup time and then decided now after already clicking now
@@ -30,6 +29,7 @@ ReactDOM.render(
 // create state for remaining views on App component state. Pass down to children components
 
 
+// DONE add milk type, decaf, hot or cold options to order total row
 // DONE add quantity * price feature when calculating total
 // DONE reuse OrderTotal components for both CustomOrderView and OrderSummaryView
 // DONE add Link to remaining View components

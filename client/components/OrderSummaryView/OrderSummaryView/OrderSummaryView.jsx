@@ -1,5 +1,6 @@
 import React from 'react'
 import OrderTotal from '../../CustomOrderView/OrderTotal/OrderTotal'
+import SpecialInstructionsOS from '../SpecialInstructionsOS/SpecialInstructionsOS'
 import { Link } from 'react-router'
 import sass from '../../App/app.scss'
 
@@ -12,7 +13,8 @@ var OrderSummaryView = React.createClass({
                 <OrderTotal
                     orderItems={this.props.items}
                     handleDeleteItemFromOrder={this.props.handleDeleteItemFromOrder} />
-
+                <SpecialInstructionsOS
+                    specialInstructions={this.props.specialInstructions} />
                 <Link to="/confirmation">
                     <button className="next-button">Submit Order
                     </button>

@@ -64,7 +64,7 @@
 
 	var _reactRouter = __webpack_require__(164);
 
-	var _superagent = __webpack_require__(311);
+	var _superagent = __webpack_require__(299);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
@@ -79,13 +79,13 @@
 	// NEXT STEPS:
 
 	// implement propTypes to components
-	// add milk type, decaf, hot or cold options to order total row
 
 	// pickUp time can't be set if "now" is checked, if someone checks pickup time and then decided now after already clicking now
 	// add conditions to Link buttons
 	// look into Locu and Google Maps API
 	// create state for remaining views on App component state. Pass down to children components
 
+	// DONE add milk type, decaf, hot or cold options to order total row
 	// DONE add quantity * price feature when calculating total
 	// DONE reuse OrderTotal components for both CustomOrderView and OrderSummaryView
 	// DONE add Link to remaining View components
@@ -20076,19 +20076,19 @@
 
 	var _CustomOrderView2 = _interopRequireDefault(_CustomOrderView);
 
-	var _SelectShopView = __webpack_require__(262);
+	var _SelectShopView = __webpack_require__(263);
 
 	var _SelectShopView2 = _interopRequireDefault(_SelectShopView);
 
-	var _AdditionalInfoView = __webpack_require__(275);
+	var _AdditionalInfoView = __webpack_require__(276);
 
 	var _AdditionalInfoView2 = _interopRequireDefault(_AdditionalInfoView);
 
-	var _OrderSummaryView = __webpack_require__(288);
+	var _OrderSummaryView = __webpack_require__(289);
 
 	var _OrderSummaryView2 = _interopRequireDefault(_OrderSummaryView);
 
-	var _ConfirmationView = __webpack_require__(297);
+	var _ConfirmationView = __webpack_require__(291);
 
 	var _ConfirmationView2 = _interopRequireDefault(_ConfirmationView);
 
@@ -25355,6 +25355,7 @@
 	                data: _dummyData2.default,
 	                items: this.state.items,
 	                handleSpecialInstructions: this._handleSpecialInstructions,
+	                specialInstructions: this.state.specialInstructions,
 	                notification: this.state.notification,
 	                toggleNotification: this._toggleNotification,
 	                handleAddItemToOrder: this._handleAddItemToOrder,
@@ -42804,15 +42805,19 @@
 
 	var _OrderTotalRow2 = _interopRequireDefault(_OrderTotalRow);
 
-	var _OrderTax = __webpack_require__(258);
+	var _OrderTotalRowOtherDetails = __webpack_require__(256);
+
+	var _OrderTotalRowOtherDetails2 = _interopRequireDefault(_OrderTotalRowOtherDetails);
+
+	var _OrderTax = __webpack_require__(259);
 
 	var _OrderTax2 = _interopRequireDefault(_OrderTax);
 
-	var _OrderTotalTotal = __webpack_require__(259);
+	var _OrderTotalTotal = __webpack_require__(260);
 
 	var _OrderTotalTotal2 = _interopRequireDefault(_OrderTotalTotal);
 
-	var _orderTotal = __webpack_require__(260);
+	var _orderTotal = __webpack_require__(261);
 
 	var _orderTotal2 = _interopRequireDefault(_orderTotal);
 
@@ -42831,6 +42836,10 @@
 	                key: index,
 	                index: index });
 	        });
+
+	        // <OrderTotalRowOtherDetails
+	        //     itemDetails={item}
+	        //     index={index} />
 
 	        // ORDER TOTAL AND TAX CALCULATION //
 	        var total = this.props.orderItems.reduce(function (sum, current) {
@@ -42880,7 +42889,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _orderTotalRow = __webpack_require__(256);
+	var _orderTotalRow = __webpack_require__(305);
 
 	var _orderTotalRow2 = _interopRequireDefault(_orderTotalRow);
 
@@ -42896,8 +42905,25 @@
 
 	    render: function render() {
 
+	        var itemName = this.props.itemDetails.itemName;
 	        var price = this.props.itemDetails.price;
 	        var quantity = this.props.itemDetails.quantity;
+	        var size = this.props.itemDetails.size;
+	        var milkType = this.props.itemDetails.milkType;
+	        var decaf = this.props.itemDetails.decaf;
+	        var hotOrCold = this.props.itemDetails.hotOrCold;
+
+	        var cleanMilkType = function cleanMilkType(milkType) {
+	            var newMilk = milkType.split('-');
+	            var newerMilk = newMilk.map(function (word) {
+	                return word[0].toUpperCase() + word.slice(1, word.length);
+	            });
+	            return newerMilk.join(' ');
+	        };
+
+	        var cleanHotOrCold = function cleanHotOrCold(hotOrCold) {
+	            return hotOrCold[0].toUpperCase() + hotOrCold.slice(1, hotOrCold.length);
+	        };
 
 	        return _react2.default.createElement(
 	            'tr',
@@ -42905,19 +42931,30 @@
 	            _react2.default.createElement(
 	                'td',
 	                null,
-	                this.props.itemDetails.quantity,
 	                _react2.default.createElement(
-	                    'span',
+	                    'p',
 	                    null,
-	                    ' - '
+	                    quantity,
+	                    _react2.default.createElement(
+	                        'span',
+	                        null,
+	                        ' - '
+	                    ),
+	                    size,
+	                    _react2.default.createElement(
+	                        'span',
+	                        null,
+	                        ' '
+	                    ),
+	                    itemName
 	                ),
-	                this.props.itemDetails.size,
 	                _react2.default.createElement(
-	                    'span',
+	                    'p',
 	                    null,
-	                    ' '
-	                ),
-	                this.props.itemDetails.itemName
+	                    milkType ? cleanMilkType(milkType) : '',
+	                    decaf ? ' | Decaf' : '',
+	                    hotOrCold ? cleanHotOrCold(hotOrCold) : ''
+	                )
 	            ),
 	            _react2.default.createElement(
 	                'td',
@@ -42941,10 +42978,74 @@
 /* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _orderTotalRowOtherDetails = __webpack_require__(257);
+
+	var _orderTotalRowOtherDetails2 = _interopRequireDefault(_orderTotalRowOtherDetails);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var OrderTotalRowOtherDetails = _react2.default.createClass({
+	    displayName: 'OrderTotalRowOtherDetails',
+
+
+	    _handleDeleteItem: function _handleDeleteItem() {
+	        this.props.handleDeleteItemFromOrder(this.props.index);
+	    },
+
+	    render: function render() {
+
+	        var milkType = this.props.itemDetails.milkType;
+	        var decaf = this.props.itemDetails.decaf;
+	        var hotOrCold = this.props.itemDetails.hotOrCold;
+
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	                'tr',
+	                { className: 'order-total-row' },
+	                _react2.default.createElement(
+	                    'td',
+	                    null,
+	                    'hey how are you',
+	                    _react2.default.createElement(
+	                        'span',
+	                        null,
+	                        ' - '
+	                    ),
+	                    _react2.default.createElement(
+	                        'span',
+	                        null,
+	                        ' '
+	                    )
+	                ),
+	                _react2.default.createElement('td', { className: 'td-price' })
+	            ),
+	            _react2.default.createElement(
+	                'tr',
+	                null,
+	                _react2.default.createElement('td', null)
+	            )
+	        );
+	    }
+	});
+
+	module.exports = OrderTotalRowOtherDetails;
+
+/***/ },
+/* 257 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(257);
+	var content = __webpack_require__(258);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -42953,8 +43054,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-total-row.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-total-row.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-total-row-other-details.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-total-row-other-details.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -42964,7 +43065,7 @@
 	}
 
 /***/ },
-/* 257 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -42978,7 +43079,7 @@
 
 
 /***/ },
-/* 258 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43014,7 +43115,7 @@
 	module.exports = OrderTax;
 
 /***/ },
-/* 259 */
+/* 260 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43050,13 +43151,13 @@
 	module.exports = OrderTotalTotal;
 
 /***/ },
-/* 260 */
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(261);
+	var content = __webpack_require__(262);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -43076,7 +43177,7 @@
 	}
 
 /***/ },
-/* 261 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -43090,7 +43191,7 @@
 
 
 /***/ },
-/* 262 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43099,11 +43200,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ShopSearch = __webpack_require__(263);
+	var _ShopSearch = __webpack_require__(264);
 
 	var _ShopSearch2 = _interopRequireDefault(_ShopSearch);
 
-	var _ShopList = __webpack_require__(266);
+	var _ShopList = __webpack_require__(267);
 
 	var _ShopList2 = _interopRequireDefault(_ShopList);
 
@@ -43146,7 +43247,7 @@
 	module.exports = SelectShopView;
 
 /***/ },
-/* 263 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43155,7 +43256,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _shopSearch = __webpack_require__(264);
+	var _shopSearch = __webpack_require__(265);
 
 	var _shopSearch2 = _interopRequireDefault(_shopSearch);
 
@@ -43182,13 +43283,13 @@
 	module.exports = ShopSearch;
 
 /***/ },
-/* 264 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(265);
+	var content = __webpack_require__(266);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -43208,7 +43309,7 @@
 	}
 
 /***/ },
-/* 265 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -43222,7 +43323,7 @@
 
 
 /***/ },
-/* 266 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43231,15 +43332,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _shopList = __webpack_require__(267);
+	var _shopList = __webpack_require__(268);
 
 	var _shopList2 = _interopRequireDefault(_shopList);
 
-	var _ShopListItem = __webpack_require__(269);
+	var _ShopListItem = __webpack_require__(270);
 
 	var _ShopListItem2 = _interopRequireDefault(_ShopListItem);
 
-	var _ClickForMore = __webpack_require__(272);
+	var _ClickForMore = __webpack_require__(273);
 
 	var _ClickForMore2 = _interopRequireDefault(_ClickForMore);
 
@@ -43264,13 +43365,13 @@
 	module.exports = ShopList;
 
 /***/ },
-/* 267 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(268);
+	var content = __webpack_require__(269);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -43290,7 +43391,7 @@
 	}
 
 /***/ },
-/* 268 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -43304,7 +43405,7 @@
 
 
 /***/ },
-/* 269 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43313,7 +43414,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _shopListItem = __webpack_require__(270);
+	var _shopListItem = __webpack_require__(271);
 
 	var _shopListItem2 = _interopRequireDefault(_shopListItem);
 
@@ -43362,13 +43463,13 @@
 	module.exports = ShopListItem;
 
 /***/ },
-/* 270 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(271);
+	var content = __webpack_require__(272);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -43388,7 +43489,7 @@
 	}
 
 /***/ },
-/* 271 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -43402,7 +43503,7 @@
 
 
 /***/ },
-/* 272 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43411,7 +43512,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _clickForMore = __webpack_require__(273);
+	var _clickForMore = __webpack_require__(274);
 
 	var _clickForMore2 = _interopRequireDefault(_clickForMore);
 
@@ -43436,13 +43537,13 @@
 	module.exports = ClickForMore;
 
 /***/ },
-/* 273 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(274);
+	var content = __webpack_require__(275);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -43462,7 +43563,7 @@
 	}
 
 /***/ },
-/* 274 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -43476,7 +43577,7 @@
 
 
 /***/ },
-/* 275 */
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43485,19 +43586,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _SelectMethodOfTrans = __webpack_require__(276);
+	var _SelectMethodOfTrans = __webpack_require__(277);
 
 	var _SelectMethodOfTrans2 = _interopRequireDefault(_SelectMethodOfTrans);
 
-	var _SelectPickUpTime = __webpack_require__(279);
+	var _SelectPickUpTime = __webpack_require__(280);
 
 	var _SelectPickUpTime2 = _interopRequireDefault(_SelectPickUpTime);
 
-	var _SelectIfFavorite = __webpack_require__(282);
+	var _SelectIfFavorite = __webpack_require__(283);
 
 	var _SelectIfFavorite2 = _interopRequireDefault(_SelectIfFavorite);
 
-	var _EnterPaymentInfo = __webpack_require__(285);
+	var _EnterPaymentInfo = __webpack_require__(286);
 
 	var _EnterPaymentInfo2 = _interopRequireDefault(_EnterPaymentInfo);
 
@@ -43558,7 +43659,7 @@
 	module.exports = AdditionalInfoView;
 
 /***/ },
-/* 276 */
+/* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43567,7 +43668,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _selectMethodOfTrans = __webpack_require__(277);
+	var _selectMethodOfTrans = __webpack_require__(278);
 
 	var _selectMethodOfTrans2 = _interopRequireDefault(_selectMethodOfTrans);
 
@@ -43625,13 +43726,13 @@
 	module.exports = SelectMethodOfTrans;
 
 /***/ },
-/* 277 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(278);
+	var content = __webpack_require__(279);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -43651,7 +43752,7 @@
 	}
 
 /***/ },
-/* 278 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -43665,7 +43766,7 @@
 
 
 /***/ },
-/* 279 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43674,7 +43775,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _selectPickUpTime = __webpack_require__(280);
+	var _selectPickUpTime = __webpack_require__(281);
 
 	var _selectPickUpTime2 = _interopRequireDefault(_selectPickUpTime);
 
@@ -43878,13 +43979,13 @@
 	module.exports = SelectPickUpTime;
 
 /***/ },
-/* 280 */
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(281);
+	var content = __webpack_require__(282);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -43904,7 +44005,7 @@
 	}
 
 /***/ },
-/* 281 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -43918,7 +44019,7 @@
 
 
 /***/ },
-/* 282 */
+/* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43927,7 +44028,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _selectIfFavorite = __webpack_require__(283);
+	var _selectIfFavorite = __webpack_require__(284);
 
 	var _selectIfFavorite2 = _interopRequireDefault(_selectIfFavorite);
 
@@ -43965,13 +44066,13 @@
 	module.exports = SelectIfFavorite;
 
 /***/ },
-/* 283 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(284);
+	var content = __webpack_require__(285);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -43991,7 +44092,7 @@
 	}
 
 /***/ },
-/* 284 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -44005,7 +44106,7 @@
 
 
 /***/ },
-/* 285 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44014,7 +44115,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _enterPaymentInfo = __webpack_require__(286);
+	var _enterPaymentInfo = __webpack_require__(287);
 
 	var _enterPaymentInfo2 = _interopRequireDefault(_enterPaymentInfo);
 
@@ -44203,13 +44304,13 @@
 	module.exports = EnterPaymentInfo;
 
 /***/ },
-/* 286 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(287);
+	var content = __webpack_require__(288);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -44229,7 +44330,7 @@
 	}
 
 /***/ },
-/* 287 */
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -44243,7 +44344,7 @@
 
 
 /***/ },
-/* 288 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44255,6 +44356,10 @@
 	var _OrderTotal = __webpack_require__(254);
 
 	var _OrderTotal2 = _interopRequireDefault(_OrderTotal);
+
+	var _SpecialInstructionsOS = __webpack_require__(290);
+
+	var _SpecialInstructionsOS2 = _interopRequireDefault(_SpecialInstructionsOS);
 
 	var _reactRouter = __webpack_require__(164);
 
@@ -44280,6 +44385,8 @@
 	            _react2.default.createElement(_OrderTotal2.default, {
 	                orderItems: this.props.items,
 	                handleDeleteItemFromOrder: this.props.handleDeleteItemFromOrder }),
+	            _react2.default.createElement(_SpecialInstructionsOS2.default, {
+	                specialInstructions: this.props.specialInstructions }),
 	            _react2.default.createElement(
 	                _reactRouter.Link,
 	                { to: '/confirmation' },
@@ -44305,15 +44412,7 @@
 	module.exports = OrderSummaryView;
 
 /***/ },
-/* 289 */,
-/* 290 */,
-/* 291 */,
-/* 292 */,
-/* 293 */,
-/* 294 */,
-/* 295 */,
-/* 296 */,
-/* 297 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44322,15 +44421,50 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _OrderReadyTime = __webpack_require__(298);
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SpecialInstructionsOS = _react2.default.createClass({
+	    displayName: 'SpecialInstructionsOS',
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	                'h4',
+	                null,
+	                'Special Instructions:'
+	            ),
+	            _react2.default.createElement(
+	                'p',
+	                null,
+	                this.props.specialInstructions
+	            )
+	        );
+	    }
+	});
+
+	module.exports = SpecialInstructionsOS;
+
+/***/ },
+/* 291 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _OrderReadyTime = __webpack_require__(292);
 
 	var _OrderReadyTime2 = _interopRequireDefault(_OrderReadyTime);
 
-	var _ShopDetails = __webpack_require__(301);
+	var _ShopDetails = __webpack_require__(295);
 
 	var _ShopDetails2 = _interopRequireDefault(_ShopDetails);
 
-	var _DirectionsAndCall = __webpack_require__(304);
+	var _DirectionsAndCall = __webpack_require__(298);
 
 	var _DirectionsAndCall2 = _interopRequireDefault(_DirectionsAndCall);
 
@@ -44370,7 +44504,7 @@
 	module.exports = ConfirmationView;
 
 /***/ },
-/* 298 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44379,7 +44513,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _orderReadyTime = __webpack_require__(299);
+	var _orderReadyTime = __webpack_require__(293);
 
 	var _orderReadyTime2 = _interopRequireDefault(_orderReadyTime);
 
@@ -44419,13 +44553,13 @@
 	module.exports = OrderReadyTime;
 
 /***/ },
-/* 299 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(300);
+	var content = __webpack_require__(294);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -44445,7 +44579,7 @@
 	}
 
 /***/ },
-/* 300 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -44459,7 +44593,7 @@
 
 
 /***/ },
-/* 301 */
+/* 295 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44468,7 +44602,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _shopDetails = __webpack_require__(302);
+	var _shopDetails = __webpack_require__(296);
 
 	var _shopDetails2 = _interopRequireDefault(_shopDetails);
 
@@ -44513,13 +44647,13 @@
 	module.exports = ShopDetails;
 
 /***/ },
-/* 302 */
+/* 296 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(303);
+	var content = __webpack_require__(297);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -44539,7 +44673,7 @@
 	}
 
 /***/ },
-/* 303 */
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -44553,7 +44687,7 @@
 
 
 /***/ },
-/* 304 */
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -44588,23 +44722,17 @@
 	module.exports = DirectionsAndCall;
 
 /***/ },
-/* 305 */,
-/* 306 */,
-/* 307 */,
-/* 308 */,
-/* 309 */,
-/* 310 */,
-/* 311 */
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 
-	var Emitter = __webpack_require__(312);
-	var reduce = __webpack_require__(313);
-	var requestBase = __webpack_require__(314);
-	var isObject = __webpack_require__(315);
+	var Emitter = __webpack_require__(300);
+	var reduce = __webpack_require__(301);
+	var requestBase = __webpack_require__(302);
+	var isObject = __webpack_require__(303);
 
 	/**
 	 * Root reference for iframes.
@@ -44653,7 +44781,7 @@
 	 * Expose `request`.
 	 */
 
-	var request = module.exports = __webpack_require__(316).bind(null, Request);
+	var request = module.exports = __webpack_require__(304).bind(null, Request);
 
 	/**
 	 * Determine XHR.
@@ -45677,7 +45805,7 @@
 
 
 /***/ },
-/* 312 */
+/* 300 */
 /***/ function(module, exports) {
 
 	
@@ -45844,7 +45972,7 @@
 
 
 /***/ },
-/* 313 */
+/* 301 */
 /***/ function(module, exports) {
 
 	
@@ -45873,13 +46001,13 @@
 	};
 
 /***/ },
-/* 314 */
+/* 302 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module of mixed-in functions shared between node and client code
 	 */
-	var isObject = __webpack_require__(315);
+	var isObject = __webpack_require__(303);
 
 	/**
 	 * Clear previous timeout.
@@ -46045,7 +46173,7 @@
 
 
 /***/ },
-/* 315 */
+/* 303 */
 /***/ function(module, exports) {
 
 	/**
@@ -46064,7 +46192,7 @@
 
 
 /***/ },
-/* 316 */
+/* 304 */
 /***/ function(module, exports) {
 
 	// The node and browser modules expose versions of this with the
@@ -46099,6 +46227,46 @@
 	}
 
 	module.exports = request;
+
+
+/***/ },
+/* 305 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(306);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-total-row.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-total-row.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 306 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".order-total-table td {\n  padding: 0.75em 1.5em; }\n\n.order-total-table tr {\n  background: #EEEEEE; }\n\ntr.order-total-row .delete-item {\n  color: #962D2D;\n  margin-left: 20px;\n  display: none;\n  cursor: pointer; }\n\ntr.order-total-row:hover .delete-item {\n  display: inline-block; }\n\n.td-price {\n  width: 75px; }\n", ""]);
+
+	// exports
 
 
 /***/ }
