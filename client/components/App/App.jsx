@@ -25,15 +25,16 @@ var App = React.createClass({
         }
     },
 
+
     _handleMethodOfTrans: function(event) {
         this.setState({
             methodOfTrans: event.target.value
         })
     },
 
-    _handlePickupTime: function(event) {
+    _handlePickupTime: function(newValue) {
         this.setState({
-            pickupTime: event.target.value
+            pickupTime: newValue
         })
     },
 

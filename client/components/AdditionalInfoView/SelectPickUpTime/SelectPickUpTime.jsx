@@ -1,5 +1,6 @@
 import React from 'react'
 import sass from './select-pick-up-time.scss'
+import moment from 'moment'
 
 var SelectPickUpTime = React.createClass({
     render: function() {
@@ -8,18 +9,18 @@ var SelectPickUpTime = React.createClass({
                 <h2>Pick up now or schedule pick up?</h2>
             <div className="select-pick-up-now">
                     <label>Now: <input
-                                    onChange={this.props.handlePickupTime}
-                                    type="checkbox"
-                                    value={true} />
+                                    onChange={() => this.props.handlePickupTime('true')}
+                                    type="radio"
+                                    checked={this.props.value === 'true'} />
                     </label>
                 </div>
                 <div className="select-pick-up-time">
                     <label>Pick up at:
                         <select
-                            onChange={this.props.handlePickupTime}
+                            onChange={(event) => this.props.handlePickupTime(event.target.value)}
                             name="pickup-time"
                             value={this.props.value} >
-                            <option value="default" disabled>Time</option>
+                            <option value="true" disabled>Time</option>
                             <option value="5:00am">5:00am</option>
                             <option value="5:30am">5:30am</option>
                             <option value="6:00am">6:00am</option>

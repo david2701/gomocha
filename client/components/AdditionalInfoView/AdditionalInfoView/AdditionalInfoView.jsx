@@ -17,7 +17,7 @@ var AdditionalInfoView = React.createClass({
                     handleMethodOfTrans={this.props.handleMethodOfTrans} />
                 <SelectPickUpTime
                     handlePickupTime={this.props.handlePickupTime}
-                    value={this.props.pickupTime || 'default'} />
+                    value={this.props.pickupTime || 'true'} />
                 <SelectIfFavorite
                     handleFavorite={this.props.handleFavorite}
                     value={this.props.favorite || false} />

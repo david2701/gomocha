@@ -23,12 +23,13 @@ ReactDOM.render(
 // implement propTypes to components
 
 
-// pickUp time can't be set if "now" is checked, if someone checks pickup time and then decided now after already clicking now
+// install moment into select pickup time
 // add conditions to Link buttons
 // look into Locu and Google Maps API
 // create state for remaining views on App component state. Pass down to children components
 
 
+// DONE pickUp time can't be set if "now" is checked, if someone checks pickup time and then decided now after already clicking now
 // DONE add milk type, decaf, hot or cold options to order total row
 // DONE add quantity * price feature when calculating total
 // DONE reuse OrderTotal components for both CustomOrderView and OrderSummaryView
