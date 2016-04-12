@@ -80,8 +80,12 @@
 
 	// implement propTypes to components
 
+	// get selected shop set to state, render it out in confirmation screen
+	// make api call for extra info in handler that sets shop on state, use this extra info on confirmation screen (phone number, distance from, formatted address, etc.)
+	// use id on object, and use method for fetching a particular place in google maps api
+
 	// install moment into select pickup time
-	// add conditions to Link buttons
+	// add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for addtional info page condition
 	// look into Locu and Google Maps API
 	// create state for remaining views on App component state. Pass down to children components
 
@@ -25207,6 +25211,7 @@
 
 	    getInitialState: function getInitialState() {
 	        return {
+	            shops: [],
 	            items: [],
 	            specialInstructions: '',
 	            notification: false,
@@ -25221,6 +25226,51 @@
 	                cvv: undefined
 	            }
 	        };
+	    },
+
+	    componentWillMount: function componentWillMount() {
+	        this._getLocation();
+	    },
+
+	    _getLocation: function _getLocation() {
+	        if (navigator.geolocation) {
+	            navigator.geolocation.getCurrentPosition(this._getShops);
+	        } else {
+	            alert("Geolocation is not supported by this browser.");
+	        }
+	    },
+
+	    _getShops: function _getShops(position) {
+	        var self = this;
+	        var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+	        // Specify location, radius and place types for your Places API search.
+	        var request = {
+	            location: currentLocation,
+	            radius: '2000',
+	            types: ['cafe']
+	        };
+	        // Create the PlaceService and send the request.
+	        // Handle the callback with an anonymous function.
+	        var service = new google.maps.places.PlacesService(map);
+
+	        service.nearbySearch(request, function (results, status) {
+	            console.log(status);
+	            if (status == google.maps.places.PlacesServiceStatus.OK) {
+	                console.log(results);
+	                self._handleCoffeeShopState(results);
+	            }
+	        });
+	    },
+
+	    _handleCoffeeShopState: function _handleCoffeeShopState(results) {
+	        this.setState({
+	            shops: results
+	        });
+	    },
+
+	    _handleSelectedShop: function _handleSelectedShop() {
+	        console.log('selected shop');
 	    },
 
 	    _handleMethodOfTrans: function _handleMethodOfTrans(event) {
@@ -25354,7 +25404,9 @@
 	            ),
 	            _react2.default.cloneElement(this.props.children, {
 	                data: _dummyData2.default,
+	                shops: this.state.shops,
 	                items: this.state.items,
+	                handleSelectedShop: this._handleSelectedShop,
 	                handleSpecialInstructions: this._handleSpecialInstructions,
 	                specialInstructions: this.state.specialInstructions,
 	                notification: this.state.notification,
@@ -25379,14 +25431,6 @@
 	});
 
 	module.exports = App;
-
-	//   propTypes: {
-	//       toggleNotification: React.PropTypes.func,
-	//       notificationState: React.PropTypes.bool,
-	//       handleAddItemToOrder: React.PropTypes.func,
-	//       orderItems: React.PropTypes.array,
-	//       handleDeleteItemFromOrder: React.PropTypes.func
-	// },
 
 /***/ },
 /* 222 */
@@ -43231,7 +43275,9 @@
 	                'Select a Shop'
 	            ),
 	            _react2.default.createElement(_ShopSearch2.default, null),
-	            _react2.default.createElement(_ShopList2.default, null),
+	            _react2.default.createElement(_ShopList2.default, {
+	                shops: this.props.shops,
+	                handleSelectedShop: this.props.handleSelectedShop }),
 	            _react2.default.createElement(
 	                _reactRouter.Link,
 	                { to: '/custom-order' },
@@ -43352,12 +43398,19 @@
 
 
 	    render: function render() {
+	        var _this = this;
+
+	        var shops = this.props.shops.map(function (shop, index) {
+	            return _react2.default.createElement(_ShopListItem2.default, {
+	                shop: shop,
+	                handleSelectedShop: _this.props.handleSelectedShop,
+	                key: index });
+	        });
+
 	        return _react2.default.createElement(
 	            'div',
 	            null,
-	            _react2.default.createElement(_ShopListItem2.default, null),
-	            _react2.default.createElement(_ShopListItem2.default, null),
-	            _react2.default.createElement(_ShopListItem2.default, null),
+	            shops,
 	            _react2.default.createElement(_ClickForMore2.default, null)
 	        );
 	    }
@@ -43425,30 +43478,40 @@
 	    displayName: 'ShopListItem',
 
 
+	    propTypes: {
+	        shop: _react2.default.PropTypes.object.isRequired
+	    },
+
 	    render: function render() {
+
+	        // var imageUrl = this.props.shop.photos.length ?
+	        //     this.props.shop.photos[0].getUrl({'maxWidth': 300, 'maxHeight': 300})
+	        // :   ''
+
+	        // style={{
+	        //        background: 'url(' + imageUrl + ')' + 'no-repeat center center',
+	        //        backgroundSize: 'cover'
+	        //    }}
+
 	        return _react2.default.createElement(
 	            'div',
 	            null,
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'shop-list-item-container' },
+	                { className: 'shop-list-item-container',
+	                    onClick: this.props.handleSelectedShop },
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'shop-list-item-details' },
 	                    _react2.default.createElement(
 	                        'h2',
 	                        null,
-	                        'Coffee Company XYZ'
+	                        this.props.shop.name
 	                    ),
 	                    _react2.default.createElement(
 	                        'p',
 	                        null,
-	                        '123 Main St.'
-	                    ),
-	                    _react2.default.createElement(
-	                        'p',
-	                        null,
-	                        'Santa Monica, CA 90238'
+	                        this.props.shop.vicinity
 	                    )
 	                ),
 	                _react2.default.createElement(

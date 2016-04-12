@@ -7,11 +7,18 @@ var ShopList = React.createClass({
 
 
     render: function() {
+
+        var shops = this.props.shops.map(
+            (shop, index) => {
+                return <ShopListItem
+                            shop={shop}
+                            handleSelectedShop={this.props.handleSelectedShop}
+                            key={index} />
+        });
+
         return (
             <div>
-                <ShopListItem />
-                <ShopListItem />
-                <ShopListItem />
+                {shops}
                 <ClickForMore />
             </div>
         )

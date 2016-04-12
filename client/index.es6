@@ -23,8 +23,13 @@ ReactDOM.render(
 // implement propTypes to components
 
 
+
+// get selected shop set to state, render it out in confirmation screen
+// make api call for extra info in handler that sets shop on state, use this extra info on confirmation screen (phone number, distance from, formatted address, etc.)
+    // use id on object, and use method for fetching a particular place in google maps api
+
 // install moment into select pickup time
-// add conditions to Link buttons
+// add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for addtional info page condition
 // look into Locu and Google Maps API
 // create state for remaining views on App component state. Pass down to children components
 

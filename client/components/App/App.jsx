@@ -9,6 +9,7 @@ var App = React.createClass({
 
     getInitialState: function() {
         return {
+            shops: [],
             items: [],
             specialInstructions: '',
             notification: false,
@@ -25,6 +26,50 @@ var App = React.createClass({
         }
     },
 
+    componentWillMount: function() {
+        this._getLocation();
+    },
+
+    _getLocation: function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(this._getShops);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    },
+
+    _getShops: function(position) {
+        var self = this;
+        var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+        // Specify location, radius and place types for your Places API search.
+        var request = {
+            location: currentLocation,
+            radius: '2000',
+            types: ['cafe']
+        };
+        // Create the PlaceService and send the request.
+        // Handle the callback with an anonymous function.
+        var service = new google.maps.places.PlacesService(map);
+
+        service.nearbySearch(request, function(results, status) {
+            console.log(status);
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                console.log(results);
+                self._handleCoffeeShopState(results);
+            }
+        });
+    },
+
+    _handleCoffeeShopState: function(results) {
+        this.setState({
+            shops: results
+        })
+    },
+
+    _handleSelectedShop: function() {
+        console.log('selected shop')
+    },
 
     _handleMethodOfTrans: function(event) {
         this.setState({
@@ -148,7 +193,9 @@ var App = React.createClass({
                 {React.cloneElement(this.props.children
                      ,{
                          data: dummyData,
+                         shops: this.state.shops,
                          items: this.state.items,
+                         handleSelectedShop: this._handleSelectedShop,
                          handleSpecialInstructions: this._handleSpecialInstructions,
                          specialInstructions: this.state.specialInstructions,
                          notification: this.state.notification,
@@ -175,11 +222,3 @@ var App = React.createClass({
 });
 
 module.exports = App;
-
-//   propTypes: {
-//       toggleNotification: React.PropTypes.func,
-//       notificationState: React.PropTypes.bool,
-//       handleAddItemToOrder: React.PropTypes.func,
-//       orderItems: React.PropTypes.array,
-//       handleDeleteItemFromOrder: React.PropTypes.func
-// },
