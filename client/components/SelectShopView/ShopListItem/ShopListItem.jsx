@@ -1,5 +1,6 @@
 import React from 'react'
 import sass from './shop-list-item.scss'
+import { Link } from 'react-router'
 
 var ShopListItem = React.createClass({
 
@@ -20,14 +21,16 @@ var ShopListItem = React.createClass({
 
         return (
             <div>
+                <Link to="/custom-order">
                 <div className="shop-list-item-container"
-                onClick={this.props.handleSelectedShop} >
+                onClick={() => this.props.handleSelectedShop(this.props.shop)} >
                     <div className="shop-list-item-details">
                     <h2>{this.props.shop.name}</h2>
                     <p>{this.props.shop.vicinity}</p>
                 </div>
                 <p className="shop-list-distance">2.3 mi.</p>
                 </div>
+                </Link>
             </div>
         )
     }

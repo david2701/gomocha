@@ -10,6 +10,7 @@ var App = React.createClass({
     getInitialState: function() {
         return {
             shops: [],
+            selectedShop: {},
             items: [],
             specialInstructions: '',
             notification: false,
@@ -67,8 +68,11 @@ var App = React.createClass({
         })
     },
 
-    _handleSelectedShop: function() {
-        console.log('selected shop')
+    _handleSelectedShop: function(shop) {
+        console.log('selected shop');
+        this.setState({
+            selectedShop: shop
+        })
     },
 
     _handleMethodOfTrans: function(event) {
@@ -194,6 +198,7 @@ var App = React.createClass({
                      ,{
                          data: dummyData,
                          shops: this.state.shops,
+                         selectedShop: this.state.selectedShop,
                          items: this.state.items,
                          handleSelectedShop: this._handleSelectedShop,
                          handleSpecialInstructions: this._handleSpecialInstructions,

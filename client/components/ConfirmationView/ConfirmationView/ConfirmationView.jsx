@@ -11,7 +11,8 @@ var ConfirmationView = React.createClass({
             <div>
                 <h1>Order Confirmation</h1>
                 <OrderReadyTime />
-                <ShopDetails />
+                <ShopDetails
+                selectedShop={this.props.selectedShop} />
                 <DirectionsAndCall />
                 <Link to="/"><button className="next-button">Back to Dashboard</button></Link>
             </div>

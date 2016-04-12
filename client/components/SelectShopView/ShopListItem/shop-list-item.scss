@@ -1,20 +1,24 @@
 .shop-list-item-container {
+    background: #efefef;
     border: 1px solid black;
     width: 20em;
     padding: 1em;
     border-radius: 3px;
     margin: 0 auto 1em auto;
+
+    &:hover {
+        background: lighten(#efefef, 3%);
+        cursor: pointer;
+    }
 }
 
 .shop-list-item-details {
     display: inline-block;
-    border: 1px solid blue;
     border-radius: 3px;
 }
 
 .shop-list-distance {
     display: inline-block;
-    border: 1px solid red;
     border-radius: 3px;
     margin-left: 2em;
 }

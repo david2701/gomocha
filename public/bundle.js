@@ -80,15 +80,15 @@
 
 	// implement propTypes to components
 
-	// get selected shop set to state, render it out in confirmation screen
 	// make api call for extra info in handler that sets shop on state, use this extra info on confirmation screen (phone number, distance from, formatted address, etc.)
 	// use id on object, and use method for fetching a particular place in google maps api
 
 	// install moment into select pickup time
 	// add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for addtional info page condition
 	// look into Locu and Google Maps API
-	// create state for remaining views on App component state. Pass down to children components
 
+	// DONEcreate state for remaining views on App component state. Pass down to children components
+	// DONE get selected shop set to state, render it out in confirmation screen
 	// DONE pickUp time can't be set if "now" is checked, if someone checks pickup time and then decided now after already clicking now
 	// DONE add milk type, decaf, hot or cold options to order total row
 	// DONE add quantity * price feature when calculating total
@@ -25212,6 +25212,7 @@
 	    getInitialState: function getInitialState() {
 	        return {
 	            shops: [],
+	            selectedShop: {},
 	            items: [],
 	            specialInstructions: '',
 	            notification: false,
@@ -25269,8 +25270,11 @@
 	        });
 	    },
 
-	    _handleSelectedShop: function _handleSelectedShop() {
+	    _handleSelectedShop: function _handleSelectedShop(shop) {
 	        console.log('selected shop');
+	        this.setState({
+	            selectedShop: shop
+	        });
 	    },
 
 	    _handleMethodOfTrans: function _handleMethodOfTrans(event) {
@@ -25405,6 +25409,7 @@
 	            _react2.default.cloneElement(this.props.children, {
 	                data: _dummyData2.default,
 	                shops: this.state.shops,
+	                selectedShop: this.state.selectedShop,
 	                items: this.state.items,
 	                handleSelectedShop: this._handleSelectedShop,
 	                handleSpecialInstructions: this._handleSpecialInstructions,
@@ -43472,6 +43477,8 @@
 
 	var _shopListItem2 = _interopRequireDefault(_shopListItem);
 
+	var _reactRouter = __webpack_require__(164);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var ShopListItem = _react2.default.createClass({
@@ -43483,6 +43490,7 @@
 	    },
 
 	    render: function render() {
+	        var _this = this;
 
 	        // var imageUrl = this.props.shop.photos.length ?
 	        //     this.props.shop.photos[0].getUrl({'maxWidth': 300, 'maxHeight': 300})
@@ -43497,27 +43505,33 @@
 	            'div',
 	            null,
 	            _react2.default.createElement(
-	                'div',
-	                { className: 'shop-list-item-container',
-	                    onClick: this.props.handleSelectedShop },
+	                _reactRouter.Link,
+	                { to: '/custom-order' },
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'shop-list-item-details' },
+	                    { className: 'shop-list-item-container',
+	                        onClick: function onClick() {
+	                            return _this.props.handleSelectedShop(_this.props.shop);
+	                        } },
 	                    _react2.default.createElement(
-	                        'h2',
-	                        null,
-	                        this.props.shop.name
+	                        'div',
+	                        { className: 'shop-list-item-details' },
+	                        _react2.default.createElement(
+	                            'h2',
+	                            null,
+	                            this.props.shop.name
+	                        ),
+	                        _react2.default.createElement(
+	                            'p',
+	                            null,
+	                            this.props.shop.vicinity
+	                        )
 	                    ),
 	                    _react2.default.createElement(
 	                        'p',
-	                        null,
-	                        this.props.shop.vicinity
+	                        { className: 'shop-list-distance' },
+	                        '2.3 mi.'
 	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'p',
-	                    { className: 'shop-list-distance' },
-	                    '2.3 mi.'
 	                )
 	            )
 	        );
@@ -43561,7 +43575,7 @@
 
 
 	// module
-	exports.push([module.id, ".shop-list-item-container {\n  border: 1px solid black;\n  width: 20em;\n  padding: 1em;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n\n.shop-list-item-details {\n  display: inline-block;\n  border: 1px solid blue;\n  border-radius: 3px; }\n\n.shop-list-distance {\n  display: inline-block;\n  border: 1px solid red;\n  border-radius: 3px;\n  margin-left: 2em; }\n", ""]);
+	exports.push([module.id, ".shop-list-item-container {\n  background: #efefef;\n  border: 1px solid black;\n  width: 20em;\n  padding: 1em;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n  .shop-list-item-container:hover {\n    background: #f7f7f7;\n    cursor: pointer; }\n\n.shop-list-item-details {\n  display: inline-block;\n  border-radius: 3px; }\n\n.shop-list-distance {\n  display: inline-block;\n  border-radius: 3px;\n  margin-left: 2em; }\n", ""]);
 
 	// exports
 
@@ -44560,7 +44574,8 @@
 	                'Order Confirmation'
 	            ),
 	            _react2.default.createElement(_OrderReadyTime2.default, null),
-	            _react2.default.createElement(_ShopDetails2.default, null),
+	            _react2.default.createElement(_ShopDetails2.default, {
+	                selectedShop: this.props.selectedShop }),
 	            _react2.default.createElement(_DirectionsAndCall2.default, null),
 	            _react2.default.createElement(
 	                _reactRouter.Link,
@@ -44686,33 +44701,31 @@
 	    displayName: 'ShopDetails',
 
 	    render: function render() {
+
+	        var selectedShop = this.props.selectedShop;
+
 	        return _react2.default.createElement(
 	            'div',
 	            { className: 'shop-details-container' },
 	            _react2.default.createElement(
 	                'h2',
 	                null,
-	                'Coffee Shop Name'
+	                selectedShop.name
 	            ),
 	            _react2.default.createElement(
 	                'p',
 	                null,
-	                '123 Main St.'
+	                selectedShop.vicinity
 	            ),
 	            _react2.default.createElement(
 	                'p',
 	                null,
-	                'Santa Monica, CA 90237'
+	                'Phone: Not available at this time.'
 	            ),
 	            _react2.default.createElement(
 	                'p',
 	                null,
-	                '(818) 451-3284'
-	            ),
-	            _react2.default.createElement(
-	                'p',
-	                null,
-	                '1.2 mi.'
+	                'Distance: Not available at this time.'
 	            )
 	        );
 	    }
