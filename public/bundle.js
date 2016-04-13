@@ -43574,7 +43574,7 @@
 
 
 	// module
-	exports.push([module.id, ".shop-list-item-container {\n  background: #efefef;\n  border: 1px solid black;\n  width: 20em;\n  padding: 1em;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n  .shop-list-item-container:hover {\n    background: #f7f7f7;\n    cursor: pointer; }\n\n.shop-list-item-details {\n  display: inline-block;\n  border-radius: 3px; }\n\n.shop-list-distance {\n  display: inline-block;\n  border-radius: 3px;\n  margin-left: 2em; }\n", ""]);
+	exports.push([module.id, ".shop-list-item-container {\n  background: #efefef;\n  width: 20em;\n  padding: 1em;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n  .shop-list-item-container:hover {\n    background: #f4f4f4;\n    cursor: pointer; }\n\n.shop-list-item-details {\n  display: inline-block;\n  border-radius: 3px; }\n\n.shop-list-item-details h2 {\n  color: #000; }\n\n.shop-list-item-details p {\n  color: #000; }\n\n.shop-list-distance {\n  display: inline-block;\n  border-radius: 3px;\n  margin-left: 2em; }\n", ""]);
 
 	// exports
 

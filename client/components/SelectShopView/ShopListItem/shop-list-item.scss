@@ -1,13 +1,12 @@
 .shop-list-item-container {
     background: #efefef;
-    border: 1px solid black;
     width: 20em;
     padding: 1em;
     border-radius: 3px;
     margin: 0 auto 1em auto;
 
     &:hover {
-        background: lighten(#efefef, 3%);
+        background: lighten(#efefef, 2%);
         cursor: pointer;
     }
 }
@@ -15,6 +14,14 @@
 .shop-list-item-details {
     display: inline-block;
     border-radius: 3px;
+}
+
+.shop-list-item-details h2 {
+    color: #000;
+}
+
+.shop-list-item-details p {
+    color: #000;
 }
 
 .shop-list-distance {
