@@ -1,7 +1,14 @@
 .order-ready-time {
     font-size: 36px;
+    text-align: center;
 }
 
-.order-ready-time-container {
-    border: 1px solid red;
+.order-ready-time-container h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.order-ready-time-container p {
+    text-align: center;
+    font-size: 1.2em;
 }

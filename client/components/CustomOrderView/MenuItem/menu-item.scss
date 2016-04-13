@@ -1,16 +1,39 @@
 .drink-item {
     margin-bottom: 1.2em;
     background: #eee;
+    padding: 0.5em;
+    border-radius: 3px;
     select {
         margin-right: 0.5em;
     }
 }
 
-.item-price {
+.item-top-row {
+    margin-bottom: 0.75em;
+    width: 100%;
     display: inline-block;
-    padding-left: 2em;
 }
 
-.item-top-row {
-    margin-bottom: 0.5em;
+.item-name {
+    margin-right: 0.5em;
+    display: inline-block;
+    font-size: 1.2em;
+    width: 7em;
+}
+
+.item-options {
+    width: 17em;
+    display: inline-block;
+}
+
+.item-other-options {
+    font-size: 0.85em;
+}
+
+.item-price {
+    display: inline-block;
+    font-size: 1em;
+    padding-right: 2em;
+    float: right;
+    padding-top: 5px;
 }

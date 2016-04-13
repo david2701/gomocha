@@ -4,7 +4,7 @@ import sass from './select-if-favorite.scss'
 var SelectIfFavorite = React.createClass({
     render: function() {
         return (
-            <div>
+            <div className="select-if-favorite-container">
                 <h2>Favorite this order?</h2>
             <div className="select-if-favorite">
                     <label>Yes! <input

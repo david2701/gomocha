@@ -9,11 +9,12 @@ var CustomOrderView = React.createClass({
 
     render: function() {
         return (
-            <div>
+            <div className="main-wrap">
                 <AddItemNotification
                 toggleNotification={this.props.toggleNotification}
                 notificationState={this.props.notification} />
-            <h1>Place Your Order</h1>
+            
+                <h1>Place Your Order</h1>
                 <MenuFormContainer
                     data={this.props.data}
                     handleSpecialInstructions={this.props.handleSpecialInstructions}

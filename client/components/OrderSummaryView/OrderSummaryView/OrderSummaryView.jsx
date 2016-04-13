@@ -8,7 +8,7 @@ var OrderSummaryView = React.createClass({
 
     render: function() {
         return (
-            <div>
+            <div className="main-wrap">
                 <h1>Order Summary</h1>
                 <OrderTotal
                     orderItems={this.props.items}

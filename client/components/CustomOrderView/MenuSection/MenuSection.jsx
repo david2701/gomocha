@@ -21,7 +21,7 @@ var MenuSection = React.createClass({
             });
 
         return (
-            <section id="hot-drinks">
+            <section className="menu-section">
                 <h2>{sectionTitle}</h2>
                     {menuItems}
                 <div className="divider"></div>

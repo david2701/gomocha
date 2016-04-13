@@ -4,7 +4,7 @@ import sass from './enter-payment-info.scss'
 var EnterPaymentInfo = React.createClass({
     render: function() {
         return (
-            <div>
+            <div className="enter-payment-info-container">
                 <h2>Enter Payment Info</h2>
                 <div className="">
                     <label>Name on Card

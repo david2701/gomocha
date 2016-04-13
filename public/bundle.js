@@ -87,7 +87,7 @@
 	// add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for addtional info page condition
 	// look into Locu and Google Maps API
 
-	// DONEcreate state for remaining views on App component state. Pass down to children components
+	// DONE create state for remaining views on App component state. Pass down to children components
 	// DONE get selected shop set to state, render it out in confirmation screen
 	// DONE pickUp time can't be set if "now" is checked, if someone checks pickup time and then decided now after already clicking now
 	// DONE add milk type, decaf, hot or cold options to order total row
@@ -26636,7 +26636,7 @@
 
 
 	// module
-	exports.push([module.id, "nav.main-nav {\n  width: 90%;\n  margin: 0 auto;\n  text-align: center; }\n\nnav.main-nav ul {\n  width: 80%;\n  margin: 0 auto;\n  padding: 0; }\n\nnav.main-nav ul li {\n  display: inline-block;\n  padding: 1em;\n  background: #1987FE;\n  border-radius: 5px;\n  margin-right: 5px; }\n\n.router-link {\n  text-decoration: none;\n  color: #fff; }\n\n.next-button {\n  margin-top: 1em;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer; }\n", ""]);
+	exports.push([module.id, "nav.main-nav {\n  width: 90%;\n  margin: 0 auto;\n  text-align: center; }\n\nnav.main-nav ul {\n  width: 80%;\n  margin: 0 auto;\n  padding: 0; }\n\nnav.main-nav ul li {\n  display: inline-block;\n  padding: 1em;\n  background: #1987FE;\n  border-radius: 5px;\n  margin-right: 5px; }\n\n.router-link {\n  text-decoration: none;\n  color: #fff; }\n\n.center-wrap {\n  width: 520px;\n  margin: 0 auto; }\n\n.next-button {\n  margin: 1em 0 0 0;\n  text-align: center;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer;\n    background: #4582db; }\n", ""]);
 
 	// exports
 
@@ -41841,6 +41841,10 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
+	var _dashboardView = __webpack_require__(408);
+
+	var _dashboardView2 = _interopRequireDefault(_dashboardView);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var DashboardView = _react2.default.createClass({
@@ -41856,17 +41860,16 @@
 	                null,
 	                'Start - Search for a Coffee Shop!'
 	            ),
-	            _react2.default.createElement(_SearchShop2.default, null),
-	            _react2.default.createElement(_PrevAndFavorites2.default, null),
 	            _react2.default.createElement(
 	                _reactRouter.Link,
-	                { to: '/select-shop' },
+	                { to: '/select-shop', className: 'start-button-wrap' },
 	                _react2.default.createElement(
 	                    'button',
-	                    { className: 'next-button' },
-	                    'Next'
+	                    { className: 'next-button start-button' },
+	                    'Start'
 	                )
-	            )
+	            ),
+	            _react2.default.createElement(_PrevAndFavorites2.default, null)
 	        );
 	    }
 	});
@@ -41924,7 +41927,7 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'center-wrap' },
 	            _react2.default.createElement(
 	                'div',
 	                { className: 'prev-orders-button' },
@@ -41978,7 +41981,7 @@
 
 
 	// module
-	exports.push([module.id, ".prev-orders-button, .fav-orders-button {\n  width: 15em;\n  display: inline-block;\n  border: 1px solid blue;\n  text-align: center;\n  padding-top: 5em;\n  padding-bottom: 5em;\n  border-radius: 5px;\n  margin-top: 2em; }\n\n.fav-orders-button {\n  margin-left: 2em; }\n", ""]);
+	exports.push([module.id, ".prev-orders-button, .fav-orders-button {\n  width: 15em;\n  display: inline-block;\n  border: 1px solid #bbb;\n  text-align: center;\n  padding-top: 5em;\n  padding-bottom: 5em;\n  border-radius: 5px;\n  margin-top: 2em; }\n  .prev-orders-button:hover, .fav-orders-button:hover {\n    border: 1px solid #0088CC;\n    cursor: pointer; }\n\n.fav-orders-button {\n  margin-left: 2em; }\n", ""]);
 
 	// exports
 
@@ -42020,7 +42023,7 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'main-wrap' },
 	            _react2.default.createElement(_AddItemNotification2.default, {
 	                toggleNotification: this.props.toggleNotification,
 	                notificationState: this.props.notification }),
@@ -42164,7 +42167,7 @@
 
 	        return _react2.default.createElement(
 	            'section',
-	            { id: 'hot-drinks' },
+	            { className: 'menu-section' },
 	            _react2.default.createElement(
 	                'h2',
 	                null,
@@ -42317,22 +42320,25 @@
 	            'div',
 	            { className: 'drink-item' },
 	            _react2.default.createElement(
-	                'label',
-	                { htmlFor: 'hot-drink' },
-	                this.props.itemName
-	            ),
-	            _react2.default.createElement('br', null),
-	            _react2.default.createElement(
 	                'div',
 	                { className: 'item-top-row' },
-	                this.props.options.map(this._renderOption),
-	                this._checkFormComplete() ? _react2.default.createElement(_AddToOrderButton2.default, {
-	                    handleAddItemToOrder: this._handleAddItemToOrder,
-	                    handleItemFormComplete: this._handleItemFormComplete,
-	                    toggleNotification: this.props.toggleNotification,
-	                    itemName: this.props.itemName,
-	                    price: this.props.price,
-	                    itemDetails: this.state }) : '',
+	                _react2.default.createElement(
+	                    'label',
+	                    { htmlFor: 'hot-drink', className: 'item-name' },
+	                    this.props.itemName
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'item-options' },
+	                    this.props.options.map(this._renderOption),
+	                    this._checkFormComplete() ? _react2.default.createElement(_AddToOrderButton2.default, {
+	                        handleAddItemToOrder: this._handleAddItemToOrder,
+	                        handleItemFormComplete: this._handleItemFormComplete,
+	                        toggleNotification: this.props.toggleNotification,
+	                        itemName: this.props.itemName,
+	                        price: this.props.price,
+	                        itemDetails: this.state }) : ''
+	                ),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'item-price' },
@@ -42340,7 +42346,11 @@
 	                    this.props.price.toFixed(2)
 	                )
 	            ),
-	            this.props.options.map(this._renderOption2)
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'item-other-options' },
+	                this.props.options.map(this._renderOption2)
+	            )
 	        );
 	    }
 	});
@@ -42721,7 +42731,7 @@
 
 
 	// module
-	exports.push([module.id, ".drink-item {\n  margin-bottom: 1.2em;\n  background: #eee; }\n  .drink-item select {\n    margin-right: 0.5em; }\n\n.item-price {\n  display: inline-block;\n  padding-left: 2em; }\n\n.item-top-row {\n  margin-bottom: 0.5em; }\n", ""]);
+	exports.push([module.id, ".drink-item {\n  margin-bottom: 1.2em;\n  background: #eee;\n  padding: 0.5em;\n  border-radius: 3px; }\n  .drink-item select {\n    margin-right: 0.5em; }\n\n.item-top-row {\n  margin-bottom: 0.75em;\n  width: 100%;\n  display: inline-block; }\n\n.item-name {\n  margin-right: 0.5em;\n  display: inline-block;\n  font-size: 1.2em;\n  width: 7em; }\n\n.item-options {\n  width: 17em;\n  display: inline-block; }\n\n.item-other-options {\n  font-size: 0.85em; }\n\n.item-price {\n  display: inline-block;\n  font-size: 1em;\n  padding-right: 2em;\n  float: right;\n  padding-top: 5px; }\n", ""]);
 
 	// exports
 
@@ -42761,7 +42771,7 @@
 
 
 	// module
-	exports.push([module.id, ".divider {\n  width: 20em;\n  border-bottom: 1px solid black; }\n", ""]);
+	exports.push([module.id, ".menu-section {\n  width: 34em;\n  margin-bottom: 2.5em; }\n\n.divider {\n  width: 20em;\n  border-bottom: 1px solid black; }\n", ""]);
 
 	// exports
 
@@ -43273,25 +43283,15 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'main-wrap' },
 	            _react2.default.createElement(
 	                'h1',
 	                null,
 	                'Select a Shop'
 	            ),
-	            _react2.default.createElement(_ShopSearch2.default, null),
 	            _react2.default.createElement(_ShopList2.default, {
 	                shops: this.props.shops,
-	                handleSelectedShop: this.props.handleSelectedShop }),
-	            _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/custom-order' },
-	                _react2.default.createElement(
-	                    'button',
-	                    { className: 'next-button' },
-	                    'Next'
-	                )
-	            )
+	                handleSelectedShop: this.props.handleSelectedShop })
 	        );
 	    }
 	});
@@ -43415,8 +43415,7 @@
 	        return _react2.default.createElement(
 	            'div',
 	            null,
-	            shops,
-	            _react2.default.createElement(_ClickForMore2.default, null)
+	            shops
 	        );
 	    }
 	});
@@ -43695,7 +43694,7 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'main-wrap' },
 	            _react2.default.createElement(
 	                'h1',
 	                null,
@@ -43838,7 +43837,7 @@
 
 
 	// module
-	exports.push([module.id, ".method-of-trans {\n  border: 1px solid blue;\n  display: inline-block;\n  width: 32%;\n  height: 10em;\n  border-radius: 5px; }\n\n.method-of-trans p {\n  padding-top: 3.5em; }\n\n.method-of-trans-container {\n  text-align: center; }\n\n.method-of-trans-container > h2 {\n  text-align: left; }\n", ""]);
+	exports.push([module.id, ".method-of-trans {\n  border: 1px solid blue;\n  display: inline-block;\n  width: 32%;\n  height: 10em;\n  border-radius: 5px; }\n\n.method-of-trans p {\n  padding-top: 3.5em; }\n\n.method-of-trans-container {\n  text-align: center;\n  padding: 0.75em;\n  background: #efefef;\n  width: 30em;\n  border-radius: 3px;\n  margin-bottom: 1em; }\n\n.method-of-trans-container > h2 {\n  text-align: left; }\n", ""]);
 
 	// exports
 
@@ -44101,7 +44100,7 @@
 
 
 	// module
-	exports.push([module.id, ".select-pick-up-now {\n  margin-right: 5em;\n  display: inline-block; }\n\n.select-pick-up-time {\n  display: inline-block; }\n", ""]);
+	exports.push([module.id, ".select-pick-up-container {\n  padding: 0.75em;\n  background: #efefef;\n  width: 30em;\n  border-radius: 3px;\n  margin-bottom: 1em; }\n  .select-pick-up-container h2 {\n    margin: 0 0.25em 0.25em 0.25em;\n    padding-bottom: 0.5em; }\n\n.select-pick-up-now {\n  margin-right: 5em;\n  display: inline-block; }\n\n.select-pick-up-time {\n  display: inline-block; }\n", ""]);
 
 	// exports
 
@@ -44128,7 +44127,7 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'select-if-favorite-container' },
 	            _react2.default.createElement(
 	                'h2',
 	                null,
@@ -44188,7 +44187,7 @@
 
 
 	// module
-	exports.push([module.id, "", ""]);
+	exports.push([module.id, ".select-if-favorite-container {\n  padding: 0.75em;\n  background: #efefef;\n  width: 30em;\n  border-radius: 3px;\n  margin-bottom: 1em; }\n", ""]);
 
 	// exports
 
@@ -44215,7 +44214,7 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'enter-payment-info-container' },
 	            _react2.default.createElement(
 	                'h2',
 	                null,
@@ -44426,7 +44425,7 @@
 
 
 	// module
-	exports.push([module.id, "", ""]);
+	exports.push([module.id, ".enter-payment-info-container {\n  padding: 0.75em;\n  background: #efefef;\n  width: 30em;\n  border-radius: 3px; }\n", ""]);
 
 	// exports
 
@@ -44464,7 +44463,7 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'main-wrap' },
 	            _react2.default.createElement(
 	                'h1',
 	                null,
@@ -44558,6 +44557,10 @@
 
 	var _reactRouter = __webpack_require__(164);
 
+	var _confirmationView = __webpack_require__(410);
+
+	var _confirmationView2 = _interopRequireDefault(_confirmationView);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var ConfirmationView = _react2.default.createClass({
@@ -44567,19 +44570,23 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'main-wrap' },
 	            _react2.default.createElement(
 	                'h1',
 	                null,
 	                'Order Confirmation'
 	            ),
-	            _react2.default.createElement(_OrderReadyTime2.default, null),
-	            _react2.default.createElement(_ShopDetails2.default, {
-	                selectedShop: this.props.selectedShop }),
-	            _react2.default.createElement(_DirectionsAndCall2.default, null),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'confirmation-view-container' },
+	                _react2.default.createElement(_OrderReadyTime2.default, null),
+	                _react2.default.createElement(_ShopDetails2.default, {
+	                    selectedShop: this.props.selectedShop }),
+	                _react2.default.createElement(_DirectionsAndCall2.default, null)
+	            ),
 	            _react2.default.createElement(
 	                _reactRouter.Link,
-	                { to: '/' },
+	                { to: '/', className: 'back-to-dashboard' },
 	                _react2.default.createElement(
 	                    'button',
 	                    { className: 'next-button' },
@@ -44676,7 +44683,7 @@
 
 
 	// module
-	exports.push([module.id, ".order-ready-time {\n  font-size: 36px; }\n\n.order-ready-time-container {\n  border: 1px solid red; }\n", ""]);
+	exports.push([module.id, ".order-ready-time {\n  font-size: 36px;\n  text-align: center; }\n\n.order-ready-time-container h2 {\n  margin-top: 0;\n  text-align: center; }\n\n.order-ready-time-container p {\n  text-align: center;\n  font-size: 1.2em; }\n", ""]);
 
 	// exports
 
@@ -44768,7 +44775,7 @@
 
 
 	// module
-	exports.push([module.id, ".shop-details-container {\n  border: 1px solid blue; }\n", ""]);
+	exports.push([module.id, ".shop-details-container {\n  padding-top: 1em; }\n", ""]);
 
 	// exports
 
@@ -44777,30 +44784,34 @@
 /* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _react = __webpack_require__(5);
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _directionsAndCall = __webpack_require__(412);
+
+	var _directionsAndCall2 = _interopRequireDefault(_directionsAndCall);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var DirectionsAndCall = _react2.default.createClass({
-	    displayName: "DirectionsAndCall",
+	    displayName: 'DirectionsAndCall',
 
 	    render: function render() {
 	        return _react2.default.createElement(
-	            "div",
+	            'div',
 	            null,
 	            _react2.default.createElement(
-	                "button",
-	                { className: "next-button" },
-	                "Get Directions"
+	                'button',
+	                { className: 'next-button get-directions-button' },
+	                'Get Directions'
 	            ),
 	            _react2.default.createElement(
-	                "button",
-	                { className: "next-button" },
-	                "Call Shop"
+	                'button',
+	                { className: 'next-button' },
+	                'Call Shop'
 	            )
 	        );
 	    }
@@ -59442,6 +59453,128 @@
 	    return zh_tw;
 
 	}));
+
+/***/ },
+/* 406 */,
+/* 407 */,
+/* 408 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(409);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./dashboard-view.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./dashboard-view.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 409 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".start-button-wrap {\n  display: block;\n  width: 133px;\n  margin: 0 auto; }\n\n.start-button {\n  background: #3FB083; }\n  .start-button:hover {\n    background: #43bb8b; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 410 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(411);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./confirmation-view.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./confirmation-view.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 411 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".confirmation-view-container {\n  width: 25em;\n  margin: 0 auto;\n  background: #efefef;\n  border-radius: 3px;\n  padding: 1em 1em 1.25em 2em; }\n\n.back-to-dashboard {\n  width: 15em;\n  margin: 2em auto 0 auto;\n  display: block; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 412 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(413);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./directions-and-call.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./directions-and-call.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 413 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".get-directions-button {\n  margin-right: 1em; }\n", ""]);
+
+	// exports
+
 
 /***/ }
 /******/ ]);

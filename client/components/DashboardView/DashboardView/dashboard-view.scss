@@ -1,0 +1,13 @@
+.start-button-wrap {
+    display: block;
+    width: 133px;
+    margin: 0 auto;
+}
+
+.start-button {
+    background: #3FB083;
+
+    &:hover {
+        background: lighten(#3FB083, 3%);
+    }
+}

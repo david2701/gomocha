@@ -30,7 +30,7 @@ ReactDOM.render(
 // add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for addtional info page condition
 // look into Locu and Google Maps API
 
-// DONEcreate state for remaining views on App component state. Pass down to children components
+// DONE create state for remaining views on App component state. Pass down to children components
 // DONE get selected shop set to state, render it out in confirmation screen
 // DONE pickUp time can't be set if "now" is checked, if someone checks pickup time and then decided now after already clicking now
 // DONE add milk type, decaf, hot or cold options to order total row

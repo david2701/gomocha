@@ -8,13 +8,13 @@ var SelectShopView = React.createClass({
 
     render: function() {
         return (
-            <div>
+            <div className="main-wrap">
                 <h1>Select a Shop</h1>
-                <ShopSearch />
+                {/*<ShopSearch />*/}
                 <ShopList
                 shops={this.props.shops}
                 handleSelectedShop={this.props.handleSelectedShop} />
-                <Link to="/custom-order"><button className="next-button">Next</button></Link>
+                {/*<Link to="/custom-order"><button className="next-button">Next</button></Link>*/}
             </div>
         )
     }

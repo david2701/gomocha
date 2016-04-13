@@ -3,6 +3,7 @@ import SearchShop from '../SearchShop/SearchShop'
 import PrevAndFavorites from '../PrevAndFavorites/PrevAndFavorites'
 import { Link } from 'react-router'
 import sass from '../../App/app.scss'
+import sass2 from './dashboard-view.scss'
 
 var DashboardView = React.createClass({
 
@@ -10,10 +11,10 @@ var DashboardView = React.createClass({
     render: function() {
         return (
             <div>
-                <h1>Start - Search for a Coffee Shop!</h1>
-                <SearchShop />
-                <PrevAndFavorites />
-                <Link to="/select-shop"><button className="next-button">Next</button></Link>
+                    <h1>Start - Search for a Coffee Shop!</h1>
+                    {/*<SearchShop />*/}
+                    <Link to="/select-shop" className="start-button-wrap"><button className="next-button start-button">Start</button></Link>
+                    <PrevAndFavorites />
             </div>
         )
     }

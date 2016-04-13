@@ -101,10 +101,12 @@ var MenuItem = React.createClass({
     render: function() {
         return (
             <div className="drink-item">
-                {/* Item Label */}
-                <label htmlFor="hot-drink">{this.props.itemName}</label><br />
 
                 <div className="item-top-row">
+                    {/* Item Label */}
+                    <label htmlFor="hot-drink" className="item-name">{this.props.itemName}</label>
+
+                    <div className="item-options">
                     {/* MilkType - Size - Quantity */}
                     {this.props.options.map(this._renderOption)}
 
@@ -117,16 +119,17 @@ var MenuItem = React.createClass({
                         itemName={this.props.itemName}
                         price={this.props.price}
                         itemDetails={this.state} /> : ''}
+                    </div>
                     {/* Price */}
                     <div className="item-price">
                         ${this.props.price.toFixed(2)}
-
                     </div>
                 </div>
 
                 {/* Decaf - HotOrCold */}
+                <div className="item-other-options">
                 {this.props.options.map(this._renderOption2)}
-
+                </div>
             </div>
         )
     }

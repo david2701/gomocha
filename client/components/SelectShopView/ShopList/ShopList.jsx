@@ -19,7 +19,7 @@ var ShopList = React.createClass({
         return (
             <div>
                 {shops}
-                <ClickForMore />
+                {/*<ClickForMore />*/}
             </div>
         )
     }
