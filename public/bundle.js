@@ -84,7 +84,7 @@
 	// use id on object, and use method for fetching a particular place in google maps api
 
 	// install moment into select pickup time
-	// add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for addtional info page condition
+	// add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for additional info page condition
 	// look into Locu and Google Maps API
 
 	// DONE create state for remaining views on App component state. Pass down to children components
