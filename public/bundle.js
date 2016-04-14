@@ -80,6 +80,10 @@
 
 	// implement propTypes to components
 
+	// store users position on state of app
+	// make another call to google maps api to calculate user's distance from shop
+	// make calls for time it will take to walk/bike/drive at same time you call getDetails
+	// add in 'open now' feature
 	// make api call for extra info in handler that sets shop on state, use this extra info on confirmation screen (phone number, distance from, formatted address, etc.)
 	// use id on object, and use method for fetching a particular place in google maps api
 
@@ -25203,6 +25207,10 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
+	var _api = __webpack_require__(414);
+
+	var _api2 = _interopRequireDefault(_api);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var App = _react2.default.createClass({
@@ -25230,38 +25238,11 @@
 	    },
 
 	    componentWillMount: function componentWillMount() {
-	        this._getLocation();
+	        _api2.default.getLocation(this._handleGetLocation);
 	    },
 
-	    _getLocation: function _getLocation() {
-	        if (navigator.geolocation) {
-	            navigator.geolocation.getCurrentPosition(this._getShops);
-	        } else {
-	            alert("Geolocation is not supported by this browser.");
-	        }
-	    },
-
-	    _getShops: function _getShops(position) {
-	        var self = this;
-	        var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-	        // Specify location, radius and place types for your Places API search.
-	        var request = {
-	            location: currentLocation,
-	            radius: '2000',
-	            types: ['cafe']
-	        };
-	        // Create the PlaceService and send the request.
-	        // Handle the callback with an anonymous function.
-	        var service = new google.maps.places.PlacesService(map);
-
-	        service.nearbySearch(request, function (results, status) {
-	            console.log(status);
-	            if (status == google.maps.places.PlacesServiceStatus.OK) {
-	                console.log(results);
-	                self._handleCoffeeShopState(results);
-	            }
-	        });
+	    _handleGetLocation: function _handleGetLocation(position) {
+	        _api2.default.getShops(position, this._handleCoffeeShopState);
 	    },
 
 	    _handleCoffeeShopState: function _handleCoffeeShopState(results) {
@@ -25271,9 +25252,15 @@
 	    },
 
 	    _handleSelectedShop: function _handleSelectedShop(shop) {
-	        console.log('selected shop');
+	        _api2.default.getDetails(shop.place_id, this._handleSelectedShopDetails);
 	        this.setState({
 	            selectedShop: shop
+	        });
+	    },
+
+	    _handleSelectedShopDetails: function _handleSelectedShopDetails(place) {
+	        this.setState({
+	            selectedShop: place
 	        });
 	    },
 
@@ -59575,6 +59562,59 @@
 
 	// exports
 
+
+/***/ },
+/* 414 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = {
+
+	    getLocation: function getLocation(callback) {
+	        if (navigator.geolocation) {
+	            navigator.geolocation.getCurrentPosition(callback);
+	        } else {
+	            alert("Geolocation is not supported by this browser.");
+	        }
+	    },
+
+	    getShops: function getShops(position, callback) {
+	        var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+	        // Specify location, radius and place types for your Places API search.
+	        var request = {
+	            location: currentLocation,
+	            radius: '2000',
+	            types: ['cafe']
+	        };
+	        // Create the PlaceService and send the request.
+	        // Handle the callback with an anonymous function.
+	        var service = new google.maps.places.PlacesService(map);
+
+	        service.nearbySearch(request, function (results, status) {
+	            console.log(status);
+	            if (status == google.maps.places.PlacesServiceStatus.OK) {
+	                console.log(results);
+	                callback(results);
+	            }
+	        });
+	    },
+
+	    getDetails: function getDetails(placeId, callback) {
+	        var service = new google.maps.places.PlacesService(map);
+
+	        service.getDetails({
+	            placeId: placeId
+	        }, function (place, status) {
+	            if (status === google.maps.places.PlacesServiceStatus.OK) {
+	                console.log(place);
+	                console.log(status);
+	                callback(place);
+	            }
+	        });
+	    }
+	};
 
 /***/ }
 /******/ ]);

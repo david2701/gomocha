@@ -4,6 +4,7 @@ import dummyData from '../../../dummy-data.json'
 import sass from './app.scss'
 import AddItemNotification from '../CustomOrderView/AddItemNotification/AddItemNotification'
 import _ from 'lodash'
+import api from '../../api'
 
 var App = React.createClass({
 
@@ -28,38 +29,11 @@ var App = React.createClass({
     },
 
     componentWillMount: function() {
-        this._getLocation();
+        api.getLocation(this._handleGetLocation)
     },
 
-    _getLocation: function() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this._getShops);
-        } else {
-            alert("Geolocation is not supported by this browser.");
-        }
-    },
-
-    _getShops: function(position) {
-        var self = this;
-        var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-        // Specify location, radius and place types for your Places API search.
-        var request = {
-            location: currentLocation,
-            radius: '2000',
-            types: ['cafe']
-        };
-        // Create the PlaceService and send the request.
-        // Handle the callback with an anonymous function.
-        var service = new google.maps.places.PlacesService(map);
-
-        service.nearbySearch(request, function(results, status) {
-            console.log(status);
-            if (status == google.maps.places.PlacesServiceStatus.OK) {
-                console.log(results);
-                self._handleCoffeeShopState(results);
-            }
-        });
+    _handleGetLocation: function(position) {
+        api.getShops(position, this._handleCoffeeShopState)
     },
 
     _handleCoffeeShopState: function(results) {
@@ -69,9 +43,15 @@ var App = React.createClass({
     },
 
     _handleSelectedShop: function(shop) {
-        console.log('selected shop');
+        api.getDetails(shop.place_id, this._handleSelectedShopDetails);
         this.setState({
             selectedShop: shop
+        })
+    },
+
+    _handleSelectedShopDetails: function(place) {
+        this.setState({
+            selectedShop: place
         })
     },
 

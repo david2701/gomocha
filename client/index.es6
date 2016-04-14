@@ -22,7 +22,10 @@ ReactDOM.render(
 
 // implement propTypes to components
 
-
+// store users position on state of app
+// make another call to google maps api to calculate user's distance from shop
+// make calls for time it will take to walk/bike/drive at same time you call getDetails
+// add in 'open now' feature
 // make api call for extra info in handler that sets shop on state, use this extra info on confirmation screen (phone number, distance from, formatted address, etc.)
     // use id on object, and use method for fetching a particular place in google maps api
 
