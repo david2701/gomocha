@@ -1,6 +1,6 @@
 nav.main-nav{
     width: 90%;
-    margin: 0 auto;
+    margin: 0 auto 3em auto;
     text-align: center;
 }
 
@@ -12,16 +12,22 @@ nav.main-nav ul{
 
 nav.main-nav ul li {
     display: inline-block;
-    padding: 1em;
-    background: #1987FE;
+    padding: 0.75em;
+    border: 1px solid #1987FE;
     border-radius: 5px;
     margin-right: 5px;
+
+    &:hover {
+        // border: 1px solid #000;
+        color: #000;
+    }
 
 }
 
 .router-link {
+    font-size: 0.85em;
     text-decoration: none;
-    color: #fff;
+    color: #1987FE;
 }
 
 

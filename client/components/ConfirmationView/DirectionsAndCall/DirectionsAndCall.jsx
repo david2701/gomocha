@@ -10,7 +10,6 @@ var DirectionsAndCall = React.createClass({
             <div>
                 <button className="next-button get-directions-button">Get Directions</button>
                 <a href={callPhone}><button className="next-button">Call Shop</button></a>
-                {callPhone}
             </div>
         )
     }
