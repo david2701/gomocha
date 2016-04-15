@@ -4,6 +4,7 @@ import ShopDetails from '../ShopDetails/ShopDetails'
 import DirectionsAndCall from '../DirectionsAndCall/DirectionsAndCall'
 import { Link } from 'react-router'
 import sass from './confirmation-view.scss'
+import sass2 from '../../App/app.scss'
 
 var ConfirmationView = React.createClass({
 

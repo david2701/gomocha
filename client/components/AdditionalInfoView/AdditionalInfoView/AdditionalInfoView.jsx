@@ -5,6 +5,7 @@ import SelectIfFavorite from '../SelectIfFavorite/SelectIfFavorite'
 import EnterPaymentInfo from '../EnterPaymentInfo/EnterPaymentInfo'
 import { Link } from 'react-router'
 import sass from '../../App/app.scss'
+import sass2 from './additional-info-view.scss'
 
 var AdditionalInfoView = React.createClass({
 
@@ -29,7 +30,9 @@ var AdditionalInfoView = React.createClass({
                         handleCCExpYear={this.props.handleCCExpYear}
                         expYearValue={this.props.expYear || 'default'}
                         handleCCCVV={this.props.handleCCCVV} />
-                    <Link to="/order-summary"><button className="next-button">Next</button></Link>
+                    <div className="next-button-container">
+                        <Link to="/order-summary"><button className="next-button">Next</button></Link>
+                    </div>
                 </form>
             </div>
         )

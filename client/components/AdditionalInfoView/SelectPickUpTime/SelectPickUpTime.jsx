@@ -15,7 +15,7 @@ var SelectPickUpTime = React.createClass({
                     </label>
                 </div>
                 <div className="select-pick-up-time">
-                    <label>Pick up at:
+                    <label>Pick up at:<span>  </span>
                         <select
                             onChange={(event) => this.props.handlePickupTime(event.target.value)}
                             name="pickup-time"

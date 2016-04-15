@@ -1,9 +1,10 @@
 .method-of-trans {
-    border: 1px solid blue;
-    display: inline-block;
-    width: 32%;
-    height: 10em;
-    border-radius: 5px;
+    // border: 1px solid blue;
+    // display: inline-block;
+    // width: 32%;
+    // height: 10em;
+    // border-radius: 5px;
+    padding-right: 2em;
 }
 
 .method-of-trans p {
@@ -16,7 +17,7 @@
     background: #efefef;
     width: 30em;
     border-radius: 3px;
-    margin-bottom: 1em;
+    margin: 0 auto 1em auto;
 }
 
 .method-of-trans-container > h2 {

@@ -1,7 +1,9 @@
 nav.main-nav{
-    width: 90%;
+    width: 100%;
     margin: 0 auto 3em auto;
     text-align: center;
+    border-bottom: 1px solid #191919;
+    padding: 1em 0 1em 0;
 }
 
 nav.main-nav ul{
@@ -18,8 +20,7 @@ nav.main-nav ul li {
     margin-right: 5px;
 
     &:hover {
-        // border: 1px solid #000;
-        color: #000;
+        color: #191919;
     }
 
 }
@@ -52,4 +53,8 @@ nav.main-nav ul li {
         background: lighten(#3879D9, 3%);
     }
 
+}
+
+.main-wrap {
+    padding: 1em;
 }

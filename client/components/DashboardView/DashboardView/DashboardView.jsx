@@ -10,7 +10,7 @@ var DashboardView = React.createClass({
 
     render: function() {
         return (
-            <div>
+            <div className="main-wrap">
                     <h1>Start - Search for a Coffee Shop!</h1>
                     {/*<SearchShop />*/}
                     <Link to="/select-shop" className="start-button-wrap"><button className="next-button start-button">Start</button></Link>

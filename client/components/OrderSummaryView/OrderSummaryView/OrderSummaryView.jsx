@@ -3,6 +3,7 @@ import OrderTotal from '../../CustomOrderView/OrderTotal/OrderTotal'
 import SpecialInstructionsOS from '../SpecialInstructionsOS/SpecialInstructionsOS'
 import { Link } from 'react-router'
 import sass from '../../App/app.scss'
+import sass2 from './order-summary.scss'
 
 var OrderSummaryView = React.createClass({
 
@@ -10,9 +11,12 @@ var OrderSummaryView = React.createClass({
         return (
             <div className="main-wrap">
                 <h1>Order Summary</h1>
-                <OrderTotal
-                    orderItems={this.props.items}
-                    handleDeleteItemFromOrder={this.props.handleDeleteItemFromOrder} />
+            <div className="order-summary-container">
+                <div className="os-order-total-container">
+                    <OrderTotal
+                        orderItems={this.props.items}
+                        handleDeleteItemFromOrder={this.props.handleDeleteItemFromOrder} />
+                </div>
                 <SpecialInstructionsOS
                     specialInstructions={this.props.specialInstructions} />
                 <Link to="/confirmation">
@@ -24,6 +28,7 @@ var OrderSummaryView = React.createClass({
                     <button className="next-button">Edit my order
                     </button>
                 </Link>
+            </div>
             </div>
         )
     }
