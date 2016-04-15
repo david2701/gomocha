@@ -28,10 +28,17 @@ var App = React.createClass({
         }
     },
 
+    // Calls the getLocation function which returns the user's current location
+    // and passes it to its callback (_handleGetLocation)
     componentWillMount: function() {
         api.getLocation(this._handleGetLocation)
     },
 
+    // Takes the user's current location from api.getLocation and passes it as the
+    // first parameter to api.getShops. getShops uses this location to produce a
+    // list of coffee shops within a specified radius from the user's location.
+    // It also passes _handleCoffeeShopState as a second parameter, which takes the
+    // results (array of objects) and sets it to this.state.shops
     _handleGetLocation: function(position) {
         api.getShops(position, this._handleCoffeeShopState)
     },
@@ -42,6 +49,11 @@ var App = React.createClass({
         })
     },
 
+    // Calls api.getDetails and passes in selected shop's place_id (shop object is about to
+    // be set to this.state.selectedShop), allowing google maps api to retrieve the
+    // details of the user's selected shop. It passes in _handleSelectedShopDetails as a
+    // callback, which gets passed the 'place' in getDetails and overwrites previous setState
+    // and sets this.state.selectedShop to place, which contains all details of shop
     _handleSelectedShop: function(shop) {
         api.getDetails(shop.place_id, this._handleSelectedShopDetails);
         this.setState({
@@ -188,6 +200,7 @@ var App = React.createClass({
                          handleAddItemToOrder: this._handleAddItemToOrder,
                          handleDeleteItemFromOrder: this._handleDeleteItemFromOrder,
                          handleMethodOfTrans: this._handleMethodOfTrans,
+                         methodOfTrans: this.state.methodOfTrans,
                          handlePickupTime: this._handlePickupTime,
                          pickupTime: this.state.pickupTime,
                          handleFavorite: this._handleFavorite,

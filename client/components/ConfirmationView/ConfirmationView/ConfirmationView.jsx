@@ -12,10 +12,12 @@ var ConfirmationView = React.createClass({
             <div className="main-wrap">
                 <h1>Order Confirmation</h1>
             <div className="confirmation-view-container">
-                <OrderReadyTime />
+                <OrderReadyTime
+                methodOfTrans={this.props.methodOfTrans} />
                 <ShopDetails
                 selectedShop={this.props.selectedShop} />
-                <DirectionsAndCall />
+                <DirectionsAndCall
+                selectedShop={this.props.selectedShop} />
             </div>
                 <Link to="/" className="back-to-dashboard"><button className="next-button">Back to Dashboard</button></Link>
             </div>

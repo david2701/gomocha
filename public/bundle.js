@@ -64,7 +64,7 @@
 
 	var _reactRouter = __webpack_require__(164);
 
-	var _superagent = __webpack_require__(299);
+	var _superagent = __webpack_require__(407);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
@@ -20077,27 +20077,27 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _DashboardView = __webpack_require__(230);
+	var _DashboardView = __webpack_require__(231);
 
 	var _DashboardView2 = _interopRequireDefault(_DashboardView);
 
-	var _CustomOrderView = __webpack_require__(235);
+	var _CustomOrderView = __webpack_require__(238);
 
 	var _CustomOrderView2 = _interopRequireDefault(_CustomOrderView);
 
-	var _SelectShopView = __webpack_require__(263);
+	var _SelectShopView = __webpack_require__(268);
 
 	var _SelectShopView2 = _interopRequireDefault(_SelectShopView);
 
-	var _AdditionalInfoView = __webpack_require__(276);
+	var _AdditionalInfoView = __webpack_require__(281);
 
 	var _AdditionalInfoView2 = _interopRequireDefault(_AdditionalInfoView);
 
-	var _OrderSummaryView = __webpack_require__(289);
+	var _OrderSummaryView = __webpack_require__(393);
 
 	var _OrderSummaryView2 = _interopRequireDefault(_OrderSummaryView);
 
-	var _ConfirmationView = __webpack_require__(291);
+	var _ConfirmationView = __webpack_require__(395);
 
 	var _ConfirmationView2 = _interopRequireDefault(_ConfirmationView);
 
@@ -25207,7 +25207,7 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _api = __webpack_require__(414);
+	var _api = __webpack_require__(230);
 
 	var _api2 = _interopRequireDefault(_api);
 
@@ -25237,10 +25237,17 @@
 	        };
 	    },
 
+	    // Calls the getLocation function which returns the user's current location
+	    // and passes it to its callback (_handleGetLocation)
 	    componentWillMount: function componentWillMount() {
 	        _api2.default.getLocation(this._handleGetLocation);
 	    },
 
+	    // Takes the user's current location from api.getLocation and passes it as the
+	    // first parameter to api.getShops. getShops uses this location to produce a
+	    // list of coffee shops within a specified radius from the user's location.
+	    // It also passes _handleCoffeeShopState as a second parameter, which takes the
+	    // results (array of objects) and sets it to this.state.shops
 	    _handleGetLocation: function _handleGetLocation(position) {
 	        _api2.default.getShops(position, this._handleCoffeeShopState);
 	    },
@@ -25251,6 +25258,11 @@
 	        });
 	    },
 
+	    // Calls api.getDetails and passes in selected shop's place_id (shop object is about to
+	    // be set to this.state.selectedShop), allowing google maps api to retrieve the
+	    // details of the user's selected shop. It passes in _handleSelectedShopDetails as a
+	    // callback, which gets passed the 'place' in getDetails and overwrites previous setState
+	    // and sets this.state.selectedShop to place, which contains all details of shop
 	    _handleSelectedShop: function _handleSelectedShop(shop) {
 	        _api2.default.getDetails(shop.place_id, this._handleSelectedShopDetails);
 	        this.setState({
@@ -25406,6 +25418,7 @@
 	                handleAddItemToOrder: this._handleAddItemToOrder,
 	                handleDeleteItemFromOrder: this._handleDeleteItemFromOrder,
 	                handleMethodOfTrans: this._handleMethodOfTrans,
+	                methodOfTrans: this.state.methodOfTrans,
 	                handlePickupTime: this._handlePickupTime,
 	                pickupTime: this.state.pickupTime,
 	                handleFavorite: this._handleFavorite,
@@ -41806,6 +41819,59 @@
 
 /***/ },
 /* 230 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = {
+
+	    getLocation: function getLocation(callback) {
+	        if (navigator.geolocation) {
+	            navigator.geolocation.getCurrentPosition(callback);
+	        } else {
+	            alert("Geolocation is not supported by this browser.");
+	        }
+	    },
+
+	    getShops: function getShops(position, callback) {
+	        var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+	        // Specify location, radius and place types for your Places API search.
+	        var request = {
+	            location: currentLocation,
+	            radius: '2000',
+	            types: ['cafe']
+	        };
+	        // Create the PlaceService and send the request.
+	        // Handle the callback with an anonymous function.
+	        var service = new google.maps.places.PlacesService(map);
+
+	        service.nearbySearch(request, function (results, status) {
+	            console.log(status);
+	            if (status == google.maps.places.PlacesServiceStatus.OK) {
+	                console.log(results);
+	                callback(results);
+	            }
+	        });
+	    },
+
+	    getDetails: function getDetails(placeId, callback) {
+	        var service = new google.maps.places.PlacesService(map);
+
+	        service.getDetails({
+	            placeId: placeId
+	        }, function (place, status) {
+	            if (status === google.maps.places.PlacesServiceStatus.OK) {
+	                console.log(place);
+	                console.log(status);
+	                callback(place);
+	            }
+	        });
+	    }
+	};
+
+/***/ },
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41814,11 +41880,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _SearchShop = __webpack_require__(231);
+	var _SearchShop = __webpack_require__(232);
 
 	var _SearchShop2 = _interopRequireDefault(_SearchShop);
 
-	var _PrevAndFavorites = __webpack_require__(232);
+	var _PrevAndFavorites = __webpack_require__(233);
 
 	var _PrevAndFavorites2 = _interopRequireDefault(_PrevAndFavorites);
 
@@ -41828,7 +41894,7 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _dashboardView = __webpack_require__(408);
+	var _dashboardView = __webpack_require__(236);
 
 	var _dashboardView2 = _interopRequireDefault(_dashboardView);
 
@@ -41864,7 +41930,7 @@
 	module.exports = DashboardView;
 
 /***/ },
-/* 231 */
+/* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -41892,7 +41958,7 @@
 	module.exports = SearchShop;
 
 /***/ },
-/* 232 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41901,7 +41967,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _prevAndFavorites = __webpack_require__(233);
+	var _prevAndFavorites = __webpack_require__(234);
 
 	var _prevAndFavorites2 = _interopRequireDefault(_prevAndFavorites);
 
@@ -41934,13 +42000,13 @@
 	module.exports = PrevAndFavorites;
 
 /***/ },
-/* 233 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(234);
+	var content = __webpack_require__(235);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -41960,7 +42026,7 @@
 	}
 
 /***/ },
-/* 234 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -41974,7 +42040,47 @@
 
 
 /***/ },
-/* 235 */
+/* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(237);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./dashboard-view.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./dashboard-view.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".start-button-wrap {\n  display: block;\n  width: 133px;\n  margin: 0 auto; }\n\n.start-button {\n  background: #3FB083; }\n  .start-button:hover {\n    background: #43bb8b; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41983,11 +42089,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _MenuFormContainer = __webpack_require__(236);
+	var _MenuFormContainer = __webpack_require__(239);
 
 	var _MenuFormContainer2 = _interopRequireDefault(_MenuFormContainer);
 
-	var _OrderTotal = __webpack_require__(254);
+	var _OrderTotal = __webpack_require__(257);
 
 	var _OrderTotal2 = _interopRequireDefault(_OrderTotal);
 
@@ -42043,7 +42149,7 @@
 	module.exports = CustomOrderView;
 
 /***/ },
-/* 236 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42052,15 +42158,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _MenuSection = __webpack_require__(237);
+	var _MenuSection = __webpack_require__(240);
 
 	var _MenuSection2 = _interopRequireDefault(_MenuSection);
 
-	var _SpecialInstructions = __webpack_require__(251);
+	var _SpecialInstructions = __webpack_require__(254);
 
 	var _SpecialInstructions2 = _interopRequireDefault(_SpecialInstructions);
 
-	var _menuFormContainer = __webpack_require__(252);
+	var _menuFormContainer = __webpack_require__(255);
 
 	var _menuFormContainer2 = _interopRequireDefault(_menuFormContainer);
 
@@ -42109,7 +42215,7 @@
 	module.exports = MenuFormContainer;
 
 /***/ },
-/* 237 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42118,7 +42224,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _MenuItem = __webpack_require__(238);
+	var _MenuItem = __webpack_require__(241);
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
@@ -42126,7 +42232,7 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _menuSection = __webpack_require__(249);
+	var _menuSection = __webpack_require__(252);
 
 	var _menuSection2 = _interopRequireDefault(_menuSection);
 
@@ -42169,7 +42275,7 @@
 	module.exports = MenuSection;
 
 /***/ },
-/* 238 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42178,31 +42284,31 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _AddToOrderButton = __webpack_require__(239);
+	var _AddToOrderButton = __webpack_require__(242);
 
 	var _AddToOrderButton2 = _interopRequireDefault(_AddToOrderButton);
 
-	var _MilkType = __webpack_require__(242);
+	var _MilkType = __webpack_require__(245);
 
 	var _MilkType2 = _interopRequireDefault(_MilkType);
 
-	var _Size = __webpack_require__(243);
+	var _Size = __webpack_require__(246);
 
 	var _Size2 = _interopRequireDefault(_Size);
 
-	var _Quantity = __webpack_require__(244);
+	var _Quantity = __webpack_require__(247);
 
 	var _Quantity2 = _interopRequireDefault(_Quantity);
 
-	var _Decaf = __webpack_require__(245);
+	var _Decaf = __webpack_require__(248);
 
 	var _Decaf2 = _interopRequireDefault(_Decaf);
 
-	var _HotOrCold = __webpack_require__(246);
+	var _HotOrCold = __webpack_require__(249);
 
 	var _HotOrCold2 = _interopRequireDefault(_HotOrCold);
 
-	var _menuItem = __webpack_require__(247);
+	var _menuItem = __webpack_require__(250);
 
 	var _menuItem2 = _interopRequireDefault(_menuItem);
 
@@ -42345,7 +42451,7 @@
 	module.exports = MenuItem;
 
 /***/ },
-/* 239 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42358,7 +42464,7 @@
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _options = __webpack_require__(240);
+	var _options = __webpack_require__(243);
 
 	var _options2 = _interopRequireDefault(_options);
 
@@ -42392,13 +42498,13 @@
 	module.exports = AddToOrderButton;
 
 /***/ },
-/* 240 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(241);
+	var content = __webpack_require__(244);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -42418,7 +42524,7 @@
 	}
 
 /***/ },
-/* 241 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -42432,7 +42538,7 @@
 
 
 /***/ },
-/* 242 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42441,7 +42547,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _options = __webpack_require__(240);
+	var _options = __webpack_require__(243);
 
 	var _options2 = _interopRequireDefault(_options);
 
@@ -42493,7 +42599,7 @@
 	module.exports = MilkType;
 
 /***/ },
-/* 243 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42502,7 +42608,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _options = __webpack_require__(240);
+	var _options = __webpack_require__(243);
 
 	var _options2 = _interopRequireDefault(_options);
 
@@ -42542,7 +42648,7 @@
 	module.exports = Size;
 
 /***/ },
-/* 244 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42551,7 +42657,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _options = __webpack_require__(240);
+	var _options = __webpack_require__(243);
 
 	var _options2 = _interopRequireDefault(_options);
 
@@ -42605,7 +42711,7 @@
 	module.exports = Quantity;
 
 /***/ },
-/* 245 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42614,7 +42720,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _options = __webpack_require__(240);
+	var _options = __webpack_require__(243);
 
 	var _options2 = _interopRequireDefault(_options);
 
@@ -42641,7 +42747,7 @@
 	module.exports = Decaf;
 
 /***/ },
-/* 246 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42650,7 +42756,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _options = __webpack_require__(240);
+	var _options = __webpack_require__(243);
 
 	var _options2 = _interopRequireDefault(_options);
 
@@ -42684,13 +42790,13 @@
 	module.exports = HotOrCold;
 
 /***/ },
-/* 247 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(248);
+	var content = __webpack_require__(251);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -42710,7 +42816,7 @@
 	}
 
 /***/ },
-/* 248 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -42724,13 +42830,13 @@
 
 
 /***/ },
-/* 249 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(250);
+	var content = __webpack_require__(253);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -42750,7 +42856,7 @@
 	}
 
 /***/ },
-/* 250 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -42764,7 +42870,7 @@
 
 
 /***/ },
-/* 251 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -42799,13 +42905,13 @@
 	module.exports = SpecialInstructions;
 
 /***/ },
-/* 252 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(253);
+	var content = __webpack_require__(256);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -42825,7 +42931,7 @@
 	}
 
 /***/ },
-/* 253 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -42839,7 +42945,7 @@
 
 
 /***/ },
-/* 254 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42848,23 +42954,23 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _OrderTotalRow = __webpack_require__(255);
+	var _OrderTotalRow = __webpack_require__(258);
 
 	var _OrderTotalRow2 = _interopRequireDefault(_OrderTotalRow);
 
-	var _OrderTotalRowOtherDetails = __webpack_require__(256);
+	var _OrderTotalRowOtherDetails = __webpack_require__(261);
 
 	var _OrderTotalRowOtherDetails2 = _interopRequireDefault(_OrderTotalRowOtherDetails);
 
-	var _OrderTax = __webpack_require__(259);
+	var _OrderTax = __webpack_require__(264);
 
 	var _OrderTax2 = _interopRequireDefault(_OrderTax);
 
-	var _OrderTotalTotal = __webpack_require__(260);
+	var _OrderTotalTotal = __webpack_require__(265);
 
 	var _OrderTotalTotal2 = _interopRequireDefault(_OrderTotalTotal);
 
-	var _orderTotal = __webpack_require__(261);
+	var _orderTotal = __webpack_require__(266);
 
 	var _orderTotal2 = _interopRequireDefault(_orderTotal);
 
@@ -42927,7 +43033,7 @@
 	module.exports = OrderTotal;
 
 /***/ },
-/* 255 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42936,7 +43042,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _orderTotalRow = __webpack_require__(305);
+	var _orderTotalRow = __webpack_require__(259);
 
 	var _orderTotalRow2 = _interopRequireDefault(_orderTotalRow);
 
@@ -43022,7 +43128,47 @@
 	module.exports = OrderTotalRow;
 
 /***/ },
-/* 256 */
+/* 259 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(260);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-total-row.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-total-row.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 260 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".order-total-table td {\n  padding: 0.75em 1.5em; }\n\n.order-total-table tr {\n  background: #EEEEEE; }\n\ntr.order-total-row .delete-item {\n  color: #962D2D;\n  margin-left: 20px;\n  display: none;\n  cursor: pointer; }\n\ntr.order-total-row:hover .delete-item {\n  display: inline-block; }\n\n.td-price {\n  width: 75px; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43031,7 +43177,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _orderTotalRowOtherDetails = __webpack_require__(257);
+	var _orderTotalRowOtherDetails = __webpack_require__(262);
 
 	var _orderTotalRowOtherDetails2 = _interopRequireDefault(_orderTotalRowOtherDetails);
 
@@ -43086,13 +43232,13 @@
 	module.exports = OrderTotalRowOtherDetails;
 
 /***/ },
-/* 257 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(258);
+	var content = __webpack_require__(263);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -43112,7 +43258,7 @@
 	}
 
 /***/ },
-/* 258 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -43126,7 +43272,7 @@
 
 
 /***/ },
-/* 259 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43162,7 +43308,7 @@
 	module.exports = OrderTax;
 
 /***/ },
-/* 260 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43198,13 +43344,13 @@
 	module.exports = OrderTotalTotal;
 
 /***/ },
-/* 261 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(262);
+	var content = __webpack_require__(267);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -43224,7 +43370,7 @@
 	}
 
 /***/ },
-/* 262 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -43238,7 +43384,7 @@
 
 
 /***/ },
-/* 263 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43247,11 +43393,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ShopSearch = __webpack_require__(264);
+	var _ShopSearch = __webpack_require__(269);
 
 	var _ShopSearch2 = _interopRequireDefault(_ShopSearch);
 
-	var _ShopList = __webpack_require__(267);
+	var _ShopList = __webpack_require__(272);
 
 	var _ShopList2 = _interopRequireDefault(_ShopList);
 
@@ -43286,7 +43432,7 @@
 	module.exports = SelectShopView;
 
 /***/ },
-/* 264 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43295,7 +43441,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _shopSearch = __webpack_require__(265);
+	var _shopSearch = __webpack_require__(270);
 
 	var _shopSearch2 = _interopRequireDefault(_shopSearch);
 
@@ -43322,13 +43468,13 @@
 	module.exports = ShopSearch;
 
 /***/ },
-/* 265 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(266);
+	var content = __webpack_require__(271);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -43348,7 +43494,7 @@
 	}
 
 /***/ },
-/* 266 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -43362,7 +43508,7 @@
 
 
 /***/ },
-/* 267 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43371,15 +43517,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _shopList = __webpack_require__(268);
+	var _shopList = __webpack_require__(273);
 
 	var _shopList2 = _interopRequireDefault(_shopList);
 
-	var _ShopListItem = __webpack_require__(270);
+	var _ShopListItem = __webpack_require__(275);
 
 	var _ShopListItem2 = _interopRequireDefault(_ShopListItem);
 
-	var _ClickForMore = __webpack_require__(273);
+	var _ClickForMore = __webpack_require__(278);
 
 	var _ClickForMore2 = _interopRequireDefault(_ClickForMore);
 
@@ -43410,13 +43556,13 @@
 	module.exports = ShopList;
 
 /***/ },
-/* 268 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(269);
+	var content = __webpack_require__(274);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -43436,7 +43582,7 @@
 	}
 
 /***/ },
-/* 269 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -43450,7 +43596,7 @@
 
 
 /***/ },
-/* 270 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43459,7 +43605,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _shopListItem = __webpack_require__(271);
+	var _shopListItem = __webpack_require__(276);
 
 	var _shopListItem2 = _interopRequireDefault(_shopListItem);
 
@@ -43511,12 +43657,27 @@
 	                            'p',
 	                            null,
 	                            this.props.shop.vicinity
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'shop-list-bottom-row' },
+	                            this.props.shop.opening_hours.open_now ? _react2.default.createElement(
+	                                'div',
+	                                { className: 'open-now' },
+	                                _react2.default.createElement('i', { className: 'fa fa-clock-o', 'aria-hidden': 'true' }),
+	                                ' Open now!'
+	                            ) : _react2.default.createElement(
+	                                'div',
+	                                { className: 'closed-now' },
+	                                _react2.default.createElement('i', { className: 'fa fa-clock-o', 'aria-hidden': 'true' }),
+	                                ' Currently closed'
+	                            ),
+	                            _react2.default.createElement(
+	                                'p',
+	                                { className: 'shop-list-distance' },
+	                                'Distance: N/A'
+	                            )
 	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'p',
-	                        { className: 'shop-list-distance' },
-	                        '2.3 mi.'
 	                    )
 	                )
 	            )
@@ -43527,13 +43688,13 @@
 	module.exports = ShopListItem;
 
 /***/ },
-/* 271 */
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(272);
+	var content = __webpack_require__(277);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -43553,7 +43714,7 @@
 	}
 
 /***/ },
-/* 272 */
+/* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -43561,13 +43722,13 @@
 
 
 	// module
-	exports.push([module.id, ".shop-list-item-container {\n  background: #efefef;\n  width: 20em;\n  padding: 1em;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n  .shop-list-item-container:hover {\n    background: #f4f4f4;\n    cursor: pointer; }\n\n.shop-list-item-details {\n  display: inline-block;\n  border-radius: 3px; }\n\n.shop-list-item-details h2 {\n  color: #000; }\n\n.shop-list-item-details p {\n  color: #000; }\n\n.shop-list-distance {\n  display: inline-block;\n  border-radius: 3px;\n  margin-left: 2em; }\n", ""]);
+	exports.push([module.id, ".shop-list-item-container {\n  background: #efefef;\n  width: 20em;\n  padding: 0em 1.2em 1.4em 1.2em;\n  border-radius: 3px;\n  margin: 0 auto 1.2em auto; }\n  .shop-list-item-container:hover {\n    background: #f4f4f4;\n    cursor: pointer; }\n\n.shop-list-item-details {\n  display: inline-block;\n  width: 100%;\n  border-radius: 3px; }\n\n.shop-list-item-details h2 {\n  color: #000; }\n\n.shop-list-item-details p {\n  color: #000; }\n\n.shop-list-distance {\n  display: inline-block;\n  float: right;\n  margin: 0; }\n\n.open-now {\n  display: inline-block;\n  color: #3FB083; }\n\n.closed-now {\n  display: inline-block;\n  color: #A73232; }\n\n.shop-list-bottom-row {\n  padding-top: 1em; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 273 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43576,7 +43737,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _clickForMore = __webpack_require__(274);
+	var _clickForMore = __webpack_require__(279);
 
 	var _clickForMore2 = _interopRequireDefault(_clickForMore);
 
@@ -43601,13 +43762,13 @@
 	module.exports = ClickForMore;
 
 /***/ },
-/* 274 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(275);
+	var content = __webpack_require__(280);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -43627,7 +43788,7 @@
 	}
 
 /***/ },
-/* 275 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -43641,7 +43802,7 @@
 
 
 /***/ },
-/* 276 */
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43650,19 +43811,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _SelectMethodOfTrans = __webpack_require__(277);
+	var _SelectMethodOfTrans = __webpack_require__(282);
 
 	var _SelectMethodOfTrans2 = _interopRequireDefault(_SelectMethodOfTrans);
 
-	var _SelectPickUpTime = __webpack_require__(280);
+	var _SelectPickUpTime = __webpack_require__(285);
 
 	var _SelectPickUpTime2 = _interopRequireDefault(_SelectPickUpTime);
 
-	var _SelectIfFavorite = __webpack_require__(283);
+	var _SelectIfFavorite = __webpack_require__(387);
 
 	var _SelectIfFavorite2 = _interopRequireDefault(_SelectIfFavorite);
 
-	var _EnterPaymentInfo = __webpack_require__(286);
+	var _EnterPaymentInfo = __webpack_require__(390);
 
 	var _EnterPaymentInfo2 = _interopRequireDefault(_EnterPaymentInfo);
 
@@ -43723,7 +43884,7 @@
 	module.exports = AdditionalInfoView;
 
 /***/ },
-/* 277 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43732,7 +43893,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _selectMethodOfTrans = __webpack_require__(278);
+	var _selectMethodOfTrans = __webpack_require__(283);
 
 	var _selectMethodOfTrans2 = _interopRequireDefault(_selectMethodOfTrans);
 
@@ -43790,13 +43951,13 @@
 	module.exports = SelectMethodOfTrans;
 
 /***/ },
-/* 278 */
+/* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(279);
+	var content = __webpack_require__(284);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -43816,7 +43977,7 @@
 	}
 
 /***/ },
-/* 279 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -43830,7 +43991,7 @@
 
 
 /***/ },
-/* 280 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43839,11 +44000,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _selectPickUpTime = __webpack_require__(281);
+	var _selectPickUpTime = __webpack_require__(286);
 
 	var _selectPickUpTime2 = _interopRequireDefault(_selectPickUpTime);
 
-	var _moment = __webpack_require__(307);
+	var _moment = __webpack_require__(288);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
@@ -44053,13 +44214,13 @@
 	module.exports = SelectPickUpTime;
 
 /***/ },
-/* 281 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(282);
+	var content = __webpack_require__(287);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -44079,7 +44240,7 @@
 	}
 
 /***/ },
-/* 282 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -44093,2269 +44254,7 @@
 
 
 /***/ },
-/* 283 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _selectIfFavorite = __webpack_require__(284);
-
-	var _selectIfFavorite2 = _interopRequireDefault(_selectIfFavorite);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var SelectIfFavorite = _react2.default.createClass({
-	    displayName: 'SelectIfFavorite',
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            { className: 'select-if-favorite-container' },
-	            _react2.default.createElement(
-	                'h2',
-	                null,
-	                'Favorite this order?'
-	            ),
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'select-if-favorite' },
-	                _react2.default.createElement(
-	                    'label',
-	                    null,
-	                    'Yes! ',
-	                    _react2.default.createElement('input', {
-	                        onChange: this.props.handleFavorite,
-	                        type: 'checkbox',
-	                        value: this.props.value })
-	                )
-	            )
-	        );
-	    }
-	});
-
-	module.exports = SelectIfFavorite;
-
-/***/ },
-/* 284 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(285);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./select-if-favorite.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./select-if-favorite.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 285 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".select-if-favorite-container {\n  padding: 0.75em;\n  background: #efefef;\n  width: 30em;\n  border-radius: 3px;\n  margin-bottom: 1em; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 286 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _enterPaymentInfo = __webpack_require__(287);
-
-	var _enterPaymentInfo2 = _interopRequireDefault(_enterPaymentInfo);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var EnterPaymentInfo = _react2.default.createClass({
-	    displayName: 'EnterPaymentInfo',
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            { className: 'enter-payment-info-container' },
-	            _react2.default.createElement(
-	                'h2',
-	                null,
-	                'Enter Payment Info'
-	            ),
-	            _react2.default.createElement(
-	                'div',
-	                { className: '' },
-	                _react2.default.createElement(
-	                    'label',
-	                    null,
-	                    'Name on Card',
-	                    _react2.default.createElement('input', {
-	                        onChange: this.props.handleCCName,
-	                        type: 'text',
-	                        placeholder: 'Card Holder\'s Name',
-	                        required: true })
-	                ),
-	                _react2.default.createElement('br', null),
-	                _react2.default.createElement(
-	                    'label',
-	                    null,
-	                    'Card Number',
-	                    _react2.default.createElement('input', {
-	                        onChange: this.props.handleCCNumber,
-	                        type: 'number',
-	                        placeholder: 'Debit/Credit Card Number',
-	                        maxLength: '16',
-	                        required: true })
-	                ),
-	                _react2.default.createElement('br', null),
-	                _react2.default.createElement(
-	                    'label',
-	                    null,
-	                    'Expiration Date'
-	                ),
-	                _react2.default.createElement(
-	                    'select',
-	                    {
-	                        onChange: this.props.handleCCExpMonth,
-	                        value: this.props.expMonthValue,
-	                        name: 'exp-month'
-	                    },
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: 'default' },
-	                        'Month'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '01' },
-	                        'Jan (01)'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '02' },
-	                        'Feb (02)'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '03' },
-	                        'Mar (03)'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '04' },
-	                        'Apr (04)'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '05' },
-	                        'May (05)'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '06' },
-	                        'Jun (06)'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '07' },
-	                        'Jul (07)'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '08' },
-	                        'Aug (08)'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '09' },
-	                        'Sep (09)'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '10' },
-	                        'Oct (10)'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '11' },
-	                        'Nov (11)'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '12' },
-	                        'Dec (12)'
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'select',
-	                    {
-	                        onChange: this.props.handleCCExpYear,
-	                        value: this.props.expYearValue,
-	                        name: 'exp-year' },
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: 'default' },
-	                        'Year'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '2016' },
-	                        '2016'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '2017' },
-	                        '2017'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '2018' },
-	                        '2018'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '2019' },
-	                        '2019'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '2020' },
-	                        '2020'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '2021' },
-	                        '2021'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '2022' },
-	                        '2022'
-	                    )
-	                ),
-	                _react2.default.createElement('br', null),
-	                _react2.default.createElement(
-	                    'label',
-	                    null,
-	                    'CVV',
-	                    _react2.default.createElement('input', {
-	                        onChange: this.props.handleCCCVV,
-	                        type: 'number',
-	                        placeholder: 'Security Code',
-	                        maxLength: '3',
-	                        required: true })
-	                )
-	            )
-	        );
-	    }
-	});
-
-	module.exports = EnterPaymentInfo;
-
-/***/ },
-/* 287 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(288);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./enter-payment-info.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./enter-payment-info.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
 /* 288 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".enter-payment-info-container {\n  padding: 0.75em;\n  background: #efefef;\n  width: 30em;\n  border-radius: 3px; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 289 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _OrderTotal = __webpack_require__(254);
-
-	var _OrderTotal2 = _interopRequireDefault(_OrderTotal);
-
-	var _SpecialInstructionsOS = __webpack_require__(290);
-
-	var _SpecialInstructionsOS2 = _interopRequireDefault(_SpecialInstructionsOS);
-
-	var _reactRouter = __webpack_require__(164);
-
-	var _app = __webpack_require__(223);
-
-	var _app2 = _interopRequireDefault(_app);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var OrderSummaryView = _react2.default.createClass({
-	    displayName: 'OrderSummaryView',
-
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            { className: 'main-wrap' },
-	            _react2.default.createElement(
-	                'h1',
-	                null,
-	                'Order Summary'
-	            ),
-	            _react2.default.createElement(_OrderTotal2.default, {
-	                orderItems: this.props.items,
-	                handleDeleteItemFromOrder: this.props.handleDeleteItemFromOrder }),
-	            _react2.default.createElement(_SpecialInstructionsOS2.default, {
-	                specialInstructions: this.props.specialInstructions }),
-	            _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/confirmation' },
-	                _react2.default.createElement(
-	                    'button',
-	                    { className: 'next-button' },
-	                    'Submit Order'
-	                )
-	            ),
-	            _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/custom-order' },
-	                _react2.default.createElement(
-	                    'button',
-	                    { className: 'next-button' },
-	                    'Edit my order'
-	                )
-	            )
-	        );
-	    }
-	});
-
-	module.exports = OrderSummaryView;
-
-/***/ },
-/* 290 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var SpecialInstructionsOS = _react2.default.createClass({
-	    displayName: 'SpecialInstructionsOS',
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(
-	                'h4',
-	                null,
-	                'Special Instructions:'
-	            ),
-	            _react2.default.createElement(
-	                'p',
-	                null,
-	                this.props.specialInstructions
-	            )
-	        );
-	    }
-	});
-
-	module.exports = SpecialInstructionsOS;
-
-/***/ },
-/* 291 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _OrderReadyTime = __webpack_require__(292);
-
-	var _OrderReadyTime2 = _interopRequireDefault(_OrderReadyTime);
-
-	var _ShopDetails = __webpack_require__(295);
-
-	var _ShopDetails2 = _interopRequireDefault(_ShopDetails);
-
-	var _DirectionsAndCall = __webpack_require__(298);
-
-	var _DirectionsAndCall2 = _interopRequireDefault(_DirectionsAndCall);
-
-	var _reactRouter = __webpack_require__(164);
-
-	var _confirmationView = __webpack_require__(410);
-
-	var _confirmationView2 = _interopRequireDefault(_confirmationView);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var ConfirmationView = _react2.default.createClass({
-	    displayName: 'ConfirmationView',
-
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            { className: 'main-wrap' },
-	            _react2.default.createElement(
-	                'h1',
-	                null,
-	                'Order Confirmation'
-	            ),
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'confirmation-view-container' },
-	                _react2.default.createElement(_OrderReadyTime2.default, null),
-	                _react2.default.createElement(_ShopDetails2.default, {
-	                    selectedShop: this.props.selectedShop }),
-	                _react2.default.createElement(_DirectionsAndCall2.default, null)
-	            ),
-	            _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/', className: 'back-to-dashboard' },
-	                _react2.default.createElement(
-	                    'button',
-	                    { className: 'next-button' },
-	                    'Back to Dashboard'
-	                )
-	            )
-	        );
-	    }
-	});
-
-	module.exports = ConfirmationView;
-
-/***/ },
-/* 292 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _orderReadyTime = __webpack_require__(293);
-
-	var _orderReadyTime2 = _interopRequireDefault(_orderReadyTime);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var OrderReadyTime = _react2.default.createClass({
-	    displayName: 'OrderReadyTime',
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            { className: 'order-ready-time-container' },
-	            _react2.default.createElement(
-	                'h2',
-	                null,
-	                'Your order will be ready in...'
-	            ),
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'order-ready-time' },
-	                '17 min'
-	            ),
-	            _react2.default.createElement(
-	                'p',
-	                null,
-	                'by'
-	            ),
-	            _react2.default.createElement(
-	                'p',
-	                null,
-	                'Method of transportation'
-	            )
-	        );
-	    }
-	});
-
-	module.exports = OrderReadyTime;
-
-/***/ },
-/* 293 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(294);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-ready-time.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-ready-time.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 294 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".order-ready-time {\n  font-size: 36px;\n  text-align: center; }\n\n.order-ready-time-container h2 {\n  margin-top: 0;\n  text-align: center; }\n\n.order-ready-time-container p {\n  text-align: center;\n  font-size: 1.2em; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 295 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _shopDetails = __webpack_require__(296);
-
-	var _shopDetails2 = _interopRequireDefault(_shopDetails);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var ShopDetails = _react2.default.createClass({
-	    displayName: 'ShopDetails',
-
-	    render: function render() {
-
-	        var selectedShop = this.props.selectedShop;
-
-	        return _react2.default.createElement(
-	            'div',
-	            { className: 'shop-details-container' },
-	            _react2.default.createElement(
-	                'h2',
-	                null,
-	                selectedShop.name
-	            ),
-	            _react2.default.createElement(
-	                'p',
-	                null,
-	                selectedShop.vicinity
-	            ),
-	            _react2.default.createElement(
-	                'p',
-	                null,
-	                'Phone: Not available at this time.'
-	            ),
-	            _react2.default.createElement(
-	                'p',
-	                null,
-	                'Distance: Not available at this time.'
-	            )
-	        );
-	    }
-	});
-
-	module.exports = ShopDetails;
-
-/***/ },
-/* 296 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(297);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./shop-details.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./shop-details.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 297 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".shop-details-container {\n  padding-top: 1em; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 298 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _directionsAndCall = __webpack_require__(412);
-
-	var _directionsAndCall2 = _interopRequireDefault(_directionsAndCall);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var DirectionsAndCall = _react2.default.createClass({
-	    displayName: 'DirectionsAndCall',
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(
-	                'button',
-	                { className: 'next-button get-directions-button' },
-	                'Get Directions'
-	            ),
-	            _react2.default.createElement(
-	                'button',
-	                { className: 'next-button' },
-	                'Call Shop'
-	            )
-	        );
-	    }
-	});
-
-	module.exports = DirectionsAndCall;
-
-/***/ },
-/* 299 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Module dependencies.
-	 */
-
-	var Emitter = __webpack_require__(300);
-	var reduce = __webpack_require__(301);
-	var requestBase = __webpack_require__(302);
-	var isObject = __webpack_require__(303);
-
-	/**
-	 * Root reference for iframes.
-	 */
-
-	var root;
-	if (typeof window !== 'undefined') { // Browser window
-	  root = window;
-	} else if (typeof self !== 'undefined') { // Web Worker
-	  root = self;
-	} else { // Other environments
-	  root = this;
-	}
-
-	/**
-	 * Noop.
-	 */
-
-	function noop(){};
-
-	/**
-	 * Check if `obj` is a host object,
-	 * we don't want to serialize these :)
-	 *
-	 * TODO: future proof, move to compoent land
-	 *
-	 * @param {Object} obj
-	 * @return {Boolean}
-	 * @api private
-	 */
-
-	function isHost(obj) {
-	  var str = {}.toString.call(obj);
-
-	  switch (str) {
-	    case '[object File]':
-	    case '[object Blob]':
-	    case '[object FormData]':
-	      return true;
-	    default:
-	      return false;
-	  }
-	}
-
-	/**
-	 * Expose `request`.
-	 */
-
-	var request = module.exports = __webpack_require__(304).bind(null, Request);
-
-	/**
-	 * Determine XHR.
-	 */
-
-	request.getXHR = function () {
-	  if (root.XMLHttpRequest
-	      && (!root.location || 'file:' != root.location.protocol
-	          || !root.ActiveXObject)) {
-	    return new XMLHttpRequest;
-	  } else {
-	    try { return new ActiveXObject('Microsoft.XMLHTTP'); } catch(e) {}
-	    try { return new ActiveXObject('Msxml2.XMLHTTP.6.0'); } catch(e) {}
-	    try { return new ActiveXObject('Msxml2.XMLHTTP.3.0'); } catch(e) {}
-	    try { return new ActiveXObject('Msxml2.XMLHTTP'); } catch(e) {}
-	  }
-	  return false;
-	};
-
-	/**
-	 * Removes leading and trailing whitespace, added to support IE.
-	 *
-	 * @param {String} s
-	 * @return {String}
-	 * @api private
-	 */
-
-	var trim = ''.trim
-	  ? function(s) { return s.trim(); }
-	  : function(s) { return s.replace(/(^\s*|\s*$)/g, ''); };
-
-	/**
-	 * Serialize the given `obj`.
-	 *
-	 * @param {Object} obj
-	 * @return {String}
-	 * @api private
-	 */
-
-	function serialize(obj) {
-	  if (!isObject(obj)) return obj;
-	  var pairs = [];
-	  for (var key in obj) {
-	    if (null != obj[key]) {
-	      pushEncodedKeyValuePair(pairs, key, obj[key]);
-	        }
-	      }
-	  return pairs.join('&');
-	}
-
-	/**
-	 * Helps 'serialize' with serializing arrays.
-	 * Mutates the pairs array.
-	 *
-	 * @param {Array} pairs
-	 * @param {String} key
-	 * @param {Mixed} val
-	 */
-
-	function pushEncodedKeyValuePair(pairs, key, val) {
-	  if (Array.isArray(val)) {
-	    return val.forEach(function(v) {
-	      pushEncodedKeyValuePair(pairs, key, v);
-	    });
-	  }
-	  pairs.push(encodeURIComponent(key)
-	    + '=' + encodeURIComponent(val));
-	}
-
-	/**
-	 * Expose serialization method.
-	 */
-
-	 request.serializeObject = serialize;
-
-	 /**
-	  * Parse the given x-www-form-urlencoded `str`.
-	  *
-	  * @param {String} str
-	  * @return {Object}
-	  * @api private
-	  */
-
-	function parseString(str) {
-	  var obj = {};
-	  var pairs = str.split('&');
-	  var parts;
-	  var pair;
-
-	  for (var i = 0, len = pairs.length; i < len; ++i) {
-	    pair = pairs[i];
-	    parts = pair.split('=');
-	    obj[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
-	  }
-
-	  return obj;
-	}
-
-	/**
-	 * Expose parser.
-	 */
-
-	request.parseString = parseString;
-
-	/**
-	 * Default MIME type map.
-	 *
-	 *     superagent.types.xml = 'application/xml';
-	 *
-	 */
-
-	request.types = {
-	  html: 'text/html',
-	  json: 'application/json',
-	  xml: 'application/xml',
-	  urlencoded: 'application/x-www-form-urlencoded',
-	  'form': 'application/x-www-form-urlencoded',
-	  'form-data': 'application/x-www-form-urlencoded'
-	};
-
-	/**
-	 * Default serialization map.
-	 *
-	 *     superagent.serialize['application/xml'] = function(obj){
-	 *       return 'generated xml here';
-	 *     };
-	 *
-	 */
-
-	 request.serialize = {
-	   'application/x-www-form-urlencoded': serialize,
-	   'application/json': JSON.stringify
-	 };
-
-	 /**
-	  * Default parsers.
-	  *
-	  *     superagent.parse['application/xml'] = function(str){
-	  *       return { object parsed from str };
-	  *     };
-	  *
-	  */
-
-	request.parse = {
-	  'application/x-www-form-urlencoded': parseString,
-	  'application/json': JSON.parse
-	};
-
-	/**
-	 * Parse the given header `str` into
-	 * an object containing the mapped fields.
-	 *
-	 * @param {String} str
-	 * @return {Object}
-	 * @api private
-	 */
-
-	function parseHeader(str) {
-	  var lines = str.split(/\r?\n/);
-	  var fields = {};
-	  var index;
-	  var line;
-	  var field;
-	  var val;
-
-	  lines.pop(); // trailing CRLF
-
-	  for (var i = 0, len = lines.length; i < len; ++i) {
-	    line = lines[i];
-	    index = line.indexOf(':');
-	    field = line.slice(0, index).toLowerCase();
-	    val = trim(line.slice(index + 1));
-	    fields[field] = val;
-	  }
-
-	  return fields;
-	}
-
-	/**
-	 * Check if `mime` is json or has +json structured syntax suffix.
-	 *
-	 * @param {String} mime
-	 * @return {Boolean}
-	 * @api private
-	 */
-
-	function isJSON(mime) {
-	  return /[\/+]json\b/.test(mime);
-	}
-
-	/**
-	 * Return the mime type for the given `str`.
-	 *
-	 * @param {String} str
-	 * @return {String}
-	 * @api private
-	 */
-
-	function type(str){
-	  return str.split(/ *; */).shift();
-	};
-
-	/**
-	 * Return header field parameters.
-	 *
-	 * @param {String} str
-	 * @return {Object}
-	 * @api private
-	 */
-
-	function params(str){
-	  return reduce(str.split(/ *; */), function(obj, str){
-	    var parts = str.split(/ *= */)
-	      , key = parts.shift()
-	      , val = parts.shift();
-
-	    if (key && val) obj[key] = val;
-	    return obj;
-	  }, {});
-	};
-
-	/**
-	 * Initialize a new `Response` with the given `xhr`.
-	 *
-	 *  - set flags (.ok, .error, etc)
-	 *  - parse header
-	 *
-	 * Examples:
-	 *
-	 *  Aliasing `superagent` as `request` is nice:
-	 *
-	 *      request = superagent;
-	 *
-	 *  We can use the promise-like API, or pass callbacks:
-	 *
-	 *      request.get('/').end(function(res){});
-	 *      request.get('/', function(res){});
-	 *
-	 *  Sending data can be chained:
-	 *
-	 *      request
-	 *        .post('/user')
-	 *        .send({ name: 'tj' })
-	 *        .end(function(res){});
-	 *
-	 *  Or passed to `.send()`:
-	 *
-	 *      request
-	 *        .post('/user')
-	 *        .send({ name: 'tj' }, function(res){});
-	 *
-	 *  Or passed to `.post()`:
-	 *
-	 *      request
-	 *        .post('/user', { name: 'tj' })
-	 *        .end(function(res){});
-	 *
-	 * Or further reduced to a single call for simple cases:
-	 *
-	 *      request
-	 *        .post('/user', { name: 'tj' }, function(res){});
-	 *
-	 * @param {XMLHTTPRequest} xhr
-	 * @param {Object} options
-	 * @api private
-	 */
-
-	function Response(req, options) {
-	  options = options || {};
-	  this.req = req;
-	  this.xhr = this.req.xhr;
-	  // responseText is accessible only if responseType is '' or 'text' and on older browsers
-	  this.text = ((this.req.method !='HEAD' && (this.xhr.responseType === '' || this.xhr.responseType === 'text')) || typeof this.xhr.responseType === 'undefined')
-	     ? this.xhr.responseText
-	     : null;
-	  this.statusText = this.req.xhr.statusText;
-	  this.setStatusProperties(this.xhr.status);
-	  this.header = this.headers = parseHeader(this.xhr.getAllResponseHeaders());
-	  // getAllResponseHeaders sometimes falsely returns "" for CORS requests, but
-	  // getResponseHeader still works. so we get content-type even if getting
-	  // other headers fails.
-	  this.header['content-type'] = this.xhr.getResponseHeader('content-type');
-	  this.setHeaderProperties(this.header);
-	  this.body = this.req.method != 'HEAD'
-	    ? this.parseBody(this.text ? this.text : this.xhr.response)
-	    : null;
-	}
-
-	/**
-	 * Get case-insensitive `field` value.
-	 *
-	 * @param {String} field
-	 * @return {String}
-	 * @api public
-	 */
-
-	Response.prototype.get = function(field){
-	  return this.header[field.toLowerCase()];
-	};
-
-	/**
-	 * Set header related properties:
-	 *
-	 *   - `.type` the content type without params
-	 *
-	 * A response of "Content-Type: text/plain; charset=utf-8"
-	 * will provide you with a `.type` of "text/plain".
-	 *
-	 * @param {Object} header
-	 * @api private
-	 */
-
-	Response.prototype.setHeaderProperties = function(header){
-	  // content-type
-	  var ct = this.header['content-type'] || '';
-	  this.type = type(ct);
-
-	  // params
-	  var obj = params(ct);
-	  for (var key in obj) this[key] = obj[key];
-	};
-
-	/**
-	 * Parse the given body `str`.
-	 *
-	 * Used for auto-parsing of bodies. Parsers
-	 * are defined on the `superagent.parse` object.
-	 *
-	 * @param {String} str
-	 * @return {Mixed}
-	 * @api private
-	 */
-
-	Response.prototype.parseBody = function(str){
-	  var parse = request.parse[this.type];
-	  if (!parse && isJSON(this.type)) {
-	    parse = request.parse['application/json'];
-	  }
-	  return parse && str && (str.length || str instanceof Object)
-	    ? parse(str)
-	    : null;
-	};
-
-	/**
-	 * Set flags such as `.ok` based on `status`.
-	 *
-	 * For example a 2xx response will give you a `.ok` of __true__
-	 * whereas 5xx will be __false__ and `.error` will be __true__. The
-	 * `.clientError` and `.serverError` are also available to be more
-	 * specific, and `.statusType` is the class of error ranging from 1..5
-	 * sometimes useful for mapping respond colors etc.
-	 *
-	 * "sugar" properties are also defined for common cases. Currently providing:
-	 *
-	 *   - .noContent
-	 *   - .badRequest
-	 *   - .unauthorized
-	 *   - .notAcceptable
-	 *   - .notFound
-	 *
-	 * @param {Number} status
-	 * @api private
-	 */
-
-	Response.prototype.setStatusProperties = function(status){
-	  // handle IE9 bug: http://stackoverflow.com/questions/10046972/msie-returns-status-code-of-1223-for-ajax-request
-	  if (status === 1223) {
-	    status = 204;
-	  }
-
-	  var type = status / 100 | 0;
-
-	  // status / class
-	  this.status = this.statusCode = status;
-	  this.statusType = type;
-
-	  // basics
-	  this.info = 1 == type;
-	  this.ok = 2 == type;
-	  this.clientError = 4 == type;
-	  this.serverError = 5 == type;
-	  this.error = (4 == type || 5 == type)
-	    ? this.toError()
-	    : false;
-
-	  // sugar
-	  this.accepted = 202 == status;
-	  this.noContent = 204 == status;
-	  this.badRequest = 400 == status;
-	  this.unauthorized = 401 == status;
-	  this.notAcceptable = 406 == status;
-	  this.notFound = 404 == status;
-	  this.forbidden = 403 == status;
-	};
-
-	/**
-	 * Return an `Error` representative of this response.
-	 *
-	 * @return {Error}
-	 * @api public
-	 */
-
-	Response.prototype.toError = function(){
-	  var req = this.req;
-	  var method = req.method;
-	  var url = req.url;
-
-	  var msg = 'cannot ' + method + ' ' + url + ' (' + this.status + ')';
-	  var err = new Error(msg);
-	  err.status = this.status;
-	  err.method = method;
-	  err.url = url;
-
-	  return err;
-	};
-
-	/**
-	 * Expose `Response`.
-	 */
-
-	request.Response = Response;
-
-	/**
-	 * Initialize a new `Request` with the given `method` and `url`.
-	 *
-	 * @param {String} method
-	 * @param {String} url
-	 * @api public
-	 */
-
-	function Request(method, url) {
-	  var self = this;
-	  this._query = this._query || [];
-	  this.method = method;
-	  this.url = url;
-	  this.header = {}; // preserves header name case
-	  this._header = {}; // coerces header names to lowercase
-	  this.on('end', function(){
-	    var err = null;
-	    var res = null;
-
-	    try {
-	      res = new Response(self);
-	    } catch(e) {
-	      err = new Error('Parser is unable to parse the response');
-	      err.parse = true;
-	      err.original = e;
-	      // issue #675: return the raw response if the response parsing fails
-	      err.rawResponse = self.xhr && self.xhr.responseText ? self.xhr.responseText : null;
-	      // issue #876: return the http status code if the response parsing fails
-	      err.statusCode = self.xhr && self.xhr.status ? self.xhr.status : null;
-	      return self.callback(err);
-	    }
-
-	    self.emit('response', res);
-
-	    if (err) {
-	      return self.callback(err, res);
-	    }
-
-	    if (res.status >= 200 && res.status < 300) {
-	      return self.callback(err, res);
-	    }
-
-	    var new_err = new Error(res.statusText || 'Unsuccessful HTTP response');
-	    new_err.original = err;
-	    new_err.response = res;
-	    new_err.status = res.status;
-
-	    self.callback(new_err, res);
-	  });
-	}
-
-	/**
-	 * Mixin `Emitter` and `requestBase`.
-	 */
-
-	Emitter(Request.prototype);
-	for (var key in requestBase) {
-	  Request.prototype[key] = requestBase[key];
-	}
-
-	/**
-	 * Abort the request, and clear potential timeout.
-	 *
-	 * @return {Request}
-	 * @api public
-	 */
-
-	Request.prototype.abort = function(){
-	  if (this.aborted) return;
-	  this.aborted = true;
-	  this.xhr.abort();
-	  this.clearTimeout();
-	  this.emit('abort');
-	  return this;
-	};
-
-	/**
-	 * Set Content-Type to `type`, mapping values from `request.types`.
-	 *
-	 * Examples:
-	 *
-	 *      superagent.types.xml = 'application/xml';
-	 *
-	 *      request.post('/')
-	 *        .type('xml')
-	 *        .send(xmlstring)
-	 *        .end(callback);
-	 *
-	 *      request.post('/')
-	 *        .type('application/xml')
-	 *        .send(xmlstring)
-	 *        .end(callback);
-	 *
-	 * @param {String} type
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	Request.prototype.type = function(type){
-	  this.set('Content-Type', request.types[type] || type);
-	  return this;
-	};
-
-	/**
-	 * Set responseType to `val`. Presently valid responseTypes are 'blob' and 
-	 * 'arraybuffer'.
-	 *
-	 * Examples:
-	 *
-	 *      req.get('/')
-	 *        .responseType('blob')
-	 *        .end(callback);
-	 *
-	 * @param {String} val
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	Request.prototype.responseType = function(val){
-	  this._responseType = val;
-	  return this;
-	};
-
-	/**
-	 * Set Accept to `type`, mapping values from `request.types`.
-	 *
-	 * Examples:
-	 *
-	 *      superagent.types.json = 'application/json';
-	 *
-	 *      request.get('/agent')
-	 *        .accept('json')
-	 *        .end(callback);
-	 *
-	 *      request.get('/agent')
-	 *        .accept('application/json')
-	 *        .end(callback);
-	 *
-	 * @param {String} accept
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	Request.prototype.accept = function(type){
-	  this.set('Accept', request.types[type] || type);
-	  return this;
-	};
-
-	/**
-	 * Set Authorization field value with `user` and `pass`.
-	 *
-	 * @param {String} user
-	 * @param {String} pass
-	 * @param {Object} options with 'type' property 'auto' or 'basic' (default 'basic')
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	Request.prototype.auth = function(user, pass, options){
-	  if (!options) {
-	    options = {
-	      type: 'basic'
-	    }
-	  }
-
-	  switch (options.type) {
-	    case 'basic':
-	      var str = btoa(user + ':' + pass);
-	      this.set('Authorization', 'Basic ' + str);
-	    break;
-
-	    case 'auto':
-	      this.username = user;
-	      this.password = pass;
-	    break;
-	  }
-	  return this;
-	};
-
-	/**
-	* Add query-string `val`.
-	*
-	* Examples:
-	*
-	*   request.get('/shoes')
-	*     .query('size=10')
-	*     .query({ color: 'blue' })
-	*
-	* @param {Object|String} val
-	* @return {Request} for chaining
-	* @api public
-	*/
-
-	Request.prototype.query = function(val){
-	  if ('string' != typeof val) val = serialize(val);
-	  if (val) this._query.push(val);
-	  return this;
-	};
-
-	/**
-	 * Queue the given `file` as an attachment to the specified `field`,
-	 * with optional `filename`.
-	 *
-	 * ``` js
-	 * request.post('/upload')
-	 *   .attach(new Blob(['<a id="a"><b id="b">hey!</b></a>'], { type: "text/html"}))
-	 *   .end(callback);
-	 * ```
-	 *
-	 * @param {String} field
-	 * @param {Blob|File} file
-	 * @param {String} filename
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	Request.prototype.attach = function(field, file, filename){
-	  this._getFormData().append(field, file, filename || file.name);
-	  return this;
-	};
-
-	Request.prototype._getFormData = function(){
-	  if (!this._formData) {
-	    this._formData = new root.FormData();
-	  }
-	  return this._formData;
-	};
-
-	/**
-	 * Send `data` as the request body, defaulting the `.type()` to "json" when
-	 * an object is given.
-	 *
-	 * Examples:
-	 *
-	 *       // manual json
-	 *       request.post('/user')
-	 *         .type('json')
-	 *         .send('{"name":"tj"}')
-	 *         .end(callback)
-	 *
-	 *       // auto json
-	 *       request.post('/user')
-	 *         .send({ name: 'tj' })
-	 *         .end(callback)
-	 *
-	 *       // manual x-www-form-urlencoded
-	 *       request.post('/user')
-	 *         .type('form')
-	 *         .send('name=tj')
-	 *         .end(callback)
-	 *
-	 *       // auto x-www-form-urlencoded
-	 *       request.post('/user')
-	 *         .type('form')
-	 *         .send({ name: 'tj' })
-	 *         .end(callback)
-	 *
-	 *       // defaults to x-www-form-urlencoded
-	  *      request.post('/user')
-	  *        .send('name=tobi')
-	  *        .send('species=ferret')
-	  *        .end(callback)
-	 *
-	 * @param {String|Object} data
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	Request.prototype.send = function(data){
-	  var obj = isObject(data);
-	  var type = this._header['content-type'];
-
-	  // merge
-	  if (obj && isObject(this._data)) {
-	    for (var key in data) {
-	      this._data[key] = data[key];
-	    }
-	  } else if ('string' == typeof data) {
-	    if (!type) this.type('form');
-	    type = this._header['content-type'];
-	    if ('application/x-www-form-urlencoded' == type) {
-	      this._data = this._data
-	        ? this._data + '&' + data
-	        : data;
-	    } else {
-	      this._data = (this._data || '') + data;
-	    }
-	  } else {
-	    this._data = data;
-	  }
-
-	  if (!obj || isHost(data)) return this;
-	  if (!type) this.type('json');
-	  return this;
-	};
-
-	/**
-	 * @deprecated
-	 */
-	Response.prototype.parse = function serialize(fn){
-	  if (root.console) {
-	    console.warn("Client-side parse() method has been renamed to serialize(). This method is not compatible with superagent v2.0");
-	  }
-	  this.serialize(fn);
-	  return this;
-	};
-
-	Response.prototype.serialize = function serialize(fn){
-	  this._parser = fn;
-	  return this;
-	};
-
-	/**
-	 * Invoke the callback with `err` and `res`
-	 * and handle arity check.
-	 *
-	 * @param {Error} err
-	 * @param {Response} res
-	 * @api private
-	 */
-
-	Request.prototype.callback = function(err, res){
-	  var fn = this._callback;
-	  this.clearTimeout();
-	  fn(err, res);
-	};
-
-	/**
-	 * Invoke callback with x-domain error.
-	 *
-	 * @api private
-	 */
-
-	Request.prototype.crossDomainError = function(){
-	  var err = new Error('Request has been terminated\nPossible causes: the network is offline, Origin is not allowed by Access-Control-Allow-Origin, the page is being unloaded, etc.');
-	  err.crossDomain = true;
-
-	  err.status = this.status;
-	  err.method = this.method;
-	  err.url = this.url;
-
-	  this.callback(err);
-	};
-
-	/**
-	 * Invoke callback with timeout error.
-	 *
-	 * @api private
-	 */
-
-	Request.prototype.timeoutError = function(){
-	  var timeout = this._timeout;
-	  var err = new Error('timeout of ' + timeout + 'ms exceeded');
-	  err.timeout = timeout;
-	  this.callback(err);
-	};
-
-	/**
-	 * Enable transmission of cookies with x-domain requests.
-	 *
-	 * Note that for this to work the origin must not be
-	 * using "Access-Control-Allow-Origin" with a wildcard,
-	 * and also must set "Access-Control-Allow-Credentials"
-	 * to "true".
-	 *
-	 * @api public
-	 */
-
-	Request.prototype.withCredentials = function(){
-	  this._withCredentials = true;
-	  return this;
-	};
-
-	/**
-	 * Initiate request, invoking callback `fn(res)`
-	 * with an instanceof `Response`.
-	 *
-	 * @param {Function} fn
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	Request.prototype.end = function(fn){
-	  var self = this;
-	  var xhr = this.xhr = request.getXHR();
-	  var query = this._query.join('&');
-	  var timeout = this._timeout;
-	  var data = this._formData || this._data;
-
-	  // store callback
-	  this._callback = fn || noop;
-
-	  // state change
-	  xhr.onreadystatechange = function(){
-	    if (4 != xhr.readyState) return;
-
-	    // In IE9, reads to any property (e.g. status) off of an aborted XHR will
-	    // result in the error "Could not complete the operation due to error c00c023f"
-	    var status;
-	    try { status = xhr.status } catch(e) { status = 0; }
-
-	    if (0 == status) {
-	      if (self.timedout) return self.timeoutError();
-	      if (self.aborted) return;
-	      return self.crossDomainError();
-	    }
-	    self.emit('end');
-	  };
-
-	  // progress
-	  var handleProgress = function(e){
-	    if (e.total > 0) {
-	      e.percent = e.loaded / e.total * 100;
-	    }
-	    e.direction = 'download';
-	    self.emit('progress', e);
-	  };
-	  if (this.hasListeners('progress')) {
-	    xhr.onprogress = handleProgress;
-	  }
-	  try {
-	    if (xhr.upload && this.hasListeners('progress')) {
-	      xhr.upload.onprogress = handleProgress;
-	    }
-	  } catch(e) {
-	    // Accessing xhr.upload fails in IE from a web worker, so just pretend it doesn't exist.
-	    // Reported here:
-	    // https://connect.microsoft.com/IE/feedback/details/837245/xmlhttprequest-upload-throws-invalid-argument-when-used-from-web-worker-context
-	  }
-
-	  // timeout
-	  if (timeout && !this._timer) {
-	    this._timer = setTimeout(function(){
-	      self.timedout = true;
-	      self.abort();
-	    }, timeout);
-	  }
-
-	  // querystring
-	  if (query) {
-	    query = request.serializeObject(query);
-	    this.url += ~this.url.indexOf('?')
-	      ? '&' + query
-	      : '?' + query;
-	  }
-
-	  // initiate request
-	  if (this.username && this.password) {
-	    xhr.open(this.method, this.url, true, this.username, this.password);
-	  } else {
-	    xhr.open(this.method, this.url, true);
-	  }
-
-	  // CORS
-	  if (this._withCredentials) xhr.withCredentials = true;
-
-	  // body
-	  if ('GET' != this.method && 'HEAD' != this.method && 'string' != typeof data && !isHost(data)) {
-	    // serialize stuff
-	    var contentType = this._header['content-type'];
-	    var serialize = this._parser || request.serialize[contentType ? contentType.split(';')[0] : ''];
-	    if (!serialize && isJSON(contentType)) serialize = request.serialize['application/json'];
-	    if (serialize) data = serialize(data);
-	  }
-
-	  // set header fields
-	  for (var field in this.header) {
-	    if (null == this.header[field]) continue;
-	    xhr.setRequestHeader(field, this.header[field]);
-	  }
-
-	  if (this._responseType) {
-	    xhr.responseType = this._responseType;
-	  }
-
-	  // send stuff
-	  this.emit('request', this);
-
-	  // IE11 xhr.send(undefined) sends 'undefined' string as POST payload (instead of nothing)
-	  // We need null here if data is undefined
-	  xhr.send(typeof data !== 'undefined' ? data : null);
-	  return this;
-	};
-
-
-	/**
-	 * Expose `Request`.
-	 */
-
-	request.Request = Request;
-
-	/**
-	 * GET `url` with optional callback `fn(res)`.
-	 *
-	 * @param {String} url
-	 * @param {Mixed|Function} data or fn
-	 * @param {Function} fn
-	 * @return {Request}
-	 * @api public
-	 */
-
-	request.get = function(url, data, fn){
-	  var req = request('GET', url);
-	  if ('function' == typeof data) fn = data, data = null;
-	  if (data) req.query(data);
-	  if (fn) req.end(fn);
-	  return req;
-	};
-
-	/**
-	 * HEAD `url` with optional callback `fn(res)`.
-	 *
-	 * @param {String} url
-	 * @param {Mixed|Function} data or fn
-	 * @param {Function} fn
-	 * @return {Request}
-	 * @api public
-	 */
-
-	request.head = function(url, data, fn){
-	  var req = request('HEAD', url);
-	  if ('function' == typeof data) fn = data, data = null;
-	  if (data) req.send(data);
-	  if (fn) req.end(fn);
-	  return req;
-	};
-
-	/**
-	 * DELETE `url` with optional callback `fn(res)`.
-	 *
-	 * @param {String} url
-	 * @param {Function} fn
-	 * @return {Request}
-	 * @api public
-	 */
-
-	function del(url, fn){
-	  var req = request('DELETE', url);
-	  if (fn) req.end(fn);
-	  return req;
-	};
-
-	request['del'] = del;
-	request['delete'] = del;
-
-	/**
-	 * PATCH `url` with optional `data` and callback `fn(res)`.
-	 *
-	 * @param {String} url
-	 * @param {Mixed} data
-	 * @param {Function} fn
-	 * @return {Request}
-	 * @api public
-	 */
-
-	request.patch = function(url, data, fn){
-	  var req = request('PATCH', url);
-	  if ('function' == typeof data) fn = data, data = null;
-	  if (data) req.send(data);
-	  if (fn) req.end(fn);
-	  return req;
-	};
-
-	/**
-	 * POST `url` with optional `data` and callback `fn(res)`.
-	 *
-	 * @param {String} url
-	 * @param {Mixed} data
-	 * @param {Function} fn
-	 * @return {Request}
-	 * @api public
-	 */
-
-	request.post = function(url, data, fn){
-	  var req = request('POST', url);
-	  if ('function' == typeof data) fn = data, data = null;
-	  if (data) req.send(data);
-	  if (fn) req.end(fn);
-	  return req;
-	};
-
-	/**
-	 * PUT `url` with optional `data` and callback `fn(res)`.
-	 *
-	 * @param {String} url
-	 * @param {Mixed|Function} data or fn
-	 * @param {Function} fn
-	 * @return {Request}
-	 * @api public
-	 */
-
-	request.put = function(url, data, fn){
-	  var req = request('PUT', url);
-	  if ('function' == typeof data) fn = data, data = null;
-	  if (data) req.send(data);
-	  if (fn) req.end(fn);
-	  return req;
-	};
-
-
-/***/ },
-/* 300 */
-/***/ function(module, exports) {
-
-	
-	/**
-	 * Expose `Emitter`.
-	 */
-
-	module.exports = Emitter;
-
-	/**
-	 * Initialize a new `Emitter`.
-	 *
-	 * @api public
-	 */
-
-	function Emitter(obj) {
-	  if (obj) return mixin(obj);
-	};
-
-	/**
-	 * Mixin the emitter properties.
-	 *
-	 * @param {Object} obj
-	 * @return {Object}
-	 * @api private
-	 */
-
-	function mixin(obj) {
-	  for (var key in Emitter.prototype) {
-	    obj[key] = Emitter.prototype[key];
-	  }
-	  return obj;
-	}
-
-	/**
-	 * Listen on the given `event` with `fn`.
-	 *
-	 * @param {String} event
-	 * @param {Function} fn
-	 * @return {Emitter}
-	 * @api public
-	 */
-
-	Emitter.prototype.on =
-	Emitter.prototype.addEventListener = function(event, fn){
-	  this._callbacks = this._callbacks || {};
-	  (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
-	    .push(fn);
-	  return this;
-	};
-
-	/**
-	 * Adds an `event` listener that will be invoked a single
-	 * time then automatically removed.
-	 *
-	 * @param {String} event
-	 * @param {Function} fn
-	 * @return {Emitter}
-	 * @api public
-	 */
-
-	Emitter.prototype.once = function(event, fn){
-	  function on() {
-	    this.off(event, on);
-	    fn.apply(this, arguments);
-	  }
-
-	  on.fn = fn;
-	  this.on(event, on);
-	  return this;
-	};
-
-	/**
-	 * Remove the given callback for `event` or all
-	 * registered callbacks.
-	 *
-	 * @param {String} event
-	 * @param {Function} fn
-	 * @return {Emitter}
-	 * @api public
-	 */
-
-	Emitter.prototype.off =
-	Emitter.prototype.removeListener =
-	Emitter.prototype.removeAllListeners =
-	Emitter.prototype.removeEventListener = function(event, fn){
-	  this._callbacks = this._callbacks || {};
-
-	  // all
-	  if (0 == arguments.length) {
-	    this._callbacks = {};
-	    return this;
-	  }
-
-	  // specific event
-	  var callbacks = this._callbacks['$' + event];
-	  if (!callbacks) return this;
-
-	  // remove all handlers
-	  if (1 == arguments.length) {
-	    delete this._callbacks['$' + event];
-	    return this;
-	  }
-
-	  // remove specific handler
-	  var cb;
-	  for (var i = 0; i < callbacks.length; i++) {
-	    cb = callbacks[i];
-	    if (cb === fn || cb.fn === fn) {
-	      callbacks.splice(i, 1);
-	      break;
-	    }
-	  }
-	  return this;
-	};
-
-	/**
-	 * Emit `event` with the given args.
-	 *
-	 * @param {String} event
-	 * @param {Mixed} ...
-	 * @return {Emitter}
-	 */
-
-	Emitter.prototype.emit = function(event){
-	  this._callbacks = this._callbacks || {};
-	  var args = [].slice.call(arguments, 1)
-	    , callbacks = this._callbacks['$' + event];
-
-	  if (callbacks) {
-	    callbacks = callbacks.slice(0);
-	    for (var i = 0, len = callbacks.length; i < len; ++i) {
-	      callbacks[i].apply(this, args);
-	    }
-	  }
-
-	  return this;
-	};
-
-	/**
-	 * Return array of callbacks for `event`.
-	 *
-	 * @param {String} event
-	 * @return {Array}
-	 * @api public
-	 */
-
-	Emitter.prototype.listeners = function(event){
-	  this._callbacks = this._callbacks || {};
-	  return this._callbacks['$' + event] || [];
-	};
-
-	/**
-	 * Check if this emitter has `event` handlers.
-	 *
-	 * @param {String} event
-	 * @return {Boolean}
-	 * @api public
-	 */
-
-	Emitter.prototype.hasListeners = function(event){
-	  return !! this.listeners(event).length;
-	};
-
-
-/***/ },
-/* 301 */
-/***/ function(module, exports) {
-
-	
-	/**
-	 * Reduce `arr` with `fn`.
-	 *
-	 * @param {Array} arr
-	 * @param {Function} fn
-	 * @param {Mixed} initial
-	 *
-	 * TODO: combatible error handling?
-	 */
-
-	module.exports = function(arr, fn, initial){  
-	  var idx = 0;
-	  var len = arr.length;
-	  var curr = arguments.length == 3
-	    ? initial
-	    : arr[idx++];
-
-	  while (idx < len) {
-	    curr = fn.call(null, curr, arr[idx], ++idx, arr);
-	  }
-	  
-	  return curr;
-	};
-
-/***/ },
-/* 302 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Module of mixed-in functions shared between node and client code
-	 */
-	var isObject = __webpack_require__(303);
-
-	/**
-	 * Clear previous timeout.
-	 *
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	exports.clearTimeout = function _clearTimeout(){
-	  this._timeout = 0;
-	  clearTimeout(this._timer);
-	  return this;
-	};
-
-	/**
-	 * Force given parser
-	 *
-	 * Sets the body parser no matter type.
-	 *
-	 * @param {Function}
-	 * @api public
-	 */
-
-	exports.parse = function parse(fn){
-	  this._parser = fn;
-	  return this;
-	};
-
-	/**
-	 * Set timeout to `ms`.
-	 *
-	 * @param {Number} ms
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	exports.timeout = function timeout(ms){
-	  this._timeout = ms;
-	  return this;
-	};
-
-	/**
-	 * Faux promise support
-	 *
-	 * @param {Function} fulfill
-	 * @param {Function} reject
-	 * @return {Request}
-	 */
-
-	exports.then = function then(fulfill, reject) {
-	  return this.end(function(err, res) {
-	    err ? reject(err) : fulfill(res);
-	  });
-	}
-
-	/**
-	 * Allow for extension
-	 */
-
-	exports.use = function use(fn) {
-	  fn(this);
-	  return this;
-	}
-
-
-	/**
-	 * Get request header `field`.
-	 * Case-insensitive.
-	 *
-	 * @param {String} field
-	 * @return {String}
-	 * @api public
-	 */
-
-	exports.get = function(field){
-	  return this._header[field.toLowerCase()];
-	};
-
-	/**
-	 * Get case-insensitive header `field` value.
-	 * This is a deprecated internal API. Use `.get(field)` instead.
-	 *
-	 * (getHeader is no longer used internally by the superagent code base)
-	 *
-	 * @param {String} field
-	 * @return {String}
-	 * @api private
-	 * @deprecated
-	 */
-
-	exports.getHeader = exports.get;
-
-	/**
-	 * Set header `field` to `val`, or multiple fields with one object.
-	 * Case-insensitive.
-	 *
-	 * Examples:
-	 *
-	 *      req.get('/')
-	 *        .set('Accept', 'application/json')
-	 *        .set('X-API-Key', 'foobar')
-	 *        .end(callback);
-	 *
-	 *      req.get('/')
-	 *        .set({ Accept: 'application/json', 'X-API-Key': 'foobar' })
-	 *        .end(callback);
-	 *
-	 * @param {String|Object} field
-	 * @param {String} val
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	exports.set = function(field, val){
-	  if (isObject(field)) {
-	    for (var key in field) {
-	      this.set(key, field[key]);
-	    }
-	    return this;
-	  }
-	  this._header[field.toLowerCase()] = val;
-	  this.header[field] = val;
-	  return this;
-	};
-
-	/**
-	 * Remove header `field`.
-	 * Case-insensitive.
-	 *
-	 * Example:
-	 *
-	 *      req.get('/')
-	 *        .unset('User-Agent')
-	 *        .end(callback);
-	 *
-	 * @param {String} field
-	 */
-	exports.unset = function(field){
-	  delete this._header[field.toLowerCase()];
-	  delete this.header[field];
-	  return this;
-	};
-
-	/**
-	 * Write the field `name` and `val` for "multipart/form-data"
-	 * request bodies.
-	 *
-	 * ``` js
-	 * request.post('/upload')
-	 *   .field('foo', 'bar')
-	 *   .end(callback);
-	 * ```
-	 *
-	 * @param {String} name
-	 * @param {String|Blob|File|Buffer|fs.ReadStream} val
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-	exports.field = function(name, val) {
-	  this._getFormData().append(name, val);
-	  return this;
-	};
-
-
-/***/ },
-/* 303 */
-/***/ function(module, exports) {
-
-	/**
-	 * Check if `obj` is an object.
-	 *
-	 * @param {Object} obj
-	 * @return {Boolean}
-	 * @api private
-	 */
-
-	function isObject(obj) {
-	  return null != obj && 'object' == typeof obj;
-	}
-
-	module.exports = isObject;
-
-
-/***/ },
-/* 304 */
-/***/ function(module, exports) {
-
-	// The node and browser modules expose versions of this with the
-	// appropriate constructor function bound as first argument
-	/**
-	 * Issue a request:
-	 *
-	 * Examples:
-	 *
-	 *    request('GET', '/users').end(callback)
-	 *    request('/users').end(callback)
-	 *    request('/users', callback)
-	 *
-	 * @param {String} method
-	 * @param {String|Function} url or callback
-	 * @return {Request}
-	 * @api public
-	 */
-
-	function request(RequestConstructor, method, url) {
-	  // callback
-	  if ('function' == typeof url) {
-	    return new RequestConstructor('GET', method).end(url);
-	  }
-
-	  // url first
-	  if (2 == arguments.length) {
-	    return new RequestConstructor('GET', method);
-	  }
-
-	  return new RequestConstructor(method, url);
-	}
-
-	module.exports = request;
-
-
-/***/ },
-/* 305 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(306);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-total-row.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-total-row.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 306 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".order-total-table td {\n  padding: 0.75em 1.5em; }\n\n.order-total-table tr {\n  background: #EEEEEE; }\n\ntr.order-total-row .delete-item {\n  color: #962D2D;\n  margin-left: 20px;\n  display: none;\n  cursor: pointer; }\n\ntr.order-total-row:hover .delete-item {\n  display: inline-block; }\n\n.td-price {\n  width: 75px; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {//! moment.js
@@ -46709,7 +44608,7 @@
 	                module && module.exports) {
 	            try {
 	                oldLocale = globalLocale._abbr;
-	                __webpack_require__(308)("./" + name);
+	                __webpack_require__(289)("./" + name);
 	                // because defineLocale currently also sets the global locale, we
 	                // want to undo that for lazy loaded locales
 	                locale_locales__getSetGlobalLocale(oldLocale);
@@ -50049,204 +47948,204 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(229)(module)))
 
 /***/ },
-/* 308 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./af": 309,
-		"./af.js": 309,
-		"./ar": 310,
-		"./ar-ma": 311,
-		"./ar-ma.js": 311,
-		"./ar-sa": 312,
-		"./ar-sa.js": 312,
-		"./ar-tn": 313,
-		"./ar-tn.js": 313,
-		"./ar.js": 310,
-		"./az": 314,
-		"./az.js": 314,
-		"./be": 315,
-		"./be.js": 315,
-		"./bg": 316,
-		"./bg.js": 316,
-		"./bn": 317,
-		"./bn.js": 317,
-		"./bo": 318,
-		"./bo.js": 318,
-		"./br": 319,
-		"./br.js": 319,
-		"./bs": 320,
-		"./bs.js": 320,
-		"./ca": 321,
-		"./ca.js": 321,
-		"./cs": 322,
-		"./cs.js": 322,
-		"./cv": 323,
-		"./cv.js": 323,
-		"./cy": 324,
-		"./cy.js": 324,
-		"./da": 325,
-		"./da.js": 325,
-		"./de": 326,
-		"./de-at": 327,
-		"./de-at.js": 327,
-		"./de.js": 326,
-		"./dv": 328,
-		"./dv.js": 328,
-		"./el": 329,
-		"./el.js": 329,
-		"./en-au": 330,
-		"./en-au.js": 330,
-		"./en-ca": 331,
-		"./en-ca.js": 331,
-		"./en-gb": 332,
-		"./en-gb.js": 332,
-		"./en-ie": 333,
-		"./en-ie.js": 333,
-		"./en-nz": 334,
-		"./en-nz.js": 334,
-		"./eo": 335,
-		"./eo.js": 335,
-		"./es": 336,
-		"./es.js": 336,
-		"./et": 337,
-		"./et.js": 337,
-		"./eu": 338,
-		"./eu.js": 338,
-		"./fa": 339,
-		"./fa.js": 339,
-		"./fi": 340,
-		"./fi.js": 340,
-		"./fo": 341,
-		"./fo.js": 341,
-		"./fr": 342,
-		"./fr-ca": 343,
-		"./fr-ca.js": 343,
-		"./fr-ch": 344,
-		"./fr-ch.js": 344,
-		"./fr.js": 342,
-		"./fy": 345,
-		"./fy.js": 345,
-		"./gd": 346,
-		"./gd.js": 346,
-		"./gl": 347,
-		"./gl.js": 347,
-		"./he": 348,
-		"./he.js": 348,
-		"./hi": 349,
-		"./hi.js": 349,
-		"./hr": 350,
-		"./hr.js": 350,
-		"./hu": 351,
-		"./hu.js": 351,
-		"./hy-am": 352,
-		"./hy-am.js": 352,
-		"./id": 353,
-		"./id.js": 353,
-		"./is": 354,
-		"./is.js": 354,
-		"./it": 355,
-		"./it.js": 355,
-		"./ja": 356,
-		"./ja.js": 356,
-		"./jv": 357,
-		"./jv.js": 357,
-		"./ka": 358,
-		"./ka.js": 358,
-		"./kk": 359,
-		"./kk.js": 359,
-		"./km": 360,
-		"./km.js": 360,
-		"./ko": 361,
-		"./ko.js": 361,
-		"./lb": 362,
-		"./lb.js": 362,
-		"./lo": 363,
-		"./lo.js": 363,
-		"./lt": 364,
-		"./lt.js": 364,
-		"./lv": 365,
-		"./lv.js": 365,
-		"./me": 366,
-		"./me.js": 366,
-		"./mk": 367,
-		"./mk.js": 367,
-		"./ml": 368,
-		"./ml.js": 368,
-		"./mr": 369,
-		"./mr.js": 369,
-		"./ms": 370,
-		"./ms-my": 371,
-		"./ms-my.js": 371,
-		"./ms.js": 370,
-		"./my": 372,
-		"./my.js": 372,
-		"./nb": 373,
-		"./nb.js": 373,
-		"./ne": 374,
-		"./ne.js": 374,
-		"./nl": 375,
-		"./nl.js": 375,
-		"./nn": 376,
-		"./nn.js": 376,
-		"./pa-in": 377,
-		"./pa-in.js": 377,
-		"./pl": 378,
-		"./pl.js": 378,
-		"./pt": 379,
-		"./pt-br": 380,
-		"./pt-br.js": 380,
-		"./pt.js": 379,
-		"./ro": 381,
-		"./ro.js": 381,
-		"./ru": 382,
-		"./ru.js": 382,
-		"./se": 383,
-		"./se.js": 383,
-		"./si": 384,
-		"./si.js": 384,
-		"./sk": 385,
-		"./sk.js": 385,
-		"./sl": 386,
-		"./sl.js": 386,
-		"./sq": 387,
-		"./sq.js": 387,
-		"./sr": 388,
-		"./sr-cyrl": 389,
-		"./sr-cyrl.js": 389,
-		"./sr.js": 388,
-		"./sv": 390,
-		"./sv.js": 390,
-		"./sw": 391,
-		"./sw.js": 391,
-		"./ta": 392,
-		"./ta.js": 392,
-		"./te": 393,
-		"./te.js": 393,
-		"./th": 394,
-		"./th.js": 394,
-		"./tl-ph": 395,
-		"./tl-ph.js": 395,
-		"./tlh": 396,
-		"./tlh.js": 396,
-		"./tr": 397,
-		"./tr.js": 397,
-		"./tzl": 398,
-		"./tzl.js": 398,
-		"./tzm": 399,
-		"./tzm-latn": 400,
-		"./tzm-latn.js": 400,
-		"./tzm.js": 399,
-		"./uk": 401,
-		"./uk.js": 401,
-		"./uz": 402,
-		"./uz.js": 402,
-		"./vi": 403,
-		"./vi.js": 403,
-		"./zh-cn": 404,
-		"./zh-cn.js": 404,
-		"./zh-tw": 405,
-		"./zh-tw.js": 405
+		"./af": 290,
+		"./af.js": 290,
+		"./ar": 291,
+		"./ar-ma": 292,
+		"./ar-ma.js": 292,
+		"./ar-sa": 293,
+		"./ar-sa.js": 293,
+		"./ar-tn": 294,
+		"./ar-tn.js": 294,
+		"./ar.js": 291,
+		"./az": 295,
+		"./az.js": 295,
+		"./be": 296,
+		"./be.js": 296,
+		"./bg": 297,
+		"./bg.js": 297,
+		"./bn": 298,
+		"./bn.js": 298,
+		"./bo": 299,
+		"./bo.js": 299,
+		"./br": 300,
+		"./br.js": 300,
+		"./bs": 301,
+		"./bs.js": 301,
+		"./ca": 302,
+		"./ca.js": 302,
+		"./cs": 303,
+		"./cs.js": 303,
+		"./cv": 304,
+		"./cv.js": 304,
+		"./cy": 305,
+		"./cy.js": 305,
+		"./da": 306,
+		"./da.js": 306,
+		"./de": 307,
+		"./de-at": 308,
+		"./de-at.js": 308,
+		"./de.js": 307,
+		"./dv": 309,
+		"./dv.js": 309,
+		"./el": 310,
+		"./el.js": 310,
+		"./en-au": 311,
+		"./en-au.js": 311,
+		"./en-ca": 312,
+		"./en-ca.js": 312,
+		"./en-gb": 313,
+		"./en-gb.js": 313,
+		"./en-ie": 314,
+		"./en-ie.js": 314,
+		"./en-nz": 315,
+		"./en-nz.js": 315,
+		"./eo": 316,
+		"./eo.js": 316,
+		"./es": 317,
+		"./es.js": 317,
+		"./et": 318,
+		"./et.js": 318,
+		"./eu": 319,
+		"./eu.js": 319,
+		"./fa": 320,
+		"./fa.js": 320,
+		"./fi": 321,
+		"./fi.js": 321,
+		"./fo": 322,
+		"./fo.js": 322,
+		"./fr": 323,
+		"./fr-ca": 324,
+		"./fr-ca.js": 324,
+		"./fr-ch": 325,
+		"./fr-ch.js": 325,
+		"./fr.js": 323,
+		"./fy": 326,
+		"./fy.js": 326,
+		"./gd": 327,
+		"./gd.js": 327,
+		"./gl": 328,
+		"./gl.js": 328,
+		"./he": 329,
+		"./he.js": 329,
+		"./hi": 330,
+		"./hi.js": 330,
+		"./hr": 331,
+		"./hr.js": 331,
+		"./hu": 332,
+		"./hu.js": 332,
+		"./hy-am": 333,
+		"./hy-am.js": 333,
+		"./id": 334,
+		"./id.js": 334,
+		"./is": 335,
+		"./is.js": 335,
+		"./it": 336,
+		"./it.js": 336,
+		"./ja": 337,
+		"./ja.js": 337,
+		"./jv": 338,
+		"./jv.js": 338,
+		"./ka": 339,
+		"./ka.js": 339,
+		"./kk": 340,
+		"./kk.js": 340,
+		"./km": 341,
+		"./km.js": 341,
+		"./ko": 342,
+		"./ko.js": 342,
+		"./lb": 343,
+		"./lb.js": 343,
+		"./lo": 344,
+		"./lo.js": 344,
+		"./lt": 345,
+		"./lt.js": 345,
+		"./lv": 346,
+		"./lv.js": 346,
+		"./me": 347,
+		"./me.js": 347,
+		"./mk": 348,
+		"./mk.js": 348,
+		"./ml": 349,
+		"./ml.js": 349,
+		"./mr": 350,
+		"./mr.js": 350,
+		"./ms": 351,
+		"./ms-my": 352,
+		"./ms-my.js": 352,
+		"./ms.js": 351,
+		"./my": 353,
+		"./my.js": 353,
+		"./nb": 354,
+		"./nb.js": 354,
+		"./ne": 355,
+		"./ne.js": 355,
+		"./nl": 356,
+		"./nl.js": 356,
+		"./nn": 357,
+		"./nn.js": 357,
+		"./pa-in": 358,
+		"./pa-in.js": 358,
+		"./pl": 359,
+		"./pl.js": 359,
+		"./pt": 360,
+		"./pt-br": 361,
+		"./pt-br.js": 361,
+		"./pt.js": 360,
+		"./ro": 362,
+		"./ro.js": 362,
+		"./ru": 363,
+		"./ru.js": 363,
+		"./se": 364,
+		"./se.js": 364,
+		"./si": 365,
+		"./si.js": 365,
+		"./sk": 366,
+		"./sk.js": 366,
+		"./sl": 367,
+		"./sl.js": 367,
+		"./sq": 368,
+		"./sq.js": 368,
+		"./sr": 369,
+		"./sr-cyrl": 370,
+		"./sr-cyrl.js": 370,
+		"./sr.js": 369,
+		"./sv": 371,
+		"./sv.js": 371,
+		"./sw": 372,
+		"./sw.js": 372,
+		"./ta": 373,
+		"./ta.js": 373,
+		"./te": 374,
+		"./te.js": 374,
+		"./th": 375,
+		"./th.js": 375,
+		"./tl-ph": 376,
+		"./tl-ph.js": 376,
+		"./tlh": 377,
+		"./tlh.js": 377,
+		"./tr": 378,
+		"./tr.js": 378,
+		"./tzl": 379,
+		"./tzl.js": 379,
+		"./tzm": 380,
+		"./tzm-latn": 381,
+		"./tzm-latn.js": 381,
+		"./tzm.js": 380,
+		"./uk": 382,
+		"./uk.js": 382,
+		"./uz": 383,
+		"./uz.js": 383,
+		"./vi": 384,
+		"./vi.js": 384,
+		"./zh-cn": 385,
+		"./zh-cn.js": 385,
+		"./zh-tw": 386,
+		"./zh-tw.js": 386
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -50259,11 +48158,11 @@
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 308;
+	webpackContext.id = 289;
 
 
 /***/ },
-/* 309 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50271,7 +48170,7 @@
 	//! author : Werner Mollentze : https://github.com/wernerm
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -50340,7 +48239,7 @@
 	}));
 
 /***/ },
-/* 310 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50350,7 +48249,7 @@
 	//! Native plural forms: forabi https://github.com/forabi
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -50480,7 +48379,7 @@
 	}));
 
 /***/ },
-/* 311 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50489,7 +48388,7 @@
 	//! author : Abdel Said : https://github.com/abdelsaid
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -50543,7 +48442,7 @@
 	}));
 
 /***/ },
-/* 312 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50551,7 +48450,7 @@
 	//! author : Suhail Alkowaileet : https://github.com/xsoh
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -50650,14 +48549,14 @@
 	}));
 
 /***/ },
-/* 313 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 	//! locale  : Tunisian Arabic (ar-tn)
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -50711,7 +48610,7 @@
 	}));
 
 /***/ },
-/* 314 */
+/* 295 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50719,7 +48618,7 @@
 	//! author : topchiyev : https://github.com/topchiyev
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -50819,7 +48718,7 @@
 	}));
 
 /***/ },
-/* 315 */
+/* 296 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50829,7 +48728,7 @@
 	//! Author : Menelion Elensúle : https://github.com/Oire
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -50957,7 +48856,7 @@
 	}));
 
 /***/ },
-/* 316 */
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50965,7 +48864,7 @@
 	//! author : Krasen Borisov : https://github.com/kraz
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -51051,7 +48950,7 @@
 	}));
 
 /***/ },
-/* 317 */
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51059,7 +48958,7 @@
 	//! author : Kaushik Gandhi : https://github.com/kaushikgandhi
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -51174,7 +49073,7 @@
 	}));
 
 /***/ },
-/* 318 */
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51182,7 +49081,7 @@
 	//! author : Thupten N. Chakrishar : https://github.com/vajradog
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -51297,7 +49196,7 @@
 	}));
 
 /***/ },
-/* 319 */
+/* 300 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51305,7 +49204,7 @@
 	//! author : Jean-Baptiste Le Duigou : https://github.com/jbleduigou
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -51408,7 +49307,7 @@
 	}));
 
 /***/ },
-/* 320 */
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51417,7 +49316,7 @@
 	//! based on (hr) translation by Bojan Marković
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -51553,7 +49452,7 @@
 	}));
 
 /***/ },
-/* 321 */
+/* 302 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51561,7 +49460,7 @@
 	//! author : Juan G. Hurtado : https://github.com/juanghurtado
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -51636,7 +49535,7 @@
 	}));
 
 /***/ },
-/* 322 */
+/* 303 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51644,7 +49543,7 @@
 	//! author : petrbela : https://github.com/petrbela
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -51811,7 +49710,7 @@
 	}));
 
 /***/ },
-/* 323 */
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51819,7 +49718,7 @@
 	//! author : Anatoly Mironov : https://github.com/mirontoli
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -51878,7 +49777,7 @@
 	}));
 
 /***/ },
-/* 324 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51886,7 +49785,7 @@
 	//! author : Robert Allen
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -51961,7 +49860,7 @@
 	}));
 
 /***/ },
-/* 325 */
+/* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51969,7 +49868,7 @@
 	//! author : Ulrik Nielsen : https://github.com/mrbase
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52025,7 +49924,7 @@
 	}));
 
 /***/ },
-/* 326 */
+/* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52035,7 +49934,7 @@
 	//! author : Mikolaj Dadela : https://github.com/mik01aj
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52105,7 +50004,7 @@
 	}));
 
 /***/ },
-/* 327 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52116,7 +50015,7 @@
 	//! author : Mikolaj Dadela : https://github.com/mik01aj
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52186,7 +50085,7 @@
 	}));
 
 /***/ },
-/* 328 */
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52194,7 +50093,7 @@
 	//! author : Jawish Hameed : https://github.com/jawish
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52289,7 +50188,7 @@
 	}));
 
 /***/ },
-/* 329 */
+/* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52297,7 +50196,7 @@
 	//! author : Aggelos Karalias : https://github.com/mehiel
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52391,14 +50290,14 @@
 	}));
 
 /***/ },
-/* 330 */
+/* 311 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 	//! locale : australian english (en-au)
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52461,7 +50360,7 @@
 	}));
 
 /***/ },
-/* 331 */
+/* 312 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52469,7 +50368,7 @@
 	//! author : Jonathan Abourbih : https://github.com/jonbca
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52528,7 +50427,7 @@
 	}));
 
 /***/ },
-/* 332 */
+/* 313 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52536,7 +50435,7 @@
 	//! author : Chris Gedrim : https://github.com/chrisgedrim
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52599,7 +50498,7 @@
 	}));
 
 /***/ },
-/* 333 */
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52607,7 +50506,7 @@
 	//! author : Chris Cartlidge : https://github.com/chriscartlidge
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52670,14 +50569,14 @@
 	}));
 
 /***/ },
-/* 334 */
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 	//! locale : New Zealand english (en-nz)
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52740,7 +50639,7 @@
 	}));
 
 /***/ },
-/* 335 */
+/* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52750,7 +50649,7 @@
 	//!          Se ne, bonvolu korekti kaj avizi min por ke mi povas lerni!
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52817,7 +50716,7 @@
 	}));
 
 /***/ },
-/* 336 */
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52825,7 +50724,7 @@
 	//! author : Julio Napurí : https://github.com/julionc
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52900,7 +50799,7 @@
 	}));
 
 /***/ },
-/* 337 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52909,7 +50808,7 @@
 	//! improvements : Illimar Tambek : https://github.com/ragulka
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52984,7 +50883,7 @@
 	}));
 
 /***/ },
-/* 338 */
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52992,7 +50891,7 @@
 	//! author : Eneko Illarramendi : https://github.com/eillarra
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53052,7 +50951,7 @@
 	}));
 
 /***/ },
-/* 339 */
+/* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53060,7 +50959,7 @@
 	//! author : Ebrahim Byagowi : https://github.com/ebraminio
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53161,7 +51060,7 @@
 	}));
 
 /***/ },
-/* 340 */
+/* 321 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53169,7 +51068,7 @@
 	//! author : Tarmo Aidantausta : https://github.com/bleadof
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53272,7 +51171,7 @@
 	}));
 
 /***/ },
-/* 341 */
+/* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53280,7 +51179,7 @@
 	//! author : Ragnar Johannesen : https://github.com/ragnar123
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53336,7 +51235,7 @@
 	}));
 
 /***/ },
-/* 342 */
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53344,7 +51243,7 @@
 	//! author : John Fischer : https://github.com/jfroffice
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53402,7 +51301,7 @@
 	}));
 
 /***/ },
-/* 343 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53410,7 +51309,7 @@
 	//! author : Jonathan Abourbih : https://github.com/jonbca
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53464,7 +51363,7 @@
 	}));
 
 /***/ },
-/* 344 */
+/* 325 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53472,7 +51371,7 @@
 	//! author : Gaspard Bucher : https://github.com/gaspard
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53530,7 +51429,7 @@
 	}));
 
 /***/ },
-/* 345 */
+/* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53538,7 +51437,7 @@
 	//! author : Robin van der Vliet : https://github.com/robin0van0der0v
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53605,7 +51504,7 @@
 	}));
 
 /***/ },
-/* 346 */
+/* 327 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53613,7 +51512,7 @@
 	//! author : Jon Ashdown : https://github.com/jonashdown
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53685,7 +51584,7 @@
 	}));
 
 /***/ },
-/* 347 */
+/* 328 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53693,7 +51592,7 @@
 	//! author : Juan G. Hurtado : https://github.com/juanghurtado
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53764,7 +51663,7 @@
 	}));
 
 /***/ },
-/* 348 */
+/* 329 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53774,7 +51673,7 @@
 	//! author : Tal Ater : https://github.com/TalAter
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53867,7 +51766,7 @@
 	}));
 
 /***/ },
-/* 349 */
+/* 330 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53875,7 +51774,7 @@
 	//! author : Mayank Singhal : https://github.com/mayanksinghal
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53994,7 +51893,7 @@
 	}));
 
 /***/ },
-/* 350 */
+/* 331 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54002,7 +51901,7 @@
 	//! author : Bojan Marković : https://github.com/bmarkovic
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54141,7 +52040,7 @@
 	}));
 
 /***/ },
-/* 351 */
+/* 332 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54149,7 +52048,7 @@
 	//! author : Adam Brunner : https://github.com/adambrunner
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54254,7 +52153,7 @@
 	}));
 
 /***/ },
-/* 352 */
+/* 333 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54262,7 +52161,7 @@
 	//! author : Armendarabyan : https://github.com/armendarabyan
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54353,7 +52252,7 @@
 	}));
 
 /***/ },
-/* 353 */
+/* 334 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54362,7 +52261,7 @@
 	//! reference: http://id.wikisource.org/wiki/Pedoman_Umum_Ejaan_Bahasa_Indonesia_yang_Disempurnakan
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54440,7 +52339,7 @@
 	}));
 
 /***/ },
-/* 354 */
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54448,7 +52347,7 @@
 	//! author : Hinrik Örn Sigurðsson : https://github.com/hinrik
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54571,7 +52470,7 @@
 	}));
 
 /***/ },
-/* 355 */
+/* 336 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54580,7 +52479,7 @@
 	//! author: Mattia Larentis: https://github.com/nostalgiaz
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54645,7 +52544,7 @@
 	}));
 
 /***/ },
-/* 356 */
+/* 337 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54653,7 +52552,7 @@
 	//! author : LI Long : https://github.com/baryon
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54725,7 +52624,7 @@
 	}));
 
 /***/ },
-/* 357 */
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54734,7 +52633,7 @@
 	//! reference: http://jv.wikipedia.org/wiki/Basa_Jawa
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54812,7 +52711,7 @@
 	}));
 
 /***/ },
-/* 358 */
+/* 339 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54820,7 +52719,7 @@
 	//! author : Irakli Janiashvili : https://github.com/irakli-janiashvili
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54905,7 +52804,7 @@
 	}));
 
 /***/ },
-/* 359 */
+/* 340 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54913,7 +52812,7 @@
 	//! authors : Nurlan Rakhimzhanov : https://github.com/nurlan
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54996,7 +52895,7 @@
 	}));
 
 /***/ },
-/* 360 */
+/* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55004,7 +52903,7 @@
 	//! author : Kruy Vanna : https://github.com/kruyvanna
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -55058,7 +52957,7 @@
 	}));
 
 /***/ },
-/* 361 */
+/* 342 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55070,7 +52969,7 @@
 	//! - Jeeeyul Lee <jeeeyul@gmail.com>
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -55130,7 +53029,7 @@
 	}));
 
 /***/ },
-/* 362 */
+/* 343 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55138,7 +53037,7 @@
 	//! author : mweimerskirch : https://github.com/mweimerskirch, David Raison : https://github.com/kwisatz
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -55268,7 +53167,7 @@
 	}));
 
 /***/ },
-/* 363 */
+/* 344 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55276,7 +53175,7 @@
 	//! author : Ryan Hart : https://github.com/ryanhart2
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -55341,7 +53240,7 @@
 	}));
 
 /***/ },
-/* 364 */
+/* 345 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55349,7 +53248,7 @@
 	//! author : Mindaugas Mozūras : https://github.com/mmozuras
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -55460,7 +53359,7 @@
 	}));
 
 /***/ },
-/* 365 */
+/* 346 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55469,7 +53368,7 @@
 	//! author : Jānis Elmeris : https://github.com/JanisE
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -55560,7 +53459,7 @@
 	}));
 
 /***/ },
-/* 366 */
+/* 347 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55568,7 +53467,7 @@
 	//! author : Miodrag Nikač <miodrag@restartit.me> : https://github.com/miodragnikac
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -55673,7 +53572,7 @@
 	}));
 
 /***/ },
-/* 367 */
+/* 348 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55681,7 +53580,7 @@
 	//! author : Borislav Mickov : https://github.com/B0k0
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -55767,7 +53666,7 @@
 	}));
 
 /***/ },
-/* 368 */
+/* 349 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55775,7 +53674,7 @@
 	//! author : Floyd Pink : https://github.com/floydpink
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -55851,7 +53750,7 @@
 	}));
 
 /***/ },
-/* 369 */
+/* 350 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55860,7 +53759,7 @@
 	//! author : Vivek Athalye : https://github.com/vnathalye
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56013,7 +53912,7 @@
 	}));
 
 /***/ },
-/* 370 */
+/* 351 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56021,7 +53920,7 @@
 	//! author : Weldan Jamili : https://github.com/weldan
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56099,7 +53998,7 @@
 	}));
 
 /***/ },
-/* 371 */
+/* 352 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56107,7 +54006,7 @@
 	//! author : Weldan Jamili : https://github.com/weldan
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56185,7 +54084,7 @@
 	}));
 
 /***/ },
-/* 372 */
+/* 353 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56193,7 +54092,7 @@
 	//! author : Squar team, mysquar.com
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56282,7 +54181,7 @@
 	}));
 
 /***/ },
-/* 373 */
+/* 354 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56291,7 +54190,7 @@
 	//!           Sigurd Gartmann : https://github.com/sigurdga
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56347,7 +54246,7 @@
 	}));
 
 /***/ },
-/* 374 */
+/* 355 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56355,7 +54254,7 @@
 	//! author : suvash : https://github.com/suvash
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56472,7 +54371,7 @@
 	}));
 
 /***/ },
-/* 375 */
+/* 356 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56480,7 +54379,7 @@
 	//! author : Joris Röling : https://github.com/jjupiter
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56547,7 +54446,7 @@
 	}));
 
 /***/ },
-/* 376 */
+/* 357 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56555,7 +54454,7 @@
 	//! author : https://github.com/mechuwind
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56611,7 +54510,7 @@
 	}));
 
 /***/ },
-/* 377 */
+/* 358 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56619,7 +54518,7 @@
 	//! author : Harpreet Singh : https://github.com/harpreetkhalsagtbit
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56739,7 +54638,7 @@
 	}));
 
 /***/ },
-/* 378 */
+/* 359 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56747,7 +54646,7 @@
 	//! author : Rafal Hirsz : https://github.com/evoL
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56848,7 +54747,7 @@
 	}));
 
 /***/ },
-/* 379 */
+/* 360 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56856,7 +54755,7 @@
 	//! author : Jefferson : https://github.com/jalex79
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56916,7 +54815,7 @@
 	}));
 
 /***/ },
-/* 380 */
+/* 361 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56924,7 +54823,7 @@
 	//! author : Caio Ribeiro Pereira : https://github.com/caio-ribeiro-pereira
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56980,7 +54879,7 @@
 	}));
 
 /***/ },
-/* 381 */
+/* 362 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56989,7 +54888,7 @@
 	//! author : Valentin Agachi : https://github.com/avaly
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -57058,7 +54957,7 @@
 	}));
 
 /***/ },
-/* 382 */
+/* 363 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -57068,7 +54967,7 @@
 	//! author : Коренберг Марк : https://github.com/socketpair
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -57230,7 +55129,7 @@
 	}));
 
 /***/ },
-/* 383 */
+/* 364 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -57238,7 +55137,7 @@
 	//! authors : Bård Rolstad Henriksen : https://github.com/karamell
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -57295,7 +55194,7 @@
 	}));
 
 /***/ },
-/* 384 */
+/* 365 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -57303,7 +55202,7 @@
 	//! author : Sampath Sitinamaluwa : https://github.com/sampathsris
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -57369,7 +55268,7 @@
 	}));
 
 /***/ },
-/* 385 */
+/* 366 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -57378,7 +55277,7 @@
 	//! based on work of petrbela : https://github.com/petrbela
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -57523,7 +55422,7 @@
 	}));
 
 /***/ },
-/* 386 */
+/* 367 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -57531,7 +55430,7 @@
 	//! author : Robert Sedovšek : https://github.com/sedovsek
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -57687,7 +55586,7 @@
 	}));
 
 /***/ },
-/* 387 */
+/* 368 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -57697,7 +55596,7 @@
 	//! author : Oerd Cukalla : https://github.com/oerd (fixes)
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -57760,7 +55659,7 @@
 	}));
 
 /***/ },
-/* 388 */
+/* 369 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -57768,7 +55667,7 @@
 	//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -57872,7 +55771,7 @@
 	}));
 
 /***/ },
-/* 389 */
+/* 370 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -57880,7 +55779,7 @@
 	//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -57984,7 +55883,7 @@
 	}));
 
 /***/ },
-/* 390 */
+/* 371 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -57992,7 +55891,7 @@
 	//! author : Jens Alm : https://github.com/ulmus
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58055,7 +55954,7 @@
 	}));
 
 /***/ },
-/* 391 */
+/* 372 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58063,7 +55962,7 @@
 	//! author : Fahad Kassim : https://github.com/fadsel
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58117,7 +56016,7 @@
 	}));
 
 /***/ },
-/* 392 */
+/* 373 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58125,7 +56024,7 @@
 	//! author : Arjunkumar Krishnamoorthy : https://github.com/tk120404
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58250,7 +56149,7 @@
 	}));
 
 /***/ },
-/* 393 */
+/* 374 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58258,7 +56157,7 @@
 	//! author : Krishna Chaitanya Thota : https://github.com/kcthota
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58342,7 +56241,7 @@
 	}));
 
 /***/ },
-/* 394 */
+/* 375 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58350,7 +56249,7 @@
 	//! author : Kridsada Thanabulpong : https://github.com/sirn
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58411,7 +56310,7 @@
 	}));
 
 /***/ },
-/* 395 */
+/* 376 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58419,7 +56318,7 @@
 	//! author : Dan Hagman
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58477,7 +56376,7 @@
 	}));
 
 /***/ },
-/* 396 */
+/* 377 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58485,7 +56384,7 @@
 	//! author : Dominika Kruk : https://github.com/amaranthrose
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58600,7 +56499,7 @@
 	}));
 
 /***/ },
-/* 397 */
+/* 378 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58609,7 +56508,7 @@
 	//!           Burak Yiğit Kaya: https://github.com/BYK
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58694,7 +56593,7 @@
 	}));
 
 /***/ },
-/* 398 */
+/* 379 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58702,7 +56601,7 @@
 	//! author : Robin van der Vliet : https://github.com/robin0van0der0v with the help of Iustì Canun
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58789,7 +56688,7 @@
 	}));
 
 /***/ },
-/* 399 */
+/* 380 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58797,7 +56696,7 @@
 	//! author : Abdel Said : https://github.com/abdelsaid
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58851,7 +56750,7 @@
 	}));
 
 /***/ },
-/* 400 */
+/* 381 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58859,7 +56758,7 @@
 	//! author : Abdel Said : https://github.com/abdelsaid
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58913,7 +56812,7 @@
 	}));
 
 /***/ },
-/* 401 */
+/* 382 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58922,7 +56821,7 @@
 	//! Author : Menelion Elensúle : https://github.com/Oire
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -59063,7 +56962,7 @@
 	}));
 
 /***/ },
-/* 402 */
+/* 383 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -59071,7 +56970,7 @@
 	//! author : Sardor Muminov : https://github.com/muminoff
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -59125,7 +57024,7 @@
 	}));
 
 /***/ },
-/* 403 */
+/* 384 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -59133,7 +57032,7 @@
 	//! author : Bang Nguyen : https://github.com/bangnk
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -59206,7 +57105,7 @@
 	}));
 
 /***/ },
-/* 404 */
+/* 385 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -59215,7 +57114,7 @@
 	//! author : Zeno Zeng : https://github.com/zenozeng
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -59337,7 +57236,7 @@
 	}));
 
 /***/ },
-/* 405 */
+/* 386 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -59345,7 +57244,7 @@
 	//! author : Ben : https://github.com/ben-lin
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(307)) :
+	    true ? factory(__webpack_require__(288)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -59442,15 +57341,60 @@
 	}));
 
 /***/ },
-/* 406 */,
-/* 407 */,
-/* 408 */
+/* 387 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _selectIfFavorite = __webpack_require__(388);
+
+	var _selectIfFavorite2 = _interopRequireDefault(_selectIfFavorite);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SelectIfFavorite = _react2.default.createClass({
+	    displayName: 'SelectIfFavorite',
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'select-if-favorite-container' },
+	            _react2.default.createElement(
+	                'h2',
+	                null,
+	                'Favorite this order?'
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'select-if-favorite' },
+	                _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Yes! ',
+	                    _react2.default.createElement('input', {
+	                        onChange: this.props.handleFavorite,
+	                        type: 'checkbox',
+	                        value: this.props.value })
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = SelectIfFavorite;
+
+/***/ },
+/* 388 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(409);
+	var content = __webpack_require__(389);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -59459,8 +57403,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./dashboard-view.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./dashboard-view.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./select-if-favorite.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./select-if-favorite.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -59470,7 +57414,7 @@
 	}
 
 /***/ },
-/* 409 */
+/* 389 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -59478,19 +57422,217 @@
 
 
 	// module
-	exports.push([module.id, ".start-button-wrap {\n  display: block;\n  width: 133px;\n  margin: 0 auto; }\n\n.start-button {\n  background: #3FB083; }\n  .start-button:hover {\n    background: #43bb8b; }\n", ""]);
+	exports.push([module.id, ".select-if-favorite-container {\n  padding: 0.75em;\n  background: #efefef;\n  width: 30em;\n  border-radius: 3px;\n  margin-bottom: 1em; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 410 */
+/* 390 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _enterPaymentInfo = __webpack_require__(391);
+
+	var _enterPaymentInfo2 = _interopRequireDefault(_enterPaymentInfo);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var EnterPaymentInfo = _react2.default.createClass({
+	    displayName: 'EnterPaymentInfo',
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'enter-payment-info-container' },
+	            _react2.default.createElement(
+	                'h2',
+	                null,
+	                'Enter Payment Info'
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: '' },
+	                _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Name on Card',
+	                    _react2.default.createElement('input', {
+	                        onChange: this.props.handleCCName,
+	                        type: 'text',
+	                        placeholder: 'Card Holder\'s Name',
+	                        required: true })
+	                ),
+	                _react2.default.createElement('br', null),
+	                _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Card Number',
+	                    _react2.default.createElement('input', {
+	                        onChange: this.props.handleCCNumber,
+	                        type: 'number',
+	                        placeholder: 'Debit/Credit Card Number',
+	                        maxLength: '16',
+	                        required: true })
+	                ),
+	                _react2.default.createElement('br', null),
+	                _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'Expiration Date'
+	                ),
+	                _react2.default.createElement(
+	                    'select',
+	                    {
+	                        onChange: this.props.handleCCExpMonth,
+	                        value: this.props.expMonthValue,
+	                        name: 'exp-month'
+	                    },
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: 'default' },
+	                        'Month'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '01' },
+	                        'Jan (01)'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '02' },
+	                        'Feb (02)'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '03' },
+	                        'Mar (03)'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '04' },
+	                        'Apr (04)'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '05' },
+	                        'May (05)'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '06' },
+	                        'Jun (06)'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '07' },
+	                        'Jul (07)'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '08' },
+	                        'Aug (08)'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '09' },
+	                        'Sep (09)'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '10' },
+	                        'Oct (10)'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '11' },
+	                        'Nov (11)'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '12' },
+	                        'Dec (12)'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'select',
+	                    {
+	                        onChange: this.props.handleCCExpYear,
+	                        value: this.props.expYearValue,
+	                        name: 'exp-year' },
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: 'default' },
+	                        'Year'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '2016' },
+	                        '2016'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '2017' },
+	                        '2017'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '2018' },
+	                        '2018'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '2019' },
+	                        '2019'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '2020' },
+	                        '2020'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '2021' },
+	                        '2021'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '2022' },
+	                        '2022'
+	                    )
+	                ),
+	                _react2.default.createElement('br', null),
+	                _react2.default.createElement(
+	                    'label',
+	                    null,
+	                    'CVV',
+	                    _react2.default.createElement('input', {
+	                        onChange: this.props.handleCCCVV,
+	                        type: 'number',
+	                        placeholder: 'Security Code',
+	                        maxLength: '3',
+	                        required: true })
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = EnterPaymentInfo;
+
+/***/ },
+/* 391 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(411);
+	var content = __webpack_require__(392);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -59499,8 +57641,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./confirmation-view.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./confirmation-view.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./enter-payment-info.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./enter-payment-info.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -59510,7 +57652,7 @@
 	}
 
 /***/ },
-/* 411 */
+/* 392 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -59518,19 +57660,453 @@
 
 
 	// module
-	exports.push([module.id, ".confirmation-view-container {\n  width: 25em;\n  margin: 0 auto;\n  background: #efefef;\n  border-radius: 3px;\n  padding: 1em 1em 1.25em 2em; }\n\n.back-to-dashboard {\n  width: 15em;\n  margin: 2em auto 0 auto;\n  display: block; }\n", ""]);
+	exports.push([module.id, ".enter-payment-info-container {\n  padding: 0.75em;\n  background: #efefef;\n  width: 30em;\n  border-radius: 3px; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 412 */
+/* 393 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _OrderTotal = __webpack_require__(257);
+
+	var _OrderTotal2 = _interopRequireDefault(_OrderTotal);
+
+	var _SpecialInstructionsOS = __webpack_require__(394);
+
+	var _SpecialInstructionsOS2 = _interopRequireDefault(_SpecialInstructionsOS);
+
+	var _reactRouter = __webpack_require__(164);
+
+	var _app = __webpack_require__(223);
+
+	var _app2 = _interopRequireDefault(_app);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var OrderSummaryView = _react2.default.createClass({
+	    displayName: 'OrderSummaryView',
+
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'main-wrap' },
+	            _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Order Summary'
+	            ),
+	            _react2.default.createElement(_OrderTotal2.default, {
+	                orderItems: this.props.items,
+	                handleDeleteItemFromOrder: this.props.handleDeleteItemFromOrder }),
+	            _react2.default.createElement(_SpecialInstructionsOS2.default, {
+	                specialInstructions: this.props.specialInstructions }),
+	            _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/confirmation' },
+	                _react2.default.createElement(
+	                    'button',
+	                    { className: 'next-button' },
+	                    'Submit Order'
+	                )
+	            ),
+	            _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/custom-order' },
+	                _react2.default.createElement(
+	                    'button',
+	                    { className: 'next-button' },
+	                    'Edit my order'
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = OrderSummaryView;
+
+/***/ },
+/* 394 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SpecialInstructionsOS = _react2.default.createClass({
+	    displayName: 'SpecialInstructionsOS',
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	                'h4',
+	                null,
+	                'Special Instructions:'
+	            ),
+	            _react2.default.createElement(
+	                'p',
+	                null,
+	                this.props.specialInstructions
+	            )
+	        );
+	    }
+	});
+
+	module.exports = SpecialInstructionsOS;
+
+/***/ },
+/* 395 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _OrderReadyTime = __webpack_require__(396);
+
+	var _OrderReadyTime2 = _interopRequireDefault(_OrderReadyTime);
+
+	var _ShopDetails = __webpack_require__(399);
+
+	var _ShopDetails2 = _interopRequireDefault(_ShopDetails);
+
+	var _DirectionsAndCall = __webpack_require__(402);
+
+	var _DirectionsAndCall2 = _interopRequireDefault(_DirectionsAndCall);
+
+	var _reactRouter = __webpack_require__(164);
+
+	var _confirmationView = __webpack_require__(405);
+
+	var _confirmationView2 = _interopRequireDefault(_confirmationView);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ConfirmationView = _react2.default.createClass({
+	    displayName: 'ConfirmationView',
+
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'main-wrap' },
+	            _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Order Confirmation'
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'confirmation-view-container' },
+	                _react2.default.createElement(_OrderReadyTime2.default, {
+	                    methodOfTrans: this.props.methodOfTrans }),
+	                _react2.default.createElement(_ShopDetails2.default, {
+	                    selectedShop: this.props.selectedShop }),
+	                _react2.default.createElement(_DirectionsAndCall2.default, {
+	                    selectedShop: this.props.selectedShop })
+	            ),
+	            _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/', className: 'back-to-dashboard' },
+	                _react2.default.createElement(
+	                    'button',
+	                    { className: 'next-button' },
+	                    'Back to Dashboard'
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = ConfirmationView;
+
+/***/ },
+/* 396 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _orderReadyTime = __webpack_require__(397);
+
+	var _orderReadyTime2 = _interopRequireDefault(_orderReadyTime);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var OrderReadyTime = _react2.default.createClass({
+	    displayName: 'OrderReadyTime',
+
+	    render: function render() {
+
+	        var methodOfTransIcon;
+	        switch (this.props.methodOfTrans) {
+	            case 'walking':
+	                methodOfTransIcon = _react2.default.createElement(
+	                    'div',
+	                    { className: 'method-of-trans-icon' },
+	                    _react2.default.createElement('i', { className: 'fa fa-male fa-3x', 'aria-hidden': 'true' })
+	                );
+	                break;
+	            case 'biking':
+	                methodOfTransIcon = _react2.default.createElement(
+	                    'div',
+	                    { className: 'method-of-trans-icon' },
+	                    _react2.default.createElement('i', { className: 'fa fa-bicycle fa-3x', 'aria-hidden': 'true' })
+	                );
+	                break;
+	            case 'driving':
+	                methodOfTransIcon = _react2.default.createElement(
+	                    'div',
+	                    { className: 'method-of-trans-icon' },
+	                    _react2.default.createElement('i', { className: 'fa fa-car fa-3x', 'aria-hidden': 'true' })
+	                );
+	                break;
+	            default:
+	                methodOfTransIcon = _react2.default.createElement(
+	                    'div',
+	                    { className: 'method-of-trans-icon' },
+	                    'No user input :('
+	                );
+
+	        }
+
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'order-ready-time-container' },
+	            _react2.default.createElement(
+	                'h2',
+	                null,
+	                'Your order will be ready in...'
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'order-ready-time' },
+	                '17 min'
+	            ),
+	            _react2.default.createElement(
+	                'p',
+	                null,
+	                'by'
+	            ),
+	            methodOfTransIcon,
+	            _react2.default.createElement('div', { className: 'order-ready-time-divider' })
+	        );
+	    }
+	});
+
+	module.exports = OrderReadyTime;
+
+/***/ },
+/* 397 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(413);
+	var content = __webpack_require__(398);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-ready-time.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-ready-time.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 398 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".order-ready-time {\n  font-size: 36px;\n  text-align: center; }\n\n.order-ready-time-container h2 {\n  margin-top: 0;\n  text-align: center; }\n\n.order-ready-time-container p {\n  text-align: center;\n  font-size: 1.2em;\n  margin: 0em 0em 0.8em 0em; }\n\n.method-of-trans-icon {\n  text-align: center;\n  margin-bottom: 2.5em; }\n\n.order-ready-time-divider {\n  width: 90%;\n  margin: 0 auto;\n  border-bottom: 1px solid #000; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 399 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _shopDetails = __webpack_require__(400);
+
+	var _shopDetails2 = _interopRequireDefault(_shopDetails);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ShopDetails = _react2.default.createClass({
+	    displayName: 'ShopDetails',
+
+	    render: function render() {
+
+	        var selectedShop = this.props.selectedShop;
+
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'shop-details-container' },
+	            _react2.default.createElement(
+	                'h2',
+	                null,
+	                selectedShop.name
+	            ),
+	            _react2.default.createElement(
+	                'p',
+	                null,
+	                selectedShop.address_components[0].short_name + ' ' + selectedShop.address_components[1].short_name
+	            ),
+	            _react2.default.createElement(
+	                'p',
+	                null,
+	                selectedShop.address_components[2].short_name + ', ' + selectedShop.address_components[3].short_name + ' ' + selectedShop.address_components[5].short_name
+	            ),
+	            _react2.default.createElement(
+	                'p',
+	                null,
+	                selectedShop.formatted_phone_number
+	            ),
+	            _react2.default.createElement(
+	                'p',
+	                null,
+	                'Distance: Not available at this time.'
+	            )
+	        );
+	    }
+	});
+
+	module.exports = ShopDetails;
+
+/***/ },
+/* 400 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(401);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./shop-details.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./shop-details.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 401 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".shop-details-container {\n  padding-top: 1em; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 402 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _directionsAndCall = __webpack_require__(403);
+
+	var _directionsAndCall2 = _interopRequireDefault(_directionsAndCall);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var DirectionsAndCall = _react2.default.createClass({
+	    displayName: 'DirectionsAndCall',
+
+	    render: function render() {
+
+	        var callPhone = "tel: " + this.props.selectedShop.formatted_phone_number;
+
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	                'button',
+	                { className: 'next-button get-directions-button' },
+	                'Get Directions'
+	            ),
+	            _react2.default.createElement(
+	                'a',
+	                { href: callPhone },
+	                _react2.default.createElement(
+	                    'button',
+	                    { className: 'next-button' },
+	                    'Call Shop'
+	                )
+	            ),
+	            callPhone
+	        );
+	    }
+	});
+
+	module.exports = DirectionsAndCall;
+
+/***/ },
+/* 403 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(404);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -59550,7 +58126,7 @@
 	}
 
 /***/ },
-/* 413 */
+/* 404 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -59564,57 +58140,1552 @@
 
 
 /***/ },
-/* 414 */
+/* 405 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(406);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./confirmation-view.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./confirmation-view.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 406 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".confirmation-view-container {\n  width: 25em;\n  margin: 0 auto;\n  background: #efefef;\n  border-radius: 3px;\n  padding: 1.25em 1.25em 1.25em 2.25em; }\n\n.back-to-dashboard {\n  width: 15em;\n  margin: 2em auto 0 auto;\n  display: block; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 407 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Module dependencies.
+	 */
+
+	var Emitter = __webpack_require__(408);
+	var reduce = __webpack_require__(409);
+	var requestBase = __webpack_require__(410);
+	var isObject = __webpack_require__(411);
+
+	/**
+	 * Root reference for iframes.
+	 */
+
+	var root;
+	if (typeof window !== 'undefined') { // Browser window
+	  root = window;
+	} else if (typeof self !== 'undefined') { // Web Worker
+	  root = self;
+	} else { // Other environments
+	  root = this;
+	}
+
+	/**
+	 * Noop.
+	 */
+
+	function noop(){};
+
+	/**
+	 * Check if `obj` is a host object,
+	 * we don't want to serialize these :)
+	 *
+	 * TODO: future proof, move to compoent land
+	 *
+	 * @param {Object} obj
+	 * @return {Boolean}
+	 * @api private
+	 */
+
+	function isHost(obj) {
+	  var str = {}.toString.call(obj);
+
+	  switch (str) {
+	    case '[object File]':
+	    case '[object Blob]':
+	    case '[object FormData]':
+	      return true;
+	    default:
+	      return false;
+	  }
+	}
+
+	/**
+	 * Expose `request`.
+	 */
+
+	var request = module.exports = __webpack_require__(412).bind(null, Request);
+
+	/**
+	 * Determine XHR.
+	 */
+
+	request.getXHR = function () {
+	  if (root.XMLHttpRequest
+	      && (!root.location || 'file:' != root.location.protocol
+	          || !root.ActiveXObject)) {
+	    return new XMLHttpRequest;
+	  } else {
+	    try { return new ActiveXObject('Microsoft.XMLHTTP'); } catch(e) {}
+	    try { return new ActiveXObject('Msxml2.XMLHTTP.6.0'); } catch(e) {}
+	    try { return new ActiveXObject('Msxml2.XMLHTTP.3.0'); } catch(e) {}
+	    try { return new ActiveXObject('Msxml2.XMLHTTP'); } catch(e) {}
+	  }
+	  return false;
+	};
+
+	/**
+	 * Removes leading and trailing whitespace, added to support IE.
+	 *
+	 * @param {String} s
+	 * @return {String}
+	 * @api private
+	 */
+
+	var trim = ''.trim
+	  ? function(s) { return s.trim(); }
+	  : function(s) { return s.replace(/(^\s*|\s*$)/g, ''); };
+
+	/**
+	 * Serialize the given `obj`.
+	 *
+	 * @param {Object} obj
+	 * @return {String}
+	 * @api private
+	 */
+
+	function serialize(obj) {
+	  if (!isObject(obj)) return obj;
+	  var pairs = [];
+	  for (var key in obj) {
+	    if (null != obj[key]) {
+	      pushEncodedKeyValuePair(pairs, key, obj[key]);
+	        }
+	      }
+	  return pairs.join('&');
+	}
+
+	/**
+	 * Helps 'serialize' with serializing arrays.
+	 * Mutates the pairs array.
+	 *
+	 * @param {Array} pairs
+	 * @param {String} key
+	 * @param {Mixed} val
+	 */
+
+	function pushEncodedKeyValuePair(pairs, key, val) {
+	  if (Array.isArray(val)) {
+	    return val.forEach(function(v) {
+	      pushEncodedKeyValuePair(pairs, key, v);
+	    });
+	  }
+	  pairs.push(encodeURIComponent(key)
+	    + '=' + encodeURIComponent(val));
+	}
+
+	/**
+	 * Expose serialization method.
+	 */
+
+	 request.serializeObject = serialize;
+
+	 /**
+	  * Parse the given x-www-form-urlencoded `str`.
+	  *
+	  * @param {String} str
+	  * @return {Object}
+	  * @api private
+	  */
+
+	function parseString(str) {
+	  var obj = {};
+	  var pairs = str.split('&');
+	  var parts;
+	  var pair;
+
+	  for (var i = 0, len = pairs.length; i < len; ++i) {
+	    pair = pairs[i];
+	    parts = pair.split('=');
+	    obj[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
+	  }
+
+	  return obj;
+	}
+
+	/**
+	 * Expose parser.
+	 */
+
+	request.parseString = parseString;
+
+	/**
+	 * Default MIME type map.
+	 *
+	 *     superagent.types.xml = 'application/xml';
+	 *
+	 */
+
+	request.types = {
+	  html: 'text/html',
+	  json: 'application/json',
+	  xml: 'application/xml',
+	  urlencoded: 'application/x-www-form-urlencoded',
+	  'form': 'application/x-www-form-urlencoded',
+	  'form-data': 'application/x-www-form-urlencoded'
+	};
+
+	/**
+	 * Default serialization map.
+	 *
+	 *     superagent.serialize['application/xml'] = function(obj){
+	 *       return 'generated xml here';
+	 *     };
+	 *
+	 */
+
+	 request.serialize = {
+	   'application/x-www-form-urlencoded': serialize,
+	   'application/json': JSON.stringify
+	 };
+
+	 /**
+	  * Default parsers.
+	  *
+	  *     superagent.parse['application/xml'] = function(str){
+	  *       return { object parsed from str };
+	  *     };
+	  *
+	  */
+
+	request.parse = {
+	  'application/x-www-form-urlencoded': parseString,
+	  'application/json': JSON.parse
+	};
+
+	/**
+	 * Parse the given header `str` into
+	 * an object containing the mapped fields.
+	 *
+	 * @param {String} str
+	 * @return {Object}
+	 * @api private
+	 */
+
+	function parseHeader(str) {
+	  var lines = str.split(/\r?\n/);
+	  var fields = {};
+	  var index;
+	  var line;
+	  var field;
+	  var val;
+
+	  lines.pop(); // trailing CRLF
+
+	  for (var i = 0, len = lines.length; i < len; ++i) {
+	    line = lines[i];
+	    index = line.indexOf(':');
+	    field = line.slice(0, index).toLowerCase();
+	    val = trim(line.slice(index + 1));
+	    fields[field] = val;
+	  }
+
+	  return fields;
+	}
+
+	/**
+	 * Check if `mime` is json or has +json structured syntax suffix.
+	 *
+	 * @param {String} mime
+	 * @return {Boolean}
+	 * @api private
+	 */
+
+	function isJSON(mime) {
+	  return /[\/+]json\b/.test(mime);
+	}
+
+	/**
+	 * Return the mime type for the given `str`.
+	 *
+	 * @param {String} str
+	 * @return {String}
+	 * @api private
+	 */
+
+	function type(str){
+	  return str.split(/ *; */).shift();
+	};
+
+	/**
+	 * Return header field parameters.
+	 *
+	 * @param {String} str
+	 * @return {Object}
+	 * @api private
+	 */
+
+	function params(str){
+	  return reduce(str.split(/ *; */), function(obj, str){
+	    var parts = str.split(/ *= */)
+	      , key = parts.shift()
+	      , val = parts.shift();
+
+	    if (key && val) obj[key] = val;
+	    return obj;
+	  }, {});
+	};
+
+	/**
+	 * Initialize a new `Response` with the given `xhr`.
+	 *
+	 *  - set flags (.ok, .error, etc)
+	 *  - parse header
+	 *
+	 * Examples:
+	 *
+	 *  Aliasing `superagent` as `request` is nice:
+	 *
+	 *      request = superagent;
+	 *
+	 *  We can use the promise-like API, or pass callbacks:
+	 *
+	 *      request.get('/').end(function(res){});
+	 *      request.get('/', function(res){});
+	 *
+	 *  Sending data can be chained:
+	 *
+	 *      request
+	 *        .post('/user')
+	 *        .send({ name: 'tj' })
+	 *        .end(function(res){});
+	 *
+	 *  Or passed to `.send()`:
+	 *
+	 *      request
+	 *        .post('/user')
+	 *        .send({ name: 'tj' }, function(res){});
+	 *
+	 *  Or passed to `.post()`:
+	 *
+	 *      request
+	 *        .post('/user', { name: 'tj' })
+	 *        .end(function(res){});
+	 *
+	 * Or further reduced to a single call for simple cases:
+	 *
+	 *      request
+	 *        .post('/user', { name: 'tj' }, function(res){});
+	 *
+	 * @param {XMLHTTPRequest} xhr
+	 * @param {Object} options
+	 * @api private
+	 */
+
+	function Response(req, options) {
+	  options = options || {};
+	  this.req = req;
+	  this.xhr = this.req.xhr;
+	  // responseText is accessible only if responseType is '' or 'text' and on older browsers
+	  this.text = ((this.req.method !='HEAD' && (this.xhr.responseType === '' || this.xhr.responseType === 'text')) || typeof this.xhr.responseType === 'undefined')
+	     ? this.xhr.responseText
+	     : null;
+	  this.statusText = this.req.xhr.statusText;
+	  this.setStatusProperties(this.xhr.status);
+	  this.header = this.headers = parseHeader(this.xhr.getAllResponseHeaders());
+	  // getAllResponseHeaders sometimes falsely returns "" for CORS requests, but
+	  // getResponseHeader still works. so we get content-type even if getting
+	  // other headers fails.
+	  this.header['content-type'] = this.xhr.getResponseHeader('content-type');
+	  this.setHeaderProperties(this.header);
+	  this.body = this.req.method != 'HEAD'
+	    ? this.parseBody(this.text ? this.text : this.xhr.response)
+	    : null;
+	}
+
+	/**
+	 * Get case-insensitive `field` value.
+	 *
+	 * @param {String} field
+	 * @return {String}
+	 * @api public
+	 */
+
+	Response.prototype.get = function(field){
+	  return this.header[field.toLowerCase()];
+	};
+
+	/**
+	 * Set header related properties:
+	 *
+	 *   - `.type` the content type without params
+	 *
+	 * A response of "Content-Type: text/plain; charset=utf-8"
+	 * will provide you with a `.type` of "text/plain".
+	 *
+	 * @param {Object} header
+	 * @api private
+	 */
+
+	Response.prototype.setHeaderProperties = function(header){
+	  // content-type
+	  var ct = this.header['content-type'] || '';
+	  this.type = type(ct);
+
+	  // params
+	  var obj = params(ct);
+	  for (var key in obj) this[key] = obj[key];
+	};
+
+	/**
+	 * Parse the given body `str`.
+	 *
+	 * Used for auto-parsing of bodies. Parsers
+	 * are defined on the `superagent.parse` object.
+	 *
+	 * @param {String} str
+	 * @return {Mixed}
+	 * @api private
+	 */
+
+	Response.prototype.parseBody = function(str){
+	  var parse = request.parse[this.type];
+	  if (!parse && isJSON(this.type)) {
+	    parse = request.parse['application/json'];
+	  }
+	  return parse && str && (str.length || str instanceof Object)
+	    ? parse(str)
+	    : null;
+	};
+
+	/**
+	 * Set flags such as `.ok` based on `status`.
+	 *
+	 * For example a 2xx response will give you a `.ok` of __true__
+	 * whereas 5xx will be __false__ and `.error` will be __true__. The
+	 * `.clientError` and `.serverError` are also available to be more
+	 * specific, and `.statusType` is the class of error ranging from 1..5
+	 * sometimes useful for mapping respond colors etc.
+	 *
+	 * "sugar" properties are also defined for common cases. Currently providing:
+	 *
+	 *   - .noContent
+	 *   - .badRequest
+	 *   - .unauthorized
+	 *   - .notAcceptable
+	 *   - .notFound
+	 *
+	 * @param {Number} status
+	 * @api private
+	 */
+
+	Response.prototype.setStatusProperties = function(status){
+	  // handle IE9 bug: http://stackoverflow.com/questions/10046972/msie-returns-status-code-of-1223-for-ajax-request
+	  if (status === 1223) {
+	    status = 204;
+	  }
+
+	  var type = status / 100 | 0;
+
+	  // status / class
+	  this.status = this.statusCode = status;
+	  this.statusType = type;
+
+	  // basics
+	  this.info = 1 == type;
+	  this.ok = 2 == type;
+	  this.clientError = 4 == type;
+	  this.serverError = 5 == type;
+	  this.error = (4 == type || 5 == type)
+	    ? this.toError()
+	    : false;
+
+	  // sugar
+	  this.accepted = 202 == status;
+	  this.noContent = 204 == status;
+	  this.badRequest = 400 == status;
+	  this.unauthorized = 401 == status;
+	  this.notAcceptable = 406 == status;
+	  this.notFound = 404 == status;
+	  this.forbidden = 403 == status;
+	};
+
+	/**
+	 * Return an `Error` representative of this response.
+	 *
+	 * @return {Error}
+	 * @api public
+	 */
+
+	Response.prototype.toError = function(){
+	  var req = this.req;
+	  var method = req.method;
+	  var url = req.url;
+
+	  var msg = 'cannot ' + method + ' ' + url + ' (' + this.status + ')';
+	  var err = new Error(msg);
+	  err.status = this.status;
+	  err.method = method;
+	  err.url = url;
+
+	  return err;
+	};
+
+	/**
+	 * Expose `Response`.
+	 */
+
+	request.Response = Response;
+
+	/**
+	 * Initialize a new `Request` with the given `method` and `url`.
+	 *
+	 * @param {String} method
+	 * @param {String} url
+	 * @api public
+	 */
+
+	function Request(method, url) {
+	  var self = this;
+	  this._query = this._query || [];
+	  this.method = method;
+	  this.url = url;
+	  this.header = {}; // preserves header name case
+	  this._header = {}; // coerces header names to lowercase
+	  this.on('end', function(){
+	    var err = null;
+	    var res = null;
+
+	    try {
+	      res = new Response(self);
+	    } catch(e) {
+	      err = new Error('Parser is unable to parse the response');
+	      err.parse = true;
+	      err.original = e;
+	      // issue #675: return the raw response if the response parsing fails
+	      err.rawResponse = self.xhr && self.xhr.responseText ? self.xhr.responseText : null;
+	      // issue #876: return the http status code if the response parsing fails
+	      err.statusCode = self.xhr && self.xhr.status ? self.xhr.status : null;
+	      return self.callback(err);
+	    }
+
+	    self.emit('response', res);
+
+	    if (err) {
+	      return self.callback(err, res);
+	    }
+
+	    if (res.status >= 200 && res.status < 300) {
+	      return self.callback(err, res);
+	    }
+
+	    var new_err = new Error(res.statusText || 'Unsuccessful HTTP response');
+	    new_err.original = err;
+	    new_err.response = res;
+	    new_err.status = res.status;
+
+	    self.callback(new_err, res);
+	  });
+	}
+
+	/**
+	 * Mixin `Emitter` and `requestBase`.
+	 */
+
+	Emitter(Request.prototype);
+	for (var key in requestBase) {
+	  Request.prototype[key] = requestBase[key];
+	}
+
+	/**
+	 * Abort the request, and clear potential timeout.
+	 *
+	 * @return {Request}
+	 * @api public
+	 */
+
+	Request.prototype.abort = function(){
+	  if (this.aborted) return;
+	  this.aborted = true;
+	  this.xhr.abort();
+	  this.clearTimeout();
+	  this.emit('abort');
+	  return this;
+	};
+
+	/**
+	 * Set Content-Type to `type`, mapping values from `request.types`.
+	 *
+	 * Examples:
+	 *
+	 *      superagent.types.xml = 'application/xml';
+	 *
+	 *      request.post('/')
+	 *        .type('xml')
+	 *        .send(xmlstring)
+	 *        .end(callback);
+	 *
+	 *      request.post('/')
+	 *        .type('application/xml')
+	 *        .send(xmlstring)
+	 *        .end(callback);
+	 *
+	 * @param {String} type
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	Request.prototype.type = function(type){
+	  this.set('Content-Type', request.types[type] || type);
+	  return this;
+	};
+
+	/**
+	 * Set responseType to `val`. Presently valid responseTypes are 'blob' and 
+	 * 'arraybuffer'.
+	 *
+	 * Examples:
+	 *
+	 *      req.get('/')
+	 *        .responseType('blob')
+	 *        .end(callback);
+	 *
+	 * @param {String} val
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	Request.prototype.responseType = function(val){
+	  this._responseType = val;
+	  return this;
+	};
+
+	/**
+	 * Set Accept to `type`, mapping values from `request.types`.
+	 *
+	 * Examples:
+	 *
+	 *      superagent.types.json = 'application/json';
+	 *
+	 *      request.get('/agent')
+	 *        .accept('json')
+	 *        .end(callback);
+	 *
+	 *      request.get('/agent')
+	 *        .accept('application/json')
+	 *        .end(callback);
+	 *
+	 * @param {String} accept
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	Request.prototype.accept = function(type){
+	  this.set('Accept', request.types[type] || type);
+	  return this;
+	};
+
+	/**
+	 * Set Authorization field value with `user` and `pass`.
+	 *
+	 * @param {String} user
+	 * @param {String} pass
+	 * @param {Object} options with 'type' property 'auto' or 'basic' (default 'basic')
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	Request.prototype.auth = function(user, pass, options){
+	  if (!options) {
+	    options = {
+	      type: 'basic'
+	    }
+	  }
+
+	  switch (options.type) {
+	    case 'basic':
+	      var str = btoa(user + ':' + pass);
+	      this.set('Authorization', 'Basic ' + str);
+	    break;
+
+	    case 'auto':
+	      this.username = user;
+	      this.password = pass;
+	    break;
+	  }
+	  return this;
+	};
+
+	/**
+	* Add query-string `val`.
+	*
+	* Examples:
+	*
+	*   request.get('/shoes')
+	*     .query('size=10')
+	*     .query({ color: 'blue' })
+	*
+	* @param {Object|String} val
+	* @return {Request} for chaining
+	* @api public
+	*/
+
+	Request.prototype.query = function(val){
+	  if ('string' != typeof val) val = serialize(val);
+	  if (val) this._query.push(val);
+	  return this;
+	};
+
+	/**
+	 * Queue the given `file` as an attachment to the specified `field`,
+	 * with optional `filename`.
+	 *
+	 * ``` js
+	 * request.post('/upload')
+	 *   .attach(new Blob(['<a id="a"><b id="b">hey!</b></a>'], { type: "text/html"}))
+	 *   .end(callback);
+	 * ```
+	 *
+	 * @param {String} field
+	 * @param {Blob|File} file
+	 * @param {String} filename
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	Request.prototype.attach = function(field, file, filename){
+	  this._getFormData().append(field, file, filename || file.name);
+	  return this;
+	};
+
+	Request.prototype._getFormData = function(){
+	  if (!this._formData) {
+	    this._formData = new root.FormData();
+	  }
+	  return this._formData;
+	};
+
+	/**
+	 * Send `data` as the request body, defaulting the `.type()` to "json" when
+	 * an object is given.
+	 *
+	 * Examples:
+	 *
+	 *       // manual json
+	 *       request.post('/user')
+	 *         .type('json')
+	 *         .send('{"name":"tj"}')
+	 *         .end(callback)
+	 *
+	 *       // auto json
+	 *       request.post('/user')
+	 *         .send({ name: 'tj' })
+	 *         .end(callback)
+	 *
+	 *       // manual x-www-form-urlencoded
+	 *       request.post('/user')
+	 *         .type('form')
+	 *         .send('name=tj')
+	 *         .end(callback)
+	 *
+	 *       // auto x-www-form-urlencoded
+	 *       request.post('/user')
+	 *         .type('form')
+	 *         .send({ name: 'tj' })
+	 *         .end(callback)
+	 *
+	 *       // defaults to x-www-form-urlencoded
+	  *      request.post('/user')
+	  *        .send('name=tobi')
+	  *        .send('species=ferret')
+	  *        .end(callback)
+	 *
+	 * @param {String|Object} data
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	Request.prototype.send = function(data){
+	  var obj = isObject(data);
+	  var type = this._header['content-type'];
+
+	  // merge
+	  if (obj && isObject(this._data)) {
+	    for (var key in data) {
+	      this._data[key] = data[key];
+	    }
+	  } else if ('string' == typeof data) {
+	    if (!type) this.type('form');
+	    type = this._header['content-type'];
+	    if ('application/x-www-form-urlencoded' == type) {
+	      this._data = this._data
+	        ? this._data + '&' + data
+	        : data;
+	    } else {
+	      this._data = (this._data || '') + data;
+	    }
+	  } else {
+	    this._data = data;
+	  }
+
+	  if (!obj || isHost(data)) return this;
+	  if (!type) this.type('json');
+	  return this;
+	};
+
+	/**
+	 * @deprecated
+	 */
+	Response.prototype.parse = function serialize(fn){
+	  if (root.console) {
+	    console.warn("Client-side parse() method has been renamed to serialize(). This method is not compatible with superagent v2.0");
+	  }
+	  this.serialize(fn);
+	  return this;
+	};
+
+	Response.prototype.serialize = function serialize(fn){
+	  this._parser = fn;
+	  return this;
+	};
+
+	/**
+	 * Invoke the callback with `err` and `res`
+	 * and handle arity check.
+	 *
+	 * @param {Error} err
+	 * @param {Response} res
+	 * @api private
+	 */
+
+	Request.prototype.callback = function(err, res){
+	  var fn = this._callback;
+	  this.clearTimeout();
+	  fn(err, res);
+	};
+
+	/**
+	 * Invoke callback with x-domain error.
+	 *
+	 * @api private
+	 */
+
+	Request.prototype.crossDomainError = function(){
+	  var err = new Error('Request has been terminated\nPossible causes: the network is offline, Origin is not allowed by Access-Control-Allow-Origin, the page is being unloaded, etc.');
+	  err.crossDomain = true;
+
+	  err.status = this.status;
+	  err.method = this.method;
+	  err.url = this.url;
+
+	  this.callback(err);
+	};
+
+	/**
+	 * Invoke callback with timeout error.
+	 *
+	 * @api private
+	 */
+
+	Request.prototype.timeoutError = function(){
+	  var timeout = this._timeout;
+	  var err = new Error('timeout of ' + timeout + 'ms exceeded');
+	  err.timeout = timeout;
+	  this.callback(err);
+	};
+
+	/**
+	 * Enable transmission of cookies with x-domain requests.
+	 *
+	 * Note that for this to work the origin must not be
+	 * using "Access-Control-Allow-Origin" with a wildcard,
+	 * and also must set "Access-Control-Allow-Credentials"
+	 * to "true".
+	 *
+	 * @api public
+	 */
+
+	Request.prototype.withCredentials = function(){
+	  this._withCredentials = true;
+	  return this;
+	};
+
+	/**
+	 * Initiate request, invoking callback `fn(res)`
+	 * with an instanceof `Response`.
+	 *
+	 * @param {Function} fn
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	Request.prototype.end = function(fn){
+	  var self = this;
+	  var xhr = this.xhr = request.getXHR();
+	  var query = this._query.join('&');
+	  var timeout = this._timeout;
+	  var data = this._formData || this._data;
+
+	  // store callback
+	  this._callback = fn || noop;
+
+	  // state change
+	  xhr.onreadystatechange = function(){
+	    if (4 != xhr.readyState) return;
+
+	    // In IE9, reads to any property (e.g. status) off of an aborted XHR will
+	    // result in the error "Could not complete the operation due to error c00c023f"
+	    var status;
+	    try { status = xhr.status } catch(e) { status = 0; }
+
+	    if (0 == status) {
+	      if (self.timedout) return self.timeoutError();
+	      if (self.aborted) return;
+	      return self.crossDomainError();
+	    }
+	    self.emit('end');
+	  };
+
+	  // progress
+	  var handleProgress = function(e){
+	    if (e.total > 0) {
+	      e.percent = e.loaded / e.total * 100;
+	    }
+	    e.direction = 'download';
+	    self.emit('progress', e);
+	  };
+	  if (this.hasListeners('progress')) {
+	    xhr.onprogress = handleProgress;
+	  }
+	  try {
+	    if (xhr.upload && this.hasListeners('progress')) {
+	      xhr.upload.onprogress = handleProgress;
+	    }
+	  } catch(e) {
+	    // Accessing xhr.upload fails in IE from a web worker, so just pretend it doesn't exist.
+	    // Reported here:
+	    // https://connect.microsoft.com/IE/feedback/details/837245/xmlhttprequest-upload-throws-invalid-argument-when-used-from-web-worker-context
+	  }
+
+	  // timeout
+	  if (timeout && !this._timer) {
+	    this._timer = setTimeout(function(){
+	      self.timedout = true;
+	      self.abort();
+	    }, timeout);
+	  }
+
+	  // querystring
+	  if (query) {
+	    query = request.serializeObject(query);
+	    this.url += ~this.url.indexOf('?')
+	      ? '&' + query
+	      : '?' + query;
+	  }
+
+	  // initiate request
+	  if (this.username && this.password) {
+	    xhr.open(this.method, this.url, true, this.username, this.password);
+	  } else {
+	    xhr.open(this.method, this.url, true);
+	  }
+
+	  // CORS
+	  if (this._withCredentials) xhr.withCredentials = true;
+
+	  // body
+	  if ('GET' != this.method && 'HEAD' != this.method && 'string' != typeof data && !isHost(data)) {
+	    // serialize stuff
+	    var contentType = this._header['content-type'];
+	    var serialize = this._parser || request.serialize[contentType ? contentType.split(';')[0] : ''];
+	    if (!serialize && isJSON(contentType)) serialize = request.serialize['application/json'];
+	    if (serialize) data = serialize(data);
+	  }
+
+	  // set header fields
+	  for (var field in this.header) {
+	    if (null == this.header[field]) continue;
+	    xhr.setRequestHeader(field, this.header[field]);
+	  }
+
+	  if (this._responseType) {
+	    xhr.responseType = this._responseType;
+	  }
+
+	  // send stuff
+	  this.emit('request', this);
+
+	  // IE11 xhr.send(undefined) sends 'undefined' string as POST payload (instead of nothing)
+	  // We need null here if data is undefined
+	  xhr.send(typeof data !== 'undefined' ? data : null);
+	  return this;
+	};
+
+
+	/**
+	 * Expose `Request`.
+	 */
+
+	request.Request = Request;
+
+	/**
+	 * GET `url` with optional callback `fn(res)`.
+	 *
+	 * @param {String} url
+	 * @param {Mixed|Function} data or fn
+	 * @param {Function} fn
+	 * @return {Request}
+	 * @api public
+	 */
+
+	request.get = function(url, data, fn){
+	  var req = request('GET', url);
+	  if ('function' == typeof data) fn = data, data = null;
+	  if (data) req.query(data);
+	  if (fn) req.end(fn);
+	  return req;
+	};
+
+	/**
+	 * HEAD `url` with optional callback `fn(res)`.
+	 *
+	 * @param {String} url
+	 * @param {Mixed|Function} data or fn
+	 * @param {Function} fn
+	 * @return {Request}
+	 * @api public
+	 */
+
+	request.head = function(url, data, fn){
+	  var req = request('HEAD', url);
+	  if ('function' == typeof data) fn = data, data = null;
+	  if (data) req.send(data);
+	  if (fn) req.end(fn);
+	  return req;
+	};
+
+	/**
+	 * DELETE `url` with optional callback `fn(res)`.
+	 *
+	 * @param {String} url
+	 * @param {Function} fn
+	 * @return {Request}
+	 * @api public
+	 */
+
+	function del(url, fn){
+	  var req = request('DELETE', url);
+	  if (fn) req.end(fn);
+	  return req;
+	};
+
+	request['del'] = del;
+	request['delete'] = del;
+
+	/**
+	 * PATCH `url` with optional `data` and callback `fn(res)`.
+	 *
+	 * @param {String} url
+	 * @param {Mixed} data
+	 * @param {Function} fn
+	 * @return {Request}
+	 * @api public
+	 */
+
+	request.patch = function(url, data, fn){
+	  var req = request('PATCH', url);
+	  if ('function' == typeof data) fn = data, data = null;
+	  if (data) req.send(data);
+	  if (fn) req.end(fn);
+	  return req;
+	};
+
+	/**
+	 * POST `url` with optional `data` and callback `fn(res)`.
+	 *
+	 * @param {String} url
+	 * @param {Mixed} data
+	 * @param {Function} fn
+	 * @return {Request}
+	 * @api public
+	 */
+
+	request.post = function(url, data, fn){
+	  var req = request('POST', url);
+	  if ('function' == typeof data) fn = data, data = null;
+	  if (data) req.send(data);
+	  if (fn) req.end(fn);
+	  return req;
+	};
+
+	/**
+	 * PUT `url` with optional `data` and callback `fn(res)`.
+	 *
+	 * @param {String} url
+	 * @param {Mixed|Function} data or fn
+	 * @param {Function} fn
+	 * @return {Request}
+	 * @api public
+	 */
+
+	request.put = function(url, data, fn){
+	  var req = request('PUT', url);
+	  if ('function' == typeof data) fn = data, data = null;
+	  if (data) req.send(data);
+	  if (fn) req.end(fn);
+	  return req;
+	};
+
+
+/***/ },
+/* 408 */
 /***/ function(module, exports) {
 
-	'use strict';
+	
+	/**
+	 * Expose `Emitter`.
+	 */
 
-	module.exports = {
+	module.exports = Emitter;
 
-	    getLocation: function getLocation(callback) {
-	        if (navigator.geolocation) {
-	            navigator.geolocation.getCurrentPosition(callback);
-	        } else {
-	            alert("Geolocation is not supported by this browser.");
-	        }
-	    },
+	/**
+	 * Initialize a new `Emitter`.
+	 *
+	 * @api public
+	 */
 
-	    getShops: function getShops(position, callback) {
-	        var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-	        // Specify location, radius and place types for your Places API search.
-	        var request = {
-	            location: currentLocation,
-	            radius: '2000',
-	            types: ['cafe']
-	        };
-	        // Create the PlaceService and send the request.
-	        // Handle the callback with an anonymous function.
-	        var service = new google.maps.places.PlacesService(map);
-
-	        service.nearbySearch(request, function (results, status) {
-	            console.log(status);
-	            if (status == google.maps.places.PlacesServiceStatus.OK) {
-	                console.log(results);
-	                callback(results);
-	            }
-	        });
-	    },
-
-	    getDetails: function getDetails(placeId, callback) {
-	        var service = new google.maps.places.PlacesService(map);
-
-	        service.getDetails({
-	            placeId: placeId
-	        }, function (place, status) {
-	            if (status === google.maps.places.PlacesServiceStatus.OK) {
-	                console.log(place);
-	                console.log(status);
-	                callback(place);
-	            }
-	        });
-	    }
+	function Emitter(obj) {
+	  if (obj) return mixin(obj);
 	};
+
+	/**
+	 * Mixin the emitter properties.
+	 *
+	 * @param {Object} obj
+	 * @return {Object}
+	 * @api private
+	 */
+
+	function mixin(obj) {
+	  for (var key in Emitter.prototype) {
+	    obj[key] = Emitter.prototype[key];
+	  }
+	  return obj;
+	}
+
+	/**
+	 * Listen on the given `event` with `fn`.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+
+	Emitter.prototype.on =
+	Emitter.prototype.addEventListener = function(event, fn){
+	  this._callbacks = this._callbacks || {};
+	  (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
+	    .push(fn);
+	  return this;
+	};
+
+	/**
+	 * Adds an `event` listener that will be invoked a single
+	 * time then automatically removed.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+
+	Emitter.prototype.once = function(event, fn){
+	  function on() {
+	    this.off(event, on);
+	    fn.apply(this, arguments);
+	  }
+
+	  on.fn = fn;
+	  this.on(event, on);
+	  return this;
+	};
+
+	/**
+	 * Remove the given callback for `event` or all
+	 * registered callbacks.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+
+	Emitter.prototype.off =
+	Emitter.prototype.removeListener =
+	Emitter.prototype.removeAllListeners =
+	Emitter.prototype.removeEventListener = function(event, fn){
+	  this._callbacks = this._callbacks || {};
+
+	  // all
+	  if (0 == arguments.length) {
+	    this._callbacks = {};
+	    return this;
+	  }
+
+	  // specific event
+	  var callbacks = this._callbacks['$' + event];
+	  if (!callbacks) return this;
+
+	  // remove all handlers
+	  if (1 == arguments.length) {
+	    delete this._callbacks['$' + event];
+	    return this;
+	  }
+
+	  // remove specific handler
+	  var cb;
+	  for (var i = 0; i < callbacks.length; i++) {
+	    cb = callbacks[i];
+	    if (cb === fn || cb.fn === fn) {
+	      callbacks.splice(i, 1);
+	      break;
+	    }
+	  }
+	  return this;
+	};
+
+	/**
+	 * Emit `event` with the given args.
+	 *
+	 * @param {String} event
+	 * @param {Mixed} ...
+	 * @return {Emitter}
+	 */
+
+	Emitter.prototype.emit = function(event){
+	  this._callbacks = this._callbacks || {};
+	  var args = [].slice.call(arguments, 1)
+	    , callbacks = this._callbacks['$' + event];
+
+	  if (callbacks) {
+	    callbacks = callbacks.slice(0);
+	    for (var i = 0, len = callbacks.length; i < len; ++i) {
+	      callbacks[i].apply(this, args);
+	    }
+	  }
+
+	  return this;
+	};
+
+	/**
+	 * Return array of callbacks for `event`.
+	 *
+	 * @param {String} event
+	 * @return {Array}
+	 * @api public
+	 */
+
+	Emitter.prototype.listeners = function(event){
+	  this._callbacks = this._callbacks || {};
+	  return this._callbacks['$' + event] || [];
+	};
+
+	/**
+	 * Check if this emitter has `event` handlers.
+	 *
+	 * @param {String} event
+	 * @return {Boolean}
+	 * @api public
+	 */
+
+	Emitter.prototype.hasListeners = function(event){
+	  return !! this.listeners(event).length;
+	};
+
+
+/***/ },
+/* 409 */
+/***/ function(module, exports) {
+
+	
+	/**
+	 * Reduce `arr` with `fn`.
+	 *
+	 * @param {Array} arr
+	 * @param {Function} fn
+	 * @param {Mixed} initial
+	 *
+	 * TODO: combatible error handling?
+	 */
+
+	module.exports = function(arr, fn, initial){  
+	  var idx = 0;
+	  var len = arr.length;
+	  var curr = arguments.length == 3
+	    ? initial
+	    : arr[idx++];
+
+	  while (idx < len) {
+	    curr = fn.call(null, curr, arr[idx], ++idx, arr);
+	  }
+	  
+	  return curr;
+	};
+
+/***/ },
+/* 410 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Module of mixed-in functions shared between node and client code
+	 */
+	var isObject = __webpack_require__(411);
+
+	/**
+	 * Clear previous timeout.
+	 *
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	exports.clearTimeout = function _clearTimeout(){
+	  this._timeout = 0;
+	  clearTimeout(this._timer);
+	  return this;
+	};
+
+	/**
+	 * Force given parser
+	 *
+	 * Sets the body parser no matter type.
+	 *
+	 * @param {Function}
+	 * @api public
+	 */
+
+	exports.parse = function parse(fn){
+	  this._parser = fn;
+	  return this;
+	};
+
+	/**
+	 * Set timeout to `ms`.
+	 *
+	 * @param {Number} ms
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	exports.timeout = function timeout(ms){
+	  this._timeout = ms;
+	  return this;
+	};
+
+	/**
+	 * Faux promise support
+	 *
+	 * @param {Function} fulfill
+	 * @param {Function} reject
+	 * @return {Request}
+	 */
+
+	exports.then = function then(fulfill, reject) {
+	  return this.end(function(err, res) {
+	    err ? reject(err) : fulfill(res);
+	  });
+	}
+
+	/**
+	 * Allow for extension
+	 */
+
+	exports.use = function use(fn) {
+	  fn(this);
+	  return this;
+	}
+
+
+	/**
+	 * Get request header `field`.
+	 * Case-insensitive.
+	 *
+	 * @param {String} field
+	 * @return {String}
+	 * @api public
+	 */
+
+	exports.get = function(field){
+	  return this._header[field.toLowerCase()];
+	};
+
+	/**
+	 * Get case-insensitive header `field` value.
+	 * This is a deprecated internal API. Use `.get(field)` instead.
+	 *
+	 * (getHeader is no longer used internally by the superagent code base)
+	 *
+	 * @param {String} field
+	 * @return {String}
+	 * @api private
+	 * @deprecated
+	 */
+
+	exports.getHeader = exports.get;
+
+	/**
+	 * Set header `field` to `val`, or multiple fields with one object.
+	 * Case-insensitive.
+	 *
+	 * Examples:
+	 *
+	 *      req.get('/')
+	 *        .set('Accept', 'application/json')
+	 *        .set('X-API-Key', 'foobar')
+	 *        .end(callback);
+	 *
+	 *      req.get('/')
+	 *        .set({ Accept: 'application/json', 'X-API-Key': 'foobar' })
+	 *        .end(callback);
+	 *
+	 * @param {String|Object} field
+	 * @param {String} val
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	exports.set = function(field, val){
+	  if (isObject(field)) {
+	    for (var key in field) {
+	      this.set(key, field[key]);
+	    }
+	    return this;
+	  }
+	  this._header[field.toLowerCase()] = val;
+	  this.header[field] = val;
+	  return this;
+	};
+
+	/**
+	 * Remove header `field`.
+	 * Case-insensitive.
+	 *
+	 * Example:
+	 *
+	 *      req.get('/')
+	 *        .unset('User-Agent')
+	 *        .end(callback);
+	 *
+	 * @param {String} field
+	 */
+	exports.unset = function(field){
+	  delete this._header[field.toLowerCase()];
+	  delete this.header[field];
+	  return this;
+	};
+
+	/**
+	 * Write the field `name` and `val` for "multipart/form-data"
+	 * request bodies.
+	 *
+	 * ``` js
+	 * request.post('/upload')
+	 *   .field('foo', 'bar')
+	 *   .end(callback);
+	 * ```
+	 *
+	 * @param {String} name
+	 * @param {String|Blob|File|Buffer|fs.ReadStream} val
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+	exports.field = function(name, val) {
+	  this._getFormData().append(name, val);
+	  return this;
+	};
+
+
+/***/ },
+/* 411 */
+/***/ function(module, exports) {
+
+	/**
+	 * Check if `obj` is an object.
+	 *
+	 * @param {Object} obj
+	 * @return {Boolean}
+	 * @api private
+	 */
+
+	function isObject(obj) {
+	  return null != obj && 'object' == typeof obj;
+	}
+
+	module.exports = isObject;
+
+
+/***/ },
+/* 412 */
+/***/ function(module, exports) {
+
+	// The node and browser modules expose versions of this with the
+	// appropriate constructor function bound as first argument
+	/**
+	 * Issue a request:
+	 *
+	 * Examples:
+	 *
+	 *    request('GET', '/users').end(callback)
+	 *    request('/users').end(callback)
+	 *    request('/users', callback)
+	 *
+	 * @param {String} method
+	 * @param {String|Function} url or callback
+	 * @return {Request}
+	 * @api public
+	 */
+
+	function request(RequestConstructor, method, url) {
+	  // callback
+	  if ('function' == typeof url) {
+	    return new RequestConstructor('GET', method).end(url);
+	  }
+
+	  // url first
+	  if (2 == arguments.length) {
+	    return new RequestConstructor('GET', method);
+	  }
+
+	  return new RequestConstructor(method, url);
+	}
+
+	module.exports = request;
+
 
 /***/ }
 /******/ ]);

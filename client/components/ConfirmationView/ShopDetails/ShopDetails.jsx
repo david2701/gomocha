@@ -9,8 +9,10 @@ var ShopDetails = React.createClass({
         return (
             <div className="shop-details-container">
                 <h2>{selectedShop.name}</h2>
-                <p>{selectedShop.vicinity}</p>
-            <p>Phone: Not available at this time.</p>
+            <p>{selectedShop.address_components[0].short_name + ' ' + selectedShop.address_components[1].short_name}</p>
+
+            <p>{selectedShop.address_components[2].short_name + ', ' + selectedShop.address_components[3].short_name + ' ' + selectedShop.address_components[5].short_name}</p>
+        <p>{selectedShop.formatted_phone_number}</p>
         <p>Distance: Not available at this time.</p>
             </div>
         )

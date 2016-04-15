@@ -27,8 +27,15 @@ var ShopListItem = React.createClass({
                     <div className="shop-list-item-details">
                     <h2>{this.props.shop.name}</h2>
                     <p>{this.props.shop.vicinity}</p>
+
+                <div className="shop-list-bottom-row">
+                        {this.props.shop.opening_hours.open_now ?
+                        <div className="open-now"><i className="fa fa-clock-o" aria-hidden="true"></i> Open now!</div>
+                        : <div className="closed-now"><i className="fa fa-clock-o" aria-hidden="true"></i> Currently closed</div>}
+
+                        <p className="shop-list-distance">Distance: N/A</p>
+                    </div>
                 </div>
-                <p className="shop-list-distance">2.3 mi.</p>
                 </div>
                 </Link>
             </div>
