@@ -14,9 +14,11 @@ var ConfirmationView = React.createClass({
                 <h1>Order Confirmation</h1>
             <div className="confirmation-view-container">
                 <OrderReadyTime
-                methodOfTrans={this.props.methodOfTrans} />
+                methodOfTrans={this.props.methodOfTrans}
+                duration={this.props.duration} />
                 <ShopDetails
-                selectedShop={this.props.selectedShop} />
+                selectedShop={this.props.selectedShop}
+                distance={this.props.distance} />
                 <DirectionsAndCall
                 selectedShop={this.props.selectedShop} />
             </div>

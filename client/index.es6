@@ -22,17 +22,21 @@ ReactDOM.render(
 
 // implement propTypes to components
 
-// store users position on state of app
+// DONE store users position on state of app
 // make another call to google maps api to calculate user's distance from shop
 // make calls for time it will take to walk/bike/drive at same time you call getDetails
-// add in 'open now' feature
+
 // make api call for extra info in handler that sets shop on state, use this extra info on confirmation screen (phone number, distance from, formatted address, etc.)
-    // use id on object, and use method for fetching a particular place in google maps api
+// use id on object, and use method for fetching a particular place in google maps api
+
+
 
 // install moment into select pickup time
 // add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for additional info page condition
 // look into Locu and Google Maps API
 
+
+// DONE add in 'open now' feature
 // DONE create state for remaining views on App component state. Pass down to children components
 // DONE get selected shop set to state, render it out in confirmation screen
 // DONE pickUp time can't be set if "now" is checked, if someone checks pickup time and then decided now after already clicking now

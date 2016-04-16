@@ -10,8 +10,18 @@ var App = React.createClass({
 
     getInitialState: function() {
         return {
+            userLocation: {
+                lat: '',
+                lng: ''
+            },
             shops: [],
             selectedShop: {},
+            selectedShopLocation: {
+                lat: '',
+                lng: ''
+            },
+            distance: '',
+            duration: '',
             items: [],
             specialInstructions: '',
             notification: false,
@@ -28,10 +38,21 @@ var App = React.createClass({
         }
     },
 
+    // INITIAL API CALL
+
     // Calls the getLocation function which returns the user's current location
     // and passes it to its callback (_handleGetLocation)
     componentWillMount: function() {
-        api.getLocation(this._handleGetLocation)
+        api.getLocation(this._handleGetLocation, this._handleUserLocation);
+    },
+
+    _handleUserLocation: function(position) {
+        this.setState({
+            userLocation: {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            }
+        })
     },
 
     // Takes the user's current location from api.getLocation and passes it as the
@@ -49,6 +70,8 @@ var App = React.createClass({
         })
     },
 
+    // API CALL IN RESPONSE TO USER SELECTING SHOP
+
     // Calls api.getDetails and passes in selected shop's place_id (shop object is about to
     // be set to this.state.selectedShop), allowing google maps api to retrieve the
     // details of the user's selected shop. It passes in _handleSelectedShopDetails as a
@@ -61,9 +84,33 @@ var App = React.createClass({
         })
     },
 
+    // This function is the second argument to getDetails, which takes the place object, and
+    // sets it on this.state.selectedShop. It then calls _handleSelectedShopCoords and passes
+    // the place object as its argument
     _handleSelectedShopDetails: function(place) {
         this.setState({
             selectedShop: place
+        })
+        this._handleSelectedShopLocation(place);
+    },
+
+    // This function receives the place object from _handleSelectedShopDetails, which contains
+    // all the shop details, and then accesses the shop's coordinates on the place object, and
+    // then sets those coordinates to this.state.selectedShopCoords.lat/lng
+    _handleSelectedShopLocation: function(place) {
+        this.setState({
+            selectedShopLocation: {
+                lat: place.geometry.access_points[0].location.lat,
+                lng: place.geometry.access_points[0].location.lng
+            },
+        })
+        api.calculateTravelTime(this.state.userLocation, this.state.selectedShopLocation, this._handleDistanceAndDuration);
+    },
+
+    _handleDistanceAndDuration: function(response) {
+        this.setState({
+            distance: response.rows[0].elements[0].distance.text,
+            duration: response.rows[0].elements[0].duration.text
         })
     },
 
@@ -193,6 +240,8 @@ var App = React.createClass({
                          selectedShop: this.state.selectedShop,
                          items: this.state.items,
                          handleSelectedShop: this._handleSelectedShop,
+                         distance: this.state.distance,
+                         duration: this.state.duration,
                          handleSpecialInstructions: this._handleSpecialInstructions,
                          specialInstructions: this.state.specialInstructions,
                          notification: this.state.notification,

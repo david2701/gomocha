@@ -23,7 +23,7 @@ var OrderReadyTime = React.createClass({
         return (
             <div className="order-ready-time-container">
                 <h2>Your order will be ready in...</h2>
-                <div className="order-ready-time">17 min</div>
+            <div className="order-ready-time">{this.props.duration}</div>
                 <p>by</p>
             {methodOfTransIcon}
             <div className="order-ready-time-divider"></div>

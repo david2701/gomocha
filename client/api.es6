@@ -1,8 +1,9 @@
 module.exports = {
 
-    getLocation: function(callback) {
+    getLocation: function(callback, callback2) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(callback);
+            navigator.geolocation.getCurrentPosition(callback2);
         } else {
             alert("Geolocation is not supported by this browser.");
         }
@@ -42,5 +43,33 @@ module.exports = {
                   callback(place);
               }
         });
+    },
+
+    calculateTravelTime: function(userLocation, selectedShopLocation, callback) {
+        var bounds = new google.maps.LatLngBounds;
+
+        var origin1 = userLocation;
+        var destinationA = selectedShopLocation;
+
+        var geocoder = new google.maps.Geocoder;
+
+        var service = new google.maps.DistanceMatrixService;
+        service.getDistanceMatrix({
+            origins: [origin1],
+            destinations: [destinationA],
+            travelMode: google.maps.TravelMode.DRIVING,
+            unitSystem: google.maps.UnitSystem.METRIC,
+            avoidHighways: false,
+            avoidTolls: false
+        }, function(response, status) {
+            if (status !== google.maps.DistanceMatrixStatus.OK) {
+                alert('Error was: ' + status);
+            } else {
+                var originList = response.originAddresses;
+                var destinationList = response.destinationAddresses;
+            console.log(response);
+            callback(response);
+        }
+      });
     }
 }
