@@ -104,19 +104,27 @@ var App = React.createClass({
                 lng: place.geometry.access_points[0].location.lng
             },
         })
-        api.calculateTravelTime(this.state.userLocation, this.state.selectedShopLocation, this._handleDistanceAndDuration);
     },
 
+    // sets user method of transportation to this.state.methodOfTrans and subsequently makes api call
+    // to calculate distance and duration given user's selected method of transportation
+    _handleMethodOfTrans: function(event) {
+        this.setState({
+            methodOfTrans: event.target.value
+        })
+        api.calculateTravelTime(
+            this.state.userLocation,
+            this.state.selectedShopLocation,
+            this.state.methodOfTrans,
+            this._handleDistanceAndDuration
+        );
+    },
+
+    
     _handleDistanceAndDuration: function(response) {
         this.setState({
             distance: response.rows[0].elements[0].distance.text,
             duration: response.rows[0].elements[0].duration.text
-        })
-    },
-
-    _handleMethodOfTrans: function(event) {
-        this.setState({
-            methodOfTrans: event.target.value
         })
     },
 

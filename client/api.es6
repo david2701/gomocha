@@ -15,7 +15,7 @@ module.exports = {
         // Specify location, radius and place types for your Places API search.
         var request = {
             location: currentLocation,
-            radius: '2000',
+            radius: '4000',
             types: ['cafe']
         };
         // Create the PlaceService and send the request.
@@ -45,20 +45,35 @@ module.exports = {
         });
     },
 
-    calculateTravelTime: function(userLocation, selectedShopLocation, callback) {
+    calculateTravelTime: function(userLocation, selectedShopLocation, methodOfTrans, callback) {
         var bounds = new google.maps.LatLngBounds;
 
         var origin1 = userLocation;
         var destinationA = selectedShopLocation;
+        var methodOfTrans;
 
+        switch(methodOfTrans) {
+            case 'walking':
+                methodOfTrans = google.maps.TravelMode.WALKING;
+                break;
+            case 'biking':
+                methodOfTrans = google.maps.TravelMode.BICYCLING;
+                break;
+            case 'driving':
+                methodOfTrans = google.maps.TravelMode.DRIVING;
+                break;
+            default:
+                methodOfTrans = google.maps.TravelMode.DRIVING;
+        }
+        console.log(methodOfTrans);
         var geocoder = new google.maps.Geocoder;
 
         var service = new google.maps.DistanceMatrixService;
         service.getDistanceMatrix({
             origins: [origin1],
             destinations: [destinationA],
-            travelMode: google.maps.TravelMode.DRIVING,
-            unitSystem: google.maps.UnitSystem.METRIC,
+            travelMode: methodOfTrans,
+            unitSystem: google.maps.UnitSystem.IMPERIAL,
             avoidHighways: false,
             avoidTolls: false
         }, function(response, status) {

@@ -73,24 +73,22 @@
 	_reactDom2.default.render(_react2.default.createElement(_reactRouter.Router, { routes: _routes2.default, history: _reactRouter.browserHistory }), document.getElementById('root'));
 
 	// QUESTIONS:
-	// 1.
+	// 1. methodOfTrans variable in calculateTravelTime api call does not change on initial click
 	// 2.
 
 	// NEXT STEPS:
 
 	// implement propTypes to components
 
-	// DONE store users position on state of app
-	// make another call to google maps api to calculate user's distance from shop
 	// make calls for time it will take to walk/bike/drive at same time you call getDetails
 
-	// make api call for extra info in handler that sets shop on state, use this extra info on confirmation screen (phone number, distance from, formatted address, etc.)
-	// use id on object, and use method for fetching a particular place in google maps api
-
-	// install moment into select pickup time
 	// add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for additional info page condition
 	// look into Locu and Google Maps API
 
+	// DONE make api call for extra info in handler that sets shop on state, use this extra info on confirmation screen (phone number, distance from, formatted address, etc.)
+	// DONE use id on object, and use method for fetching a particular place in google maps api
+	// DONE store users position on state of app
+	// DONE make another call to google maps api to calculate user's distance from shop
 	// DONE add in 'open now' feature
 	// DONE create state for remaining views on App component state. Pass down to children components
 	// DONE get selected shop set to state, render it out in confirmation screen
@@ -25314,19 +25312,21 @@
 	                lng: place.geometry.access_points[0].location.lng
 	            }
 	        });
-	        _api2.default.calculateTravelTime(this.state.userLocation, this.state.selectedShopLocation, this._handleDistanceAndDuration);
+	    },
+
+	    // sets user method of transportation to this.state.methodOfTrans and subsequently makes api call
+	    // to calculate distance and duration given user's selected method of transportation
+	    _handleMethodOfTrans: function _handleMethodOfTrans(event) {
+	        this.setState({
+	            methodOfTrans: event.target.value
+	        });
+	        _api2.default.calculateTravelTime(this.state.userLocation, this.state.selectedShopLocation, this.state.methodOfTrans, this._handleDistanceAndDuration);
 	    },
 
 	    _handleDistanceAndDuration: function _handleDistanceAndDuration(response) {
 	        this.setState({
 	            distance: response.rows[0].elements[0].distance.text,
 	            duration: response.rows[0].elements[0].duration.text
-	        });
-	    },
-
-	    _handleMethodOfTrans: function _handleMethodOfTrans(event) {
-	        this.setState({
-	            methodOfTrans: event.target.value
 	        });
 	    },
 
@@ -41890,7 +41890,7 @@
 	        // Specify location, radius and place types for your Places API search.
 	        var request = {
 	            location: currentLocation,
-	            radius: '2000',
+	            radius: '4000',
 	            types: ['cafe']
 	        };
 	        // Create the PlaceService and send the request.
@@ -41920,20 +41920,35 @@
 	        });
 	    },
 
-	    calculateTravelTime: function calculateTravelTime(userLocation, selectedShopLocation, callback) {
+	    calculateTravelTime: function calculateTravelTime(userLocation, selectedShopLocation, methodOfTrans, callback) {
 	        var bounds = new google.maps.LatLngBounds();
 
 	        var origin1 = userLocation;
 	        var destinationA = selectedShopLocation;
+	        var methodOfTrans;
 
+	        switch (methodOfTrans) {
+	            case 'walking':
+	                methodOfTrans = google.maps.TravelMode.WALKING;
+	                break;
+	            case 'biking':
+	                methodOfTrans = google.maps.TravelMode.BICYCLING;
+	                break;
+	            case 'driving':
+	                methodOfTrans = google.maps.TravelMode.DRIVING;
+	                break;
+	            default:
+	                methodOfTrans = google.maps.TravelMode.DRIVING;
+	        }
+	        console.log(methodOfTrans);
 	        var geocoder = new google.maps.Geocoder();
 
 	        var service = new google.maps.DistanceMatrixService();
 	        service.getDistanceMatrix({
 	            origins: [origin1],
 	            destinations: [destinationA],
-	            travelMode: google.maps.TravelMode.DRIVING,
-	            unitSystem: google.maps.UnitSystem.METRIC,
+	            travelMode: methodOfTrans,
+	            unitSystem: google.maps.UnitSystem.IMPERIAL,
 	            avoidHighways: false,
 	            avoidTolls: false
 	        }, function (response, status) {
@@ -43719,15 +43734,6 @@
 	    render: function render() {
 	        var _this = this;
 
-	        // var imageUrl = this.props.shop.photos.length ?
-	        //     this.props.shop.photos[0].getUrl({'maxWidth': 300, 'maxHeight': 300})
-	        // :   ''
-
-	        // style={{
-	        //        background: 'url(' + imageUrl + ')' + 'no-repeat center center',
-	        //        backgroundSize: 'cover'
-	        //    }}
-
 	        return _react2.default.createElement(
 	            'div',
 	            null,
@@ -43766,11 +43772,6 @@
 	                                { className: 'closed-now' },
 	                                _react2.default.createElement('i', { className: 'fa fa-clock-o', 'aria-hidden': 'true' }),
 	                                ' Currently closed'
-	                            ),
-	                            _react2.default.createElement(
-	                                'p',
-	                                { className: 'shop-list-distance' },
-	                                'Distance: N/A'
 	                            )
 	                        )
 	                    )
