@@ -25276,6 +25276,29 @@
 	        this.setState({
 	            shops: results
 	        });
+	        this._getShopsDistance();
+	    },
+
+	    // get lat and lng from this.state.shops by running function that returns values
+	    // create object from those values
+	    // push values through api.calculateTravelTime along with this.state.userLocation, methodOfTrans (anything), and callback to set to state.
+	    // render values on ShopListItem
+	    _getShopsDistance: function _getShopsDistance() {
+	        var shopsCoordinates = [];
+	        this.state.shops.map(function (shop) {
+	            var shopWithLocation = {
+	                lat: shop.geometry.location.lat(),
+	                lng: shop.geometry.location.lng()
+	            };
+	            shopsCoordinates.push(shopWithLocation);
+	        });
+
+	        var shops = this.state.shops;
+	        for (var i = 0; i < this.state.shops.length; i++) {
+	            var shopCoordinates = shopsCoordinates[i];
+	            shops[i].shopCoordinates = shopCoordinates;
+	        }
+	        // console.log(shops);
 	    },
 
 	    // API CALL IN RESPONSE TO USER SELECTING SHOP
@@ -41912,9 +41935,9 @@
 	        service.getDetails({
 	            placeId: placeId
 	        }, function (place, status) {
+	            console.log(status);
 	            if (status === google.maps.places.PlacesServiceStatus.OK) {
 	                console.log(place);
-	                console.log(status);
 	                callback(place);
 	            }
 	        });
@@ -43762,7 +43785,7 @@
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'shop-list-bottom-row' },
-	                            this.props.shop.opening_hours.open_now ? _react2.default.createElement(
+	                            this.props.shop.hasOwnProperty('opening_hours') ? this.props.shop.opening_hours.open_now ? _react2.default.createElement(
 	                                'div',
 	                                { className: 'open-now' },
 	                                _react2.default.createElement('i', { className: 'fa fa-clock-o', 'aria-hidden': 'true' }),
@@ -43772,7 +43795,7 @@
 	                                { className: 'closed-now' },
 	                                _react2.default.createElement('i', { className: 'fa fa-clock-o', 'aria-hidden': 'true' }),
 	                                ' Currently closed'
-	                            )
+	                            ) : ''
 	                        )
 	                    )
 	                )

@@ -68,6 +68,29 @@ var App = React.createClass({
         this.setState({
             shops: results
         })
+        this._getShopsDistance();
+    },
+
+    // get lat and lng from this.state.shops by running function that returns values
+    // create object from those values
+    // push values through api.calculateTravelTime along with this.state.userLocation, methodOfTrans (anything), and callback to set to state.
+    // render values on ShopListItem
+    _getShopsDistance: function() {
+        var shopsCoordinates = [];
+        this.state.shops.map(function(shop) {
+            var shopWithLocation = {
+                lat: shop.geometry.location.lat(),
+                lng: shop.geometry.location.lng()
+            };
+            shopsCoordinates.push(shopWithLocation);
+        })
+
+        var shops = this.state.shops;
+        for (var i = 0; i < this.state.shops.length; i++) {
+            var shopCoordinates = shopsCoordinates[i];
+            shops[i].shopCoordinates = shopCoordinates;
+        }
+        // console.log(shops);
     },
 
     // API CALL IN RESPONSE TO USER SELECTING SHOP
@@ -120,7 +143,7 @@ var App = React.createClass({
         );
     },
 
-    
+
     _handleDistanceAndDuration: function(response) {
         this.setState({
             distance: response.rows[0].elements[0].distance.text,

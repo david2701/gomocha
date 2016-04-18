@@ -37,9 +37,9 @@ module.exports = {
         service.getDetails({
             placeId: placeId
         }, function(place, status) {
+              console.log(status);
               if (status === google.maps.places.PlacesServiceStatus.OK) {
                   console.log(place);
-                  console.log(status);
                   callback(place);
               }
         });
