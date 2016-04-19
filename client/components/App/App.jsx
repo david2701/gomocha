@@ -67,31 +67,67 @@ var App = React.createClass({
     _handleCoffeeShopState: function(results) {
         this.setState({
             shops: results
-        })
-        this._getShopsDistance();
+        }, this._getShopsCoordinates)
     },
 
     // get lat and lng from this.state.shops by running function that returns values
     // create object from those values
     // push values through api.calculateTravelTime along with this.state.userLocation, methodOfTrans (anything), and callback to set to state.
     // render values on ShopListItem
-    _getShopsDistance: function() {
-        var shopsCoordinates = [];
-        this.state.shops.map(function(shop) {
-            var shopWithLocation = {
-                lat: shop.geometry.location.lat(),
-                lng: shop.geometry.location.lng()
-            };
-            shopsCoordinates.push(shopWithLocation);
+    // how is this changing the state?
+    _getShopsCoordinates: function() {
+
+        var shopsWithCoordinates = this.state.shops.map(function(shop) {
+            var newShop = _.assign(
+                {},
+                shop,
+                {shopCoordinates: {
+                    lat: shop.geometry.location.lat(),
+                    lng: shop.geometry.location.lng()
+                }}
+            )
+            return newShop;
         })
 
-        var shops = this.state.shops;
-        for (var i = 0; i < this.state.shops.length; i++) {
-            var shopCoordinates = shopsCoordinates[i];
-            shops[i].shopCoordinates = shopCoordinates;
-        }
-        // console.log(shops);
+        this.setState({
+            shops: shopsWithCoordinates
+        }, this._getShopsDistances)
     },
+
+    _getShopsDistances: function() {
+        var shopDistances = [];
+        var _handleGetShopsDistance = (response, shop) => {
+            var shopsWithDistance = this.state.shops.map(function(s) {
+                if (s.place_id === shop.place_id) {
+                    return _.assign({}, s, {shopDistance: response.rows[0].elements[0].distance.text})
+                } else {
+                    return s;
+                }
+            })
+            console.log(shopsWithDistance);
+            this.setState({
+                shops: shopsWithDistance
+            })
+        };
+
+        _.forEach(this.state.shops, (shop) => {
+            api.calculateTravelTime(
+                this.state.userLocation,
+                shop.shopCoordinates,
+                'driving',
+                function(response) {
+                  _handleGetShopsDistance(response, shop)
+                }
+            )
+        })
+    },
+    //
+    // _handleGetShopsDistance: function(response) {
+    //
+    //     this.setState({
+    //         shops: shops
+    //     })
+    // },
 
     // API CALL IN RESPONSE TO USER SELECTING SHOP
 

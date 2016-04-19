@@ -25275,31 +25275,60 @@
 	    _handleCoffeeShopState: function _handleCoffeeShopState(results) {
 	        this.setState({
 	            shops: results
-	        });
-	        this._getShopsDistance();
+	        }, this._getShopsCoordinates);
 	    },
 
 	    // get lat and lng from this.state.shops by running function that returns values
 	    // create object from those values
 	    // push values through api.calculateTravelTime along with this.state.userLocation, methodOfTrans (anything), and callback to set to state.
 	    // render values on ShopListItem
-	    _getShopsDistance: function _getShopsDistance() {
-	        var shopsCoordinates = [];
-	        this.state.shops.map(function (shop) {
-	            var shopWithLocation = {
-	                lat: shop.geometry.location.lat(),
-	                lng: shop.geometry.location.lng()
-	            };
-	            shopsCoordinates.push(shopWithLocation);
+	    // how is this changing the state?
+	    _getShopsCoordinates: function _getShopsCoordinates() {
+
+	        var shopsWithCoordinates = this.state.shops.map(function (shop) {
+	            var newShop = _lodash2.default.assign({}, shop, { shopCoordinates: {
+	                    lat: shop.geometry.location.lat(),
+	                    lng: shop.geometry.location.lng()
+	                } });
+	            return newShop;
 	        });
 
-	        var shops = this.state.shops;
-	        for (var i = 0; i < this.state.shops.length; i++) {
-	            var shopCoordinates = shopsCoordinates[i];
-	            shops[i].shopCoordinates = shopCoordinates;
-	        }
-	        // console.log(shops);
+	        this.setState({
+	            shops: shopsWithCoordinates
+	        }, this._getShopsDistances);
 	    },
+
+	    _getShopsDistances: function _getShopsDistances() {
+	        var _this = this;
+
+	        var shopDistances = [];
+	        var _handleGetShopsDistance = function _handleGetShopsDistance(response, shop) {
+	            var shopsWithDistance = _this.state.shops.map(function (s) {
+	                if (s.place_id === shop.place_id) {
+	                    return _lodash2.default.assign({}, s, { shopDistance: response.rows[0].elements[0].distance.text });
+	                } else {
+	                    return s;
+	                }
+	            });
+	            console.log(shopsWithDistance);
+	            _this.setState({
+	                shops: shopsWithDistance
+	            });
+	        };
+
+	        _lodash2.default.forEach(this.state.shops, function (shop) {
+	            _api2.default.calculateTravelTime(_this.state.userLocation, shop.shopCoordinates, 'driving', function (response) {
+	                _handleGetShopsDistance(response, shop);
+	            });
+	        });
+	    },
+	    //
+	    // _handleGetShopsDistance: function(response) {
+	    //
+	    //     this.setState({
+	    //         shops: shops
+	    //     })
+	    // },
 
 	    // API CALL IN RESPONSE TO USER SELECTING SHOP
 
@@ -25401,13 +25430,13 @@
 	    },
 
 	    _toggleNotification: function _toggleNotification() {
-	        var _this = this;
+	        var _this2 = this;
 
 	        this.setState({
 	            notification: !this.state.notification
 	        });
 	        var clearNotification = function clearNotification() {
-	            _this.setState({
+	            _this2.setState({
 	                notification: false
 	            });
 	        };
@@ -41921,9 +41950,7 @@
 	        var service = new google.maps.places.PlacesService(map);
 
 	        service.nearbySearch(request, function (results, status) {
-	            console.log(status);
 	            if (status == google.maps.places.PlacesServiceStatus.OK) {
-	                console.log(results);
 	                callback(results);
 	            }
 	        });
@@ -41935,9 +41962,7 @@
 	        service.getDetails({
 	            placeId: placeId
 	        }, function (place, status) {
-	            console.log(status);
 	            if (status === google.maps.places.PlacesServiceStatus.OK) {
-	                console.log(place);
 	                callback(place);
 	            }
 	        });
@@ -41947,7 +41972,7 @@
 	        var bounds = new google.maps.LatLngBounds();
 
 	        var origin1 = userLocation;
-	        var destinationA = selectedShopLocation;
+	        var destinationA = '' + selectedShopLocation.lat + ',' + selectedShopLocation.lng;
 	        var methodOfTrans;
 
 	        switch (methodOfTrans) {
@@ -41963,7 +41988,6 @@
 	            default:
 	                methodOfTrans = google.maps.TravelMode.DRIVING;
 	        }
-	        console.log(methodOfTrans);
 	        var geocoder = new google.maps.Geocoder();
 
 	        var service = new google.maps.DistanceMatrixService();
@@ -41980,7 +42004,6 @@
 	            } else {
 	                var originList = response.originAddresses;
 	                var destinationList = response.destinationAddresses;
-	                console.log(response);
 	                callback(response);
 	            }
 	        });
@@ -43662,6 +43685,10 @@
 
 	var _ClickForMore2 = _interopRequireDefault(_ClickForMore);
 
+	var _lodash = __webpack_require__(228);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var ShopList = _react2.default.createClass({
@@ -43671,11 +43698,13 @@
 	    render: function render() {
 	        var _this = this;
 
-	        var shops = this.props.shops.map(function (shop, index) {
+	        var sortedShops = _lodash2.default.sortBy(this.props.shops, 'shopDistance');
+
+	        var shops = sortedShops.map(function (shop) {
 	            return _react2.default.createElement(_ShopListItem2.default, {
 	                shop: shop,
 	                handleSelectedShop: _this.props.handleSelectedShop,
-	                key: index });
+	                key: shop.place_id });
 	        });
 
 	        return _react2.default.createElement(
@@ -43757,6 +43786,15 @@
 	    render: function render() {
 	        var _this = this;
 
+	        // var imageUrl = this.props.shop.photos.length ?
+	        //     this.props.shop.photos[0].getUrl({'maxWidth': 300, 'maxHeight': 300})
+	        // :   ''
+
+	        // style={{
+	        //        background: 'url(' + imageUrl + ')' + 'no-repeat center center',
+	        //        backgroundSize: 'cover'
+	        //    }}
+
 	        return _react2.default.createElement(
 	            'div',
 	            null,
@@ -43795,7 +43833,12 @@
 	                                { className: 'closed-now' },
 	                                _react2.default.createElement('i', { className: 'fa fa-clock-o', 'aria-hidden': 'true' }),
 	                                ' Currently closed'
-	                            ) : ''
+	                            ) : '',
+	                            _react2.default.createElement(
+	                                'p',
+	                                { className: 'shop-list-distance' },
+	                                this.props.shop.shopDistance
+	                            )
 	                        )
 	                    )
 	                )

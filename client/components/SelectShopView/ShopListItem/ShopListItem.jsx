@@ -34,7 +34,7 @@ var ShopListItem = React.createClass({
                             <div className="open-now"><i className="fa fa-clock-o" aria-hidden="true"></i> Open now!</div>
                             : <div className="closed-now"><i className="fa fa-clock-o" aria-hidden="true"></i> Currently closed</div>
                         : ''}
-                        {/*<p className="shop-list-distance">Distance: N/A</p>*/}
+                        <p className="shop-list-distance">{this.props.shop.shopDistance}</p>
                     </div>
                 </div>
                 </div>

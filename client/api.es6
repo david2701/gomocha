@@ -23,9 +23,7 @@ module.exports = {
         var service = new google.maps.places.PlacesService(map);
 
         service.nearbySearch(request, function(results, status) {
-            console.log(status);
             if (status == google.maps.places.PlacesServiceStatus.OK) {
-                console.log(results);
                 callback(results);
             }
         });
@@ -37,9 +35,7 @@ module.exports = {
         service.getDetails({
             placeId: placeId
         }, function(place, status) {
-              console.log(status);
               if (status === google.maps.places.PlacesServiceStatus.OK) {
-                  console.log(place);
                   callback(place);
               }
         });
@@ -49,7 +45,7 @@ module.exports = {
         var bounds = new google.maps.LatLngBounds;
 
         var origin1 = userLocation;
-        var destinationA = selectedShopLocation;
+        var destinationA = '' + selectedShopLocation.lat + ',' + selectedShopLocation.lng;
         var methodOfTrans;
 
         switch(methodOfTrans) {
@@ -65,7 +61,6 @@ module.exports = {
             default:
                 methodOfTrans = google.maps.TravelMode.DRIVING;
         }
-        console.log(methodOfTrans);
         var geocoder = new google.maps.Geocoder;
 
         var service = new google.maps.DistanceMatrixService;
@@ -82,7 +77,6 @@ module.exports = {
             } else {
                 var originList = response.originAddresses;
                 var destinationList = response.destinationAddresses;
-            console.log(response);
             callback(response);
         }
       });
