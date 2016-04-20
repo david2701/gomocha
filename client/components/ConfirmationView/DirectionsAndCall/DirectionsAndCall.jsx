@@ -7,9 +7,9 @@ var DirectionsAndCall = React.createClass({
         var callPhone = "tel: " + this.props.selectedShop.formatted_phone_number;
 
         return (
-            <div>
-                <button className="next-button get-directions-button">Get Directions</button>
-                <a href={callPhone}><button className="next-button">Call Shop</button></a>
+            <div className="confirmation-button-wrap">
+                <button className="next-button confirmation-button">Get Directions</button>
+                <a href={callPhone}><button className="next-button confirmation-button">Call Shop</button></a>
             </div>
         )
     }

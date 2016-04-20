@@ -1,8 +1,7 @@
 nav.main-nav{
     width: 100%;
-    margin: 0 auto 3em auto;
+    margin: 0 auto 0 auto;
     text-align: center;
-    border-bottom: 1px solid #191919;
     padding: 1em 0 1em 0;
 }
 
@@ -15,12 +14,12 @@ nav.main-nav ul{
 nav.main-nav ul li {
     display: inline-block;
     padding: 0.75em;
-    border: 1px solid #1987FE;
     border-radius: 5px;
     margin-right: 5px;
+    color: #8F8F8F;
 
     &:hover {
-        color: #191919;
+        color: #333333;
     }
 
 }
@@ -57,4 +56,17 @@ nav.main-nav ul li {
 
 .main-wrap {
     padding: 1em;
+}
+
+
+
+.title-cover {
+    background: #3879D9;
+    padding: 3em;
+    min-height: 6em;
+    margin-bottom: 1em;
+
+    h1 {
+        color: #fff;
+    }
 }

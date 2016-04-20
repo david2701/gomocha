@@ -13,11 +13,15 @@
 
 .method-of-trans-container {
     text-align: center;
-    padding: 0.75em;
+    padding: 0.75em 0.75em 1em 0.75em;
     background: #efefef;
-    width: 30em;
+    width: 90%;
     border-radius: 3px;
     margin: 0 auto 1em auto;
+
+    h2 {
+        font-size: 1.2em;
+    }
 }
 
 .method-of-trans-container > h2 {

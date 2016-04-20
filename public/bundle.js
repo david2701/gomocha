@@ -26737,7 +26737,7 @@
 
 
 	// module
-	exports.push([module.id, "nav.main-nav {\n  width: 100%;\n  margin: 0 auto 3em auto;\n  text-align: center;\n  border-bottom: 1px solid #191919;\n  padding: 1em 0 1em 0; }\n\nnav.main-nav ul {\n  width: 80%;\n  margin: 0 auto;\n  padding: 0; }\n\nnav.main-nav ul li {\n  display: inline-block;\n  padding: 0.75em;\n  border: 1px solid #1987FE;\n  border-radius: 5px;\n  margin-right: 5px; }\n  nav.main-nav ul li:hover {\n    color: #191919; }\n\n.router-link {\n  font-size: 0.85em;\n  text-decoration: none;\n  color: #1987FE; }\n\n.center-wrap {\n  width: 520px;\n  margin: 0 auto; }\n\n.next-button {\n  margin: 1em 0 0 0;\n  text-align: center;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer;\n    background: #4582db; }\n\n.main-wrap {\n  padding: 1em; }\n", ""]);
+	exports.push([module.id, "nav.main-nav {\n  width: 100%;\n  margin: 0 auto 0 auto;\n  text-align: center;\n  padding: 1em 0 1em 0; }\n\nnav.main-nav ul {\n  width: 80%;\n  margin: 0 auto;\n  padding: 0; }\n\nnav.main-nav ul li {\n  display: inline-block;\n  padding: 0.75em;\n  border-radius: 5px;\n  margin-right: 5px;\n  color: #8F8F8F; }\n  nav.main-nav ul li:hover {\n    color: #333333; }\n\n.router-link {\n  font-size: 0.85em;\n  text-decoration: none;\n  color: #1987FE; }\n\n.center-wrap {\n  width: 520px;\n  margin: 0 auto; }\n\n.next-button {\n  margin: 1em 0 0 0;\n  text-align: center;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer;\n    background: #4582db; }\n\n.main-wrap {\n  padding: 1em; }\n\n.title-cover {\n  background: #3879D9;\n  padding: 3em;\n  min-height: 6em;\n  margin-bottom: 1em; }\n  .title-cover h1 {\n    color: #fff; }\n", ""]);
 
 	// exports
 
@@ -42046,22 +42046,31 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            { className: 'main-wrap' },
+	            null,
 	            _react2.default.createElement(
-	                'h1',
-	                null,
-	                'Start - Search for a Coffee Shop!'
-	            ),
-	            _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/select-shop', className: 'start-button-wrap' },
+	                'div',
+	                { className: 'title-cover' },
 	                _react2.default.createElement(
-	                    'button',
-	                    { className: 'next-button start-button' },
-	                    'Start'
+	                    'h1',
+	                    null,
+	                    'Search for a Coffee Shop!'
 	                )
 	            ),
-	            _react2.default.createElement(_PrevAndFavorites2.default, null)
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'main-wrap' },
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/select-shop', className: 'start-button-wrap' },
+	                    _react2.default.createElement(
+	                        'button',
+	                        { className: 'next-button start-button' },
+	                        _react2.default.createElement('i', { className: 'fa fa-coffee', 'aria-hidden': 'true' }),
+	                        'Start'
+	                    )
+	                ),
+	                _react2.default.createElement(_PrevAndFavorites2.default, null)
+	            )
 	        );
 	    }
 	});
@@ -42173,7 +42182,7 @@
 
 
 	// module
-	exports.push([module.id, ".prev-and-fav-wrap {\n  width: 100%;\n  margin: 0 auto; }\n\n.prev-orders-button, .fav-orders-button {\n  width: 15em;\n  border: 1px solid #bbb;\n  text-align: center;\n  padding-top: 3em;\n  padding-bottom: 3em;\n  border-radius: 5px;\n  margin: 0em auto 1em auto; }\n  .prev-orders-button:hover, .fav-orders-button:hover {\n    border: 1px solid #0088CC;\n    cursor: pointer; }\n", ""]);
+	exports.push([module.id, ".prev-and-fav-wrap {\n  width: 100%;\n  margin: 0 auto; }\n  .prev-and-fav-wrap .fa-heart, .prev-and-fav-wrap .fa-reply {\n    color: #3879D9; }\n\n.prev-orders-button, .fav-orders-button {\n  width: 16.5em;\n  border: 1px solid #bbb;\n  text-align: center;\n  padding-top: 3em;\n  padding-bottom: 3em;\n  border-radius: 5px;\n  margin: 0em auto 1em auto;\n  color: #3879D9; }\n  .prev-orders-button:hover, .fav-orders-button:hover {\n    border: 1px solid #0088CC;\n    cursor: pointer; }\n", ""]);
 
 	// exports
 
@@ -42213,7 +42222,7 @@
 
 
 	// module
-	exports.push([module.id, ".start-button-wrap {\n  display: block;\n  width: 133px;\n  margin: 4em auto 3em auto; }\n\n.start-button {\n  background: #3FB083; }\n  .start-button:hover {\n    background: #43bb8b; }\n", ""]);
+	exports.push([module.id, ".start-button-wrap {\n  display: block;\n  text-align: center;\n  margin: 2em auto 3em auto; }\n  .start-button-wrap button.start-button {\n    background: #3FB083;\n    margin: 0em;\n    padding: 1.5em 3em;\n    font-size: 1.75em; }\n    .start-button-wrap button.start-button:hover {\n      background: #43bb8b; }\n  .start-button-wrap .fa-coffee {\n    margin-right: 0.35em; }\n", ""]);
 
 	// exports
 
@@ -42255,30 +42264,38 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            { className: 'main-wrap' },
-	            _react2.default.createElement(_AddItemNotification2.default, {
-	                toggleNotification: this.props.toggleNotification,
-	                notificationState: this.props.notification }),
+	            null,
 	            _react2.default.createElement(
-	                'h1',
-	                null,
-	                'Place Your Order'
-	            ),
-	            _react2.default.createElement(_MenuFormContainer2.default, {
-	                data: this.props.data,
-	                handleSpecialInstructions: this.props.handleSpecialInstructions,
-	                handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                toggleNotification: this.props.toggleNotification }),
-	            _react2.default.createElement(_OrderTotal2.default, {
-	                orderItems: this.props.items,
-	                handleDeleteItemFromOrder: this.props.handleDeleteItemFromOrder }),
-	            _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/additional-info' },
+	                'div',
+	                { className: 'title-cover' },
 	                _react2.default.createElement(
-	                    'button',
-	                    { className: 'next-button' },
-	                    'Next'
+	                    'h1',
+	                    null,
+	                    'Place Your Order'
+	                )
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'main-wrap' },
+	                _react2.default.createElement(_AddItemNotification2.default, {
+	                    toggleNotification: this.props.toggleNotification,
+	                    notificationState: this.props.notification }),
+	                _react2.default.createElement(_MenuFormContainer2.default, {
+	                    data: this.props.data,
+	                    handleSpecialInstructions: this.props.handleSpecialInstructions,
+	                    handleAddItemToOrder: this.props.handleAddItemToOrder,
+	                    toggleNotification: this.props.toggleNotification }),
+	                _react2.default.createElement(_OrderTotal2.default, {
+	                    orderItems: this.props.items,
+	                    handleDeleteItemFromOrder: this.props.handleDeleteItemFromOrder }),
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/additional-info' },
+	                    _react2.default.createElement(
+	                        'button',
+	                        { className: 'next-button' },
+	                        'Next'
+	                    )
 	                )
 	            )
 	        );
@@ -42967,7 +42984,7 @@
 
 
 	// module
-	exports.push([module.id, ".drink-item {\n  overflow: hidden;\n  margin-bottom: 1.2em;\n  background: #eee;\n  padding: 0.5em 0em 0.5em 0em;\n  border-radius: 3px; }\n  .drink-item select {\n    margin-right: 0.5em; }\n\n.item-top-row {\n  margin-bottom: 0.75em;\n  width: 100%;\n  display: inline-block; }\n\n.item-name {\n  margin-right: 0.5em;\n  display: inline-block;\n  font-size: 1.2em;\n  width: 100%;\n  padding-bottom: 0em;\n  margin-bottom: 0.5em;\n  border-bottom: 1px solid #000;\n  padding-left: 0.5em;\n  padding-right: 0.5em; }\n\n.item-options {\n  width: 82%;\n  display: inline-block; }\n\n.item-other-options {\n  font-size: 0.85em; }\n\n.item-price {\n  display: inline-block;\n  width: 5%;\n  font-size: 1em;\n  padding-right: 0.75em;\n  padding-top: 5px; }\n\n.item-options, .item-other-options {\n  padding-left: 0.5em; }\n", ""]);
+	exports.push([module.id, ".drink-item {\n  overflow: hidden;\n  margin-bottom: 1.2em;\n  background: #eee;\n  padding: 0.5em 0em 0.5em 0em;\n  border-radius: 3px; }\n  .drink-item select {\n    margin-right: 0.5em; }\n\n.item-top-row {\n  margin-bottom: 0.75em;\n  width: 100%;\n  display: inline-block; }\n\n.item-name {\n  margin-right: 0.5em;\n  display: inline-block;\n  font-size: 1.2em;\n  width: 100%;\n  padding-bottom: 0.25em;\n  margin-bottom: 0.5em;\n  border-bottom: 1px solid #000;\n  padding-left: 0.5em;\n  padding-right: 0.5em; }\n\n.item-options {\n  width: 82%;\n  display: inline-block;\n  padding-left: 0.5em; }\n\n.item-other-options {\n  font-size: 0.85em;\n  padding-left: 0.5em; }\n\n.item-price {\n  display: inline-block;\n  width: 5%;\n  font-size: 1em;\n  padding-right: 0.75em;\n  padding-top: 5px; }\n", ""]);
 
 	// exports
 
@@ -43016,31 +43033,35 @@
 /* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _react = __webpack_require__(5);
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _specialInstructions = __webpack_require__(419);
+
+	var _specialInstructions2 = _interopRequireDefault(_specialInstructions);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var SpecialInstructions = _react2.default.createClass({
-	    displayName: "SpecialInstructions",
+	    displayName: 'SpecialInstructions',
 
 	    render: function render() {
 	        return _react2.default.createElement(
-	            "section",
-	            { id: "special-instructions" },
+	            'section',
+	            { id: 'special-instructions' },
 	            _react2.default.createElement(
-	                "h2",
+	                'h2',
 	                null,
-	                "Special Instructions"
+	                'Special Instructions'
 	            ),
-	            _react2.default.createElement("textarea", {
+	            _react2.default.createElement('textarea', {
 	                onChange: this.props.handleSpecialInstructions,
-	                rows: "6",
-	                cols: "40" }),
-	            _react2.default.createElement("div", { className: "divider" })
+	                rows: '6',
+	                cols: '40' }),
+	            _react2.default.createElement('div', { className: 'divider' })
 	        );
 	    }
 	});
@@ -43570,20 +43591,28 @@
 	        }
 	        return _react2.default.createElement(
 	            'div',
-	            { className: 'main-wrap' },
+	            null,
 	            _react2.default.createElement(
-	                'h1',
-	                null,
-	                'Select a Shop'
+	                'div',
+	                { className: 'title-cover' },
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    'Select a Shop'
+	                )
 	            ),
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'loading-icon' },
-	                loadingIcon
-	            ),
-	            _react2.default.createElement(_ShopList2.default, {
-	                shops: this.props.shops,
-	                handleSelectedShop: this.props.handleSelectedShop })
+	                { className: 'main-wrap' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'loading-icon' },
+	                    loadingIcon
+	                ),
+	                _react2.default.createElement(_ShopList2.default, {
+	                    shops: this.props.shops,
+	                    handleSelectedShop: this.props.handleSelectedShop })
+	            )
 	        );
 	    }
 	});
@@ -44001,7 +44030,7 @@
 
 
 	// module
-	exports.push([module.id, ".hide {\n  display: none; }\n\n.loading-icon {\n  margin-top: 5em;\n  text-align: center; }\n", ""]);
+	exports.push([module.id, ".hide {\n  display: none; }\n\n.loading-icon {\n  margin-top: 0em;\n  text-align: center; }\n", ""]);
 
 	// exports
 
@@ -44051,41 +44080,49 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            { className: 'main-wrap' },
+	            null,
 	            _react2.default.createElement(
-	                'h1',
-	                null,
-	                'Tell us a little more!'
+	                'div',
+	                { className: 'title-cover' },
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    'Tell us a little more!'
+	                )
 	            ),
 	            _react2.default.createElement(
-	                'form',
-	                null,
-	                _react2.default.createElement(_SelectMethodOfTrans2.default, {
-	                    handleMethodOfTrans: this.props.handleMethodOfTrans }),
-	                _react2.default.createElement(_SelectPickUpTime2.default, {
-	                    handlePickupTime: this.props.handlePickupTime,
-	                    value: this.props.pickupTime || 'true' }),
-	                _react2.default.createElement(_SelectIfFavorite2.default, {
-	                    handleFavorite: this.props.handleFavorite,
-	                    value: this.props.favorite || false }),
-	                _react2.default.createElement(_EnterPaymentInfo2.default, {
-	                    handleCCName: this.props.handleCCName,
-	                    handleCCNumber: this.props.handleCCNumber,
-	                    handleCCExpMonth: this.props.handleCCExpMonth,
-	                    expMonthValue: this.props.expMonth || 'default',
-	                    handleCCExpYear: this.props.handleCCExpYear,
-	                    expYearValue: this.props.expYear || 'default',
-	                    handleCCCVV: this.props.handleCCCVV }),
+	                'div',
+	                { className: 'main-wrap' },
 	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'next-button-container' },
+	                    'form',
+	                    null,
+	                    _react2.default.createElement(_SelectMethodOfTrans2.default, {
+	                        handleMethodOfTrans: this.props.handleMethodOfTrans }),
+	                    _react2.default.createElement(_SelectPickUpTime2.default, {
+	                        handlePickupTime: this.props.handlePickupTime,
+	                        value: this.props.pickupTime || 'true' }),
+	                    _react2.default.createElement(_SelectIfFavorite2.default, {
+	                        handleFavorite: this.props.handleFavorite,
+	                        value: this.props.favorite || false }),
+	                    _react2.default.createElement(_EnterPaymentInfo2.default, {
+	                        handleCCName: this.props.handleCCName,
+	                        handleCCNumber: this.props.handleCCNumber,
+	                        handleCCExpMonth: this.props.handleCCExpMonth,
+	                        expMonthValue: this.props.expMonth || 'default',
+	                        handleCCExpYear: this.props.handleCCExpYear,
+	                        expYearValue: this.props.expYear || 'default',
+	                        handleCCCVV: this.props.handleCCCVV }),
 	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: '/order-summary' },
+	                        'div',
+	                        { className: 'next-button-container' },
 	                        _react2.default.createElement(
-	                            'button',
-	                            { className: 'next-button' },
-	                            'Next'
+	                            _reactRouter.Link,
+	                            { to: '/order-summary' },
+	                            _react2.default.createElement(
+	                                'button',
+	                                { className: 'next-button' },
+	                                'Next'
+	                            )
 	                        )
 	                    )
 	                )
@@ -44198,7 +44235,7 @@
 
 
 	// module
-	exports.push([module.id, ".method-of-trans {\n  padding-right: 2em; }\n\n.method-of-trans p {\n  padding-top: 3.5em; }\n\n.method-of-trans-container {\n  text-align: center;\n  padding: 0.75em;\n  background: #efefef;\n  width: 30em;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n\n.method-of-trans-container > h2 {\n  text-align: left; }\n", ""]);
+	exports.push([module.id, ".method-of-trans {\n  padding-right: 2em; }\n\n.method-of-trans p {\n  padding-top: 3.5em; }\n\n.method-of-trans-container {\n  text-align: center;\n  padding: 0.75em 0.75em 1em 0.75em;\n  background: #efefef;\n  width: 90%;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n  .method-of-trans-container h2 {\n    font-size: 1.2em; }\n\n.method-of-trans-container > h2 {\n  text-align: left; }\n", ""]);
 
 	// exports
 
@@ -44466,7 +44503,7 @@
 
 
 	// module
-	exports.push([module.id, ".select-pick-up-container {\n  padding: 0.75em;\n  background: #efefef;\n  width: 30em;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n  .select-pick-up-container h2 {\n    margin: 0 0.25em 0.25em 0.25em;\n    padding-bottom: 0.5em; }\n\n.select-pick-up-now {\n  margin-right: 5em;\n  display: inline-block; }\n\n.select-pick-up-time {\n  display: inline-block; }\n", ""]);
+	exports.push([module.id, ".select-pick-up-container {\n  padding: 0.75em;\n  background: #efefef;\n  width: 90%;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n  .select-pick-up-container h2 {\n    margin: 0 0.25em 0.25em 0.25em;\n    padding-bottom: 0.75em;\n    font-size: 1.2em; }\n\n.select-pick-up-now {\n  margin-right: 4em;\n  display: inline-block; }\n\n.select-pick-up-time {\n  display: inline-block; }\n", ""]);
 
 	// exports
 
@@ -57640,7 +57677,7 @@
 
 
 	// module
-	exports.push([module.id, ".select-if-favorite-container {\n  padding: 0.75em;\n  background: #efefef;\n  width: 30em;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n", ""]);
+	exports.push([module.id, ".select-if-favorite-container {\n  padding: 0.75em;\n  background: #efefef;\n  width: 90%;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n  .select-if-favorite-container h2 {\n    font-size: 1.2em; }\n", ""]);
 
 	// exports
 
@@ -57907,7 +57944,7 @@
 
 
 	// module
-	exports.push([module.id, ".enter-payment-info-container {\n  padding: 0.75em;\n  background: #efefef;\n  width: 30em;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n\n.payment-info-section {\n  padding: 0 0 1em 0; }\n", ""]);
+	exports.push([module.id, ".enter-payment-info-container {\n  padding: 0.75em;\n  background: #efefef;\n  width: 90%;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n\n.payment-info-section {\n  padding: 0 0 1em 0; }\n  .payment-info-section input {\n    float: right; }\n  .payment-info-section select {\n    float: right; }\n", ""]);
 
 	// exports
 
@@ -57989,40 +58026,48 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            { className: 'main-wrap' },
+	            null,
 	            _react2.default.createElement(
-	                'h1',
-	                null,
-	                'Order Summary'
+	                'div',
+	                { className: 'title-cover' },
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    'Order Summary'
+	                )
 	            ),
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'order-summary-container' },
+	                { className: 'main-wrap' },
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'os-order-total-container' },
-	                    _react2.default.createElement(_OrderTotal2.default, {
-	                        orderItems: this.props.items,
-	                        handleDeleteItemFromOrder: this.props.handleDeleteItemFromOrder })
-	                ),
-	                _react2.default.createElement(_SpecialInstructionsOS2.default, {
-	                    specialInstructions: this.props.specialInstructions }),
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: '/confirmation' },
+	                    { className: 'order-summary-container' },
 	                    _react2.default.createElement(
-	                        'button',
-	                        { className: 'next-button' },
-	                        'Submit Order'
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: '/custom-order' },
+	                        'div',
+	                        { className: 'os-order-total-container' },
+	                        _react2.default.createElement(_OrderTotal2.default, {
+	                            orderItems: this.props.items,
+	                            handleDeleteItemFromOrder: this.props.handleDeleteItemFromOrder })
+	                    ),
+	                    _react2.default.createElement(_SpecialInstructionsOS2.default, {
+	                        specialInstructions: this.props.specialInstructions }),
 	                    _react2.default.createElement(
-	                        'button',
-	                        { className: 'next-button' },
-	                        'Edit my order'
+	                        _reactRouter.Link,
+	                        { to: '/confirmation' },
+	                        _react2.default.createElement(
+	                            'button',
+	                            { className: 'next-button' },
+	                            'Submit Order'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: '/custom-order' },
+	                        _react2.default.createElement(
+	                            'button',
+	                            { className: 'next-button' },
+	                            'Edit my order'
+	                        )
 	                    )
 	                )
 	            )
@@ -58102,7 +58147,7 @@
 
 
 	// module
-	exports.push([module.id, ".order-summary-container {\n  width: 50%;\n  margin: 0 auto;\n  text-align: center; }\n\n.os-order-total-container {\n  width: 25%;\n  margin: 0 auto; }\n", ""]);
+	exports.push([module.id, ".order-summary-container {\n  margin: 0 auto;\n  text-align: center; }\n\n.os-order-total-container {\n  width: 50%;\n  margin: 0 auto; }\n", ""]);
 
 	// exports
 
@@ -58148,31 +58193,39 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            { className: 'main-wrap' },
+	            null,
 	            _react2.default.createElement(
-	                'h1',
-	                null,
-	                'Order Confirmation'
+	                'div',
+	                { className: 'title-cover' },
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    'Order Confirmation'
+	                )
 	            ),
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'confirmation-view-container' },
-	                _react2.default.createElement(_OrderReadyTime2.default, {
-	                    methodOfTrans: this.props.methodOfTrans,
-	                    duration: this.props.duration }),
-	                _react2.default.createElement(_ShopDetails2.default, {
-	                    selectedShop: this.props.selectedShop,
-	                    distance: this.props.distance }),
-	                _react2.default.createElement(_DirectionsAndCall2.default, {
-	                    selectedShop: this.props.selectedShop })
-	            ),
-	            _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/', className: 'back-to-dashboard' },
+	                { className: 'main-wrap' },
 	                _react2.default.createElement(
-	                    'button',
-	                    { className: 'next-button' },
-	                    'Back to Dashboard'
+	                    'div',
+	                    { className: 'confirmation-view-container' },
+	                    _react2.default.createElement(_OrderReadyTime2.default, {
+	                        methodOfTrans: this.props.methodOfTrans,
+	                        duration: this.props.duration }),
+	                    _react2.default.createElement(_ShopDetails2.default, {
+	                        selectedShop: this.props.selectedShop,
+	                        distance: this.props.distance }),
+	                    _react2.default.createElement(_DirectionsAndCall2.default, {
+	                        selectedShop: this.props.selectedShop })
+	                ),
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/', className: 'back-to-dashboard' },
+	                    _react2.default.createElement(
+	                        'button',
+	                        { className: 'next-button' },
+	                        'Back to Dashboard'
+	                    )
 	                )
 	            )
 	        );
@@ -58295,7 +58348,7 @@
 
 
 	// module
-	exports.push([module.id, ".order-ready-time {\n  font-size: 36px;\n  text-align: center; }\n\n.order-ready-time-container h2 {\n  margin-top: 0;\n  text-align: center; }\n\n.order-ready-time-container p {\n  text-align: center;\n  font-size: 1.2em;\n  margin: 0em 0em 0.8em 0em; }\n\n.method-of-trans-icon {\n  text-align: center;\n  margin-bottom: 2.5em; }\n\n.order-ready-time-divider {\n  width: 90%;\n  margin: 0 auto;\n  border-bottom: 1px solid #000; }\n", ""]);
+	exports.push([module.id, ".order-ready-time {\n  font-size: 36px;\n  text-align: center; }\n\n.order-ready-time-container {\n  padding-top: 1em; }\n\n.order-ready-time-container h2 {\n  margin-top: 0;\n  text-align: center;\n  font-size: 1.2em; }\n\n.order-ready-time-container p {\n  text-align: center;\n  font-size: 1em;\n  margin: 0em 0em 0.8em 0em; }\n\n.method-of-trans-icon {\n  text-align: center;\n  margin-bottom: 1.75em; }\n\n.order-ready-time-divider {\n  width: 100%;\n  margin: 0 auto;\n  border-bottom: 1px solid #000; }\n", ""]);
 
 	// exports
 
@@ -58393,7 +58446,7 @@
 
 
 	// module
-	exports.push([module.id, ".shop-details-container {\n  padding-top: 1em; }\n", ""]);
+	exports.push([module.id, ".shop-details-container {\n  padding: 1.75em 0em 1.75em 0em;\n  text-align: center;\n  border-bottom: 1px solid #000; }\n  .shop-details-container h2 {\n    padding-bottom: 0.5em; }\n  .shop-details-container p {\n    margin: 0.5em 0em 0.5em 0em; }\n", ""]);
 
 	// exports
 
@@ -58423,10 +58476,10 @@
 
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'confirmation-button-wrap' },
 	            _react2.default.createElement(
 	                'button',
-	                { className: 'next-button get-directions-button' },
+	                { className: 'next-button confirmation-button' },
 	                'Get Directions'
 	            ),
 	            _react2.default.createElement(
@@ -58434,7 +58487,7 @@
 	                { href: callPhone },
 	                _react2.default.createElement(
 	                    'button',
-	                    { className: 'next-button' },
+	                    { className: 'next-button confirmation-button' },
 	                    'Call Shop'
 	                )
 	            )
@@ -58479,7 +58532,7 @@
 
 
 	// module
-	exports.push([module.id, ".get-directions-button {\n  margin-right: 1em; }\n", ""]);
+	exports.push([module.id, "button.confirmation-button {\n  width: 13em; }\n\n.confirmation-button-wrap {\n  text-align: center;\n  padding-bottom: 1.75em;\n  padding-top: 1.75em; }\n", ""]);
 
 	// exports
 
@@ -58519,7 +58572,7 @@
 
 
 	// module
-	exports.push([module.id, ".confirmation-view-container {\n  width: 25em;\n  margin: 0 auto;\n  background: #efefef;\n  border-radius: 3px;\n  padding: 1.25em 1.25em 1.25em 2.25em; }\n\n.back-to-dashboard {\n  width: 15em;\n  margin: 2em auto 0 auto;\n  display: block; }\n", ""]);
+	exports.push([module.id, ".confirmation-view-container {\n  width: 90%;\n  margin: 0 auto;\n  background: #efefef;\n  border-radius: 3px; }\n\n.back-to-dashboard {\n  width: 15em;\n  margin: 2em auto 0 auto;\n  display: block; }\n", ""]);
 
 	// exports
 
@@ -60030,6 +60083,46 @@
 	}
 
 	module.exports = request;
+
+
+/***/ },
+/* 419 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(420);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./special-instructions.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./special-instructions.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 420 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#special-instructions {\n  margin-bottom: 2em; }\n", ""]);
+
+	// exports
 
 
 /***/ }

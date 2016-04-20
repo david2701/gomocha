@@ -10,8 +10,12 @@ var ConfirmationView = React.createClass({
 
     render: function() {
         return (
-            <div className="main-wrap">
+            <div>
+            <div className="title-cover">
                 <h1>Order Confirmation</h1>
+            </div>
+
+            <div className="main-wrap">
             <div className="confirmation-view-container">
                 <OrderReadyTime
                 methodOfTrans={this.props.methodOfTrans}
@@ -24,6 +28,7 @@ var ConfirmationView = React.createClass({
             </div>
                 <Link to="/" className="back-to-dashboard"><button className="next-button">Back to Dashboard</button></Link>
             </div>
+        </div>
         )
     }
 });

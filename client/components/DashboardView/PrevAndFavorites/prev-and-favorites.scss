@@ -1,16 +1,21 @@
 .prev-and-fav-wrap {
     width: 100%;
     margin: 0 auto;
+
+    .fa-heart, .fa-reply {
+        color: #3879D9;
+    }
 }
 
 .prev-orders-button, .fav-orders-button {
-    width: 15em;
+    width: 16.5em;
     border: 1px solid #bbb;
     text-align: center;
     padding-top: 3em;
     padding-bottom: 3em;
     border-radius: 5px;
     margin: 0em auto 1em auto;
+    color: #3879D9;
 
     &:hover {
         border: 1px solid #0088CC;

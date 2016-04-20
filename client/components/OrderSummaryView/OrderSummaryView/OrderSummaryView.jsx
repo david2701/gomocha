@@ -9,8 +9,12 @@ var OrderSummaryView = React.createClass({
 
     render: function() {
         return (
-            <div className="main-wrap">
+            <div>
+            <div className="title-cover">
                 <h1>Order Summary</h1>
+            </div>
+
+            <div className="main-wrap">
             <div className="order-summary-container">
                 <div className="os-order-total-container">
                     <OrderTotal
@@ -30,6 +34,7 @@ var OrderSummaryView = React.createClass({
                 </Link>
             </div>
             </div>
+        </div>
         )
     }
 });

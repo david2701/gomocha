@@ -1,11 +1,19 @@
 .enter-payment-info-container {
     padding: 0.75em;
     background: #efefef;
-    width: 30em;
+    width: 90%;
     border-radius: 3px;
     margin: 0 auto 1em auto;
 }
 
 .payment-info-section {
     padding: 0 0 1em 0;
+
+    input {
+        float: right;
+    }
+
+    select {
+        float: right;
+    }
 }

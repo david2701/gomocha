@@ -1,4 +1,5 @@
 import React from 'react'
+import sass from './special-instructions.scss'
 
 var SpecialInstructions = React.createClass({
     render: function() {

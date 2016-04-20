@@ -11,8 +11,12 @@ var AdditionalInfoView = React.createClass({
 
     render: function() {
         return (
-            <div className="main-wrap">
+            <div>
+            <div className="title-cover">
                 <h1>Tell us a little more!</h1>
+            </div>
+
+            <div className="main-wrap">
                 <form>
                     <SelectMethodOfTrans
                         handleMethodOfTrans={this.props.handleMethodOfTrans} />
@@ -35,6 +39,7 @@ var AdditionalInfoView = React.createClass({
                     </div>
                 </form>
             </div>
+        </div>
         )
     }
 });

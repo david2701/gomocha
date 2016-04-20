@@ -10,12 +10,21 @@ var DashboardView = React.createClass({
 
     render: function() {
         return (
-            <div className="main-wrap">
-                    <h1>Start - Search for a Coffee Shop!</h1>
-                    {/*<SearchShop />*/}
-                    <Link to="/select-shop" className="start-button-wrap"><button className="next-button start-button">Start</button></Link>
-                    <PrevAndFavorites />
-            </div>
+            <div>
+                <div className="title-cover">
+                <h1>Search for a Coffee Shop!</h1>
+                </div>
+
+                <div className="main-wrap">
+                        {/*<SearchShop />*/}
+                        <Link to="/select-shop" className="start-button-wrap">
+                            <button className="next-button start-button">
+                                <i className="fa fa-coffee" aria-hidden="true"></i>
+                                    Start
+                            </button></Link>
+                        <PrevAndFavorites />
+                </div>
+        </div>
         )
     }
 });
