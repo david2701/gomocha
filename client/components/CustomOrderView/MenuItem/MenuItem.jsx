@@ -102,9 +102,10 @@ var MenuItem = React.createClass({
         return (
             <div className="drink-item">
 
+                {/* Item Label */}
+                <div className="item-name"><label htmlFor="hot-drink">{this.props.itemName}</label></div>
+
                 <div className="item-top-row">
-                    {/* Item Label */}
-                    <label htmlFor="hot-drink" className="item-name">{this.props.itemName}</label>
 
                     <div className="item-options">
                     {/* MilkType - Size - Quantity */}

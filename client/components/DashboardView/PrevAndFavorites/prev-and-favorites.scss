@@ -1,23 +1,19 @@
+.prev-and-fav-wrap {
+    width: 100%;
+    margin: 0 auto;
+}
+
 .prev-orders-button, .fav-orders-button {
     width: 15em;
-    display: inline-block;
     border: 1px solid #bbb;
     text-align: center;
     padding-top: 3em;
     padding-bottom: 3em;
     border-radius: 5px;
-    margin-top: 0em;
+    margin: 0em auto 1em auto;
 
     &:hover {
         border: 1px solid #0088CC;
         cursor: pointer;
     }
-}
-
-.fav-orders-button {
-    margin-left: 2em;
-}
-
-.fa-reply {
-
 }

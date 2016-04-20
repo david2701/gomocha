@@ -25301,7 +25301,6 @@
 	    _getShopsDistances: function _getShopsDistances() {
 	        var _this = this;
 
-	        var shopDistances = [];
 	        var _handleGetShopsDistance = function _handleGetShopsDistance(response, shop) {
 	            var shopsWithDistance = _this.state.shops.map(function (s) {
 	                if (s.place_id === shop.place_id) {
@@ -41972,7 +41971,7 @@
 	        var bounds = new google.maps.LatLngBounds();
 
 	        var origin1 = userLocation;
-	        var destinationA = '' + selectedShopLocation.lat + ',' + selectedShopLocation.lng;
+	        var destinationA = selectedShopLocation;
 	        var methodOfTrans;
 
 	        switch (methodOfTrans) {
@@ -42120,7 +42119,7 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            { className: 'center-wrap' },
+	            { className: 'prev-and-fav-wrap' },
 	            _react2.default.createElement(
 	                'div',
 	                { className: 'prev-orders-button' },
@@ -42174,7 +42173,7 @@
 
 
 	// module
-	exports.push([module.id, ".prev-orders-button, .fav-orders-button {\n  width: 15em;\n  display: inline-block;\n  border: 1px solid #bbb;\n  text-align: center;\n  padding-top: 3em;\n  padding-bottom: 3em;\n  border-radius: 5px;\n  margin-top: 0em; }\n  .prev-orders-button:hover, .fav-orders-button:hover {\n    border: 1px solid #0088CC;\n    cursor: pointer; }\n\n.fav-orders-button {\n  margin-left: 2em; }\n", ""]);
+	exports.push([module.id, ".prev-and-fav-wrap {\n  width: 100%;\n  margin: 0 auto; }\n\n.prev-orders-button, .fav-orders-button {\n  width: 15em;\n  border: 1px solid #bbb;\n  text-align: center;\n  padding-top: 3em;\n  padding-bottom: 3em;\n  border-radius: 5px;\n  margin: 0em auto 1em auto; }\n  .prev-orders-button:hover, .fav-orders-button:hover {\n    border: 1px solid #0088CC;\n    cursor: pointer; }\n", ""]);
 
 	// exports
 
@@ -42554,12 +42553,16 @@
 	            { className: 'drink-item' },
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'item-top-row' },
+	                { className: 'item-name' },
 	                _react2.default.createElement(
 	                    'label',
-	                    { htmlFor: 'hot-drink', className: 'item-name' },
+	                    { htmlFor: 'hot-drink' },
 	                    this.props.itemName
-	                ),
+	                )
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'item-top-row' },
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'item-options' },
@@ -42672,7 +42675,7 @@
 
 
 	// module
-	exports.push([module.id, ".decaf-option {\n  display: inline-block; }\n\n.decaf-input {\n  margin-left: 0.5em; }\n\n.hot-or-cold-option {\n  display: inline-block;\n  margin-left: 2em; }\n\n.hot-or-cold-option label {\n  margin-left: 1em; }\n\n.hot-input, .cold-input {\n  margin-left: 0.4em; }\n\n.add-to-order {\n  color: #fff;\n  margin-left: 1em;\n  display: inline-block; }\n  .add-to-order:hover {\n    cursor: pointer; }\n\n.add-item-icon {\n  color: #3FB083; }\n", ""]);
+	exports.push([module.id, ".decaf-option {\n  display: inline-block; }\n\n.decaf-input {\n  margin-left: 0.5em; }\n\n.hot-or-cold-option {\n  display: inline-block; }\n\n.hot-or-cold-option label {\n  margin-left: 1em; }\n\n.hot-input, .cold-input {\n  margin-left: 0.4em; }\n\n.add-to-order {\n  color: #fff;\n  margin-left: 1em;\n  display: inline-block; }\n  .add-to-order:hover {\n    cursor: pointer; }\n\n.add-item-icon {\n  color: #3FB083; }\n", ""]);
 
 	// exports
 
@@ -42964,7 +42967,7 @@
 
 
 	// module
-	exports.push([module.id, ".drink-item {\n  margin-bottom: 1.2em;\n  background: #eee;\n  padding: 0.5em;\n  border-radius: 3px; }\n  .drink-item select {\n    margin-right: 0.5em; }\n\n.item-top-row {\n  margin-bottom: 0.75em;\n  width: 100%;\n  display: inline-block; }\n\n.item-name {\n  margin-right: 0.5em;\n  display: inline-block;\n  font-size: 1.2em;\n  width: 7em; }\n\n.item-options {\n  width: 17em;\n  display: inline-block; }\n\n.item-other-options {\n  font-size: 0.85em; }\n\n.item-price {\n  display: inline-block;\n  font-size: 1em;\n  padding-right: 2em;\n  float: right;\n  padding-top: 5px; }\n", ""]);
+	exports.push([module.id, ".drink-item {\n  overflow: hidden;\n  margin-bottom: 1.2em;\n  background: #eee;\n  padding: 0.5em 0em 0.5em 0em;\n  border-radius: 3px; }\n  .drink-item select {\n    margin-right: 0.5em; }\n\n.item-top-row {\n  margin-bottom: 0.75em;\n  width: 100%;\n  display: inline-block; }\n\n.item-name {\n  margin-right: 0.5em;\n  display: inline-block;\n  font-size: 1.2em;\n  width: 100%;\n  padding-bottom: 0em;\n  margin-bottom: 0.5em;\n  border-bottom: 1px solid #000;\n  padding-left: 0.5em;\n  padding-right: 0.5em; }\n\n.item-options {\n  width: 82%;\n  display: inline-block; }\n\n.item-other-options {\n  font-size: 0.85em; }\n\n.item-price {\n  display: inline-block;\n  width: 5%;\n  font-size: 1em;\n  padding-right: 0.75em;\n  padding-top: 5px; }\n\n.item-options, .item-other-options {\n  padding-left: 0.5em; }\n", ""]);
 
 	// exports
 
@@ -43004,7 +43007,7 @@
 
 
 	// module
-	exports.push([module.id, ".menu-section {\n  width: 34em;\n  margin-bottom: 2.5em; }\n\n.divider {\n  width: 20em;\n  border-bottom: 1px solid black; }\n", ""]);
+	exports.push([module.id, ".menu-section {\n  width: 95%;\n  margin: 0em auto 2.5em auto; }\n\n.divider {\n  width: 20em;\n  border-bottom: 1px solid black; }\n", ""]);
 
 	// exports
 
@@ -43884,7 +43887,7 @@
 
 
 	// module
-	exports.push([module.id, ".shop-list-item-container {\n  background: #efefef;\n  width: 20em;\n  padding: 1em 1.2em 1.4em 1.2em;\n  border-radius: 3px;\n  margin: 0 auto 1.2em auto; }\n  .shop-list-item-container:hover {\n    background: #f4f4f4;\n    cursor: pointer; }\n\n.shop-list-item-details {\n  display: inline-block;\n  width: 100%;\n  border-radius: 3px; }\n\n.shop-list-item-details h2 {\n  color: #000; }\n\n.shop-list-item-details p {\n  color: #000; }\n\n.shop-list-distance {\n  display: inline-block;\n  float: right;\n  margin: 0; }\n\n.open-now {\n  display: inline-block;\n  color: #3FB083; }\n\n.closed-now {\n  display: inline-block;\n  color: #A73232; }\n\n.shop-list-bottom-row {\n  padding-top: 1em; }\n", ""]);
+	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .shop-list-item-container {\n    background: #efefef;\n    width: 50%;\n    padding: 1em 1.2em 1.4em 1.2em;\n    border-radius: 3px;\n    margin: 0 auto 1.2em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .shop-list-item-container {\n    background: #efefef;\n    width: 80%;\n    padding: 1em 1.2em 1.4em 1.2em;\n    border-radius: 3px;\n    margin: 0 auto 1.2em auto; }\n    .shop-list-item-container:hover {\n      background: #f4f4f4;\n      cursor: pointer; } }\n\n.shop-list-item-details {\n  display: inline-block;\n  width: 100%;\n  border-radius: 3px; }\n\n.shop-list-item-details h2 {\n  color: #000; }\n\n.shop-list-item-details p {\n  color: #000; }\n\n.shop-list-distance {\n  display: inline-block;\n  float: right;\n  margin: 0; }\n\n.open-now {\n  display: inline-block;\n  color: #3FB083; }\n\n.closed-now {\n  display: inline-block;\n  color: #A73232; }\n\n.shop-list-bottom-row {\n  padding-top: 1em; }\n", ""]);
 
 	// exports
 

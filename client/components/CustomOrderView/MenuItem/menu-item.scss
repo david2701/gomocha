@@ -1,7 +1,8 @@
 .drink-item {
+    overflow: hidden;
     margin-bottom: 1.2em;
     background: #eee;
-    padding: 0.5em;
+    padding: 0.5em 0em 0.5em 0em;
     border-radius: 3px;
     select {
         margin-right: 0.5em;
@@ -18,11 +19,16 @@
     margin-right: 0.5em;
     display: inline-block;
     font-size: 1.2em;
-    width: 7em;
+    width: 100%;
+    padding-bottom: 0em;
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid #000;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
 }
 
 .item-options {
-    width: 17em;
+    width: 82%;
     display: inline-block;
 }
 
@@ -32,8 +38,13 @@
 
 .item-price {
     display: inline-block;
+    width: 5%;
     font-size: 1em;
-    padding-right: 2em;
-    float: right;
+    padding-right: 0.75em;
     padding-top: 5px;
+}
+
+
+.item-options, .item-other-options {
+    padding-left: 0.5em;
 }

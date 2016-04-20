@@ -95,7 +95,6 @@ var App = React.createClass({
     },
 
     _getShopsDistances: function() {
-        var shopDistances = [];
         var _handleGetShopsDistance = (response, shop) => {
             var shopsWithDistance = this.state.shops.map(function(s) {
                 if (s.place_id === shop.place_id) {

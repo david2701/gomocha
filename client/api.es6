@@ -45,7 +45,7 @@ module.exports = {
         var bounds = new google.maps.LatLngBounds;
 
         var origin1 = userLocation;
-        var destinationA = '' + selectedShopLocation.lat + ',' + selectedShopLocation.lng;
+        var destinationA = selectedShopLocation;
         var methodOfTrans;
 
         switch(methodOfTrans) {
