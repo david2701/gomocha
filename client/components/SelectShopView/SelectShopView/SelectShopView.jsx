@@ -11,9 +11,9 @@ var SelectShopView = React.createClass({
 
         var loadingIcon;
         if (this.props.shops.length === 0) {
-            loadingIcon = <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw margin-bottom"></i>;
+            loadingIcon = <i className="fa fa-spinner fa-spin fa-3x fa-fw margin-bottom"></i>;
         } else if (this.props.shops.length > 0) {
-            loadingIcon = <i className="hide fa fa-circle-o-notch fa-spin fa-3x fa-fw margin-bottom"></i>;
+            loadingIcon = <i className="hide fa-spinner fa-spin fa-3x fa-fw margin-bottom"></i>;
         }
         return (
             <div>

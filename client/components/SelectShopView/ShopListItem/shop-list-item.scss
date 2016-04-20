@@ -1,24 +1,29 @@
 @media only screen and (min-width: 600px) {
     .shop-list-item-container {
-        background: #efefef;
+        border: 1px solid #E4E4E4;
         width: 50%;
         padding: 1em 1.2em 1.4em 1.2em;
         border-radius: 3px;
         margin: 0 auto 1.2em auto;
+
+        &:hover {
+            border: 1px solid #bebcbc;
+            cursor: pointer;
+        }
     }
 }
 
 @media only screen and (max-width: 599px) {
 
 .shop-list-item-container {
-    background: #efefef;
+    border: 1px solid #E4E4E4;
     width: 80%;
     padding: 1em 1.2em 1.4em 1.2em;
     border-radius: 3px;
     margin: 0 auto 1.2em auto;
 
     &:hover {
-        background: lighten(#efefef, 2%);
+        border: 1px solid #bebcbc;
         cursor: pointer;
     }
 }

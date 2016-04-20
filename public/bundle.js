@@ -42984,7 +42984,7 @@
 
 
 	// module
-	exports.push([module.id, ".drink-item {\n  overflow: hidden;\n  margin-bottom: 1.2em;\n  background: #eee;\n  padding: 0.5em 0em 0.5em 0em;\n  border-radius: 3px; }\n  .drink-item select {\n    margin-right: 0.5em; }\n\n.item-top-row {\n  margin-bottom: 0.75em;\n  width: 100%;\n  display: inline-block; }\n\n.item-name {\n  margin-right: 0.5em;\n  display: inline-block;\n  font-size: 1.2em;\n  width: 100%;\n  padding-bottom: 0.25em;\n  margin-bottom: 0.5em;\n  border-bottom: 1px solid #000;\n  padding-left: 0.5em;\n  padding-right: 0.5em; }\n\n.item-options {\n  width: 82%;\n  display: inline-block;\n  padding-left: 0.5em; }\n\n.item-other-options {\n  font-size: 0.85em;\n  padding-left: 0.5em; }\n\n.item-price {\n  display: inline-block;\n  width: 5%;\n  font-size: 1em;\n  padding-right: 0.75em;\n  padding-top: 5px; }\n", ""]);
+	exports.push([module.id, ".drink-item {\n  overflow: hidden;\n  margin-bottom: 1.2em;\n  border: 1px solid #E4E4E4;\n  padding: 0.5em 0em 0.5em 0em;\n  border-radius: 3px; }\n  .drink-item select {\n    margin-right: 0.5em; }\n\n.item-top-row {\n  margin-bottom: 0.75em;\n  width: 100%;\n  display: inline-block; }\n\n.item-name {\n  margin-right: 0.5em;\n  display: inline-block;\n  font-size: 1.2em;\n  width: 100%;\n  padding-bottom: 0.25em;\n  margin-bottom: 0.5em;\n  border-bottom: 1px solid #E4E4E4;\n  padding-left: 0.5em;\n  padding-right: 0.5em; }\n\n.item-options {\n  width: 82%;\n  display: inline-block;\n  padding-left: 0.5em; }\n\n.item-other-options {\n  font-size: 0.85em;\n  padding-left: 0.5em; }\n\n.item-price {\n  display: inline-block;\n  width: 5%;\n  font-size: 1em;\n  padding-right: 0.75em;\n  padding-top: 5px; }\n", ""]);
 
 	// exports
 
@@ -43585,9 +43585,9 @@
 
 	        var loadingIcon;
 	        if (this.props.shops.length === 0) {
-	            loadingIcon = _react2.default.createElement('i', { className: 'fa fa-circle-o-notch fa-spin fa-3x fa-fw margin-bottom' });
+	            loadingIcon = _react2.default.createElement('i', { className: 'fa fa-spinner fa-spin fa-3x fa-fw margin-bottom' });
 	        } else if (this.props.shops.length > 0) {
-	            loadingIcon = _react2.default.createElement('i', { className: 'hide fa fa-circle-o-notch fa-spin fa-3x fa-fw margin-bottom' });
+	            loadingIcon = _react2.default.createElement('i', { className: 'hide fa-spinner fa-spin fa-3x fa-fw margin-bottom' });
 	        }
 	        return _react2.default.createElement(
 	            'div',
@@ -43916,7 +43916,7 @@
 
 
 	// module
-	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .shop-list-item-container {\n    background: #efefef;\n    width: 50%;\n    padding: 1em 1.2em 1.4em 1.2em;\n    border-radius: 3px;\n    margin: 0 auto 1.2em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .shop-list-item-container {\n    background: #efefef;\n    width: 80%;\n    padding: 1em 1.2em 1.4em 1.2em;\n    border-radius: 3px;\n    margin: 0 auto 1.2em auto; }\n    .shop-list-item-container:hover {\n      background: #f4f4f4;\n      cursor: pointer; } }\n\n.shop-list-item-details {\n  display: inline-block;\n  width: 100%;\n  border-radius: 3px; }\n\n.shop-list-item-details h2 {\n  color: #000; }\n\n.shop-list-item-details p {\n  color: #000; }\n\n.shop-list-distance {\n  display: inline-block;\n  float: right;\n  margin: 0; }\n\n.open-now {\n  display: inline-block;\n  color: #3FB083; }\n\n.closed-now {\n  display: inline-block;\n  color: #A73232; }\n\n.shop-list-bottom-row {\n  padding-top: 1em; }\n", ""]);
+	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .shop-list-item-container {\n    border: 1px solid #E4E4E4;\n    width: 50%;\n    padding: 1em 1.2em 1.4em 1.2em;\n    border-radius: 3px;\n    margin: 0 auto 1.2em auto; }\n    .shop-list-item-container:hover {\n      border: 1px solid #bebcbc;\n      cursor: pointer; } }\n\n@media only screen and (max-width: 599px) {\n  .shop-list-item-container {\n    border: 1px solid #E4E4E4;\n    width: 80%;\n    padding: 1em 1.2em 1.4em 1.2em;\n    border-radius: 3px;\n    margin: 0 auto 1.2em auto; }\n    .shop-list-item-container:hover {\n      border: 1px solid #bebcbc;\n      cursor: pointer; } }\n\n.shop-list-item-details {\n  display: inline-block;\n  width: 100%;\n  border-radius: 3px; }\n\n.shop-list-item-details h2 {\n  color: #000; }\n\n.shop-list-item-details p {\n  color: #000; }\n\n.shop-list-distance {\n  display: inline-block;\n  float: right;\n  margin: 0; }\n\n.open-now {\n  display: inline-block;\n  color: #3FB083; }\n\n.closed-now {\n  display: inline-block;\n  color: #A73232; }\n\n.shop-list-bottom-row {\n  padding-top: 1em; }\n", ""]);
 
 	// exports
 
@@ -44235,7 +44235,7 @@
 
 
 	// module
-	exports.push([module.id, ".method-of-trans {\n  padding-right: 2em; }\n\n.method-of-trans p {\n  padding-top: 3.5em; }\n\n.method-of-trans-container {\n  text-align: center;\n  padding: 0.75em 0.75em 1em 0.75em;\n  background: #efefef;\n  width: 90%;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n  .method-of-trans-container h2 {\n    font-size: 1.2em; }\n\n.method-of-trans-container > h2 {\n  text-align: left; }\n", ""]);
+	exports.push([module.id, ".method-of-trans {\n  padding-right: 2em; }\n\n.method-of-trans p {\n  padding-top: 3.5em; }\n\n.method-of-trans-container {\n  text-align: center;\n  padding: 0.75em 0.75em 1em 0.75em;\n  border: 1px solid #E4E4E4;\n  width: 90%;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n  .method-of-trans-container h2 {\n    font-size: 1.2em; }\n\n.method-of-trans-container > h2 {\n  text-align: left; }\n", ""]);
 
 	// exports
 
@@ -44503,7 +44503,7 @@
 
 
 	// module
-	exports.push([module.id, ".select-pick-up-container {\n  padding: 0.75em;\n  background: #efefef;\n  width: 90%;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n  .select-pick-up-container h2 {\n    margin: 0 0.25em 0.25em 0.25em;\n    padding-bottom: 0.75em;\n    font-size: 1.2em; }\n\n.select-pick-up-now {\n  margin-right: 4em;\n  display: inline-block; }\n\n.select-pick-up-time {\n  display: inline-block; }\n", ""]);
+	exports.push([module.id, ".select-pick-up-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  width: 90%;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n  .select-pick-up-container h2 {\n    margin: 0 0.25em 0.25em 0.25em;\n    padding-bottom: 0.75em;\n    font-size: 1.2em; }\n\n.select-pick-up-now {\n  margin-right: 4em;\n  display: inline-block; }\n\n.select-pick-up-time {\n  display: inline-block; }\n", ""]);
 
 	// exports
 
@@ -57677,7 +57677,7 @@
 
 
 	// module
-	exports.push([module.id, ".select-if-favorite-container {\n  padding: 0.75em;\n  background: #efefef;\n  width: 90%;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n  .select-if-favorite-container h2 {\n    font-size: 1.2em; }\n", ""]);
+	exports.push([module.id, ".select-if-favorite-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  width: 90%;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n  .select-if-favorite-container h2 {\n    font-size: 1.2em; }\n", ""]);
 
 	// exports
 
@@ -57944,7 +57944,7 @@
 
 
 	// module
-	exports.push([module.id, ".enter-payment-info-container {\n  padding: 0.75em;\n  background: #efefef;\n  width: 90%;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n\n.payment-info-section {\n  padding: 0 0 1em 0; }\n  .payment-info-section input {\n    float: right; }\n  .payment-info-section select {\n    float: right; }\n", ""]);
+	exports.push([module.id, ".enter-payment-info-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  width: 90%;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n\n.payment-info-section {\n  padding: 0 0 1em 0; }\n  .payment-info-section input {\n    float: right; }\n  .payment-info-section select {\n    float: right; }\n", ""]);
 
 	// exports
 
@@ -58348,7 +58348,7 @@
 
 
 	// module
-	exports.push([module.id, ".order-ready-time {\n  font-size: 36px;\n  text-align: center; }\n\n.order-ready-time-container {\n  padding-top: 1em; }\n\n.order-ready-time-container h2 {\n  margin-top: 0;\n  text-align: center;\n  font-size: 1.2em; }\n\n.order-ready-time-container p {\n  text-align: center;\n  font-size: 1em;\n  margin: 0em 0em 0.8em 0em; }\n\n.method-of-trans-icon {\n  text-align: center;\n  margin-bottom: 1.75em; }\n\n.order-ready-time-divider {\n  width: 100%;\n  margin: 0 auto;\n  border-bottom: 1px solid #000; }\n", ""]);
+	exports.push([module.id, ".order-ready-time {\n  font-size: 36px;\n  text-align: center; }\n\n.order-ready-time-container {\n  padding-top: 1em; }\n\n.order-ready-time-container h2 {\n  margin-top: 0;\n  text-align: center;\n  font-size: 1.2em; }\n\n.order-ready-time-container p {\n  text-align: center;\n  font-size: 1em;\n  margin: 0em 0em 0.8em 0em; }\n\n.method-of-trans-icon {\n  text-align: center;\n  margin-bottom: 1.75em; }\n\n.order-ready-time-divider {\n  width: 100%;\n  margin: 0 auto;\n  border: 1px solid #E4E4E4; }\n", ""]);
 
 	// exports
 
@@ -58446,7 +58446,7 @@
 
 
 	// module
-	exports.push([module.id, ".shop-details-container {\n  padding: 1.75em 0em 1.75em 0em;\n  text-align: center;\n  border-bottom: 1px solid #000; }\n  .shop-details-container h2 {\n    padding-bottom: 0.5em; }\n  .shop-details-container p {\n    margin: 0.5em 0em 0.5em 0em; }\n", ""]);
+	exports.push([module.id, ".shop-details-container {\n  padding: 1.75em 0em 1.75em 0em;\n  text-align: center;\n  border: 1px solid #E4E4E4; }\n  .shop-details-container h2 {\n    padding-bottom: 0.5em; }\n  .shop-details-container p {\n    margin: 0.5em 0em 0.5em 0em; }\n", ""]);
 
 	// exports
 
@@ -58572,7 +58572,7 @@
 
 
 	// module
-	exports.push([module.id, ".confirmation-view-container {\n  width: 90%;\n  margin: 0 auto;\n  background: #efefef;\n  border-radius: 3px; }\n\n.back-to-dashboard {\n  width: 15em;\n  margin: 2em auto 0 auto;\n  display: block; }\n", ""]);
+	exports.push([module.id, ".confirmation-view-container {\n  width: 90%;\n  margin: 0 auto;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px; }\n\n.back-to-dashboard {\n  width: 15em;\n  margin: 2em auto 0 auto;\n  display: block; }\n", ""]);
 
 	// exports
 
