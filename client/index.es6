@@ -7,7 +7,10 @@ import { Router, browserHistory } from 'react-router'
 import superagent from 'superagent'
 
 ReactDOM.render(
-    <Router routes={Routes} history={browserHistory}></Router>
+    <Router
+        routes={Routes}
+        history={browserHistory}
+        onUpdate={() => window.scrollTo(0, 0)} ></Router>
 
     ,document.getElementById('root')
 )

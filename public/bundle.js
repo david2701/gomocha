@@ -70,7 +70,12 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_reactDom2.default.render(_react2.default.createElement(_reactRouter.Router, { routes: _routes2.default, history: _reactRouter.browserHistory }), document.getElementById('root'));
+	_reactDom2.default.render(_react2.default.createElement(_reactRouter.Router, {
+	    routes: _routes2.default,
+	    history: _reactRouter.browserHistory,
+	    onUpdate: function onUpdate() {
+	        return window.scrollTo(0, 0);
+	    } }), document.getElementById('root'));
 
 	// QUESTIONS:
 	// 1. methodOfTrans variable in calculateTravelTime api call does not change on initial click
@@ -42182,7 +42187,7 @@
 
 
 	// module
-	exports.push([module.id, ".prev-and-fav-wrap {\n  width: 100%;\n  margin: 0 auto; }\n  .prev-and-fav-wrap .fa-heart, .prev-and-fav-wrap .fa-reply {\n    color: #3879D9; }\n\n.prev-orders-button, .fav-orders-button {\n  width: 16.5em;\n  border: 1px solid #bbb;\n  text-align: center;\n  padding-top: 3em;\n  padding-bottom: 3em;\n  border-radius: 5px;\n  margin: 0em auto 1em auto;\n  color: #3879D9; }\n  .prev-orders-button:hover, .fav-orders-button:hover {\n    border: 1px solid #0088CC;\n    cursor: pointer; }\n", ""]);
+	exports.push([module.id, ".prev-and-fav-wrap {\n  width: 100%;\n  margin: 0 auto; }\n  .prev-and-fav-wrap .fa-heart, .prev-and-fav-wrap .fa-reply {\n    color: #3879D9; }\n\n.prev-orders-button, .fav-orders-button {\n  width: 16.5em;\n  border: 1px solid #E4E4E4;\n  text-align: center;\n  padding-top: 3em;\n  padding-bottom: 3em;\n  border-radius: 5px;\n  margin: 0em auto 1em auto;\n  color: #3879D9; }\n  .prev-orders-button:hover, .fav-orders-button:hover {\n    border: 1px solid #BEBCBC;\n    cursor: pointer; }\n", ""]);
 
 	// exports
 
@@ -42289,12 +42294,16 @@
 	                    orderItems: this.props.items,
 	                    handleDeleteItemFromOrder: this.props.handleDeleteItemFromOrder }),
 	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: '/additional-info' },
+	                    'div',
+	                    { className: 'next-button-container' },
 	                    _react2.default.createElement(
-	                        'button',
-	                        { className: 'next-button' },
-	                        'Next'
+	                        _reactRouter.Link,
+	                        { to: '/additional-info' },
+	                        _react2.default.createElement(
+	                            'button',
+	                            { className: 'next-button' },
+	                            'Next'
+	                        )
 	                    )
 	                )
 	            )
@@ -43024,7 +43033,7 @@
 
 
 	// module
-	exports.push([module.id, ".menu-section {\n  width: 95%;\n  margin: 0em auto 2.5em auto; }\n\n.divider {\n  width: 20em;\n  border-bottom: 1px solid black; }\n", ""]);
+	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .menu-section {\n    width: 28em;\n    margin: 0em auto 2.5em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .menu-section {\n    width: 95%;\n    margin: 0em auto 2.5em auto; } }\n\n.divider {\n  width: 20em;\n  border-bottom: 1px solid black; }\n", ""]);
 
 	// exports
 
@@ -43542,7 +43551,7 @@
 
 
 	// module
-	exports.push([module.id, "", ""]);
+	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  #order-total {\n    width: 18em;\n    margin: 0 auto; } }\n\n.next-button-container {\n  width: 28em;\n  margin: 2em auto 2em auto; }\n\n.order-total-table {\n  margin: 0 auto; }\n", ""]);
 
 	// exports
 
@@ -44235,7 +44244,7 @@
 
 
 	// module
-	exports.push([module.id, ".method-of-trans {\n  padding-right: 2em; }\n\n.method-of-trans p {\n  padding-top: 3.5em; }\n\n.method-of-trans-container {\n  text-align: center;\n  padding: 0.75em 0.75em 1em 0.75em;\n  border: 1px solid #E4E4E4;\n  width: 90%;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n  .method-of-trans-container h2 {\n    font-size: 1.2em; }\n\n.method-of-trans-container > h2 {\n  text-align: left; }\n", ""]);
+	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .method-of-trans-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .method-of-trans-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.method-of-trans-container {\n  text-align: center;\n  padding: 0.75em 0.75em 1em 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px; }\n  .method-of-trans-container h2 {\n    font-size: 1.2em;\n    text-align: left; }\n  .method-of-trans-container p {\n    padding-top: 3.5em; }\n\n.method-of-trans {\n  padding-right: 2em; }\n", ""]);
 
 	// exports
 
@@ -44503,7 +44512,7 @@
 
 
 	// module
-	exports.push([module.id, ".select-pick-up-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  width: 90%;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n  .select-pick-up-container h2 {\n    margin: 0 0.25em 0.25em 0.25em;\n    padding-bottom: 0.75em;\n    font-size: 1.2em; }\n\n.select-pick-up-now {\n  margin-right: 4em;\n  display: inline-block; }\n\n.select-pick-up-time {\n  display: inline-block; }\n", ""]);
+	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .select-pick-up-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .select-pick-up-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.select-pick-up-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px; }\n  .select-pick-up-container h2 {\n    margin: 0 0.25em 0.25em 0.25em;\n    padding-bottom: 0.75em;\n    font-size: 1.2em; }\n\n.select-pick-up-now {\n  margin-right: 4em;\n  display: inline-block; }\n\n.select-pick-up-time {\n  display: inline-block; }\n", ""]);
 
 	// exports
 
@@ -57677,7 +57686,7 @@
 
 
 	// module
-	exports.push([module.id, ".select-if-favorite-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  width: 90%;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n  .select-if-favorite-container h2 {\n    font-size: 1.2em; }\n", ""]);
+	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .select-if-favorite-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .select-if-favorite-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.select-if-favorite-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px; }\n  .select-if-favorite-container h2 {\n    font-size: 1.2em; }\n", ""]);
 
 	// exports
 
@@ -57944,7 +57953,7 @@
 
 
 	// module
-	exports.push([module.id, ".enter-payment-info-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  width: 90%;\n  border-radius: 3px;\n  margin: 0 auto 1em auto; }\n\n.payment-info-section {\n  padding: 0 0 1em 0; }\n  .payment-info-section input {\n    float: right; }\n  .payment-info-section select {\n    float: right; }\n", ""]);
+	exports.push([module.id, ".payment-info-section {\n  padding: 0 0 1em 0; }\n  .payment-info-section input {\n    float: right; }\n  .payment-info-section select {\n    float: right; }\n\n@media only screen and (min-width: 600px) {\n  .enter-payment-info-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .enter-payment-info-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.enter-payment-info-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px; }\n", ""]);
 
 	// exports
 
@@ -58348,7 +58357,7 @@
 
 
 	// module
-	exports.push([module.id, ".order-ready-time {\n  font-size: 36px;\n  text-align: center; }\n\n.order-ready-time-container {\n  padding-top: 1em; }\n\n.order-ready-time-container h2 {\n  margin-top: 0;\n  text-align: center;\n  font-size: 1.2em; }\n\n.order-ready-time-container p {\n  text-align: center;\n  font-size: 1em;\n  margin: 0em 0em 0.8em 0em; }\n\n.method-of-trans-icon {\n  text-align: center;\n  margin-bottom: 1.75em; }\n\n.order-ready-time-divider {\n  width: 100%;\n  margin: 0 auto;\n  border: 1px solid #E4E4E4; }\n", ""]);
+	exports.push([module.id, ".order-ready-time {\n  font-size: 36px;\n  text-align: center; }\n\n.order-ready-time-container {\n  padding-top: 1em;\n  border-bottom: 1px solid #E4E4E4; }\n\n.order-ready-time-container h2 {\n  margin-top: 0;\n  text-align: center;\n  font-size: 1.2em; }\n\n.order-ready-time-container p {\n  text-align: center;\n  font-size: 1em;\n  margin: 0em 0em 0.8em 0em; }\n\n.method-of-trans-icon {\n  text-align: center;\n  margin-bottom: 1.75em; }\n\n.order-ready-time-divider {\n  width: 100%;\n  margin: 0 auto; }\n", ""]);
 
 	// exports
 
@@ -58446,7 +58455,7 @@
 
 
 	// module
-	exports.push([module.id, ".shop-details-container {\n  padding: 1.75em 0em 1.75em 0em;\n  text-align: center;\n  border: 1px solid #E4E4E4; }\n  .shop-details-container h2 {\n    padding-bottom: 0.5em; }\n  .shop-details-container p {\n    margin: 0.5em 0em 0.5em 0em; }\n", ""]);
+	exports.push([module.id, ".shop-details-container {\n  padding: 1.75em 0em 1.75em 0em;\n  text-align: center;\n  border-bottom: 1px solid #E4E4E4; }\n  .shop-details-container h2 {\n    padding-bottom: 0.5em; }\n  .shop-details-container p {\n    margin: 0.5em 0em 0.5em 0em; }\n", ""]);
 
 	// exports
 
@@ -58532,7 +58541,7 @@
 
 
 	// module
-	exports.push([module.id, "button.confirmation-button {\n  width: 13em; }\n\n.confirmation-button-wrap {\n  text-align: center;\n  padding-bottom: 1.75em;\n  padding-top: 1.75em; }\n", ""]);
+	exports.push([module.id, "button.confirmation-button {\n  width: 13em;\n  display: block;\n  margin: 0 auto 0.5em auto; }\n\n.confirmation-button-wrap {\n  text-align: center;\n  padding-bottom: 1.75em;\n  padding-top: 1.75em; }\n", ""]);
 
 	// exports
 
@@ -58572,7 +58581,7 @@
 
 
 	// module
-	exports.push([module.id, ".confirmation-view-container {\n  width: 90%;\n  margin: 0 auto;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px; }\n\n.back-to-dashboard {\n  width: 15em;\n  margin: 2em auto 0 auto;\n  display: block; }\n", ""]);
+	exports.push([module.id, ".confirmation-view-container {\n  width: 28em;\n  margin: 0 auto;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px; }\n\n.back-to-dashboard {\n  width: 15em;\n  margin: 2em auto 0 auto;\n  display: block; }\n", ""]);
 
 	// exports
 
@@ -60120,7 +60129,7 @@
 
 
 	// module
-	exports.push([module.id, "#special-instructions {\n  margin-bottom: 2em; }\n", ""]);
+	exports.push([module.id, "#special-instructions {\n  margin-bottom: 2em; }\n\n@media only screen and (min-width: 600px) {\n  #special-instructions {\n    margin: 0 auto 2em auto;\n    width: 28em; } }\n", ""]);
 
 	// exports
 

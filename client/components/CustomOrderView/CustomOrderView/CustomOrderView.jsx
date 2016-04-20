@@ -28,8 +28,10 @@ var CustomOrderView = React.createClass({
                  <OrderTotal
                      orderItems={this.props.items}
                      handleDeleteItemFromOrder={this.props.handleDeleteItemFromOrder} />
+                 <div className="next-button-container">
                  <Link to="/additional-info"><button className="next-button">Next</button></Link>
-            </div>
+                 </div>
+        </div>
         </div>
         )
     }

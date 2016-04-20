@@ -1,3 +1,11 @@
 #special-instructions {
     margin-bottom: 2em;
+
+}
+
+@media only screen and (min-width: 600px) {
+    #special-instructions {
+        margin: 0 auto 2em auto;
+        width: 28em;
+    }
 }
