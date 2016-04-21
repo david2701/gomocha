@@ -7,3 +7,26 @@
     width: 50%;
     margin: 0 auto;
 }
+
+.order-summary-button {
+    display: block;
+    background: #3FB083;
+    margin: 0 auto;
+
+    &:hover {
+        background: #43BB8B;
+    }
+
+}
+
+.order-summary-edit-button {
+    background: #f9d266;
+
+    &:hover {
+        background: lighten(#f9d266, 3%)
+    }
+}
+
+.order-summary-link {
+    text-decoration: none;
+}

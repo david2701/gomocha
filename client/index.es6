@@ -25,7 +25,8 @@ ReactDOM.render(
 
 // implement propTypes to components
 
-
+// fix directions and add address for shop location
+// fix ConfirmationView width to % on small screens
 // make calls for time it will take to walk/bike/drive at same time you call getDetails
 
 

@@ -24,7 +24,9 @@ var ConfirmationView = React.createClass({
                 selectedShop={this.props.selectedShop}
                 distance={this.props.distance} />
                 <DirectionsAndCall
-                selectedShop={this.props.selectedShop} />
+                selectedShop={this.props.selectedShop}
+                userLocation={this.props.userLocation}
+                selectedShopLocation={this.props.selectedShopLocation} />
             </div>
                 <Link to="/" className="back-to-dashboard"><button className="next-button">Back to Dashboard</button></Link>
             </div>

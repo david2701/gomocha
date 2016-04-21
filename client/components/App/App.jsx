@@ -302,6 +302,8 @@ var App = React.createClass({
                 {React.cloneElement(this.props.children
                      ,{
                          data: dummyData,
+                         userLocation: this.state.userLocation,
+                         selectedShopLocation: this.state.selectedShopLocation,
                          shops: this.state.shops,
                          selectedShop: this.state.selectedShop,
                          items: this.state.items,
