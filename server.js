@@ -10,14 +10,19 @@ var Storage = function() {
 }
 
 Storage.prototype.add = function(orderData) {
-    orderData.id = this.id++;
+    this.id++;
+    orderData.id = this.id;
     this.orders.push(orderData);
     return orderData;
 }
 
 var storage = new Storage();
-storage.add({drink: 'Latte', size: '16oz', price: '$2.95'})
+// storage.add({drink: 'Latte', size: '16oz', price: '$2.95'});
+// storage.add({drink: 'Americano', size: '20oz', price: '$3.95'});
+// storage.add({drink: 'Chai', size: '12oz', price: '$1.95'});
 
+
+/* ----------------------------------------- */
 
 function requestHandler(request, response) {
     response.sendFile(__dirname + '/public/index.html');
@@ -26,7 +31,9 @@ function requestHandler(request, response) {
 app.use(express.static(__dirname + '/public')); // creates special route for handling static files (.js, .html, .css). These will automatically be served from public directory when something is requested
 
 app.get('/api/orders/previous', function(req, res) {
-    res.sendStatus(200);
+    var prevOrders = storage.orders;
+    console.log(prevOrders);
+    res.status(200).json(prevOrders);
 })
 
 app.get('/api/orders/favorites', function(req, res) {

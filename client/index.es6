@@ -25,14 +25,15 @@ ReactDOM.render(
 
 // implement propTypes to components
 
-// fix directions and add address for shop location
-// fix ConfirmationView width to % on small screens
 // make calls for time it will take to walk/bike/drive at same time you call getDetails
 
 
 // add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for additional info page condition
 // look into Locu and Google Maps API
 
+
+// DONE fix ConfirmationView width to % on small screens
+// DONE fix directions and add address for shop location
 // DONE make api call for extra info in handler that sets shop on state, use this extra info on confirmation screen (phone number, distance from, formatted address, etc.)
 // DONE use id on object, and use method for fetching a particular place in google maps api
 // DONE store users position on state of app

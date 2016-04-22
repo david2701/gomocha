@@ -85,13 +85,13 @@
 
 	// implement propTypes to components
 
-	// fix directions and add address for shop location
-	// fix ConfirmationView width to % on small screens
 	// make calls for time it will take to walk/bike/drive at same time you call getDetails
 
 	// add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for additional info page condition
 	// look into Locu and Google Maps API
 
+	// DONE fix ConfirmationView width to % on small screens
+	// DONE fix directions and add address for shop location
 	// DONE make api call for extra info in handler that sets shop on state, use this extra info on confirmation screen (phone number, distance from, formatted address, etc.)
 	// DONE use id on object, and use method for fetching a particular place in google maps api
 	// DONE store users position on state of app
@@ -58501,7 +58501,7 @@
 
 
 	// module
-	exports.push([module.id, ".shop-details-container {\n  padding: 1.75em 0em 1.75em 0em;\n  text-align: center;\n  border-bottom: 1px solid #E4E4E4; }\n  .shop-details-container h2 {\n    padding-bottom: 0.5em; }\n  .shop-details-container p {\n    margin: 0.5em 0em 0.5em 0em; }\n", ""]);
+	exports.push([module.id, ".shop-details-container {\n  padding: 1.75em 0em 1.75em 0em;\n  text-align: center;\n  border-bottom: 1px solid #E4E4E4; }\n  .shop-details-container h2 {\n    padding: 0 0.25em 0.5em 0.25em; }\n  .shop-details-container p {\n    margin: 0.5em 0.25em 0.5em 0.25em; }\n", ""]);
 
 	// exports
 
@@ -58599,7 +58599,7 @@
 
 
 	// module
-	exports.push([module.id, ".confirmation-view-container {\n  width: 28em;\n  margin: 0 auto;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px; }\n\n.back-to-dashboard {\n  width: 15em;\n  margin: 2em auto 0 auto;\n  display: block; }\n", ""]);
+	exports.push([module.id, ".confirmation-view-container {\n  width: 28em;\n  margin: 0 auto;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px; }\n\n@media only screen and (min-width: 600px) {\n  .confirmation-view-container {\n    width: 28em;\n    margin: 0em auto 2.5em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .confirmation-view-container {\n    width: 90%;\n    margin: 0em auto 2.5em auto; } }\n\n.back-to-dashboard {\n  width: 15em;\n  margin: 2em auto 0 auto;\n  display: block; }\n", ""]);
 
 	// exports
 
