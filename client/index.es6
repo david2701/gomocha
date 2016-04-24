@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom'
 // import dummyData from '../dummy-data.json'
 import Routes from './routes'
 import { Router, browserHistory } from 'react-router'
-import superagent from 'superagent'
 
 ReactDOM.render(
     <Router
@@ -21,10 +20,11 @@ ReactDOM.render(
 // 1. methodOfTrans variable in calculateTravelTime api call does not change on initial click
 // 2.
 
-// NEXT STEPS:
+// -- NEXT STEPS:
+
+//
 
 // implement propTypes to components
-
 // make calls for time it will take to walk/bike/drive at same time you call getDetails
 
 

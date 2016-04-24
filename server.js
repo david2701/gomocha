@@ -17,9 +17,9 @@ Storage.prototype.add = function(orderData) {
 }
 
 var storage = new Storage();
-// storage.add({drink: 'Latte', size: '16oz', price: '$2.95'});
-// storage.add({drink: 'Americano', size: '20oz', price: '$3.95'});
-// storage.add({drink: 'Chai', size: '12oz', price: '$1.95'});
+// storage.add({drink: 'Latte', size: '16oz', price: '$2.95', favorited: true});
+// storage.add({drink: 'Americano', size: '20oz', price: '$3.95', favorited: true});
+// storage.add({drink: 'Chai', size: '12oz', price: '$1.95', favorited: false});
 
 
 /* ----------------------------------------- */
@@ -32,12 +32,14 @@ app.use(express.static(__dirname + '/public')); // creates special route for han
 
 app.get('/api/orders/previous', function(req, res) {
     var prevOrders = storage.orders;
-    console.log(prevOrders);
-    res.status(200).json(prevOrders);
+    res.json(prevOrders);
 })
 
 app.get('/api/orders/favorites', function(req, res) {
-    res.sendStatus(200);
+    var favOrders = storage.orders.filter(function(order) {
+        return order.favorited === true;
+    });
+    res.json(favOrders);
 })
 // send back list of orders from /previous
 // send back list of favorited orders from /favorites
@@ -46,6 +48,21 @@ app.post('/api/orders', jsonParser, function(req, res) {
     res.status(201).json(order);
 })
 
+// once send method
+
 app.get('*', requestHandler);
 
 app.listen(process.env.PORT || 4001);
+
+//
+// request
+//   .post('/api/pet') // '/api/orders'
+//   .send({ name: 'Manny', species: 'cat' }) // the order that is being posted. Info pulled from state. Use place_id
+//   //first get post when submitting order.
+//   .set('X-API-Key', 'foobar')
+//   .set('Accept', 'application/json')
+//   .end(function(err, res){
+//     // Calling the end function will send the request
+//   });
+
+  //res.body will contain order object

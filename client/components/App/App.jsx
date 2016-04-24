@@ -38,7 +38,7 @@ var App = React.createClass({
         }
     },
 
-    // INITIAL API CALL
+    // --------------INITIAL API CALL--------------
 
     // Calls the getLocation function which returns the user's current location
     // and passes it to its callback (_handleGetLocation)
@@ -185,6 +185,13 @@ var App = React.createClass({
             duration: response.rows[0].elements[0].duration.text
         })
     },
+
+    // --------------SERVER API CALLS--------------
+
+    
+
+
+    // --------------OTHER APP METHODS--------------
 
     _handlePickupTime: function(newValue) {
         this.setState({
