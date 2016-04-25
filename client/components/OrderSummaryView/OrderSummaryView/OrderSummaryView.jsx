@@ -24,7 +24,10 @@ var OrderSummaryView = React.createClass({
                 <SpecialInstructionsOS
                     specialInstructions={this.props.specialInstructions} />
                 <Link to="/confirmation" className="order-summary-link">
-                    <button className="next-button order-summary-button">Submit Order
+                    <button
+                        onClick={this.props.handlePostOrder}
+                        className="next-button order-summary-button">
+                            Submit Order
                     </button>
                 </Link>
 

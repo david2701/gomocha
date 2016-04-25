@@ -44,8 +44,9 @@ app.get('/api/orders/favorites', function(req, res) {
 // send back list of orders from /previous
 // send back list of favorited orders from /favorites
 app.post('/api/orders', jsonParser, function(req, res) {
-    var order = storage.add(req.body.orderData);
+    var order = storage.add(req.body);
     res.status(201).json(order);
+    console.log(storage);
 })
 
 // once send method

@@ -20,10 +20,13 @@
 }
 
 .order-summary-edit-button {
-    background: #f9d266;
+    border: 2px solid #f9d266;
+    background: #fff;
+    color: #f9d266;
 
     &:hover {
-        background: lighten(#f9d266, 3%)
+        background: lighten(#f9d266, 3%);
+        color: #fff;
     }
 }
 

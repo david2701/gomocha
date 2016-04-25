@@ -5,6 +5,7 @@ import sass from './app.scss'
 import AddItemNotification from '../CustomOrderView/AddItemNotification/AddItemNotification'
 import _ from 'lodash'
 import api from '../../api'
+import request from 'superagent'
 
 var App = React.createClass({
 
@@ -103,7 +104,7 @@ var App = React.createClass({
                     return s;
                 }
             })
-            console.log(shopsWithDistance);
+            // console.log(shopsWithDistance);
             this.setState({
                 shops: shopsWithDistance
             })
@@ -186,10 +187,23 @@ var App = React.createClass({
         })
     },
 
-    // --------------SERVER API CALLS--------------
+    // --------------SERVER API REQUESTS--------------
 
-    
+    _handlePostOrder: function() {
+        request.post('/api/orders')
+            .set('Content-Type', 'application/json') // not required
+            .send({
+                items: this.state.items, // array
+                specialInstructions: this.state.specialInstructions,
+                selectedShop_id: this.state.selectedShop.place_id,
+                favorited: this.state.favorite
 
+            })
+            .end(function(err, res){
+                console.log(err);
+                console.log(res);
+            })
+    },
 
     // --------------OTHER APP METHODS--------------
 
@@ -335,7 +349,8 @@ var App = React.createClass({
                          expMonth: this.state.paymentInfo.expMonth,
                          handleCCExpYear: this._handleCCExpYear,
                          expYear: this.state.paymentInfo.expYear,
-                         handleCCCVV: this._handleCCCVV
+                         handleCCCVV: this._handleCCCVV,
+                         handlePostOrder: this._handlePostOrder
                      })
                     }
             </div>
