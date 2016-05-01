@@ -205,6 +205,9 @@ var App = React.createClass({
             })
     },
 
+    // create new front end routes for previous and favorites
+    // dynamic routing
+
     // --------------OTHER APP METHODS--------------
 
     _handlePickupTime: function(newValue) {
