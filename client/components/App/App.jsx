@@ -197,13 +197,14 @@ var App = React.createClass({
                 specialInstructions: this.state.specialInstructions,
                 selectedShop_id: this.state.selectedShop.place_id,
                 favorited: this.state.favorite
-
             })
             .end(function(err, res){
                 console.log(err);
                 console.log(res);
             })
     },
+
+    // get previous and favorite pages working and send GET requests
 
     // create new front end routes for previous and favorites
     // dynamic routing
