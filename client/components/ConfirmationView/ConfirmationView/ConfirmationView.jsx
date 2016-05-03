@@ -13,6 +13,10 @@ var ConfirmationView = React.createClass({
             <div>
             <div className="title-cover">
                 <h1>Order Confirmation</h1>
+                <div className="userProgress">
+                    <div id="fiveOfFive">
+                    </div>
+                </div>
             </div>
 
             <div className="main-wrap">

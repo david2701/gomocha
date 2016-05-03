@@ -33,3 +33,20 @@
 .order-summary-link {
     text-decoration: none;
 }
+
+.userProgress {
+    position: relative;
+    width: 50%;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+#fourOfFive {
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    background: #3FB083;
+    border-radius: 5px 0px 0px 5px;
+}

@@ -27,7 +27,8 @@ button:focus {
 /* ------- NORMALIZE CSS ----------*/
 
 html {
-  font-family: sans-serif; /* 1 */
+  font-family: 'Source Sans Pro', sans-serif; /* 1 */
+  font-size: 16px !important;
   -ms-text-size-adjust: 100%; /* 2 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }

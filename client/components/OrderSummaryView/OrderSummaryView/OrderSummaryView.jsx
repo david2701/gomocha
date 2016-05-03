@@ -12,6 +12,10 @@ var OrderSummaryView = React.createClass({
             <div>
             <div className="title-cover">
                 <h1>Order Summary</h1>
+                <div className="userProgress">
+                    <div id="fourOfFive">
+                    </div>
+                </div>
             </div>
 
             <div className="main-wrap">

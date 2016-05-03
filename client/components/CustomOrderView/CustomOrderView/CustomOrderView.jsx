@@ -4,6 +4,7 @@ import OrderTotal from '../OrderTotal/OrderTotal'
 import AddItemNotification from '../AddItemNotification/AddItemNotification'
 import { Link } from 'react-router'
 import sass from '../../App/app.scss'
+import sass2 from './custom-order-view.scss'
 
 var CustomOrderView = React.createClass({
 
@@ -13,6 +14,10 @@ var CustomOrderView = React.createClass({
             <div>
             <div className="title-cover">
                 <h1>Place Your Order</h1>
+                <div className="userProgress">
+                    <div id="twoOfFive">
+                    </div>
+                </div>
             </div>
 
             <div className="main-wrap">

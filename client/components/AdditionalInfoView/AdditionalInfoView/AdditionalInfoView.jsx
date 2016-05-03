@@ -14,6 +14,10 @@ var AdditionalInfoView = React.createClass({
             <div>
             <div className="title-cover">
                 <h1>Tell us a little more!</h1>
+                <div className="userProgress">
+                    <div id="threeOfFive">
+                    </div>
+                </div>
             </div>
 
             <div className="main-wrap">

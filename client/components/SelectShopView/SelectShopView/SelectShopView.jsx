@@ -18,7 +18,11 @@ var SelectShopView = React.createClass({
         return (
             <div>
             <div className="title-cover">
-            <h1>Select a Shop</h1>
+                <h1>Select a Shop</h1>
+                <div className="userProgress">
+                    <div id="oneOfFive">
+                    </div>
+                </div>
             </div>
 
             <div className="main-wrap">
