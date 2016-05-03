@@ -7,7 +7,8 @@ import SelectShopView from './components/SelectShopView/SelectShopView/SelectSho
 import AdditionalInfoView from './components/AdditionalInfoView/AdditionalInfoView/AdditionalInfoView'
 import OrderSummaryView from './components/OrderSummaryView/OrderSummaryView/OrderSummaryView'
 import ConfirmationView from './components/ConfirmationView/ConfirmationView/ConfirmationView'
-
+import PreviousOrdersView from './components/PreviousOrdersView/PreviousOrdersView/PreviousOrdersView'
+import FavoriteOrdersView from './components/FavoriteOrdersView/FavoriteOrdersView/FavoriteOrdersView'
 
 var Routes = <Route path="/" component={App}>
                 <IndexRoute component={DashboardView} />
@@ -16,6 +17,8 @@ var Routes = <Route path="/" component={App}>
                 <Route path="additional-info" component={AdditionalInfoView} />
                 <Route path="order-summary" component={OrderSummaryView} />
                 <Route path="confirmation" component={ConfirmationView} />
+                <Route path="previous-orders" component={PreviousOrdersView} />
+                <Route path="favorite-orders" component={FavoriteOrdersView} />
             </Route>
 
 module.exports = Routes;

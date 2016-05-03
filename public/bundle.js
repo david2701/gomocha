@@ -20105,6 +20105,14 @@
 
 	var _ConfirmationView2 = _interopRequireDefault(_ConfirmationView);
 
+	var _PreviousOrdersView = __webpack_require__(434);
+
+	var _PreviousOrdersView2 = _interopRequireDefault(_PreviousOrdersView);
+
+	var _FavoriteOrdersView = __webpack_require__(437);
+
+	var _FavoriteOrdersView2 = _interopRequireDefault(_FavoriteOrdersView);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Routes = _react2.default.createElement(
@@ -20115,7 +20123,9 @@
 	                _react2.default.createElement(_reactRouter.Route, { path: 'custom-order', component: _CustomOrderView2.default }),
 	                _react2.default.createElement(_reactRouter.Route, { path: 'additional-info', component: _AdditionalInfoView2.default }),
 	                _react2.default.createElement(_reactRouter.Route, { path: 'order-summary', component: _OrderSummaryView2.default }),
-	                _react2.default.createElement(_reactRouter.Route, { path: 'confirmation', component: _ConfirmationView2.default })
+	                _react2.default.createElement(_reactRouter.Route, { path: 'confirmation', component: _ConfirmationView2.default }),
+	                _react2.default.createElement(_reactRouter.Route, { path: 'previous-orders', component: _PreviousOrdersView2.default }),
+	                _react2.default.createElement(_reactRouter.Route, { path: 'favorite-orders', component: _FavoriteOrdersView2.default })
 	);
 
 	module.exports = Routes;
@@ -43661,6 +43671,8 @@
 
 	var _prevAndFavorites2 = _interopRequireDefault(_prevAndFavorites);
 
+	var _reactRouter = __webpack_require__(164);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var PrevAndFavorites = _react2.default.createClass({
@@ -43672,16 +43684,24 @@
 	            'div',
 	            { className: 'prev-and-fav-wrap' },
 	            _react2.default.createElement(
-	                'div',
-	                { className: 'prev-orders-button' },
-	                _react2.default.createElement('i', { className: 'fa fa-reply fa-lg' }),
-	                ' Previous Orders'
+	                _reactRouter.Link,
+	                { to: '/previous-orders', className: 'prev-orders-link' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'prev-orders-button' },
+	                    _react2.default.createElement('i', { className: 'fa fa-reply fa-lg' }),
+	                    '  Previous Orders'
+	                )
 	            ),
 	            _react2.default.createElement(
-	                'div',
-	                { className: 'fav-orders-button' },
-	                _react2.default.createElement('i', { className: 'fa fa-heart fa-lg' }),
-	                ' Fav Orders'
+	                _reactRouter.Link,
+	                { to: 'favorite-orders', className: 'fav-orders-link' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'fav-orders-button' },
+	                    _react2.default.createElement('i', { className: 'fa fa-heart fa-lg' }),
+	                    '  Fav Orders'
+	                )
 	            )
 	        );
 	    }
@@ -43724,7 +43744,7 @@
 
 
 	// module
-	exports.push([module.id, ".prev-and-fav-wrap {\n  width: 100%;\n  margin: 0 auto; }\n  .prev-and-fav-wrap .fa-heart, .prev-and-fav-wrap .fa-reply {\n    color: #3879D9; }\n\n.prev-orders-button, .fav-orders-button {\n  width: 11em;\n  border: 1px solid #3879D9;\n  text-align: center;\n  font-size: 24px;\n  padding: 1.75em 0em 1.75em 0em;\n  border-radius: 5px;\n  margin: 0em auto 1em auto;\n  color: #3879D9; }\n  .prev-orders-button:hover, .fav-orders-button:hover {\n    cursor: pointer;\n    background: #fafafa; }\n", ""]);
+	exports.push([module.id, ".prev-and-fav-wrap {\n  width: 100%;\n  margin: 0 auto; }\n  .prev-and-fav-wrap .prev-orders-link, .prev-and-fav-wrap .fav-orders-link {\n    text-decoration: none; }\n    .prev-and-fav-wrap .prev-orders-link .prev-orders-button, .prev-and-fav-wrap .prev-orders-link .fav-orders-button, .prev-and-fav-wrap .fav-orders-link .prev-orders-button, .prev-and-fav-wrap .fav-orders-link .fav-orders-button {\n      width: 11em;\n      border: 1px solid #3879D9;\n      text-align: center;\n      font-size: 24px;\n      padding: 1.75em 0em 1.75em 0em;\n      border-radius: 5px;\n      margin: 0em auto 1em auto;\n      color: #3879D9; }\n      .prev-and-fav-wrap .prev-orders-link .prev-orders-button:hover, .prev-and-fav-wrap .prev-orders-link .fav-orders-button:hover, .prev-and-fav-wrap .fav-orders-link .prev-orders-button:hover, .prev-and-fav-wrap .fav-orders-link .fav-orders-button:hover {\n        cursor: pointer;\n        background: #fafafa; }\n    .prev-and-fav-wrap .prev-orders-link .fa-heart, .prev-and-fav-wrap .prev-orders-link .fa-reply, .prev-and-fav-wrap .fav-orders-link .fa-heart, .prev-and-fav-wrap .fav-orders-link .fa-reply {\n      color: #3879D9; }\n", ""]);
 
 	// exports
 
@@ -60244,6 +60264,187 @@
 
 	// module
 	exports.push([module.id, ".userProgress {\n  position: relative;\n  width: 50%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto; }\n\n#twoOfFive {\n  position: absolute;\n  width: 40%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 0px 0px 5px; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 423 */,
+/* 424 */,
+/* 425 */,
+/* 426 */,
+/* 427 */,
+/* 428 */,
+/* 429 */,
+/* 430 */,
+/* 431 */,
+/* 432 */,
+/* 433 */,
+/* 434 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(164);
+
+	var _previousOrdersView = __webpack_require__(435);
+
+	var _previousOrdersView2 = _interopRequireDefault(_previousOrdersView);
+
+	var _app = __webpack_require__(223);
+
+	var _app2 = _interopRequireDefault(_app);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var PreviousOrdersView = _react2.default.createClass({
+	    displayName: 'PreviousOrdersView',
+
+	    render: function render() {
+
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'title-cover' },
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    'Previous Orders'
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = PreviousOrdersView;
+
+/***/ },
+/* 435 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(436);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./previous-orders-view.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./previous-orders-view.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 436 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "", ""]);
+
+	// exports
+
+
+/***/ },
+/* 437 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(164);
+
+	var _favoriteOrdersView = __webpack_require__(438);
+
+	var _favoriteOrdersView2 = _interopRequireDefault(_favoriteOrdersView);
+
+	var _app = __webpack_require__(223);
+
+	var _app2 = _interopRequireDefault(_app);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var FavoriteOrdersView = _react2.default.createClass({
+	    displayName: 'FavoriteOrdersView',
+
+	    render: function render() {
+
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'title-cover' },
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    'Favorite Orders'
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = FavoriteOrdersView;
+
+/***/ },
+/* 438 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(439);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./favorite-orders-view.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./favorite-orders-view.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 439 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "", ""]);
 
 	// exports
 
