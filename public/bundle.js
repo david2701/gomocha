@@ -25423,7 +25423,6 @@
 	        var _this2 = this;
 
 	        _superagent2.default.get('/api/orders/previous').end(function (err, res) {
-	            console.log(res);
 	            _this2.setState({
 	                previousOrders: res.body
 	            });
@@ -25436,7 +25435,7 @@
 	        _superagent2.default.get('/api/orders/favorites').end(function (err, res) {
 	            console.log(res);
 	            _this3.setState({
-	                FavoriteOrders: res.body
+	                favoriteOrders: res.body
 	            });
 	        });
 	    },
@@ -60419,13 +60418,17 @@
 
 	var _reactRouter = __webpack_require__(164);
 
-	var _favoriteOrdersView = __webpack_require__(438);
+	var _previousOrdersView = __webpack_require__(435);
 
-	var _favoriteOrdersView2 = _interopRequireDefault(_favoriteOrdersView);
+	var _previousOrdersView2 = _interopRequireDefault(_previousOrdersView);
 
 	var _app = __webpack_require__(223);
 
 	var _app2 = _interopRequireDefault(_app);
+
+	var _PreviousOrder = __webpack_require__(440);
+
+	var _PreviousOrder2 = _interopRequireDefault(_PreviousOrder);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -60433,6 +60436,11 @@
 	    displayName: 'FavoriteOrdersView',
 
 	    render: function render() {
+	        var favoriteOrders = this.props.favoriteOrders.map(function (order, index) {
+	            return _react2.default.createElement(_PreviousOrder2.default, {
+	                previousOrder: order,
+	                key: index });
+	        });
 
 	        return _react2.default.createElement(
 	            'div',
@@ -60445,6 +60453,11 @@
 	                    null,
 	                    'Favorite Orders'
 	                )
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'previous-orders-wrap' },
+	                favoriteOrders
 	            )
 	        );
 	    }
@@ -60453,46 +60466,8 @@
 	module.exports = FavoriteOrdersView;
 
 /***/ },
-/* 438 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(439);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./favorite-orders-view.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./favorite-orders-view.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 439 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "", ""]);
-
-	// exports
-
-
-/***/ },
+/* 438 */,
+/* 439 */,
 /* 440 */
 /***/ function(module, exports, __webpack_require__) {
 

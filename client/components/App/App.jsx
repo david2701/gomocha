@@ -211,7 +211,6 @@ var App = React.createClass({
     _handlePreviousOrders: function() {
         request.get('/api/orders/previous')
            .end((err, res) => {
-               console.log(res);
                this.setState({
                    previousOrders: res.body
                })
@@ -223,7 +222,7 @@ var App = React.createClass({
            .end((err, res) => {
                console.log(res);
                this.setState({
-                   FavoriteOrders: res.body
+                   favoriteOrders: res.body
                })
            });
     },
