@@ -31,7 +31,6 @@ var SelectShopView = React.createClass({
                 <ShopList
                 shops={this.props.shops}
                 handleSelectedShop={this.props.handleSelectedShop} />
-                {/*<Link to="/custom-order"><button className="next-button">Next</button></Link>*/}
             </div>
         </div>
         )

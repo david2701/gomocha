@@ -5,8 +5,6 @@ import ClickForMore from '../ClickForMore/ClickForMore'
 import _ from 'lodash'
 
 var ShopList = React.createClass({
-
-
     render: function() {
 
         var sortedShops = _.sortBy(this.props.shops, 'shopDistance');
@@ -22,7 +20,6 @@ var ShopList = React.createClass({
         return (
             <div>
                 {shops}
-                {/*<ClickForMore />*/}
             </div>
         )
     }

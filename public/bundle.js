@@ -25272,7 +25272,7 @@
 	    // Calls the getLocation function which returns the user's current location
 	    // and passes it to its callback (_handleGetLocation)
 	    componentWillMount: function componentWillMount() {
-	        _api2.default.getLocation(this._handleGetLocation, this._handleUserLocation);
+	        _api2.default.getLocation(this._handleUserLocation, this._handleGetLocation);
 	        this._handlePreviousOrders();
 	        this._handleFavoriteOrders();
 	    },
@@ -25381,8 +25381,8 @@
 	    _handleSelectedShopLocation: function _handleSelectedShopLocation(place) {
 	        this.setState({
 	            selectedShopLocation: {
-	                lat: place.geometry.access_points[0].location.lat,
-	                lng: place.geometry.access_points[0].location.lng
+	                lat: place.geometry.location.lat(),
+	                lng: place.geometry.location.lng()
 	            }
 	        });
 	    },
@@ -25433,7 +25433,6 @@
 	        var _this3 = this;
 
 	        _superagent2.default.get('/api/orders/favorites').end(function (err, res) {
-	            console.log(res);
 	            _this3.setState({
 	                favoriteOrders: res.body
 	            });
@@ -42033,6 +42032,7 @@
 	            placeId: placeId
 	        }, function (place, status) {
 	            if (status === google.maps.places.PlacesServiceStatus.OK) {
+	                console.log(place);
 	                callback(place);
 	            }
 	        });
@@ -45372,7 +45372,6 @@
 
 	var ShopList = _react2.default.createClass({
 	    displayName: 'ShopList',
-
 
 	    render: function render() {
 	        var _this = this;

@@ -46,7 +46,7 @@ var App = React.createClass({
     // Calls the getLocation function which returns the user's current location
     // and passes it to its callback (_handleGetLocation)
     componentWillMount: function() {
-        api.getLocation(this._handleGetLocation, this._handleUserLocation);
+        api.getLocation(this._handleUserLocation, this._handleGetLocation);
         this._handlePreviousOrders();
         this._handleFavoriteOrders();
     },
@@ -162,8 +162,8 @@ var App = React.createClass({
     _handleSelectedShopLocation: function(place) {
         this.setState({
             selectedShopLocation: {
-                lat: place.geometry.access_points[0].location.lat,
-                lng: place.geometry.access_points[0].location.lng
+                lat: place.geometry.location.lat(),
+                lng: place.geometry.location.lng()
             },
         })
     },
@@ -220,7 +220,6 @@ var App = React.createClass({
     _handleFavoriteOrders: function() {
         request.get('/api/orders/favorites')
            .end((err, res) => {
-               console.log(res);
                this.setState({
                    favoriteOrders: res.body
                })

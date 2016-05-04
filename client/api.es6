@@ -36,6 +36,7 @@ module.exports = {
             placeId: placeId
         }, function(place, status) {
               if (status === google.maps.places.PlacesServiceStatus.OK) {
+                  console.log(place);
                   callback(place);
               }
         });
