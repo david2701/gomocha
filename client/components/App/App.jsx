@@ -36,6 +36,8 @@ var App = React.createClass({
                 expYear: '',
                 cvv: undefined
             },
+            previousOrders: [],
+            favoriteOrders: []
         }
     },
 
@@ -45,6 +47,8 @@ var App = React.createClass({
     // and passes it to its callback (_handleGetLocation)
     componentWillMount: function() {
         api.getLocation(this._handleGetLocation, this._handleUserLocation);
+        this._handlePreviousOrders();
+        this._handleFavoriteOrders();
     },
 
     _handleUserLocation: function(position) {
@@ -77,7 +81,6 @@ var App = React.createClass({
     // render values on ShopListItem
     // how is this changing the state?
     _getShopsCoordinates: function() {
-
         var shopsWithCoordinates = this.state.shops.map(function(shop) {
             var newShop = _.assign(
                 {},
@@ -195,6 +198,7 @@ var App = React.createClass({
             .send({
                 items: this.state.items, // array
                 specialInstructions: this.state.specialInstructions,
+                selectedShop: this.state.selectedShop.name,
                 selectedShop_id: this.state.selectedShop.place_id,
                 favorited: this.state.favorite
             })
@@ -202,6 +206,26 @@ var App = React.createClass({
                 console.log(err);
                 console.log(res);
             })
+    },
+
+    _handlePreviousOrders: function() {
+        request.get('/api/orders/previous')
+           .end((err, res) => {
+               console.log(res);
+               this.setState({
+                   previousOrders: res.body
+               })
+           });
+    },
+
+    _handleFavoriteOrders: function() {
+        request.get('/api/orders/favorites')
+           .end((err, res) => {
+               console.log(res);
+               this.setState({
+                   FavoriteOrders: res.body
+               })
+           });
     },
 
     // get previous and favorite pages working and send GET requests
@@ -354,7 +378,9 @@ var App = React.createClass({
                          handleCCExpYear: this._handleCCExpYear,
                          expYear: this.state.paymentInfo.expYear,
                          handleCCCVV: this._handleCCCVV,
-                         handlePostOrder: this._handlePostOrder
+                         handlePostOrder: this._handlePostOrder,
+                         previousOrders: this.state.previousOrders,
+                         favoriteOrders: this.state.favoriteOrders
                      })
                     }
             </div>

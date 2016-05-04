@@ -25261,7 +25261,9 @@
 	                expMonth: '',
 	                expYear: '',
 	                cvv: undefined
-	            }
+	            },
+	            previousOrders: [],
+	            favoriteOrders: []
 	        };
 	    },
 
@@ -25271,6 +25273,8 @@
 	    // and passes it to its callback (_handleGetLocation)
 	    componentWillMount: function componentWillMount() {
 	        _api2.default.getLocation(this._handleGetLocation, this._handleUserLocation);
+	        this._handlePreviousOrders();
+	        this._handleFavoriteOrders();
 	    },
 
 	    _handleUserLocation: function _handleUserLocation(position) {
@@ -25303,7 +25307,6 @@
 	    // render values on ShopListItem
 	    // how is this changing the state?
 	    _getShopsCoordinates: function _getShopsCoordinates() {
-
 	        var shopsWithCoordinates = this.state.shops.map(function (shop) {
 	            var newShop = _lodash2.default.assign({}, shop, { shopCoordinates: {
 	                    lat: shop.geometry.location.lat(),
@@ -25407,11 +25410,34 @@
 	        .send({
 	            items: this.state.items, // array
 	            specialInstructions: this.state.specialInstructions,
+	            selectedShop: this.state.selectedShop.name,
 	            selectedShop_id: this.state.selectedShop.place_id,
 	            favorited: this.state.favorite
 	        }).end(function (err, res) {
 	            console.log(err);
 	            console.log(res);
+	        });
+	    },
+
+	    _handlePreviousOrders: function _handlePreviousOrders() {
+	        var _this2 = this;
+
+	        _superagent2.default.get('/api/orders/previous').end(function (err, res) {
+	            console.log(res);
+	            _this2.setState({
+	                previousOrders: res.body
+	            });
+	        });
+	    },
+
+	    _handleFavoriteOrders: function _handleFavoriteOrders() {
+	        var _this3 = this;
+
+	        _superagent2.default.get('/api/orders/favorites').end(function (err, res) {
+	            console.log(res);
+	            _this3.setState({
+	                FavoriteOrders: res.body
+	            });
 	        });
 	    },
 
@@ -25470,13 +25496,13 @@
 	    },
 
 	    _toggleNotification: function _toggleNotification() {
-	        var _this2 = this;
+	        var _this4 = this;
 
 	        this.setState({
 	            notification: !this.state.notification
 	        });
 	        var clearNotification = function clearNotification() {
-	            _this2.setState({
+	            _this4.setState({
 	                notification: false
 	            });
 	        };
@@ -25574,7 +25600,9 @@
 	                handleCCExpYear: this._handleCCExpYear,
 	                expYear: this.state.paymentInfo.expYear,
 	                handleCCCVV: this._handleCCCVV,
-	                handlePostOrder: this._handlePostOrder
+	                handlePostOrder: this._handlePostOrder,
+	                previousOrders: this.state.previousOrders,
+	                favoriteOrders: this.state.favoriteOrders
 	            })
 	        );
 	    }
@@ -60299,12 +60327,22 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
+	var _PreviousOrder = __webpack_require__(440);
+
+	var _PreviousOrder2 = _interopRequireDefault(_PreviousOrder);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var PreviousOrdersView = _react2.default.createClass({
 	    displayName: 'PreviousOrdersView',
 
 	    render: function render() {
+
+	        var previousOrders = this.props.previousOrders.map(function (order, index) {
+	            return _react2.default.createElement(_PreviousOrder2.default, {
+	                previousOrder: order,
+	                key: index });
+	        });
 
 	        return _react2.default.createElement(
 	            'div',
@@ -60317,6 +60355,11 @@
 	                    null,
 	                    'Previous Orders'
 	                )
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'previous-orders-wrap' },
+	                previousOrders
 	            )
 	        );
 	    }
@@ -60359,7 +60402,7 @@
 
 
 	// module
-	exports.push([module.id, "", ""]);
+	exports.push([module.id, ".previous-orders-wrap {\n  width: 28em;\n  margin: 0 auto;\n  border-radius: 3px; }\n\n@media only screen and (min-width: 600px) {\n  .previous-orders-wrap {\n    width: 28em;\n    margin: 0em auto 2.5em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .previous-orders-wrap {\n    width: 90%;\n    margin: 0em auto 2.5em auto; } }\n", ""]);
 
 	// exports
 
@@ -60445,6 +60488,213 @@
 
 	// module
 	exports.push([module.id, "", ""]);
+
+	// exports
+
+
+/***/ },
+/* 440 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _previousOrder = __webpack_require__(441);
+
+	var _previousOrder2 = _interopRequireDefault(_previousOrder);
+
+	var _PreviousOrderItem = __webpack_require__(443);
+
+	var _PreviousOrderItem2 = _interopRequireDefault(_PreviousOrderItem);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var PreviousOrder = _react2.default.createClass({
+	    displayName: 'PreviousOrder',
+
+	    render: function render() {
+
+	        var previousOrderItems = this.props.previousOrder.items.map(function (item, index) {
+	            return _react2.default.createElement(_PreviousOrderItem2.default, {
+	                previousOrderItem: item,
+	                key: index });
+	        });
+
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'prev-orders' },
+	            _react2.default.createElement(
+	                'h2',
+	                null,
+	                this.props.previousOrder.selectedShop
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                null,
+	                previousOrderItems
+	            ),
+	            _react2.default.createElement(
+	                'p',
+	                null,
+	                'Special instructions: ',
+	                this.props.previousOrder.specialInstructions
+	            )
+	        );
+	    }
+	});
+
+	module.exports = PreviousOrder;
+
+/***/ },
+/* 441 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(442);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./previous-order.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./previous-order.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 442 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".prev-orders {\n  border: 1px solid #E4E4E4;\n  margin: 0 auto 1.2em auto;\n  padding: 0.5em 0em 0.5em 0em;\n  border-radius: 3px; }\n  .prev-orders h2 {\n    border-bottom: 2px solid #E4E4E4;\n    padding: 0em 0.5em 0.25em 0.5em;\n    font-size: 1.2em; }\n  .prev-orders p {\n    padding: 0em 0.5em 0.25em 0.5em;\n    margin: 0; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 443 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _previousOrderItem = __webpack_require__(444);
+
+	var _previousOrderItem2 = _interopRequireDefault(_previousOrderItem);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var PreviousOrderItem = _react2.default.createClass({
+	    displayName: 'PreviousOrderItem',
+
+	    render: function render() {
+
+	        var item = this.props.previousOrderItem;
+
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'prev-orders-item' },
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'prev-orders-item-top' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'prev-orders-item-prop' },
+	                    item.quantity,
+	                    ' -'
+	                ),
+	                item.size ? _react2.default.createElement(
+	                    'div',
+	                    { className: 'prev-orders-item-prop' },
+	                    item.size
+	                ) : '',
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'prev-orders-item-prop' },
+	                    item.itemName
+	                )
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'prev-orders-item-bottom' },
+	                item.milkType ? _react2.default.createElement(
+	                    'div',
+	                    { className: 'prev-orders-item-prop' },
+	                    item.milkType
+	                ) : '',
+	                item.decaf ? _react2.default.createElement(
+	                    'div',
+	                    { className: 'prev-orders-item-prop' },
+	                    'decaf'
+	                ) : '',
+	                item.hotOrCold ? _react2.default.createElement(
+	                    'div',
+	                    { className: 'prev-orders-item-prop' },
+	                    item.hotOrCold
+	                ) : ''
+	            )
+	        );
+	    }
+	});
+
+	module.exports = PreviousOrderItem;
+
+/***/ },
+/* 444 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(445);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./previous-order-item.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./previous-order-item.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 445 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".prev-orders-item {\n  padding: 0em 0.5em 0.5em 0.5em;\n  width: 100%;\n  border-bottom: 1px solid #efefef;\n  margin: 0.5em 0em 0.5em 0em; }\n\n.prev-orders-item-top {\n  font-size: 1.1em;\n  padding-bottom: 0.25em; }\n  .prev-orders-item-top .prev-orders-item-prop {\n    display: inline-block; }\n  .prev-orders-item-top .prev-orders-item-prop:first-child {\n    width: 1.25em; }\n  .prev-orders-item-top .prev-orders-item-prop:nth-child(2) {\n    width: 3em; }\n\n.prev-orders-item-bottom {\n  font-size: 0.9em; }\n  .prev-orders-item-bottom .prev-orders-item-prop {\n    display: inline-block;\n    width: 6em; }\n", ""]);
 
 	// exports
 

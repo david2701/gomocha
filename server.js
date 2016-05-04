@@ -17,6 +17,7 @@ mongoose.connection.on('error', function(err) {
 var orderSchema = mongoose.Schema({
     items: Array,
     specialInstructions: String,
+    selectedShop: String,
     selectedShop_id: String,
     favorited: Boolean
 });
