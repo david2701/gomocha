@@ -8,7 +8,7 @@ var MongoClient = require('mongodb').MongoClient;
 
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/test2');
+mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.connection.on('error', function(err) {
     console.error('Could not connect.  Error:', err);
