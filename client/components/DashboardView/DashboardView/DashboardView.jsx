@@ -1,5 +1,4 @@
 import React from 'react'
-import SearchShop from '../SearchShop/SearchShop'
 import PrevAndFavorites from '../PrevAndFavorites/PrevAndFavorites'
 import { Link } from 'react-router'
 import sass from '../../App/app.scss'
@@ -16,7 +15,6 @@ var DashboardView = React.createClass({
                 </div>
 
                 <div className="main-wrap">
-                        {/*<SearchShop />*/}
                         <Link to="/select-shop" className="start-button-wrap">
                             <button className="next-button start-button">
                                 <i className="fa fa-coffee" aria-hidden="true"></i>

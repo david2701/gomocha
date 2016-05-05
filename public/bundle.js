@@ -42032,7 +42032,6 @@
 	            placeId: placeId
 	        }, function (place, status) {
 	            if (status === google.maps.places.PlacesServiceStatus.OK) {
-	                console.log(place);
 	                callback(place);
 	            }
 	        });
@@ -43598,10 +43597,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _SearchShop = __webpack_require__(238);
-
-	var _SearchShop2 = _interopRequireDefault(_SearchShop);
-
 	var _PrevAndFavorites = __webpack_require__(239);
 
 	var _PrevAndFavorites2 = _interopRequireDefault(_PrevAndFavorites);
@@ -43657,34 +43652,7 @@
 	module.exports = DashboardView;
 
 /***/ },
-/* 238 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var SearchShop = _react2.default.createClass({
-	    displayName: "SearchShop",
-
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            "div",
-	            null,
-	            _react2.default.createElement("input", { type: "text" }),
-	            _react2.default.createElement("input", { type: "submit" })
-	        );
-	    }
-	});
-
-	module.exports = SearchShop;
-
-/***/ },
+/* 238 */,
 /* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -60249,7 +60217,7 @@
 
 
 	// module
-	exports.push([module.id, ".confirmation-view-container {\n  width: 28em;\n  margin: 0 auto;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px; }\n\n@media only screen and (min-width: 600px) {\n  .confirmation-view-container {\n    width: 28em;\n    margin: 0em auto 2.5em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .confirmation-view-container {\n    width: 90%;\n    margin: 0em auto 2.5em auto; } }\n\n.back-to-dashboard {\n  width: 15em;\n  margin: 2em auto 0 auto;\n  display: block; }\n\n.userProgress {\n  position: relative;\n  width: 50%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto; }\n\n#fiveOfFive {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 5px 5px 5px; }\n", ""]);
+	exports.push([module.id, ".confirmation-view-container {\n  width: 28em;\n  margin: 0 auto;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px; }\n\n@media only screen and (min-width: 600px) {\n  .confirmation-view-container {\n    width: 28em;\n    margin: 0em auto 2.5em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .confirmation-view-container {\n    width: 90%;\n    margin: 0em auto 2.5em auto; } }\n\n.back-to-dashboard {\n  width: 13em;\n  margin: 2em auto 0 auto;\n  display: block; }\n\n.userProgress {\n  position: relative;\n  width: 50%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto; }\n\n#fiveOfFive {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 5px 5px 5px; }\n", ""]);
 
 	// exports
 
