@@ -45328,10 +45328,6 @@
 
 	var _ShopListItem2 = _interopRequireDefault(_ShopListItem);
 
-	var _ClickForMore = __webpack_require__(286);
-
-	var _ClickForMore2 = _interopRequireDefault(_ClickForMore);
-
 	var _lodash = __webpack_require__(228);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
@@ -45536,80 +45532,9 @@
 
 
 /***/ },
-/* 286 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _clickForMore = __webpack_require__(287);
-
-	var _clickForMore2 = _interopRequireDefault(_clickForMore);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var ClickForMore = _react2.default.createClass({
-	    displayName: 'ClickForMore',
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            { className: 'click-for-more-container' },
-	            _react2.default.createElement(
-	                'button',
-	                null,
-	                'Click for more results'
-	            )
-	        );
-	    }
-	});
-
-	module.exports = ClickForMore;
-
-/***/ },
-/* 287 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(288);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./click-for-more.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./click-for-more.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 288 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".click-for-more-container {\n  width: 11em;\n  margin: 3em auto 0 auto; }\n", ""]);
-
-	// exports
-
-
-/***/ },
+/* 286 */,
+/* 287 */,
+/* 288 */,
 /* 289 */
 /***/ function(module, exports, __webpack_require__) {
 

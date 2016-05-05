@@ -1,7 +1,6 @@
 import React from 'react'
 import sass from './shop-list.scss'
 import ShopListItem from '../ShopListItem/ShopListItem'
-import ClickForMore from '../ClickForMore/ClickForMore'
 import _ from 'lodash'
 
 var ShopList = React.createClass({
