@@ -28,6 +28,19 @@ var EnterPaymentInfo = React.createClass({
                 <div className="payment-info-section">
             <label>Expiration Date<span>  </span></label>
             <select
+                onChange={this.props.handleCCExpYear}
+                value={this.props.expYearValue}
+                name="exp-year" >
+                <option value="default">Year</option>
+                <option value="2016">2016</option>
+                <option value="2017">2017</option>
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+            </select>
+            <select
                 onChange={this.props.handleCCExpMonth}
                 value={this.props.expMonthValue}
                 name="exp-month"
@@ -45,19 +58,6 @@ var EnterPaymentInfo = React.createClass({
                 <option value="10">Oct (10)</option>
                 <option value="11">Nov (11)</option>
                 <option value="12">Dec (12)</option>
-            </select>
-            <select
-                onChange={this.props.handleCCExpYear}
-                value={this.props.expYearValue}
-                name="exp-year" >
-                <option value="default">Year</option>
-                <option value="2016">2016</option>
-                <option value="2017">2017</option>
-                <option value="2018">2018</option>
-                <option value="2019">2019</option>
-                <option value="2020">2020</option>
-                <option value="2021">2021</option>
-                <option value="2022">2022</option>
             </select>
                 </div>
                 <div className="payment-info-section">

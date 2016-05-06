@@ -18,10 +18,17 @@ ReactDOM.render(
 
 // QUESTIONS:
 // 1. methodOfTrans variable in calculateTravelTime api call does not change on initial click
-// 2.
+// 2. add icons to progress bar and menu sections
+// 3. payment info section can be fancier
+// 4. add icon to method of transportation
+// 5. style tables
+// 6. style special instructions box
+// 7. search for items
+// 8. make add to order button more noticeable, maybe a small notification
+// 9. switch month/year on payment
 
 // -- NEXT STEPS:
-
+// 1. getch previous and favorite orders when clicking those pages
 //
 
 // implement propTypes to components

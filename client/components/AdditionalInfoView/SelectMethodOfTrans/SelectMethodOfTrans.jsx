@@ -6,30 +6,34 @@ var SelectMethodOfTrans = React.createClass({
         return (
             <div className="method-of-trans-container">
                 <h2>Select Method of Transportation</h2>
-                <label className="method-of-trans" htmlFor="walking">
-                    <input
-                        onChange={this.props.handleMethodOfTrans}
-                        type="radio"
-                        name="methodOfTrans"
-                        className="method-of-trans-input"
-                        value="walking" /> Walking
-                </label>
-                <label className="method-of-trans" htmlFor="biking">
-                    <input
-                        onChange={this.props.handleMethodOfTrans}
-                        type="radio"
-                        name="methodOfTrans"
-                        className="method-of-trans-input"
-                        value="biking" /> Biking
-                </label>
-                <label className="method-of-trans" htmlFor="driving">
-                    <input
-                        onChange={this.props.handleMethodOfTrans}
-                        type="radio"
-                        name="methodOfTrans"
-                        className="method-of-trans-input"
-                        value="driving" /> Driving
-                </label>
+
+                        <input
+                            onChange={this.props.handleMethodOfTrans}
+                            type="radio"
+                            name="methodOfTrans"
+                            className="method-of-trans-input"
+                            id="walking"
+                            value="walking" />
+                        <label className="method-of-trans-label" htmlFor="walking"><i className="fa fa-male fa-3x" aria-hidden="true"></i>Walking</label>
+
+                        <input
+                            onChange={this.props.handleMethodOfTrans}
+                            type="radio"
+                            name="methodOfTrans"
+                            className="method-of-trans-input"
+                            id="biking"
+                            value="biking" />
+                        <label className="method-of-trans-label" htmlFor="biking"><i className="fa fa-bicycle fa-3x" aria-hidden="true"></i>Biking</label>
+
+                        <input
+                            onChange={this.props.handleMethodOfTrans}
+                            type="radio"
+                            name="methodOfTrans"
+                            className="method-of-trans-input"
+                            id="driving"
+                            value="driving" />
+                        <label className="method-of-trans-label" htmlFor="driving"><i className="fa fa-car fa-3x" aria-hidden="true"></i>Driving</label>
+
             </div>
         )
     }
