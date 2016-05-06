@@ -78,17 +78,12 @@
 
 	// QUESTIONS:
 	// 1. methodOfTrans variable in calculateTravelTime api call does not change on initial click
-	// 2. add icons to progress bar and menu sections
 	// 3. payment info section can be fancier
-	// 4. add icon to method of transportation
-	// 5. style tables
-	// 6. style special instructions box
-	// 7. search for items
+	// 4. order summary table alignment and styling
 	// 8. make add to order button more noticeable, maybe a small notification
-	// 9. switch month/year on payment
 
 	// -- NEXT STEPS:
-	// 1. getch previous and favorite orders when clicking those pages
+	// 1. fetch previous and favorite orders when clicking those pages
 	//
 
 	// implement propTypes to components
@@ -26894,7 +26889,7 @@
 
 
 	// module
-	exports.push([module.id, ".add-item-notification-text {\n  color: #f6f6f6;\n  font: bold 16px/40px sans-serif;\n  text-align: center;\n  text-decoration: none; }\n\n.add-item-notification {\n  background-color: #3FB083;\n  color: #f6f6f6;\n  font: bold 16px/40px sans-serif;\n  height: 40px;\n  position: fixed;\n  left: 0;\n  text-align: center;\n  text-decoration: none;\n  top: -45px;\n  width: 100%;\n  animation: add-item-notification 1s ease forwards;\n  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.1); }\n\n.add-item-notification-show {\n  display: block; }\n\n.add-item-notification-hide {\n  display: none; }\n\n@keyframes add-item-notification {\n  0% {\n    opacity: 0; }\n  50% {\n    opacity: 1; }\n  100% {\n    top: 0; } }\n\n@keyframes add-item-notification-hide {\n  0% {\n    top: 0; }\n  50% {\n    top: -25; }\n  100% {\n    top: -45; } }\n", ""]);
+	exports.push([module.id, ".add-item-notification-text {\n  color: #f6f6f6;\n  text-align: center;\n  text-decoration: none; }\n\n.add-item-notification {\n  background-color: #3FB083;\n  color: #f6f6f6;\n  font-size: 1.1em;\n  padding-top: 0.7em;\n  height: 38px;\n  position: fixed;\n  left: 0;\n  text-align: center;\n  text-decoration: none;\n  top: -45px;\n  width: 100%;\n  animation: add-item-notification 1s ease forwards; }\n\n.add-item-notification-show {\n  display: block; }\n\n.add-item-notification-hide {\n  display: none; }\n\n@keyframes add-item-notification {\n  0% {\n    opacity: 0; }\n  50% {\n    opacity: 1; }\n  100% {\n    top: 0; } }\n\n@keyframes add-item-notification-hide {\n  0% {\n    top: 0; }\n  50% {\n    top: -25; }\n  100% {\n    top: -45; } }\n", ""]);
 
 	// exports
 
@@ -44600,7 +44595,7 @@
 
 
 	// module
-	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .menu-section {\n    width: 28em;\n    margin: 0em auto 2.5em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .menu-section {\n    width: 95%;\n    margin: 0em auto 2.5em auto; } }\n\n.divider {\n  width: 20em;\n  border-bottom: 1px solid black; }\n", ""]);
+	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .menu-section {\n    width: 28em;\n    margin: 0em auto 2.5em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .menu-section {\n    width: 95%;\n    margin: 0em auto 2.5em auto; } }\n\n.divider {\n  width: 100%;\n  border-bottom: 1px solid black; }\n", ""]);
 
 	// exports
 
@@ -44636,7 +44631,7 @@
 	            _react2.default.createElement('textarea', {
 	                onChange: this.props.handleSpecialInstructions,
 	                rows: '6',
-	                cols: '40' }),
+	                cols: '100' }),
 	            _react2.default.createElement('div', { className: 'divider' })
 	        );
 	    }
@@ -44679,7 +44674,7 @@
 
 
 	// module
-	exports.push([module.id, "#special-instructions {\n  margin-bottom: 2em; }\n\n@media only screen and (min-width: 600px) {\n  #special-instructions {\n    margin: 0 auto 2em auto;\n    width: 28em; } }\n", ""]);
+	exports.push([module.id, "#special-instructions {\n  margin-bottom: 2em; }\n  #special-instructions textarea {\n    border: 2px solid #E4E4E4;\n    padding: 0.5em;\n    width: 96%;\n    font-size: 1.1em;\n    margin-bottom: 1em; }\n\n@media only screen and (min-width: 600px) {\n  #special-instructions {\n    margin: 0 auto 2em auto;\n    width: 28em; } }\n", ""]);
 
 	// exports
 
@@ -44942,7 +44937,7 @@
 
 
 	// module
-	exports.push([module.id, ".order-total-table td {\n  padding: 0.75em 1.5em; }\n\n.order-total-table tr {\n  background: #EEEEEE; }\n\ntr.order-total-row .delete-item {\n  color: #962D2D;\n  margin-left: 20px;\n  display: none;\n  cursor: pointer; }\n\ntr.order-total-row:hover .delete-item {\n  display: inline-block; }\n\n.td-price {\n  width: 75px; }\n", ""]);
+	exports.push([module.id, ".order-total-table td {\n  padding: 0.75em 1.5em;\n  border-bottom: 2px solid #E4E4E4; }\n\ntr.order-total-row .delete-item {\n  color: #D62214;\n  margin-left: 20px;\n  display: none;\n  cursor: pointer; }\n\ntr.order-total-row:hover .delete-item {\n  display: inline-block; }\n\n.td-price {\n  width: 75px; }\n", ""]);
 
 	// exports
 
@@ -45046,7 +45041,7 @@
 
 
 	// module
-	exports.push([module.id, ".order-total-table td {\n  padding: 0.75em 1.5em; }\n\n.order-total-table tr {\n  background: #EEEEEE; }\n\ntr.order-total-row .delete-item {\n  color: #962D2D;\n  margin-left: 20px;\n  display: none;\n  cursor: pointer; }\n\ntr.order-total-row:hover .delete-item {\n  display: inline-block; }\n\n.td-price {\n  width: 75px; }\n", ""]);
+	exports.push([module.id, ".order-total-table td {\n  padding: 0.75em 1.5em; }\n\ntr.order-total-row .delete-item {\n  color: #962D2D;\n  margin-left: 20px;\n  display: none;\n  cursor: pointer; }\n\ntr.order-total-row:hover .delete-item {\n  display: inline-block; }\n\n.td-price {\n  width: 75px; }\n", ""]);
 
 	// exports
 
@@ -45055,7 +45050,7 @@
 /* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var _react = __webpack_require__(5);
 
@@ -45064,21 +45059,21 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var OrderTax = _react2.default.createClass({
-	    displayName: 'OrderTax',
+	    displayName: "OrderTax",
 
 	    render: function render() {
 	        return _react2.default.createElement(
-	            'tr',
-	            null,
+	            "tr",
+	            { className: "order-total-tax" },
 	            _react2.default.createElement(
-	                'td',
+	                "td",
 	                null,
-	                'Tax'
+	                "Tax"
 	            ),
 	            _react2.default.createElement(
-	                'td',
+	                "td",
 	                null,
-	                '$',
+	                "$",
 	                this.props.orderTax.toFixed(2)
 	            )
 	        );
@@ -45158,7 +45153,7 @@
 
 
 	// module
-	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  #order-total {\n    width: 18em;\n    margin: 0 auto; } }\n\n.next-button-container {\n  width: 28em;\n  margin: 2em auto 2em auto; }\n\n.order-total-table {\n  margin: 0 auto; }\n", ""]);
+	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  #order-total {\n    width: 28em;\n    margin: 0 auto; } }\n\n.next-button-container {\n  width: 28em;\n  margin: 2em auto 2em auto; }\n\n.order-total-table {\n  margin: 0 auto;\n  width: 100%;\n  border: 2px solid #E4E4E4;\n  border-collapse: collapse; }\n", ""]);
 
 	// exports
 
@@ -45828,7 +45823,7 @@
 
 
 	// module
-	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .method-of-trans-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .method-of-trans-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.method-of-trans-container {\n  text-align: center;\n  padding: 0.75em 0.75em 1em 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px; }\n  .method-of-trans-container h2 {\n    font-size: 1.2em;\n    text-align: left; }\n  .method-of-trans-container p {\n    padding-top: 3.5em; }\n\n.method-of-trans-label {\n  display: inline-block;\n  width: 5em;\n  height: 3em;\n  background: #fff;\n  margin: 1em;\n  padding: 1em 1em 2em 1em;\n  color: #3FB083;\n  border: 1px solid #3FB083;\n  text-align: center;\n  border-radius: 5px;\n  cursor: pointer; }\n  .method-of-trans-label .fa-male {\n    display: block; }\n\ninput.method-of-trans-input {\n  display: none;\n  margin: 10px; }\n  input.method-of-trans-input:checked + label {\n    background: #3FB083;\n    color: #fff; }\n", ""]);
+	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .method-of-trans-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .method-of-trans-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.method-of-trans-container {\n  text-align: center;\n  padding: 0.75em 0.75em 1em 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px; }\n  .method-of-trans-container h2 {\n    font-size: 1.2em;\n    text-align: left; }\n  .method-of-trans-container p {\n    padding-top: 3.5em; }\n\n.method-of-trans-label {\n  display: inline-block;\n  width: 5em;\n  height: 3em;\n  background: #fff;\n  margin: 1em;\n  padding: 1em 1em 3em 1em;\n  color: #cbcbcb;\n  border: 2px solid #cbcbcb;\n  text-align: center;\n  border-radius: 50%;\n  cursor: pointer; }\n  .method-of-trans-label .fa-male {\n    display: block; }\n\ninput.method-of-trans-input {\n  display: none;\n  margin: 10px; }\n  input.method-of-trans-input:checked + label {\n    background: #3FB083;\n    border: 2px solid #3FB083;\n    color: #fff; }\n", ""]);
 
 	// exports
 

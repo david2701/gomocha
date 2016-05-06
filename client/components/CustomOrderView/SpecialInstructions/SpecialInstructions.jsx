@@ -9,7 +9,7 @@ var SpecialInstructions = React.createClass({
                 <textarea
                     onChange={this.props.handleSpecialInstructions}
                     rows="6"
-                    cols="40" ></textarea>
+                    cols="100" ></textarea>
                 <div className="divider"></div>
             </section>
         )
