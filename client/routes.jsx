@@ -9,6 +9,7 @@ import OrderSummaryView from './components/OrderSummaryView/OrderSummaryView/Ord
 import ConfirmationView from './components/ConfirmationView/ConfirmationView/ConfirmationView'
 import PreviousOrdersView from './components/PreviousOrdersView/PreviousOrdersView/PreviousOrdersView'
 import FavoriteOrdersView from './components/FavoriteOrdersView/FavoriteOrdersView/FavoriteOrdersView'
+import UsernameView from './components/UsernameView/UsernameView/UsernameView'
 
 var Routes = <Route path="/" component={App}>
                 <IndexRoute component={DashboardView} />
@@ -19,6 +20,7 @@ var Routes = <Route path="/" component={App}>
                 <Route path="confirmation" component={ConfirmationView} />
                 <Route path="previous-orders" component={PreviousOrdersView} />
                 <Route path="favorite-orders" component={FavoriteOrdersView} />
+                <Route path="username" component={UsernameView} />
             </Route>
 
 module.exports = Routes;

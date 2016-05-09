@@ -20115,6 +20115,10 @@
 
 	var _FavoriteOrdersView2 = _interopRequireDefault(_FavoriteOrdersView);
 
+	var _UsernameView = __webpack_require__(429);
+
+	var _UsernameView2 = _interopRequireDefault(_UsernameView);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Routes = _react2.default.createElement(
@@ -20127,7 +20131,8 @@
 	                _react2.default.createElement(_reactRouter.Route, { path: 'order-summary', component: _OrderSummaryView2.default }),
 	                _react2.default.createElement(_reactRouter.Route, { path: 'confirmation', component: _ConfirmationView2.default }),
 	                _react2.default.createElement(_reactRouter.Route, { path: 'previous-orders', component: _PreviousOrdersView2.default }),
-	                _react2.default.createElement(_reactRouter.Route, { path: 'favorite-orders', component: _FavoriteOrdersView2.default })
+	                _react2.default.createElement(_reactRouter.Route, { path: 'favorite-orders', component: _FavoriteOrdersView2.default }),
+	                _react2.default.createElement(_reactRouter.Route, { path: 'username', component: _UsernameView2.default })
 	);
 
 	module.exports = Routes;
@@ -25219,6 +25224,10 @@
 
 	var _AddItemNotification2 = _interopRequireDefault(_AddItemNotification);
 
+	var _UsernameView = __webpack_require__(429);
+
+	var _UsernameView2 = _interopRequireDefault(_UsernameView);
+
 	var _lodash = __webpack_require__(228);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
@@ -25239,6 +25248,7 @@
 
 	    getInitialState: function getInitialState() {
 	        return {
+	            username: '',
 	            userLocation: {
 	                lat: '',
 	                lng: ''
@@ -25278,6 +25288,22 @@
 	        this._handlePreviousOrders();
 	        this._handleFavoriteOrders();
 	    },
+
+	    _handleUsername: function _handleUsername(username) {
+	        this.setState({
+	            username: username
+	        });
+	        this._handleUsernameCookie(username);
+	    },
+
+	    _handleUsernameCookie: function _handleUsernameCookie(username) {
+	        document.cookie = "username=" + username;
+	        console.log(document.cookie);
+	    },
+
+	    // handleUsername should call a function that sets the cookie of the username, and then call a function that sets username on state. this will pull the username from the cookie and set it on state (this function will be called in componentWillMount, so when component loads, you'll check to see if cookie is there, and if it is you'll set it on state and automatically be logged in)
+
+	    // previous and favorite orders will need to filter for the username, so you need to add the username to the order you're posting, and add it to the order schema. So each order should have a username as well. previous and favorite will need to load on componentWillMount on their associated views.
 
 	    _handleUserLocation: function _handleUserLocation(position) {
 	        this.setState({
@@ -25571,8 +25597,9 @@
 	                    )
 	                )
 	            ),
-	            _react2.default.cloneElement(this.props.children, {
+	            !this.state.username ? _react2.default.createElement(_UsernameView2.default, { handleUsername: this._handleUsername }) : _react2.default.cloneElement(this.props.children, {
 	                data: _dummyData2.default,
+	                username: this.state.username,
 	                userLocation: this.state.userLocation,
 	                selectedShopLocation: this.state.selectedShopLocation,
 	                shops: this.state.shops,
@@ -43629,7 +43656,9 @@
 	                _react2.default.createElement(
 	                    'h1',
 	                    null,
-	                    'Search for a Coffee Shop!'
+	                    'Hey ',
+	                    this.props.username,
+	                    ', just click start to be on your way to that first sip!'
 	                )
 	            ),
 	            _react2.default.createElement(
@@ -59826,7 +59855,7 @@
 	                    _react2.default.createElement(
 	                        'button',
 	                        { className: 'next-button' },
-	                        'Back to Dashboard'
+	                        'Go to Dashboard'
 	                    )
 	                )
 	            )
@@ -60556,6 +60585,151 @@
 	});
 
 	module.exports = FavoriteOrdersView;
+
+/***/ },
+/* 429 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _usernameView = __webpack_require__(430);
+
+	var _usernameView2 = _interopRequireDefault(_usernameView);
+
+	var _app = __webpack_require__(223);
+
+	var _app2 = _interopRequireDefault(_app);
+
+	var _reactRouter = __webpack_require__(164);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var UsernameView = _react2.default.createClass({
+	    displayName: 'UsernameView',
+
+
+	    _handleUsernameSubmit: function _handleUsernameSubmit(event) {
+	        event.preventDefault();
+	        var username = this._usernameInput.value;
+	        console.log(username);
+	        this.props.handleUsername(username);
+	    },
+
+	    render: function render() {
+	        var _this = this;
+
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'title-cover-landing' },
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    'The fastest way to your morning coffee.'
+	                ),
+	                _react2.default.createElement(
+	                    'form',
+	                    { onSubmit: this._handleUsernameSubmit },
+	                    _react2.default.createElement('input', {
+	                        type: 'text',
+	                        placeholder: 'Enter a username to begin',
+	                        name: 'username',
+	                        ref: function ref(c) {
+	                            return _this._usernameInput = c;
+	                        },
+	                        required: true }),
+	                    _react2.default.createElement(
+	                        'button',
+	                        null,
+	                        'Go!'
+	                    )
+	                )
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'landing-icon-wrap' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'landing-icon-1' },
+	                    _react2.default.createElement('img', { src: 'img/landing-icon-1.png' }),
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        'Select a shop'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'landing-icon-2' },
+	                    _react2.default.createElement('img', { src: '~/img/landing-icon-2.png' }),
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        'Place your order'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'landing-icon-3' },
+	                    _react2.default.createElement('img', { src: '~/img/landing-icon-3.png' }),
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        'Ready when you arrive!'
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = UsernameView;
+
+/***/ },
+/* 430 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(431);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./username-view.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./username-view.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 431 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .username-wrap {\n    width: 28em;\n    margin: 3em auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .username-wrap {\n    width: 90%;\n    margin: 3em auto 1em auto; } }\n\n.title-cover-landing {\n  background: #3879D9;\n  padding: 3em;\n  min-height: 6em;\n  margin-bottom: 1em; }\n  .title-cover-landing h1 {\n    color: #fff; }\n  .title-cover-landing h2 {\n    color: #fff;\n    text-align: center; }\n  .title-cover-landing form {\n    text-align: center; }\n  .title-cover-landing input[type=\"text\"] {\n    width: 12em;\n    text-align: center;\n    font-size: 1.4em;\n    height: 1.5em;\n    border-radius: 3px;\n    border: 2px solid #E4E4E4;\n    margin: 0.5em auto 0 auto;\n    padding: 0.25em; }\n  .title-cover-landing button {\n    display: block;\n    width: 8em;\n    margin: 1.5em auto 0 auto;\n    background: #3FB083;\n    border: none;\n    border-radius: 3px;\n    padding: 0.9em 0.7em 0.9em 0.7em;\n    color: #fff;\n    font-size: 1.2em; }\n    .title-cover-landing button:hover {\n      background: #43BB8B; }\n    .title-cover-landing button .fa-rocket {\n      margin-right: 5px; }\n  .title-cover-landing a {\n    text-decoration: none; }\n\n.landing-icon-wrap div {\n  display: inline-block;\n  width: 33%;\n  height: 300px;\n  border: 1px solid #3879D9; }\n  .landing-icon-wrap div h2 {\n    text-align: center; }\n", ""]);
+
+	// exports
+
 
 /***/ }
 /******/ ]);

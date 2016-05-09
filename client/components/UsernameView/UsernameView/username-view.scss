@@ -1,0 +1,89 @@
+@media only screen and (min-width: 600px) {
+    .username-wrap {
+        width: 28em;
+        margin: 3em auto 1em auto;
+    }
+}
+
+@media only screen and (max-width: 599px) {
+    .username-wrap {
+        width: 90%;
+        margin: 3em auto 1em auto;
+    }
+}
+
+
+.title-cover-landing {
+    // background-image: url("~/img/coffee-cover1.jpg");
+    // background-repeat: no-repeat;
+    // background-position: center;
+    // background-size: cover;
+    background: #3879D9;
+    padding: 3em;
+    min-height: 6em;
+    margin-bottom: 1em;
+
+    h1 {
+        color: #fff;
+    }
+
+    h2 {
+        color: #fff;
+        text-align: center;
+    }
+
+    form {
+        text-align: center;
+    }
+
+    input[type="text"] {
+        width: 12em;
+        text-align: center;
+        font-size: 1.4em;
+        height: 1.5em;
+        border-radius: 3px;
+        border: 2px solid #E4E4E4;
+        margin: 0.5em auto 0 auto;
+        padding: 0.25em;
+    }
+
+    button {
+        display: block;
+        width: 8em;
+        margin: 1.5em auto 0 auto;
+        background: #3FB083;
+        border: none;
+        border-radius: 3px;
+        padding: 0.9em 0.7em 0.9em 0.7em;
+        color: #fff;
+        font-size: 1.2em;
+
+        &:hover {
+            background: #43BB8B;
+        }
+
+        .fa-rocket {
+            margin-right: 5px;
+        }
+    }
+
+    a {
+        text-decoration: none;
+    }
+}
+
+.landing-icon-wrap {
+
+    div {
+        display: inline-block;
+        width: 33%;
+        height: 300px;
+        border: 1px solid #3879D9;
+
+        h2 {
+            text-align: center;
+        }
+    }
+
+
+}

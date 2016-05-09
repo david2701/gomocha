@@ -11,7 +11,7 @@ var DashboardView = React.createClass({
         return (
             <div>
                 <div className="title-cover">
-                <h1>Search for a Coffee Shop!</h1>
+                <h1>Hey {this.props.username}, just click start to be on your way to that first sip!</h1>
                 </div>
 
                 <div className="main-wrap">

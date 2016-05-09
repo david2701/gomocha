@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import dummyData from '../../../dummy-data.json'
 import sass from './app.scss'
 import AddItemNotification from '../CustomOrderView/AddItemNotification/AddItemNotification'
+import UsernameView from '../UsernameView/UsernameView/UsernameView'
 import _ from 'lodash'
 import api from '../../api'
 import request from 'superagent'
@@ -11,6 +12,7 @@ var App = React.createClass({
 
     getInitialState: function() {
         return {
+            username: '',
             userLocation: {
                 lat: '',
                 lng: ''
@@ -50,6 +52,22 @@ var App = React.createClass({
         this._handlePreviousOrders();
         this._handleFavoriteOrders();
     },
+
+    _handleUsername: function(username) {
+        this.setState({
+            username: username
+        })
+        this._handleUsernameCookie(username);
+    },
+
+    _handleUsernameCookie: function(username) {
+        document.cookie = "username=" + username;
+        console.log(document.cookie);
+    },
+
+    // handleUsername should call a function that sets the cookie of the username, and then call a function that sets username on state. this will pull the username from the cookie and set it on state (this function will be called in componentWillMount, so when component loads, you'll check to see if cookie is there, and if it is you'll set it on state and automatically be logged in)
+
+    // previous and favorite orders will need to filter for the username, so you need to add the username to the order you're posting, and add it to the order schema. So each order should have a username as well. previous and favorite will need to load on componentWillMount on their associated views.
 
     _handleUserLocation: function(position) {
         this.setState({
@@ -346,9 +364,12 @@ var App = React.createClass({
                         <Link to="/log-out" className='router-link'><li>Log Out</li></Link>
                     </ul>
                 </nav>
-                {React.cloneElement(this.props.children
-                     ,{
+                {!this.state.username ?
+                    <UsernameView handleUsername={this._handleUsername} /> :
+                    React.cloneElement(this.props.children,
+                      {
                          data: dummyData,
+                         username: this.state.username,
                          userLocation: this.state.userLocation,
                          selectedShopLocation: this.state.selectedShopLocation,
                          shops: this.state.shops,
