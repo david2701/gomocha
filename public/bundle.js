@@ -25240,6 +25240,10 @@
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
+	var _jsCookie = __webpack_require__(432);
+
+	var _jsCookie2 = _interopRequireDefault(_jsCookie);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var App = _react2.default.createClass({
@@ -25279,31 +25283,46 @@
 	        };
 	    },
 
-	    // --------------INITIAL API CALL--------------
-
 	    // Calls the getLocation function which returns the user's current location
 	    // and passes it to its callback (_handleGetLocation)
 	    componentWillMount: function componentWillMount() {
 	        _api2.default.getLocation(this._handleUserLocation, this._handleGetLocation);
 	        this._handlePreviousOrders();
 	        this._handleFavoriteOrders();
+	        this._handleUsernameCheck();
+	    },
+
+	    // -------------- USERNAME VALIDATION --------------
+
+	    _handleUsernameCheck: function _handleUsernameCheck() {
+	        // cookie.remove('username');
+	        var usernameCookie = _jsCookie2.default.get('username');
+	        usernameCookie ? this._handleUsernameState(usernameCookie) : ''; // if there is a cookie, set it to the state, if not, do nothing
+	    },
+
+	    _handleUsernameState: function _handleUsernameState(usernameCookie) {
+	        this.setState({
+	            username: usernameCookie
+	        });
 	    },
 
 	    _handleUsername: function _handleUsername(username) {
-	        this.setState({
-	            username: username
-	        });
-	        this._handleUsernameCookie(username);
+	        _jsCookie2.default.set('username', username);
+	        var newUsername = _jsCookie2.default.get('username');
+	        console.log(newUsername);
+	        this._handleUsernameState(newUsername);
 	    },
 
-	    _handleUsernameCookie: function _handleUsernameCookie(username) {
-	        document.cookie = "username=" + username;
-	        console.log(document.cookie);
+	    _handleUsernameRemove: function _handleUsernameRemove() {
+	        _jsCookie2.default.remove('username');
+	        location.reload();
 	    },
 
 	    // handleUsername should call a function that sets the cookie of the username, and then call a function that sets username on state. this will pull the username from the cookie and set it on state (this function will be called in componentWillMount, so when component loads, you'll check to see if cookie is there, and if it is you'll set it on state and automatically be logged in)
 
 	    // previous and favorite orders will need to filter for the username, so you need to add the username to the order you're posting, and add it to the order schema. So each order should have a username as well. previous and favorite will need to load on componentWillMount on their associated views.
+
+	    // --------------USER LOCATION AND GOOGLE MAPS API CALL--------------
 
 	    _handleUserLocation: function _handleUserLocation(position) {
 	        this.setState({
@@ -25588,7 +25607,7 @@
 	                    ),
 	                    _react2.default.createElement(
 	                        _reactRouter.Link,
-	                        { to: '/log-out', className: 'router-link' },
+	                        { to: '/', className: 'router-link', onClick: this._handleUsernameRemove },
 	                        _react2.default.createElement(
 	                            'li',
 	                            null,
@@ -43658,7 +43677,7 @@
 	                    null,
 	                    'Hey ',
 	                    this.props.username,
-	                    ', just click start to be on your way to that first sip!'
+	                    ', just click start to be on your way!'
 	                )
 	            ),
 	            _react2.default.createElement(
@@ -60615,7 +60634,6 @@
 	    _handleUsernameSubmit: function _handleUsernameSubmit(event) {
 	        event.preventDefault();
 	        var username = this._usernameInput.value;
-	        console.log(username);
 	        this.props.handleUsername(username);
 	    },
 
@@ -60657,7 +60675,7 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'landing-icon-1' },
-	                    _react2.default.createElement('img', { src: 'img/landing-icon-1.png' }),
+	                    _react2.default.createElement('img', { src: '/img/landing-icon-1.png' }),
 	                    _react2.default.createElement(
 	                        'h2',
 	                        null,
@@ -60667,7 +60685,7 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'landing-icon-2' },
-	                    _react2.default.createElement('img', { src: '~/img/landing-icon-2.png' }),
+	                    _react2.default.createElement('img', { src: '/img/landing-icon-2.png' }),
 	                    _react2.default.createElement(
 	                        'h2',
 	                        null,
@@ -60677,7 +60695,7 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'landing-icon-3' },
-	                    _react2.default.createElement('img', { src: '~/img/landing-icon-3.png' }),
+	                    _react2.default.createElement('img', { src: '/img/landing-icon-3.png' }),
 	                    _react2.default.createElement(
 	                        'h2',
 	                        null,
@@ -60726,9 +60744,166 @@
 
 
 	// module
-	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .username-wrap {\n    width: 28em;\n    margin: 3em auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .username-wrap {\n    width: 90%;\n    margin: 3em auto 1em auto; } }\n\n.title-cover-landing {\n  background: #3879D9;\n  padding: 3em;\n  min-height: 6em;\n  margin-bottom: 1em; }\n  .title-cover-landing h1 {\n    color: #fff; }\n  .title-cover-landing h2 {\n    color: #fff;\n    text-align: center; }\n  .title-cover-landing form {\n    text-align: center; }\n  .title-cover-landing input[type=\"text\"] {\n    width: 12em;\n    text-align: center;\n    font-size: 1.4em;\n    height: 1.5em;\n    border-radius: 3px;\n    border: 2px solid #E4E4E4;\n    margin: 0.5em auto 0 auto;\n    padding: 0.25em; }\n  .title-cover-landing button {\n    display: block;\n    width: 8em;\n    margin: 1.5em auto 0 auto;\n    background: #3FB083;\n    border: none;\n    border-radius: 3px;\n    padding: 0.9em 0.7em 0.9em 0.7em;\n    color: #fff;\n    font-size: 1.2em; }\n    .title-cover-landing button:hover {\n      background: #43BB8B; }\n    .title-cover-landing button .fa-rocket {\n      margin-right: 5px; }\n  .title-cover-landing a {\n    text-decoration: none; }\n\n.landing-icon-wrap div {\n  display: inline-block;\n  width: 33%;\n  height: 300px;\n  border: 1px solid #3879D9; }\n  .landing-icon-wrap div h2 {\n    text-align: center; }\n", ""]);
+	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .username-wrap {\n    width: 28em;\n    margin: 3em auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .username-wrap {\n    width: 90%;\n    margin: 3em auto 1em auto; } }\n\n.title-cover-landing {\n  background: #3879D9;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 3em;\n  min-height: 6em;\n  margin-bottom: 3em; }\n  .title-cover-landing h1 {\n    color: #fff; }\n  .title-cover-landing h2 {\n    color: #fff;\n    text-align: center; }\n  .title-cover-landing form {\n    text-align: center; }\n  .title-cover-landing input[type=\"text\"] {\n    width: 12em;\n    text-align: center;\n    font-size: 1.4em;\n    height: 1.5em;\n    border-radius: 3px;\n    border: 2px solid #E4E4E4;\n    margin: 0.5em auto 0 auto;\n    padding: 0.25em; }\n  .title-cover-landing button {\n    display: block;\n    width: 8em;\n    margin: 1.5em auto 0 auto;\n    background: #3FB083;\n    border: none;\n    border-radius: 3px;\n    padding: 0.9em 0.7em 0.9em 0.7em;\n    color: #fff;\n    font-size: 1.2em; }\n    .title-cover-landing button:hover {\n      background: #43BB8B; }\n    .title-cover-landing button .fa-rocket {\n      margin-right: 5px; }\n  .title-cover-landing a {\n    text-decoration: none; }\n\n.landing-icon-wrap div {\n  display: inline-block;\n  width: 33%;\n  text-align: center; }\n\n.landing-icon-wrap img {\n  width: 60%; }\n\n.landing-icon-wrap h2 {\n  text-align: center; }\n", ""]);
 
 	// exports
+
+
+/***/ },
+/* 432 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	 * JavaScript Cookie v2.1.1
+	 * https://github.com/js-cookie/js-cookie
+	 *
+	 * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+	 * Released under the MIT license
+	 */
+	;(function (factory) {
+		if (true) {
+			!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else if (typeof exports === 'object') {
+			module.exports = factory();
+		} else {
+			var OldCookies = window.Cookies;
+			var api = window.Cookies = factory();
+			api.noConflict = function () {
+				window.Cookies = OldCookies;
+				return api;
+			};
+		}
+	}(function () {
+		function extend () {
+			var i = 0;
+			var result = {};
+			for (; i < arguments.length; i++) {
+				var attributes = arguments[ i ];
+				for (var key in attributes) {
+					result[key] = attributes[key];
+				}
+			}
+			return result;
+		}
+
+		function init (converter) {
+			function api (key, value, attributes) {
+				var result;
+				if (typeof document === 'undefined') {
+					return;
+				}
+
+				// Write
+
+				if (arguments.length > 1) {
+					attributes = extend({
+						path: '/'
+					}, api.defaults, attributes);
+
+					if (typeof attributes.expires === 'number') {
+						var expires = new Date();
+						expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
+						attributes.expires = expires;
+					}
+
+					try {
+						result = JSON.stringify(value);
+						if (/^[\{\[]/.test(result)) {
+							value = result;
+						}
+					} catch (e) {}
+
+					if (!converter.write) {
+						value = encodeURIComponent(String(value))
+							.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+					} else {
+						value = converter.write(value, key);
+					}
+
+					key = encodeURIComponent(String(key));
+					key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
+					key = key.replace(/[\(\)]/g, escape);
+
+					return (document.cookie = [
+						key, '=', value,
+						attributes.expires && '; expires=' + attributes.expires.toUTCString(), // use expires attribute, max-age is not supported by IE
+						attributes.path    && '; path=' + attributes.path,
+						attributes.domain  && '; domain=' + attributes.domain,
+						attributes.secure ? '; secure' : ''
+					].join(''));
+				}
+
+				// Read
+
+				if (!key) {
+					result = {};
+				}
+
+				// To prevent the for loop in the first place assign an empty array
+				// in case there are no cookies at all. Also prevents odd result when
+				// calling "get()"
+				var cookies = document.cookie ? document.cookie.split('; ') : [];
+				var rdecode = /(%[0-9A-Z]{2})+/g;
+				var i = 0;
+
+				for (; i < cookies.length; i++) {
+					var parts = cookies[i].split('=');
+					var name = parts[0].replace(rdecode, decodeURIComponent);
+					var cookie = parts.slice(1).join('=');
+
+					if (cookie.charAt(0) === '"') {
+						cookie = cookie.slice(1, -1);
+					}
+
+					try {
+						cookie = converter.read ?
+							converter.read(cookie, name) : converter(cookie, name) ||
+							cookie.replace(rdecode, decodeURIComponent);
+
+						if (this.json) {
+							try {
+								cookie = JSON.parse(cookie);
+							} catch (e) {}
+						}
+
+						if (key === name) {
+							result = cookie;
+							break;
+						}
+
+						if (!key) {
+							result[name] = cookie;
+						}
+					} catch (e) {}
+				}
+
+				return result;
+			}
+
+			api.set = api;
+			api.get = function (key) {
+				return api(key);
+			};
+			api.getJSON = function () {
+				return api.apply({
+					json: true
+				}, [].slice.call(arguments));
+			};
+			api.defaults = {};
+
+			api.remove = function (key, attributes) {
+				api(key, '', extend(attributes, {
+					expires: -1
+				}));
+			};
+
+			api.withConverter = init;
+
+			return api;
+		}
+
+		return init(function () {});
+	}));
 
 
 /***/ }

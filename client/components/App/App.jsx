@@ -7,6 +7,7 @@ import UsernameView from '../UsernameView/UsernameView/UsernameView'
 import _ from 'lodash'
 import api from '../../api'
 import request from 'superagent'
+import cookie from 'js-cookie'
 
 var App = React.createClass({
 
@@ -43,31 +44,47 @@ var App = React.createClass({
         }
     },
 
-    // --------------INITIAL API CALL--------------
-
     // Calls the getLocation function which returns the user's current location
     // and passes it to its callback (_handleGetLocation)
     componentWillMount: function() {
         api.getLocation(this._handleUserLocation, this._handleGetLocation);
         this._handlePreviousOrders();
         this._handleFavoriteOrders();
+        this._handleUsernameCheck();
+    },
+
+    // -------------- USERNAME VALIDATION --------------
+
+    _handleUsernameCheck: function() {
+        // cookie.remove('username');
+        var usernameCookie = cookie.get('username');
+        usernameCookie ? this._handleUsernameState(usernameCookie)
+        : '' // if there is a cookie, set it to the state, if not, do nothing
+    },
+
+    _handleUsernameState: function(usernameCookie) {
+        this.setState({
+            username: usernameCookie
+        })
     },
 
     _handleUsername: function(username) {
-        this.setState({
-            username: username
-        })
-        this._handleUsernameCookie(username);
+        cookie.set('username', username);
+        var newUsername = cookie.get('username');
+        console.log(newUsername);
+        this._handleUsernameState(newUsername);
     },
 
-    _handleUsernameCookie: function(username) {
-        document.cookie = "username=" + username;
-        console.log(document.cookie);
+    _handleUsernameRemove: function() {
+        cookie.remove('username');
+        location.reload();
     },
 
     // handleUsername should call a function that sets the cookie of the username, and then call a function that sets username on state. this will pull the username from the cookie and set it on state (this function will be called in componentWillMount, so when component loads, you'll check to see if cookie is there, and if it is you'll set it on state and automatically be logged in)
 
     // previous and favorite orders will need to filter for the username, so you need to add the username to the order you're posting, and add it to the order schema. So each order should have a username as well. previous and favorite will need to load on componentWillMount on their associated views.
+
+    // --------------USER LOCATION AND GOOGLE MAPS API CALL--------------
 
     _handleUserLocation: function(position) {
         this.setState({
@@ -361,7 +378,7 @@ var App = React.createClass({
                     <ul role="nav">
                         <Link to="/" onlyActiveOnIndex={true} className='router-link'><li>Dashboard</li></Link>
                         <Link to="/account" className='router-link'><li>Account</li></Link>
-                        <Link to="/log-out" className='router-link'><li>Log Out</li></Link>
+                        <Link to="/" className='router-link' onClick={this._handleUsernameRemove}><li>Log Out</li></Link>
                     </ul>
                 </nav>
                 {!this.state.username ?

@@ -14,14 +14,14 @@
 
 
 .title-cover-landing {
-    // background-image: url("~/img/coffee-cover1.jpg");
-    // background-repeat: no-repeat;
-    // background-position: center;
-    // background-size: cover;
+    // background-image: url("/img/coffee-cover1.jpg");
     background: #3879D9;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     padding: 3em;
     min-height: 6em;
-    margin-bottom: 1em;
+    margin-bottom: 3em;
 
     h1 {
         color: #fff;
@@ -77,13 +77,15 @@
     div {
         display: inline-block;
         width: 33%;
-        height: 300px;
-        border: 1px solid #3879D9;
-
-        h2 {
-            text-align: center;
-        }
+        text-align: center;
     }
 
+    img {
+        width: 60%;
 
+    }
+
+    h2 {
+        text-align: center;
+    }
 }
