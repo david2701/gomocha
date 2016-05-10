@@ -1,7 +1,46 @@
+.landing-icon-wrap {
+
+    .landing-icon {
+        display: inline-block;
+        width: 33%;
+        text-align: center;
+    }
+
+    img {
+        width: 60%;
+    }
+
+    h2 {
+        text-align: center;
+    }
+}
+
 @media only screen and (min-width: 600px) {
     .username-wrap {
         width: 28em;
         margin: 3em auto 1em auto;
+    }
+}
+
+@media only screen and (max-width: 635px) {
+    .landing-icon-wrap {
+        .landing-icon {
+            display: block;
+            width: 30%;
+            margin: 0 auto;
+        }
+
+        img {
+            
+        }
+    }
+}
+
+@media only screen and (max-width: 680px) {
+    .landing-icon-3 {
+        h2 {
+            font-size: 1.4em;
+        }
     }
 }
 
@@ -69,23 +108,5 @@
 
     a {
         text-decoration: none;
-    }
-}
-
-.landing-icon-wrap {
-
-    div {
-        display: inline-block;
-        width: 33%;
-        text-align: center;
-    }
-
-    img {
-        width: 60%;
-
-    }
-
-    h2 {
-        text-align: center;
     }
 }

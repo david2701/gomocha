@@ -56,7 +56,6 @@ var App = React.createClass({
     // -------------- USERNAME VALIDATION --------------
 
     _handleUsernameCheck: function() {
-        // cookie.remove('username');
         var usernameCookie = cookie.get('username');
         usernameCookie ? this._handleUsernameState(usernameCookie)
         : '' // if there is a cookie, set it to the state, if not, do nothing
@@ -69,14 +68,13 @@ var App = React.createClass({
     },
 
     _handleUsername: function(username) {
-        cookie.set('username', username);
-        var newUsername = cookie.get('username');
-        console.log(newUsername);
-        this._handleUsernameState(newUsername);
+        username ? cookie.set('username', username)
+        : cookie.remove('username');
+        this._handleUsernameState(username);
     },
 
     _handleUsernameRemove: function() {
-        cookie.remove('username');
+        this._handleUsername(null);
         location.reload();
     },
 
@@ -231,6 +229,7 @@ var App = React.createClass({
         request.post('/api/orders')
             .set('Content-Type', 'application/json') // not required
             .send({
+                username: this.state.username,
                 items: this.state.items, // array
                 specialInstructions: this.state.specialInstructions,
                 selectedShop: this.state.selectedShop.name,

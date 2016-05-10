@@ -76,45 +76,17 @@
 	        return window.scrollTo(0, 0);
 	    } }), document.getElementById('root'));
 
-	// QUESTIONS:
-	// 1. methodOfTrans variable in calculateTravelTime api call does not change on initial click
-	// 3. payment info section can be fancier
-	// 4. order summary table alignment and styling
-	// 8. make add to order button more noticeable, maybe a small notification
-
-	// -- NEXT STEPS:
-	// 1. fetch previous and favorite orders when clicking those pages
-	//
+	// 1. payment info section can be fancier
+	// 2. make add to order button more noticeable, maybe a small notification
+	// 3. fetch previous and favorite orders when clicking those pages
+	// 4. be able to start order from previous and favorites pages
+	// 5. add item deleted notification
+	// 6. make landing page responsive
 
 	// implement propTypes to components
 	// make calls for time it will take to walk/bike/drive at same time you call getDetails
 
 	// add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for additional info page condition
-	// look into Locu and Google Maps API
-
-	// DONE fix ConfirmationView width to % on small screens
-	// DONE fix directions and add address for shop location
-	// DONE make api call for extra info in handler that sets shop on state, use this extra info on confirmation screen (phone number, distance from, formatted address, etc.)
-	// DONE use id on object, and use method for fetching a particular place in google maps api
-	// DONE store users position on state of app
-	// DONE make another call to google maps api to calculate user's distance from shop
-	// DONE add in 'open now' feature
-	// DONE create state for remaining views on App component state. Pass down to children components
-	// DONE get selected shop set to state, render it out in confirmation screen
-	// DONE pickUp time can't be set if "now" is checked, if someone checks pickup time and then decided now after already clicking now
-	// DONE add milk type, decaf, hot or cold options to order total row
-	// DONE add quantity * price feature when calculating total
-	// DONE reuse OrderTotal components for both CustomOrderView and OrderSummaryView
-	// DONE add Link to remaining View components
-	// DONE use setTimeout for add item to order notification/confirmation
-	// DONE user cannot add item unless all form elements are filled out
-	// DONE clear all form elements after add to order button is clicked
-	// DONE delete functionality on orderTotal
-	// DONE onChange, plus button appears to add item to order -- callback
-	// DONE onChange, plus button appears to add item to order -- callback
-	// DONE after user clicks add to order button -> quantity, size, drink name, and price are sent to table row component -- state callback
-	// DONE order total is calculated with each add to order click by summing all component prices -- state callback
-	// DONE tax is included in order total calculation
 
 /***/ },
 /* 1 */
@@ -20115,10 +20087,6 @@
 
 	var _FavoriteOrdersView2 = _interopRequireDefault(_FavoriteOrdersView);
 
-	var _UsernameView = __webpack_require__(429);
-
-	var _UsernameView2 = _interopRequireDefault(_UsernameView);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Routes = _react2.default.createElement(
@@ -20131,8 +20099,7 @@
 	                _react2.default.createElement(_reactRouter.Route, { path: 'order-summary', component: _OrderSummaryView2.default }),
 	                _react2.default.createElement(_reactRouter.Route, { path: 'confirmation', component: _ConfirmationView2.default }),
 	                _react2.default.createElement(_reactRouter.Route, { path: 'previous-orders', component: _PreviousOrdersView2.default }),
-	                _react2.default.createElement(_reactRouter.Route, { path: 'favorite-orders', component: _FavoriteOrdersView2.default }),
-	                _react2.default.createElement(_reactRouter.Route, { path: 'username', component: _UsernameView2.default })
+	                _react2.default.createElement(_reactRouter.Route, { path: 'favorite-orders', component: _FavoriteOrdersView2.default })
 	);
 
 	module.exports = Routes;
@@ -25295,7 +25262,6 @@
 	    // -------------- USERNAME VALIDATION --------------
 
 	    _handleUsernameCheck: function _handleUsernameCheck() {
-	        // cookie.remove('username');
 	        var usernameCookie = _jsCookie2.default.get('username');
 	        usernameCookie ? this._handleUsernameState(usernameCookie) : ''; // if there is a cookie, set it to the state, if not, do nothing
 	    },
@@ -25307,14 +25273,12 @@
 	    },
 
 	    _handleUsername: function _handleUsername(username) {
-	        _jsCookie2.default.set('username', username);
-	        var newUsername = _jsCookie2.default.get('username');
-	        console.log(newUsername);
-	        this._handleUsernameState(newUsername);
+	        username ? _jsCookie2.default.set('username', username) : _jsCookie2.default.remove('username');
+	        this._handleUsernameState(username);
 	    },
 
 	    _handleUsernameRemove: function _handleUsernameRemove() {
-	        _jsCookie2.default.remove('username');
+	        this._handleUsername(null);
 	        location.reload();
 	    },
 
@@ -25455,6 +25419,7 @@
 	    _handlePostOrder: function _handlePostOrder() {
 	        _superagent2.default.post('/api/orders').set('Content-Type', 'application/json') // not required
 	        .send({
+	            username: this.state.username,
 	            items: this.state.items, // array
 	            specialInstructions: this.state.specialInstructions,
 	            selectedShop: this.state.selectedShop.name,
@@ -60674,7 +60639,7 @@
 	                { className: 'landing-icon-wrap' },
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'landing-icon-1' },
+	                    { className: 'landing-icon landing-icon-1' },
 	                    _react2.default.createElement('img', { src: '/img/landing-icon-1.png' }),
 	                    _react2.default.createElement(
 	                        'h2',
@@ -60684,7 +60649,7 @@
 	                ),
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'landing-icon-2' },
+	                    { className: 'landing-icon landing-icon-2' },
 	                    _react2.default.createElement('img', { src: '/img/landing-icon-2.png' }),
 	                    _react2.default.createElement(
 	                        'h2',
@@ -60694,7 +60659,7 @@
 	                ),
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'landing-icon-3' },
+	                    { className: 'landing-icon landing-icon-3' },
 	                    _react2.default.createElement('img', { src: '/img/landing-icon-3.png' }),
 	                    _react2.default.createElement(
 	                        'h2',
@@ -60744,7 +60709,7 @@
 
 
 	// module
-	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .username-wrap {\n    width: 28em;\n    margin: 3em auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .username-wrap {\n    width: 90%;\n    margin: 3em auto 1em auto; } }\n\n.title-cover-landing {\n  background: #3879D9;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 3em;\n  min-height: 6em;\n  margin-bottom: 3em; }\n  .title-cover-landing h1 {\n    color: #fff; }\n  .title-cover-landing h2 {\n    color: #fff;\n    text-align: center; }\n  .title-cover-landing form {\n    text-align: center; }\n  .title-cover-landing input[type=\"text\"] {\n    width: 12em;\n    text-align: center;\n    font-size: 1.4em;\n    height: 1.5em;\n    border-radius: 3px;\n    border: 2px solid #E4E4E4;\n    margin: 0.5em auto 0 auto;\n    padding: 0.25em; }\n  .title-cover-landing button {\n    display: block;\n    width: 8em;\n    margin: 1.5em auto 0 auto;\n    background: #3FB083;\n    border: none;\n    border-radius: 3px;\n    padding: 0.9em 0.7em 0.9em 0.7em;\n    color: #fff;\n    font-size: 1.2em; }\n    .title-cover-landing button:hover {\n      background: #43BB8B; }\n    .title-cover-landing button .fa-rocket {\n      margin-right: 5px; }\n  .title-cover-landing a {\n    text-decoration: none; }\n\n.landing-icon-wrap div {\n  display: inline-block;\n  width: 33%;\n  text-align: center; }\n\n.landing-icon-wrap img {\n  width: 60%; }\n\n.landing-icon-wrap h2 {\n  text-align: center; }\n", ""]);
+	exports.push([module.id, ".landing-icon-wrap .landing-icon {\n  display: inline-block;\n  width: 33%;\n  text-align: center; }\n\n.landing-icon-wrap img {\n  width: 60%; }\n\n.landing-icon-wrap h2 {\n  text-align: center; }\n\n@media only screen and (min-width: 600px) {\n  .username-wrap {\n    width: 28em;\n    margin: 3em auto 1em auto; } }\n\n@media only screen and (max-width: 635px) {\n  .landing-icon-wrap .landing-icon {\n    display: block;\n    width: 30%;\n    margin: 0 auto; } }\n\n@media only screen and (max-width: 680px) {\n  .landing-icon-3 h2 {\n    font-size: 1.4em; } }\n\n@media only screen and (max-width: 599px) {\n  .username-wrap {\n    width: 90%;\n    margin: 3em auto 1em auto; } }\n\n.title-cover-landing {\n  background: #3879D9;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 3em;\n  min-height: 6em;\n  margin-bottom: 3em; }\n  .title-cover-landing h1 {\n    color: #fff; }\n  .title-cover-landing h2 {\n    color: #fff;\n    text-align: center; }\n  .title-cover-landing form {\n    text-align: center; }\n  .title-cover-landing input[type=\"text\"] {\n    width: 12em;\n    text-align: center;\n    font-size: 1.4em;\n    height: 1.5em;\n    border-radius: 3px;\n    border: 2px solid #E4E4E4;\n    margin: 0.5em auto 0 auto;\n    padding: 0.25em; }\n  .title-cover-landing button {\n    display: block;\n    width: 8em;\n    margin: 1.5em auto 0 auto;\n    background: #3FB083;\n    border: none;\n    border-radius: 3px;\n    padding: 0.9em 0.7em 0.9em 0.7em;\n    color: #fff;\n    font-size: 1.2em; }\n    .title-cover-landing button:hover {\n      background: #43BB8B; }\n    .title-cover-landing button .fa-rocket {\n      margin-right: 5px; }\n  .title-cover-landing a {\n    text-decoration: none; }\n", ""]);
 
 	// exports
 

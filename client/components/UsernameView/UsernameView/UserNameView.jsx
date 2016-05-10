@@ -28,15 +28,15 @@ var UsernameView = React.createClass({
                         </form>
                 </div>
                 <div className="landing-icon-wrap">
-                    <div className="landing-icon-1">
+                    <div className="landing-icon landing-icon-1">
                         <img src="/img/landing-icon-1.png" />
                         <h2>Select a shop</h2>
                     </div>
-                    <div className="landing-icon-2">
+                    <div className="landing-icon landing-icon-2">
                         <img src="/img/landing-icon-2.png" />
                         <h2>Place your order</h2>
                     </div>
-                    <div className="landing-icon-3">
+                    <div className="landing-icon landing-icon-3">
                         <img src="/img/landing-icon-3.png" />
                         <h2>Ready when you arrive!</h2>
                     </div>
