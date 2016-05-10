@@ -48,8 +48,6 @@ var App = React.createClass({
     // and passes it to its callback (_handleGetLocation)
     componentWillMount: function() {
         api.getLocation(this._handleUserLocation, this._handleGetLocation);
-        this._handlePreviousOrders();
-        this._handleFavoriteOrders();
         this._handleUsernameCheck();
     },
 
@@ -69,12 +67,12 @@ var App = React.createClass({
 
     _handleUsername: function(username) {
         username ? cookie.set('username', username)
-        : cookie.remove('username');
+        : ''
         this._handleUsernameState(username);
     },
 
     _handleUsernameRemove: function() {
-        this._handleUsername(null);
+        cookie.remove('username');
         location.reload();
     },
 
@@ -243,7 +241,7 @@ var App = React.createClass({
     },
 
     _handlePreviousOrders: function() {
-        request.get('/api/orders/previous')
+        request.get('/api/users/' + String(this.state.username) + '/orders/previous')
            .end((err, res) => {
                this.setState({
                    previousOrders: res.body
@@ -252,7 +250,7 @@ var App = React.createClass({
     },
 
     _handleFavoriteOrders: function() {
-        request.get('/api/orders/favorites')
+        request.get('/api/users/' + String(this.state.username) + '/orders/favorites')
            .end((err, res) => {
                this.setState({
                    favoriteOrders: res.body
@@ -414,6 +412,8 @@ var App = React.createClass({
                          expYear: this.state.paymentInfo.expYear,
                          handleCCCVV: this._handleCCCVV,
                          handlePostOrder: this._handlePostOrder,
+                         handlePreviousOrders: this._handlePreviousOrders,
+                         handleFavoriteOrders: this._handleFavoriteOrders,
                          previousOrders: this.state.previousOrders,
                          favoriteOrders: this.state.favoriteOrders
                      })

@@ -18,10 +18,9 @@ ReactDOM.render(
 
 // 1. payment info section can be fancier
 // 2. make add to order button more noticeable, maybe a small notification
-// 3. fetch previous and favorite orders when clicking those pages
-// 4. be able to start order from previous and favorites pages
+// 4. be able to start order from previous and favorites pages. replace items in state with items in prev/fav order
+// 4.5 add date to each order
 // 5. add item deleted notification
-// 6. make landing page responsive
 
 // implement propTypes to components
 // make calls for time it will take to walk/bike/drive at same time you call getDetails

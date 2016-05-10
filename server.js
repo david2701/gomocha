@@ -60,15 +60,20 @@ function requestHandler(request, response) {
 
 app.use(express.static(__dirname + '/public')); // creates special route for handling static files (.js, .html, .css). These will automatically be served from public directory when something is requested
 
-app.get('/api/orders/previous', function(req, res) {
-    read({}, function(err, listOfOrders) {
+app.get('/api/users/:username/orders/previous', function(req, res) {
+    console.log(req.params);
+    read({username: req.params.username}, function(err, listOfOrders) {
         res.status(201).json(listOfOrders);
     })
 })
 //
-app.get('/api/orders/favorites', function(req, res) {
-    read({favorited: true}, function(err, listOfOrders) {
-        res.json(listOfOrders);
+app.get('/api/users/:username/orders/favorites', function(req, res) {
+    console.log(req.params);
+    read({
+        favorited: true,
+        username: req.params.username
+        }, function(err, listOfOrders) {
+            res.json(listOfOrders);
     })
 })
 // send back list of orders from /previous

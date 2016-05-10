@@ -5,6 +5,12 @@ import sass2 from '../../App/app.scss'
 import PreviousOrder from '../../PreviousOrdersView/PreviousOrder/PreviousOrder'
 
 var FavoriteOrdersView = React.createClass({
+
+    componentWillMount: function() {
+        console.log('favorite orders mount');
+        this.props.handleFavoriteOrders();
+    },
+
     render: function() {
         var favoriteOrders = this.props.favoriteOrders.map(function(order, index) {
             return <PreviousOrder

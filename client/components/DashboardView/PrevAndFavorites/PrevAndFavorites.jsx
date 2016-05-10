@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 
 var PrevAndFavorites = React.createClass({
 
+
     render: function() {
         return (
             <div className="prev-and-fav-wrap">

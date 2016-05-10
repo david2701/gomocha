@@ -78,10 +78,9 @@
 
 	// 1. payment info section can be fancier
 	// 2. make add to order button more noticeable, maybe a small notification
-	// 3. fetch previous and favorite orders when clicking those pages
-	// 4. be able to start order from previous and favorites pages
+	// 4. be able to start order from previous and favorites pages. replace items in state with items in prev/fav order
+	// 4.5 add date to each order
 	// 5. add item deleted notification
-	// 6. make landing page responsive
 
 	// implement propTypes to components
 	// make calls for time it will take to walk/bike/drive at same time you call getDetails
@@ -25254,8 +25253,6 @@
 	    // and passes it to its callback (_handleGetLocation)
 	    componentWillMount: function componentWillMount() {
 	        _api2.default.getLocation(this._handleUserLocation, this._handleGetLocation);
-	        this._handlePreviousOrders();
-	        this._handleFavoriteOrders();
 	        this._handleUsernameCheck();
 	    },
 
@@ -25273,12 +25270,12 @@
 	    },
 
 	    _handleUsername: function _handleUsername(username) {
-	        username ? _jsCookie2.default.set('username', username) : _jsCookie2.default.remove('username');
+	        username ? _jsCookie2.default.set('username', username) : '';
 	        this._handleUsernameState(username);
 	    },
 
 	    _handleUsernameRemove: function _handleUsernameRemove() {
-	        this._handleUsername(null);
+	        _jsCookie2.default.remove('username');
 	        location.reload();
 	    },
 
@@ -25434,7 +25431,7 @@
 	    _handlePreviousOrders: function _handlePreviousOrders() {
 	        var _this2 = this;
 
-	        _superagent2.default.get('/api/orders/previous').end(function (err, res) {
+	        _superagent2.default.get('/api/users/' + String(this.state.username) + '/orders/previous').end(function (err, res) {
 	            _this2.setState({
 	                previousOrders: res.body
 	            });
@@ -25444,7 +25441,7 @@
 	    _handleFavoriteOrders: function _handleFavoriteOrders() {
 	        var _this3 = this;
 
-	        _superagent2.default.get('/api/orders/favorites').end(function (err, res) {
+	        _superagent2.default.get('/api/users/' + String(this.state.username) + '/orders/favorites').end(function (err, res) {
 	            _this3.setState({
 	                favoriteOrders: res.body
 	            });
@@ -25612,6 +25609,8 @@
 	                expYear: this.state.paymentInfo.expYear,
 	                handleCCCVV: this._handleCCCVV,
 	                handlePostOrder: this._handlePostOrder,
+	                handlePreviousOrders: this._handlePreviousOrders,
+	                handleFavoriteOrders: this._handleFavoriteOrders,
 	                previousOrders: this.state.previousOrders,
 	                favoriteOrders: this.state.favoriteOrders
 	            })
@@ -44950,7 +44949,7 @@
 
 
 	// module
-	exports.push([module.id, ".order-total-table td {\n  padding: 0.75em 1.5em;\n  border-bottom: 2px solid #E4E4E4; }\n\ntr.order-total-row .delete-item {\n  color: #D62214;\n  margin-left: 20px;\n  display: none;\n  cursor: pointer; }\n\ntr.order-total-row:hover .delete-item {\n  display: inline-block; }\n\n.td-price {\n  width: 75px; }\n", ""]);
+	exports.push([module.id, ".order-total-table td {\n  padding: 0.75em 1.5em;\n  border-bottom: 2px solid #E4E4E4;\n  text-align: left; }\n\ntr.order-total-row .delete-item {\n  color: #D62214;\n  margin-left: 20px;\n  display: none;\n  cursor: pointer; }\n\ntr.order-total-row:hover .delete-item {\n  display: inline-block; }\n\n.td-price {\n  width: 75px; }\n", ""]);
 
 	// exports
 
@@ -45166,7 +45165,7 @@
 
 
 	// module
-	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  #order-total {\n    width: 28em;\n    margin: 0 auto; } }\n\n.next-button-container {\n  width: 28em;\n  margin: 2em auto 2em auto; }\n\n.order-total-table {\n  margin: 0 auto;\n  width: 100%;\n  border: 2px solid #E4E4E4;\n  border-collapse: collapse; }\n", ""]);
+	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  #order-total {\n    max-width: 28em;\n    margin: 0 auto; } }\n\n.next-button-container {\n  width: 28em;\n  margin: 2em auto 2em auto; }\n\n.order-total-table {\n  margin: 0 auto;\n  width: 100%;\n  border: 2px solid #E4E4E4;\n  border-collapse: collapse; }\n", ""]);
 
 	// exports
 
@@ -60233,6 +60232,11 @@
 	var PreviousOrdersView = _react2.default.createClass({
 	    displayName: 'PreviousOrdersView',
 
+
+	    componentWillMount: function componentWillMount() {
+	        this.props.handlePreviousOrders();
+	    },
+
 	    render: function render() {
 
 	        var previousOrders = this.props.previousOrders.map(function (order, index) {
@@ -60540,6 +60544,12 @@
 	var FavoriteOrdersView = _react2.default.createClass({
 	    displayName: 'FavoriteOrdersView',
 
+
+	    componentWillMount: function componentWillMount() {
+	        console.log('favorite orders mount');
+	        this.props.handleFavoriteOrders();
+	    },
+
 	    render: function render() {
 	        var favoriteOrders = this.props.favoriteOrders.map(function (order, index) {
 	            return _react2.default.createElement(_PreviousOrder2.default, {
@@ -60709,7 +60719,7 @@
 
 
 	// module
-	exports.push([module.id, ".landing-icon-wrap .landing-icon {\n  display: inline-block;\n  width: 33%;\n  text-align: center; }\n\n.landing-icon-wrap img {\n  width: 60%; }\n\n.landing-icon-wrap h2 {\n  text-align: center; }\n\n@media only screen and (min-width: 600px) {\n  .username-wrap {\n    width: 28em;\n    margin: 3em auto 1em auto; } }\n\n@media only screen and (max-width: 635px) {\n  .landing-icon-wrap .landing-icon {\n    display: block;\n    width: 30%;\n    margin: 0 auto; } }\n\n@media only screen and (max-width: 680px) {\n  .landing-icon-3 h2 {\n    font-size: 1.4em; } }\n\n@media only screen and (max-width: 599px) {\n  .username-wrap {\n    width: 90%;\n    margin: 3em auto 1em auto; } }\n\n.title-cover-landing {\n  background: #3879D9;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 3em;\n  min-height: 6em;\n  margin-bottom: 3em; }\n  .title-cover-landing h1 {\n    color: #fff; }\n  .title-cover-landing h2 {\n    color: #fff;\n    text-align: center; }\n  .title-cover-landing form {\n    text-align: center; }\n  .title-cover-landing input[type=\"text\"] {\n    width: 12em;\n    text-align: center;\n    font-size: 1.4em;\n    height: 1.5em;\n    border-radius: 3px;\n    border: 2px solid #E4E4E4;\n    margin: 0.5em auto 0 auto;\n    padding: 0.25em; }\n  .title-cover-landing button {\n    display: block;\n    width: 8em;\n    margin: 1.5em auto 0 auto;\n    background: #3FB083;\n    border: none;\n    border-radius: 3px;\n    padding: 0.9em 0.7em 0.9em 0.7em;\n    color: #fff;\n    font-size: 1.2em; }\n    .title-cover-landing button:hover {\n      background: #43BB8B; }\n    .title-cover-landing button .fa-rocket {\n      margin-right: 5px; }\n  .title-cover-landing a {\n    text-decoration: none; }\n", ""]);
+	exports.push([module.id, ".landing-icon-wrap .landing-icon {\n  display: inline-block;\n  width: 33%;\n  text-align: center; }\n\n.landing-icon-wrap img {\n  width: 60%; }\n\n.landing-icon-wrap h2 {\n  text-align: center; }\n\n@media only screen and (min-width: 600px) {\n  .username-wrap {\n    width: 28em;\n    margin: 3em auto 1em auto; } }\n\n@media only screen and (max-width: 635px) {\n  .landing-icon-wrap .landing-icon {\n    display: block;\n    width: 30%;\n    margin: 0 auto; }\n  .landing-icon-wrap img {\n    width: 8em; }\n  .landing-icon-wrap h2 {\n    margin-bottom: 1.5em; } }\n\n@media only screen and (max-width: 680px) {\n  .landing-icon-3 h2 {\n    font-size: 1.4em; } }\n\n@media only screen and (max-width: 599px) {\n  .username-wrap {\n    width: 90%;\n    margin: 3em auto 1em auto; } }\n\n.title-cover-landing {\n  background: #3879D9;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 3em;\n  min-height: 6em;\n  margin-bottom: 3em; }\n  .title-cover-landing h1 {\n    color: #fff; }\n  .title-cover-landing h2 {\n    color: #fff;\n    text-align: center; }\n  .title-cover-landing form {\n    text-align: center; }\n  .title-cover-landing input[type=\"text\"] {\n    width: 12em;\n    text-align: center;\n    font-size: 1.4em;\n    height: 1.5em;\n    border-radius: 3px;\n    border: 2px solid #E4E4E4;\n    margin: 0.5em auto 0 auto;\n    padding: 0.25em; }\n  .title-cover-landing button {\n    display: block;\n    width: 8em;\n    margin: 1.5em auto 0 auto;\n    background: #3FB083;\n    border: none;\n    border-radius: 3px;\n    padding: 0.9em 0.7em 0.9em 0.7em;\n    color: #fff;\n    font-size: 1.2em; }\n    .title-cover-landing button:hover {\n      background: #43BB8B; }\n    .title-cover-landing button .fa-rocket {\n      margin-right: 5px; }\n  .title-cover-landing a {\n    text-decoration: none; }\n", ""]);
 
 	// exports
 

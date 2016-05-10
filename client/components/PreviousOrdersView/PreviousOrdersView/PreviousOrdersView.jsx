@@ -5,6 +5,11 @@ import sass2 from '../../App/app.scss'
 import PreviousOrder from '../PreviousOrder/PreviousOrder'
 
 var PreviousOrdersView = React.createClass({
+
+    componentWillMount: function() {
+        this.props.handlePreviousOrders();
+    },
+
     render: function() {
 
         var previousOrders = this.props.previousOrders.map(function(order, index) {
