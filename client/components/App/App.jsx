@@ -372,11 +372,16 @@ var App = React.createClass({
                 notificationState={this.props.notificationState} />
 
                 <nav className="main-nav">
-                    <ul role="nav">
-                        <Link to="/" onlyActiveOnIndex={true} className='router-link'><li>Dashboard</li></Link>
-                        <Link to="/account" className='router-link'><li>Account</li></Link>
-                        <Link to="/" className='router-link' onClick={this._handleUsernameRemove}><li>Log Out</li></Link>
-                    </ul>
+                    <div className="nav-logo">
+                        <img src="/img/gomocha-logo-lg.png" />
+                    </div>
+                    <div className="nav-links">
+                        <ul role="nav">
+                            <Link to="/" onlyActiveOnIndex={true} className='router-link'><li>Dashboard</li></Link>
+
+                            <Link to="/" className='router-link' onClick={this._handleUsernameRemove}><li>Log Out</li></Link>
+                        </ul>
+                    </div>
                 </nav>
                 {!this.state.username ?
                     <UsernameView handleUsername={this._handleUsername} /> :

@@ -15,7 +15,7 @@ var UsernameView = React.createClass({
         return (
             <div>
                 <div className="title-cover-landing">
-                    <h1>The fastest way to your morning coffee.</h1>
+                    <h1>The fastest way to your morning coffeee.</h1>
                         <form onSubmit={this._handleUsernameSubmit}>
                             <input
                                 type="text"

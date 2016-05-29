@@ -5,6 +5,20 @@ nav.main-nav{
     padding: 1em 0 1em 0;
 }
 
+div.nav-logo {
+    position: absolute;
+    left: 2em;
+    top: 0.5em;
+}
+
+div.nav-logo img {
+    width: 11em;
+}
+
+div.nav-links {
+}
+
+
 nav.main-nav ul{
     width: 80%;
     margin: 0 auto;
@@ -69,5 +83,16 @@ nav.main-nav ul li {
 
     h1 {
         color: #fff;
+    }
+}
+
+@media only screen and (max-width: 635px) {
+    div.nav-logo {
+        top: 1.5em;
+        left: 1em;
+
+        img {
+            width: 6em;
+        }
     }
 }
