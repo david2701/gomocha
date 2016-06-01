@@ -108,18 +108,18 @@ var MenuItem = React.createClass({
                 <div className="item-top-row">
 
                     <div className="item-options">
-                    {/* MilkType - Size - Quantity */}
-                    {this.props.options.map(this._renderOption)}
+                        {/* MilkType - Size - Quantity */}
+                        {this.props.options.map(this._renderOption)}
 
-                    {/* AddToOrderButton */}
+                        {/* AddToOrderButton */}
 
-                    {this._checkFormComplete() ? <AddToOrderButton
-                        handleAddItemToOrder={this._handleAddItemToOrder}
-                        handleItemFormComplete={this._handleItemFormComplete}
-                        toggleAddNotification={this.props.toggleAddNotification}
-                        itemName={this.props.itemName}
-                        price={this.props.price}
-                        itemDetails={this.state} /> : ''}
+                        {this._checkFormComplete() ? <AddToOrderButton
+                            handleAddItemToOrder={this._handleAddItemToOrder}
+                            handleItemFormComplete={this._handleItemFormComplete}
+                            toggleAddNotification={this.props.toggleAddNotification}
+                            itemName={this.props.itemName}
+                            price={this.props.price}
+                            itemDetails={this.state} /> : ''}
                     </div>
                     {/* Price */}
                     <div className="item-price">

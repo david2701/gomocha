@@ -52,7 +52,7 @@ var OrderTotalRow = React.createClass({
                         ${(price * quantity).toFixed(2)}
                         <span title='Delete item from order'
                             onClick={this._handleDeleteItem} >
-                            <i className="fa fa-trash delete-item hide"></i>
+                            <i className="fa fa-times delete-item hide"></i>
                         </span>
                     </td>
                 </tr>

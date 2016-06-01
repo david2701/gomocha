@@ -19,10 +19,7 @@ var AddItemNotification = React.createClass({
         }
 
         return (
-            <div className={notificationType}
-                onClick={() =>
-                    this.props.toggleNotification()
-                }>
+            <div className={notificationType}>
                 <a className="item-notification-text">{notificationText}</a>
             </div>
         )
