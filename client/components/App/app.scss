@@ -8,11 +8,18 @@ nav.main-nav{
 div.nav-logo {
     position: absolute;
     left: 2em;
-    top: 0.5em;
+    top: 0.6em;
 }
 
-div.nav-logo img {
-    width: 11em;
+div.nav-logo {
+
+    img.logo-lg {
+        width: 10em;
+    }
+
+    img.logo-sml {
+        display: none;
+    }
 }
 
 div.nav-links {
@@ -88,11 +95,28 @@ nav.main-nav ul li {
 
 @media only screen and (max-width: 635px) {
     div.nav-logo {
-        top: 1.5em;
+        top: 1.3em;
         left: 1em;
 
-        img {
-            width: 6em;
+        img.logo-lg {
+            width: 7em;
+        }
+    }
+}
+
+@media only screen and (max-width: 460px) {
+    div.nav-logo {
+
+        img.logo-lg {
+            display: none;
+        }
+
+        img.logo-sml {
+            display: inline;
+            width: 2.5em;
+            position: absolute;
+            top: -10px;
+            left: 10px;
         }
     }
 }

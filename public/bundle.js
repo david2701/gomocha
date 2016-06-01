@@ -25551,7 +25551,8 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'nav-logo' },
-	                    _react2.default.createElement('img', { src: '/img/gomocha-logo-lg.png' })
+	                    _react2.default.createElement('img', { className: 'logo-lg', src: '/img/gomocha-logo-lg.png' }),
+	                    _react2.default.createElement('img', { className: 'logo-sml', src: '/img/gomocha-logo-sml.png' })
 	                ),
 	                _react2.default.createElement(
 	                    'div',
@@ -26821,7 +26822,7 @@
 
 
 	// module
-	exports.push([module.id, "nav.main-nav {\n  width: 100%;\n  margin: 0 auto 0 auto;\n  text-align: center;\n  padding: 1em 0 1em 0; }\n\ndiv.nav-logo {\n  position: absolute;\n  left: 2em;\n  top: 0.5em; }\n\ndiv.nav-logo img {\n  width: 11em; }\n\nnav.main-nav ul {\n  width: 80%;\n  margin: 0 auto;\n  padding: 0; }\n\nnav.main-nav ul li {\n  display: inline-block;\n  font-size: 16px;\n  padding: 0.75em;\n  border-radius: 5px;\n  margin-right: 5px;\n  color: #8F8F8F; }\n  nav.main-nav ul li:hover {\n    color: #333333; }\n\n.router-link {\n  font-size: 0.85em;\n  text-decoration: none;\n  color: #1987FE; }\n\n.center-wrap {\n  width: 520px;\n  margin: 0 auto; }\n\n.next-button {\n  margin: 1em 0 0 0;\n  text-align: center;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer;\n    background: #4582db; }\n\n.main-wrap {\n  padding: 1em; }\n\n.title-cover {\n  background: #3879D9;\n  padding: 3em;\n  min-height: 6em;\n  margin-bottom: 1em; }\n  .title-cover h1 {\n    color: #fff; }\n\n@media only screen and (max-width: 635px) {\n  div.nav-logo {\n    top: 1.5em;\n    left: 1em; }\n    div.nav-logo img {\n      width: 6em; } }\n", ""]);
+	exports.push([module.id, "nav.main-nav {\n  width: 100%;\n  margin: 0 auto 0 auto;\n  text-align: center;\n  padding: 1em 0 1em 0; }\n\ndiv.nav-logo {\n  position: absolute;\n  left: 2em;\n  top: 0.6em; }\n\ndiv.nav-logo img.logo-lg {\n  width: 10em; }\n\ndiv.nav-logo img.logo-sml {\n  display: none; }\n\nnav.main-nav ul {\n  width: 80%;\n  margin: 0 auto;\n  padding: 0; }\n\nnav.main-nav ul li {\n  display: inline-block;\n  font-size: 16px;\n  padding: 0.75em;\n  border-radius: 5px;\n  margin-right: 5px;\n  color: #8F8F8F; }\n  nav.main-nav ul li:hover {\n    color: #333333; }\n\n.router-link {\n  font-size: 0.85em;\n  text-decoration: none;\n  color: #1987FE; }\n\n.center-wrap {\n  width: 520px;\n  margin: 0 auto; }\n\n.next-button {\n  margin: 1em 0 0 0;\n  text-align: center;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer;\n    background: #4582db; }\n\n.main-wrap {\n  padding: 1em; }\n\n.title-cover {\n  background: #3879D9;\n  padding: 3em;\n  min-height: 6em;\n  margin-bottom: 1em; }\n  .title-cover h1 {\n    color: #fff; }\n\n@media only screen and (max-width: 635px) {\n  div.nav-logo {\n    top: 1.3em;\n    left: 1em; }\n    div.nav-logo img.logo-lg {\n      width: 7em; } }\n\n@media only screen and (max-width: 460px) {\n  div.nav-logo img.logo-lg {\n    display: none; }\n  div.nav-logo img.logo-sml {\n    display: inline;\n    width: 2.5em;\n    position: absolute;\n    top: -10px;\n    left: 10px; } }\n", ""]);
 
 	// exports
 
@@ -26950,7 +26951,7 @@
 	                _react2.default.createElement(
 	                    'h1',
 	                    null,
-	                    'The fastest way to your morning coffeee.'
+	                    'The fastest way to your morning coffee.'
 	                ),
 	                _react2.default.createElement(
 	                    'form',

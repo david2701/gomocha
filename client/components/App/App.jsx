@@ -373,7 +373,8 @@ var App = React.createClass({
 
                 <nav className="main-nav">
                     <div className="nav-logo">
-                        <img src="/img/gomocha-logo-lg.png" />
+                        <img className="logo-lg" src="/img/gomocha-logo-lg.png" />
+                        <img className="logo-sml" src="/img/gomocha-logo-sml.png" />
                     </div>
                     <div className="nav-links">
                         <ul role="nav">
