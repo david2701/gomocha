@@ -116,7 +116,7 @@ var MenuItem = React.createClass({
                     {this._checkFormComplete() ? <AddToOrderButton
                         handleAddItemToOrder={this._handleAddItemToOrder}
                         handleItemFormComplete={this._handleItemFormComplete}
-                        toggleNotification={this.props.toggleNotification}
+                        toggleAddNotification={this.props.toggleAddNotification}
                         itemName={this.props.itemName}
                         price={this.props.price}
                         itemDetails={this.state} /> : ''}

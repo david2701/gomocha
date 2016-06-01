@@ -28,7 +28,10 @@ var App = React.createClass({
             duration: '',
             items: [],
             specialInstructions: '',
-            notification: false,
+            notification: {
+                add: false,
+                delete: false
+            },
             methodOfTrans: '',
             pickupTime: '',
             favorite: false,
@@ -332,13 +335,33 @@ var App = React.createClass({
         })
     },
 
-    _toggleNotification: function() {
+    _toggleAddNotification: function() {
         this.setState({
-            notification: !this.state.notification
+            notification: {
+                add: true
+            }
         });
         var clearNotification = () => {
             this.setState({
-                notification: false
+                notification: {
+                    add: false
+                }
+            })
+        };
+        setTimeout(clearNotification, 3000);
+    },
+
+    _toggleDeleteNotification: function() {
+        this.setState({
+            notification: {
+                delete: true
+            }
+        });
+        var clearNotification = () => {
+            this.setState({
+                notification: {
+                    delete: false
+                }
             })
         };
         setTimeout(clearNotification, 3000);
@@ -367,10 +390,6 @@ var App = React.createClass({
     render: function() {
         return (
             <div>
-                <AddItemNotification
-                toggleNotification={this.props.toggleNotification}
-                notificationState={this.props.notificationState} />
-
                 <nav className="main-nav">
                     <div className="nav-logo">
                         <img className="logo-lg" src="/img/gomocha-logo-lg.png" />
@@ -401,7 +420,8 @@ var App = React.createClass({
                          handleSpecialInstructions: this._handleSpecialInstructions,
                          specialInstructions: this.state.specialInstructions,
                          notification: this.state.notification,
-                         toggleNotification: this._toggleNotification,
+                         toggleAddNotification: this._toggleAddNotification,
+                         toggleDeleteNotification: this._toggleDeleteNotification,
                          handleAddItemToOrder: this._handleAddItemToOrder,
                          handleDeleteItemFromOrder: this._handleDeleteItemFromOrder,
                          handleMethodOfTrans: this._handleMethodOfTrans,

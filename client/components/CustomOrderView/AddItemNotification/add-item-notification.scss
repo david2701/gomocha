@@ -1,12 +1,10 @@
-.add-item-notification-text {
+.item-notification-text {
     color: #f6f6f6;
     text-align: center;
     text-decoration: none;
 }
 
-
-.add-item-notification {
-    background-color: #3FB083;
+.item-notification {
     color: #f6f6f6;
     font-size: 1.1em;
     padding-top: 0.7em;
@@ -17,51 +15,33 @@
     text-decoration: none;
     top: -45px;
     width: 100%;
-    animation: add-item-notification 1s ease forwards;
-
-    //
-    // &:hover:after {
-    //     background: hsla(0,0%,0%,.8);
-    //     border-radius: 3px;
-    //     color: #f6f6f6;
-    //     content: 'Click to dismiss';
-    //     font: bold 12px/30px sans-serif;
-    //     height: 30px;
-    //     left: 50%;
-    //     margin-left: -60px;
-    //     position: absolute;
-    //     text-align: center;
-    //     top: 50px;
-    //     width: 120px;
-    // }
-    // &:hover:before {
-    //     border-bottom: 10px solid hsla(0,0%,0%,.8);
-    //     content: '';
-    //     height: 0;
-    //     left: 50%;
-    //     margin-left: -10px;
-    //     position: absolute;
-    //     top: 40px;
-    //     width: 0;
-    // }
+    animation: item-notification 1s ease forwards;
 }
 
-.add-item-notification-show {
+.add-item-notification {
+    background-color: #3FB083;
+}
+
+.delete-item-notification {
+    background-color: #E2514E;
+}
+
+.item-notification-show {
     display: block;
 
 }
 
-.add-item-notification-hide {
+.item-notification-hide {
     display: none;
 }
 
-@keyframes add-item-notification {
+@keyframes item-notification {
     0% { opacity: 0; }
     50% { opacity: 1; }
     100% { top: 0; }
 }
 
-@keyframes add-item-notification-hide {
+@keyframes item-notification-hide {
     0% { top: 0 }
     50% { top: -25 }
     100% { top: -45 }

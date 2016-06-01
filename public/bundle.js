@@ -25234,7 +25234,10 @@
 	            duration: '',
 	            items: [],
 	            specialInstructions: '',
-	            notification: false,
+	            notification: {
+	                add: false,
+	                delete: false
+	            },
 	            methodOfTrans: '',
 	            pickupTime: '',
 	            favorite: false,
@@ -25503,15 +25506,37 @@
 	        });
 	    },
 
-	    _toggleNotification: function _toggleNotification() {
+	    _toggleAddNotification: function _toggleAddNotification() {
 	        var _this4 = this;
 
 	        this.setState({
-	            notification: !this.state.notification
+	            notification: {
+	                add: true
+	            }
 	        });
 	        var clearNotification = function clearNotification() {
 	            _this4.setState({
-	                notification: false
+	                notification: {
+	                    add: false
+	                }
+	            });
+	        };
+	        setTimeout(clearNotification, 3000);
+	    },
+
+	    _toggleDeleteNotification: function _toggleDeleteNotification() {
+	        var _this5 = this;
+
+	        this.setState({
+	            notification: {
+	                delete: true
+	            }
+	        });
+	        var clearNotification = function clearNotification() {
+	            _this5.setState({
+	                notification: {
+	                    delete: false
+	                }
 	            });
 	        };
 	        setTimeout(clearNotification, 3000);
@@ -25541,9 +25566,6 @@
 	        return _react2.default.createElement(
 	            'div',
 	            null,
-	            _react2.default.createElement(_AddItemNotification2.default, {
-	                toggleNotification: this.props.toggleNotification,
-	                notificationState: this.props.notificationState }),
 	            _react2.default.createElement(
 	                'nav',
 	                { className: 'main-nav' },
@@ -25594,7 +25616,8 @@
 	                handleSpecialInstructions: this._handleSpecialInstructions,
 	                specialInstructions: this.state.specialInstructions,
 	                notification: this.state.notification,
-	                toggleNotification: this._toggleNotification,
+	                toggleAddNotification: this._toggleAddNotification,
+	                toggleDeleteNotification: this._toggleDeleteNotification,
 	                handleAddItemToOrder: this._handleAddItemToOrder,
 	                handleDeleteItemFromOrder: this._handleDeleteItemFromOrder,
 	                handleMethodOfTrans: this._handleMethodOfTrans,
@@ -26849,16 +26872,29 @@
 	    render: function render() {
 	        var _this = this;
 
+	        var notificationType = '';
+	        var notificationText = '';
+
+	        if (this.props.notification.add) {
+	            notificationType = 'item-notification add-item-notification item-notification-show';
+	            notificationText = 'Item added to order!';
+	        } else if (this.props.notification.delete) {
+	            notificationType = 'item-notification delete-item-notification item-notification-show';
+	            notificationText = 'Item removed from order!';
+	        } else {
+	            notificationType = 'item-notification item-notification-hide';
+	        }
+
 	        return _react2.default.createElement(
 	            'div',
-	            { className: this.props.notificationState ? 'add-item-notification add-item-notification-show' : 'add-item-notification add-item-notification-hide',
+	            { className: notificationType,
 	                onClick: function onClick() {
 	                    return _this.props.toggleNotification();
 	                } },
 	            _react2.default.createElement(
 	                'a',
-	                { className: 'add-item-notification-text' },
-	                'Item added to order'
+	                { className: 'item-notification-text' },
+	                notificationText
 	            )
 	        );
 	    }
@@ -26901,7 +26937,7 @@
 
 
 	// module
-	exports.push([module.id, ".add-item-notification-text {\n  color: #f6f6f6;\n  text-align: center;\n  text-decoration: none; }\n\n.add-item-notification {\n  background-color: #3FB083;\n  color: #f6f6f6;\n  font-size: 1.1em;\n  padding-top: 0.7em;\n  height: 38px;\n  position: fixed;\n  left: 0;\n  text-align: center;\n  text-decoration: none;\n  top: -45px;\n  width: 100%;\n  animation: add-item-notification 1s ease forwards; }\n\n.add-item-notification-show {\n  display: block; }\n\n.add-item-notification-hide {\n  display: none; }\n\n@keyframes add-item-notification {\n  0% {\n    opacity: 0; }\n  50% {\n    opacity: 1; }\n  100% {\n    top: 0; } }\n\n@keyframes add-item-notification-hide {\n  0% {\n    top: 0; }\n  50% {\n    top: -25; }\n  100% {\n    top: -45; } }\n", ""]);
+	exports.push([module.id, ".item-notification-text {\n  color: #f6f6f6;\n  text-align: center;\n  text-decoration: none; }\n\n.item-notification {\n  color: #f6f6f6;\n  font-size: 1.1em;\n  padding-top: 0.7em;\n  height: 38px;\n  position: fixed;\n  left: 0;\n  text-align: center;\n  text-decoration: none;\n  top: -45px;\n  width: 100%;\n  animation: item-notification 1s ease forwards; }\n\n.add-item-notification {\n  background-color: #3FB083; }\n\n.delete-item-notification {\n  background-color: #E2514E; }\n\n.item-notification-show {\n  display: block; }\n\n.item-notification-hide {\n  display: none; }\n\n@keyframes item-notification {\n  0% {\n    opacity: 0; }\n  50% {\n    opacity: 1; }\n  100% {\n    top: 0; } }\n\n@keyframes item-notification-hide {\n  0% {\n    top: 0; }\n  50% {\n    top: -25; }\n  100% {\n    top: -45; } }\n", ""]);
 
 	// exports
 
@@ -44160,16 +44196,16 @@
 	                'div',
 	                { className: 'main-wrap' },
 	                _react2.default.createElement(_AddItemNotification2.default, {
-	                    toggleNotification: this.props.toggleNotification,
-	                    notificationState: this.props.notification }),
+	                    notification: this.props.notification }),
 	                _react2.default.createElement(_MenuFormContainer2.default, {
 	                    data: this.props.data,
 	                    handleSpecialInstructions: this.props.handleSpecialInstructions,
 	                    handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                    toggleNotification: this.props.toggleNotification }),
+	                    toggleAddNotification: this.props.toggleAddNotification }),
 	                _react2.default.createElement(_OrderTotal2.default, {
 	                    orderItems: this.props.items,
-	                    handleDeleteItemFromOrder: this.props.handleDeleteItemFromOrder }),
+	                    handleDeleteItemFromOrder: this.props.handleDeleteItemFromOrder,
+	                    toggleDeleteNotification: this.props.toggleDeleteNotification }),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'next-button-container' },
@@ -44232,22 +44268,22 @@
 	                data: this.props.data,
 	                slug: 'hot-drinks',
 	                handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                toggleNotification: this.props.toggleNotification }),
+	                toggleAddNotification: this.props.toggleAddNotification }),
 	            _react2.default.createElement(_MenuSection2.default, {
 	                data: this.props.data,
 	                slug: 'cold-drinks',
 	                handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                toggleNotification: this.props.toggleNotification }),
+	                toggleAddNotification: this.props.toggleAddNotification }),
 	            _react2.default.createElement(_MenuSection2.default, {
 	                data: this.props.data,
 	                slug: 'tea',
 	                handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                toggleNotification: this.props.toggleNotification }),
+	                toggleAddNotification: this.props.toggleAddNotification }),
 	            _react2.default.createElement(_MenuSection2.default, {
 	                data: this.props.data,
 	                slug: 'bakery',
 	                handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                toggleNotification: this.props.toggleNotification }),
+	                toggleAddNotification: this.props.toggleAddNotification }),
 	            _react2.default.createElement(_SpecialInstructions2.default, {
 	                handleSpecialInstructions: this.props.handleSpecialInstructions })
 	        );
@@ -44297,7 +44333,7 @@
 	                key: item.id,
 	                handleAddItemToOrder: _this.props.handleAddItemToOrder,
 	                calculateTotalAndTax: _this.props.calculateTotalAndTax,
-	                toggleNotification: _this.props.toggleNotification });
+	                toggleAddNotification: _this.props.toggleAddNotification });
 	        });
 
 	        return _react2.default.createElement(
@@ -44473,7 +44509,7 @@
 	                    this._checkFormComplete() ? _react2.default.createElement(_AddToOrderButton2.default, {
 	                        handleAddItemToOrder: this._handleAddItemToOrder,
 	                        handleItemFormComplete: this._handleItemFormComplete,
-	                        toggleNotification: this.props.toggleNotification,
+	                        toggleAddNotification: this.props.toggleAddNotification,
 	                        itemName: this.props.itemName,
 	                        price: this.props.price,
 	                        itemDetails: this.state }) : ''
@@ -44530,7 +44566,7 @@
 	            { className: 'add-to-order',
 	                onClick: function onClick() {
 	                    _this.props.handleAddItemToOrder(itemDetails);
-	                    _this.props.toggleNotification();
+	                    _this.props.toggleAddNotification();
 	                } },
 	            _react2.default.createElement(
 	                'span',
@@ -45076,6 +45112,7 @@
 	            return _react2.default.createElement(_OrderTotalRow2.default, {
 	                itemDetails: item,
 	                handleDeleteItemFromOrder: _this.props.handleDeleteItemFromOrder,
+	                toggleDeleteNotification: _this.props.toggleDeleteNotification,
 	                key: index,
 	                index: index });
 	        });
@@ -45132,6 +45169,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _AddItemNotification = __webpack_require__(225);
+
+	var _AddItemNotification2 = _interopRequireDefault(_AddItemNotification);
+
 	var _orderTotalRow = __webpack_require__(270);
 
 	var _orderTotalRow2 = _interopRequireDefault(_orderTotalRow);
@@ -45144,6 +45185,7 @@
 
 	    _handleDeleteItem: function _handleDeleteItem() {
 	        this.props.handleDeleteItemFromOrder(this.props.index);
+	        this.props.toggleDeleteNotification();
 	    },
 
 	    render: function render() {
@@ -45296,7 +45338,6 @@
 	                _react2.default.createElement(
 	                    'td',
 	                    null,
-	                    'hey how are you',
 	                    _react2.default.createElement(
 	                        'span',
 	                        null,

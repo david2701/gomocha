@@ -16,7 +16,7 @@ var OrderTotalRowOtherDetails = React.createClass({
         return (
             <div>
                 <tr className='order-total-row'>
-                    <td>hey how are you
+                    <td>
                         <span> - </span>
 
                         <span> </span>

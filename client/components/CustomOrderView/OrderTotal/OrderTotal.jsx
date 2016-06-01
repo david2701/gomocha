@@ -15,6 +15,7 @@ var OrderTotal = React.createClass({
                         <OrderTotalRow
                             itemDetails={item}
                             handleDeleteItemFromOrder={this.props.handleDeleteItemFromOrder}
+                            toggleDeleteNotification={this.props.toggleDeleteNotification}
                             key={index}
                             index={index} />
 

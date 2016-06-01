@@ -1,10 +1,12 @@
 import React from 'react'
+import AddItemNotification from '../AddItemNotification/AddItemNotification'
 import sass from './order-total-row.scss'
 
 var OrderTotalRow = React.createClass({
 
     _handleDeleteItem: function() {
-        this.props.handleDeleteItemFromOrder(this.props.index)
+        this.props.handleDeleteItemFromOrder(this.props.index);
+        this.props.toggleDeleteNotification();
     },
 
     render: function() {

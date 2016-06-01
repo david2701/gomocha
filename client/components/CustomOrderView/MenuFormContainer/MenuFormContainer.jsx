@@ -18,22 +18,22 @@ var MenuFormContainer = React.createClass({
                     data={this.props.data}
                     slug="hot-drinks"
                     handleAddItemToOrder={this.props.handleAddItemToOrder}
-                    toggleNotification={this.props.toggleNotification} />
+                    toggleAddNotification={this.props.toggleAddNotification} />
                 <MenuSection
                     data={this.props.data}
                     slug="cold-drinks"
                     handleAddItemToOrder={this.props.handleAddItemToOrder}
-                    toggleNotification={this.props.toggleNotification} />
+                    toggleAddNotification={this.props.toggleAddNotification} />
                 <MenuSection
                     data={this.props.data}
                     slug="tea"
                     handleAddItemToOrder={this.props.handleAddItemToOrder}
-                    toggleNotification={this.props.toggleNotification} />
+                    toggleAddNotification={this.props.toggleAddNotification} />
                 <MenuSection
                     data={this.props.data}
                     slug="bakery"
                     handleAddItemToOrder={this.props.handleAddItemToOrder}
-                    toggleNotification={this.props.toggleNotification} />
+                    toggleAddNotification={this.props.toggleAddNotification} />
                 <SpecialInstructions
                     handleSpecialInstructions={this.props.handleSpecialInstructions} />
             </form>
