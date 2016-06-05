@@ -44551,6 +44551,19 @@
 	    displayName: 'AddToOrderButton',
 
 
+	    // componentDidMount: function() {
+	    //     // Get the components DOM node
+	    //     var elem = this.React.findDOMNode();
+	    //     // Set the opacity of the element to 0
+	    //     elem.style.opacity = 0;
+	    //     window.requestAnimationFrame(function() {
+	    //         // Now set a transition on the opacity
+	    //         elem.style.transition = "opacity 250ms";
+	    //         // and set the opacity to 1
+	    //         elem.style.opacity = 1;
+	    //     });
+	    // },
+
 	    render: function render() {
 	        var _this = this;
 
@@ -44566,18 +44579,8 @@
 	                        _this.props.handleAddItemToOrder(itemDetails);
 	                        _this.props.toggleAddNotification();
 	                    } },
-	                _react2.default.createElement(
-	                    'span',
-	                    { title: 'Add item to order' },
-	                    _react2.default.createElement('i', { className: 'fa fa-plus-circle add-item-icon fa-lg' })
-	                )
-	            ),
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'add-to-order-helper' },
-	                'Click to add item to order!'
-	            ),
-	            _react2.default.createElement('div', { className: 'add-to-order-arrow' })
+	                'Click to add'
+	            )
 	        );
 	    }
 	});
@@ -44619,7 +44622,7 @@
 
 
 	// module
-	exports.push([module.id, ".decaf-option {\n  display: inline-block; }\n\n.decaf-input {\n  margin-left: 0.5em; }\n\n.hot-or-cold-option {\n  display: inline-block; }\n\n.hot-or-cold-option label {\n  margin-left: 1em; }\n\n.hot-input, .cold-input {\n  margin-left: 0.4em; }\n\n.add-to-order-wrap {\n  position: absolute;\n  display: inline-block; }\n  .add-to-order-wrap .add-to-order {\n    color: #fff;\n    margin-left: 1em;\n    display: inline-block; }\n    .add-to-order-wrap .add-to-order:hover {\n      cursor: pointer; }\n  .add-to-order-wrap .add-to-order-helper {\n    display: inline;\n    position: relative;\n    bottom: 3em;\n    left: -9em;\n    margin-left: 2em;\n    padding: 0.5em 1.1em 0.5em 1.1em;\n    border: 1px solid #3FB083;\n    background: #3FB083;\n    color: #fff;\n    border-radius: 6px; }\n  .add-to-order-wrap .add-to-order-arrow {\n    width: 0;\n    height: 0;\n    position: relative;\n    bottom: 3em;\n    left: 0.3em;\n    border-left: 20px solid transparent;\n    border-right: 20px solid transparent;\n    border-top: 20px solid #3FB083; }\n  .add-to-order-wrap .add-item-icon {\n    color: #3FB083; }\n", ""]);
+	exports.push([module.id, ".decaf-option {\n  display: inline-block; }\n\n.decaf-input {\n  margin-left: 0.5em; }\n\n.hot-or-cold-option {\n  display: inline-block; }\n\n.hot-or-cold-option label {\n  margin-left: 1em; }\n\n.hot-input, .cold-input {\n  margin-left: 0.4em; }\n\n.add-to-order-wrap {\n  position: absolute;\n  display: inline-block; }\n  .add-to-order-wrap .add-to-order {\n    color: #fff;\n    background: #3FB083;\n    margin-left: 1em;\n    display: inline-block;\n    border-radius: 3px;\n    font-size: 0.8em;\n    padding: 0.3em 0.5em 0.3em 0.5em; }\n    .add-to-order-wrap .add-to-order:hover {\n      cursor: pointer;\n      background: #52c195; }\n", ""]);
 
 	// exports
 

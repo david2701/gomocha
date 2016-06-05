@@ -24,39 +24,18 @@
 
     .add-to-order {
         color: #fff;
+        background: #3FB083;
         margin-left: 1em;
         display: inline-block;
+        border-radius: 3px;
+        font-size: 0.8em;
+        padding: 0.3em 0.5em 0.3em 0.5em;
 
         &:hover {
             cursor: pointer;
+            background: lighten(#3FB083, 7%);
         }
     }
 
-    .add-to-order-helper {
-        display: inline;
-        position: relative;
-        bottom: 3em;
-        left: -9em;
-        margin-left: 2em;
-        padding: 0.5em 1.1em 0.5em 1.1em;
-        border: 1px solid #3FB083;
-        background: #3FB083;
-        color: #fff;
-        border-radius: 6px;
-    }
 
-    .add-to-order-arrow {
-            width: 0;
-            height: 0;
-            position: relative;
-            bottom: 3em;
-            left: 0.3em;
-            border-left: 20px solid transparent;
-            border-right: 20px solid transparent;
-            border-top: 20px solid #3FB083;
-    }
-
-    .add-item-icon {
-        color: #3FB083;
-    }
 }
