@@ -15,7 +15,7 @@
     display: inline-block;
 }
 
-.item-name {
+.item-name-wrap {
     margin-right: 0.5em;
     display: inline-block;
     font-size: 1.2em;
@@ -25,6 +25,10 @@
     border-bottom: 1px solid #E4E4E4;
     padding-left: 0.5em;
     padding-right: 0.5em;
+
+    .item-name {
+        float: left;
+    }
 }
 
 .item-options {

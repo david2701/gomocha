@@ -44487,12 +44487,23 @@
 	            { className: 'drink-item' },
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'item-name' },
+	                { className: 'item-name-wrap' },
 	                _react2.default.createElement(
-	                    'label',
-	                    { htmlFor: 'hot-drink' },
-	                    this.props.itemName
-	                )
+	                    'div',
+	                    { className: 'item-name' },
+	                    _react2.default.createElement(
+	                        'label',
+	                        { htmlFor: 'hot-drink' },
+	                        this.props.itemName
+	                    )
+	                ),
+	                this._checkFormComplete() ? _react2.default.createElement(_AddToOrderButton2.default, {
+	                    handleAddItemToOrder: this._handleAddItemToOrder,
+	                    handleItemFormComplete: this._handleItemFormComplete,
+	                    toggleAddNotification: this.props.toggleAddNotification,
+	                    itemName: this.props.itemName,
+	                    price: this.props.price,
+	                    itemDetails: this.state }) : ''
 	            ),
 	            _react2.default.createElement(
 	                'div',
@@ -44500,14 +44511,7 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'item-options' },
-	                    this.props.options.map(this._renderOption),
-	                    this._checkFormComplete() ? _react2.default.createElement(_AddToOrderButton2.default, {
-	                        handleAddItemToOrder: this._handleAddItemToOrder,
-	                        handleItemFormComplete: this._handleItemFormComplete,
-	                        toggleAddNotification: this.props.toggleAddNotification,
-	                        itemName: this.props.itemName,
-	                        price: this.props.price,
-	                        itemDetails: this.state }) : ''
+	                    this.props.options.map(this._renderOption)
 	                ),
 	                _react2.default.createElement(
 	                    'div',
@@ -44622,7 +44626,7 @@
 
 
 	// module
-	exports.push([module.id, ".decaf-option {\n  display: inline-block; }\n\n.decaf-input {\n  margin-left: 0.5em; }\n\n.hot-or-cold-option {\n  display: inline-block; }\n\n.hot-or-cold-option label {\n  margin-left: 1em; }\n\n.hot-input, .cold-input {\n  margin-left: 0.4em; }\n\n.add-to-order-wrap {\n  position: absolute;\n  display: inline-block; }\n  .add-to-order-wrap .add-to-order {\n    color: #fff;\n    background: #3FB083;\n    margin-left: 1em;\n    display: inline-block;\n    border-radius: 3px;\n    font-size: 0.8em;\n    padding: 0.3em 0.5em 0.3em 0.5em; }\n    .add-to-order-wrap .add-to-order:hover {\n      cursor: pointer;\n      background: #52c195; }\n", ""]);
+	exports.push([module.id, ".decaf-option {\n  display: inline-block; }\n\n.decaf-input {\n  margin-left: 0.5em; }\n\n.hot-or-cold-option {\n  display: inline-block; }\n\n.hot-or-cold-option label {\n  margin-left: 1em; }\n\n.hot-input, .cold-input {\n  margin-left: 0.4em; }\n\n.add-to-order-wrap {\n  display: inline-block;\n  float: right;\n  margin-right: 1em;\n  margin-top: -0.1em; }\n  .add-to-order-wrap .add-to-order {\n    color: #fff;\n    background: #3FB083;\n    margin-left: 1em;\n    border-radius: 3px;\n    font-size: 0.7em;\n    padding: 0.3em 0.5em 0.3em 0.5em; }\n    .add-to-order-wrap .add-to-order:hover {\n      cursor: pointer;\n      background: #52c195; }\n", ""]);
 
 	// exports
 
@@ -44914,7 +44918,7 @@
 
 
 	// module
-	exports.push([module.id, ".drink-item {\n  overflow: hidden;\n  margin-bottom: 1.2em;\n  border: 1px solid #E4E4E4;\n  padding: 0.5em 0em 0.5em 0em;\n  border-radius: 3px; }\n  .drink-item select {\n    margin-right: 0.5em; }\n\n.item-top-row {\n  margin-bottom: 0.75em;\n  width: 100%;\n  display: inline-block; }\n\n.item-name {\n  margin-right: 0.5em;\n  display: inline-block;\n  font-size: 1.2em;\n  width: 100%;\n  padding-bottom: 0.25em;\n  margin-bottom: 0.5em;\n  border-bottom: 1px solid #E4E4E4;\n  padding-left: 0.5em;\n  padding-right: 0.5em; }\n\n.item-options {\n  width: 82%;\n  display: inline-block;\n  padding-left: 0.5em; }\n\n.item-other-options {\n  font-size: 0.85em;\n  padding-left: 0.5em; }\n\n.item-price {\n  display: inline-block;\n  width: 5%;\n  font-size: 1em;\n  padding-right: 0.75em;\n  padding-top: 5px; }\n", ""]);
+	exports.push([module.id, ".drink-item {\n  overflow: hidden;\n  margin-bottom: 1.2em;\n  border: 1px solid #E4E4E4;\n  padding: 0.5em 0em 0.5em 0em;\n  border-radius: 3px; }\n  .drink-item select {\n    margin-right: 0.5em; }\n\n.item-top-row {\n  margin-bottom: 0.75em;\n  width: 100%;\n  display: inline-block; }\n\n.item-name-wrap {\n  margin-right: 0.5em;\n  display: inline-block;\n  font-size: 1.2em;\n  width: 100%;\n  padding-bottom: 0.25em;\n  margin-bottom: 0.5em;\n  border-bottom: 1px solid #E4E4E4;\n  padding-left: 0.5em;\n  padding-right: 0.5em; }\n  .item-name-wrap .item-name {\n    float: left; }\n\n.item-options {\n  width: 82%;\n  display: inline-block;\n  padding-left: 0.5em; }\n\n.item-other-options {\n  font-size: 0.85em;\n  padding-left: 0.5em; }\n\n.item-price {\n  display: inline-block;\n  width: 5%;\n  font-size: 1em;\n  padding-right: 0.75em;\n  padding-top: 5px; }\n", ""]);
 
 	// exports
 
