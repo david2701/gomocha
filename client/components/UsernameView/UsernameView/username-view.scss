@@ -20,6 +20,10 @@
         width: 28em;
         margin: 3em auto 1em auto;
     }
+
+    .landing-icon-wrap {
+        margin-bottom: 5em;
+    }
 }
 
 @media only screen and (max-width: 635px) {
@@ -57,13 +61,13 @@
 
 
 .title-cover-landing {
-    // background-image: url("/img/coffee-cover1.jpg");
-    background: #3879D9;
+    background-image: url("/img/coffee-cover5.jpg");
+    // background: #3879D9;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    padding: 3em;
-    min-height: 6em;
+    padding: 7em;
+    min-height: 7em;
     margin-bottom: 3em;
 
     h1 {
