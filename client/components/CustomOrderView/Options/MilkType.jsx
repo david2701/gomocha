@@ -3,6 +3,12 @@ import sass from './options.scss'
 
 var MilkType = React.createClass({
 
+    propTypes: {
+        handleChange: React.PropTypes.func,
+        key: React.PropTypes.string,
+        value: React.PropTypes.string
+    },
+
     render: function() {
 
         return (

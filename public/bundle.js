@@ -44351,7 +44351,6 @@
 	        data: _react2.default.PropTypes.object,
 	        slug: _react2.default.PropTypes.string,
 	        handleAddItemToOrder: _react2.default.PropTypes.func,
-	        calculateTotalAndTax: _react2.default.PropTypes.func,
 	        toggleAddNotification: _react2.default.PropTypes.func
 	    },
 
@@ -44434,6 +44433,16 @@
 	var MenuItem = _react2.default.createClass({
 	    displayName: 'MenuItem',
 
+
+	    propTypes: {
+	        itemName: _react2.default.PropTypes.string,
+	        price: _react2.default.PropTypes.number,
+	        options: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.string),
+	        key: _react2.default.PropTypes.string,
+	        handleAddItemToOrder: _react2.default.PropTypes.func,
+	        calculateTotalAndTax: _react2.default.PropTypes.func,
+	        toggleAddNotification: _react2.default.PropTypes.func
+	    },
 
 	    getInitialState: function getInitialState() {
 	        return {};
@@ -44595,18 +44604,20 @@
 	    displayName: 'AddToOrderButton',
 
 
-	    // componentDidMount: function() {
-	    //     // Get the components DOM node
-	    //     var elem = this.React.findDOMNode();
-	    //     // Set the opacity of the element to 0
-	    //     elem.style.opacity = 0;
-	    //     window.requestAnimationFrame(function() {
-	    //         // Now set a transition on the opacity
-	    //         elem.style.transition = "opacity 250ms";
-	    //         // and set the opacity to 1
-	    //         elem.style.opacity = 1;
-	    //     });
-	    // },
+	    propTypes: {
+	        handleAddItemToOrder: _react2.default.PropTypes.func,
+	        handleItemFormComplete: _react2.default.PropTypes.func,
+	        toggleAddNotification: _react2.default.PropTypes.func,
+	        itemName: _react2.default.PropTypes.string,
+	        price: _react2.default.PropTypes.number,
+	        itemDetails: _react2.default.PropTypes.shape({
+	            milkType: _react2.default.PropTypes.string,
+	            quantity: _react2.default.PropTypes.string,
+	            size: _react2.default.PropTypes.string,
+	            itemName: _react2.default.PropTypes.string,
+	            price: _react2.default.PropTypes.number
+	        })
+	    },
 
 	    render: function render() {
 	        var _this = this;
@@ -44691,6 +44702,12 @@
 	    displayName: 'MilkType',
 
 
+	    propTypes: {
+	        handleChange: _react2.default.PropTypes.func,
+	        key: _react2.default.PropTypes.string,
+	        value: _react2.default.PropTypes.string
+	    },
+
 	    render: function render() {
 
 	        return _react2.default.createElement(
@@ -44751,6 +44768,13 @@
 	var Size = _react2.default.createClass({
 	    displayName: 'Size',
 
+
+	    propTypes: {
+	        handleChange: _react2.default.PropTypes.func,
+	        key: _react2.default.PropTypes.string,
+	        value: _react2.default.PropTypes.string
+	    },
+
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'select',
@@ -44799,6 +44823,13 @@
 
 	var Quantity = _react2.default.createClass({
 	    displayName: 'Quantity',
+
+
+	    propTypes: {
+	        handleChange: _react2.default.PropTypes.func,
+	        key: _react2.default.PropTypes.string,
+	        value: _react2.default.PropTypes.string
+	    },
 
 	    render: function render() {
 	        var _this = this;
@@ -44863,6 +44894,13 @@
 	var Decaf = _react2.default.createClass({
 	    displayName: 'Decaf',
 
+
+	    propTypes: {
+	        handleChange: _react2.default.PropTypes.func,
+	        key: _react2.default.PropTypes.string,
+	        value: _react2.default.PropTypes.string
+	    },
+
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
@@ -44898,6 +44936,13 @@
 
 	var HotOrCold = _react2.default.createClass({
 	    displayName: 'HotOrCold',
+
+
+	    propTypes: {
+	        handleChange: _react2.default.PropTypes.func,
+	        key: _react2.default.PropTypes.string,
+	        value: _react2.default.PropTypes.string
+	    },
 
 	    render: function render() {
 	        return _react2.default.createElement(
@@ -45021,6 +45066,11 @@
 
 	var SpecialInstructions = _react2.default.createClass({
 	    displayName: 'SpecialInstructions',
+
+
+	    propTypes: {
+	        handleSpecialInstructions: _react2.default.PropTypes.func
+	    },
 
 	    render: function render() {
 	        return _react2.default.createElement(

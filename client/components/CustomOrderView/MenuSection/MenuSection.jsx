@@ -9,7 +9,6 @@ var MenuSection = React.createClass({
         data: React.PropTypes.object,
         slug: React.PropTypes.string,
         handleAddItemToOrder: React.PropTypes.func,
-        calculateTotalAndTax: React.PropTypes.func,
         toggleAddNotification: React.PropTypes.func
     },
 

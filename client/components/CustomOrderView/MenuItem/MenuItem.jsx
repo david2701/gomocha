@@ -10,6 +10,16 @@ import _ from 'lodash'
 
 var MenuItem = React.createClass({
 
+    propTypes: {
+        itemName: React.PropTypes.string,
+        price: React.PropTypes.number,
+        options: React.PropTypes.arrayOf(React.PropTypes.string),
+        key: React.PropTypes.string,
+        handleAddItemToOrder: React.PropTypes.func,
+        calculateTotalAndTax: React.PropTypes.func,
+        toggleAddNotification: React.PropTypes.func
+    },
+
     getInitialState: function() {
         return {}
     },

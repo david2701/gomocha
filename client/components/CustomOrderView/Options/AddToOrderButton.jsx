@@ -4,18 +4,20 @@ import sass from './options.scss'
 
 var AddToOrderButton = React.createClass({
 
-    // componentDidMount: function() {
-    //     // Get the components DOM node
-    //     var elem = this.React.findDOMNode();
-    //     // Set the opacity of the element to 0
-    //     elem.style.opacity = 0;
-    //     window.requestAnimationFrame(function() {
-    //         // Now set a transition on the opacity
-    //         elem.style.transition = "opacity 250ms";
-    //         // and set the opacity to 1
-    //         elem.style.opacity = 1;
-    //     });
-    // },
+    propTypes: {
+        handleAddItemToOrder: React.PropTypes.func,
+        handleItemFormComplete: React.PropTypes.func,
+        toggleAddNotification: React.PropTypes.func,
+        itemName: React.PropTypes.string,
+        price: React.PropTypes.number,
+        itemDetails: React.PropTypes.shape({
+            milkType: React.PropTypes.string,
+            quantity: React.PropTypes.string,
+            size: React.PropTypes.string,
+            itemName: React.PropTypes.string,
+            price: React.PropTypes.number
+        })
+    },
 
     render: function() {
         var itemDetails = _.assign({itemName: this.props.itemName, price: this.props.price}, this.props.itemDetails);

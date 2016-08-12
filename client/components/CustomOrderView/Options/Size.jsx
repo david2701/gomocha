@@ -2,6 +2,13 @@ import React from 'react'
 import sass from './options.scss'
 
 var Size = React.createClass({
+
+    propTypes: {
+        handleChange: React.PropTypes.func,
+        key: React.PropTypes.string,
+        value: React.PropTypes.string
+    },
+    
     render: function() {
         return (
             <select name="size" value={this.props.value} onChange={this.props.handleChange}>
