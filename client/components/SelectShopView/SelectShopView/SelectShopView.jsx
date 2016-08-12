@@ -1,5 +1,4 @@
 import React from 'react'
-import ShopSearch from '../ShopSearch/ShopSearch'
 import ShopList from '../ShopList/ShopList'
 import { Link } from 'react-router'
 import sass from '../../App/app.scss'

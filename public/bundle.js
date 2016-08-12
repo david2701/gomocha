@@ -45588,10 +45588,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ShopSearch = __webpack_require__(282);
-
-	var _ShopSearch2 = _interopRequireDefault(_ShopSearch);
-
 	var _ShopList = __webpack_require__(285);
 
 	var _ShopList2 = _interopRequireDefault(_ShopList);
@@ -45661,82 +45657,9 @@
 	module.exports = SelectShopView;
 
 /***/ },
-/* 282 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _shopSearch = __webpack_require__(283);
-
-	var _shopSearch2 = _interopRequireDefault(_shopSearch);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var ShopSearch = _react2.default.createClass({
-	    displayName: 'ShopSearch',
-
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            { className: 'shop-search-container' },
-	            _react2.default.createElement(
-	                'form',
-	                null,
-	                _react2.default.createElement('input', { type: 'text' }),
-	                _react2.default.createElement('input', { type: 'submit', value: 'Search' })
-	            )
-	        );
-	    }
-	});
-
-	module.exports = ShopSearch;
-
-/***/ },
-/* 283 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(284);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./shop-search.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./shop-search.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 284 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".shop-search-container {\n  margin: 4em auto 2em auto;\n  width: 15em; }\n", ""]);
-
-	// exports
-
-
-/***/ },
+/* 282 */,
+/* 283 */,
+/* 284 */,
 /* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
