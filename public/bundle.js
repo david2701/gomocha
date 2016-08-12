@@ -43977,7 +43977,7 @@
 
 
 	    propTypes: {
-	        username: _react2.default.PropTypes.string.isRequired
+	        username: _react2.default.PropTypes.string
 	    },
 
 	    render: function render() {
@@ -44898,7 +44898,7 @@
 	    propTypes: {
 	        handleChange: _react2.default.PropTypes.func,
 	        key: _react2.default.PropTypes.string,
-	        value: _react2.default.PropTypes.string
+	        value: _react2.default.PropTypes.bool
 	    },
 
 	    render: function render() {
@@ -44941,7 +44941,7 @@
 	    propTypes: {
 	        handleChange: _react2.default.PropTypes.func,
 	        key: _react2.default.PropTypes.string,
-	        value: _react2.default.PropTypes.string
+	        value: _react2.default.PropTypes.node
 	    },
 
 	    render: function render() {
@@ -45473,7 +45473,7 @@
 
 
 	    propTypes: {
-	        orderTotal: _react2.default.PropTypes.number,
+	        orderTotal: _react2.default.PropTypes.node,
 	        orderItems: _react2.default.PropTypes.array
 	    },
 
@@ -60222,6 +60222,21 @@
 	    displayName: 'ConfirmationView',
 
 
+	    propTypes: {
+	        methodOfTrans: _react2.default.PropTypes.string,
+	        duration: _react2.default.PropTypes.string,
+	        selectedShop: _react2.default.PropTypes.object,
+	        distance: _react2.default.PropTypes.string,
+	        userLocation: _react2.default.PropTypes.shape({
+	            lat: _react2.default.PropTypes.number,
+	            lng: _react2.default.PropTypes.number
+	        }),
+	        selectedShopLocation: _react2.default.PropTypes.shape({
+	            lat: _react2.default.PropTypes.number,
+	            lng: _react2.default.PropTypes.number
+	        })
+	    },
+
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
@@ -60291,6 +60306,12 @@
 
 	var OrderReadyTime = _react2.default.createClass({
 	    displayName: 'OrderReadyTime',
+
+
+	    propTypes: {
+	        methodOfTrans: _react2.default.PropTypes.string,
+	        duration: _react2.default.PropTypes.string
+	    },
 
 	    render: function render() {
 
@@ -60411,6 +60432,12 @@
 	var ShopDetails = _react2.default.createClass({
 	    displayName: 'ShopDetails',
 
+
+	    propTypes: {
+	        selectedShop: _react2.default.PropTypes.object,
+	        distance: _react2.default.PropTypes.string
+	    },
+
 	    render: function render() {
 
 	        var selectedShop = this.props.selectedShop;
@@ -60508,6 +60535,19 @@
 
 	var DirectionsAndCall = _react2.default.createClass({
 	    displayName: 'DirectionsAndCall',
+
+
+	    propTypes: {
+	        selectedShop: _react2.default.PropTypes.object,
+	        userLocation: _react2.default.PropTypes.shape({
+	            lat: _react2.default.PropTypes.number,
+	            lng: _react2.default.PropTypes.number
+	        }),
+	        selectedShopLocation: _react2.default.PropTypes.shape({
+	            lat: _react2.default.PropTypes.number,
+	            lng: _react2.default.PropTypes.number
+	        })
+	    },
 
 	    render: function render() {
 

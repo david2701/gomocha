@@ -6,9 +6,9 @@ var HotOrCold = React.createClass({
     propTypes: {
         handleChange: React.PropTypes.func,
         key: React.PropTypes.string,
-        value: React.PropTypes.string
+        value: React.PropTypes.node
     },
-    
+
     render: function() {
         return (
             <div className="hot-or-cold-option">

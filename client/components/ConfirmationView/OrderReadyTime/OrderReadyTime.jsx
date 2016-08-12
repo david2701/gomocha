@@ -2,6 +2,12 @@ import React from 'react'
 import sass from './order-ready-time.scss'
 
 var OrderReadyTime = React.createClass({
+
+    propTypes: {
+        methodOfTrans: React.PropTypes.string,
+        duration: React.PropTypes.string
+    },
+
     render: function() {
 
         var methodOfTransIcon;

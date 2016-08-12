@@ -2,6 +2,12 @@ import React from 'react'
 import sass from './shop-details.scss'
 
 var ShopDetails = React.createClass({
+
+    propTypes: {
+        selectedShop: React.PropTypes.object,
+        distance: React.PropTypes.string
+    },
+
     render: function() {
 
         var selectedShop = this.props.selectedShop;

@@ -8,6 +8,21 @@ import sass2 from '../../App/app.scss'
 
 var ConfirmationView = React.createClass({
 
+    propTypes: {
+        methodOfTrans: React.PropTypes.string,
+        duration: React.PropTypes.string,
+        selectedShop: React.PropTypes.object,
+        distance: React.PropTypes.string,
+        userLocation: React.PropTypes.shape({
+            lat: React.PropTypes.number,
+            lng: React.PropTypes.number
+        }),
+        selectedShopLocation: React.PropTypes.shape({
+            lat: React.PropTypes.number,
+            lng: React.PropTypes.number
+        })
+    },
+
     render: function() {
         return (
             <div>

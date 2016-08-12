@@ -6,9 +6,9 @@ var Decaf = React.createClass({
     propTypes: {
         handleChange: React.PropTypes.func,
         key: React.PropTypes.string,
-        value: React.PropTypes.string
+        value: React.PropTypes.bool
     },
-    
+
     render: function() {
         return (
             <div className="decaf-option">

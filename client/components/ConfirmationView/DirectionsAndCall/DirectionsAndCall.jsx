@@ -2,6 +2,19 @@ import React from 'react'
 import sass from './directions-and-call.scss'
 
 var DirectionsAndCall = React.createClass({
+
+    propTypes: {
+        selectedShop: React.PropTypes.object,
+        userLocation: React.PropTypes.shape({
+            lat: React.PropTypes.number,
+            lng: React.PropTypes.number
+        }),
+        selectedShopLocation: React.PropTypes.shape({
+            lat: React.PropTypes.number,
+            lng: React.PropTypes.number
+        })
+    },
+
     render: function() {
 
         var callPhone = "tel: " + this.props.selectedShop.formatted_phone_number;

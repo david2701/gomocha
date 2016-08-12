@@ -3,7 +3,7 @@ import React from 'react'
 var OrderTotalTotal = React.createClass({
 
     propTypes: {
-        orderTotal: React.PropTypes.number,
+        orderTotal: React.PropTypes.node,
         orderItems: React.PropTypes.array
     },
 
