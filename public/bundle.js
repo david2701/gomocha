@@ -76,12 +76,14 @@
 	        return window.scrollTo(0, 0);
 	    } }), document.getElementById('root'));
 
-	// 0. have a conditional that checks if userLocation is taken, and promps user if not. ex: Justin's phone stuck in loop because didn't have userLocation
-	// 1. payment info section can be fancier
-	// 2. make add to order button more noticeable, maybe a small notification
-	// 4. be able to start order from previous and favorites pages. replace items in state with items in prev/fav order
-	// 4.5 add date to each order
-
+	// have a conditional that checks if userLocation is taken, and promps user if not. ex: Justin's phone stuck in loop because didn't have userLocation
+	// payment info section can be fancier
+	// be able to start order from previous and favorites pages. replace items in state with items in prev/fav order
+	// add date to each order
+	// share your order on Facebook.
+	// Can't click on shop that's closed.
+	// Reorder from favorites and previous orders.
+	// Section marks for progress bar
 	// implement propTypes to components
 	// make calls for time it will take to walk/bike/drive at same time you call getDetails
 
@@ -26868,6 +26870,13 @@
 	    displayName: 'AddItemNotification',
 
 
+	    propTypes: {
+	        notification: _react2.default.PropTypes.shape({
+	            add: _react2.default.PropTypes.bool,
+	            delete: _react2.default.PropTypes.bool
+	        })
+	    },
+
 	    render: function render() {
 
 	        var notificationType = '';
@@ -26962,6 +26971,10 @@
 	var UsernameView = _react2.default.createClass({
 	    displayName: 'UsernameView',
 
+
+	    propTypes: {
+	        handleUsername: _react2.default.PropTypes.func
+	    },
 
 	    _handleUsernameSubmit: function _handleUsernameSubmit(event) {
 	        event.preventDefault();
@@ -43963,6 +43976,10 @@
 	    displayName: 'DashboardView',
 
 
+	    propTypes: {
+	        username: _react2.default.PropTypes.string.isRequired
+	    },
+
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
@@ -44169,6 +44186,20 @@
 	    displayName: 'CustomOrderView',
 
 
+	    propTypes: {
+	        notification: _react2.default.PropTypes.shape({
+	            add: _react2.default.PropTypes.bool,
+	            delete: _react2.default.PropTypes.bool
+	        }),
+	        data: _react2.default.PropTypes.object,
+	        handleSpecialInstructions: _react2.default.PropTypes.func,
+	        handleAddItemToOrder: _react2.default.PropTypes.func,
+	        toggleAddNotification: _react2.default.PropTypes.func,
+	        items: _react2.default.PropTypes.array,
+	        handleDeleteItemFromOrder: _react2.default.PropTypes.func,
+	        toggleDeleteNotification: _react2.default.PropTypes.func
+	    },
+
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
@@ -44250,9 +44281,10 @@
 
 
 	    propTypes: {
-	        slug: _react2.default.PropTypes.string,
+	        data: _react2.default.PropTypes.object,
 	        handleAddItemToOrder: _react2.default.PropTypes.func,
-	        toggleNotification: _react2.default.PropTypes.func
+	        toggleNotification: _react2.default.PropTypes.func,
+	        handleSpecialInstructions: _react2.default.PropTypes.func
 	    },
 
 	    render: function render() {
@@ -44314,6 +44346,14 @@
 	var MenuSection = _react2.default.createClass({
 	    displayName: 'MenuSection',
 
+
+	    propTypes: {
+	        data: _react2.default.PropTypes.object,
+	        slug: _react2.default.PropTypes.string,
+	        handleAddItemToOrder: _react2.default.PropTypes.func,
+	        calculateTotalAndTax: _react2.default.PropTypes.func,
+	        toggleAddNotification: _react2.default.PropTypes.func
+	    },
 
 	    render: function render() {
 	        var _this = this;
@@ -45117,6 +45157,13 @@
 	var OrderTotal = _react2.default.createClass({
 	    displayName: 'OrderTotal',
 
+
+	    propTypes: {
+	        orderItems: _react2.default.PropTypes.array,
+	        handleDeleteItemFromOrder: _react2.default.PropTypes.func,
+	        toggleDeleteNotification: _react2.default.PropTypes.func
+	    },
+
 	    render: function render() {
 	        var _this = this;
 
@@ -45194,6 +45241,18 @@
 	var OrderTotalRow = _react2.default.createClass({
 	    displayName: 'OrderTotalRow',
 
+
+	    propTypes: {
+	        itemDetails: _react2.default.PropTypes.shape({
+	            itemName: _react2.default.PropTypes.string,
+	            milkType: _react2.default.PropTypes.string,
+	            price: _react2.default.PropTypes.number,
+	            quantity: _react2.default.PropTypes.string,
+	            size: _react2.default.PropTypes.string
+	        }),
+	        handleDeleteItemFromOrder: _react2.default.PropTypes.func,
+	        toggleDeleteNotification: _react2.default.PropTypes.func
+	    },
 
 	    _handleDeleteItem: function _handleDeleteItem() {
 	        this.props.handleDeleteItemFromOrder(this.props.index);
@@ -45429,6 +45488,11 @@
 	var OrderTax = _react2.default.createClass({
 	    displayName: "OrderTax",
 
+
+	    propTypes: {
+	        orderTax: _react2.default.PropTypes.number
+	    },
+
 	    render: function render() {
 	        return _react2.default.createElement(
 	            "tr",
@@ -45464,6 +45528,12 @@
 
 	var OrderTotalTotal = _react2.default.createClass({
 	    displayName: 'OrderTotalTotal',
+
+
+	    propTypes: {
+	        orderTotal: _react2.default.PropTypes.number,
+	        orderItems: _react2.default.PropTypes.array
+	    },
 
 	    render: function render() {
 	        return _react2.default.createElement(
@@ -45599,6 +45669,11 @@
 	var SelectShopView = _react2.default.createClass({
 	    displayName: 'SelectShopView',
 
+
+	    propTypes: {
+	        shops: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.object),
+	        handleSelectedShop: _react2.default.PropTypes.func
+	    },
 
 	    render: function render() {
 
@@ -45746,6 +45821,11 @@
 	var ShopList = _react2.default.createClass({
 	    displayName: 'ShopList',
 
+	    propTypes: {
+	        shops: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.object).isRequired,
+	        handleSelectedShop: _react2.default.PropTypes.func
+	    },
+
 	    render: function render() {
 	        var _this = this;
 
@@ -45831,20 +45911,12 @@
 
 
 	    propTypes: {
-	        shop: _react2.default.PropTypes.object.isRequired
+	        shop: _react2.default.PropTypes.object.isRequired,
+	        handleSelectedShop: _react2.default.PropTypes.func
 	    },
 
 	    render: function render() {
 	        var _this = this;
-
-	        // var imageUrl = this.props.shop.photos.length ?
-	        //     this.props.shop.photos[0].getUrl({'maxWidth': 300, 'maxHeight': 300})
-	        // :   ''
-
-	        // style={{
-	        //        background: 'url(' + imageUrl + ')' + 'no-repeat center center',
-	        //        backgroundSize: 'cover'
-	        //    }}
 
 	        return _react2.default.createElement(
 	            'div',

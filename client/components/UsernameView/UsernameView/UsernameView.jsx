@@ -5,6 +5,10 @@ import { Link } from 'react-router'
 
 var UsernameView = React.createClass({
 
+    propTypes: {
+        handleUsername: React.PropTypes.func
+    },
+
     _handleUsernameSubmit: function(event) {
         event.preventDefault();
         var username = this._usernameInput.value;

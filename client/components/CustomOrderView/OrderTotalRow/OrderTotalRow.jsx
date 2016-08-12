@@ -4,6 +4,18 @@ import sass from './order-total-row.scss'
 
 var OrderTotalRow = React.createClass({
 
+    propTypes: {
+        itemDetails: React.PropTypes.shape({
+            itemName: React.PropTypes.string,
+            milkType: React.PropTypes.string,
+            price: React.PropTypes.number,
+            quantity: React.PropTypes.string,
+            size: React.PropTypes.string
+        }),
+        handleDeleteItemFromOrder: React.PropTypes.func,
+        toggleDeleteNotification: React.PropTypes.func
+    },
+
     _handleDeleteItem: function() {
         this.props.handleDeleteItemFromOrder(this.props.index);
         this.props.toggleDeleteNotification();

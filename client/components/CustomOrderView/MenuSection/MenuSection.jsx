@@ -5,6 +5,14 @@ import sass from './menu-section.scss'
 
 var MenuSection = React.createClass({
 
+    propTypes: {
+        data: React.PropTypes.object,
+        slug: React.PropTypes.string,
+        handleAddItemToOrder: React.PropTypes.func,
+        calculateTotalAndTax: React.PropTypes.func,
+        toggleAddNotification: React.PropTypes.func
+    },
+
     render: function() {
         var menuSection = _.find(this.props.data.shops[0].menu, {"slug": this.props.slug});
         var sectionTitle = menuSection.displayName;

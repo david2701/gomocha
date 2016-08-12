@@ -5,19 +5,11 @@ import { Link } from 'react-router'
 var ShopListItem = React.createClass({
 
     propTypes: {
-        shop: React.PropTypes.object.isRequired
+        shop: React.PropTypes.object.isRequired,
+        handleSelectedShop: React.PropTypes.func
     },
 
     render: function() {
-
-        // var imageUrl = this.props.shop.photos.length ?
-        //     this.props.shop.photos[0].getUrl({'maxWidth': 300, 'maxHeight': 300})
-        // :   ''
-
-        // style={{
-        //        background: 'url(' + imageUrl + ')' + 'no-repeat center center',
-        //        backgroundSize: 'cover'
-        //    }}
 
         return (
             <div>

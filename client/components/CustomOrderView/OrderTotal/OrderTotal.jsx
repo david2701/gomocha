@@ -5,8 +5,14 @@ import OrderTax from '../OrderTax/OrderTax'
 import OrderTotalTotal from '../OrderTotalTotal/OrderTotalTotal'
 import sass from './order-total.scss'
 
-
 var OrderTotal = React.createClass({
+
+    propTypes: {
+        orderItems: React.PropTypes.array,
+        handleDeleteItemFromOrder: React.PropTypes.func,
+        toggleDeleteNotification: React.PropTypes.func
+    },
+
     render: function() {
 
         var orderItems = this.props.orderItems.map(

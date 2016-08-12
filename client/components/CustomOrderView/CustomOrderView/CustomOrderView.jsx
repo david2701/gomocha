@@ -8,6 +8,20 @@ import sass2 from './custom-order-view.scss'
 
 var CustomOrderView = React.createClass({
 
+    propTypes: {
+        notification: React.PropTypes.shape({
+            add: React.PropTypes.bool,
+            delete: React.PropTypes.bool
+        }),
+        data: React.PropTypes.object,
+        handleSpecialInstructions: React.PropTypes.func,
+        handleAddItemToOrder: React.PropTypes.func,
+        toggleAddNotification: React.PropTypes.func,
+        items: React.PropTypes.array,
+        handleDeleteItemFromOrder: React.PropTypes.func,
+        toggleDeleteNotification: React.PropTypes.func
+    },
+
     render: function() {
         return (
 

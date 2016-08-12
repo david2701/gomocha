@@ -6,6 +6,9 @@ import sass2 from './dashboard-view.scss'
 
 var DashboardView = React.createClass({
 
+    propTypes: {
+        username: React.PropTypes.string.isRequired
+    },
 
     render: function() {
         return (

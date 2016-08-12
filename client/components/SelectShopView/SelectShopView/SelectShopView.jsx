@@ -7,6 +7,11 @@ import sass2 from './select-shop-view.scss'
 
 var SelectShopView = React.createClass({
 
+    propTypes: {
+        shops: React.PropTypes.arrayOf(React.PropTypes.object),
+        handleSelectedShop: React.PropTypes.func
+    },
+
     render: function() {
 
         var loadingIcon;

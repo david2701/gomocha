@@ -3,6 +3,13 @@ import sass from './add-item-notification.scss'
 
 var AddItemNotification = React.createClass({
 
+    propTypes: {
+        notification: React.PropTypes.shape({
+            add: React.PropTypes.bool,
+            delete: React.PropTypes.bool
+        })
+    },
+
     render: function() {
 
         var notificationType = '';

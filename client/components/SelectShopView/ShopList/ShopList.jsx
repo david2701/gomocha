@@ -4,6 +4,11 @@ import ShopListItem from '../ShopListItem/ShopListItem'
 import _ from 'lodash'
 
 var ShopList = React.createClass({
+    propTypes: {
+        shops: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+        handleSelectedShop: React.PropTypes.func
+    },
+
     render: function() {
 
         var sortedShops = _.sortBy(this.props.shops, 'shopDistance');

@@ -1,6 +1,11 @@
 import React from 'react'
 
 var OrderTax = React.createClass({
+
+    propTypes: {
+        orderTax: React.PropTypes.number
+    },
+
     render: function() {
         return (
                 <tr className="order-total-tax">
