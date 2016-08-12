@@ -6,6 +6,11 @@ import PreviousOrder from '../../PreviousOrdersView/PreviousOrder/PreviousOrder'
 
 var FavoriteOrdersView = React.createClass({
 
+    propTypes: {
+        handleFavoriteOrders: React.PropTypes.func,
+        favoriteOrders: React.PropTypes.array
+    }
+
     componentWillMount: function() {
         console.log('favorite orders mount');
         this.props.handleFavoriteOrders();

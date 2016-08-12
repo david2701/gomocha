@@ -20084,7 +20084,7 @@
 
 	var _PreviousOrdersView2 = _interopRequireDefault(_PreviousOrdersView);
 
-	var _FavoriteOrdersView = __webpack_require__(432);
+	var _FavoriteOrdersView = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./components/FavoriteOrdersView/FavoriteOrdersView/FavoriteOrdersView\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var _FavoriteOrdersView2 = _interopRequireDefault(_FavoriteOrdersView);
 
@@ -60621,6 +60621,10 @@
 	    displayName: 'PreviousOrdersView',
 
 
+	    propTypes: {
+	        previousOrders: _react2.default.PropTypes.array
+	    },
+
 	    componentWillMount: function componentWillMount() {
 	        this.props.handlePreviousOrders();
 	    },
@@ -60719,6 +60723,11 @@
 	var PreviousOrder = _react2.default.createClass({
 	    displayName: 'PreviousOrder',
 
+
+	    propTypes: {
+	        previousOrder: _react2.default.PropTypes.node
+	    },
+
 	    render: function render() {
 
 	        var previousOrderItems = this.props.previousOrder.items.map(function (item, index) {
@@ -60811,6 +60820,11 @@
 	var PreviousOrderItem = _react2.default.createClass({
 	    displayName: 'PreviousOrderItem',
 
+
+	    propTypes: {
+	        previousOrderItem: _react2.default.PropTypes.node
+	    },
+
 	    render: function render() {
 
 	        var item = this.props.previousOrderItem;
@@ -60902,71 +60916,6 @@
 
 	// exports
 
-
-/***/ },
-/* 432 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(164);
-
-	var _previousOrdersView = __webpack_require__(424);
-
-	var _previousOrdersView2 = _interopRequireDefault(_previousOrdersView);
-
-	var _app = __webpack_require__(223);
-
-	var _app2 = _interopRequireDefault(_app);
-
-	var _PreviousOrder = __webpack_require__(426);
-
-	var _PreviousOrder2 = _interopRequireDefault(_PreviousOrder);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var FavoriteOrdersView = _react2.default.createClass({
-	    displayName: 'FavoriteOrdersView',
-
-
-	    componentWillMount: function componentWillMount() {
-	        console.log('favorite orders mount');
-	        this.props.handleFavoriteOrders();
-	    },
-
-	    render: function render() {
-	        var favoriteOrders = this.props.favoriteOrders.map(function (order, index) {
-	            return _react2.default.createElement(_PreviousOrder2.default, {
-	                previousOrder: order,
-	                key: index });
-	        });
-
-	        return _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'title-cover' },
-	                _react2.default.createElement(
-	                    'h1',
-	                    null,
-	                    'Favorite Orders'
-	                )
-	            ),
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'previous-orders-wrap' },
-	                favoriteOrders
-	            )
-	        );
-	    }
-	});
-
-	module.exports = FavoriteOrdersView;
 
 /***/ }
 /******/ ]);

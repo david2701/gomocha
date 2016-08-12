@@ -3,6 +3,11 @@ import sass from './previous-order.scss'
 import PreviousOrderItem from '../PreviousOrderItem/PreviousOrderItem'
 
 var PreviousOrder = React.createClass({
+
+    propTypes: {
+        previousOrder: React.PropTypes.node
+    },
+
     render: function() {
 
         var previousOrderItems = this.props.previousOrder.items.map(function(item, index) {
