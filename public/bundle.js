@@ -46036,6 +46036,21 @@
 	    displayName: 'AdditionalInfoView',
 
 
+	    propTypes: {
+	        handleMethodOfTrans: _react2.default.PropTypes.func,
+	        handlePickupTime: _react2.default.PropTypes.func,
+	        pickupTime: _react2.default.PropTypes.string,
+	        handleFavorite: _react2.default.PropTypes.func,
+	        favorite: _react2.default.PropTypes.bool,
+	        handleCCName: _react2.default.PropTypes.func,
+	        handleCCNumber: _react2.default.PropTypes.func,
+	        handleCCExpMonth: _react2.default.PropTypes.func,
+	        expMonth: _react2.default.PropTypes.string,
+	        handleCCExpYear: _react2.default.PropTypes.func,
+	        expYear: _react2.default.PropTypes.string,
+	        handleCCCVV: _react2.default.PropTypes.func
+	    },
+
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
@@ -46115,6 +46130,11 @@
 
 	var SelectMethodOfTrans = _react2.default.createClass({
 	    displayName: 'SelectMethodOfTrans',
+
+
+	    propTypes: {
+	        handleMethodOfTrans: _react2.default.PropTypes.func
+	    },
 
 	    render: function render() {
 	        return _react2.default.createElement(
@@ -46232,6 +46252,12 @@
 
 	var SelectPickUpTime = _react2.default.createClass({
 	    displayName: 'SelectPickUpTime',
+
+
+	    propTypes: {
+	        handlePickupTime: _react2.default.PropTypes.func,
+	        value: _react2.default.PropTypes.string
+	    },
 
 	    render: function render() {
 	        var _this = this;
@@ -59584,6 +59610,12 @@
 	var SelectIfFavorite = _react2.default.createClass({
 	    displayName: 'SelectIfFavorite',
 
+
+	    propTypes: {
+	        handleFavorite: _react2.default.PropTypes.func,
+	        value: _react2.default.PropTypes.bool
+	    },
+
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
@@ -59670,6 +59702,17 @@
 
 	var EnterPaymentInfo = _react2.default.createClass({
 	    displayName: 'EnterPaymentInfo',
+
+
+	    propTypes: {
+	        handleCCName: _react2.default.PropTypes.func,
+	        handleCCNumber: _react2.default.PropTypes.func,
+	        handleCCExpMonth: _react2.default.PropTypes.func,
+	        expMonthValue: _react2.default.PropTypes.string,
+	        handleCCExpYear: _react2.default.PropTypes.func,
+	        expYearValue: _react2.default.PropTypes.string,
+	        handleCCCVV: _react2.default.PropTypes.func
+	    },
 
 	    render: function render() {
 	        return _react2.default.createElement(
@@ -59993,6 +60036,13 @@
 	    displayName: 'OrderSummaryView',
 
 
+	    propTypes: {
+	        items: _react2.default.PropTypes.array,
+	        handleDeleteItemFromOrder: _react2.default.PropTypes.func,
+	        specialInstructions: _react2.default.PropTypes.string,
+	        handlePostOrder: _react2.default.PropTypes.func
+	    },
+
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
@@ -60068,6 +60118,11 @@
 
 	var SpecialInstructionsOS = _react2.default.createClass({
 	    displayName: 'SpecialInstructionsOS',
+
+
+	    propTypes: {
+	        specialInstructions: _react2.default.PropTypes.string
+	    },
 
 	    render: function render() {
 	        return _react2.default.createElement(

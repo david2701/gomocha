@@ -7,6 +7,13 @@ import sass2 from './order-summary.scss'
 
 var OrderSummaryView = React.createClass({
 
+    propTypes: {
+        items: React.PropTypes.array,
+        handleDeleteItemFromOrder: React.PropTypes.func,
+        specialInstructions: React.PropTypes.string,
+        handlePostOrder: React.PropTypes.func
+    },
+
     render: function() {
         return (
             <div>

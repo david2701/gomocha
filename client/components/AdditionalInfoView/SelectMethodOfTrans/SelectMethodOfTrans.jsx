@@ -2,6 +2,11 @@ import React from 'react'
 import sass from './select-method-of-trans.scss'
 
 var SelectMethodOfTrans = React.createClass({
+
+    propTypes: {
+        handleMethodOfTrans: React.PropTypes.func
+    },
+
     render: function() {
         return (
             <div className="method-of-trans-container">

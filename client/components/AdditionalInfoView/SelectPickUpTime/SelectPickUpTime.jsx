@@ -3,6 +3,12 @@ import sass from './select-pick-up-time.scss'
 import moment from 'moment'
 
 var SelectPickUpTime = React.createClass({
+
+    propTypes: {
+        handlePickupTime: React.PropTypes.func,
+        value: React.PropTypes.string
+    },
+
     render: function() {
         return (
             <div className="select-pick-up-container">

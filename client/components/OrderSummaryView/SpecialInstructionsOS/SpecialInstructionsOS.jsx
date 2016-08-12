@@ -1,6 +1,11 @@
 import React from 'react'
 
 var SpecialInstructionsOS = React.createClass({
+
+    propTypes: {
+        specialInstructions: React.PropTypes.string
+    },
+
     render: function() {
         return (
             <div>

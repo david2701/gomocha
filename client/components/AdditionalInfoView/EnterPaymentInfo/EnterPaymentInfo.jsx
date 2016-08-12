@@ -2,6 +2,17 @@ import React from 'react'
 import sass from './enter-payment-info.scss'
 
 var EnterPaymentInfo = React.createClass({
+
+    propTypes: {
+        handleCCName: React.PropTypes.func,
+        handleCCNumber: React.PropTypes.func,
+        handleCCExpMonth: React.PropTypes.func,
+        expMonthValue: React.PropTypes.string,
+        handleCCExpYear: React.PropTypes.func,
+        expYearValue: React.PropTypes.string,
+        handleCCCVV: React.PropTypes.func
+    },
+
     render: function() {
         return (
             <div className="enter-payment-info-container">

@@ -9,6 +9,21 @@ import sass2 from './additional-info-view.scss'
 
 var AdditionalInfoView = React.createClass({
 
+    propTypes: {
+        handleMethodOfTrans: React.PropTypes.func,
+        handlePickupTime: React.PropTypes.func,
+        pickupTime: React.PropTypes.string,
+        handleFavorite: React.PropTypes.func,
+        favorite: React.PropTypes.bool,
+        handleCCName: React.PropTypes.func,
+        handleCCNumber: React.PropTypes.func,
+        handleCCExpMonth: React.PropTypes.func,
+        expMonth: React.PropTypes.string,
+        handleCCExpYear: React.PropTypes.func,
+        expYear: React.PropTypes.string,
+        handleCCCVV: React.PropTypes.func
+    },
+
     render: function() {
         return (
             <div>
