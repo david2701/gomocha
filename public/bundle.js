@@ -45136,10 +45136,6 @@
 
 	var _OrderTotalRow2 = _interopRequireDefault(_OrderTotalRow);
 
-	var _OrderTotalRowOtherDetails = __webpack_require__(272);
-
-	var _OrderTotalRowOtherDetails2 = _interopRequireDefault(_OrderTotalRowOtherDetails);
-
 	var _OrderTax = __webpack_require__(275);
 
 	var _OrderTax2 = _interopRequireDefault(_OrderTax);
@@ -45175,10 +45171,6 @@
 	                key: index,
 	                index: index });
 	        });
-
-	        // <OrderTotalRowOtherDetails
-	        //     itemDetails={item}
-	        //     index={index} />
 
 	        // ORDER TOTAL AND TAX CALCULATION //
 	        var total = this.props.orderItems.reduce(function (sum, current) {
@@ -45371,109 +45363,9 @@
 
 
 /***/ },
-/* 272 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _orderTotalRowOtherDetails = __webpack_require__(273);
-
-	var _orderTotalRowOtherDetails2 = _interopRequireDefault(_orderTotalRowOtherDetails);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var OrderTotalRowOtherDetails = _react2.default.createClass({
-	    displayName: 'OrderTotalRowOtherDetails',
-
-
-	    _handleDeleteItem: function _handleDeleteItem() {
-	        this.props.handleDeleteItemFromOrder(this.props.index);
-	    },
-
-	    render: function render() {
-
-	        var milkType = this.props.itemDetails.milkType;
-	        var decaf = this.props.itemDetails.decaf;
-	        var hotOrCold = this.props.itemDetails.hotOrCold;
-
-	        return _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement(
-	                'tr',
-	                { className: 'order-total-row' },
-	                _react2.default.createElement(
-	                    'td',
-	                    null,
-	                    _react2.default.createElement(
-	                        'span',
-	                        null,
-	                        ' - '
-	                    ),
-	                    _react2.default.createElement(
-	                        'span',
-	                        null,
-	                        ' '
-	                    )
-	                ),
-	                _react2.default.createElement('td', { className: 'td-price' })
-	            ),
-	            _react2.default.createElement(
-	                'tr',
-	                null,
-	                _react2.default.createElement('td', null)
-	            )
-	        );
-	    }
-	});
-
-	module.exports = OrderTotalRowOtherDetails;
-
-/***/ },
-/* 273 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(274);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-total-row-other-details.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./order-total-row-other-details.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 274 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".order-total-table td {\n  padding: 0.75em 1.5em; }\n\ntr.order-total-row .delete-item {\n  color: #962D2D;\n  margin-left: 20px;\n  display: none;\n  cursor: pointer; }\n\ntr.order-total-row:hover .delete-item {\n  display: inline-block; }\n\n.td-price {\n  width: 75px; }\n", ""]);
-
-	// exports
-
-
-/***/ },
+/* 272 */,
+/* 273 */,
+/* 274 */,
 /* 275 */
 /***/ function(module, exports, __webpack_require__) {
 

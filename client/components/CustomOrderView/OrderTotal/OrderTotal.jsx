@@ -1,6 +1,5 @@
 import React from 'react'
 import OrderTotalRow from '../OrderTotalRow/OrderTotalRow'
-import OrderTotalRowOtherDetails from '../OrderTotalRowOtherDetails/OrderTotalRowOtherDetails'
 import OrderTax from '../OrderTax/OrderTax'
 import OrderTotalTotal from '../OrderTotalTotal/OrderTotalTotal'
 import sass from './order-total.scss'
@@ -28,10 +27,6 @@ var OrderTotal = React.createClass({
                 )
             }
         );
-
-        // <OrderTotalRowOtherDetails
-        //     itemDetails={item}
-        //     index={index} />
 
         // ORDER TOTAL AND TAX CALCULATION //
         var total = this.props.orderItems.reduce((sum, current) =>
