@@ -17,7 +17,8 @@ var MenuItem = React.createClass({
         key: React.PropTypes.string,
         handleAddItemToOrder: React.PropTypes.func,
         calculateTotalAndTax: React.PropTypes.func,
-        toggleAddNotification: React.PropTypes.func
+        toggleAddNotification: React.PropTypes.func,
+        toggleErrorNotification: React.PropTypes.func
     },
 
     getInitialState: function() {
@@ -117,13 +118,15 @@ var MenuItem = React.createClass({
                     <div className="item-name"><label htmlFor="hot-drink">{this.props.itemName}</label></div>
 
                     {/* AddToOrderButton */}
-                    {this._checkFormComplete() ? <AddToOrderButton
+                    <AddToOrderButton
                         handleAddItemToOrder={this._handleAddItemToOrder}
                         handleItemFormComplete={this._handleItemFormComplete}
                         toggleAddNotification={this.props.toggleAddNotification}
+                        toggleErrorNotification={this.props.toggleErrorNotification}
+                        checkFormComplete={this._checkFormComplete}
                         itemName={this.props.itemName}
                         price={this.props.price}
-                        itemDetails={this.state} /> : ''}
+                        itemDetails={this.state} />
                 </div>
 
                 <div className="item-top-row">

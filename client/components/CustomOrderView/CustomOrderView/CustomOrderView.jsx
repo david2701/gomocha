@@ -11,7 +11,8 @@ var CustomOrderView = React.createClass({
     propTypes: {
         notification: React.PropTypes.shape({
             add: React.PropTypes.bool,
-            delete: React.PropTypes.bool
+            delete: React.PropTypes.bool,
+            error: React.PropTypes.bool
         }),
         data: React.PropTypes.object,
         handleSpecialInstructions: React.PropTypes.func,
@@ -19,7 +20,8 @@ var CustomOrderView = React.createClass({
         toggleAddNotification: React.PropTypes.func,
         items: React.PropTypes.array,
         handleDeleteItemFromOrder: React.PropTypes.func,
-        toggleDeleteNotification: React.PropTypes.func
+        toggleDeleteNotification: React.PropTypes.func,
+        toggleErrorNotification: React.PropTypes.func
     },
 
     render: function() {
@@ -41,7 +43,8 @@ var CustomOrderView = React.createClass({
                         data={this.props.data}
                         handleSpecialInstructions={this.props.handleSpecialInstructions}
                         handleAddItemToOrder={this.props.handleAddItemToOrder}
-                        toggleAddNotification={this.props.toggleAddNotification} />
+                        toggleAddNotification={this.props.toggleAddNotification}
+                        toggleErrorNotification={this.props.toggleErrorNotification} />
                      <OrderTotal
                          orderItems={this.props.items}
                          handleDeleteItemFromOrder={this.props.handleDeleteItemFromOrder}

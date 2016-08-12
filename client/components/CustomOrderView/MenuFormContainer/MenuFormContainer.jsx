@@ -8,7 +8,8 @@ var MenuFormContainer = React.createClass({
     propTypes: {
         data: React.PropTypes.object,
         handleAddItemToOrder: React.PropTypes.func,
-        toggleNotification: React.PropTypes.func,
+        toggleAddNotification: React.PropTypes.func,
+        toggleErrorNotification: React.PropTypes.func,
         handleSpecialInstructions: React.PropTypes.func
     },
 
@@ -19,22 +20,26 @@ var MenuFormContainer = React.createClass({
                     data={this.props.data}
                     slug="hot-drinks"
                     handleAddItemToOrder={this.props.handleAddItemToOrder}
-                    toggleAddNotification={this.props.toggleAddNotification} />
+                    toggleAddNotification={this.props.toggleAddNotification}
+                    toggleErrorNotification={this.props.toggleErrorNotification} />
                 <MenuSection
                     data={this.props.data}
                     slug="cold-drinks"
                     handleAddItemToOrder={this.props.handleAddItemToOrder}
-                    toggleAddNotification={this.props.toggleAddNotification} />
+                    toggleAddNotification={this.props.toggleAddNotification}
+                    toggleErrorNotification={this.props.toggleErrorNotification} />
                 <MenuSection
                     data={this.props.data}
                     slug="tea"
                     handleAddItemToOrder={this.props.handleAddItemToOrder}
-                    toggleAddNotification={this.props.toggleAddNotification} />
+                    toggleAddNotification={this.props.toggleAddNotification}
+                    toggleErrorNotification={this.props.toggleErrorNotification} />
                 <MenuSection
                     data={this.props.data}
                     slug="bakery"
                     handleAddItemToOrder={this.props.handleAddItemToOrder}
-                    toggleAddNotification={this.props.toggleAddNotification} />
+                    toggleAddNotification={this.props.toggleAddNotification}
+                    toggleErrorNotification={this.props.toggleErrorNotification} />
                 <SpecialInstructions
                     handleSpecialInstructions={this.props.handleSpecialInstructions} />
             </form>

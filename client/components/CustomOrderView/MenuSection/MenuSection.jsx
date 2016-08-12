@@ -9,7 +9,8 @@ var MenuSection = React.createClass({
         data: React.PropTypes.object,
         slug: React.PropTypes.string,
         handleAddItemToOrder: React.PropTypes.func,
-        toggleAddNotification: React.PropTypes.func
+        toggleAddNotification: React.PropTypes.func,
+        toggleErrorNotification: React.PropTypes.func
     },
 
     render: function() {
@@ -24,7 +25,8 @@ var MenuSection = React.createClass({
                     key={item.id}
                     handleAddItemToOrder={this.props.handleAddItemToOrder}
                     calculateTotalAndTax={this.props.calculateTotalAndTax}
-                    toggleAddNotification={this.props.toggleAddNotification} />
+                    toggleAddNotification={this.props.toggleAddNotification}
+                    toggleErrorNotification={this.props.toggleErrorNotification} />
             });
 
         return (

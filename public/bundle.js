@@ -25237,7 +25237,8 @@
 	            specialInstructions: '',
 	            notification: {
 	                add: false,
-	                delete: false
+	                delete: false,
+	                error: false
 	            },
 	            methodOfTrans: '',
 	            pickupTime: '',
@@ -25543,6 +25544,24 @@
 	        setTimeout(clearNotification, 3000);
 	    },
 
+	    _toggleErrorNotification: function _toggleErrorNotification() {
+	        var _this6 = this;
+
+	        this.setState({
+	            notification: {
+	                error: true
+	            }
+	        });
+	        var clearNotification = function clearNotification() {
+	            _this6.setState({
+	                notification: {
+	                    error: false
+	                }
+	            });
+	        };
+	        setTimeout(clearNotification, 3000);
+	    },
+
 	    _handleSpecialInstructions: function _handleSpecialInstructions(event) {
 	        this.setState({
 	            specialInstructions: event.target.value
@@ -25619,6 +25638,7 @@
 	                notification: this.state.notification,
 	                toggleAddNotification: this._toggleAddNotification,
 	                toggleDeleteNotification: this._toggleDeleteNotification,
+	                toggleErrorNotification: this._toggleErrorNotification,
 	                handleAddItemToOrder: this._handleAddItemToOrder,
 	                handleDeleteItemFromOrder: this._handleDeleteItemFromOrder,
 	                handleMethodOfTrans: this._handleMethodOfTrans,
@@ -26873,7 +26893,8 @@
 	    propTypes: {
 	        notification: _react2.default.PropTypes.shape({
 	            add: _react2.default.PropTypes.bool,
-	            delete: _react2.default.PropTypes.bool
+	            delete: _react2.default.PropTypes.bool,
+	            error: _react2.default.PropTypes.bool
 	        })
 	    },
 
@@ -26888,6 +26909,9 @@
 	        } else if (this.props.notification.delete) {
 	            notificationType = 'item-notification delete-item-notification item-notification-show';
 	            notificationText = 'Item removed from order!';
+	        } else if (this.props.notification.error) {
+	            notificationType = 'item-notification error-item-notification item-notification-show';
+	            notificationText = 'You need to fill in the item details!';
 	        } else {
 	            notificationType = 'item-notification item-notification-hide';
 	        }
@@ -26941,7 +26965,7 @@
 
 
 	// module
-	exports.push([module.id, ".item-notification-text {\n  color: #f6f6f6;\n  text-align: center;\n  text-decoration: none; }\n\n.item-notification {\n  color: #f6f6f6;\n  font-size: 1.1em;\n  padding-top: 0.7em;\n  height: 38px;\n  position: fixed;\n  left: 0;\n  text-align: center;\n  text-decoration: none;\n  top: -45px;\n  width: 100%;\n  animation: item-notification 1s ease forwards; }\n\n.add-item-notification {\n  background-color: #3FB083; }\n\n.delete-item-notification {\n  background-color: #E2514E; }\n\n.item-notification-show {\n  display: block; }\n\n.item-notification-hide {\n  display: none; }\n\n@keyframes item-notification {\n  0% {\n    opacity: 0; }\n  50% {\n    opacity: 1; }\n  100% {\n    top: 0; } }\n\n@keyframes item-notification-hide {\n  0% {\n    top: 0; }\n  50% {\n    top: -25; }\n  100% {\n    top: -45; } }\n", ""]);
+	exports.push([module.id, ".item-notification-text {\n  color: #f6f6f6;\n  text-align: center;\n  text-decoration: none; }\n\n.item-notification {\n  color: #f6f6f6;\n  font-size: 1.1em;\n  padding-top: 0.7em;\n  height: 38px;\n  position: fixed;\n  left: 0;\n  text-align: center;\n  text-decoration: none;\n  top: -45px;\n  width: 100%;\n  animation: item-notification 1s ease forwards; }\n\n.add-item-notification {\n  background-color: #3FB083; }\n\n.delete-item-notification {\n  background-color: #E2514E; }\n\n.error-item-notification {\n  background-color: #FAD675; }\n\n.item-notification-show {\n  display: block; }\n\n.item-notification-hide {\n  display: none; }\n\n@keyframes item-notification {\n  0% {\n    opacity: 0; }\n  50% {\n    opacity: 1; }\n  100% {\n    top: 0; } }\n\n@keyframes item-notification-hide {\n  0% {\n    top: 0; }\n  50% {\n    top: -25; }\n  100% {\n    top: -45; } }\n", ""]);
 
 	// exports
 
@@ -44189,7 +44213,8 @@
 	    propTypes: {
 	        notification: _react2.default.PropTypes.shape({
 	            add: _react2.default.PropTypes.bool,
-	            delete: _react2.default.PropTypes.bool
+	            delete: _react2.default.PropTypes.bool,
+	            error: _react2.default.PropTypes.bool
 	        }),
 	        data: _react2.default.PropTypes.object,
 	        handleSpecialInstructions: _react2.default.PropTypes.func,
@@ -44197,7 +44222,8 @@
 	        toggleAddNotification: _react2.default.PropTypes.func,
 	        items: _react2.default.PropTypes.array,
 	        handleDeleteItemFromOrder: _react2.default.PropTypes.func,
-	        toggleDeleteNotification: _react2.default.PropTypes.func
+	        toggleDeleteNotification: _react2.default.PropTypes.func,
+	        toggleErrorNotification: _react2.default.PropTypes.func
 	    },
 
 	    render: function render() {
@@ -44227,7 +44253,8 @@
 	                    data: this.props.data,
 	                    handleSpecialInstructions: this.props.handleSpecialInstructions,
 	                    handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                    toggleAddNotification: this.props.toggleAddNotification }),
+	                    toggleAddNotification: this.props.toggleAddNotification,
+	                    toggleErrorNotification: this.props.toggleErrorNotification }),
 	                _react2.default.createElement(_OrderTotal2.default, {
 	                    orderItems: this.props.items,
 	                    handleDeleteItemFromOrder: this.props.handleDeleteItemFromOrder,
@@ -44283,7 +44310,8 @@
 	    propTypes: {
 	        data: _react2.default.PropTypes.object,
 	        handleAddItemToOrder: _react2.default.PropTypes.func,
-	        toggleNotification: _react2.default.PropTypes.func,
+	        toggleAddNotification: _react2.default.PropTypes.func,
+	        toggleErrorNotification: _react2.default.PropTypes.func,
 	        handleSpecialInstructions: _react2.default.PropTypes.func
 	    },
 
@@ -44295,22 +44323,26 @@
 	                data: this.props.data,
 	                slug: 'hot-drinks',
 	                handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                toggleAddNotification: this.props.toggleAddNotification }),
+	                toggleAddNotification: this.props.toggleAddNotification,
+	                toggleErrorNotification: this.props.toggleErrorNotification }),
 	            _react2.default.createElement(_MenuSection2.default, {
 	                data: this.props.data,
 	                slug: 'cold-drinks',
 	                handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                toggleAddNotification: this.props.toggleAddNotification }),
+	                toggleAddNotification: this.props.toggleAddNotification,
+	                toggleErrorNotification: this.props.toggleErrorNotification }),
 	            _react2.default.createElement(_MenuSection2.default, {
 	                data: this.props.data,
 	                slug: 'tea',
 	                handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                toggleAddNotification: this.props.toggleAddNotification }),
+	                toggleAddNotification: this.props.toggleAddNotification,
+	                toggleErrorNotification: this.props.toggleErrorNotification }),
 	            _react2.default.createElement(_MenuSection2.default, {
 	                data: this.props.data,
 	                slug: 'bakery',
 	                handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                toggleAddNotification: this.props.toggleAddNotification }),
+	                toggleAddNotification: this.props.toggleAddNotification,
+	                toggleErrorNotification: this.props.toggleErrorNotification }),
 	            _react2.default.createElement(_SpecialInstructions2.default, {
 	                handleSpecialInstructions: this.props.handleSpecialInstructions })
 	        );
@@ -44351,7 +44383,8 @@
 	        data: _react2.default.PropTypes.object,
 	        slug: _react2.default.PropTypes.string,
 	        handleAddItemToOrder: _react2.default.PropTypes.func,
-	        toggleAddNotification: _react2.default.PropTypes.func
+	        toggleAddNotification: _react2.default.PropTypes.func,
+	        toggleErrorNotification: _react2.default.PropTypes.func
 	    },
 
 	    render: function render() {
@@ -44367,7 +44400,8 @@
 	                key: item.id,
 	                handleAddItemToOrder: _this.props.handleAddItemToOrder,
 	                calculateTotalAndTax: _this.props.calculateTotalAndTax,
-	                toggleAddNotification: _this.props.toggleAddNotification });
+	                toggleAddNotification: _this.props.toggleAddNotification,
+	                toggleErrorNotification: _this.props.toggleErrorNotification });
 	        });
 
 	        return _react2.default.createElement(
@@ -44441,7 +44475,8 @@
 	        key: _react2.default.PropTypes.string,
 	        handleAddItemToOrder: _react2.default.PropTypes.func,
 	        calculateTotalAndTax: _react2.default.PropTypes.func,
-	        toggleAddNotification: _react2.default.PropTypes.func
+	        toggleAddNotification: _react2.default.PropTypes.func,
+	        toggleErrorNotification: _react2.default.PropTypes.func
 	    },
 
 	    getInitialState: function getInitialState() {
@@ -44546,13 +44581,15 @@
 	                        this.props.itemName
 	                    )
 	                ),
-	                this._checkFormComplete() ? _react2.default.createElement(_AddToOrderButton2.default, {
+	                _react2.default.createElement(_AddToOrderButton2.default, {
 	                    handleAddItemToOrder: this._handleAddItemToOrder,
 	                    handleItemFormComplete: this._handleItemFormComplete,
 	                    toggleAddNotification: this.props.toggleAddNotification,
+	                    toggleErrorNotification: this.props.toggleErrorNotification,
+	                    checkFormComplete: this._checkFormComplete,
 	                    itemName: this.props.itemName,
 	                    price: this.props.price,
-	                    itemDetails: this.state }) : ''
+	                    itemDetails: this.state })
 	            ),
 	            _react2.default.createElement(
 	                'div',
@@ -44608,6 +44645,7 @@
 	        handleAddItemToOrder: _react2.default.PropTypes.func,
 	        handleItemFormComplete: _react2.default.PropTypes.func,
 	        toggleAddNotification: _react2.default.PropTypes.func,
+	        toggleErrorNotification: _react2.default.PropTypes.func,
 	        itemName: _react2.default.PropTypes.string,
 	        price: _react2.default.PropTypes.number,
 	        itemDetails: _react2.default.PropTypes.shape({
@@ -44627,12 +44665,19 @@
 	        return _react2.default.createElement(
 	            'div',
 	            { className: 'add-to-order-wrap' },
-	            _react2.default.createElement(
+	            this.props.checkFormComplete() ? _react2.default.createElement(
 	                'div',
 	                { className: 'add-to-order',
 	                    onClick: function onClick() {
 	                        _this.props.handleAddItemToOrder(itemDetails);
 	                        _this.props.toggleAddNotification();
+	                    } },
+	                'Click to add'
+	            ) : _react2.default.createElement(
+	                'div',
+	                { className: 'add-to-order',
+	                    onClick: function onClick() {
+	                        _this.props.toggleErrorNotification();
 	                    } },
 	                'Click to add'
 	            )

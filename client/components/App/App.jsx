@@ -30,7 +30,8 @@ var App = React.createClass({
             specialInstructions: '',
             notification: {
                 add: false,
-                delete: false
+                delete: false,
+                error: false
             },
             methodOfTrans: '',
             pickupTime: '',
@@ -367,6 +368,22 @@ var App = React.createClass({
         setTimeout(clearNotification, 3000);
     },
 
+    _toggleErrorNotification: function() {
+        this.setState({
+            notification: {
+                error: true
+            }
+        });
+        var clearNotification = () => {
+            this.setState({
+                notification: {
+                    error: false
+                }
+            })
+        };
+        setTimeout(clearNotification, 3000);
+    },
+
     _handleSpecialInstructions: function(event) {
         this.setState({
             specialInstructions: event.target.value
@@ -422,6 +439,7 @@ var App = React.createClass({
                          notification: this.state.notification,
                          toggleAddNotification: this._toggleAddNotification,
                          toggleDeleteNotification: this._toggleDeleteNotification,
+                         toggleErrorNotification: this._toggleErrorNotification,
                          handleAddItemToOrder: this._handleAddItemToOrder,
                          handleDeleteItemFromOrder: this._handleDeleteItemFromOrder,
                          handleMethodOfTrans: this._handleMethodOfTrans,

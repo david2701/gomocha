@@ -6,7 +6,8 @@ var AddItemNotification = React.createClass({
     propTypes: {
         notification: React.PropTypes.shape({
             add: React.PropTypes.bool,
-            delete: React.PropTypes.bool
+            delete: React.PropTypes.bool,
+            error: React.PropTypes.bool
         })
     },
 
@@ -21,7 +22,11 @@ var AddItemNotification = React.createClass({
         } else if (this.props.notification.delete) {
             notificationType = 'item-notification delete-item-notification item-notification-show'
             notificationText = 'Item removed from order!'
-        } else {
+        } else if (this.props.notification.error) {
+            notificationType = 'item-notification error-item-notification item-notification-show';
+            notificationText = 'You need to fill in the item details!'
+        }
+        else {
             notificationType = 'item-notification item-notification-hide';
         }
 

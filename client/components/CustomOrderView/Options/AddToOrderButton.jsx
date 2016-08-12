@@ -8,6 +8,7 @@ var AddToOrderButton = React.createClass({
         handleAddItemToOrder: React.PropTypes.func,
         handleItemFormComplete: React.PropTypes.func,
         toggleAddNotification: React.PropTypes.func,
+        toggleErrorNotification: React.PropTypes.func,
         itemName: React.PropTypes.string,
         price: React.PropTypes.number,
         itemDetails: React.PropTypes.shape({
@@ -24,13 +25,23 @@ var AddToOrderButton = React.createClass({
 
         return(
             <div className="add-to-order-wrap">
+                {this.props.checkFormComplete() ?
+                    <div className='add-to-order'
+                         onClick={() => {
+                             this.props.handleAddItemToOrder(itemDetails)
+                             this.props.toggleAddNotification()
+                         }}>
+                        Click to add
+                    </div>
+                :
                 <div className='add-to-order'
                      onClick={() => {
-                         this.props.handleAddItemToOrder(itemDetails)
-                         this.props.toggleAddNotification()
+                         this.props.toggleErrorNotification()
                      }}>
                     Click to add
                 </div>
+                 }
+
             </div>
         )
     }
