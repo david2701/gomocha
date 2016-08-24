@@ -12,15 +12,14 @@ var ShopListItem = React.createClass({
     render: function() {
 
         return (
-            <div>
-                <Link to="/custom-order">
-                <div className="shop-list-item-container"
+            <div className="shop-list-item-container"
                 onClick={() => this.props.handleSelectedShop(this.props.shop)} >
+                <Link to="/custom-order">
                     <div className="shop-list-item-details">
-                    <h2>{this.props.shop.name}</h2>
-                    <p>{this.props.shop.vicinity}</p>
+                        <h2>{this.props.shop.name}</h2>
+                        <p>{this.props.shop.vicinity}</p>
 
-                <div className="shop-list-bottom-row">
+                    <div className="shop-list-bottom-row">
                         {this.props.shop.hasOwnProperty('opening_hours') ?
                             this.props.shop.opening_hours.open_now ?
                             <div className="open-now"><i className="fa fa-clock-o" aria-hidden="true"></i> Open now!</div>
@@ -28,7 +27,6 @@ var ShopListItem = React.createClass({
                         : ''}
                         <p className="shop-list-distance">{this.props.shop.shopDistance}</p>
                     </div>
-                </div>
                 </div>
                 </Link>
             </div>

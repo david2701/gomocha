@@ -22,7 +22,7 @@ var ShopList = React.createClass({
         });
 
         return (
-            <div>
+            <div className="shop-list-item-container-wrap">
                 {shops}
             </div>
         )
