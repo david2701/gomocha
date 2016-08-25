@@ -44,20 +44,22 @@
 }
 
 @media only screen and (min-width: 750px) {
-    .custom-order-view-wrap {
-        position: relative;
-        width: 100%;
+    .custom-order-container {
+        margin-left: 2.5em;
 
-        .menu-form-container {
-            float: left;
+        .custom-order-view-wrap {
+            position: relative;
+            width: 100%;
 
-        }
+            .menu-form-container {
+                float: left;
+            }
 
-        .order-total-container {
-            position: fixed;
-            right: 1em;
-
-            width: 24em;
+            .order-total-container {
+                position: fixed;
+                right: 1em;
+                width: 18em;
+            }
         }
     }
 }

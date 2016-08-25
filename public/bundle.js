@@ -45102,7 +45102,7 @@
 
 
 	// module
-	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .menu-section {\n    width: 21em;\n    margin: 0em auto 2.5em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .menu-section {\n    width: 95%;\n    margin: 0em auto 2.5em auto; } }\n\n.divider {\n  width: 100%;\n  border-bottom: 1px solid black; }\n", ""]);
+	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .menu-section {\n    width: 21em;\n    margin: 0em auto 2.5em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .menu-section {\n    width: 95%;\n    margin: 0em auto 2.5em auto; } }\n\n@media only screen and (min-width: 1100px) {\n  .menu-section {\n    display: inline-block; }\n    .menu-section:nth-child(odd) {\n      margin-left: 3.7em;\n      margin-right: 1em; }\n    .menu-section:nth-child(even) {\n      margin-right: 21em; } }\n\n.divider {\n  width: 100%;\n  border-bottom: 1px solid black; }\n", ""]);
 
 	// exports
 
@@ -45629,7 +45629,7 @@
 
 
 	// module
-	exports.push([module.id, ".custom-order-container {\n  margin-left: 5.5em;\n  padding-right: 0.4em; }\n  .custom-order-container .userProgress {\n    position: relative;\n    width: 100%;\n    height: 30px;\n    background-color: #fff;\n    border-radius: 5px;\n    margin: 0 auto;\n    border: 1px solid #E4E4E4; }\n  .custom-order-container #twoOfFive {\n    position: absolute;\n    width: 40%;\n    height: 100%;\n    background: #3FB083;\n    border-radius: 5px 0px 0px 5px; }\n  .custom-order-container .order-total-container {\n    text-align: center; }\n\n@media only screen and (min-width: 600px) {\n  .custom-order-container .userProgress {\n    width: 25em; } }\n\n@media only screen and (min-width: 750px) {\n  .custom-order-view-wrap {\n    position: relative;\n    width: 100%; }\n    .custom-order-view-wrap .menu-form-container {\n      float: left; }\n    .custom-order-view-wrap .order-total-container {\n      position: fixed;\n      right: 1em;\n      width: 24em; } }\n", ""]);
+	exports.push([module.id, ".custom-order-container {\n  margin-left: 5.5em;\n  padding-right: 0.4em; }\n  .custom-order-container .userProgress {\n    position: relative;\n    width: 100%;\n    height: 30px;\n    background-color: #fff;\n    border-radius: 5px;\n    margin: 0 auto;\n    border: 1px solid #E4E4E4; }\n  .custom-order-container #twoOfFive {\n    position: absolute;\n    width: 40%;\n    height: 100%;\n    background: #3FB083;\n    border-radius: 5px 0px 0px 5px; }\n  .custom-order-container .order-total-container {\n    text-align: center; }\n\n@media only screen and (min-width: 600px) {\n  .custom-order-container .userProgress {\n    width: 25em; } }\n\n@media only screen and (min-width: 750px) {\n  .custom-order-container {\n    margin-left: 2.5em; }\n    .custom-order-container .custom-order-view-wrap {\n      position: relative;\n      width: 100%; }\n      .custom-order-container .custom-order-view-wrap .menu-form-container {\n        float: left; }\n      .custom-order-container .custom-order-view-wrap .order-total-container {\n        position: fixed;\n        right: 1em;\n        width: 18em; } }\n", ""]);
 
 	// exports
 

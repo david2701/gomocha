@@ -14,7 +14,20 @@
     }
 }
 
+@media only screen and (min-width: 1100px) {
+    .menu-section {
+        display: inline-block;
 
+        &:nth-child(odd) {
+            margin-left: 3.7em;
+            margin-right: 1em;
+        }
+
+        &:nth-child(even) {
+            margin-right: 21em;  
+        }
+    }
+}
 
 .divider {
     width: 100%;
