@@ -20,23 +20,23 @@ var SelectShopView = React.createClass({
             loadingIcon = <i className="hide fa-spinner fa-spin fa-3x fa-fw margin-bottom"></i>;
         }
         return (
-            <div>
-            <div className="title-cover">
-                <h1>Select a Shop</h1>
-                <div className="userProgress">
-                    <div id="oneOfFive">
+            <div className="select-shop-container">
+                <div className="title-cover">
+                    <h1>Select a Shop</h1>
+                    <div className="userProgress">
+                        <div id="oneOfFive">
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="main-wrap">
-                {/*<ShopSearch />*/}
-                <div className="loading-icon">{loadingIcon}</div>
-                <ShopList
-                shops={this.props.shops}
-                handleSelectedShop={this.props.handleSelectedShop} />
+                <div className="main-wrap">
+                    {/*<ShopSearch />*/}
+                    <div className="loading-icon">{loadingIcon}</div>
+                    <ShopList
+                    shops={this.props.shops}
+                    handleSelectedShop={this.props.handleSelectedShop} />
+                </div>
             </div>
-        </div>
         )
     }
 });

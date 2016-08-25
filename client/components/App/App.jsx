@@ -407,22 +407,29 @@ var App = React.createClass({
     render: function() {
         return (
             <div>
-                <nav className="main-nav">
-                    <div className="nav-logo">
-                        <img className="logo-lg" src="/img/gomocha-logo-lg.png" />
-                        <img className="logo-sml" src="/img/gomocha-logo-sml.png" />
-                    </div>
+                <nav className="top-nav">
                     <div className="nav-links">
                         <ul role="nav">
-                            <Link to="/" onlyActiveOnIndex={true} className='router-link'><li>Dashboard</li></Link>
-
-                            <Link to="/" className='router-link' onClick={this._handleUsernameRemove}><li>Log Out</li></Link>
+                            <Link to="/" className='router-link' onClick={this._handleUsernameRemove}><li><i className="fa fa-sign-out fa-2x" aria-hidden="true"></i></li></Link>
                         </ul>
                     </div>
                 </nav>
-                {!this.state.username ?
-                    <UsernameView handleUsername={this._handleUsername} /> :
-                    React.cloneElement(this.props.children,
+                <nav className="side-nav">
+                    <div className="nav-logo">
+                        <img src="/img/gomocha-logo-sml.png" />
+                    </div>
+                    <Link to="/" onlyActiveOnIndex={true} className='router-link'>
+                        <i className="fa fa-home fa-2x" aria-hidden="true"></i>
+                    </Link>
+                    <Link to="/previous-orders" className="prev-orders-link">
+                        <i className="fa fa-clock-o fa-2x"></i>
+                    </Link>
+                    <Link to="favorite-orders" className="fav-orders-link">
+                        <i className="fa fa-heart fa-2x"></i>
+                    </Link>
+                </nav>
+
+                {React.cloneElement(this.props.children,
                       {
                          data: dummyData,
                          username: this.state.username,

@@ -15,19 +15,18 @@ var CustomOrderView = React.createClass({
             error: React.PropTypes.bool
         }),
         data: React.PropTypes.object,
+        items: React.PropTypes.array,
         handleSpecialInstructions: React.PropTypes.func,
         handleAddItemToOrder: React.PropTypes.func,
-        toggleAddNotification: React.PropTypes.func,
-        items: React.PropTypes.array,
         handleDeleteItemFromOrder: React.PropTypes.func,
+        toggleAddNotification: React.PropTypes.func,
         toggleDeleteNotification: React.PropTypes.func,
         toggleErrorNotification: React.PropTypes.func
     },
 
     render: function() {
         return (
-
-            <div>
+            <div className="custom-order-container">
                 <div className="title-cover">
                     <h1>Place Your Order</h1>
                     <div className="userProgress">
@@ -35,23 +34,26 @@ var CustomOrderView = React.createClass({
                     </div>
                 </div>
 
-                <div className="main-wrap">
+                <div className="custom-order-view-wrap">
                     <AddItemNotification
                     notification={this.props.notification} />
+                    <div className="menu-form-container">
 
-                    <MenuFormContainer
-                        data={this.props.data}
-                        handleSpecialInstructions={this.props.handleSpecialInstructions}
-                        handleAddItemToOrder={this.props.handleAddItemToOrder}
-                        toggleAddNotification={this.props.toggleAddNotification}
-                        toggleErrorNotification={this.props.toggleErrorNotification} />
-                     <OrderTotal
-                         orderItems={this.props.items}
-                         handleDeleteItemFromOrder={this.props.handleDeleteItemFromOrder}
-                         toggleDeleteNotification={this.props.toggleDeleteNotification} />
-                     <div className="next-button-container">
-                     <Link to="/additional-info"><button className="next-button">Next</button></Link>
-                     </div>
+                            <MenuFormContainer
+                                data={this.props.data}
+                                handleSpecialInstructions={this.props.handleSpecialInstructions}
+                                handleAddItemToOrder={this.props.handleAddItemToOrder}
+                                toggleAddNotification={this.props.toggleAddNotification}
+                                toggleErrorNotification={this.props.toggleErrorNotification} />
+
+                    </div>
+                    <div className="order-total-container">
+                         <OrderTotal
+                             orderItems={this.props.items}
+                             handleDeleteItemFromOrder={this.props.handleDeleteItemFromOrder}
+                             toggleDeleteNotification={this.props.toggleDeleteNotification} />
+                         <Link to="/additional-info"><button className="next-button">Next</button></Link>
+                    </div>
                  </div>
              </div>
         )

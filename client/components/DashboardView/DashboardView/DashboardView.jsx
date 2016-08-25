@@ -12,9 +12,9 @@ var DashboardView = React.createClass({
 
     render: function() {
         return (
-            <div>
+            <div className="dashboard-container">
                 <div className="title-cover">
-                <h1>Hey {this.props.username}, just click start to be on your way!</h1>
+                <h1>Hey! Just click start to be on your way!</h1>
                 </div>
 
                 <div className="main-wrap">
@@ -23,9 +23,9 @@ var DashboardView = React.createClass({
                                 <i className="fa fa-coffee" aria-hidden="true"></i>
                                     Start
                             </button></Link>
-                        <PrevAndFavorites />
+                        { /*<PrevAndFavorites /> */}
                 </div>
-        </div>
+            </div>
         )
     }
 });

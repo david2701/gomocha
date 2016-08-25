@@ -68,11 +68,25 @@
         width: 21em;
 
         &:nth-child(even) {
-            margin-right: 5em;
+            clear: right;
         }
 
         &:nth-child(odd) {
-            margin-left: 5em;
+            clear: left;
+        }
+    }
+}
+
+@media only screen and (min-width: 1289px) {
+    .shop-list-item-container {
+        width: 21em;
+
+        &:nth-child(even) {
+            margin-right: 10em;
+        }
+
+        &:nth-child(odd) {
+            margin-left: 10em;
         }
     }
 }

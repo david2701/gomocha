@@ -1,57 +1,69 @@
-nav.main-nav{
+.top-nav{
     width: 100%;
     margin: 0 auto 0 auto;
-    text-align: center;
-    padding: 1em 0 1em 0;
+    text-align: right;
+    box-shadow: 0px 1px 1px #efefef;
+
+    .nav-links {
+
+        ul {
+           width: 100%;
+           margin: 0 2em 0 0;
+           padding: 0 0em 0 0;
+
+           .router-link {
+               font-size: 0.85em;
+               text-decoration: none;
+               color: #1987FE;
+
+              li {
+                  display: inline-block;
+                  font-size: 16px;
+                  padding: 0.75em 1em 0.75em 0.75em;
+                  border-radius: 5px;
+                  margin-right: 5px;
+                  color: #8F8F8F;
+
+                  &:hover {
+                      color: #333333;
+                  }
+
+                  .fa-sign-out {
+                  }
+              }
+           }
+       }
+    }
 }
 
-div.nav-logo {
-    position: absolute;
-    left: 2em;
-    top: 0.6em;
-}
+.side-nav {
+    width: 5em;
+    height: 100%;
+    background: lighten(#1B1D24, 5%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 5.5em;
 
-div.nav-logo {
+    .nav-logo {
+        position: absolute;
+        left: 0.6em;
+        top: 1.2em;
 
-    img.logo-lg {
-        width: 10em;
+        img {
+            width: 2.3em;
+        }
     }
 
-    img.logo-sml {
-        display: none;
+    .fa-clock-o, .fa-heart, .fa-home {
+        color: #ABACB0;
+        padding: 0.7em;
+
+        &:hover {
+            color: lighten(#ABACB0, 7%);
+        }
     }
 }
-
-div.nav-links {
-}
-
-
-nav.main-nav ul{
-    width: 80%;
-    margin: 0 auto;
-    padding: 0;
-}
-
-nav.main-nav ul li {
-    display: inline-block;
-    font-size: 16px;
-    padding: 0.75em;
-    border-radius: 5px;
-    margin-right: 5px;
-    color: #8F8F8F;
-
-    &:hover {
-        color: #333333;
-    }
-
-}
-
-.router-link {
-    font-size: 0.85em;
-    text-decoration: none;
-    color: #1987FE;
-}
-
 
 .center-wrap {
     width: 520px;
@@ -68,50 +80,45 @@ nav.main-nav ul li {
     background: #3879D9;
     color: #fff;
 
-
     &:hover {
         cursor: pointer;
         background: lighten(#3879D9, 3%);
     }
-
 }
 
 .main-wrap {
     padding: 1em;
 }
 
-
-
 .title-cover {
-    background: #3879D9;
-    padding: 3em;
+    padding: 2em;
     min-height: 6em;
     margin-bottom: 1em;
 
     h1 {
-        color: #fff;
+        color: #262933;
     }
 }
 
 @media only screen and (max-width: 635px) {
-    div.nav-logo {
+    .nav-logo {
         top: 1.3em;
         left: 1em;
 
-        img.logo-lg {
+        img{
             width: 7em;
         }
     }
 }
 
 @media only screen and (max-width: 460px) {
-    div.nav-logo {
+    .nav-logo {
 
-        img.logo-lg {
+        img {
             display: none;
         }
 
-        img.logo-sml {
+        img {
             display: inline;
             width: 2.5em;
             position: absolute;

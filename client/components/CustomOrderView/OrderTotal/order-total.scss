@@ -1,13 +1,8 @@
-@media only screen and (min-width: 600px) {
-    #order-total {
-        max-width: 28em;
-        margin: 0 auto;
-    }
-
-}
-
 #order-total {
 
+    h2 {
+        text-align: left;
+    }
 }
 
 .next-button-container {
@@ -20,4 +15,12 @@
     width: 100%;
     border: 2px solid #E4E4E4;
     border-collapse: collapse;
+}
+
+@media only screen and (min-width: 600px) {
+    #order-total {
+        max-width: 28em;
+        margin: 0 auto;
+    }
+
 }

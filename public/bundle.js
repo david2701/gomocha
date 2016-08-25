@@ -89,6 +89,7 @@
 	// redo loading icon
 	// be able to search for shops in the area
 	// can't click on shop if closed
+	// new CustomOrderView layout
 
 	// add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for additional info page condition
 
@@ -25591,13 +25592,7 @@
 	            null,
 	            _react2.default.createElement(
 	                'nav',
-	                { className: 'main-nav' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'nav-logo' },
-	                    _react2.default.createElement('img', { className: 'logo-lg', src: '/img/gomocha-logo-lg.png' }),
-	                    _react2.default.createElement('img', { className: 'logo-sml', src: '/img/gomocha-logo-sml.png' })
-	                ),
+	                { className: 'top-nav' },
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'nav-links' },
@@ -25606,26 +25601,41 @@
 	                        { role: 'nav' },
 	                        _react2.default.createElement(
 	                            _reactRouter.Link,
-	                            { to: '/', onlyActiveOnIndex: true, className: 'router-link' },
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                'Dashboard'
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            _reactRouter.Link,
 	                            { to: '/', className: 'router-link', onClick: this._handleUsernameRemove },
 	                            _react2.default.createElement(
 	                                'li',
 	                                null,
-	                                'Log Out'
+	                                _react2.default.createElement('i', { className: 'fa fa-sign-out fa-2x', 'aria-hidden': 'true' })
 	                            )
 	                        )
 	                    )
 	                )
 	            ),
-	            !this.state.username ? _react2.default.createElement(_UsernameView2.default, { handleUsername: this._handleUsername }) : _react2.default.cloneElement(this.props.children, {
+	            _react2.default.createElement(
+	                'nav',
+	                { className: 'side-nav' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'nav-logo' },
+	                    _react2.default.createElement('img', { src: '/img/gomocha-logo-sml.png' })
+	                ),
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/', onlyActiveOnIndex: true, className: 'router-link' },
+	                    _react2.default.createElement('i', { className: 'fa fa-home fa-2x', 'aria-hidden': 'true' })
+	                ),
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/previous-orders', className: 'prev-orders-link' },
+	                    _react2.default.createElement('i', { className: 'fa fa-clock-o fa-2x' })
+	                ),
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: 'favorite-orders', className: 'fav-orders-link' },
+	                    _react2.default.createElement('i', { className: 'fa fa-heart fa-2x' })
+	                )
+	            ),
+	            _react2.default.cloneElement(this.props.children, {
 	                data: _dummyData2.default,
 	                username: this.state.username,
 	                userLocation: this.state.userLocation,
@@ -26868,7 +26878,7 @@
 
 
 	// module
-	exports.push([module.id, "nav.main-nav {\n  width: 100%;\n  margin: 0 auto 0 auto;\n  text-align: center;\n  padding: 1em 0 1em 0; }\n\ndiv.nav-logo {\n  position: absolute;\n  left: 2em;\n  top: 0.6em; }\n\ndiv.nav-logo img.logo-lg {\n  width: 10em; }\n\ndiv.nav-logo img.logo-sml {\n  display: none; }\n\nnav.main-nav ul {\n  width: 80%;\n  margin: 0 auto;\n  padding: 0; }\n\nnav.main-nav ul li {\n  display: inline-block;\n  font-size: 16px;\n  padding: 0.75em;\n  border-radius: 5px;\n  margin-right: 5px;\n  color: #8F8F8F; }\n  nav.main-nav ul li:hover {\n    color: #333333; }\n\n.router-link {\n  font-size: 0.85em;\n  text-decoration: none;\n  color: #1987FE; }\n\n.center-wrap {\n  width: 520px;\n  margin: 0 auto; }\n\n.next-button {\n  margin: 1em 0 0 0;\n  text-align: center;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer;\n    background: #4582db; }\n\n.main-wrap {\n  padding: 1em; }\n\n.title-cover {\n  background: #3879D9;\n  padding: 3em;\n  min-height: 6em;\n  margin-bottom: 1em; }\n  .title-cover h1 {\n    color: #fff; }\n\n@media only screen and (max-width: 635px) {\n  div.nav-logo {\n    top: 1.3em;\n    left: 1em; }\n    div.nav-logo img.logo-lg {\n      width: 7em; } }\n\n@media only screen and (max-width: 460px) {\n  div.nav-logo img.logo-lg {\n    display: none; }\n  div.nav-logo img.logo-sml {\n    display: inline;\n    width: 2.5em;\n    position: absolute;\n    top: -10px;\n    left: 10px; } }\n", ""]);
+	exports.push([module.id, ".top-nav {\n  width: 100%;\n  margin: 0 auto 0 auto;\n  text-align: right;\n  box-shadow: 0px 1px 1px #efefef; }\n  .top-nav .nav-links ul {\n    width: 100%;\n    margin: 0 2em 0 0;\n    padding: 0 0em 0 0; }\n    .top-nav .nav-links ul .router-link {\n      font-size: 0.85em;\n      text-decoration: none;\n      color: #1987FE; }\n      .top-nav .nav-links ul .router-link li {\n        display: inline-block;\n        font-size: 16px;\n        padding: 0.75em 1em 0.75em 0.75em;\n        border-radius: 5px;\n        margin-right: 5px;\n        color: #8F8F8F; }\n        .top-nav .nav-links ul .router-link li:hover {\n          color: #333333; }\n\n.side-nav {\n  width: 5em;\n  height: 100%;\n  background: #262933;\n  position: fixed;\n  top: 0;\n  left: 0;\n  padding-top: 5.5em; }\n  .side-nav .nav-logo {\n    position: absolute;\n    left: 0.6em;\n    top: 1.2em; }\n    .side-nav .nav-logo img {\n      width: 2.3em; }\n  .side-nav .fa-clock-o, .side-nav .fa-heart, .side-nav .fa-home {\n    color: #ABACB0;\n    padding: 0.7em; }\n    .side-nav .fa-clock-o:hover, .side-nav .fa-heart:hover, .side-nav .fa-home:hover {\n      color: #bdbec1; }\n\n.center-wrap {\n  width: 520px;\n  margin: 0 auto; }\n\n.next-button {\n  margin: 1em 0 0 0;\n  text-align: center;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer;\n    background: #4582db; }\n\n.main-wrap {\n  padding: 1em; }\n\n.title-cover {\n  padding: 2em;\n  min-height: 6em;\n  margin-bottom: 1em; }\n  .title-cover h1 {\n    color: #262933; }\n\n@media only screen and (max-width: 635px) {\n  .nav-logo {\n    top: 1.3em;\n    left: 1em; }\n    .nav-logo img {\n      width: 7em; } }\n\n@media only screen and (max-width: 460px) {\n  .nav-logo img {\n    display: none; }\n  .nav-logo img {\n    display: inline;\n    width: 2.5em;\n    position: absolute;\n    top: -10px;\n    left: 10px; } }\n", ""]);
 
 	// exports
 
@@ -44010,16 +44020,14 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'dashboard-container' },
 	            _react2.default.createElement(
 	                'div',
 	                { className: 'title-cover' },
 	                _react2.default.createElement(
 	                    'h1',
 	                    null,
-	                    'Hey ',
-	                    this.props.username,
-	                    ', just click start to be on your way!'
+	                    'Hey! Just click start to be on your way!'
 	                )
 	            ),
 	            _react2.default.createElement(
@@ -44034,8 +44042,7 @@
 	                        _react2.default.createElement('i', { className: 'fa fa-coffee', 'aria-hidden': 'true' }),
 	                        'Start'
 	                    )
-	                ),
-	                _react2.default.createElement(_PrevAndFavorites2.default, null)
+	                )
 	            )
 	        );
 	    }
@@ -44170,7 +44177,7 @@
 
 
 	// module
-	exports.push([module.id, ".start-button-wrap {\n  display: block;\n  text-align: center;\n  margin: 2em auto 3em auto; }\n  .start-button-wrap button.start-button {\n    background: #3FB083;\n    margin: 0em;\n    padding: 1.5em 3em;\n    font-size: 1.75em; }\n    .start-button-wrap button.start-button:hover {\n      background: #43bb8b; }\n  .start-button-wrap .fa-coffee {\n    margin-right: 0.35em; }\n", ""]);
+	exports.push([module.id, ".dashboard-container {\n  margin-left: 5em; }\n  .dashboard-container .start-button-wrap {\n    display: block;\n    text-align: center;\n    margin: 2em auto 3em auto; }\n    .dashboard-container .start-button-wrap button.start-button {\n      background: #3FB083;\n      margin: 0em;\n      padding: 1.5em 3em;\n      font-size: 1.75em; }\n      .dashboard-container .start-button-wrap button.start-button:hover {\n        background: #43bb8b; }\n    .dashboard-container .start-button-wrap .fa-coffee {\n      margin-right: 0.35em; }\n", ""]);
 
 	// exports
 
@@ -44220,11 +44227,11 @@
 	            error: _react2.default.PropTypes.bool
 	        }),
 	        data: _react2.default.PropTypes.object,
+	        items: _react2.default.PropTypes.array,
 	        handleSpecialInstructions: _react2.default.PropTypes.func,
 	        handleAddItemToOrder: _react2.default.PropTypes.func,
-	        toggleAddNotification: _react2.default.PropTypes.func,
-	        items: _react2.default.PropTypes.array,
 	        handleDeleteItemFromOrder: _react2.default.PropTypes.func,
+	        toggleAddNotification: _react2.default.PropTypes.func,
 	        toggleDeleteNotification: _react2.default.PropTypes.func,
 	        toggleErrorNotification: _react2.default.PropTypes.func
 	    },
@@ -44232,7 +44239,7 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'custom-order-container' },
 	            _react2.default.createElement(
 	                'div',
 	                { className: 'title-cover' },
@@ -44249,22 +44256,26 @@
 	            ),
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'main-wrap' },
+	                { className: 'custom-order-view-wrap' },
 	                _react2.default.createElement(_AddItemNotification2.default, {
 	                    notification: this.props.notification }),
-	                _react2.default.createElement(_MenuFormContainer2.default, {
-	                    data: this.props.data,
-	                    handleSpecialInstructions: this.props.handleSpecialInstructions,
-	                    handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                    toggleAddNotification: this.props.toggleAddNotification,
-	                    toggleErrorNotification: this.props.toggleErrorNotification }),
-	                _react2.default.createElement(_OrderTotal2.default, {
-	                    orderItems: this.props.items,
-	                    handleDeleteItemFromOrder: this.props.handleDeleteItemFromOrder,
-	                    toggleDeleteNotification: this.props.toggleDeleteNotification }),
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'next-button-container' },
+	                    { className: 'menu-form-container' },
+	                    _react2.default.createElement(_MenuFormContainer2.default, {
+	                        data: this.props.data,
+	                        handleSpecialInstructions: this.props.handleSpecialInstructions,
+	                        handleAddItemToOrder: this.props.handleAddItemToOrder,
+	                        toggleAddNotification: this.props.toggleAddNotification,
+	                        toggleErrorNotification: this.props.toggleErrorNotification })
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'order-total-container' },
+	                    _react2.default.createElement(_OrderTotal2.default, {
+	                        orderItems: this.props.items,
+	                        handleDeleteItemFromOrder: this.props.handleDeleteItemFromOrder,
+	                        toggleDeleteNotification: this.props.toggleDeleteNotification }),
 	                    _react2.default.createElement(
 	                        _reactRouter.Link,
 	                        { to: '/additional-info' },
@@ -45091,7 +45102,7 @@
 
 
 	// module
-	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .menu-section {\n    width: 28em;\n    margin: 0em auto 2.5em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .menu-section {\n    width: 95%;\n    margin: 0em auto 2.5em auto; } }\n\n.divider {\n  width: 100%;\n  border-bottom: 1px solid black; }\n", ""]);
+	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .menu-section {\n    width: 21em;\n    margin: 0em auto 2.5em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .menu-section {\n    width: 95%;\n    margin: 0em auto 2.5em auto; } }\n\n.divider {\n  width: 100%;\n  border-bottom: 1px solid black; }\n", ""]);
 
 	// exports
 
@@ -45175,7 +45186,7 @@
 
 
 	// module
-	exports.push([module.id, "#special-instructions {\n  margin-bottom: 2em; }\n  #special-instructions textarea {\n    border: 2px solid #E4E4E4;\n    padding: 0.5em;\n    width: 96%;\n    font-size: 1.1em;\n    margin-bottom: 1em; }\n\n@media only screen and (min-width: 600px) {\n  #special-instructions {\n    margin: 0 auto 2em auto;\n    width: 28em; } }\n", ""]);
+	exports.push([module.id, "#special-instructions {\n  margin-bottom: 2em; }\n  #special-instructions textarea {\n    border: 2px solid #E4E4E4;\n    padding: 0.5em;\n    width: 90%;\n    font-size: 1.1em;\n    margin-bottom: 1em; }\n\n@media only screen and (min-width: 600px) {\n  #special-instructions {\n    margin: 0 auto 2em auto;\n    width: 28em; } }\n", ""]);
 
 	// exports
 
@@ -45455,7 +45466,7 @@
 
 
 	// module
-	exports.push([module.id, ".order-total-table td {\n  padding: 0.75em 1.5em;\n  border-bottom: 2px solid #E4E4E4;\n  text-align: left; }\n\ntr.order-total-row .delete-item {\n  color: #E2514E;\n  margin-left: 20px;\n  display: none;\n  cursor: pointer; }\n\ntr.order-total-row:hover .delete-item {\n  display: inline-block; }\n\n.td-price {\n  width: 75px; }\n", ""]);
+	exports.push([module.id, ".order-total-table td {\n  padding: 0.4em 0.7em;\n  border-bottom: 2px solid #E4E4E4;\n  text-align: left; }\n\ntr.order-total-row .delete-item {\n  color: #E2514E;\n  margin-left: 20px;\n  display: none;\n  cursor: pointer; }\n\ntr.order-total-row:hover .delete-item {\n  display: inline-block; }\n", ""]);
 
 	// exports
 
@@ -45578,7 +45589,7 @@
 
 
 	// module
-	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  #order-total {\n    max-width: 28em;\n    margin: 0 auto; } }\n\n.next-button-container {\n  width: 28em;\n  margin: 2em auto 2em auto; }\n\n.order-total-table {\n  margin: 0 auto;\n  width: 100%;\n  border: 2px solid #E4E4E4;\n  border-collapse: collapse; }\n", ""]);
+	exports.push([module.id, "#order-total h2 {\n  text-align: left; }\n\n.next-button-container {\n  width: 28em;\n  margin: 2em auto 2em auto; }\n\n.order-total-table {\n  margin: 0 auto;\n  width: 100%;\n  border: 2px solid #E4E4E4;\n  border-collapse: collapse; }\n\n@media only screen and (min-width: 600px) {\n  #order-total {\n    max-width: 28em;\n    margin: 0 auto; } }\n", ""]);
 
 	// exports
 
@@ -45618,7 +45629,7 @@
 
 
 	// module
-	exports.push([module.id, ".userProgress {\n  position: relative;\n  width: 50%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto; }\n\n#twoOfFive {\n  position: absolute;\n  width: 40%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 0px 0px 5px; }\n", ""]);
+	exports.push([module.id, ".custom-order-container {\n  margin-left: 5.5em;\n  padding-right: 0.4em; }\n  .custom-order-container .userProgress {\n    position: relative;\n    width: 100%;\n    height: 30px;\n    background-color: #fff;\n    border-radius: 5px;\n    margin: 0 auto;\n    border: 1px solid #E4E4E4; }\n  .custom-order-container #twoOfFive {\n    position: absolute;\n    width: 40%;\n    height: 100%;\n    background: #3FB083;\n    border-radius: 5px 0px 0px 5px; }\n  .custom-order-container .order-total-container {\n    text-align: center; }\n\n@media only screen and (min-width: 600px) {\n  .custom-order-container .userProgress {\n    width: 25em; } }\n\n@media only screen and (min-width: 750px) {\n  .custom-order-view-wrap {\n    position: relative;\n    width: 100%; }\n    .custom-order-view-wrap .menu-form-container {\n      float: left; }\n    .custom-order-view-wrap .order-total-container {\n      position: fixed;\n      right: 1em;\n      width: 24em; } }\n", ""]);
 
 	// exports
 
@@ -45668,7 +45679,7 @@
 	        }
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'select-shop-container' },
 	            _react2.default.createElement(
 	                'div',
 	                { className: 'title-cover' },
@@ -45910,7 +45921,7 @@
 
 
 	// module
-	exports.push([module.id, ".shop-list-item-container {\n  border: 1px solid #E4E4E4;\n  width: 80%;\n  padding: 1em 1.2em 1.4em 1.2em;\n  border-radius: 3px;\n  margin: 0 auto 1.2em auto;\n  text-align: left; }\n  .shop-list-item-container:hover {\n    border: 1px solid #bebcbc;\n    cursor: pointer; }\n\n.shop-list-item-details {\n  display: inline-block;\n  width: 100%;\n  border-radius: 3px; }\n\n.shop-list-item-details h2 {\n  color: #000; }\n\n.shop-list-item-details p {\n  color: #000; }\n\n.shop-list-distance {\n  display: inline-block;\n  float: right;\n  margin: 0; }\n\n.open-now {\n  display: inline-block;\n  color: #3FB083; }\n\n.closed-now {\n  display: inline-block;\n  color: #A73232; }\n\n.shop-list-bottom-row {\n  padding-top: 1em; }\n\n@media only screen and (min-width: 750px) {\n  .shop-list-item-container {\n    display: inline-block;\n    width: 38%;\n    text-align: left; }\n    .shop-list-item-container:nth-child(even) {\n      margin-left: 2em;\n      margin-right: 0em; }\n    .shop-list-item-container:nth-child(odd) {\n      margin-left: 0em; } }\n\n@media only screen and (min-width: 1000px) {\n  .shop-list-item-container {\n    width: 21em; }\n    .shop-list-item-container:nth-child(even) {\n      margin-right: 5em; }\n    .shop-list-item-container:nth-child(odd) {\n      margin-left: 5em; } }\n", ""]);
+	exports.push([module.id, ".shop-list-item-container {\n  border: 1px solid #E4E4E4;\n  width: 80%;\n  padding: 1em 1.2em 1.4em 1.2em;\n  border-radius: 3px;\n  margin: 0 auto 1.2em auto;\n  text-align: left; }\n  .shop-list-item-container:hover {\n    border: 1px solid #bebcbc;\n    cursor: pointer; }\n\n.shop-list-item-details {\n  display: inline-block;\n  width: 100%;\n  border-radius: 3px; }\n\n.shop-list-item-details h2 {\n  color: #000; }\n\n.shop-list-item-details p {\n  color: #000; }\n\n.shop-list-distance {\n  display: inline-block;\n  float: right;\n  margin: 0; }\n\n.open-now {\n  display: inline-block;\n  color: #3FB083; }\n\n.closed-now {\n  display: inline-block;\n  color: #A73232; }\n\n.shop-list-bottom-row {\n  padding-top: 1em; }\n\n@media only screen and (min-width: 750px) {\n  .shop-list-item-container {\n    display: inline-block;\n    width: 38%;\n    text-align: left; }\n    .shop-list-item-container:nth-child(even) {\n      margin-left: 2em;\n      margin-right: 0em; }\n    .shop-list-item-container:nth-child(odd) {\n      margin-left: 0em; } }\n\n@media only screen and (min-width: 1000px) {\n  .shop-list-item-container {\n    width: 21em; }\n    .shop-list-item-container:nth-child(even) {\n      clear: right; }\n    .shop-list-item-container:nth-child(odd) {\n      clear: left; } }\n\n@media only screen and (min-width: 1289px) {\n  .shop-list-item-container {\n    width: 21em; }\n    .shop-list-item-container:nth-child(even) {\n      margin-right: 10em; }\n    .shop-list-item-container:nth-child(odd) {\n      margin-left: 10em; } }\n", ""]);
 
 	// exports
 
@@ -45950,7 +45961,7 @@
 
 
 	// module
-	exports.push([module.id, ".hide {\n  display: none; }\n\n.loading-icon {\n  margin-top: 0em;\n  text-align: center; }\n\n.userProgress {\n  position: relative;\n  width: 50%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto; }\n\n#oneOfFive {\n  position: absolute;\n  width: 20%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 0px 0px 5px; }\n", ""]);
+	exports.push([module.id, ".select-shop-container {\n  margin-left: 5em; }\n  .select-shop-container .main-wrap .loading-icon {\n    margin-top: 0em;\n    text-align: center; }\n  .select-shop-container .userProgress {\n    position: relative;\n    width: 50%;\n    height: 30px;\n    background-color: #fff;\n    border-radius: 5px;\n    margin: 0 auto;\n    border: 1px solid #E4E4E4; }\n    .select-shop-container .userProgress #oneOfFive {\n      position: absolute;\n      width: 20%;\n      height: 100%;\n      background: #3FB083;\n      border-radius: 5px 0px 0px 5px; }\n  .select-shop-container .hide {\n    display: none; }\n", ""]);
 
 	// exports
 
