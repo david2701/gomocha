@@ -29,5 +29,6 @@ ReactDOM.render(
 // be able to search for shops in the area
 // can't click on shop if closed
 // new CustomOrderView layout
+// make left nav mobile responsive
 
 // add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for additional info page condition

@@ -10,12 +10,11 @@ var SpecialInstructions = React.createClass({
     render: function() {
         return (
             <section id="special-instructions">
-                <h2>Special Instructions</h2>
                 <textarea
                     onChange={this.props.handleSpecialInstructions}
-                    rows="6"
+                    placeholder="Special instructions for your order"
+                    rows="2"
                     cols="100" ></textarea>
-                <div className="divider"></div>
             </section>
         )
     }

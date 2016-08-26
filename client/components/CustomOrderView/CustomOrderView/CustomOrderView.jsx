@@ -2,6 +2,7 @@ import React from 'react'
 import MenuFormContainer from '../MenuFormContainer/MenuFormContainer'
 import OrderTotal from '../OrderTotal/OrderTotal'
 import AddItemNotification from '../AddItemNotification/AddItemNotification'
+import SpecialInstructions from '../SpecialInstructions/SpecialInstructions'
 import { Link } from 'react-router'
 import sass from '../../App/app.scss'
 import sass2 from './custom-order-view.scss'
@@ -52,7 +53,14 @@ var CustomOrderView = React.createClass({
                              orderItems={this.props.items}
                              handleDeleteItemFromOrder={this.props.handleDeleteItemFromOrder}
                              toggleDeleteNotification={this.props.toggleDeleteNotification} />
-                         <Link to="/additional-info"><button className="next-button">Next</button></Link>
+                             <SpecialInstructions
+                                handleSpecialInstructions={this.props.handleSpecialInstructions} />
+                            <Link to="/additional-info">
+                                <button className="next-button">
+                                    Next
+                                    <i className="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
+                                </button>
+                            </Link>
                     </div>
                  </div>
              </div>

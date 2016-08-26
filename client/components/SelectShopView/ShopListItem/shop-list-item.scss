@@ -1,5 +1,6 @@
 .shop-list-item-container {
     border: 1px solid #E4E4E4;
+    background: #fff;
     width: 80%;
     padding: 1em 1.2em 1.4em 1.2em;
     border-radius: 3px;
@@ -20,10 +21,13 @@
 
 .shop-list-item-details h2 {
     color: #000;
+    padding-bottom: 0.5em;
+    font-size: 1.3em;
 }
 
 .shop-list-item-details p {
     color: #000;
+    margin: 0;
 }
 
 .shop-list-distance {
@@ -43,7 +47,7 @@
 }
 
 .shop-list-bottom-row {
-    padding-top: 1em;
+    padding-top: 0.25em;
 }
 
 @media only screen and (min-width: 750px) {

@@ -26,39 +26,44 @@ var AdditionalInfoView = React.createClass({
 
     render: function() {
         return (
-            <div>
-            <div className="title-cover">
-                <h1>Tell us a little more!</h1>
-                <div className="userProgress">
-                    <div id="threeOfFive">
+            <div className="additional-info-container">
+                <div className="title-cover">
+                    <h1>Tell us a little more!</h1>
+                    <div className="userProgress">
+                        <div id="threeOfFive">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <form>
+                        <SelectMethodOfTrans
+                            handleMethodOfTrans={this.props.handleMethodOfTrans} />
+                        <SelectPickUpTime
+                            handlePickupTime={this.props.handlePickupTime}
+                            value={this.props.pickupTime || 'true'} />
+                        <SelectIfFavorite
+                            handleFavorite={this.props.handleFavorite}
+                            value={this.props.favorite || false} />
+                        <EnterPaymentInfo
+                            handleCCName={this.props.handleCCName}
+                            handleCCNumber={this.props.handleCCNumber}
+                            handleCCExpMonth={this.props.handleCCExpMonth}
+                            expMonthValue={this.props.expMonth || 'default'}
+                            handleCCExpYear={this.props.handleCCExpYear}
+                            expYearValue={this.props.expYear || 'default'}
+                            handleCCCVV={this.props.handleCCCVV} />
+                    </form>
+                    <div className="next-button-container">
+                        <Link to="/order-summary">
+                            <button className="next-button">
+                                Next
+                                <i className="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>
-
-            <div className="main-wrap">
-                <form>
-                    <SelectMethodOfTrans
-                        handleMethodOfTrans={this.props.handleMethodOfTrans} />
-                    <SelectPickUpTime
-                        handlePickupTime={this.props.handlePickupTime}
-                        value={this.props.pickupTime || 'true'} />
-                    <SelectIfFavorite
-                        handleFavorite={this.props.handleFavorite}
-                        value={this.props.favorite || false} />
-                    <EnterPaymentInfo
-                        handleCCName={this.props.handleCCName}
-                        handleCCNumber={this.props.handleCCNumber}
-                        handleCCExpMonth={this.props.handleCCExpMonth}
-                        expMonthValue={this.props.expMonth || 'default'}
-                        handleCCExpYear={this.props.handleCCExpYear}
-                        expYearValue={this.props.expYear || 'default'}
-                        handleCCCVV={this.props.handleCCCVV} />
-                    <div className="next-button-container">
-                        <Link to="/order-summary"><button className="next-button">Next</button></Link>
-                    </div>
-                </form>
-            </div>
-        </div>
         )
     }
 });

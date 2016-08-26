@@ -410,7 +410,7 @@ var App = React.createClass({
                 <nav className="top-nav">
                     <div className="nav-links">
                         <ul role="nav">
-                            <Link to="/" className='router-link' onClick={this._handleUsernameRemove}><li><i className="fa fa-sign-out fa-2x" aria-hidden="true"></i></li></Link>
+
                         </ul>
                     </div>
                 </nav>
@@ -427,6 +427,8 @@ var App = React.createClass({
                     <Link to="favorite-orders" className="fav-orders-link">
                         <i className="fa fa-heart fa-2x"></i>
                     </Link>
+                    <div className="side-nav-divider"></div>
+                    <Link to="/" className='router-link' onClick={this._handleUsernameRemove}><i className="fa fa-sign-out fa-2x" aria-hidden="true"></i></Link>
                 </nav>
 
                 {React.cloneElement(this.props.children,

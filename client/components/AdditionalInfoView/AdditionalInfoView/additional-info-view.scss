@@ -1,5 +1,5 @@
 .next-button-container {
-    text-align: center;
+
 }
 
 .userProgress {
@@ -17,4 +17,16 @@
     height: 100%;
     background: #3FB083;
     border-radius: 5px 0px 0px 5px;
+}
+
+.additional-info-container {
+    margin-left: 6em;
+    margin-right: 1em;
+    overflow-x: hidden;
+}
+
+@media only screen and (min-width: 700px) {
+    .additional-info-container {
+        margin-left: 0em;
+    }
 }

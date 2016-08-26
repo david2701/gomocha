@@ -1,18 +1,16 @@
 #special-instructions {
-    margin-bottom: 2em;
+    margin-top: 2em;
 
     textarea {
-        border: 2px solid #E4E4E4;
+        border: 1px solid #E4E4E4;
         padding: 0.5em;
-        width: 90%;
-        font-size: 1.1em;
-        margin-bottom: 1em;
+        width: 16.9em;
+        font-size: 1em;
     }
 }
 
 @media only screen and (min-width: 600px) {
     #special-instructions {
-        margin: 0 auto 2em auto;
-        width: 28em;
+        margin: 0.5em auto 0em auto;
     }
 }

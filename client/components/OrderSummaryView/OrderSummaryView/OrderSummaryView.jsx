@@ -39,11 +39,14 @@ var OrderSummaryView = React.createClass({
                         onClick={this.props.handlePostOrder}
                         className="next-button order-summary-button">
                             Submit Order
+                            <i className="fa fa-check fa-lg" aria-hidden="true"></i>
                     </button>
                 </Link>
 
                 <Link to="/custom-order">
-                    <button className="next-button order-summary-edit-button">Edit my order
+                    <button className="next-button order-summary-edit-button">
+                        Edit my order
+                        <i className="fa fa-pencil fa-lg" aria-hidden="true"></i>
                     </button>
                 </Link>
             </div>

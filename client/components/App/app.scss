@@ -1,4 +1,7 @@
-.top-nav{
+.top-nav {
+    display: none;
+    position: fixed;
+    background: #fff;
     width: 100%;
     margin: 0 auto 0 auto;
     text-align: right;
@@ -39,7 +42,7 @@
 .side-nav {
     width: 5em;
     height: 100%;
-    background: lighten(#1B1D24, 5%);
+    background: #3E474F;
     position: fixed;
     top: 0;
     left: 0;
@@ -47,21 +50,35 @@
 
     .nav-logo {
         position: absolute;
-        left: 0.6em;
-        top: 1.2em;
+        left: 1.4em;
+        top: 0.4em;
 
         img {
-            width: 2.3em;
+            width: 2em;
         }
     }
 
-    .fa-clock-o, .fa-heart, .fa-home {
+    .side-nav-divider {
+        background: darken(#ABACB0, 25%);
+        width: 3em;
+        height: 2px;
+        margin-left: 1em;
+        margin-top: 1em;
+    }
+
+    .fa-clock-o, .fa-heart, .fa-home, .fa-sign-out {
         color: #ABACB0;
         padding: 0.7em;
 
         &:hover {
             color: lighten(#ABACB0, 7%);
         }
+    }
+
+    .fa-sign-out {
+        position: absolute;;
+        bottom: 4em;
+        left: 0;
     }
 }
 
@@ -84,6 +101,10 @@
         cursor: pointer;
         background: lighten(#3879D9, 3%);
     }
+
+    .fa-arrow-right, .fa-check, .fa-pencil {
+        padding-left: 0.4em;
+    }
 }
 
 .main-wrap {
@@ -97,33 +118,5 @@
 
     h1 {
         color: #262933;
-    }
-}
-
-@media only screen and (max-width: 635px) {
-    .nav-logo {
-        top: 1.3em;
-        left: 1em;
-
-        img{
-            width: 7em;
-        }
-    }
-}
-
-@media only screen and (max-width: 460px) {
-    .nav-logo {
-
-        img {
-            display: none;
-        }
-
-        img {
-            display: inline;
-            width: 2.5em;
-            position: absolute;
-            top: -10px;
-            left: 10px;
-        }
     }
 }
