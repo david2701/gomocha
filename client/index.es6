@@ -27,8 +27,7 @@ ReactDOM.render(
 // make calls for time it will take to walk/bike/drive at same time you call getDetails
 // redo loading icon
 // be able to search for shops in the area
-// can't click on shop if closed
-// new CustomOrderView layout
 // make left nav mobile responsive
+// additional margin left when minimizing screen
 
 // add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for additional info page condition

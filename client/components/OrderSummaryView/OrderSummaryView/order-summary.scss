@@ -1,6 +1,7 @@
 .order-summary-container {
-    margin: 0 auto;
     text-align: center;
+    margin-left: 0em;
+    margin-top: 4em;
 }
 
 .os-order-total-container {
@@ -50,4 +51,11 @@
     height: 100%;
     background: #3FB083;
     border-radius: 5px 0px 0px 5px;
+}
+
+@media only screen and (min-width: 960px) {
+    .order-summary-container {
+        margin-top: 0em;
+        margin-left: 5em;
+    }
 }

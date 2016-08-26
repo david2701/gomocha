@@ -88,9 +88,8 @@
 	// make calls for time it will take to walk/bike/drive at same time you call getDetails
 	// redo loading icon
 	// be able to search for shops in the area
-	// can't click on shop if closed
-	// new CustomOrderView layout
 	// make left nav mobile responsive
+	// additional margin left when minimizing screen
 
 	// add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for additional info page condition
 
@@ -20061,35 +20060,35 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _DashboardView = __webpack_require__(241);
+	var _DashboardView = __webpack_require__(222);
 
 	var _DashboardView2 = _interopRequireDefault(_DashboardView);
 
-	var _CustomOrderView = __webpack_require__(247);
+	var _CustomOrderView = __webpack_require__(230);
 
 	var _CustomOrderView2 = _interopRequireDefault(_CustomOrderView);
 
-	var _SelectShopView = __webpack_require__(278);
+	var _SelectShopView = __webpack_require__(266);
 
 	var _SelectShopView2 = _interopRequireDefault(_SelectShopView);
 
-	var _AdditionalInfoView = __webpack_require__(287);
+	var _AdditionalInfoView = __webpack_require__(275);
 
 	var _AdditionalInfoView2 = _interopRequireDefault(_AdditionalInfoView);
 
-	var _OrderSummaryView = __webpack_require__(401);
+	var _OrderSummaryView = __webpack_require__(389);
 
 	var _OrderSummaryView2 = _interopRequireDefault(_OrderSummaryView);
 
-	var _ConfirmationView = __webpack_require__(405);
+	var _ConfirmationView = __webpack_require__(393);
 
 	var _ConfirmationView2 = _interopRequireDefault(_ConfirmationView);
 
-	var _PreviousOrdersView = __webpack_require__(417);
+	var _PreviousOrdersView = __webpack_require__(405);
 
 	var _PreviousOrdersView2 = _interopRequireDefault(_PreviousOrdersView);
 
-	var _FavoriteOrdersView = __webpack_require__(426);
+	var _FavoriteOrdersView = __webpack_require__(414);
 
 	var _FavoriteOrdersView2 = _interopRequireDefault(_FavoriteOrdersView);
 
@@ -25185,35 +25184,35 @@
 
 	var _reactRouter = __webpack_require__(164);
 
-	var _dummyData = __webpack_require__(222);
+	var _dummyData = __webpack_require__(415);
 
 	var _dummyData2 = _interopRequireDefault(_dummyData);
 
-	var _app = __webpack_require__(223);
+	var _app = __webpack_require__(226);
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _AddItemNotification = __webpack_require__(225);
+	var _AddItemNotification = __webpack_require__(252);
 
 	var _AddItemNotification2 = _interopRequireDefault(_AddItemNotification);
 
-	var _UsernameView = __webpack_require__(228);
+	var _UsernameView = __webpack_require__(416);
 
 	var _UsernameView2 = _interopRequireDefault(_UsernameView);
 
-	var _lodash = __webpack_require__(231);
+	var _lodash = __webpack_require__(235);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _api = __webpack_require__(233);
+	var _api = __webpack_require__(419);
 
 	var _api2 = _interopRequireDefault(_api);
 
-	var _superagent = __webpack_require__(234);
+	var _superagent = __webpack_require__(420);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _jsCookie = __webpack_require__(240);
+	var _jsCookie = __webpack_require__(426);
 
 	var _jsCookie2 = _interopRequireDefault(_jsCookie);
 
@@ -25256,7 +25255,8 @@
 	                cvv: undefined
 	            },
 	            previousOrders: [],
-	            favoriteOrders: []
+	            favoriteOrders: [],
+	            menuShow: false
 	        };
 	    },
 
@@ -25587,7 +25587,15 @@
 	        });
 	    },
 
+	    _handleMenuToggle: function _handleMenuToggle() {
+	        this.setState({
+	            menuShow: !this.state.menuShow
+	        });
+	    },
+
 	    render: function render() {
+	        var _this7 = this;
+
 	        return _react2.default.createElement(
 	            'div',
 	            null,
@@ -25596,8 +25604,65 @@
 	                { className: 'top-nav' },
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'nav-links' },
-	                    _react2.default.createElement('ul', { role: 'nav' })
+	                    {
+	                        className: 'menu-bars',
+	                        onClick: function onClick() {
+	                            _this7._handleMenuToggle();
+	                        } },
+	                    _react2.default.createElement('i', { className: this.state.menuShow ? 'fa fa-times fa-2x' : 'fa fa-bars fa-2x', 'aria-hidden': 'true' })
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'top-nav-logo' },
+	                    _react2.default.createElement('img', { src: '/img/gomocha-logo-sml.png' })
+	                ),
+	                _react2.default.createElement(
+	                    'ul',
+	                    { className: this.state.menuShow ? 'menu-show' : 'menu-hide' },
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: '/', onlyActiveOnIndex: true, className: 'router-link' },
+	                        _react2.default.createElement(
+	                            'li',
+	                            { onClick: function onClick() {
+	                                    _this7._handleMenuToggle();
+	                                } },
+	                            'Dashboard'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: '/previous-orders', className: 'prev-orders-link' },
+	                        _react2.default.createElement(
+	                            'li',
+	                            { onClick: function onClick() {
+	                                    _this7._handleMenuToggle();
+	                                } },
+	                            'Previous Orders'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: 'favorite-orders', className: 'fav-orders-link' },
+	                        _react2.default.createElement(
+	                            'li',
+	                            { onClick: function onClick() {
+	                                    _this7._handleMenuToggle();
+	                                } },
+	                            'Favorite Orders'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: '/', className: 'router-link', onClick: this._handleUsernameRemove },
+	                        _react2.default.createElement(
+	                            'li',
+	                            { className: 'sign-out', onClick: function onClick() {
+	                                    _this7._handleMenuToggle();
+	                                } },
+	                            'Sign Out'
+	                        )
+	                    )
 	                )
 	            ),
 	            _react2.default.createElement(
@@ -25608,7 +25673,7 @@
 	                    { to: '/', onlyActiveOnIndex: true, className: 'router-link' },
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'nav-logo' },
+	                        { className: 'side-nav-logo' },
 	                        _react2.default.createElement('img', { src: '/img/gomocha-logo-sml.png' })
 	                    )
 	                ),
@@ -25670,7 +25735,9 @@
 	                handlePreviousOrders: this._handlePreviousOrders,
 	                handleFavoriteOrders: this._handleFavoriteOrders,
 	                previousOrders: this.state.previousOrders,
-	                favoriteOrders: this.state.favoriteOrders
+	                favoriteOrders: this.state.favoriteOrders,
+	                handleMenuToggle: this._handleMenuToggle,
+	                menuShow: this.state.menuShow
 	            })
 	        );
 	    }
@@ -25680,1210 +25747,6 @@
 
 /***/ },
 /* 222 */
-/***/ function(module, exports) {
-
-	module.exports = {
-		"shops": [
-			{
-				"name": "starbucks",
-				"address": "123 4th St. Santa Monica, CA 90234",
-				"phone": "(818) 438-9832",
-				"imageUrl": "http://www.fodors.com/ee/files/slideshows/9-colectivo-coffee.jpg",
-				"menu": [
-					{
-						"displayName": "Hot Drinks",
-						"slug": "hot-drinks",
-						"items": [
-							{
-								"name": "Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "latte"
-							},
-							{
-								"name": "Americano",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "americano"
-							},
-							{
-								"name": "Cappucino",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "cappucino"
-							},
-							{
-								"name": "Espresso",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "espresso"
-							},
-							{
-								"name": "Macchiato",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "macchiato"
-							}
-						]
-					},
-					{
-						"displayName": "Cold Drinks",
-						"slug": "cold-drinks",
-						"items": [
-							{
-								"name": "Iced Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-latte"
-							},
-							{
-								"name": "Iced Mocha",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-mocha"
-							},
-							{
-								"name": "Iced Chai",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-chai"
-							},
-							{
-								"name": "Iced Coffee",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": ""
-							},
-							{
-								"name": "Frappe",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "frappe"
-							}
-						]
-					},
-					{
-						"displayName": "Tea",
-						"slug": "tea",
-						"items": [
-							{
-								"name": "Green",
-								"price": 2.95,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "green"
-							},
-							{
-								"name": "Jasmine Green",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "jasmine-green"
-							},
-							{
-								"name": "Chai",
-								"price": 3.05,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chai"
-							},
-							{
-								"name": "Mint",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "mint"
-							},
-							{
-								"name": "Chamomile",
-								"price": 3.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chamomile"
-							}
-						]
-					},
-					{
-						"displayName": "Bakery",
-						"slug": "bakery",
-						"items": [
-							{
-								"name": "Croissant",
-								"price": 2.95,
-								"options": [
-									"quantity"
-								],
-								"id": "croissant"
-							},
-							{
-								"name": "Banana Muffin",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "banana-muffin"
-							},
-							{
-								"name": "Blueberry Scone",
-								"price": 3.05,
-								"options": [
-									"quantity"
-								],
-								"id": "blueberry-scone"
-							},
-							{
-								"name": "Carrot Cake",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "carrot-cake"
-							},
-							{
-								"name": "Home-Made Cookies",
-								"price": 3.5,
-								"options": [
-									"quantity"
-								],
-								"id": "home-made-cookies"
-							}
-						]
-					}
-				]
-			},
-			{
-				"name": "beanscene",
-				"address": "255 Alvera St. Los Angeles, CA 98654",
-				"phone": "(818) 438-9832",
-				"imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Inside_the_Coffee_Shop,_Parliament_House,_Dolgellau_-_geograph.org.uk_-_1708041.jpg",
-				"menu": [
-					{
-						"displayName": "Hot Drinks",
-						"slug": "hot-drinks",
-						"items": [
-							{
-								"name": "Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "latte"
-							},
-							{
-								"name": "Americano",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "americano"
-							},
-							{
-								"name": "Cappucino",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "cappucino"
-							},
-							{
-								"name": "Espresso",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "espresso"
-							},
-							{
-								"name": "Macchiato",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "macchiato"
-							}
-						]
-					},
-					{
-						"displayName": "Cold Drinks",
-						"slug": "cold-drinks",
-						"items": [
-							{
-								"name": "Iced Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-latte"
-							},
-							{
-								"name": "Iced Mocha",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-mocha"
-							},
-							{
-								"name": "Iced Chai",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-chai"
-							},
-							{
-								"name": "Iced Coffee",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": ""
-							},
-							{
-								"name": "Frappe",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "frappe"
-							}
-						]
-					},
-					{
-						"displayName": "Tea",
-						"slug": "tea",
-						"items": [
-							{
-								"name": "Green",
-								"price": 2.95,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "green"
-							},
-							{
-								"name": "Jasmine Green",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "jasmine-green"
-							},
-							{
-								"name": "Chai",
-								"price": 3.05,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chai"
-							},
-							{
-								"name": "Mint",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "mint"
-							},
-							{
-								"name": "Chamomile",
-								"price": 3.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chamomile"
-							}
-						]
-					},
-					{
-						"displayName": "Bakery",
-						"slug": "bakery",
-						"items": [
-							{
-								"name": "Croissant",
-								"price": 2.95,
-								"options": [
-									"quantity"
-								],
-								"id": "croissant"
-							},
-							{
-								"name": "Banana Muffin",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "banana-muffin"
-							},
-							{
-								"name": "Blueberry Scone",
-								"price": 3.05,
-								"options": [
-									"quantity"
-								],
-								"id": "blueberry-scone"
-							},
-							{
-								"name": "Carrot Cake",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "carrot-cake"
-							},
-							{
-								"name": "Home-Made Cookies",
-								"price": 3.5,
-								"options": [
-									"quantity"
-								],
-								"id": "home-made-cookies"
-							}
-						]
-					}
-				]
-			},
-			{
-				"name": "tifa",
-				"address": "6785 Huntington St. Venice, CA 90233",
-				"phone": "(818) 438-9832",
-				"imageUrl": "https://cdn1.vox-cdn.com/thumbor/D7jAbLqhca3vAJ20SbXyJH_Dv3I=/0x120:960x840/800x600/filters:format(webp)/cdn0.vox-cdn.com/uploads/chorus_image/image/45736528/compass_coffee.0.0.jpg",
-				"menu": [
-					{
-						"displayName": "Hot Drinks",
-						"slug": "hot-drinks",
-						"items": [
-							{
-								"name": "Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "latte"
-							},
-							{
-								"name": "Americano",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "americano"
-							},
-							{
-								"name": "Cappucino",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "cappucino"
-							},
-							{
-								"name": "Espresso",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "espresso"
-							},
-							{
-								"name": "Macchiato",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "macchiato"
-							}
-						]
-					},
-					{
-						"displayName": "Cold Drinks",
-						"slug": "cold-drinks",
-						"items": [
-							{
-								"name": "Iced Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-latte"
-							},
-							{
-								"name": "Iced Mocha",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-mocha"
-							},
-							{
-								"name": "Iced Chai",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-chai"
-							},
-							{
-								"name": "Iced Coffee",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": ""
-							},
-							{
-								"name": "Frappe",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "frappe"
-							}
-						]
-					},
-					{
-						"displayName": "Tea",
-						"slug": "tea",
-						"items": [
-							{
-								"name": "Green",
-								"price": 2.95,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "green"
-							},
-							{
-								"name": "Jasmine Green",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "jasmine-green"
-							},
-							{
-								"name": "Chai",
-								"price": 3.05,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chai"
-							},
-							{
-								"name": "Mint",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "mint"
-							},
-							{
-								"name": "Chamomile",
-								"price": 3.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chamomile"
-							}
-						]
-					},
-					{
-						"displayName": "Bakery",
-						"slug": "bakery",
-						"items": [
-							{
-								"name": "Croissant",
-								"price": 2.95,
-								"options": [
-									"quantity"
-								],
-								"id": "croissant"
-							},
-							{
-								"name": "Banana Muffin",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "banana-muffin"
-							},
-							{
-								"name": "Blueberry Scone",
-								"price": 3.05,
-								"options": [
-									"quantity"
-								],
-								"id": "blueberry-scone"
-							},
-							{
-								"name": "Carrot Cake",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "carrot-cake"
-							},
-							{
-								"name": "Home-Made Cookies",
-								"price": 3.5,
-								"options": [
-									"quantity"
-								],
-								"id": "home-made-cookies"
-							}
-						]
-					}
-				]
-			},
-			{
-				"name": "coffeeBean",
-				"address": "2433 Soju st. Venice, CA 90235",
-				"phone": "(818) 438-9832",
-				"imageUrl": "http://cdn.offtrackplanet.com/legacy/uploads/2010/08/coffee.jpg",
-				"menu": [
-					{
-						"displayName": "Hot Drinks",
-						"slug": "hot-drinks",
-						"items": [
-							{
-								"name": "Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "latte"
-							},
-							{
-								"name": "Americano",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "americano"
-							},
-							{
-								"name": "Cappucino",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "cappucino"
-							},
-							{
-								"name": "Espresso",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "espresso"
-							},
-							{
-								"name": "Macchiato",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "macchiato"
-							}
-						]
-					},
-					{
-						"displayName": "Cold Drinks",
-						"slug": "cold-drinks",
-						"items": [
-							{
-								"name": "Iced Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-latte"
-							},
-							{
-								"name": "Iced Mocha",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-mocha"
-							},
-							{
-								"name": "Iced Chai",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-chai"
-							},
-							{
-								"name": "Iced Coffee",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": ""
-							},
-							{
-								"name": "Frappe",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "frappe"
-							}
-						]
-					},
-					{
-						"displayName": "Tea",
-						"slug": "tea",
-						"items": [
-							{
-								"name": "Green",
-								"price": 2.95,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "green"
-							},
-							{
-								"name": "Jasmine Green",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "jasmine-green"
-							},
-							{
-								"name": "Chai",
-								"price": 3.05,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chai"
-							},
-							{
-								"name": "Mint",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "mint"
-							},
-							{
-								"name": "Chamomile",
-								"price": 3.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chamomile"
-							}
-						]
-					},
-					{
-						"displayName": "Bakery",
-						"slug": "bakery",
-						"items": [
-							{
-								"name": "Croissant",
-								"price": 2.95,
-								"options": [
-									"quantity"
-								],
-								"id": "croissant"
-							},
-							{
-								"name": "Banana Muffin",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "banana-muffin"
-							},
-							{
-								"name": "Blueberry Scone",
-								"price": 3.05,
-								"options": [
-									"quantity"
-								],
-								"id": "blueberry-scone"
-							},
-							{
-								"name": "Carrot Cake",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "carrot-cake"
-							},
-							{
-								"name": "Home-Made Cookies",
-								"price": 3.5,
-								"options": [
-									"quantity"
-								],
-								"id": "home-made-cookies"
-							}
-						]
-					}
-				]
-			},
-			{
-				"name": "starbucks",
-				"address": "123 4th St. Santa Monica, CA 90234",
-				"phone": "(818) 438-9832",
-				"imageUrl": "http://www.fodors.com/ee/files/slideshows/9-colectivo-coffee.jpg",
-				"menu": [
-					{
-						"displayName": "Hot Drinks",
-						"slug": "hot-drinks",
-						"items": [
-							{
-								"name": "Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "latte"
-							},
-							{
-								"name": "Americano",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "americano"
-							},
-							{
-								"name": "Cappucino",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "cappucino"
-							},
-							{
-								"name": "Espresso",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "espresso"
-							},
-							{
-								"name": "Macchiato",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "macchiato"
-							}
-						]
-					},
-					{
-						"displayName": "Cold Drinks",
-						"slug": "cold-drinks",
-						"items": [
-							{
-								"name": "Iced Latte",
-								"price": 2.95,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-latte"
-							},
-							{
-								"name": "Iced Mocha",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-mocha"
-							},
-							{
-								"name": "Iced Chai",
-								"price": 3.05,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "iced-chai"
-							},
-							{
-								"name": "Iced Coffee",
-								"price": 2.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": ""
-							},
-							{
-								"name": "Frappe",
-								"price": 3.5,
-								"options": [
-									"milkType",
-									"size",
-									"quantity",
-									"decaf"
-								],
-								"id": "frappe"
-							}
-						]
-					},
-					{
-						"displayName": "Tea",
-						"slug": "tea",
-						"items": [
-							{
-								"name": "Green",
-								"price": 2.95,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "green"
-							},
-							{
-								"name": "Jasmine Green",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "jasmine-green"
-							},
-							{
-								"name": "Chai",
-								"price": 3.05,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chai"
-							},
-							{
-								"name": "Mint",
-								"price": 2.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "mint"
-							},
-							{
-								"name": "Chamomile",
-								"price": 3.5,
-								"options": [
-									"size",
-									"quantity",
-									"hotOrCold"
-								],
-								"id": "chamomile"
-							}
-						]
-					},
-					{
-						"displayName": "Bakery",
-						"slug": "bakery",
-						"items": [
-							{
-								"name": "Croissant",
-								"price": 2.95,
-								"options": [
-									"quantity"
-								],
-								"id": "croissant"
-							},
-							{
-								"name": "Banana Muffin",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "banana-muffin"
-							},
-							{
-								"name": "Blueberry Scone",
-								"price": 3.05,
-								"options": [
-									"quantity"
-								],
-								"id": "blueberry-scone"
-							},
-							{
-								"name": "Carrot Cake",
-								"price": 2.5,
-								"options": [
-									"quantity"
-								],
-								"id": "carrot-cake"
-							},
-							{
-								"name": "Home-Made Cookies",
-								"price": 3.5,
-								"options": [
-									"quantity"
-								],
-								"id": "home-made-cookies"
-							}
-						]
-					}
-				]
-			}
-		]
-	};
-
-/***/ },
-/* 223 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(224);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./app.scss", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./app.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 224 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".top-nav {\n  display: none;\n  position: fixed;\n  background: #fff;\n  width: 100%;\n  margin: 0 auto 0 auto;\n  text-align: right;\n  box-shadow: 0px 1px 1px #efefef; }\n  .top-nav .nav-links ul {\n    width: 100%;\n    margin: 0 2em 0 0;\n    padding: 0 0em 0 0; }\n    .top-nav .nav-links ul .router-link {\n      font-size: 0.85em;\n      text-decoration: none;\n      color: #1987FE; }\n      .top-nav .nav-links ul .router-link li {\n        display: inline-block;\n        font-size: 16px;\n        padding: 0.75em 1em 0.75em 0.75em;\n        border-radius: 5px;\n        margin-right: 5px;\n        color: #8F8F8F; }\n        .top-nav .nav-links ul .router-link li:hover {\n          color: #333333; }\n\n.side-nav {\n  width: 5em;\n  height: 100%;\n  background: #3E474F;\n  position: fixed;\n  top: 0;\n  left: 0;\n  padding-top: 5.5em; }\n  .side-nav .nav-logo {\n    position: absolute;\n    left: 1.4em;\n    top: 0.6em; }\n    .side-nav .nav-logo img {\n      width: 2em; }\n  .side-nav .side-nav-divider {\n    background: #6a6c71;\n    width: 3em;\n    height: 2px;\n    margin-left: 1em;\n    margin-top: 1em; }\n  .side-nav .fa-clock-o, .side-nav .fa-heart, .side-nav .fa-home, .side-nav .fa-sign-out {\n    color: #ABACB0;\n    padding: 0.7em; }\n    .side-nav .fa-clock-o:hover, .side-nav .fa-heart:hover, .side-nav .fa-home:hover, .side-nav .fa-sign-out:hover {\n      color: #bdbec1; }\n  .side-nav .fa-sign-out {\n    position: absolute;\n    bottom: 4em;\n    left: 0; }\n\n.center-wrap {\n  width: 520px;\n  margin: 0 auto; }\n\n.next-button {\n  margin: 1em 0 0 0;\n  text-align: center;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer;\n    background: #4582db; }\n  .next-button .fa-arrow-right, .next-button .fa-check, .next-button .fa-pencil {\n    padding-left: 0.4em; }\n\n.main-wrap {\n  padding: 1em; }\n\n.title-cover {\n  padding: 2em;\n  min-height: 6em;\n  margin-bottom: 1em; }\n  .title-cover h1 {\n    color: #262933; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26892,162 +25755,61 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _addItemNotification = __webpack_require__(226);
+	var _PrevAndFavorites = __webpack_require__(223);
 
-	var _addItemNotification2 = _interopRequireDefault(_addItemNotification);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var AddItemNotification = _react2.default.createClass({
-	    displayName: 'AddItemNotification',
-
-
-	    propTypes: {
-	        notification: _react2.default.PropTypes.shape({
-	            add: _react2.default.PropTypes.bool,
-	            delete: _react2.default.PropTypes.bool,
-	            error: _react2.default.PropTypes.bool
-	        })
-	    },
-
-	    render: function render() {
-
-	        var notificationType = '';
-	        var notificationText = '';
-
-	        if (this.props.notification.add) {
-	            notificationType = 'item-notification add-item-notification item-notification-show';
-	            notificationText = 'Item added to order!';
-	        } else if (this.props.notification.delete) {
-	            notificationType = 'item-notification delete-item-notification item-notification-show';
-	            notificationText = 'Item removed from order!';
-	        } else if (this.props.notification.error) {
-	            notificationType = 'item-notification error-item-notification item-notification-show';
-	            notificationText = 'You need to fill in the item details!';
-	        } else {
-	            notificationType = 'item-notification item-notification-hide';
-	        }
-
-	        return _react2.default.createElement(
-	            'div',
-	            { className: notificationType },
-	            _react2.default.createElement(
-	                'a',
-	                { className: 'item-notification-text' },
-	                notificationText
-	            )
-	        );
-	    }
-	});
-
-	module.exports = AddItemNotification;
-
-/***/ },
-/* 226 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(227);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./add-item-notification.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./add-item-notification.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 227 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".item-notification-text {\n  color: #f6f6f6;\n  text-align: center;\n  text-decoration: none; }\n\n.item-notification {\n  color: #f6f6f6;\n  font-size: 1.1em;\n  padding-top: 0.7em;\n  height: 38px;\n  position: fixed;\n  left: 0;\n  text-align: center;\n  text-decoration: none;\n  top: -45px;\n  width: 100%;\n  animation: item-notification 1s ease forwards; }\n\n.add-item-notification {\n  background-color: #3FB083; }\n\n.delete-item-notification {\n  background-color: #E2514E; }\n\n.error-item-notification {\n  background-color: #FAD675; }\n\n.item-notification-show {\n  display: block; }\n\n.item-notification-hide {\n  display: none; }\n\n@keyframes item-notification {\n  0% {\n    opacity: 0; }\n  50% {\n    opacity: 1; }\n  100% {\n    top: 0; } }\n\n@keyframes item-notification-hide {\n  0% {\n    top: 0; }\n  50% {\n    top: -25; }\n  100% {\n    top: -45; } }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 228 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _usernameView = __webpack_require__(229);
-
-	var _usernameView2 = _interopRequireDefault(_usernameView);
-
-	var _app = __webpack_require__(223);
-
-	var _app2 = _interopRequireDefault(_app);
+	var _PrevAndFavorites2 = _interopRequireDefault(_PrevAndFavorites);
 
 	var _reactRouter = __webpack_require__(164);
 
+	var _app = __webpack_require__(226);
+
+	var _app2 = _interopRequireDefault(_app);
+
+	var _dashboardView = __webpack_require__(228);
+
+	var _dashboardView2 = _interopRequireDefault(_dashboardView);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var UsernameView = _react2.default.createClass({
-	    displayName: 'UsernameView',
+	var DashboardView = _react2.default.createClass({
+	    displayName: 'DashboardView',
 
 
 	    propTypes: {
-	        handleUsername: _react2.default.PropTypes.func
-	    },
-
-	    _handleUsernameSubmit: function _handleUsernameSubmit(event) {
-	        event.preventDefault();
-	        var username = this._usernameInput.value;
-	        this.props.handleUsername(username);
+	        username: _react2.default.PropTypes.string
 	    },
 
 	    render: function render() {
-	        var _this = this;
-
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'dashboard-container' },
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'title-cover-landing' },
+	                { className: 'title-cover' },
 	                _react2.default.createElement(
 	                    'h1',
 	                    null,
-	                    'The fastest way to your morning coffee.'
-	                ),
+	                    'Hey! Just click start to begin placing your order!'
+	                )
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'main-wrap' },
 	                _react2.default.createElement(
-	                    'form',
-	                    { onSubmit: this._handleUsernameSubmit },
-	                    _react2.default.createElement('input', {
-	                        type: 'text',
-	                        placeholder: 'Enter a username to begin',
-	                        name: 'username',
-	                        ref: function ref(c) {
-	                            return _this._usernameInput = c;
-	                        },
-	                        required: true }),
+	                    _reactRouter.Link,
+	                    { to: '/select-shop', className: 'start-button-wrap' },
 	                    _react2.default.createElement(
 	                        'button',
-	                        null,
-	                        'Go!'
+	                        { className: 'next-button start-button' },
+	                        _react2.default.createElement('i', { className: 'fa fa-coffee', 'aria-hidden': 'true' }),
+	                        'Start'
 	                    )
+	                ),
+	                _react2.default.createElement('div', { className: 'dashboard-divider' }),
+	                _react2.default.createElement(
+	                    'h2',
+	                    { className: 'how-it-works' },
+	                    'Wait, how does this work?'
 	                )
 	            ),
 	            _react2.default.createElement(
@@ -27088,16 +25850,68 @@
 	    }
 	});
 
-	module.exports = UsernameView;
+	module.exports = DashboardView;
 
 /***/ },
-/* 229 */
+/* 223 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _prevAndFavorites = __webpack_require__(224);
+
+	var _prevAndFavorites2 = _interopRequireDefault(_prevAndFavorites);
+
+	var _reactRouter = __webpack_require__(164);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var PrevAndFavorites = _react2.default.createClass({
+	    displayName: 'PrevAndFavorites',
+
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'prev-and-fav-wrap' },
+	            _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/previous-orders', className: 'prev-orders-link' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'prev-orders-button' },
+	                    _react2.default.createElement('i', { className: 'fa fa-reply fa-lg' }),
+	                    '  Previous Orders'
+	                )
+	            ),
+	            _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: 'favorite-orders', className: 'fav-orders-link' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'fav-orders-button' },
+	                    _react2.default.createElement('i', { className: 'fa fa-heart fa-lg' }),
+	                    '  Fav Orders'
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = PrevAndFavorites;
+
+/***/ },
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(230);
+	var content = __webpack_require__(225);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -27106,8 +25920,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./username-view.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./username-view.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./prev-and-favorites.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./prev-and-favorites.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -27117,7 +25931,7 @@
 	}
 
 /***/ },
-/* 230 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -27125,13 +25939,613 @@
 
 
 	// module
-	exports.push([module.id, ".landing-icon-wrap .landing-icon {\n  display: inline-block;\n  width: 33%;\n  text-align: center; }\n\n.landing-icon-wrap img {\n  width: 60%; }\n\n.landing-icon-wrap h2 {\n  text-align: center; }\n\n@media only screen and (min-width: 600px) {\n  .username-wrap {\n    width: 28em;\n    margin: 3em auto 1em auto; }\n  .landing-icon-wrap {\n    margin-bottom: 5em; } }\n\n@media only screen and (max-width: 635px) {\n  .landing-icon-wrap .landing-icon {\n    display: block;\n    width: 30%;\n    margin: 0 auto; }\n  .landing-icon-wrap img {\n    width: 8em; }\n  .landing-icon-wrap h2 {\n    margin-bottom: 1.5em; } }\n\n@media only screen and (max-width: 680px) {\n  .landing-icon-3 h2 {\n    font-size: 1.4em; } }\n\n@media only screen and (max-width: 599px) {\n  .username-wrap {\n    width: 90%;\n    margin: 3em auto 1em auto; } }\n\n.title-cover-landing {\n  background-image: url(\"/img/coffee-cover5.jpg\");\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 7em;\n  min-height: 7em;\n  margin-bottom: 3em; }\n  .title-cover-landing h1 {\n    color: #fff; }\n  .title-cover-landing h2 {\n    color: #fff;\n    text-align: center; }\n  .title-cover-landing form {\n    text-align: center; }\n  .title-cover-landing input[type=\"text\"] {\n    width: 12em;\n    text-align: center;\n    font-size: 1.4em;\n    height: 1.5em;\n    border-radius: 3px;\n    border: 2px solid #E4E4E4;\n    margin: 0.5em auto 0 auto;\n    padding: 0.25em; }\n  .title-cover-landing button {\n    display: block;\n    width: 8em;\n    margin: 1.5em auto 0 auto;\n    background: #3FB083;\n    border: none;\n    border-radius: 3px;\n    padding: 0.9em 0.7em 0.9em 0.7em;\n    color: #fff;\n    font-size: 1.2em; }\n    .title-cover-landing button:hover {\n      background: #43BB8B; }\n    .title-cover-landing button .fa-rocket {\n      margin-right: 5px; }\n  .title-cover-landing a {\n    text-decoration: none; }\n", ""]);
+	exports.push([module.id, ".prev-and-fav-wrap {\n  width: 100%;\n  margin: 0 auto; }\n  .prev-and-fav-wrap .prev-orders-link, .prev-and-fav-wrap .fav-orders-link {\n    text-decoration: none; }\n    .prev-and-fav-wrap .prev-orders-link .prev-orders-button, .prev-and-fav-wrap .prev-orders-link .fav-orders-button, .prev-and-fav-wrap .fav-orders-link .prev-orders-button, .prev-and-fav-wrap .fav-orders-link .fav-orders-button {\n      width: 11em;\n      border: 1px solid #3879D9;\n      text-align: center;\n      font-size: 24px;\n      padding: 1.75em 0em 1.75em 0em;\n      border-radius: 5px;\n      margin: 0em auto 1em auto;\n      color: #3879D9; }\n      .prev-and-fav-wrap .prev-orders-link .prev-orders-button:hover, .prev-and-fav-wrap .prev-orders-link .fav-orders-button:hover, .prev-and-fav-wrap .fav-orders-link .prev-orders-button:hover, .prev-and-fav-wrap .fav-orders-link .fav-orders-button:hover {\n        cursor: pointer;\n        background: #fafafa; }\n    .prev-and-fav-wrap .prev-orders-link .fa-heart, .prev-and-fav-wrap .prev-orders-link .fa-reply, .prev-and-fav-wrap .fav-orders-link .fa-heart, .prev-and-fav-wrap .fav-orders-link .fa-reply {\n      color: #3879D9; }\n", ""]);
 
 	// exports
 
 
 /***/ },
+/* 226 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(227);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./app.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./app.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 227 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".top-nav {\n  width: 100%;\n  height: 4em;\n  background: #3E474F;\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 9999; }\n  .top-nav .menu-bars .fa-bars, .top-nav .menu-bars .fa-times {\n    color: #ABACB0;\n    margin: 0.5em; }\n    .top-nav .menu-bars .fa-bars:hover, .top-nav .menu-bars .fa-times:hover {\n      cursor: pointer; }\n  .top-nav .top-nav-logo {\n    position: absolute;\n    left: 48.3%;\n    top: 0.6em;\n    margin: 0 auto; }\n    .top-nav .top-nav-logo img {\n      width: 2em; }\n  .top-nav .menu-show {\n    width: 100%;\n    background: #3E474F;\n    padding-left: 0;\n    text-align: center;\n    margin: 0; }\n    .top-nav .menu-show .router-link, .top-nav .menu-show .prev-orders-link, .top-nav .menu-show .fav-orders-link {\n      text-decoration: none; }\n    .top-nav .menu-show li {\n      display: block;\n      color: #ABACB0;\n      padding: 0.5em 0 0.5em 0;\n      font-size: 1.1em; }\n      .top-nav .menu-show li:hover {\n        color: #fff; }\n    .top-nav .menu-show .sign-out {\n      padding-bottom: 1.5em; }\n  .top-nav .menu-hide {\n    display: none; }\n  .top-nav .fa-clock-o, .top-nav .fa-heart, .top-nav .fa-home, .top-nav .fa-sign-out {\n    color: #ABACB0;\n    padding: 0.7em; }\n    .top-nav .fa-clock-o:hover, .top-nav .fa-heart:hover, .top-nav .fa-home:hover, .top-nav .fa-sign-out:hover {\n      color: #bdbec1; }\n  .top-nav .fa-sign-out {\n    position: absolute;\n    bottom: 4em;\n    left: 0; }\n\n.side-nav {\n  display: none;\n  width: 5em;\n  height: 100%;\n  background: #3E474F;\n  position: fixed;\n  top: 0;\n  left: 0;\n  padding-top: 5.5em; }\n  .side-nav .side-nav-logo {\n    position: absolute;\n    left: 1.4em;\n    top: 0.6em; }\n    .side-nav .side-nav-logo img {\n      width: 2em; }\n  .side-nav .side-nav-divider {\n    background: #6a6c71;\n    width: 3em;\n    height: 2px;\n    margin-left: 1em;\n    margin-top: 1em; }\n  .side-nav .fa-clock-o, .side-nav .fa-heart, .side-nav .fa-home, .side-nav .fa-sign-out {\n    color: #ABACB0;\n    padding: 0.7em; }\n    .side-nav .fa-clock-o:hover, .side-nav .fa-heart:hover, .side-nav .fa-home:hover, .side-nav .fa-sign-out:hover {\n      color: #bdbec1; }\n  .side-nav .fa-sign-out {\n    position: absolute;\n    bottom: 4em;\n    left: 0; }\n\n.center-wrap {\n  width: 520px;\n  margin: 0 auto; }\n\n.next-button {\n  margin: 1em 0 0 0;\n  text-align: center;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer;\n    background: #4582db; }\n  .next-button .fa-arrow-right, .next-button .fa-check, .next-button .fa-pencil {\n    padding-left: 0.4em; }\n\n.main-wrap {\n  padding: 1em; }\n\n.title-cover {\n  padding: 2em;\n  min-height: 6em;\n  margin-bottom: 1em; }\n  .title-cover h1 {\n    color: #262933; }\n\n@media only screen and (min-width: 960px) {\n  .top-nav {\n    display: none; }\n  .side-nav {\n    display: block; } }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 228 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(229);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./dashboard-view.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./dashboard-view.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 229 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".dashboard-container {\n  margin-left: 0em;\n  margin-top: 4em; }\n  .dashboard-container .start-button-wrap {\n    display: block;\n    text-align: center;\n    margin: 1em auto 3em auto; }\n    .dashboard-container .start-button-wrap button.start-button {\n      background: #3FB083;\n      margin: 0em;\n      padding: 1.5em 3em;\n      font-size: 1.75em; }\n      .dashboard-container .start-button-wrap button.start-button:hover {\n        background: #43bb8b; }\n    .dashboard-container .start-button-wrap .fa-coffee {\n      margin-right: 0.35em; }\n  .dashboard-container .dashboard-divider {\n    width: 70%;\n    height: 2px;\n    background: #BDBEC1;\n    margin: 5em auto 0 auto; }\n  .dashboard-container h2.how-it-works {\n    text-align: center;\n    margin-top: 2em;\n    margin-bottom: 2em; }\n\n.landing-icon-wrap .landing-icon {\n  display: block;\n  width: 30%;\n  margin: 0 auto; }\n\n.landing-icon-wrap img {\n  width: 8em; }\n\n.landing-icon-wrap h2 {\n  margin-bottom: 1.5em; }\n\n@media only screen and (min-width: 685px) {\n  .landing-icon-wrap {\n    margin-bottom: 5em; }\n    .landing-icon-wrap .landing-icon {\n      display: inline-block;\n      width: 33%;\n      text-align: center; }\n      .landing-icon-wrap .landing-icon img {\n        width: 60%; }\n      .landing-icon-wrap .landing-icon h2 {\n        text-align: center; }\n    .landing-icon-wrap .landing-icon-3 h2 {\n      font-size: 1.4em; } }\n\n@media only screen and (min-width: 960px) {\n  .dashboard-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 230 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _MenuFormContainer = __webpack_require__(231);
+
+	var _MenuFormContainer2 = _interopRequireDefault(_MenuFormContainer);
+
+	var _OrderTotal = __webpack_require__(250);
+
+	var _OrderTotal2 = _interopRequireDefault(_OrderTotal);
+
+	var _AddItemNotification = __webpack_require__(252);
+
+	var _AddItemNotification2 = _interopRequireDefault(_AddItemNotification);
+
+	var _SpecialInstructions = __webpack_require__(261);
+
+	var _SpecialInstructions2 = _interopRequireDefault(_SpecialInstructions);
+
+	var _reactRouter = __webpack_require__(164);
+
+	var _app = __webpack_require__(226);
+
+	var _app2 = _interopRequireDefault(_app);
+
+	var _customOrderView = __webpack_require__(264);
+
+	var _customOrderView2 = _interopRequireDefault(_customOrderView);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CustomOrderView = _react2.default.createClass({
+	    displayName: 'CustomOrderView',
+
+
+	    propTypes: {
+	        notification: _react2.default.PropTypes.shape({
+	            add: _react2.default.PropTypes.bool,
+	            delete: _react2.default.PropTypes.bool,
+	            error: _react2.default.PropTypes.bool
+	        }),
+	        data: _react2.default.PropTypes.object,
+	        items: _react2.default.PropTypes.array,
+	        handleSpecialInstructions: _react2.default.PropTypes.func,
+	        handleAddItemToOrder: _react2.default.PropTypes.func,
+	        handleDeleteItemFromOrder: _react2.default.PropTypes.func,
+	        toggleAddNotification: _react2.default.PropTypes.func,
+	        toggleDeleteNotification: _react2.default.PropTypes.func,
+	        toggleErrorNotification: _react2.default.PropTypes.func
+	    },
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'custom-order-container' },
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'title-cover' },
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    'Place Your Order'
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'userProgress' },
+	                    _react2.default.createElement('div', { id: 'twoOfFive' })
+	                )
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'custom-order-view-wrap' },
+	                _react2.default.createElement(_AddItemNotification2.default, {
+	                    notification: this.props.notification }),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'menu-form-container' },
+	                    _react2.default.createElement(_MenuFormContainer2.default, {
+	                        data: this.props.data,
+	                        handleSpecialInstructions: this.props.handleSpecialInstructions,
+	                        handleAddItemToOrder: this.props.handleAddItemToOrder,
+	                        toggleAddNotification: this.props.toggleAddNotification,
+	                        toggleErrorNotification: this.props.toggleErrorNotification })
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'order-total-container' },
+	                    _react2.default.createElement(_OrderTotal2.default, {
+	                        orderItems: this.props.items,
+	                        handleDeleteItemFromOrder: this.props.handleDeleteItemFromOrder,
+	                        toggleDeleteNotification: this.props.toggleDeleteNotification }),
+	                    _react2.default.createElement(_SpecialInstructions2.default, {
+	                        handleSpecialInstructions: this.props.handleSpecialInstructions }),
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: '/additional-info' },
+	                        _react2.default.createElement(
+	                            'button',
+	                            { className: 'next-button' },
+	                            'Next',
+	                            _react2.default.createElement('i', { className: 'fa fa-arrow-right fa-lg', 'aria-hidden': 'true' })
+	                        )
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = CustomOrderView;
+
+/***/ },
 /* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _MenuSection = __webpack_require__(232);
+
+	var _MenuSection2 = _interopRequireDefault(_MenuSection);
+
+	var _menuFormContainer = __webpack_require__(248);
+
+	var _menuFormContainer2 = _interopRequireDefault(_menuFormContainer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var MenuFormContainer = _react2.default.createClass({
+	    displayName: 'MenuFormContainer',
+
+
+	    propTypes: {
+	        data: _react2.default.PropTypes.object,
+	        handleAddItemToOrder: _react2.default.PropTypes.func,
+	        toggleAddNotification: _react2.default.PropTypes.func,
+	        toggleErrorNotification: _react2.default.PropTypes.func,
+	        handleSpecialInstructions: _react2.default.PropTypes.func
+	    },
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'form',
+	            null,
+	            _react2.default.createElement(_MenuSection2.default, {
+	                data: this.props.data,
+	                slug: 'hot-drinks',
+	                handleAddItemToOrder: this.props.handleAddItemToOrder,
+	                toggleAddNotification: this.props.toggleAddNotification,
+	                toggleErrorNotification: this.props.toggleErrorNotification }),
+	            _react2.default.createElement(_MenuSection2.default, {
+	                data: this.props.data,
+	                slug: 'cold-drinks',
+	                handleAddItemToOrder: this.props.handleAddItemToOrder,
+	                toggleAddNotification: this.props.toggleAddNotification,
+	                toggleErrorNotification: this.props.toggleErrorNotification }),
+	            _react2.default.createElement(_MenuSection2.default, {
+	                data: this.props.data,
+	                slug: 'tea',
+	                handleAddItemToOrder: this.props.handleAddItemToOrder,
+	                toggleAddNotification: this.props.toggleAddNotification,
+	                toggleErrorNotification: this.props.toggleErrorNotification }),
+	            _react2.default.createElement(_MenuSection2.default, {
+	                data: this.props.data,
+	                slug: 'bakery',
+	                handleAddItemToOrder: this.props.handleAddItemToOrder,
+	                toggleAddNotification: this.props.toggleAddNotification,
+	                toggleErrorNotification: this.props.toggleErrorNotification })
+	        );
+	    }
+	});
+
+	module.exports = MenuFormContainer;
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _MenuItem = __webpack_require__(233);
+
+	var _MenuItem2 = _interopRequireDefault(_MenuItem);
+
+	var _lodash = __webpack_require__(235);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
+	var _menuSection = __webpack_require__(246);
+
+	var _menuSection2 = _interopRequireDefault(_menuSection);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var MenuSection = _react2.default.createClass({
+	    displayName: 'MenuSection',
+
+
+	    propTypes: {
+	        data: _react2.default.PropTypes.object,
+	        slug: _react2.default.PropTypes.string,
+	        handleAddItemToOrder: _react2.default.PropTypes.func,
+	        toggleAddNotification: _react2.default.PropTypes.func,
+	        toggleErrorNotification: _react2.default.PropTypes.func
+	    },
+
+	    render: function render() {
+	        var _this = this;
+
+	        var menuSection = _lodash2.default.find(this.props.data.shops[0].menu, { "slug": this.props.slug });
+	        var sectionTitle = menuSection.displayName;
+	        var menuItems = menuSection.items.map(function (item, index) {
+	            return _react2.default.createElement(_MenuItem2.default, {
+	                itemName: item.name,
+	                price: item.price,
+	                options: item.options,
+	                key: item.id,
+	                handleAddItemToOrder: _this.props.handleAddItemToOrder,
+	                calculateTotalAndTax: _this.props.calculateTotalAndTax,
+	                toggleAddNotification: _this.props.toggleAddNotification,
+	                toggleErrorNotification: _this.props.toggleErrorNotification });
+	        });
+
+	        return _react2.default.createElement(
+	            'section',
+	            { className: 'menu-section' },
+	            _react2.default.createElement(
+	                'h2',
+	                null,
+	                sectionTitle
+	            ),
+	            menuItems,
+	            _react2.default.createElement('div', { className: 'divider' })
+	        );
+	    }
+	});
+
+	module.exports = MenuSection;
+
+/***/ },
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _AddToOrderButton = __webpack_require__(234);
+
+	var _AddToOrderButton2 = _interopRequireDefault(_AddToOrderButton);
+
+	var _MilkType = __webpack_require__(239);
+
+	var _MilkType2 = _interopRequireDefault(_MilkType);
+
+	var _Size = __webpack_require__(240);
+
+	var _Size2 = _interopRequireDefault(_Size);
+
+	var _Quantity = __webpack_require__(241);
+
+	var _Quantity2 = _interopRequireDefault(_Quantity);
+
+	var _Decaf = __webpack_require__(242);
+
+	var _Decaf2 = _interopRequireDefault(_Decaf);
+
+	var _HotOrCold = __webpack_require__(243);
+
+	var _HotOrCold2 = _interopRequireDefault(_HotOrCold);
+
+	var _menuItem = __webpack_require__(244);
+
+	var _menuItem2 = _interopRequireDefault(_menuItem);
+
+	var _lodash = __webpack_require__(235);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var MenuItem = _react2.default.createClass({
+	    displayName: 'MenuItem',
+
+
+	    propTypes: {
+	        itemName: _react2.default.PropTypes.string,
+	        price: _react2.default.PropTypes.number,
+	        options: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.string),
+	        key: _react2.default.PropTypes.string,
+	        handleAddItemToOrder: _react2.default.PropTypes.func,
+	        calculateTotalAndTax: _react2.default.PropTypes.func,
+	        toggleAddNotification: _react2.default.PropTypes.func,
+	        toggleErrorNotification: _react2.default.PropTypes.func
+	    },
+
+	    getInitialState: function getInitialState() {
+	        return {};
+	    },
+
+	    _checkFormComplete: function _checkFormComplete() {
+	        var requiredOptions = this.props.options.filter(function (option) {
+	            return option !== 'decaf';
+	        });
+	        var optionsCheck = requiredOptions.map(function (option) {
+	            return this.state.hasOwnProperty(option);
+	        }, this);
+	        return optionsCheck.reduce(function (prev, current) {
+	            return prev && current;
+	        }, true);
+	    },
+
+	    _handleMilkTypeChange: function _handleMilkTypeChange(event) {
+	        this.setState({
+	            milkType: event.target.value
+	        });
+	    },
+
+	    _handleSizeChange: function _handleSizeChange(event) {
+	        this.setState({
+	            size: event.target.value
+	        });
+	    },
+
+	    _handleQuantityChange: function _handleQuantityChange(event) {
+	        this.setState({
+	            quantity: event.target.value
+	        });
+	    },
+
+	    _handleDecafChange: function _handleDecafChange(event) {
+	        this.setState({
+	            decaf: !this.state.decaf
+	        });
+	    },
+
+	    _handleHotOrColdChange: function _handleHotOrColdChange(event) {
+	        this.setState({
+	            hotOrCold: event.target.value
+	        });
+	    },
+
+	    _handleAddItemToOrder: function _handleAddItemToOrder(itemDetails) {
+	        this.props.handleAddItemToOrder(itemDetails);
+	        this.replaceState({});
+	    },
+
+	    _renderOption: function _renderOption(option, index) {
+	        switch (option) {
+	            case 'milkType':
+	                return _react2.default.createElement(_MilkType2.default, {
+	                    handleChange: this._handleMilkTypeChange,
+	                    key: index,
+	                    value: this.state.milkType || 'default' });
+	            case 'size':
+	                return _react2.default.createElement(_Size2.default, {
+	                    handleChange: this._handleSizeChange,
+	                    key: index,
+	                    value: this.state.size || 'default' });
+	            case 'quantity':
+	                return _react2.default.createElement(_Quantity2.default, {
+	                    handleChange: this._handleQuantityChange,
+	                    value: this.state.quantity || 'default',
+	                    key: index });
+	        }
+	    },
+
+	    _renderOption2: function _renderOption2(option, index) {
+	        switch (option) {
+	            case 'decaf':
+	                return _react2.default.createElement(_Decaf2.default, {
+	                    handleChange: this._handleDecafChange,
+	                    key: index,
+	                    value: this.state.decaf || false });
+	            case 'hotOrCold':
+	                return _react2.default.createElement(_HotOrCold2.default, {
+	                    handleChange: this._handleHotOrColdChange,
+	                    key: index,
+	                    value: this.state.hotOrCold || false });
+	        }
+	    },
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'drink-item' },
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'item-name-wrap' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'item-name' },
+	                    _react2.default.createElement(
+	                        'label',
+	                        { htmlFor: 'hot-drink' },
+	                        this.props.itemName
+	                    )
+	                ),
+	                _react2.default.createElement(_AddToOrderButton2.default, {
+	                    handleAddItemToOrder: this._handleAddItemToOrder,
+	                    handleItemFormComplete: this._handleItemFormComplete,
+	                    toggleAddNotification: this.props.toggleAddNotification,
+	                    toggleErrorNotification: this.props.toggleErrorNotification,
+	                    checkFormComplete: this._checkFormComplete,
+	                    itemName: this.props.itemName,
+	                    price: this.props.price,
+	                    itemDetails: this.state })
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'item-top-row' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'item-options' },
+	                    this.props.options.map(this._renderOption)
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'item-price' },
+	                    '$',
+	                    this.props.price.toFixed(2)
+	                )
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'item-other-options' },
+	                this.props.options.map(this._renderOption2)
+	            )
+	        );
+	    }
+	});
+
+	module.exports = MenuItem;
+
+/***/ },
+/* 234 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _lodash = __webpack_require__(235);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
+	var _options = __webpack_require__(237);
+
+	var _options2 = _interopRequireDefault(_options);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AddToOrderButton = _react2.default.createClass({
+	    displayName: 'AddToOrderButton',
+
+
+	    propTypes: {
+	        handleAddItemToOrder: _react2.default.PropTypes.func,
+	        handleItemFormComplete: _react2.default.PropTypes.func,
+	        toggleAddNotification: _react2.default.PropTypes.func,
+	        toggleErrorNotification: _react2.default.PropTypes.func,
+	        itemName: _react2.default.PropTypes.string,
+	        price: _react2.default.PropTypes.number,
+	        itemDetails: _react2.default.PropTypes.shape({
+	            milkType: _react2.default.PropTypes.string,
+	            quantity: _react2.default.PropTypes.string,
+	            size: _react2.default.PropTypes.string,
+	            itemName: _react2.default.PropTypes.string,
+	            price: _react2.default.PropTypes.number
+	        })
+	    },
+
+	    render: function render() {
+	        var _this = this;
+
+	        var itemDetails = _lodash2.default.assign({ itemName: this.props.itemName, price: this.props.price }, this.props.itemDetails);
+
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'add-to-order-wrap' },
+	            this.props.checkFormComplete() ? _react2.default.createElement(
+	                'div',
+	                { className: 'add-to-order',
+	                    onClick: function onClick() {
+	                        _this.props.handleAddItemToOrder(itemDetails);
+	                        _this.props.toggleAddNotification();
+	                    } },
+	                'Click to add'
+	            ) : _react2.default.createElement(
+	                'div',
+	                { className: 'add-to-order',
+	                    onClick: function onClick() {
+	                        _this.props.toggleErrorNotification();
+	                    } },
+	                'Click to add'
+	            )
+	        );
+	    }
+	});
+
+	module.exports = AddToOrderButton;
+
+/***/ },
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
@@ -42208,10 +41622,10 @@
 	  }
 	}.call(this));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(232)(module), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(236)(module), (function() { return this; }())))
 
 /***/ },
-/* 232 */
+/* 236 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -42227,2528 +41641,13 @@
 
 
 /***/ },
-/* 233 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	module.exports = {
-
-	    getLocation: function getLocation(callback, callback2) {
-	        if (navigator.geolocation) {
-	            navigator.geolocation.getCurrentPosition(callback);
-	            navigator.geolocation.getCurrentPosition(callback2);
-	        } else {
-	            alert("Geolocation is not supported by this browser.");
-	        }
-	    },
-
-	    getShops: function getShops(position, callback) {
-	        var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-	        // Specify location, radius and place types for your Places API search.
-	        var request = {
-	            location: currentLocation,
-	            radius: '4000',
-	            types: ['cafe']
-	        };
-	        // Create the PlaceService and send the request.
-	        // Handle the callback with an anonymous function.
-	        var service = new google.maps.places.PlacesService(map);
-
-	        service.nearbySearch(request, function (results, status) {
-	            if (status == google.maps.places.PlacesServiceStatus.OK) {
-	                callback(results);
-	            }
-	        });
-	    },
-
-	    getDetails: function getDetails(placeId, callback) {
-	        var service = new google.maps.places.PlacesService(map);
-
-	        service.getDetails({
-	            placeId: placeId
-	        }, function (place, status) {
-	            if (status === google.maps.places.PlacesServiceStatus.OK) {
-	                callback(place);
-	            }
-	        });
-	    },
-
-	    calculateTravelTime: function calculateTravelTime(userLocation, selectedShopLocation, methodOfTrans, callback) {
-	        var bounds = new google.maps.LatLngBounds();
-
-	        var origin1 = userLocation;
-	        var destinationA = selectedShopLocation;
-	        var methodOfTrans;
-
-	        switch (methodOfTrans) {
-	            case 'walking':
-	                methodOfTrans = google.maps.TravelMode.WALKING;
-	                break;
-	            case 'biking':
-	                methodOfTrans = google.maps.TravelMode.BICYCLING;
-	                break;
-	            case 'driving':
-	                methodOfTrans = google.maps.TravelMode.DRIVING;
-	                break;
-	            default:
-	                methodOfTrans = google.maps.TravelMode.DRIVING;
-	        }
-	        var geocoder = new google.maps.Geocoder();
-
-	        var service = new google.maps.DistanceMatrixService();
-	        service.getDistanceMatrix({
-	            origins: [origin1],
-	            destinations: [destinationA],
-	            travelMode: methodOfTrans,
-	            unitSystem: google.maps.UnitSystem.IMPERIAL,
-	            avoidHighways: false,
-	            avoidTolls: false
-	        }, function (response, status) {
-	            if (status !== google.maps.DistanceMatrixStatus.OK) {
-	                alert('Error was: ' + status);
-	            } else {
-	                var originList = response.originAddresses;
-	                var destinationList = response.destinationAddresses;
-	                callback(response);
-	            }
-	        });
-	    }
-	};
-
-/***/ },
-/* 234 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Module dependencies.
-	 */
-
-	var Emitter = __webpack_require__(235);
-	var reduce = __webpack_require__(236);
-	var requestBase = __webpack_require__(237);
-	var isObject = __webpack_require__(238);
-
-	/**
-	 * Root reference for iframes.
-	 */
-
-	var root;
-	if (typeof window !== 'undefined') { // Browser window
-	  root = window;
-	} else if (typeof self !== 'undefined') { // Web Worker
-	  root = self;
-	} else { // Other environments
-	  root = this;
-	}
-
-	/**
-	 * Noop.
-	 */
-
-	function noop(){};
-
-	/**
-	 * Check if `obj` is a host object,
-	 * we don't want to serialize these :)
-	 *
-	 * TODO: future proof, move to compoent land
-	 *
-	 * @param {Object} obj
-	 * @return {Boolean}
-	 * @api private
-	 */
-
-	function isHost(obj) {
-	  var str = {}.toString.call(obj);
-
-	  switch (str) {
-	    case '[object File]':
-	    case '[object Blob]':
-	    case '[object FormData]':
-	      return true;
-	    default:
-	      return false;
-	  }
-	}
-
-	/**
-	 * Expose `request`.
-	 */
-
-	var request = module.exports = __webpack_require__(239).bind(null, Request);
-
-	/**
-	 * Determine XHR.
-	 */
-
-	request.getXHR = function () {
-	  if (root.XMLHttpRequest
-	      && (!root.location || 'file:' != root.location.protocol
-	          || !root.ActiveXObject)) {
-	    return new XMLHttpRequest;
-	  } else {
-	    try { return new ActiveXObject('Microsoft.XMLHTTP'); } catch(e) {}
-	    try { return new ActiveXObject('Msxml2.XMLHTTP.6.0'); } catch(e) {}
-	    try { return new ActiveXObject('Msxml2.XMLHTTP.3.0'); } catch(e) {}
-	    try { return new ActiveXObject('Msxml2.XMLHTTP'); } catch(e) {}
-	  }
-	  return false;
-	};
-
-	/**
-	 * Removes leading and trailing whitespace, added to support IE.
-	 *
-	 * @param {String} s
-	 * @return {String}
-	 * @api private
-	 */
-
-	var trim = ''.trim
-	  ? function(s) { return s.trim(); }
-	  : function(s) { return s.replace(/(^\s*|\s*$)/g, ''); };
-
-	/**
-	 * Serialize the given `obj`.
-	 *
-	 * @param {Object} obj
-	 * @return {String}
-	 * @api private
-	 */
-
-	function serialize(obj) {
-	  if (!isObject(obj)) return obj;
-	  var pairs = [];
-	  for (var key in obj) {
-	    if (null != obj[key]) {
-	      pushEncodedKeyValuePair(pairs, key, obj[key]);
-	        }
-	      }
-	  return pairs.join('&');
-	}
-
-	/**
-	 * Helps 'serialize' with serializing arrays.
-	 * Mutates the pairs array.
-	 *
-	 * @param {Array} pairs
-	 * @param {String} key
-	 * @param {Mixed} val
-	 */
-
-	function pushEncodedKeyValuePair(pairs, key, val) {
-	  if (Array.isArray(val)) {
-	    return val.forEach(function(v) {
-	      pushEncodedKeyValuePair(pairs, key, v);
-	    });
-	  }
-	  pairs.push(encodeURIComponent(key)
-	    + '=' + encodeURIComponent(val));
-	}
-
-	/**
-	 * Expose serialization method.
-	 */
-
-	 request.serializeObject = serialize;
-
-	 /**
-	  * Parse the given x-www-form-urlencoded `str`.
-	  *
-	  * @param {String} str
-	  * @return {Object}
-	  * @api private
-	  */
-
-	function parseString(str) {
-	  var obj = {};
-	  var pairs = str.split('&');
-	  var parts;
-	  var pair;
-
-	  for (var i = 0, len = pairs.length; i < len; ++i) {
-	    pair = pairs[i];
-	    parts = pair.split('=');
-	    obj[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
-	  }
-
-	  return obj;
-	}
-
-	/**
-	 * Expose parser.
-	 */
-
-	request.parseString = parseString;
-
-	/**
-	 * Default MIME type map.
-	 *
-	 *     superagent.types.xml = 'application/xml';
-	 *
-	 */
-
-	request.types = {
-	  html: 'text/html',
-	  json: 'application/json',
-	  xml: 'application/xml',
-	  urlencoded: 'application/x-www-form-urlencoded',
-	  'form': 'application/x-www-form-urlencoded',
-	  'form-data': 'application/x-www-form-urlencoded'
-	};
-
-	/**
-	 * Default serialization map.
-	 *
-	 *     superagent.serialize['application/xml'] = function(obj){
-	 *       return 'generated xml here';
-	 *     };
-	 *
-	 */
-
-	 request.serialize = {
-	   'application/x-www-form-urlencoded': serialize,
-	   'application/json': JSON.stringify
-	 };
-
-	 /**
-	  * Default parsers.
-	  *
-	  *     superagent.parse['application/xml'] = function(str){
-	  *       return { object parsed from str };
-	  *     };
-	  *
-	  */
-
-	request.parse = {
-	  'application/x-www-form-urlencoded': parseString,
-	  'application/json': JSON.parse
-	};
-
-	/**
-	 * Parse the given header `str` into
-	 * an object containing the mapped fields.
-	 *
-	 * @param {String} str
-	 * @return {Object}
-	 * @api private
-	 */
-
-	function parseHeader(str) {
-	  var lines = str.split(/\r?\n/);
-	  var fields = {};
-	  var index;
-	  var line;
-	  var field;
-	  var val;
-
-	  lines.pop(); // trailing CRLF
-
-	  for (var i = 0, len = lines.length; i < len; ++i) {
-	    line = lines[i];
-	    index = line.indexOf(':');
-	    field = line.slice(0, index).toLowerCase();
-	    val = trim(line.slice(index + 1));
-	    fields[field] = val;
-	  }
-
-	  return fields;
-	}
-
-	/**
-	 * Check if `mime` is json or has +json structured syntax suffix.
-	 *
-	 * @param {String} mime
-	 * @return {Boolean}
-	 * @api private
-	 */
-
-	function isJSON(mime) {
-	  return /[\/+]json\b/.test(mime);
-	}
-
-	/**
-	 * Return the mime type for the given `str`.
-	 *
-	 * @param {String} str
-	 * @return {String}
-	 * @api private
-	 */
-
-	function type(str){
-	  return str.split(/ *; */).shift();
-	};
-
-	/**
-	 * Return header field parameters.
-	 *
-	 * @param {String} str
-	 * @return {Object}
-	 * @api private
-	 */
-
-	function params(str){
-	  return reduce(str.split(/ *; */), function(obj, str){
-	    var parts = str.split(/ *= */)
-	      , key = parts.shift()
-	      , val = parts.shift();
-
-	    if (key && val) obj[key] = val;
-	    return obj;
-	  }, {});
-	};
-
-	/**
-	 * Initialize a new `Response` with the given `xhr`.
-	 *
-	 *  - set flags (.ok, .error, etc)
-	 *  - parse header
-	 *
-	 * Examples:
-	 *
-	 *  Aliasing `superagent` as `request` is nice:
-	 *
-	 *      request = superagent;
-	 *
-	 *  We can use the promise-like API, or pass callbacks:
-	 *
-	 *      request.get('/').end(function(res){});
-	 *      request.get('/', function(res){});
-	 *
-	 *  Sending data can be chained:
-	 *
-	 *      request
-	 *        .post('/user')
-	 *        .send({ name: 'tj' })
-	 *        .end(function(res){});
-	 *
-	 *  Or passed to `.send()`:
-	 *
-	 *      request
-	 *        .post('/user')
-	 *        .send({ name: 'tj' }, function(res){});
-	 *
-	 *  Or passed to `.post()`:
-	 *
-	 *      request
-	 *        .post('/user', { name: 'tj' })
-	 *        .end(function(res){});
-	 *
-	 * Or further reduced to a single call for simple cases:
-	 *
-	 *      request
-	 *        .post('/user', { name: 'tj' }, function(res){});
-	 *
-	 * @param {XMLHTTPRequest} xhr
-	 * @param {Object} options
-	 * @api private
-	 */
-
-	function Response(req, options) {
-	  options = options || {};
-	  this.req = req;
-	  this.xhr = this.req.xhr;
-	  // responseText is accessible only if responseType is '' or 'text' and on older browsers
-	  this.text = ((this.req.method !='HEAD' && (this.xhr.responseType === '' || this.xhr.responseType === 'text')) || typeof this.xhr.responseType === 'undefined')
-	     ? this.xhr.responseText
-	     : null;
-	  this.statusText = this.req.xhr.statusText;
-	  this.setStatusProperties(this.xhr.status);
-	  this.header = this.headers = parseHeader(this.xhr.getAllResponseHeaders());
-	  // getAllResponseHeaders sometimes falsely returns "" for CORS requests, but
-	  // getResponseHeader still works. so we get content-type even if getting
-	  // other headers fails.
-	  this.header['content-type'] = this.xhr.getResponseHeader('content-type');
-	  this.setHeaderProperties(this.header);
-	  this.body = this.req.method != 'HEAD'
-	    ? this.parseBody(this.text ? this.text : this.xhr.response)
-	    : null;
-	}
-
-	/**
-	 * Get case-insensitive `field` value.
-	 *
-	 * @param {String} field
-	 * @return {String}
-	 * @api public
-	 */
-
-	Response.prototype.get = function(field){
-	  return this.header[field.toLowerCase()];
-	};
-
-	/**
-	 * Set header related properties:
-	 *
-	 *   - `.type` the content type without params
-	 *
-	 * A response of "Content-Type: text/plain; charset=utf-8"
-	 * will provide you with a `.type` of "text/plain".
-	 *
-	 * @param {Object} header
-	 * @api private
-	 */
-
-	Response.prototype.setHeaderProperties = function(header){
-	  // content-type
-	  var ct = this.header['content-type'] || '';
-	  this.type = type(ct);
-
-	  // params
-	  var obj = params(ct);
-	  for (var key in obj) this[key] = obj[key];
-	};
-
-	/**
-	 * Parse the given body `str`.
-	 *
-	 * Used for auto-parsing of bodies. Parsers
-	 * are defined on the `superagent.parse` object.
-	 *
-	 * @param {String} str
-	 * @return {Mixed}
-	 * @api private
-	 */
-
-	Response.prototype.parseBody = function(str){
-	  var parse = request.parse[this.type];
-	  if (!parse && isJSON(this.type)) {
-	    parse = request.parse['application/json'];
-	  }
-	  return parse && str && (str.length || str instanceof Object)
-	    ? parse(str)
-	    : null;
-	};
-
-	/**
-	 * Set flags such as `.ok` based on `status`.
-	 *
-	 * For example a 2xx response will give you a `.ok` of __true__
-	 * whereas 5xx will be __false__ and `.error` will be __true__. The
-	 * `.clientError` and `.serverError` are also available to be more
-	 * specific, and `.statusType` is the class of error ranging from 1..5
-	 * sometimes useful for mapping respond colors etc.
-	 *
-	 * "sugar" properties are also defined for common cases. Currently providing:
-	 *
-	 *   - .noContent
-	 *   - .badRequest
-	 *   - .unauthorized
-	 *   - .notAcceptable
-	 *   - .notFound
-	 *
-	 * @param {Number} status
-	 * @api private
-	 */
-
-	Response.prototype.setStatusProperties = function(status){
-	  // handle IE9 bug: http://stackoverflow.com/questions/10046972/msie-returns-status-code-of-1223-for-ajax-request
-	  if (status === 1223) {
-	    status = 204;
-	  }
-
-	  var type = status / 100 | 0;
-
-	  // status / class
-	  this.status = this.statusCode = status;
-	  this.statusType = type;
-
-	  // basics
-	  this.info = 1 == type;
-	  this.ok = 2 == type;
-	  this.clientError = 4 == type;
-	  this.serverError = 5 == type;
-	  this.error = (4 == type || 5 == type)
-	    ? this.toError()
-	    : false;
-
-	  // sugar
-	  this.accepted = 202 == status;
-	  this.noContent = 204 == status;
-	  this.badRequest = 400 == status;
-	  this.unauthorized = 401 == status;
-	  this.notAcceptable = 406 == status;
-	  this.notFound = 404 == status;
-	  this.forbidden = 403 == status;
-	};
-
-	/**
-	 * Return an `Error` representative of this response.
-	 *
-	 * @return {Error}
-	 * @api public
-	 */
-
-	Response.prototype.toError = function(){
-	  var req = this.req;
-	  var method = req.method;
-	  var url = req.url;
-
-	  var msg = 'cannot ' + method + ' ' + url + ' (' + this.status + ')';
-	  var err = new Error(msg);
-	  err.status = this.status;
-	  err.method = method;
-	  err.url = url;
-
-	  return err;
-	};
-
-	/**
-	 * Expose `Response`.
-	 */
-
-	request.Response = Response;
-
-	/**
-	 * Initialize a new `Request` with the given `method` and `url`.
-	 *
-	 * @param {String} method
-	 * @param {String} url
-	 * @api public
-	 */
-
-	function Request(method, url) {
-	  var self = this;
-	  this._query = this._query || [];
-	  this.method = method;
-	  this.url = url;
-	  this.header = {}; // preserves header name case
-	  this._header = {}; // coerces header names to lowercase
-	  this.on('end', function(){
-	    var err = null;
-	    var res = null;
-
-	    try {
-	      res = new Response(self);
-	    } catch(e) {
-	      err = new Error('Parser is unable to parse the response');
-	      err.parse = true;
-	      err.original = e;
-	      // issue #675: return the raw response if the response parsing fails
-	      err.rawResponse = self.xhr && self.xhr.responseText ? self.xhr.responseText : null;
-	      // issue #876: return the http status code if the response parsing fails
-	      err.statusCode = self.xhr && self.xhr.status ? self.xhr.status : null;
-	      return self.callback(err);
-	    }
-
-	    self.emit('response', res);
-
-	    if (err) {
-	      return self.callback(err, res);
-	    }
-
-	    if (res.status >= 200 && res.status < 300) {
-	      return self.callback(err, res);
-	    }
-
-	    var new_err = new Error(res.statusText || 'Unsuccessful HTTP response');
-	    new_err.original = err;
-	    new_err.response = res;
-	    new_err.status = res.status;
-
-	    self.callback(new_err, res);
-	  });
-	}
-
-	/**
-	 * Mixin `Emitter` and `requestBase`.
-	 */
-
-	Emitter(Request.prototype);
-	for (var key in requestBase) {
-	  Request.prototype[key] = requestBase[key];
-	}
-
-	/**
-	 * Abort the request, and clear potential timeout.
-	 *
-	 * @return {Request}
-	 * @api public
-	 */
-
-	Request.prototype.abort = function(){
-	  if (this.aborted) return;
-	  this.aborted = true;
-	  this.xhr.abort();
-	  this.clearTimeout();
-	  this.emit('abort');
-	  return this;
-	};
-
-	/**
-	 * Set Content-Type to `type`, mapping values from `request.types`.
-	 *
-	 * Examples:
-	 *
-	 *      superagent.types.xml = 'application/xml';
-	 *
-	 *      request.post('/')
-	 *        .type('xml')
-	 *        .send(xmlstring)
-	 *        .end(callback);
-	 *
-	 *      request.post('/')
-	 *        .type('application/xml')
-	 *        .send(xmlstring)
-	 *        .end(callback);
-	 *
-	 * @param {String} type
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	Request.prototype.type = function(type){
-	  this.set('Content-Type', request.types[type] || type);
-	  return this;
-	};
-
-	/**
-	 * Set responseType to `val`. Presently valid responseTypes are 'blob' and 
-	 * 'arraybuffer'.
-	 *
-	 * Examples:
-	 *
-	 *      req.get('/')
-	 *        .responseType('blob')
-	 *        .end(callback);
-	 *
-	 * @param {String} val
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	Request.prototype.responseType = function(val){
-	  this._responseType = val;
-	  return this;
-	};
-
-	/**
-	 * Set Accept to `type`, mapping values from `request.types`.
-	 *
-	 * Examples:
-	 *
-	 *      superagent.types.json = 'application/json';
-	 *
-	 *      request.get('/agent')
-	 *        .accept('json')
-	 *        .end(callback);
-	 *
-	 *      request.get('/agent')
-	 *        .accept('application/json')
-	 *        .end(callback);
-	 *
-	 * @param {String} accept
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	Request.prototype.accept = function(type){
-	  this.set('Accept', request.types[type] || type);
-	  return this;
-	};
-
-	/**
-	 * Set Authorization field value with `user` and `pass`.
-	 *
-	 * @param {String} user
-	 * @param {String} pass
-	 * @param {Object} options with 'type' property 'auto' or 'basic' (default 'basic')
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	Request.prototype.auth = function(user, pass, options){
-	  if (!options) {
-	    options = {
-	      type: 'basic'
-	    }
-	  }
-
-	  switch (options.type) {
-	    case 'basic':
-	      var str = btoa(user + ':' + pass);
-	      this.set('Authorization', 'Basic ' + str);
-	    break;
-
-	    case 'auto':
-	      this.username = user;
-	      this.password = pass;
-	    break;
-	  }
-	  return this;
-	};
-
-	/**
-	* Add query-string `val`.
-	*
-	* Examples:
-	*
-	*   request.get('/shoes')
-	*     .query('size=10')
-	*     .query({ color: 'blue' })
-	*
-	* @param {Object|String} val
-	* @return {Request} for chaining
-	* @api public
-	*/
-
-	Request.prototype.query = function(val){
-	  if ('string' != typeof val) val = serialize(val);
-	  if (val) this._query.push(val);
-	  return this;
-	};
-
-	/**
-	 * Queue the given `file` as an attachment to the specified `field`,
-	 * with optional `filename`.
-	 *
-	 * ``` js
-	 * request.post('/upload')
-	 *   .attach(new Blob(['<a id="a"><b id="b">hey!</b></a>'], { type: "text/html"}))
-	 *   .end(callback);
-	 * ```
-	 *
-	 * @param {String} field
-	 * @param {Blob|File} file
-	 * @param {String} filename
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	Request.prototype.attach = function(field, file, filename){
-	  this._getFormData().append(field, file, filename || file.name);
-	  return this;
-	};
-
-	Request.prototype._getFormData = function(){
-	  if (!this._formData) {
-	    this._formData = new root.FormData();
-	  }
-	  return this._formData;
-	};
-
-	/**
-	 * Send `data` as the request body, defaulting the `.type()` to "json" when
-	 * an object is given.
-	 *
-	 * Examples:
-	 *
-	 *       // manual json
-	 *       request.post('/user')
-	 *         .type('json')
-	 *         .send('{"name":"tj"}')
-	 *         .end(callback)
-	 *
-	 *       // auto json
-	 *       request.post('/user')
-	 *         .send({ name: 'tj' })
-	 *         .end(callback)
-	 *
-	 *       // manual x-www-form-urlencoded
-	 *       request.post('/user')
-	 *         .type('form')
-	 *         .send('name=tj')
-	 *         .end(callback)
-	 *
-	 *       // auto x-www-form-urlencoded
-	 *       request.post('/user')
-	 *         .type('form')
-	 *         .send({ name: 'tj' })
-	 *         .end(callback)
-	 *
-	 *       // defaults to x-www-form-urlencoded
-	  *      request.post('/user')
-	  *        .send('name=tobi')
-	  *        .send('species=ferret')
-	  *        .end(callback)
-	 *
-	 * @param {String|Object} data
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	Request.prototype.send = function(data){
-	  var obj = isObject(data);
-	  var type = this._header['content-type'];
-
-	  // merge
-	  if (obj && isObject(this._data)) {
-	    for (var key in data) {
-	      this._data[key] = data[key];
-	    }
-	  } else if ('string' == typeof data) {
-	    if (!type) this.type('form');
-	    type = this._header['content-type'];
-	    if ('application/x-www-form-urlencoded' == type) {
-	      this._data = this._data
-	        ? this._data + '&' + data
-	        : data;
-	    } else {
-	      this._data = (this._data || '') + data;
-	    }
-	  } else {
-	    this._data = data;
-	  }
-
-	  if (!obj || isHost(data)) return this;
-	  if (!type) this.type('json');
-	  return this;
-	};
-
-	/**
-	 * @deprecated
-	 */
-	Response.prototype.parse = function serialize(fn){
-	  if (root.console) {
-	    console.warn("Client-side parse() method has been renamed to serialize(). This method is not compatible with superagent v2.0");
-	  }
-	  this.serialize(fn);
-	  return this;
-	};
-
-	Response.prototype.serialize = function serialize(fn){
-	  this._parser = fn;
-	  return this;
-	};
-
-	/**
-	 * Invoke the callback with `err` and `res`
-	 * and handle arity check.
-	 *
-	 * @param {Error} err
-	 * @param {Response} res
-	 * @api private
-	 */
-
-	Request.prototype.callback = function(err, res){
-	  var fn = this._callback;
-	  this.clearTimeout();
-	  fn(err, res);
-	};
-
-	/**
-	 * Invoke callback with x-domain error.
-	 *
-	 * @api private
-	 */
-
-	Request.prototype.crossDomainError = function(){
-	  var err = new Error('Request has been terminated\nPossible causes: the network is offline, Origin is not allowed by Access-Control-Allow-Origin, the page is being unloaded, etc.');
-	  err.crossDomain = true;
-
-	  err.status = this.status;
-	  err.method = this.method;
-	  err.url = this.url;
-
-	  this.callback(err);
-	};
-
-	/**
-	 * Invoke callback with timeout error.
-	 *
-	 * @api private
-	 */
-
-	Request.prototype.timeoutError = function(){
-	  var timeout = this._timeout;
-	  var err = new Error('timeout of ' + timeout + 'ms exceeded');
-	  err.timeout = timeout;
-	  this.callback(err);
-	};
-
-	/**
-	 * Enable transmission of cookies with x-domain requests.
-	 *
-	 * Note that for this to work the origin must not be
-	 * using "Access-Control-Allow-Origin" with a wildcard,
-	 * and also must set "Access-Control-Allow-Credentials"
-	 * to "true".
-	 *
-	 * @api public
-	 */
-
-	Request.prototype.withCredentials = function(){
-	  this._withCredentials = true;
-	  return this;
-	};
-
-	/**
-	 * Initiate request, invoking callback `fn(res)`
-	 * with an instanceof `Response`.
-	 *
-	 * @param {Function} fn
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	Request.prototype.end = function(fn){
-	  var self = this;
-	  var xhr = this.xhr = request.getXHR();
-	  var query = this._query.join('&');
-	  var timeout = this._timeout;
-	  var data = this._formData || this._data;
-
-	  // store callback
-	  this._callback = fn || noop;
-
-	  // state change
-	  xhr.onreadystatechange = function(){
-	    if (4 != xhr.readyState) return;
-
-	    // In IE9, reads to any property (e.g. status) off of an aborted XHR will
-	    // result in the error "Could not complete the operation due to error c00c023f"
-	    var status;
-	    try { status = xhr.status } catch(e) { status = 0; }
-
-	    if (0 == status) {
-	      if (self.timedout) return self.timeoutError();
-	      if (self.aborted) return;
-	      return self.crossDomainError();
-	    }
-	    self.emit('end');
-	  };
-
-	  // progress
-	  var handleProgress = function(e){
-	    if (e.total > 0) {
-	      e.percent = e.loaded / e.total * 100;
-	    }
-	    e.direction = 'download';
-	    self.emit('progress', e);
-	  };
-	  if (this.hasListeners('progress')) {
-	    xhr.onprogress = handleProgress;
-	  }
-	  try {
-	    if (xhr.upload && this.hasListeners('progress')) {
-	      xhr.upload.onprogress = handleProgress;
-	    }
-	  } catch(e) {
-	    // Accessing xhr.upload fails in IE from a web worker, so just pretend it doesn't exist.
-	    // Reported here:
-	    // https://connect.microsoft.com/IE/feedback/details/837245/xmlhttprequest-upload-throws-invalid-argument-when-used-from-web-worker-context
-	  }
-
-	  // timeout
-	  if (timeout && !this._timer) {
-	    this._timer = setTimeout(function(){
-	      self.timedout = true;
-	      self.abort();
-	    }, timeout);
-	  }
-
-	  // querystring
-	  if (query) {
-	    query = request.serializeObject(query);
-	    this.url += ~this.url.indexOf('?')
-	      ? '&' + query
-	      : '?' + query;
-	  }
-
-	  // initiate request
-	  if (this.username && this.password) {
-	    xhr.open(this.method, this.url, true, this.username, this.password);
-	  } else {
-	    xhr.open(this.method, this.url, true);
-	  }
-
-	  // CORS
-	  if (this._withCredentials) xhr.withCredentials = true;
-
-	  // body
-	  if ('GET' != this.method && 'HEAD' != this.method && 'string' != typeof data && !isHost(data)) {
-	    // serialize stuff
-	    var contentType = this._header['content-type'];
-	    var serialize = this._parser || request.serialize[contentType ? contentType.split(';')[0] : ''];
-	    if (!serialize && isJSON(contentType)) serialize = request.serialize['application/json'];
-	    if (serialize) data = serialize(data);
-	  }
-
-	  // set header fields
-	  for (var field in this.header) {
-	    if (null == this.header[field]) continue;
-	    xhr.setRequestHeader(field, this.header[field]);
-	  }
-
-	  if (this._responseType) {
-	    xhr.responseType = this._responseType;
-	  }
-
-	  // send stuff
-	  this.emit('request', this);
-
-	  // IE11 xhr.send(undefined) sends 'undefined' string as POST payload (instead of nothing)
-	  // We need null here if data is undefined
-	  xhr.send(typeof data !== 'undefined' ? data : null);
-	  return this;
-	};
-
-
-	/**
-	 * Expose `Request`.
-	 */
-
-	request.Request = Request;
-
-	/**
-	 * GET `url` with optional callback `fn(res)`.
-	 *
-	 * @param {String} url
-	 * @param {Mixed|Function} data or fn
-	 * @param {Function} fn
-	 * @return {Request}
-	 * @api public
-	 */
-
-	request.get = function(url, data, fn){
-	  var req = request('GET', url);
-	  if ('function' == typeof data) fn = data, data = null;
-	  if (data) req.query(data);
-	  if (fn) req.end(fn);
-	  return req;
-	};
-
-	/**
-	 * HEAD `url` with optional callback `fn(res)`.
-	 *
-	 * @param {String} url
-	 * @param {Mixed|Function} data or fn
-	 * @param {Function} fn
-	 * @return {Request}
-	 * @api public
-	 */
-
-	request.head = function(url, data, fn){
-	  var req = request('HEAD', url);
-	  if ('function' == typeof data) fn = data, data = null;
-	  if (data) req.send(data);
-	  if (fn) req.end(fn);
-	  return req;
-	};
-
-	/**
-	 * DELETE `url` with optional callback `fn(res)`.
-	 *
-	 * @param {String} url
-	 * @param {Function} fn
-	 * @return {Request}
-	 * @api public
-	 */
-
-	function del(url, fn){
-	  var req = request('DELETE', url);
-	  if (fn) req.end(fn);
-	  return req;
-	};
-
-	request['del'] = del;
-	request['delete'] = del;
-
-	/**
-	 * PATCH `url` with optional `data` and callback `fn(res)`.
-	 *
-	 * @param {String} url
-	 * @param {Mixed} data
-	 * @param {Function} fn
-	 * @return {Request}
-	 * @api public
-	 */
-
-	request.patch = function(url, data, fn){
-	  var req = request('PATCH', url);
-	  if ('function' == typeof data) fn = data, data = null;
-	  if (data) req.send(data);
-	  if (fn) req.end(fn);
-	  return req;
-	};
-
-	/**
-	 * POST `url` with optional `data` and callback `fn(res)`.
-	 *
-	 * @param {String} url
-	 * @param {Mixed} data
-	 * @param {Function} fn
-	 * @return {Request}
-	 * @api public
-	 */
-
-	request.post = function(url, data, fn){
-	  var req = request('POST', url);
-	  if ('function' == typeof data) fn = data, data = null;
-	  if (data) req.send(data);
-	  if (fn) req.end(fn);
-	  return req;
-	};
-
-	/**
-	 * PUT `url` with optional `data` and callback `fn(res)`.
-	 *
-	 * @param {String} url
-	 * @param {Mixed|Function} data or fn
-	 * @param {Function} fn
-	 * @return {Request}
-	 * @api public
-	 */
-
-	request.put = function(url, data, fn){
-	  var req = request('PUT', url);
-	  if ('function' == typeof data) fn = data, data = null;
-	  if (data) req.send(data);
-	  if (fn) req.end(fn);
-	  return req;
-	};
-
-
-/***/ },
-/* 235 */
-/***/ function(module, exports) {
-
-	
-	/**
-	 * Expose `Emitter`.
-	 */
-
-	module.exports = Emitter;
-
-	/**
-	 * Initialize a new `Emitter`.
-	 *
-	 * @api public
-	 */
-
-	function Emitter(obj) {
-	  if (obj) return mixin(obj);
-	};
-
-	/**
-	 * Mixin the emitter properties.
-	 *
-	 * @param {Object} obj
-	 * @return {Object}
-	 * @api private
-	 */
-
-	function mixin(obj) {
-	  for (var key in Emitter.prototype) {
-	    obj[key] = Emitter.prototype[key];
-	  }
-	  return obj;
-	}
-
-	/**
-	 * Listen on the given `event` with `fn`.
-	 *
-	 * @param {String} event
-	 * @param {Function} fn
-	 * @return {Emitter}
-	 * @api public
-	 */
-
-	Emitter.prototype.on =
-	Emitter.prototype.addEventListener = function(event, fn){
-	  this._callbacks = this._callbacks || {};
-	  (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
-	    .push(fn);
-	  return this;
-	};
-
-	/**
-	 * Adds an `event` listener that will be invoked a single
-	 * time then automatically removed.
-	 *
-	 * @param {String} event
-	 * @param {Function} fn
-	 * @return {Emitter}
-	 * @api public
-	 */
-
-	Emitter.prototype.once = function(event, fn){
-	  function on() {
-	    this.off(event, on);
-	    fn.apply(this, arguments);
-	  }
-
-	  on.fn = fn;
-	  this.on(event, on);
-	  return this;
-	};
-
-	/**
-	 * Remove the given callback for `event` or all
-	 * registered callbacks.
-	 *
-	 * @param {String} event
-	 * @param {Function} fn
-	 * @return {Emitter}
-	 * @api public
-	 */
-
-	Emitter.prototype.off =
-	Emitter.prototype.removeListener =
-	Emitter.prototype.removeAllListeners =
-	Emitter.prototype.removeEventListener = function(event, fn){
-	  this._callbacks = this._callbacks || {};
-
-	  // all
-	  if (0 == arguments.length) {
-	    this._callbacks = {};
-	    return this;
-	  }
-
-	  // specific event
-	  var callbacks = this._callbacks['$' + event];
-	  if (!callbacks) return this;
-
-	  // remove all handlers
-	  if (1 == arguments.length) {
-	    delete this._callbacks['$' + event];
-	    return this;
-	  }
-
-	  // remove specific handler
-	  var cb;
-	  for (var i = 0; i < callbacks.length; i++) {
-	    cb = callbacks[i];
-	    if (cb === fn || cb.fn === fn) {
-	      callbacks.splice(i, 1);
-	      break;
-	    }
-	  }
-	  return this;
-	};
-
-	/**
-	 * Emit `event` with the given args.
-	 *
-	 * @param {String} event
-	 * @param {Mixed} ...
-	 * @return {Emitter}
-	 */
-
-	Emitter.prototype.emit = function(event){
-	  this._callbacks = this._callbacks || {};
-	  var args = [].slice.call(arguments, 1)
-	    , callbacks = this._callbacks['$' + event];
-
-	  if (callbacks) {
-	    callbacks = callbacks.slice(0);
-	    for (var i = 0, len = callbacks.length; i < len; ++i) {
-	      callbacks[i].apply(this, args);
-	    }
-	  }
-
-	  return this;
-	};
-
-	/**
-	 * Return array of callbacks for `event`.
-	 *
-	 * @param {String} event
-	 * @return {Array}
-	 * @api public
-	 */
-
-	Emitter.prototype.listeners = function(event){
-	  this._callbacks = this._callbacks || {};
-	  return this._callbacks['$' + event] || [];
-	};
-
-	/**
-	 * Check if this emitter has `event` handlers.
-	 *
-	 * @param {String} event
-	 * @return {Boolean}
-	 * @api public
-	 */
-
-	Emitter.prototype.hasListeners = function(event){
-	  return !! this.listeners(event).length;
-	};
-
-
-/***/ },
-/* 236 */
-/***/ function(module, exports) {
-
-	
-	/**
-	 * Reduce `arr` with `fn`.
-	 *
-	 * @param {Array} arr
-	 * @param {Function} fn
-	 * @param {Mixed} initial
-	 *
-	 * TODO: combatible error handling?
-	 */
-
-	module.exports = function(arr, fn, initial){  
-	  var idx = 0;
-	  var len = arr.length;
-	  var curr = arguments.length == 3
-	    ? initial
-	    : arr[idx++];
-
-	  while (idx < len) {
-	    curr = fn.call(null, curr, arr[idx], ++idx, arr);
-	  }
-	  
-	  return curr;
-	};
-
-/***/ },
 /* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/**
-	 * Module of mixed-in functions shared between node and client code
-	 */
-	var isObject = __webpack_require__(238);
-
-	/**
-	 * Clear previous timeout.
-	 *
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	exports.clearTimeout = function _clearTimeout(){
-	  this._timeout = 0;
-	  clearTimeout(this._timer);
-	  return this;
-	};
-
-	/**
-	 * Force given parser
-	 *
-	 * Sets the body parser no matter type.
-	 *
-	 * @param {Function}
-	 * @api public
-	 */
-
-	exports.parse = function parse(fn){
-	  this._parser = fn;
-	  return this;
-	};
-
-	/**
-	 * Set timeout to `ms`.
-	 *
-	 * @param {Number} ms
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	exports.timeout = function timeout(ms){
-	  this._timeout = ms;
-	  return this;
-	};
-
-	/**
-	 * Faux promise support
-	 *
-	 * @param {Function} fulfill
-	 * @param {Function} reject
-	 * @return {Request}
-	 */
-
-	exports.then = function then(fulfill, reject) {
-	  return this.end(function(err, res) {
-	    err ? reject(err) : fulfill(res);
-	  });
-	}
-
-	/**
-	 * Allow for extension
-	 */
-
-	exports.use = function use(fn) {
-	  fn(this);
-	  return this;
-	}
-
-
-	/**
-	 * Get request header `field`.
-	 * Case-insensitive.
-	 *
-	 * @param {String} field
-	 * @return {String}
-	 * @api public
-	 */
-
-	exports.get = function(field){
-	  return this._header[field.toLowerCase()];
-	};
-
-	/**
-	 * Get case-insensitive header `field` value.
-	 * This is a deprecated internal API. Use `.get(field)` instead.
-	 *
-	 * (getHeader is no longer used internally by the superagent code base)
-	 *
-	 * @param {String} field
-	 * @return {String}
-	 * @api private
-	 * @deprecated
-	 */
-
-	exports.getHeader = exports.get;
-
-	/**
-	 * Set header `field` to `val`, or multiple fields with one object.
-	 * Case-insensitive.
-	 *
-	 * Examples:
-	 *
-	 *      req.get('/')
-	 *        .set('Accept', 'application/json')
-	 *        .set('X-API-Key', 'foobar')
-	 *        .end(callback);
-	 *
-	 *      req.get('/')
-	 *        .set({ Accept: 'application/json', 'X-API-Key': 'foobar' })
-	 *        .end(callback);
-	 *
-	 * @param {String|Object} field
-	 * @param {String} val
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-
-	exports.set = function(field, val){
-	  if (isObject(field)) {
-	    for (var key in field) {
-	      this.set(key, field[key]);
-	    }
-	    return this;
-	  }
-	  this._header[field.toLowerCase()] = val;
-	  this.header[field] = val;
-	  return this;
-	};
-
-	/**
-	 * Remove header `field`.
-	 * Case-insensitive.
-	 *
-	 * Example:
-	 *
-	 *      req.get('/')
-	 *        .unset('User-Agent')
-	 *        .end(callback);
-	 *
-	 * @param {String} field
-	 */
-	exports.unset = function(field){
-	  delete this._header[field.toLowerCase()];
-	  delete this.header[field];
-	  return this;
-	};
-
-	/**
-	 * Write the field `name` and `val` for "multipart/form-data"
-	 * request bodies.
-	 *
-	 * ``` js
-	 * request.post('/upload')
-	 *   .field('foo', 'bar')
-	 *   .end(callback);
-	 * ```
-	 *
-	 * @param {String} name
-	 * @param {String|Blob|File|Buffer|fs.ReadStream} val
-	 * @return {Request} for chaining
-	 * @api public
-	 */
-	exports.field = function(name, val) {
-	  this._getFormData().append(name, val);
-	  return this;
-	};
-
-
-/***/ },
-/* 238 */
-/***/ function(module, exports) {
-
-	/**
-	 * Check if `obj` is an object.
-	 *
-	 * @param {Object} obj
-	 * @return {Boolean}
-	 * @api private
-	 */
-
-	function isObject(obj) {
-	  return null != obj && 'object' == typeof obj;
-	}
-
-	module.exports = isObject;
-
-
-/***/ },
-/* 239 */
-/***/ function(module, exports) {
-
-	// The node and browser modules expose versions of this with the
-	// appropriate constructor function bound as first argument
-	/**
-	 * Issue a request:
-	 *
-	 * Examples:
-	 *
-	 *    request('GET', '/users').end(callback)
-	 *    request('/users').end(callback)
-	 *    request('/users', callback)
-	 *
-	 * @param {String} method
-	 * @param {String|Function} url or callback
-	 * @return {Request}
-	 * @api public
-	 */
-
-	function request(RequestConstructor, method, url) {
-	  // callback
-	  if ('function' == typeof url) {
-	    return new RequestConstructor('GET', method).end(url);
-	  }
-
-	  // url first
-	  if (2 == arguments.length) {
-	    return new RequestConstructor('GET', method);
-	  }
-
-	  return new RequestConstructor(method, url);
-	}
-
-	module.exports = request;
-
-
-/***/ },
-/* 240 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	 * JavaScript Cookie v2.1.1
-	 * https://github.com/js-cookie/js-cookie
-	 *
-	 * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
-	 * Released under the MIT license
-	 */
-	;(function (factory) {
-		if (true) {
-			!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-		} else if (typeof exports === 'object') {
-			module.exports = factory();
-		} else {
-			var OldCookies = window.Cookies;
-			var api = window.Cookies = factory();
-			api.noConflict = function () {
-				window.Cookies = OldCookies;
-				return api;
-			};
-		}
-	}(function () {
-		function extend () {
-			var i = 0;
-			var result = {};
-			for (; i < arguments.length; i++) {
-				var attributes = arguments[ i ];
-				for (var key in attributes) {
-					result[key] = attributes[key];
-				}
-			}
-			return result;
-		}
-
-		function init (converter) {
-			function api (key, value, attributes) {
-				var result;
-				if (typeof document === 'undefined') {
-					return;
-				}
-
-				// Write
-
-				if (arguments.length > 1) {
-					attributes = extend({
-						path: '/'
-					}, api.defaults, attributes);
-
-					if (typeof attributes.expires === 'number') {
-						var expires = new Date();
-						expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
-						attributes.expires = expires;
-					}
-
-					try {
-						result = JSON.stringify(value);
-						if (/^[\{\[]/.test(result)) {
-							value = result;
-						}
-					} catch (e) {}
-
-					if (!converter.write) {
-						value = encodeURIComponent(String(value))
-							.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
-					} else {
-						value = converter.write(value, key);
-					}
-
-					key = encodeURIComponent(String(key));
-					key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
-					key = key.replace(/[\(\)]/g, escape);
-
-					return (document.cookie = [
-						key, '=', value,
-						attributes.expires && '; expires=' + attributes.expires.toUTCString(), // use expires attribute, max-age is not supported by IE
-						attributes.path    && '; path=' + attributes.path,
-						attributes.domain  && '; domain=' + attributes.domain,
-						attributes.secure ? '; secure' : ''
-					].join(''));
-				}
-
-				// Read
-
-				if (!key) {
-					result = {};
-				}
-
-				// To prevent the for loop in the first place assign an empty array
-				// in case there are no cookies at all. Also prevents odd result when
-				// calling "get()"
-				var cookies = document.cookie ? document.cookie.split('; ') : [];
-				var rdecode = /(%[0-9A-Z]{2})+/g;
-				var i = 0;
-
-				for (; i < cookies.length; i++) {
-					var parts = cookies[i].split('=');
-					var name = parts[0].replace(rdecode, decodeURIComponent);
-					var cookie = parts.slice(1).join('=');
-
-					if (cookie.charAt(0) === '"') {
-						cookie = cookie.slice(1, -1);
-					}
-
-					try {
-						cookie = converter.read ?
-							converter.read(cookie, name) : converter(cookie, name) ||
-							cookie.replace(rdecode, decodeURIComponent);
-
-						if (this.json) {
-							try {
-								cookie = JSON.parse(cookie);
-							} catch (e) {}
-						}
-
-						if (key === name) {
-							result = cookie;
-							break;
-						}
-
-						if (!key) {
-							result[name] = cookie;
-						}
-					} catch (e) {}
-				}
-
-				return result;
-			}
-
-			api.set = api;
-			api.get = function (key) {
-				return api(key);
-			};
-			api.getJSON = function () {
-				return api.apply({
-					json: true
-				}, [].slice.call(arguments));
-			};
-			api.defaults = {};
-
-			api.remove = function (key, attributes) {
-				api(key, '', extend(attributes, {
-					expires: -1
-				}));
-			};
-
-			api.withConverter = init;
-
-			return api;
-		}
-
-		return init(function () {});
-	}));
-
-
-/***/ },
-/* 241 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _PrevAndFavorites = __webpack_require__(242);
-
-	var _PrevAndFavorites2 = _interopRequireDefault(_PrevAndFavorites);
-
-	var _reactRouter = __webpack_require__(164);
-
-	var _app = __webpack_require__(223);
-
-	var _app2 = _interopRequireDefault(_app);
-
-	var _dashboardView = __webpack_require__(245);
-
-	var _dashboardView2 = _interopRequireDefault(_dashboardView);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var DashboardView = _react2.default.createClass({
-	    displayName: 'DashboardView',
-
-
-	    propTypes: {
-	        username: _react2.default.PropTypes.string
-	    },
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            { className: 'dashboard-container' },
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'title-cover' },
-	                _react2.default.createElement(
-	                    'h1',
-	                    null,
-	                    'Hey! Just click start to begin placing your order!'
-	                )
-	            ),
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'main-wrap' },
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: '/select-shop', className: 'start-button-wrap' },
-	                    _react2.default.createElement(
-	                        'button',
-	                        { className: 'next-button start-button' },
-	                        _react2.default.createElement('i', { className: 'fa fa-coffee', 'aria-hidden': 'true' }),
-	                        'Start'
-	                    )
-	                ),
-	                _react2.default.createElement('div', { className: 'dashboard-divider' }),
-	                _react2.default.createElement(
-	                    'h2',
-	                    { className: 'how-it-works' },
-	                    'Wait, how does this work?'
-	                )
-	            ),
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'landing-icon-wrap' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'landing-icon landing-icon-1' },
-	                    _react2.default.createElement('img', { src: '/img/landing-icon-1.png' }),
-	                    _react2.default.createElement(
-	                        'h2',
-	                        null,
-	                        'Select a shop'
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'landing-icon landing-icon-2' },
-	                    _react2.default.createElement('img', { src: '/img/landing-icon-2.png' }),
-	                    _react2.default.createElement(
-	                        'h2',
-	                        null,
-	                        'Place your order'
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'landing-icon landing-icon-3' },
-	                    _react2.default.createElement('img', { src: '/img/landing-icon-3.png' }),
-	                    _react2.default.createElement(
-	                        'h2',
-	                        null,
-	                        'Ready when you arrive!'
-	                    )
-	                )
-	            )
-	        );
-	    }
-	});
-
-	module.exports = DashboardView;
-
-/***/ },
-/* 242 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _prevAndFavorites = __webpack_require__(243);
-
-	var _prevAndFavorites2 = _interopRequireDefault(_prevAndFavorites);
-
-	var _reactRouter = __webpack_require__(164);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var PrevAndFavorites = _react2.default.createClass({
-	    displayName: 'PrevAndFavorites',
-
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            { className: 'prev-and-fav-wrap' },
-	            _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/previous-orders', className: 'prev-orders-link' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'prev-orders-button' },
-	                    _react2.default.createElement('i', { className: 'fa fa-reply fa-lg' }),
-	                    '  Previous Orders'
-	                )
-	            ),
-	            _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: 'favorite-orders', className: 'fav-orders-link' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'fav-orders-button' },
-	                    _react2.default.createElement('i', { className: 'fa fa-heart fa-lg' }),
-	                    '  Fav Orders'
-	                )
-	            )
-	        );
-	    }
-	});
-
-	module.exports = PrevAndFavorites;
-
-/***/ },
-/* 243 */
-/***/ function(module, exports, __webpack_require__) {
-
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(244);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./prev-and-favorites.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./prev-and-favorites.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 244 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".prev-and-fav-wrap {\n  width: 100%;\n  margin: 0 auto; }\n  .prev-and-fav-wrap .prev-orders-link, .prev-and-fav-wrap .fav-orders-link {\n    text-decoration: none; }\n    .prev-and-fav-wrap .prev-orders-link .prev-orders-button, .prev-and-fav-wrap .prev-orders-link .fav-orders-button, .prev-and-fav-wrap .fav-orders-link .prev-orders-button, .prev-and-fav-wrap .fav-orders-link .fav-orders-button {\n      width: 11em;\n      border: 1px solid #3879D9;\n      text-align: center;\n      font-size: 24px;\n      padding: 1.75em 0em 1.75em 0em;\n      border-radius: 5px;\n      margin: 0em auto 1em auto;\n      color: #3879D9; }\n      .prev-and-fav-wrap .prev-orders-link .prev-orders-button:hover, .prev-and-fav-wrap .prev-orders-link .fav-orders-button:hover, .prev-and-fav-wrap .fav-orders-link .prev-orders-button:hover, .prev-and-fav-wrap .fav-orders-link .fav-orders-button:hover {\n        cursor: pointer;\n        background: #fafafa; }\n    .prev-and-fav-wrap .prev-orders-link .fa-heart, .prev-and-fav-wrap .prev-orders-link .fa-reply, .prev-and-fav-wrap .fav-orders-link .fa-heart, .prev-and-fav-wrap .fav-orders-link .fa-reply {\n      color: #3879D9; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 245 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(246);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./dashboard-view.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./dashboard-view.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 246 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".dashboard-container {\n  margin-left: 5em; }\n  .dashboard-container .start-button-wrap {\n    display: block;\n    text-align: center;\n    margin: 1em auto 3em auto; }\n    .dashboard-container .start-button-wrap button.start-button {\n      background: #3FB083;\n      margin: 0em;\n      padding: 1.5em 3em;\n      font-size: 1.75em; }\n      .dashboard-container .start-button-wrap button.start-button:hover {\n        background: #43bb8b; }\n    .dashboard-container .start-button-wrap .fa-coffee {\n      margin-right: 0.35em; }\n  .dashboard-container .dashboard-divider {\n    width: 70%;\n    height: 2px;\n    background: #BDBEC1;\n    margin: 5em auto 0 auto; }\n  .dashboard-container h2.how-it-works {\n    text-align: center;\n    margin-top: 2em;\n    margin-bottom: 2em; }\n\n.landing-icon-wrap .landing-icon {\n  display: block;\n  width: 30%;\n  margin: 0 auto; }\n\n.landing-icon-wrap img {\n  width: 8em; }\n\n.landing-icon-wrap h2 {\n  margin-bottom: 1.5em; }\n\n@media only screen and (min-width: 685px) {\n  .landing-icon-wrap {\n    margin-bottom: 5em; }\n    .landing-icon-wrap .landing-icon {\n      display: inline-block;\n      width: 33%;\n      text-align: center; }\n      .landing-icon-wrap .landing-icon img {\n        width: 60%; }\n      .landing-icon-wrap .landing-icon h2 {\n        text-align: center; }\n    .landing-icon-wrap .landing-icon-3 h2 {\n      font-size: 1.4em; } }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 247 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _MenuFormContainer = __webpack_require__(248);
-
-	var _MenuFormContainer2 = _interopRequireDefault(_MenuFormContainer);
-
-	var _OrderTotal = __webpack_require__(265);
-
-	var _OrderTotal2 = _interopRequireDefault(_OrderTotal);
-
-	var _AddItemNotification = __webpack_require__(225);
-
-	var _AddItemNotification2 = _interopRequireDefault(_AddItemNotification);
-
-	var _SpecialInstructions = __webpack_require__(273);
-
-	var _SpecialInstructions2 = _interopRequireDefault(_SpecialInstructions);
-
-	var _reactRouter = __webpack_require__(164);
-
-	var _app = __webpack_require__(223);
-
-	var _app2 = _interopRequireDefault(_app);
-
-	var _customOrderView = __webpack_require__(276);
-
-	var _customOrderView2 = _interopRequireDefault(_customOrderView);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var CustomOrderView = _react2.default.createClass({
-	    displayName: 'CustomOrderView',
-
-
-	    propTypes: {
-	        notification: _react2.default.PropTypes.shape({
-	            add: _react2.default.PropTypes.bool,
-	            delete: _react2.default.PropTypes.bool,
-	            error: _react2.default.PropTypes.bool
-	        }),
-	        data: _react2.default.PropTypes.object,
-	        items: _react2.default.PropTypes.array,
-	        handleSpecialInstructions: _react2.default.PropTypes.func,
-	        handleAddItemToOrder: _react2.default.PropTypes.func,
-	        handleDeleteItemFromOrder: _react2.default.PropTypes.func,
-	        toggleAddNotification: _react2.default.PropTypes.func,
-	        toggleDeleteNotification: _react2.default.PropTypes.func,
-	        toggleErrorNotification: _react2.default.PropTypes.func
-	    },
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            { className: 'custom-order-container' },
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'title-cover' },
-	                _react2.default.createElement(
-	                    'h1',
-	                    null,
-	                    'Place Your Order'
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'userProgress' },
-	                    _react2.default.createElement('div', { id: 'twoOfFive' })
-	                )
-	            ),
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'custom-order-view-wrap' },
-	                _react2.default.createElement(_AddItemNotification2.default, {
-	                    notification: this.props.notification }),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'menu-form-container' },
-	                    _react2.default.createElement(_MenuFormContainer2.default, {
-	                        data: this.props.data,
-	                        handleSpecialInstructions: this.props.handleSpecialInstructions,
-	                        handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                        toggleAddNotification: this.props.toggleAddNotification,
-	                        toggleErrorNotification: this.props.toggleErrorNotification })
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'order-total-container' },
-	                    _react2.default.createElement(_OrderTotal2.default, {
-	                        orderItems: this.props.items,
-	                        handleDeleteItemFromOrder: this.props.handleDeleteItemFromOrder,
-	                        toggleDeleteNotification: this.props.toggleDeleteNotification }),
-	                    _react2.default.createElement(_SpecialInstructions2.default, {
-	                        handleSpecialInstructions: this.props.handleSpecialInstructions }),
-	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: '/additional-info' },
-	                        _react2.default.createElement(
-	                            'button',
-	                            { className: 'next-button' },
-	                            'Next',
-	                            _react2.default.createElement('i', { className: 'fa fa-arrow-right fa-lg', 'aria-hidden': 'true' })
-	                        )
-	                    )
-	                )
-	            )
-	        );
-	    }
-	});
-
-	module.exports = CustomOrderView;
-
-/***/ },
-/* 248 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _MenuSection = __webpack_require__(249);
-
-	var _MenuSection2 = _interopRequireDefault(_MenuSection);
-
-	var _menuFormContainer = __webpack_require__(263);
-
-	var _menuFormContainer2 = _interopRequireDefault(_menuFormContainer);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var MenuFormContainer = _react2.default.createClass({
-	    displayName: 'MenuFormContainer',
-
-
-	    propTypes: {
-	        data: _react2.default.PropTypes.object,
-	        handleAddItemToOrder: _react2.default.PropTypes.func,
-	        toggleAddNotification: _react2.default.PropTypes.func,
-	        toggleErrorNotification: _react2.default.PropTypes.func,
-	        handleSpecialInstructions: _react2.default.PropTypes.func
-	    },
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'form',
-	            null,
-	            _react2.default.createElement(_MenuSection2.default, {
-	                data: this.props.data,
-	                slug: 'hot-drinks',
-	                handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                toggleAddNotification: this.props.toggleAddNotification,
-	                toggleErrorNotification: this.props.toggleErrorNotification }),
-	            _react2.default.createElement(_MenuSection2.default, {
-	                data: this.props.data,
-	                slug: 'cold-drinks',
-	                handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                toggleAddNotification: this.props.toggleAddNotification,
-	                toggleErrorNotification: this.props.toggleErrorNotification }),
-	            _react2.default.createElement(_MenuSection2.default, {
-	                data: this.props.data,
-	                slug: 'tea',
-	                handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                toggleAddNotification: this.props.toggleAddNotification,
-	                toggleErrorNotification: this.props.toggleErrorNotification }),
-	            _react2.default.createElement(_MenuSection2.default, {
-	                data: this.props.data,
-	                slug: 'bakery',
-	                handleAddItemToOrder: this.props.handleAddItemToOrder,
-	                toggleAddNotification: this.props.toggleAddNotification,
-	                toggleErrorNotification: this.props.toggleErrorNotification })
-	        );
-	    }
-	});
-
-	module.exports = MenuFormContainer;
-
-/***/ },
-/* 249 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _MenuItem = __webpack_require__(250);
-
-	var _MenuItem2 = _interopRequireDefault(_MenuItem);
-
-	var _lodash = __webpack_require__(231);
-
-	var _lodash2 = _interopRequireDefault(_lodash);
-
-	var _menuSection = __webpack_require__(261);
-
-	var _menuSection2 = _interopRequireDefault(_menuSection);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var MenuSection = _react2.default.createClass({
-	    displayName: 'MenuSection',
-
-
-	    propTypes: {
-	        data: _react2.default.PropTypes.object,
-	        slug: _react2.default.PropTypes.string,
-	        handleAddItemToOrder: _react2.default.PropTypes.func,
-	        toggleAddNotification: _react2.default.PropTypes.func,
-	        toggleErrorNotification: _react2.default.PropTypes.func
-	    },
-
-	    render: function render() {
-	        var _this = this;
-
-	        var menuSection = _lodash2.default.find(this.props.data.shops[0].menu, { "slug": this.props.slug });
-	        var sectionTitle = menuSection.displayName;
-	        var menuItems = menuSection.items.map(function (item, index) {
-	            return _react2.default.createElement(_MenuItem2.default, {
-	                itemName: item.name,
-	                price: item.price,
-	                options: item.options,
-	                key: item.id,
-	                handleAddItemToOrder: _this.props.handleAddItemToOrder,
-	                calculateTotalAndTax: _this.props.calculateTotalAndTax,
-	                toggleAddNotification: _this.props.toggleAddNotification,
-	                toggleErrorNotification: _this.props.toggleErrorNotification });
-	        });
-
-	        return _react2.default.createElement(
-	            'section',
-	            { className: 'menu-section' },
-	            _react2.default.createElement(
-	                'h2',
-	                null,
-	                sectionTitle
-	            ),
-	            menuItems,
-	            _react2.default.createElement('div', { className: 'divider' })
-	        );
-	    }
-	});
-
-	module.exports = MenuSection;
-
-/***/ },
-/* 250 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _AddToOrderButton = __webpack_require__(251);
-
-	var _AddToOrderButton2 = _interopRequireDefault(_AddToOrderButton);
-
-	var _MilkType = __webpack_require__(254);
-
-	var _MilkType2 = _interopRequireDefault(_MilkType);
-
-	var _Size = __webpack_require__(255);
-
-	var _Size2 = _interopRequireDefault(_Size);
-
-	var _Quantity = __webpack_require__(256);
-
-	var _Quantity2 = _interopRequireDefault(_Quantity);
-
-	var _Decaf = __webpack_require__(257);
-
-	var _Decaf2 = _interopRequireDefault(_Decaf);
-
-	var _HotOrCold = __webpack_require__(258);
-
-	var _HotOrCold2 = _interopRequireDefault(_HotOrCold);
-
-	var _menuItem = __webpack_require__(259);
-
-	var _menuItem2 = _interopRequireDefault(_menuItem);
-
-	var _lodash = __webpack_require__(231);
-
-	var _lodash2 = _interopRequireDefault(_lodash);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var MenuItem = _react2.default.createClass({
-	    displayName: 'MenuItem',
-
-
-	    propTypes: {
-	        itemName: _react2.default.PropTypes.string,
-	        price: _react2.default.PropTypes.number,
-	        options: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.string),
-	        key: _react2.default.PropTypes.string,
-	        handleAddItemToOrder: _react2.default.PropTypes.func,
-	        calculateTotalAndTax: _react2.default.PropTypes.func,
-	        toggleAddNotification: _react2.default.PropTypes.func,
-	        toggleErrorNotification: _react2.default.PropTypes.func
-	    },
-
-	    getInitialState: function getInitialState() {
-	        return {};
-	    },
-
-	    _checkFormComplete: function _checkFormComplete() {
-	        var requiredOptions = this.props.options.filter(function (option) {
-	            return option !== 'decaf';
-	        });
-	        var optionsCheck = requiredOptions.map(function (option) {
-	            return this.state.hasOwnProperty(option);
-	        }, this);
-	        return optionsCheck.reduce(function (prev, current) {
-	            return prev && current;
-	        }, true);
-	    },
-
-	    _handleMilkTypeChange: function _handleMilkTypeChange(event) {
-	        this.setState({
-	            milkType: event.target.value
-	        });
-	    },
-
-	    _handleSizeChange: function _handleSizeChange(event) {
-	        this.setState({
-	            size: event.target.value
-	        });
-	    },
-
-	    _handleQuantityChange: function _handleQuantityChange(event) {
-	        this.setState({
-	            quantity: event.target.value
-	        });
-	    },
-
-	    _handleDecafChange: function _handleDecafChange(event) {
-	        this.setState({
-	            decaf: !this.state.decaf
-	        });
-	    },
-
-	    _handleHotOrColdChange: function _handleHotOrColdChange(event) {
-	        this.setState({
-	            hotOrCold: event.target.value
-	        });
-	    },
-
-	    _handleAddItemToOrder: function _handleAddItemToOrder(itemDetails) {
-	        this.props.handleAddItemToOrder(itemDetails);
-	        this.replaceState({});
-	    },
-
-	    _renderOption: function _renderOption(option, index) {
-	        switch (option) {
-	            case 'milkType':
-	                return _react2.default.createElement(_MilkType2.default, {
-	                    handleChange: this._handleMilkTypeChange,
-	                    key: index,
-	                    value: this.state.milkType || 'default' });
-	            case 'size':
-	                return _react2.default.createElement(_Size2.default, {
-	                    handleChange: this._handleSizeChange,
-	                    key: index,
-	                    value: this.state.size || 'default' });
-	            case 'quantity':
-	                return _react2.default.createElement(_Quantity2.default, {
-	                    handleChange: this._handleQuantityChange,
-	                    value: this.state.quantity || 'default',
-	                    key: index });
-	        }
-	    },
-
-	    _renderOption2: function _renderOption2(option, index) {
-	        switch (option) {
-	            case 'decaf':
-	                return _react2.default.createElement(_Decaf2.default, {
-	                    handleChange: this._handleDecafChange,
-	                    key: index,
-	                    value: this.state.decaf || false });
-	            case 'hotOrCold':
-	                return _react2.default.createElement(_HotOrCold2.default, {
-	                    handleChange: this._handleHotOrColdChange,
-	                    key: index,
-	                    value: this.state.hotOrCold || false });
-	        }
-	    },
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            { className: 'drink-item' },
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'item-name-wrap' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'item-name' },
-	                    _react2.default.createElement(
-	                        'label',
-	                        { htmlFor: 'hot-drink' },
-	                        this.props.itemName
-	                    )
-	                ),
-	                _react2.default.createElement(_AddToOrderButton2.default, {
-	                    handleAddItemToOrder: this._handleAddItemToOrder,
-	                    handleItemFormComplete: this._handleItemFormComplete,
-	                    toggleAddNotification: this.props.toggleAddNotification,
-	                    toggleErrorNotification: this.props.toggleErrorNotification,
-	                    checkFormComplete: this._checkFormComplete,
-	                    itemName: this.props.itemName,
-	                    price: this.props.price,
-	                    itemDetails: this.state })
-	            ),
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'item-top-row' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'item-options' },
-	                    this.props.options.map(this._renderOption)
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'item-price' },
-	                    '$',
-	                    this.props.price.toFixed(2)
-	                )
-	            ),
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'item-other-options' },
-	                this.props.options.map(this._renderOption2)
-	            )
-	        );
-	    }
-	});
-
-	module.exports = MenuItem;
-
-/***/ },
-/* 251 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _lodash = __webpack_require__(231);
-
-	var _lodash2 = _interopRequireDefault(_lodash);
-
-	var _options = __webpack_require__(252);
-
-	var _options2 = _interopRequireDefault(_options);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var AddToOrderButton = _react2.default.createClass({
-	    displayName: 'AddToOrderButton',
-
-
-	    propTypes: {
-	        handleAddItemToOrder: _react2.default.PropTypes.func,
-	        handleItemFormComplete: _react2.default.PropTypes.func,
-	        toggleAddNotification: _react2.default.PropTypes.func,
-	        toggleErrorNotification: _react2.default.PropTypes.func,
-	        itemName: _react2.default.PropTypes.string,
-	        price: _react2.default.PropTypes.number,
-	        itemDetails: _react2.default.PropTypes.shape({
-	            milkType: _react2.default.PropTypes.string,
-	            quantity: _react2.default.PropTypes.string,
-	            size: _react2.default.PropTypes.string,
-	            itemName: _react2.default.PropTypes.string,
-	            price: _react2.default.PropTypes.number
-	        })
-	    },
-
-	    render: function render() {
-	        var _this = this;
-
-	        var itemDetails = _lodash2.default.assign({ itemName: this.props.itemName, price: this.props.price }, this.props.itemDetails);
-
-	        return _react2.default.createElement(
-	            'div',
-	            { className: 'add-to-order-wrap' },
-	            this.props.checkFormComplete() ? _react2.default.createElement(
-	                'div',
-	                { className: 'add-to-order',
-	                    onClick: function onClick() {
-	                        _this.props.handleAddItemToOrder(itemDetails);
-	                        _this.props.toggleAddNotification();
-	                    } },
-	                'Click to add'
-	            ) : _react2.default.createElement(
-	                'div',
-	                { className: 'add-to-order',
-	                    onClick: function onClick() {
-	                        _this.props.toggleErrorNotification();
-	                    } },
-	                'Click to add'
-	            )
-	        );
-	    }
-	});
-
-	module.exports = AddToOrderButton;
-
-/***/ },
-/* 252 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(253);
+	var content = __webpack_require__(238);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -44768,7 +41667,7 @@
 	}
 
 /***/ },
-/* 253 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -44782,7 +41681,7 @@
 
 
 /***/ },
-/* 254 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44791,7 +41690,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _options = __webpack_require__(252);
+	var _options = __webpack_require__(237);
 
 	var _options2 = _interopRequireDefault(_options);
 
@@ -44849,7 +41748,7 @@
 	module.exports = MilkType;
 
 /***/ },
-/* 255 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44858,7 +41757,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _options = __webpack_require__(252);
+	var _options = __webpack_require__(237);
 
 	var _options2 = _interopRequireDefault(_options);
 
@@ -44905,7 +41804,7 @@
 	module.exports = Size;
 
 /***/ },
-/* 256 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44914,7 +41813,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _options = __webpack_require__(252);
+	var _options = __webpack_require__(237);
 
 	var _options2 = _interopRequireDefault(_options);
 
@@ -44975,7 +41874,7 @@
 	module.exports = Quantity;
 
 /***/ },
-/* 257 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44984,7 +41883,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _options = __webpack_require__(252);
+	var _options = __webpack_require__(237);
 
 	var _options2 = _interopRequireDefault(_options);
 
@@ -45018,7 +41917,7 @@
 	module.exports = Decaf;
 
 /***/ },
-/* 258 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45027,7 +41926,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _options = __webpack_require__(252);
+	var _options = __webpack_require__(237);
 
 	var _options2 = _interopRequireDefault(_options);
 
@@ -45068,13 +41967,13 @@
 	module.exports = HotOrCold;
 
 /***/ },
-/* 259 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(260);
+	var content = __webpack_require__(245);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -45094,7 +41993,7 @@
 	}
 
 /***/ },
-/* 260 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -45108,13 +42007,13 @@
 
 
 /***/ },
-/* 261 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(262);
+	var content = __webpack_require__(247);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -45134,7 +42033,7 @@
 	}
 
 /***/ },
-/* 262 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -45148,13 +42047,13 @@
 
 
 /***/ },
-/* 263 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(264);
+	var content = __webpack_require__(249);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -45174,7 +42073,7 @@
 	}
 
 /***/ },
-/* 264 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -45188,7 +42087,7 @@
 
 
 /***/ },
-/* 265 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45197,19 +42096,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _OrderTotalRow = __webpack_require__(266);
+	var _OrderTotalRow = __webpack_require__(251);
 
 	var _OrderTotalRow2 = _interopRequireDefault(_OrderTotalRow);
 
-	var _OrderTax = __webpack_require__(269);
+	var _OrderTax = __webpack_require__(257);
 
 	var _OrderTax2 = _interopRequireDefault(_OrderTax);
 
-	var _OrderTotalTotal = __webpack_require__(270);
+	var _OrderTotalTotal = __webpack_require__(258);
 
 	var _OrderTotalTotal2 = _interopRequireDefault(_OrderTotalTotal);
 
-	var _orderTotal = __webpack_require__(271);
+	var _orderTotal = __webpack_require__(259);
 
 	var _orderTotal2 = _interopRequireDefault(_orderTotal);
 
@@ -45276,7 +42175,7 @@
 	module.exports = OrderTotal;
 
 /***/ },
-/* 266 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45285,11 +42184,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _AddItemNotification = __webpack_require__(225);
+	var _AddItemNotification = __webpack_require__(252);
 
 	var _AddItemNotification2 = _interopRequireDefault(_AddItemNotification);
 
-	var _orderTotalRow = __webpack_require__(267);
+	var _orderTotalRow = __webpack_require__(255);
 
 	var _orderTotalRow2 = _interopRequireDefault(_orderTotalRow);
 
@@ -45388,13 +42287,113 @@
 	module.exports = OrderTotalRow;
 
 /***/ },
-/* 267 */
+/* 252 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _addItemNotification = __webpack_require__(253);
+
+	var _addItemNotification2 = _interopRequireDefault(_addItemNotification);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AddItemNotification = _react2.default.createClass({
+	    displayName: 'AddItemNotification',
+
+
+	    propTypes: {
+	        notification: _react2.default.PropTypes.shape({
+	            add: _react2.default.PropTypes.bool,
+	            delete: _react2.default.PropTypes.bool,
+	            error: _react2.default.PropTypes.bool
+	        })
+	    },
+
+	    render: function render() {
+
+	        var notificationType = '';
+	        var notificationText = '';
+
+	        if (this.props.notification.add) {
+	            notificationType = 'item-notification add-item-notification item-notification-show';
+	            notificationText = 'Item added to order!';
+	        } else if (this.props.notification.delete) {
+	            notificationType = 'item-notification delete-item-notification item-notification-show';
+	            notificationText = 'Item removed from order!';
+	        } else if (this.props.notification.error) {
+	            notificationType = 'item-notification error-item-notification item-notification-show';
+	            notificationText = 'You need to fill in the item details!';
+	        } else {
+	            notificationType = 'item-notification item-notification-hide';
+	        }
+
+	        return _react2.default.createElement(
+	            'div',
+	            { className: notificationType },
+	            _react2.default.createElement(
+	                'a',
+	                { className: 'item-notification-text' },
+	                notificationText
+	            )
+	        );
+	    }
+	});
+
+	module.exports = AddItemNotification;
+
+/***/ },
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(268);
+	var content = __webpack_require__(254);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./add-item-notification.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./add-item-notification.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 254 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".item-notification-text {\n  color: #f6f6f6;\n  text-align: center;\n  text-decoration: none; }\n\n.item-notification {\n  color: #f6f6f6;\n  font-size: 1.1em;\n  padding-top: 0.7em;\n  height: 38px;\n  position: fixed;\n  left: 0;\n  text-align: center;\n  text-decoration: none;\n  top: -45px;\n  width: 100%;\n  animation: item-notification 1s ease forwards; }\n\n.add-item-notification {\n  background-color: #3FB083; }\n\n.delete-item-notification {\n  background-color: #E2514E; }\n\n.error-item-notification {\n  background-color: #FAD675; }\n\n.item-notification-show {\n  display: block; }\n\n.item-notification-hide {\n  display: none; }\n\n@keyframes item-notification {\n  0% {\n    opacity: 0; }\n  50% {\n    opacity: 1; }\n  100% {\n    top: 0; } }\n\n@keyframes item-notification-hide {\n  0% {\n    top: 0; }\n  50% {\n    top: -25; }\n  100% {\n    top: -45; } }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 255 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(256);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -45414,7 +42413,7 @@
 	}
 
 /***/ },
-/* 268 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -45428,7 +42427,7 @@
 
 
 /***/ },
-/* 269 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -45469,7 +42468,7 @@
 	module.exports = OrderTax;
 
 /***/ },
-/* 270 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45511,13 +42510,13 @@
 	module.exports = OrderTotalTotal;
 
 /***/ },
-/* 271 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(272);
+	var content = __webpack_require__(260);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -45537,7 +42536,7 @@
 	}
 
 /***/ },
-/* 272 */
+/* 260 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -45551,7 +42550,7 @@
 
 
 /***/ },
-/* 273 */
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45560,7 +42559,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _specialInstructions = __webpack_require__(274);
+	var _specialInstructions = __webpack_require__(262);
 
 	var _specialInstructions2 = _interopRequireDefault(_specialInstructions);
 
@@ -45590,13 +42589,13 @@
 	module.exports = SpecialInstructions;
 
 /***/ },
-/* 274 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(275);
+	var content = __webpack_require__(263);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -45616,7 +42615,7 @@
 	}
 
 /***/ },
-/* 275 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -45630,13 +42629,13 @@
 
 
 /***/ },
-/* 276 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(277);
+	var content = __webpack_require__(265);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -45656,7 +42655,7 @@
 	}
 
 /***/ },
-/* 277 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -45664,13 +42663,13 @@
 
 
 	// module
-	exports.push([module.id, ".custom-order-container {\n  margin-left: 5.5em;\n  padding-right: 0.4em; }\n  .custom-order-container .userProgress {\n    position: relative;\n    width: 100%;\n    height: 30px;\n    background-color: #fff;\n    border-radius: 5px;\n    margin: 0 auto;\n    border: 1px solid #E4E4E4; }\n  .custom-order-container #twoOfFive {\n    position: absolute;\n    width: 40%;\n    height: 100%;\n    background: #3FB083;\n    border-radius: 5px 0px 0px 5px; }\n  .custom-order-container .order-total-container {\n    text-align: center; }\n\n@media only screen and (min-width: 600px) {\n  .custom-order-container .userProgress {\n    width: 25em; } }\n\n@media only screen and (min-width: 750px) {\n  .custom-order-container {\n    margin-left: 2.5em; }\n    .custom-order-container .custom-order-view-wrap {\n      position: relative;\n      width: 100%; }\n      .custom-order-container .custom-order-view-wrap .menu-form-container {\n        float: left; }\n      .custom-order-container .custom-order-view-wrap .order-total-container {\n        position: fixed;\n        right: 1em;\n        width: 18em; } }\n", ""]);
+	exports.push([module.id, ".custom-order-container {\n  margin-left: 0em;\n  margin-top: 4em;\n  padding-right: 0.4em; }\n  .custom-order-container .userProgress {\n    position: relative;\n    width: 100%;\n    height: 30px;\n    background-color: #fff;\n    border-radius: 5px;\n    margin: 0 auto;\n    border: 1px solid #E4E4E4; }\n  .custom-order-container #twoOfFive {\n    position: absolute;\n    width: 40%;\n    height: 100%;\n    background: #3FB083;\n    border-radius: 5px 0px 0px 5px; }\n  .custom-order-container .order-total-container {\n    text-align: center; }\n\n@media only screen and (min-width: 600px) {\n  .custom-order-container .userProgress {\n    width: 25em; } }\n\n@media only screen and (min-width: 750px) {\n  .custom-order-container {\n    margin-left: 2.5em; }\n    .custom-order-container .custom-order-view-wrap {\n      position: relative;\n      width: 100%; }\n      .custom-order-container .custom-order-view-wrap .menu-form-container {\n        float: left; }\n      .custom-order-container .custom-order-view-wrap .order-total-container {\n        position: fixed;\n        right: 1em;\n        width: 18em; } }\n\n@media only screen and (min-width: 960px) {\n  .custom-order-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 278 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45679,17 +42678,17 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ShopList = __webpack_require__(279);
+	var _ShopList = __webpack_require__(267);
 
 	var _ShopList2 = _interopRequireDefault(_ShopList);
 
 	var _reactRouter = __webpack_require__(164);
 
-	var _app = __webpack_require__(223);
+	var _app = __webpack_require__(226);
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _selectShopView = __webpack_require__(285);
+	var _selectShopView = __webpack_require__(273);
 
 	var _selectShopView2 = _interopRequireDefault(_selectShopView);
 
@@ -45748,7 +42747,7 @@
 	module.exports = SelectShopView;
 
 /***/ },
-/* 279 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45757,15 +42756,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _shopList = __webpack_require__(280);
+	var _shopList = __webpack_require__(268);
 
 	var _shopList2 = _interopRequireDefault(_shopList);
 
-	var _ShopListItem = __webpack_require__(282);
+	var _ShopListItem = __webpack_require__(270);
 
 	var _ShopListItem2 = _interopRequireDefault(_ShopListItem);
 
-	var _lodash = __webpack_require__(231);
+	var _lodash = __webpack_require__(235);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -45802,13 +42801,13 @@
 	module.exports = ShopList;
 
 /***/ },
-/* 280 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(281);
+	var content = __webpack_require__(269);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -45828,7 +42827,7 @@
 	}
 
 /***/ },
-/* 281 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -45842,7 +42841,7 @@
 
 
 /***/ },
-/* 282 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45851,7 +42850,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _shopListItem = __webpack_require__(283);
+	var _shopListItem = __webpack_require__(271);
 
 	var _shopListItem2 = _interopRequireDefault(_shopListItem);
 
@@ -45922,13 +42921,13 @@
 	module.exports = ShopListItem;
 
 /***/ },
-/* 283 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(284);
+	var content = __webpack_require__(272);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -45948,7 +42947,7 @@
 	}
 
 /***/ },
-/* 284 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -45962,13 +42961,13 @@
 
 
 /***/ },
-/* 285 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(286);
+	var content = __webpack_require__(274);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -45988,7 +42987,7 @@
 	}
 
 /***/ },
-/* 286 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -45996,13 +42995,13 @@
 
 
 	// module
-	exports.push([module.id, ".select-shop-container {\n  margin-left: 5em; }\n  .select-shop-container .main-wrap .loading-icon {\n    margin-top: 0em;\n    text-align: center; }\n  .select-shop-container .userProgress {\n    position: relative;\n    width: 50%;\n    height: 30px;\n    background-color: #fff;\n    border-radius: 5px;\n    margin: 0 auto;\n    border: 1px solid #E4E4E4; }\n    .select-shop-container .userProgress #oneOfFive {\n      position: absolute;\n      width: 20%;\n      height: 100%;\n      background: #3FB083;\n      border-radius: 5px 0px 0px 5px; }\n  .select-shop-container .hide {\n    display: none; }\n", ""]);
+	exports.push([module.id, ".select-shop-container {\n  margin-left: 0em;\n  margin-top: 4em; }\n  .select-shop-container .main-wrap .loading-icon {\n    margin-top: 0em;\n    text-align: center; }\n  .select-shop-container .userProgress {\n    position: relative;\n    width: 50%;\n    height: 30px;\n    background-color: #fff;\n    border-radius: 5px;\n    margin: 0 auto;\n    border: 1px solid #E4E4E4; }\n    .select-shop-container .userProgress #oneOfFive {\n      position: absolute;\n      width: 20%;\n      height: 100%;\n      background: #3FB083;\n      border-radius: 5px 0px 0px 5px; }\n  .select-shop-container .hide {\n    display: none; }\n\n@media only screen and (min-width: 960px) {\n  .select-shop-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 287 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46011,29 +43010,29 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _SelectMethodOfTrans = __webpack_require__(288);
+	var _SelectMethodOfTrans = __webpack_require__(276);
 
 	var _SelectMethodOfTrans2 = _interopRequireDefault(_SelectMethodOfTrans);
 
-	var _SelectPickUpTime = __webpack_require__(291);
+	var _SelectPickUpTime = __webpack_require__(279);
 
 	var _SelectPickUpTime2 = _interopRequireDefault(_SelectPickUpTime);
 
-	var _SelectIfFavorite = __webpack_require__(393);
+	var _SelectIfFavorite = __webpack_require__(381);
 
 	var _SelectIfFavorite2 = _interopRequireDefault(_SelectIfFavorite);
 
-	var _EnterPaymentInfo = __webpack_require__(396);
+	var _EnterPaymentInfo = __webpack_require__(384);
 
 	var _EnterPaymentInfo2 = _interopRequireDefault(_EnterPaymentInfo);
 
 	var _reactRouter = __webpack_require__(164);
 
-	var _app = __webpack_require__(223);
+	var _app = __webpack_require__(226);
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _additionalInfoView = __webpack_require__(399);
+	var _additionalInfoView = __webpack_require__(387);
 
 	var _additionalInfoView2 = _interopRequireDefault(_additionalInfoView);
 
@@ -46121,7 +43120,7 @@
 	module.exports = AdditionalInfoView;
 
 /***/ },
-/* 288 */
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46130,7 +43129,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _selectMethodOfTrans = __webpack_require__(289);
+	var _selectMethodOfTrans = __webpack_require__(277);
 
 	var _selectMethodOfTrans2 = _interopRequireDefault(_selectMethodOfTrans);
 
@@ -46199,13 +43198,13 @@
 	module.exports = SelectMethodOfTrans;
 
 /***/ },
-/* 289 */
+/* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(290);
+	var content = __webpack_require__(278);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -46225,7 +43224,7 @@
 	}
 
 /***/ },
-/* 290 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -46239,7 +43238,7 @@
 
 
 /***/ },
-/* 291 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46248,11 +43247,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _selectPickUpTime = __webpack_require__(292);
+	var _selectPickUpTime = __webpack_require__(280);
 
 	var _selectPickUpTime2 = _interopRequireDefault(_selectPickUpTime);
 
-	var _moment = __webpack_require__(294);
+	var _moment = __webpack_require__(282);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
@@ -46473,13 +43472,13 @@
 	module.exports = SelectPickUpTime;
 
 /***/ },
-/* 292 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(293);
+	var content = __webpack_require__(281);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -46499,7 +43498,7 @@
 	}
 
 /***/ },
-/* 293 */
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -46513,7 +43512,7 @@
 
 
 /***/ },
-/* 294 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {//! moment.js
@@ -46867,7 +43866,7 @@
 	                module && module.exports) {
 	            try {
 	                oldLocale = globalLocale._abbr;
-	                __webpack_require__(295)("./" + name);
+	                __webpack_require__(283)("./" + name);
 	                // because defineLocale currently also sets the global locale, we
 	                // want to undo that for lazy loaded locales
 	                locale_locales__getSetGlobalLocale(oldLocale);
@@ -50204,207 +47203,207 @@
 	    return _moment;
 
 	}));
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(232)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(236)(module)))
 
 /***/ },
-/* 295 */
+/* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./af": 296,
-		"./af.js": 296,
-		"./ar": 297,
-		"./ar-ma": 298,
-		"./ar-ma.js": 298,
-		"./ar-sa": 299,
-		"./ar-sa.js": 299,
-		"./ar-tn": 300,
-		"./ar-tn.js": 300,
-		"./ar.js": 297,
-		"./az": 301,
-		"./az.js": 301,
-		"./be": 302,
-		"./be.js": 302,
-		"./bg": 303,
-		"./bg.js": 303,
-		"./bn": 304,
-		"./bn.js": 304,
-		"./bo": 305,
-		"./bo.js": 305,
-		"./br": 306,
-		"./br.js": 306,
-		"./bs": 307,
-		"./bs.js": 307,
-		"./ca": 308,
-		"./ca.js": 308,
-		"./cs": 309,
-		"./cs.js": 309,
-		"./cv": 310,
-		"./cv.js": 310,
-		"./cy": 311,
-		"./cy.js": 311,
-		"./da": 312,
-		"./da.js": 312,
-		"./de": 313,
-		"./de-at": 314,
-		"./de-at.js": 314,
-		"./de.js": 313,
-		"./dv": 315,
-		"./dv.js": 315,
-		"./el": 316,
-		"./el.js": 316,
-		"./en-au": 317,
-		"./en-au.js": 317,
-		"./en-ca": 318,
-		"./en-ca.js": 318,
-		"./en-gb": 319,
-		"./en-gb.js": 319,
-		"./en-ie": 320,
-		"./en-ie.js": 320,
-		"./en-nz": 321,
-		"./en-nz.js": 321,
-		"./eo": 322,
-		"./eo.js": 322,
-		"./es": 323,
-		"./es.js": 323,
-		"./et": 324,
-		"./et.js": 324,
-		"./eu": 325,
-		"./eu.js": 325,
-		"./fa": 326,
-		"./fa.js": 326,
-		"./fi": 327,
-		"./fi.js": 327,
-		"./fo": 328,
-		"./fo.js": 328,
-		"./fr": 329,
-		"./fr-ca": 330,
-		"./fr-ca.js": 330,
-		"./fr-ch": 331,
-		"./fr-ch.js": 331,
-		"./fr.js": 329,
-		"./fy": 332,
-		"./fy.js": 332,
-		"./gd": 333,
-		"./gd.js": 333,
-		"./gl": 334,
-		"./gl.js": 334,
-		"./he": 335,
-		"./he.js": 335,
-		"./hi": 336,
-		"./hi.js": 336,
-		"./hr": 337,
-		"./hr.js": 337,
-		"./hu": 338,
-		"./hu.js": 338,
-		"./hy-am": 339,
-		"./hy-am.js": 339,
-		"./id": 340,
-		"./id.js": 340,
-		"./is": 341,
-		"./is.js": 341,
-		"./it": 342,
-		"./it.js": 342,
-		"./ja": 343,
-		"./ja.js": 343,
-		"./jv": 344,
-		"./jv.js": 344,
-		"./ka": 345,
-		"./ka.js": 345,
-		"./kk": 346,
-		"./kk.js": 346,
-		"./km": 347,
-		"./km.js": 347,
-		"./ko": 348,
-		"./ko.js": 348,
-		"./lb": 349,
-		"./lb.js": 349,
-		"./lo": 350,
-		"./lo.js": 350,
-		"./lt": 351,
-		"./lt.js": 351,
-		"./lv": 352,
-		"./lv.js": 352,
-		"./me": 353,
-		"./me.js": 353,
-		"./mk": 354,
-		"./mk.js": 354,
-		"./ml": 355,
-		"./ml.js": 355,
-		"./mr": 356,
-		"./mr.js": 356,
-		"./ms": 357,
-		"./ms-my": 358,
-		"./ms-my.js": 358,
-		"./ms.js": 357,
-		"./my": 359,
-		"./my.js": 359,
-		"./nb": 360,
-		"./nb.js": 360,
-		"./ne": 361,
-		"./ne.js": 361,
-		"./nl": 362,
-		"./nl.js": 362,
-		"./nn": 363,
-		"./nn.js": 363,
-		"./pa-in": 364,
-		"./pa-in.js": 364,
-		"./pl": 365,
-		"./pl.js": 365,
-		"./pt": 366,
-		"./pt-br": 367,
-		"./pt-br.js": 367,
-		"./pt.js": 366,
-		"./ro": 368,
-		"./ro.js": 368,
-		"./ru": 369,
-		"./ru.js": 369,
-		"./se": 370,
-		"./se.js": 370,
-		"./si": 371,
-		"./si.js": 371,
-		"./sk": 372,
-		"./sk.js": 372,
-		"./sl": 373,
-		"./sl.js": 373,
-		"./sq": 374,
-		"./sq.js": 374,
-		"./sr": 375,
-		"./sr-cyrl": 376,
-		"./sr-cyrl.js": 376,
-		"./sr.js": 375,
-		"./sv": 377,
-		"./sv.js": 377,
-		"./sw": 378,
-		"./sw.js": 378,
-		"./ta": 379,
-		"./ta.js": 379,
-		"./te": 380,
-		"./te.js": 380,
-		"./th": 381,
-		"./th.js": 381,
-		"./tl-ph": 382,
-		"./tl-ph.js": 382,
-		"./tlh": 383,
-		"./tlh.js": 383,
-		"./tr": 384,
-		"./tr.js": 384,
-		"./tzl": 385,
-		"./tzl.js": 385,
-		"./tzm": 386,
-		"./tzm-latn": 387,
-		"./tzm-latn.js": 387,
-		"./tzm.js": 386,
-		"./uk": 388,
-		"./uk.js": 388,
-		"./uz": 389,
-		"./uz.js": 389,
-		"./vi": 390,
-		"./vi.js": 390,
-		"./zh-cn": 391,
-		"./zh-cn.js": 391,
-		"./zh-tw": 392,
-		"./zh-tw.js": 392
+		"./af": 284,
+		"./af.js": 284,
+		"./ar": 285,
+		"./ar-ma": 286,
+		"./ar-ma.js": 286,
+		"./ar-sa": 287,
+		"./ar-sa.js": 287,
+		"./ar-tn": 288,
+		"./ar-tn.js": 288,
+		"./ar.js": 285,
+		"./az": 289,
+		"./az.js": 289,
+		"./be": 290,
+		"./be.js": 290,
+		"./bg": 291,
+		"./bg.js": 291,
+		"./bn": 292,
+		"./bn.js": 292,
+		"./bo": 293,
+		"./bo.js": 293,
+		"./br": 294,
+		"./br.js": 294,
+		"./bs": 295,
+		"./bs.js": 295,
+		"./ca": 296,
+		"./ca.js": 296,
+		"./cs": 297,
+		"./cs.js": 297,
+		"./cv": 298,
+		"./cv.js": 298,
+		"./cy": 299,
+		"./cy.js": 299,
+		"./da": 300,
+		"./da.js": 300,
+		"./de": 301,
+		"./de-at": 302,
+		"./de-at.js": 302,
+		"./de.js": 301,
+		"./dv": 303,
+		"./dv.js": 303,
+		"./el": 304,
+		"./el.js": 304,
+		"./en-au": 305,
+		"./en-au.js": 305,
+		"./en-ca": 306,
+		"./en-ca.js": 306,
+		"./en-gb": 307,
+		"./en-gb.js": 307,
+		"./en-ie": 308,
+		"./en-ie.js": 308,
+		"./en-nz": 309,
+		"./en-nz.js": 309,
+		"./eo": 310,
+		"./eo.js": 310,
+		"./es": 311,
+		"./es.js": 311,
+		"./et": 312,
+		"./et.js": 312,
+		"./eu": 313,
+		"./eu.js": 313,
+		"./fa": 314,
+		"./fa.js": 314,
+		"./fi": 315,
+		"./fi.js": 315,
+		"./fo": 316,
+		"./fo.js": 316,
+		"./fr": 317,
+		"./fr-ca": 318,
+		"./fr-ca.js": 318,
+		"./fr-ch": 319,
+		"./fr-ch.js": 319,
+		"./fr.js": 317,
+		"./fy": 320,
+		"./fy.js": 320,
+		"./gd": 321,
+		"./gd.js": 321,
+		"./gl": 322,
+		"./gl.js": 322,
+		"./he": 323,
+		"./he.js": 323,
+		"./hi": 324,
+		"./hi.js": 324,
+		"./hr": 325,
+		"./hr.js": 325,
+		"./hu": 326,
+		"./hu.js": 326,
+		"./hy-am": 327,
+		"./hy-am.js": 327,
+		"./id": 328,
+		"./id.js": 328,
+		"./is": 329,
+		"./is.js": 329,
+		"./it": 330,
+		"./it.js": 330,
+		"./ja": 331,
+		"./ja.js": 331,
+		"./jv": 332,
+		"./jv.js": 332,
+		"./ka": 333,
+		"./ka.js": 333,
+		"./kk": 334,
+		"./kk.js": 334,
+		"./km": 335,
+		"./km.js": 335,
+		"./ko": 336,
+		"./ko.js": 336,
+		"./lb": 337,
+		"./lb.js": 337,
+		"./lo": 338,
+		"./lo.js": 338,
+		"./lt": 339,
+		"./lt.js": 339,
+		"./lv": 340,
+		"./lv.js": 340,
+		"./me": 341,
+		"./me.js": 341,
+		"./mk": 342,
+		"./mk.js": 342,
+		"./ml": 343,
+		"./ml.js": 343,
+		"./mr": 344,
+		"./mr.js": 344,
+		"./ms": 345,
+		"./ms-my": 346,
+		"./ms-my.js": 346,
+		"./ms.js": 345,
+		"./my": 347,
+		"./my.js": 347,
+		"./nb": 348,
+		"./nb.js": 348,
+		"./ne": 349,
+		"./ne.js": 349,
+		"./nl": 350,
+		"./nl.js": 350,
+		"./nn": 351,
+		"./nn.js": 351,
+		"./pa-in": 352,
+		"./pa-in.js": 352,
+		"./pl": 353,
+		"./pl.js": 353,
+		"./pt": 354,
+		"./pt-br": 355,
+		"./pt-br.js": 355,
+		"./pt.js": 354,
+		"./ro": 356,
+		"./ro.js": 356,
+		"./ru": 357,
+		"./ru.js": 357,
+		"./se": 358,
+		"./se.js": 358,
+		"./si": 359,
+		"./si.js": 359,
+		"./sk": 360,
+		"./sk.js": 360,
+		"./sl": 361,
+		"./sl.js": 361,
+		"./sq": 362,
+		"./sq.js": 362,
+		"./sr": 363,
+		"./sr-cyrl": 364,
+		"./sr-cyrl.js": 364,
+		"./sr.js": 363,
+		"./sv": 365,
+		"./sv.js": 365,
+		"./sw": 366,
+		"./sw.js": 366,
+		"./ta": 367,
+		"./ta.js": 367,
+		"./te": 368,
+		"./te.js": 368,
+		"./th": 369,
+		"./th.js": 369,
+		"./tl-ph": 370,
+		"./tl-ph.js": 370,
+		"./tlh": 371,
+		"./tlh.js": 371,
+		"./tr": 372,
+		"./tr.js": 372,
+		"./tzl": 373,
+		"./tzl.js": 373,
+		"./tzm": 374,
+		"./tzm-latn": 375,
+		"./tzm-latn.js": 375,
+		"./tzm.js": 374,
+		"./uk": 376,
+		"./uk.js": 376,
+		"./uz": 377,
+		"./uz.js": 377,
+		"./vi": 378,
+		"./vi.js": 378,
+		"./zh-cn": 379,
+		"./zh-cn.js": 379,
+		"./zh-tw": 380,
+		"./zh-tw.js": 380
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -50417,11 +47416,11 @@
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 295;
+	webpackContext.id = 283;
 
 
 /***/ },
-/* 296 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50429,7 +47428,7 @@
 	//! author : Werner Mollentze : https://github.com/wernerm
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -50498,7 +47497,7 @@
 	}));
 
 /***/ },
-/* 297 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50508,7 +47507,7 @@
 	//! Native plural forms: forabi https://github.com/forabi
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -50638,7 +47637,7 @@
 	}));
 
 /***/ },
-/* 298 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50647,7 +47646,7 @@
 	//! author : Abdel Said : https://github.com/abdelsaid
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -50701,7 +47700,7 @@
 	}));
 
 /***/ },
-/* 299 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50709,7 +47708,7 @@
 	//! author : Suhail Alkowaileet : https://github.com/xsoh
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -50808,14 +47807,14 @@
 	}));
 
 /***/ },
-/* 300 */
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 	//! locale  : Tunisian Arabic (ar-tn)
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -50869,7 +47868,7 @@
 	}));
 
 /***/ },
-/* 301 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50877,7 +47876,7 @@
 	//! author : topchiyev : https://github.com/topchiyev
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -50977,7 +47976,7 @@
 	}));
 
 /***/ },
-/* 302 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -50987,7 +47986,7 @@
 	//! Author : Menelion Elensúle : https://github.com/Oire
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -51115,7 +48114,7 @@
 	}));
 
 /***/ },
-/* 303 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51123,7 +48122,7 @@
 	//! author : Krasen Borisov : https://github.com/kraz
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -51209,7 +48208,7 @@
 	}));
 
 /***/ },
-/* 304 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51217,7 +48216,7 @@
 	//! author : Kaushik Gandhi : https://github.com/kaushikgandhi
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -51332,7 +48331,7 @@
 	}));
 
 /***/ },
-/* 305 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51340,7 +48339,7 @@
 	//! author : Thupten N. Chakrishar : https://github.com/vajradog
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -51455,7 +48454,7 @@
 	}));
 
 /***/ },
-/* 306 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51463,7 +48462,7 @@
 	//! author : Jean-Baptiste Le Duigou : https://github.com/jbleduigou
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -51566,7 +48565,7 @@
 	}));
 
 /***/ },
-/* 307 */
+/* 295 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51575,7 +48574,7 @@
 	//! based on (hr) translation by Bojan Marković
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -51711,7 +48710,7 @@
 	}));
 
 /***/ },
-/* 308 */
+/* 296 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51719,7 +48718,7 @@
 	//! author : Juan G. Hurtado : https://github.com/juanghurtado
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -51794,7 +48793,7 @@
 	}));
 
 /***/ },
-/* 309 */
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51802,7 +48801,7 @@
 	//! author : petrbela : https://github.com/petrbela
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -51969,7 +48968,7 @@
 	}));
 
 /***/ },
-/* 310 */
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -51977,7 +48976,7 @@
 	//! author : Anatoly Mironov : https://github.com/mirontoli
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52036,7 +49035,7 @@
 	}));
 
 /***/ },
-/* 311 */
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52044,7 +49043,7 @@
 	//! author : Robert Allen
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52119,7 +49118,7 @@
 	}));
 
 /***/ },
-/* 312 */
+/* 300 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52127,7 +49126,7 @@
 	//! author : Ulrik Nielsen : https://github.com/mrbase
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52183,7 +49182,7 @@
 	}));
 
 /***/ },
-/* 313 */
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52193,7 +49192,7 @@
 	//! author : Mikolaj Dadela : https://github.com/mik01aj
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52263,7 +49262,7 @@
 	}));
 
 /***/ },
-/* 314 */
+/* 302 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52274,7 +49273,7 @@
 	//! author : Mikolaj Dadela : https://github.com/mik01aj
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52344,7 +49343,7 @@
 	}));
 
 /***/ },
-/* 315 */
+/* 303 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52352,7 +49351,7 @@
 	//! author : Jawish Hameed : https://github.com/jawish
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52447,7 +49446,7 @@
 	}));
 
 /***/ },
-/* 316 */
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52455,7 +49454,7 @@
 	//! author : Aggelos Karalias : https://github.com/mehiel
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52549,14 +49548,14 @@
 	}));
 
 /***/ },
-/* 317 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 	//! locale : australian english (en-au)
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52619,7 +49618,7 @@
 	}));
 
 /***/ },
-/* 318 */
+/* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52627,7 +49626,7 @@
 	//! author : Jonathan Abourbih : https://github.com/jonbca
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52686,7 +49685,7 @@
 	}));
 
 /***/ },
-/* 319 */
+/* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52694,7 +49693,7 @@
 	//! author : Chris Gedrim : https://github.com/chrisgedrim
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52757,7 +49756,7 @@
 	}));
 
 /***/ },
-/* 320 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52765,7 +49764,7 @@
 	//! author : Chris Cartlidge : https://github.com/chriscartlidge
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52828,14 +49827,14 @@
 	}));
 
 /***/ },
-/* 321 */
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 	//! locale : New Zealand english (en-nz)
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52898,7 +49897,7 @@
 	}));
 
 /***/ },
-/* 322 */
+/* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52908,7 +49907,7 @@
 	//!          Se ne, bonvolu korekti kaj avizi min por ke mi povas lerni!
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -52975,7 +49974,7 @@
 	}));
 
 /***/ },
-/* 323 */
+/* 311 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -52983,7 +49982,7 @@
 	//! author : Julio Napurí : https://github.com/julionc
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53058,7 +50057,7 @@
 	}));
 
 /***/ },
-/* 324 */
+/* 312 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53067,7 +50066,7 @@
 	//! improvements : Illimar Tambek : https://github.com/ragulka
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53142,7 +50141,7 @@
 	}));
 
 /***/ },
-/* 325 */
+/* 313 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53150,7 +50149,7 @@
 	//! author : Eneko Illarramendi : https://github.com/eillarra
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53210,7 +50209,7 @@
 	}));
 
 /***/ },
-/* 326 */
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53218,7 +50217,7 @@
 	//! author : Ebrahim Byagowi : https://github.com/ebraminio
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53319,7 +50318,7 @@
 	}));
 
 /***/ },
-/* 327 */
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53327,7 +50326,7 @@
 	//! author : Tarmo Aidantausta : https://github.com/bleadof
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53430,7 +50429,7 @@
 	}));
 
 /***/ },
-/* 328 */
+/* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53438,7 +50437,7 @@
 	//! author : Ragnar Johannesen : https://github.com/ragnar123
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53494,7 +50493,7 @@
 	}));
 
 /***/ },
-/* 329 */
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53502,7 +50501,7 @@
 	//! author : John Fischer : https://github.com/jfroffice
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53560,7 +50559,7 @@
 	}));
 
 /***/ },
-/* 330 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53568,7 +50567,7 @@
 	//! author : Jonathan Abourbih : https://github.com/jonbca
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53622,7 +50621,7 @@
 	}));
 
 /***/ },
-/* 331 */
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53630,7 +50629,7 @@
 	//! author : Gaspard Bucher : https://github.com/gaspard
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53688,7 +50687,7 @@
 	}));
 
 /***/ },
-/* 332 */
+/* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53696,7 +50695,7 @@
 	//! author : Robin van der Vliet : https://github.com/robin0van0der0v
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53763,7 +50762,7 @@
 	}));
 
 /***/ },
-/* 333 */
+/* 321 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53771,7 +50770,7 @@
 	//! author : Jon Ashdown : https://github.com/jonashdown
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53843,7 +50842,7 @@
 	}));
 
 /***/ },
-/* 334 */
+/* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53851,7 +50850,7 @@
 	//! author : Juan G. Hurtado : https://github.com/juanghurtado
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -53922,7 +50921,7 @@
 	}));
 
 /***/ },
-/* 335 */
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -53932,7 +50931,7 @@
 	//! author : Tal Ater : https://github.com/TalAter
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54025,7 +51024,7 @@
 	}));
 
 /***/ },
-/* 336 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54033,7 +51032,7 @@
 	//! author : Mayank Singhal : https://github.com/mayanksinghal
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54152,7 +51151,7 @@
 	}));
 
 /***/ },
-/* 337 */
+/* 325 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54160,7 +51159,7 @@
 	//! author : Bojan Marković : https://github.com/bmarkovic
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54299,7 +51298,7 @@
 	}));
 
 /***/ },
-/* 338 */
+/* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54307,7 +51306,7 @@
 	//! author : Adam Brunner : https://github.com/adambrunner
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54412,7 +51411,7 @@
 	}));
 
 /***/ },
-/* 339 */
+/* 327 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54420,7 +51419,7 @@
 	//! author : Armendarabyan : https://github.com/armendarabyan
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54511,7 +51510,7 @@
 	}));
 
 /***/ },
-/* 340 */
+/* 328 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54520,7 +51519,7 @@
 	//! reference: http://id.wikisource.org/wiki/Pedoman_Umum_Ejaan_Bahasa_Indonesia_yang_Disempurnakan
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54598,7 +51597,7 @@
 	}));
 
 /***/ },
-/* 341 */
+/* 329 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54606,7 +51605,7 @@
 	//! author : Hinrik Örn Sigurðsson : https://github.com/hinrik
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54729,7 +51728,7 @@
 	}));
 
 /***/ },
-/* 342 */
+/* 330 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54738,7 +51737,7 @@
 	//! author: Mattia Larentis: https://github.com/nostalgiaz
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54803,7 +51802,7 @@
 	}));
 
 /***/ },
-/* 343 */
+/* 331 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54811,7 +51810,7 @@
 	//! author : LI Long : https://github.com/baryon
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54883,7 +51882,7 @@
 	}));
 
 /***/ },
-/* 344 */
+/* 332 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54892,7 +51891,7 @@
 	//! reference: http://jv.wikipedia.org/wiki/Basa_Jawa
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -54970,7 +51969,7 @@
 	}));
 
 /***/ },
-/* 345 */
+/* 333 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -54978,7 +51977,7 @@
 	//! author : Irakli Janiashvili : https://github.com/irakli-janiashvili
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -55063,7 +52062,7 @@
 	}));
 
 /***/ },
-/* 346 */
+/* 334 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55071,7 +52070,7 @@
 	//! authors : Nurlan Rakhimzhanov : https://github.com/nurlan
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -55154,7 +52153,7 @@
 	}));
 
 /***/ },
-/* 347 */
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55162,7 +52161,7 @@
 	//! author : Kruy Vanna : https://github.com/kruyvanna
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -55216,7 +52215,7 @@
 	}));
 
 /***/ },
-/* 348 */
+/* 336 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55228,7 +52227,7 @@
 	//! - Jeeeyul Lee <jeeeyul@gmail.com>
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -55288,7 +52287,7 @@
 	}));
 
 /***/ },
-/* 349 */
+/* 337 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55296,7 +52295,7 @@
 	//! author : mweimerskirch : https://github.com/mweimerskirch, David Raison : https://github.com/kwisatz
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -55426,7 +52425,7 @@
 	}));
 
 /***/ },
-/* 350 */
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55434,7 +52433,7 @@
 	//! author : Ryan Hart : https://github.com/ryanhart2
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -55499,7 +52498,7 @@
 	}));
 
 /***/ },
-/* 351 */
+/* 339 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55507,7 +52506,7 @@
 	//! author : Mindaugas Mozūras : https://github.com/mmozuras
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -55618,7 +52617,7 @@
 	}));
 
 /***/ },
-/* 352 */
+/* 340 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55627,7 +52626,7 @@
 	//! author : Jānis Elmeris : https://github.com/JanisE
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -55718,7 +52717,7 @@
 	}));
 
 /***/ },
-/* 353 */
+/* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55726,7 +52725,7 @@
 	//! author : Miodrag Nikač <miodrag@restartit.me> : https://github.com/miodragnikac
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -55831,7 +52830,7 @@
 	}));
 
 /***/ },
-/* 354 */
+/* 342 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55839,7 +52838,7 @@
 	//! author : Borislav Mickov : https://github.com/B0k0
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -55925,7 +52924,7 @@
 	}));
 
 /***/ },
-/* 355 */
+/* 343 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -55933,7 +52932,7 @@
 	//! author : Floyd Pink : https://github.com/floydpink
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56009,7 +53008,7 @@
 	}));
 
 /***/ },
-/* 356 */
+/* 344 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56018,7 +53017,7 @@
 	//! author : Vivek Athalye : https://github.com/vnathalye
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56171,7 +53170,7 @@
 	}));
 
 /***/ },
-/* 357 */
+/* 345 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56179,7 +53178,7 @@
 	//! author : Weldan Jamili : https://github.com/weldan
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56257,7 +53256,7 @@
 	}));
 
 /***/ },
-/* 358 */
+/* 346 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56265,7 +53264,7 @@
 	//! author : Weldan Jamili : https://github.com/weldan
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56343,7 +53342,7 @@
 	}));
 
 /***/ },
-/* 359 */
+/* 347 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56351,7 +53350,7 @@
 	//! author : Squar team, mysquar.com
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56440,7 +53439,7 @@
 	}));
 
 /***/ },
-/* 360 */
+/* 348 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56449,7 +53448,7 @@
 	//!           Sigurd Gartmann : https://github.com/sigurdga
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56505,7 +53504,7 @@
 	}));
 
 /***/ },
-/* 361 */
+/* 349 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56513,7 +53512,7 @@
 	//! author : suvash : https://github.com/suvash
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56630,7 +53629,7 @@
 	}));
 
 /***/ },
-/* 362 */
+/* 350 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56638,7 +53637,7 @@
 	//! author : Joris Röling : https://github.com/jjupiter
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56705,7 +53704,7 @@
 	}));
 
 /***/ },
-/* 363 */
+/* 351 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56713,7 +53712,7 @@
 	//! author : https://github.com/mechuwind
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56769,7 +53768,7 @@
 	}));
 
 /***/ },
-/* 364 */
+/* 352 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56777,7 +53776,7 @@
 	//! author : Harpreet Singh : https://github.com/harpreetkhalsagtbit
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -56897,7 +53896,7 @@
 	}));
 
 /***/ },
-/* 365 */
+/* 353 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -56905,7 +53904,7 @@
 	//! author : Rafal Hirsz : https://github.com/evoL
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -57006,7 +54005,7 @@
 	}));
 
 /***/ },
-/* 366 */
+/* 354 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -57014,7 +54013,7 @@
 	//! author : Jefferson : https://github.com/jalex79
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -57074,7 +54073,7 @@
 	}));
 
 /***/ },
-/* 367 */
+/* 355 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -57082,7 +54081,7 @@
 	//! author : Caio Ribeiro Pereira : https://github.com/caio-ribeiro-pereira
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -57138,7 +54137,7 @@
 	}));
 
 /***/ },
-/* 368 */
+/* 356 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -57147,7 +54146,7 @@
 	//! author : Valentin Agachi : https://github.com/avaly
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -57216,7 +54215,7 @@
 	}));
 
 /***/ },
-/* 369 */
+/* 357 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -57226,7 +54225,7 @@
 	//! author : Коренберг Марк : https://github.com/socketpair
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -57388,7 +54387,7 @@
 	}));
 
 /***/ },
-/* 370 */
+/* 358 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -57396,7 +54395,7 @@
 	//! authors : Bård Rolstad Henriksen : https://github.com/karamell
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -57453,7 +54452,7 @@
 	}));
 
 /***/ },
-/* 371 */
+/* 359 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -57461,7 +54460,7 @@
 	//! author : Sampath Sitinamaluwa : https://github.com/sampathsris
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -57527,7 +54526,7 @@
 	}));
 
 /***/ },
-/* 372 */
+/* 360 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -57536,7 +54535,7 @@
 	//! based on work of petrbela : https://github.com/petrbela
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -57681,7 +54680,7 @@
 	}));
 
 /***/ },
-/* 373 */
+/* 361 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -57689,7 +54688,7 @@
 	//! author : Robert Sedovšek : https://github.com/sedovsek
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -57845,7 +54844,7 @@
 	}));
 
 /***/ },
-/* 374 */
+/* 362 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -57855,7 +54854,7 @@
 	//! author : Oerd Cukalla : https://github.com/oerd (fixes)
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -57918,7 +54917,7 @@
 	}));
 
 /***/ },
-/* 375 */
+/* 363 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -57926,7 +54925,7 @@
 	//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58030,7 +55029,7 @@
 	}));
 
 /***/ },
-/* 376 */
+/* 364 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58038,7 +55037,7 @@
 	//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58142,7 +55141,7 @@
 	}));
 
 /***/ },
-/* 377 */
+/* 365 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58150,7 +55149,7 @@
 	//! author : Jens Alm : https://github.com/ulmus
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58213,7 +55212,7 @@
 	}));
 
 /***/ },
-/* 378 */
+/* 366 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58221,7 +55220,7 @@
 	//! author : Fahad Kassim : https://github.com/fadsel
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58275,7 +55274,7 @@
 	}));
 
 /***/ },
-/* 379 */
+/* 367 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58283,7 +55282,7 @@
 	//! author : Arjunkumar Krishnamoorthy : https://github.com/tk120404
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58408,7 +55407,7 @@
 	}));
 
 /***/ },
-/* 380 */
+/* 368 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58416,7 +55415,7 @@
 	//! author : Krishna Chaitanya Thota : https://github.com/kcthota
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58500,7 +55499,7 @@
 	}));
 
 /***/ },
-/* 381 */
+/* 369 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58508,7 +55507,7 @@
 	//! author : Kridsada Thanabulpong : https://github.com/sirn
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58569,7 +55568,7 @@
 	}));
 
 /***/ },
-/* 382 */
+/* 370 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58577,7 +55576,7 @@
 	//! author : Dan Hagman
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58635,7 +55634,7 @@
 	}));
 
 /***/ },
-/* 383 */
+/* 371 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58643,7 +55642,7 @@
 	//! author : Dominika Kruk : https://github.com/amaranthrose
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58758,7 +55757,7 @@
 	}));
 
 /***/ },
-/* 384 */
+/* 372 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58767,7 +55766,7 @@
 	//!           Burak Yiğit Kaya: https://github.com/BYK
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58852,7 +55851,7 @@
 	}));
 
 /***/ },
-/* 385 */
+/* 373 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58860,7 +55859,7 @@
 	//! author : Robin van der Vliet : https://github.com/robin0van0der0v with the help of Iustì Canun
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -58947,7 +55946,7 @@
 	}));
 
 /***/ },
-/* 386 */
+/* 374 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -58955,7 +55954,7 @@
 	//! author : Abdel Said : https://github.com/abdelsaid
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -59009,7 +56008,7 @@
 	}));
 
 /***/ },
-/* 387 */
+/* 375 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -59017,7 +56016,7 @@
 	//! author : Abdel Said : https://github.com/abdelsaid
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -59071,7 +56070,7 @@
 	}));
 
 /***/ },
-/* 388 */
+/* 376 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -59080,7 +56079,7 @@
 	//! Author : Menelion Elensúle : https://github.com/Oire
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -59221,7 +56220,7 @@
 	}));
 
 /***/ },
-/* 389 */
+/* 377 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -59229,7 +56228,7 @@
 	//! author : Sardor Muminov : https://github.com/muminoff
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -59283,7 +56282,7 @@
 	}));
 
 /***/ },
-/* 390 */
+/* 378 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -59291,7 +56290,7 @@
 	//! author : Bang Nguyen : https://github.com/bangnk
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -59364,7 +56363,7 @@
 	}));
 
 /***/ },
-/* 391 */
+/* 379 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -59373,7 +56372,7 @@
 	//! author : Zeno Zeng : https://github.com/zenozeng
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -59495,7 +56494,7 @@
 	}));
 
 /***/ },
-/* 392 */
+/* 380 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -59503,7 +56502,7 @@
 	//! author : Ben : https://github.com/ben-lin
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(294)) :
+	    true ? factory(__webpack_require__(282)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
@@ -59600,7 +56599,7 @@
 	}));
 
 /***/ },
-/* 393 */
+/* 381 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -59609,7 +56608,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _selectIfFavorite = __webpack_require__(394);
+	var _selectIfFavorite = __webpack_require__(382);
 
 	var _selectIfFavorite2 = _interopRequireDefault(_selectIfFavorite);
 
@@ -59653,13 +56652,13 @@
 	module.exports = SelectIfFavorite;
 
 /***/ },
-/* 394 */
+/* 382 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(395);
+	var content = __webpack_require__(383);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -59679,7 +56678,7 @@
 	}
 
 /***/ },
-/* 395 */
+/* 383 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -59693,7 +56692,7 @@
 
 
 /***/ },
-/* 396 */
+/* 384 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -59702,7 +56701,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _enterPaymentInfo = __webpack_require__(397);
+	var _enterPaymentInfo = __webpack_require__(385);
 
 	var _enterPaymentInfo2 = _interopRequireDefault(_enterPaymentInfo);
 
@@ -59931,13 +56930,13 @@
 	module.exports = EnterPaymentInfo;
 
 /***/ },
-/* 397 */
+/* 385 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(398);
+	var content = __webpack_require__(386);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -59957,7 +56956,7 @@
 	}
 
 /***/ },
-/* 398 */
+/* 386 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -59971,13 +56970,13 @@
 
 
 /***/ },
-/* 399 */
+/* 387 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(400);
+	var content = __webpack_require__(388);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -59997,7 +56996,7 @@
 	}
 
 /***/ },
-/* 400 */
+/* 388 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -60005,13 +57004,13 @@
 
 
 	// module
-	exports.push([module.id, ".userProgress {\n  position: relative;\n  width: 50%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto; }\n\n#threeOfFive {\n  position: absolute;\n  width: 60%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 0px 0px 5px; }\n\n.additional-info-container {\n  margin-left: 6em;\n  margin-right: 1em;\n  overflow-x: hidden; }\n\n@media only screen and (min-width: 700px) {\n  .additional-info-container {\n    margin-left: 0em; } }\n", ""]);
+	exports.push([module.id, ".additional-info-container {\n  margin-left: 0em;\n  margin-top: 4em; }\n\n.userProgress {\n  position: relative;\n  width: 50%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto; }\n\n#threeOfFive {\n  position: absolute;\n  width: 60%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 0px 0px 5px; }\n\n.additional-info-container {\n  margin-right: 1em;\n  overflow-x: hidden; }\n\n@media only screen and (min-width: 700px) {\n  .additional-info-container {\n    margin-left: 0em;\n    margin-top: 4em; } }\n\n@media only screen and (min-width: 960px) {\n  .additional-info-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 401 */
+/* 389 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60020,21 +57019,21 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _OrderTotal = __webpack_require__(265);
+	var _OrderTotal = __webpack_require__(250);
 
 	var _OrderTotal2 = _interopRequireDefault(_OrderTotal);
 
-	var _SpecialInstructionsOS = __webpack_require__(402);
+	var _SpecialInstructionsOS = __webpack_require__(390);
 
 	var _SpecialInstructionsOS2 = _interopRequireDefault(_SpecialInstructionsOS);
 
 	var _reactRouter = __webpack_require__(164);
 
-	var _app = __webpack_require__(223);
+	var _app = __webpack_require__(226);
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _orderSummary = __webpack_require__(403);
+	var _orderSummary = __webpack_require__(391);
 
 	var _orderSummary2 = _interopRequireDefault(_orderSummary);
 
@@ -60057,24 +57056,24 @@
 	            null,
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'title-cover' },
-	                _react2.default.createElement(
-	                    'h1',
-	                    null,
-	                    'Order Summary'
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'userProgress' },
-	                    _react2.default.createElement('div', { id: 'fourOfFive' })
-	                )
-	            ),
-	            _react2.default.createElement(
-	                'div',
 	                { className: 'main-wrap' },
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'order-summary-container' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'title-cover' },
+	                        _react2.default.createElement(
+	                            'h1',
+	                            null,
+	                            'Order Summary'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'userProgress' },
+	                            _react2.default.createElement('div', { id: 'fourOfFive' })
+	                        )
+	                    ),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'os-order-total-container' },
@@ -60115,7 +57114,7 @@
 	module.exports = OrderSummaryView;
 
 /***/ },
-/* 402 */
+/* 390 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60155,13 +57154,13 @@
 	module.exports = SpecialInstructionsOS;
 
 /***/ },
-/* 403 */
+/* 391 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(404);
+	var content = __webpack_require__(392);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -60181,7 +57180,7 @@
 	}
 
 /***/ },
-/* 404 */
+/* 392 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -60189,13 +57188,13 @@
 
 
 	// module
-	exports.push([module.id, ".order-summary-container {\n  margin: 0 auto;\n  text-align: center; }\n\n.os-order-total-container {\n  width: 50%;\n  margin: 0 auto; }\n\n.order-summary-button {\n  display: block;\n  background: #3FB083;\n  margin: 0 auto; }\n  .order-summary-button:hover {\n    background: #43BB8B; }\n\n.order-summary-edit-button {\n  border: 2px solid #f9d266;\n  background: #fff;\n  color: #f9d266; }\n  .order-summary-edit-button:hover {\n    background: #fad675;\n    color: #fff; }\n\n.order-summary-link {\n  text-decoration: none; }\n\n.userProgress {\n  position: relative;\n  width: 50%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto;\n  border: 1px solid #E4E4E4; }\n\n#fourOfFive {\n  position: absolute;\n  width: 80%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 0px 0px 5px; }\n", ""]);
+	exports.push([module.id, ".order-summary-container {\n  text-align: center;\n  margin-left: 0em;\n  margin-top: 4em; }\n\n.os-order-total-container {\n  width: 50%;\n  margin: 0 auto; }\n\n.order-summary-button {\n  display: block;\n  background: #3FB083;\n  margin: 0 auto; }\n  .order-summary-button:hover {\n    background: #43BB8B; }\n\n.order-summary-edit-button {\n  border: 2px solid #f9d266;\n  background: #fff;\n  color: #f9d266; }\n  .order-summary-edit-button:hover {\n    background: #fad675;\n    color: #fff; }\n\n.order-summary-link {\n  text-decoration: none; }\n\n.userProgress {\n  position: relative;\n  width: 50%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto;\n  border: 1px solid #E4E4E4; }\n\n#fourOfFive {\n  position: absolute;\n  width: 80%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 0px 0px 5px; }\n\n@media only screen and (min-width: 960px) {\n  .order-summary-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 405 */
+/* 393 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60204,25 +57203,25 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _OrderReadyTime = __webpack_require__(406);
+	var _OrderReadyTime = __webpack_require__(394);
 
 	var _OrderReadyTime2 = _interopRequireDefault(_OrderReadyTime);
 
-	var _ShopDetails = __webpack_require__(409);
+	var _ShopDetails = __webpack_require__(397);
 
 	var _ShopDetails2 = _interopRequireDefault(_ShopDetails);
 
-	var _DirectionsAndCall = __webpack_require__(412);
+	var _DirectionsAndCall = __webpack_require__(400);
 
 	var _DirectionsAndCall2 = _interopRequireDefault(_DirectionsAndCall);
 
 	var _reactRouter = __webpack_require__(164);
 
-	var _confirmationView = __webpack_require__(415);
+	var _confirmationView = __webpack_require__(403);
 
 	var _confirmationView2 = _interopRequireDefault(_confirmationView);
 
-	var _app = __webpack_require__(223);
+	var _app = __webpack_require__(226);
 
 	var _app2 = _interopRequireDefault(_app);
 
@@ -60253,24 +57252,24 @@
 	            null,
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'title-cover' },
-	                _react2.default.createElement(
-	                    'h1',
-	                    null,
-	                    'Order Confirmation'
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'userProgress' },
-	                    _react2.default.createElement('div', { id: 'fiveOfFive' })
-	                )
-	            ),
-	            _react2.default.createElement(
-	                'div',
 	                { className: 'main-wrap' },
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'confirmation-view-container' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'title-cover' },
+	                        _react2.default.createElement(
+	                            'h1',
+	                            null,
+	                            'Order Confirmation'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'userProgress' },
+	                            _react2.default.createElement('div', { id: 'fiveOfFive' })
+	                        )
+	                    ),
 	                    _react2.default.createElement(_OrderReadyTime2.default, {
 	                        methodOfTrans: this.props.methodOfTrans,
 	                        duration: this.props.duration }),
@@ -60300,7 +57299,7 @@
 	module.exports = ConfirmationView;
 
 /***/ },
-/* 406 */
+/* 394 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60309,7 +57308,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _orderReadyTime = __webpack_require__(407);
+	var _orderReadyTime = __webpack_require__(395);
 
 	var _orderReadyTime2 = _interopRequireDefault(_orderReadyTime);
 
@@ -60385,13 +57384,13 @@
 	module.exports = OrderReadyTime;
 
 /***/ },
-/* 407 */
+/* 395 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(408);
+	var content = __webpack_require__(396);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -60411,7 +57410,7 @@
 	}
 
 /***/ },
-/* 408 */
+/* 396 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -60425,7 +57424,7 @@
 
 
 /***/ },
-/* 409 */
+/* 397 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60434,7 +57433,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _shopDetails = __webpack_require__(410);
+	var _shopDetails = __webpack_require__(398);
 
 	var _shopDetails2 = _interopRequireDefault(_shopDetails);
 
@@ -60489,13 +57488,13 @@
 	module.exports = ShopDetails;
 
 /***/ },
-/* 410 */
+/* 398 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(411);
+	var content = __webpack_require__(399);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -60515,7 +57514,7 @@
 	}
 
 /***/ },
-/* 411 */
+/* 399 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -60529,7 +57528,7 @@
 
 
 /***/ },
-/* 412 */
+/* 400 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60538,7 +57537,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _directionsAndCall = __webpack_require__(413);
+	var _directionsAndCall = __webpack_require__(401);
 
 	var _directionsAndCall2 = _interopRequireDefault(_directionsAndCall);
 
@@ -60602,13 +57601,13 @@
 	module.exports = DirectionsAndCall;
 
 /***/ },
-/* 413 */
+/* 401 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(414);
+	var content = __webpack_require__(402);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -60628,7 +57627,7 @@
 	}
 
 /***/ },
-/* 414 */
+/* 402 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -60642,13 +57641,13 @@
 
 
 /***/ },
-/* 415 */
+/* 403 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(416);
+	var content = __webpack_require__(404);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -60668,7 +57667,7 @@
 	}
 
 /***/ },
-/* 416 */
+/* 404 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -60676,13 +57675,13 @@
 
 
 	// module
-	exports.push([module.id, ".confirmation-view-container {\n  width: 28em;\n  margin: 0 auto;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff; }\n\n@media only screen and (min-width: 600px) {\n  .confirmation-view-container {\n    width: 28em;\n    margin: 0em auto 2.5em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .confirmation-view-container {\n    width: 90%;\n    margin: 0em auto 2.5em auto; } }\n\n.back-to-dashboard {\n  width: 13em;\n  margin: 2em auto 0 auto;\n  display: block; }\n  .back-to-dashboard .fa-home {\n    padding-left: .4em; }\n\n.userProgress {\n  position: relative;\n  width: 50%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto; }\n\n#fiveOfFive {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 5px 5px 5px; }\n", ""]);
+	exports.push([module.id, ".confirmation-view-container {\n  width: 90%;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff;\n  margin-top: 4em;\n  margin: 4em auto 2.5em auto; }\n\n.back-to-dashboard {\n  width: 13em;\n  margin: 2em auto 0 auto;\n  display: block; }\n  .back-to-dashboard .fa-home {\n    padding-left: .4em; }\n\n.userProgress {\n  position: relative;\n  width: 50%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto; }\n\n#fiveOfFive {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 5px 5px 5px; }\n\n@media only screen and (min-width: 600px) {\n  .confirmation-view-container {\n    width: 28em;\n    margin: 4em auto 2.5em auto; } }\n\n@media only screen and (min-width: 960px) {\n  .confirmation-view-container {\n    margin-top: 0em;\n    margin: 4em auto 2.5em auto; } }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 417 */
+/* 405 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60693,15 +57692,15 @@
 
 	var _reactRouter = __webpack_require__(164);
 
-	var _previousOrdersView = __webpack_require__(418);
+	var _previousOrdersView = __webpack_require__(406);
 
 	var _previousOrdersView2 = _interopRequireDefault(_previousOrdersView);
 
-	var _app = __webpack_require__(223);
+	var _app = __webpack_require__(226);
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _PreviousOrder = __webpack_require__(420);
+	var _PreviousOrder = __webpack_require__(408);
 
 	var _PreviousOrder2 = _interopRequireDefault(_PreviousOrder);
 
@@ -60751,13 +57750,13 @@
 	module.exports = PreviousOrdersView;
 
 /***/ },
-/* 418 */
+/* 406 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(419);
+	var content = __webpack_require__(407);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -60777,7 +57776,7 @@
 	}
 
 /***/ },
-/* 419 */
+/* 407 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -60791,7 +57790,7 @@
 
 
 /***/ },
-/* 420 */
+/* 408 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60800,11 +57799,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _previousOrder = __webpack_require__(421);
+	var _previousOrder = __webpack_require__(409);
 
 	var _previousOrder2 = _interopRequireDefault(_previousOrder);
 
-	var _PreviousOrderItem = __webpack_require__(423);
+	var _PreviousOrderItem = __webpack_require__(411);
 
 	var _PreviousOrderItem2 = _interopRequireDefault(_PreviousOrderItem);
 
@@ -60852,13 +57851,13 @@
 	module.exports = PreviousOrder;
 
 /***/ },
-/* 421 */
+/* 409 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(422);
+	var content = __webpack_require__(410);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -60878,7 +57877,7 @@
 	}
 
 /***/ },
-/* 422 */
+/* 410 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -60892,7 +57891,7 @@
 
 
 /***/ },
-/* 423 */
+/* 411 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60901,7 +57900,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _previousOrderItem = __webpack_require__(424);
+	var _previousOrderItem = __webpack_require__(412);
 
 	var _previousOrderItem2 = _interopRequireDefault(_previousOrderItem);
 
@@ -60968,13 +57967,13 @@
 	module.exports = PreviousOrderItem;
 
 /***/ },
-/* 424 */
+/* 412 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(425);
+	var content = __webpack_require__(413);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -60994,7 +57993,7 @@
 	}
 
 /***/ },
-/* 425 */
+/* 413 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -61008,7 +58007,7 @@
 
 
 /***/ },
-/* 426 */
+/* 414 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61019,15 +58018,15 @@
 
 	var _reactRouter = __webpack_require__(164);
 
-	var _previousOrdersView = __webpack_require__(418);
+	var _previousOrdersView = __webpack_require__(406);
 
 	var _previousOrdersView2 = _interopRequireDefault(_previousOrdersView);
 
-	var _app = __webpack_require__(223);
+	var _app = __webpack_require__(226);
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _PreviousOrder = __webpack_require__(420);
+	var _PreviousOrder = __webpack_require__(408);
 
 	var _PreviousOrder2 = _interopRequireDefault(_PreviousOrder);
 
@@ -61076,6 +58075,3074 @@
 	});
 
 	module.exports = FavoriteOrdersView;
+
+/***/ },
+/* 415 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"shops": [
+			{
+				"name": "starbucks",
+				"address": "123 4th St. Santa Monica, CA 90234",
+				"phone": "(818) 438-9832",
+				"imageUrl": "http://www.fodors.com/ee/files/slideshows/9-colectivo-coffee.jpg",
+				"menu": [
+					{
+						"displayName": "Hot Drinks",
+						"slug": "hot-drinks",
+						"items": [
+							{
+								"name": "Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "latte"
+							},
+							{
+								"name": "Americano",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "americano"
+							},
+							{
+								"name": "Cappucino",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "cappucino"
+							},
+							{
+								"name": "Espresso",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "espresso"
+							},
+							{
+								"name": "Macchiato",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "macchiato"
+							}
+						]
+					},
+					{
+						"displayName": "Cold Drinks",
+						"slug": "cold-drinks",
+						"items": [
+							{
+								"name": "Iced Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-latte"
+							},
+							{
+								"name": "Iced Mocha",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-mocha"
+							},
+							{
+								"name": "Iced Chai",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-chai"
+							},
+							{
+								"name": "Iced Coffee",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": ""
+							},
+							{
+								"name": "Frappe",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "frappe"
+							}
+						]
+					},
+					{
+						"displayName": "Tea",
+						"slug": "tea",
+						"items": [
+							{
+								"name": "Green",
+								"price": 2.95,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "green"
+							},
+							{
+								"name": "Jasmine Green",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "jasmine-green"
+							},
+							{
+								"name": "Chai",
+								"price": 3.05,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chai"
+							},
+							{
+								"name": "Mint",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "mint"
+							},
+							{
+								"name": "Chamomile",
+								"price": 3.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chamomile"
+							}
+						]
+					},
+					{
+						"displayName": "Bakery",
+						"slug": "bakery",
+						"items": [
+							{
+								"name": "Croissant",
+								"price": 2.95,
+								"options": [
+									"quantity"
+								],
+								"id": "croissant"
+							},
+							{
+								"name": "Banana Muffin",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "banana-muffin"
+							},
+							{
+								"name": "Blueberry Scone",
+								"price": 3.05,
+								"options": [
+									"quantity"
+								],
+								"id": "blueberry-scone"
+							},
+							{
+								"name": "Carrot Cake",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "carrot-cake"
+							},
+							{
+								"name": "Home-Made Cookies",
+								"price": 3.5,
+								"options": [
+									"quantity"
+								],
+								"id": "home-made-cookies"
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "beanscene",
+				"address": "255 Alvera St. Los Angeles, CA 98654",
+				"phone": "(818) 438-9832",
+				"imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Inside_the_Coffee_Shop,_Parliament_House,_Dolgellau_-_geograph.org.uk_-_1708041.jpg",
+				"menu": [
+					{
+						"displayName": "Hot Drinks",
+						"slug": "hot-drinks",
+						"items": [
+							{
+								"name": "Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "latte"
+							},
+							{
+								"name": "Americano",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "americano"
+							},
+							{
+								"name": "Cappucino",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "cappucino"
+							},
+							{
+								"name": "Espresso",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "espresso"
+							},
+							{
+								"name": "Macchiato",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "macchiato"
+							}
+						]
+					},
+					{
+						"displayName": "Cold Drinks",
+						"slug": "cold-drinks",
+						"items": [
+							{
+								"name": "Iced Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-latte"
+							},
+							{
+								"name": "Iced Mocha",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-mocha"
+							},
+							{
+								"name": "Iced Chai",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-chai"
+							},
+							{
+								"name": "Iced Coffee",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": ""
+							},
+							{
+								"name": "Frappe",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "frappe"
+							}
+						]
+					},
+					{
+						"displayName": "Tea",
+						"slug": "tea",
+						"items": [
+							{
+								"name": "Green",
+								"price": 2.95,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "green"
+							},
+							{
+								"name": "Jasmine Green",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "jasmine-green"
+							},
+							{
+								"name": "Chai",
+								"price": 3.05,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chai"
+							},
+							{
+								"name": "Mint",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "mint"
+							},
+							{
+								"name": "Chamomile",
+								"price": 3.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chamomile"
+							}
+						]
+					},
+					{
+						"displayName": "Bakery",
+						"slug": "bakery",
+						"items": [
+							{
+								"name": "Croissant",
+								"price": 2.95,
+								"options": [
+									"quantity"
+								],
+								"id": "croissant"
+							},
+							{
+								"name": "Banana Muffin",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "banana-muffin"
+							},
+							{
+								"name": "Blueberry Scone",
+								"price": 3.05,
+								"options": [
+									"quantity"
+								],
+								"id": "blueberry-scone"
+							},
+							{
+								"name": "Carrot Cake",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "carrot-cake"
+							},
+							{
+								"name": "Home-Made Cookies",
+								"price": 3.5,
+								"options": [
+									"quantity"
+								],
+								"id": "home-made-cookies"
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "tifa",
+				"address": "6785 Huntington St. Venice, CA 90233",
+				"phone": "(818) 438-9832",
+				"imageUrl": "https://cdn1.vox-cdn.com/thumbor/D7jAbLqhca3vAJ20SbXyJH_Dv3I=/0x120:960x840/800x600/filters:format(webp)/cdn0.vox-cdn.com/uploads/chorus_image/image/45736528/compass_coffee.0.0.jpg",
+				"menu": [
+					{
+						"displayName": "Hot Drinks",
+						"slug": "hot-drinks",
+						"items": [
+							{
+								"name": "Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "latte"
+							},
+							{
+								"name": "Americano",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "americano"
+							},
+							{
+								"name": "Cappucino",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "cappucino"
+							},
+							{
+								"name": "Espresso",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "espresso"
+							},
+							{
+								"name": "Macchiato",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "macchiato"
+							}
+						]
+					},
+					{
+						"displayName": "Cold Drinks",
+						"slug": "cold-drinks",
+						"items": [
+							{
+								"name": "Iced Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-latte"
+							},
+							{
+								"name": "Iced Mocha",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-mocha"
+							},
+							{
+								"name": "Iced Chai",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-chai"
+							},
+							{
+								"name": "Iced Coffee",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": ""
+							},
+							{
+								"name": "Frappe",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "frappe"
+							}
+						]
+					},
+					{
+						"displayName": "Tea",
+						"slug": "tea",
+						"items": [
+							{
+								"name": "Green",
+								"price": 2.95,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "green"
+							},
+							{
+								"name": "Jasmine Green",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "jasmine-green"
+							},
+							{
+								"name": "Chai",
+								"price": 3.05,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chai"
+							},
+							{
+								"name": "Mint",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "mint"
+							},
+							{
+								"name": "Chamomile",
+								"price": 3.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chamomile"
+							}
+						]
+					},
+					{
+						"displayName": "Bakery",
+						"slug": "bakery",
+						"items": [
+							{
+								"name": "Croissant",
+								"price": 2.95,
+								"options": [
+									"quantity"
+								],
+								"id": "croissant"
+							},
+							{
+								"name": "Banana Muffin",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "banana-muffin"
+							},
+							{
+								"name": "Blueberry Scone",
+								"price": 3.05,
+								"options": [
+									"quantity"
+								],
+								"id": "blueberry-scone"
+							},
+							{
+								"name": "Carrot Cake",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "carrot-cake"
+							},
+							{
+								"name": "Home-Made Cookies",
+								"price": 3.5,
+								"options": [
+									"quantity"
+								],
+								"id": "home-made-cookies"
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "coffeeBean",
+				"address": "2433 Soju st. Venice, CA 90235",
+				"phone": "(818) 438-9832",
+				"imageUrl": "http://cdn.offtrackplanet.com/legacy/uploads/2010/08/coffee.jpg",
+				"menu": [
+					{
+						"displayName": "Hot Drinks",
+						"slug": "hot-drinks",
+						"items": [
+							{
+								"name": "Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "latte"
+							},
+							{
+								"name": "Americano",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "americano"
+							},
+							{
+								"name": "Cappucino",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "cappucino"
+							},
+							{
+								"name": "Espresso",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "espresso"
+							},
+							{
+								"name": "Macchiato",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "macchiato"
+							}
+						]
+					},
+					{
+						"displayName": "Cold Drinks",
+						"slug": "cold-drinks",
+						"items": [
+							{
+								"name": "Iced Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-latte"
+							},
+							{
+								"name": "Iced Mocha",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-mocha"
+							},
+							{
+								"name": "Iced Chai",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-chai"
+							},
+							{
+								"name": "Iced Coffee",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": ""
+							},
+							{
+								"name": "Frappe",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "frappe"
+							}
+						]
+					},
+					{
+						"displayName": "Tea",
+						"slug": "tea",
+						"items": [
+							{
+								"name": "Green",
+								"price": 2.95,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "green"
+							},
+							{
+								"name": "Jasmine Green",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "jasmine-green"
+							},
+							{
+								"name": "Chai",
+								"price": 3.05,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chai"
+							},
+							{
+								"name": "Mint",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "mint"
+							},
+							{
+								"name": "Chamomile",
+								"price": 3.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chamomile"
+							}
+						]
+					},
+					{
+						"displayName": "Bakery",
+						"slug": "bakery",
+						"items": [
+							{
+								"name": "Croissant",
+								"price": 2.95,
+								"options": [
+									"quantity"
+								],
+								"id": "croissant"
+							},
+							{
+								"name": "Banana Muffin",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "banana-muffin"
+							},
+							{
+								"name": "Blueberry Scone",
+								"price": 3.05,
+								"options": [
+									"quantity"
+								],
+								"id": "blueberry-scone"
+							},
+							{
+								"name": "Carrot Cake",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "carrot-cake"
+							},
+							{
+								"name": "Home-Made Cookies",
+								"price": 3.5,
+								"options": [
+									"quantity"
+								],
+								"id": "home-made-cookies"
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "starbucks",
+				"address": "123 4th St. Santa Monica, CA 90234",
+				"phone": "(818) 438-9832",
+				"imageUrl": "http://www.fodors.com/ee/files/slideshows/9-colectivo-coffee.jpg",
+				"menu": [
+					{
+						"displayName": "Hot Drinks",
+						"slug": "hot-drinks",
+						"items": [
+							{
+								"name": "Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "latte"
+							},
+							{
+								"name": "Americano",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "americano"
+							},
+							{
+								"name": "Cappucino",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "cappucino"
+							},
+							{
+								"name": "Espresso",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "espresso"
+							},
+							{
+								"name": "Macchiato",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "macchiato"
+							}
+						]
+					},
+					{
+						"displayName": "Cold Drinks",
+						"slug": "cold-drinks",
+						"items": [
+							{
+								"name": "Iced Latte",
+								"price": 2.95,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-latte"
+							},
+							{
+								"name": "Iced Mocha",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-mocha"
+							},
+							{
+								"name": "Iced Chai",
+								"price": 3.05,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "iced-chai"
+							},
+							{
+								"name": "Iced Coffee",
+								"price": 2.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": ""
+							},
+							{
+								"name": "Frappe",
+								"price": 3.5,
+								"options": [
+									"milkType",
+									"size",
+									"quantity",
+									"decaf"
+								],
+								"id": "frappe"
+							}
+						]
+					},
+					{
+						"displayName": "Tea",
+						"slug": "tea",
+						"items": [
+							{
+								"name": "Green",
+								"price": 2.95,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "green"
+							},
+							{
+								"name": "Jasmine Green",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "jasmine-green"
+							},
+							{
+								"name": "Chai",
+								"price": 3.05,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chai"
+							},
+							{
+								"name": "Mint",
+								"price": 2.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "mint"
+							},
+							{
+								"name": "Chamomile",
+								"price": 3.5,
+								"options": [
+									"size",
+									"quantity",
+									"hotOrCold"
+								],
+								"id": "chamomile"
+							}
+						]
+					},
+					{
+						"displayName": "Bakery",
+						"slug": "bakery",
+						"items": [
+							{
+								"name": "Croissant",
+								"price": 2.95,
+								"options": [
+									"quantity"
+								],
+								"id": "croissant"
+							},
+							{
+								"name": "Banana Muffin",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "banana-muffin"
+							},
+							{
+								"name": "Blueberry Scone",
+								"price": 3.05,
+								"options": [
+									"quantity"
+								],
+								"id": "blueberry-scone"
+							},
+							{
+								"name": "Carrot Cake",
+								"price": 2.5,
+								"options": [
+									"quantity"
+								],
+								"id": "carrot-cake"
+							},
+							{
+								"name": "Home-Made Cookies",
+								"price": 3.5,
+								"options": [
+									"quantity"
+								],
+								"id": "home-made-cookies"
+							}
+						]
+					}
+				]
+			}
+		]
+	};
+
+/***/ },
+/* 416 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _usernameView = __webpack_require__(417);
+
+	var _usernameView2 = _interopRequireDefault(_usernameView);
+
+	var _app = __webpack_require__(226);
+
+	var _app2 = _interopRequireDefault(_app);
+
+	var _reactRouter = __webpack_require__(164);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var UsernameView = _react2.default.createClass({
+	    displayName: 'UsernameView',
+
+
+	    propTypes: {
+	        handleUsername: _react2.default.PropTypes.func
+	    },
+
+	    _handleUsernameSubmit: function _handleUsernameSubmit(event) {
+	        event.preventDefault();
+	        var username = this._usernameInput.value;
+	        this.props.handleUsername(username);
+	    },
+
+	    render: function render() {
+	        var _this = this;
+
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'title-cover-landing' },
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    'The fastest way to your morning coffee.'
+	                ),
+	                _react2.default.createElement(
+	                    'form',
+	                    { onSubmit: this._handleUsernameSubmit },
+	                    _react2.default.createElement('input', {
+	                        type: 'text',
+	                        placeholder: 'Enter a username to begin',
+	                        name: 'username',
+	                        ref: function ref(c) {
+	                            return _this._usernameInput = c;
+	                        },
+	                        required: true }),
+	                    _react2.default.createElement(
+	                        'button',
+	                        null,
+	                        'Go!'
+	                    )
+	                )
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'landing-icon-wrap' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'landing-icon landing-icon-1' },
+	                    _react2.default.createElement('img', { src: '/img/landing-icon-1.png' }),
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        'Select a shop'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'landing-icon landing-icon-2' },
+	                    _react2.default.createElement('img', { src: '/img/landing-icon-2.png' }),
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        'Place your order'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'landing-icon landing-icon-3' },
+	                    _react2.default.createElement('img', { src: '/img/landing-icon-3.png' }),
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        'Ready when you arrive!'
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = UsernameView;
+
+/***/ },
+/* 417 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(418);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./username-view.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./username-view.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 418 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".landing-icon-wrap .landing-icon {\n  display: inline-block;\n  width: 33%;\n  text-align: center; }\n\n.landing-icon-wrap img {\n  width: 60%; }\n\n.landing-icon-wrap h2 {\n  text-align: center; }\n\n@media only screen and (min-width: 600px) {\n  .username-wrap {\n    width: 28em;\n    margin: 3em auto 1em auto; }\n  .landing-icon-wrap {\n    margin-bottom: 5em; } }\n\n@media only screen and (max-width: 635px) {\n  .landing-icon-wrap .landing-icon {\n    display: block;\n    width: 30%;\n    margin: 0 auto; }\n  .landing-icon-wrap img {\n    width: 8em; }\n  .landing-icon-wrap h2 {\n    margin-bottom: 1.5em; } }\n\n@media only screen and (max-width: 680px) {\n  .landing-icon-3 h2 {\n    font-size: 1.4em; } }\n\n@media only screen and (max-width: 599px) {\n  .username-wrap {\n    width: 90%;\n    margin: 3em auto 1em auto; } }\n\n.title-cover-landing {\n  background-image: url(\"/img/coffee-cover5.jpg\");\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 7em;\n  min-height: 7em;\n  margin-bottom: 3em; }\n  .title-cover-landing h1 {\n    color: #fff; }\n  .title-cover-landing h2 {\n    color: #fff;\n    text-align: center; }\n  .title-cover-landing form {\n    text-align: center; }\n  .title-cover-landing input[type=\"text\"] {\n    width: 12em;\n    text-align: center;\n    font-size: 1.4em;\n    height: 1.5em;\n    border-radius: 3px;\n    border: 2px solid #E4E4E4;\n    margin: 0.5em auto 0 auto;\n    padding: 0.25em; }\n  .title-cover-landing button {\n    display: block;\n    width: 8em;\n    margin: 1.5em auto 0 auto;\n    background: #3FB083;\n    border: none;\n    border-radius: 3px;\n    padding: 0.9em 0.7em 0.9em 0.7em;\n    color: #fff;\n    font-size: 1.2em; }\n    .title-cover-landing button:hover {\n      background: #43BB8B; }\n    .title-cover-landing button .fa-rocket {\n      margin-right: 5px; }\n  .title-cover-landing a {\n    text-decoration: none; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 419 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = {
+
+	    getLocation: function getLocation(callback, callback2) {
+	        if (navigator.geolocation) {
+	            navigator.geolocation.getCurrentPosition(callback);
+	            navigator.geolocation.getCurrentPosition(callback2);
+	        } else {
+	            alert("Geolocation is not supported by this browser.");
+	        }
+	    },
+
+	    getShops: function getShops(position, callback) {
+	        var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+	        // Specify location, radius and place types for your Places API search.
+	        var request = {
+	            location: currentLocation,
+	            radius: '4000',
+	            types: ['cafe']
+	        };
+	        // Create the PlaceService and send the request.
+	        // Handle the callback with an anonymous function.
+	        var service = new google.maps.places.PlacesService(map);
+
+	        service.nearbySearch(request, function (results, status) {
+	            if (status == google.maps.places.PlacesServiceStatus.OK) {
+	                callback(results);
+	            }
+	        });
+	    },
+
+	    getDetails: function getDetails(placeId, callback) {
+	        var service = new google.maps.places.PlacesService(map);
+
+	        service.getDetails({
+	            placeId: placeId
+	        }, function (place, status) {
+	            if (status === google.maps.places.PlacesServiceStatus.OK) {
+	                callback(place);
+	            }
+	        });
+	    },
+
+	    calculateTravelTime: function calculateTravelTime(userLocation, selectedShopLocation, methodOfTrans, callback) {
+	        var bounds = new google.maps.LatLngBounds();
+
+	        var origin1 = userLocation;
+	        var destinationA = selectedShopLocation;
+	        var methodOfTrans;
+
+	        switch (methodOfTrans) {
+	            case 'walking':
+	                methodOfTrans = google.maps.TravelMode.WALKING;
+	                break;
+	            case 'biking':
+	                methodOfTrans = google.maps.TravelMode.BICYCLING;
+	                break;
+	            case 'driving':
+	                methodOfTrans = google.maps.TravelMode.DRIVING;
+	                break;
+	            default:
+	                methodOfTrans = google.maps.TravelMode.DRIVING;
+	        }
+	        var geocoder = new google.maps.Geocoder();
+
+	        var service = new google.maps.DistanceMatrixService();
+	        service.getDistanceMatrix({
+	            origins: [origin1],
+	            destinations: [destinationA],
+	            travelMode: methodOfTrans,
+	            unitSystem: google.maps.UnitSystem.IMPERIAL,
+	            avoidHighways: false,
+	            avoidTolls: false
+	        }, function (response, status) {
+	            if (status !== google.maps.DistanceMatrixStatus.OK) {
+	                alert('Error was: ' + status);
+	            } else {
+	                var originList = response.originAddresses;
+	                var destinationList = response.destinationAddresses;
+	                callback(response);
+	            }
+	        });
+	    }
+	};
+
+/***/ },
+/* 420 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Module dependencies.
+	 */
+
+	var Emitter = __webpack_require__(421);
+	var reduce = __webpack_require__(422);
+	var requestBase = __webpack_require__(423);
+	var isObject = __webpack_require__(424);
+
+	/**
+	 * Root reference for iframes.
+	 */
+
+	var root;
+	if (typeof window !== 'undefined') { // Browser window
+	  root = window;
+	} else if (typeof self !== 'undefined') { // Web Worker
+	  root = self;
+	} else { // Other environments
+	  root = this;
+	}
+
+	/**
+	 * Noop.
+	 */
+
+	function noop(){};
+
+	/**
+	 * Check if `obj` is a host object,
+	 * we don't want to serialize these :)
+	 *
+	 * TODO: future proof, move to compoent land
+	 *
+	 * @param {Object} obj
+	 * @return {Boolean}
+	 * @api private
+	 */
+
+	function isHost(obj) {
+	  var str = {}.toString.call(obj);
+
+	  switch (str) {
+	    case '[object File]':
+	    case '[object Blob]':
+	    case '[object FormData]':
+	      return true;
+	    default:
+	      return false;
+	  }
+	}
+
+	/**
+	 * Expose `request`.
+	 */
+
+	var request = module.exports = __webpack_require__(425).bind(null, Request);
+
+	/**
+	 * Determine XHR.
+	 */
+
+	request.getXHR = function () {
+	  if (root.XMLHttpRequest
+	      && (!root.location || 'file:' != root.location.protocol
+	          || !root.ActiveXObject)) {
+	    return new XMLHttpRequest;
+	  } else {
+	    try { return new ActiveXObject('Microsoft.XMLHTTP'); } catch(e) {}
+	    try { return new ActiveXObject('Msxml2.XMLHTTP.6.0'); } catch(e) {}
+	    try { return new ActiveXObject('Msxml2.XMLHTTP.3.0'); } catch(e) {}
+	    try { return new ActiveXObject('Msxml2.XMLHTTP'); } catch(e) {}
+	  }
+	  return false;
+	};
+
+	/**
+	 * Removes leading and trailing whitespace, added to support IE.
+	 *
+	 * @param {String} s
+	 * @return {String}
+	 * @api private
+	 */
+
+	var trim = ''.trim
+	  ? function(s) { return s.trim(); }
+	  : function(s) { return s.replace(/(^\s*|\s*$)/g, ''); };
+
+	/**
+	 * Serialize the given `obj`.
+	 *
+	 * @param {Object} obj
+	 * @return {String}
+	 * @api private
+	 */
+
+	function serialize(obj) {
+	  if (!isObject(obj)) return obj;
+	  var pairs = [];
+	  for (var key in obj) {
+	    if (null != obj[key]) {
+	      pushEncodedKeyValuePair(pairs, key, obj[key]);
+	        }
+	      }
+	  return pairs.join('&');
+	}
+
+	/**
+	 * Helps 'serialize' with serializing arrays.
+	 * Mutates the pairs array.
+	 *
+	 * @param {Array} pairs
+	 * @param {String} key
+	 * @param {Mixed} val
+	 */
+
+	function pushEncodedKeyValuePair(pairs, key, val) {
+	  if (Array.isArray(val)) {
+	    return val.forEach(function(v) {
+	      pushEncodedKeyValuePair(pairs, key, v);
+	    });
+	  }
+	  pairs.push(encodeURIComponent(key)
+	    + '=' + encodeURIComponent(val));
+	}
+
+	/**
+	 * Expose serialization method.
+	 */
+
+	 request.serializeObject = serialize;
+
+	 /**
+	  * Parse the given x-www-form-urlencoded `str`.
+	  *
+	  * @param {String} str
+	  * @return {Object}
+	  * @api private
+	  */
+
+	function parseString(str) {
+	  var obj = {};
+	  var pairs = str.split('&');
+	  var parts;
+	  var pair;
+
+	  for (var i = 0, len = pairs.length; i < len; ++i) {
+	    pair = pairs[i];
+	    parts = pair.split('=');
+	    obj[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
+	  }
+
+	  return obj;
+	}
+
+	/**
+	 * Expose parser.
+	 */
+
+	request.parseString = parseString;
+
+	/**
+	 * Default MIME type map.
+	 *
+	 *     superagent.types.xml = 'application/xml';
+	 *
+	 */
+
+	request.types = {
+	  html: 'text/html',
+	  json: 'application/json',
+	  xml: 'application/xml',
+	  urlencoded: 'application/x-www-form-urlencoded',
+	  'form': 'application/x-www-form-urlencoded',
+	  'form-data': 'application/x-www-form-urlencoded'
+	};
+
+	/**
+	 * Default serialization map.
+	 *
+	 *     superagent.serialize['application/xml'] = function(obj){
+	 *       return 'generated xml here';
+	 *     };
+	 *
+	 */
+
+	 request.serialize = {
+	   'application/x-www-form-urlencoded': serialize,
+	   'application/json': JSON.stringify
+	 };
+
+	 /**
+	  * Default parsers.
+	  *
+	  *     superagent.parse['application/xml'] = function(str){
+	  *       return { object parsed from str };
+	  *     };
+	  *
+	  */
+
+	request.parse = {
+	  'application/x-www-form-urlencoded': parseString,
+	  'application/json': JSON.parse
+	};
+
+	/**
+	 * Parse the given header `str` into
+	 * an object containing the mapped fields.
+	 *
+	 * @param {String} str
+	 * @return {Object}
+	 * @api private
+	 */
+
+	function parseHeader(str) {
+	  var lines = str.split(/\r?\n/);
+	  var fields = {};
+	  var index;
+	  var line;
+	  var field;
+	  var val;
+
+	  lines.pop(); // trailing CRLF
+
+	  for (var i = 0, len = lines.length; i < len; ++i) {
+	    line = lines[i];
+	    index = line.indexOf(':');
+	    field = line.slice(0, index).toLowerCase();
+	    val = trim(line.slice(index + 1));
+	    fields[field] = val;
+	  }
+
+	  return fields;
+	}
+
+	/**
+	 * Check if `mime` is json or has +json structured syntax suffix.
+	 *
+	 * @param {String} mime
+	 * @return {Boolean}
+	 * @api private
+	 */
+
+	function isJSON(mime) {
+	  return /[\/+]json\b/.test(mime);
+	}
+
+	/**
+	 * Return the mime type for the given `str`.
+	 *
+	 * @param {String} str
+	 * @return {String}
+	 * @api private
+	 */
+
+	function type(str){
+	  return str.split(/ *; */).shift();
+	};
+
+	/**
+	 * Return header field parameters.
+	 *
+	 * @param {String} str
+	 * @return {Object}
+	 * @api private
+	 */
+
+	function params(str){
+	  return reduce(str.split(/ *; */), function(obj, str){
+	    var parts = str.split(/ *= */)
+	      , key = parts.shift()
+	      , val = parts.shift();
+
+	    if (key && val) obj[key] = val;
+	    return obj;
+	  }, {});
+	};
+
+	/**
+	 * Initialize a new `Response` with the given `xhr`.
+	 *
+	 *  - set flags (.ok, .error, etc)
+	 *  - parse header
+	 *
+	 * Examples:
+	 *
+	 *  Aliasing `superagent` as `request` is nice:
+	 *
+	 *      request = superagent;
+	 *
+	 *  We can use the promise-like API, or pass callbacks:
+	 *
+	 *      request.get('/').end(function(res){});
+	 *      request.get('/', function(res){});
+	 *
+	 *  Sending data can be chained:
+	 *
+	 *      request
+	 *        .post('/user')
+	 *        .send({ name: 'tj' })
+	 *        .end(function(res){});
+	 *
+	 *  Or passed to `.send()`:
+	 *
+	 *      request
+	 *        .post('/user')
+	 *        .send({ name: 'tj' }, function(res){});
+	 *
+	 *  Or passed to `.post()`:
+	 *
+	 *      request
+	 *        .post('/user', { name: 'tj' })
+	 *        .end(function(res){});
+	 *
+	 * Or further reduced to a single call for simple cases:
+	 *
+	 *      request
+	 *        .post('/user', { name: 'tj' }, function(res){});
+	 *
+	 * @param {XMLHTTPRequest} xhr
+	 * @param {Object} options
+	 * @api private
+	 */
+
+	function Response(req, options) {
+	  options = options || {};
+	  this.req = req;
+	  this.xhr = this.req.xhr;
+	  // responseText is accessible only if responseType is '' or 'text' and on older browsers
+	  this.text = ((this.req.method !='HEAD' && (this.xhr.responseType === '' || this.xhr.responseType === 'text')) || typeof this.xhr.responseType === 'undefined')
+	     ? this.xhr.responseText
+	     : null;
+	  this.statusText = this.req.xhr.statusText;
+	  this.setStatusProperties(this.xhr.status);
+	  this.header = this.headers = parseHeader(this.xhr.getAllResponseHeaders());
+	  // getAllResponseHeaders sometimes falsely returns "" for CORS requests, but
+	  // getResponseHeader still works. so we get content-type even if getting
+	  // other headers fails.
+	  this.header['content-type'] = this.xhr.getResponseHeader('content-type');
+	  this.setHeaderProperties(this.header);
+	  this.body = this.req.method != 'HEAD'
+	    ? this.parseBody(this.text ? this.text : this.xhr.response)
+	    : null;
+	}
+
+	/**
+	 * Get case-insensitive `field` value.
+	 *
+	 * @param {String} field
+	 * @return {String}
+	 * @api public
+	 */
+
+	Response.prototype.get = function(field){
+	  return this.header[field.toLowerCase()];
+	};
+
+	/**
+	 * Set header related properties:
+	 *
+	 *   - `.type` the content type without params
+	 *
+	 * A response of "Content-Type: text/plain; charset=utf-8"
+	 * will provide you with a `.type` of "text/plain".
+	 *
+	 * @param {Object} header
+	 * @api private
+	 */
+
+	Response.prototype.setHeaderProperties = function(header){
+	  // content-type
+	  var ct = this.header['content-type'] || '';
+	  this.type = type(ct);
+
+	  // params
+	  var obj = params(ct);
+	  for (var key in obj) this[key] = obj[key];
+	};
+
+	/**
+	 * Parse the given body `str`.
+	 *
+	 * Used for auto-parsing of bodies. Parsers
+	 * are defined on the `superagent.parse` object.
+	 *
+	 * @param {String} str
+	 * @return {Mixed}
+	 * @api private
+	 */
+
+	Response.prototype.parseBody = function(str){
+	  var parse = request.parse[this.type];
+	  if (!parse && isJSON(this.type)) {
+	    parse = request.parse['application/json'];
+	  }
+	  return parse && str && (str.length || str instanceof Object)
+	    ? parse(str)
+	    : null;
+	};
+
+	/**
+	 * Set flags such as `.ok` based on `status`.
+	 *
+	 * For example a 2xx response will give you a `.ok` of __true__
+	 * whereas 5xx will be __false__ and `.error` will be __true__. The
+	 * `.clientError` and `.serverError` are also available to be more
+	 * specific, and `.statusType` is the class of error ranging from 1..5
+	 * sometimes useful for mapping respond colors etc.
+	 *
+	 * "sugar" properties are also defined for common cases. Currently providing:
+	 *
+	 *   - .noContent
+	 *   - .badRequest
+	 *   - .unauthorized
+	 *   - .notAcceptable
+	 *   - .notFound
+	 *
+	 * @param {Number} status
+	 * @api private
+	 */
+
+	Response.prototype.setStatusProperties = function(status){
+	  // handle IE9 bug: http://stackoverflow.com/questions/10046972/msie-returns-status-code-of-1223-for-ajax-request
+	  if (status === 1223) {
+	    status = 204;
+	  }
+
+	  var type = status / 100 | 0;
+
+	  // status / class
+	  this.status = this.statusCode = status;
+	  this.statusType = type;
+
+	  // basics
+	  this.info = 1 == type;
+	  this.ok = 2 == type;
+	  this.clientError = 4 == type;
+	  this.serverError = 5 == type;
+	  this.error = (4 == type || 5 == type)
+	    ? this.toError()
+	    : false;
+
+	  // sugar
+	  this.accepted = 202 == status;
+	  this.noContent = 204 == status;
+	  this.badRequest = 400 == status;
+	  this.unauthorized = 401 == status;
+	  this.notAcceptable = 406 == status;
+	  this.notFound = 404 == status;
+	  this.forbidden = 403 == status;
+	};
+
+	/**
+	 * Return an `Error` representative of this response.
+	 *
+	 * @return {Error}
+	 * @api public
+	 */
+
+	Response.prototype.toError = function(){
+	  var req = this.req;
+	  var method = req.method;
+	  var url = req.url;
+
+	  var msg = 'cannot ' + method + ' ' + url + ' (' + this.status + ')';
+	  var err = new Error(msg);
+	  err.status = this.status;
+	  err.method = method;
+	  err.url = url;
+
+	  return err;
+	};
+
+	/**
+	 * Expose `Response`.
+	 */
+
+	request.Response = Response;
+
+	/**
+	 * Initialize a new `Request` with the given `method` and `url`.
+	 *
+	 * @param {String} method
+	 * @param {String} url
+	 * @api public
+	 */
+
+	function Request(method, url) {
+	  var self = this;
+	  this._query = this._query || [];
+	  this.method = method;
+	  this.url = url;
+	  this.header = {}; // preserves header name case
+	  this._header = {}; // coerces header names to lowercase
+	  this.on('end', function(){
+	    var err = null;
+	    var res = null;
+
+	    try {
+	      res = new Response(self);
+	    } catch(e) {
+	      err = new Error('Parser is unable to parse the response');
+	      err.parse = true;
+	      err.original = e;
+	      // issue #675: return the raw response if the response parsing fails
+	      err.rawResponse = self.xhr && self.xhr.responseText ? self.xhr.responseText : null;
+	      // issue #876: return the http status code if the response parsing fails
+	      err.statusCode = self.xhr && self.xhr.status ? self.xhr.status : null;
+	      return self.callback(err);
+	    }
+
+	    self.emit('response', res);
+
+	    if (err) {
+	      return self.callback(err, res);
+	    }
+
+	    if (res.status >= 200 && res.status < 300) {
+	      return self.callback(err, res);
+	    }
+
+	    var new_err = new Error(res.statusText || 'Unsuccessful HTTP response');
+	    new_err.original = err;
+	    new_err.response = res;
+	    new_err.status = res.status;
+
+	    self.callback(new_err, res);
+	  });
+	}
+
+	/**
+	 * Mixin `Emitter` and `requestBase`.
+	 */
+
+	Emitter(Request.prototype);
+	for (var key in requestBase) {
+	  Request.prototype[key] = requestBase[key];
+	}
+
+	/**
+	 * Abort the request, and clear potential timeout.
+	 *
+	 * @return {Request}
+	 * @api public
+	 */
+
+	Request.prototype.abort = function(){
+	  if (this.aborted) return;
+	  this.aborted = true;
+	  this.xhr.abort();
+	  this.clearTimeout();
+	  this.emit('abort');
+	  return this;
+	};
+
+	/**
+	 * Set Content-Type to `type`, mapping values from `request.types`.
+	 *
+	 * Examples:
+	 *
+	 *      superagent.types.xml = 'application/xml';
+	 *
+	 *      request.post('/')
+	 *        .type('xml')
+	 *        .send(xmlstring)
+	 *        .end(callback);
+	 *
+	 *      request.post('/')
+	 *        .type('application/xml')
+	 *        .send(xmlstring)
+	 *        .end(callback);
+	 *
+	 * @param {String} type
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	Request.prototype.type = function(type){
+	  this.set('Content-Type', request.types[type] || type);
+	  return this;
+	};
+
+	/**
+	 * Set responseType to `val`. Presently valid responseTypes are 'blob' and 
+	 * 'arraybuffer'.
+	 *
+	 * Examples:
+	 *
+	 *      req.get('/')
+	 *        .responseType('blob')
+	 *        .end(callback);
+	 *
+	 * @param {String} val
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	Request.prototype.responseType = function(val){
+	  this._responseType = val;
+	  return this;
+	};
+
+	/**
+	 * Set Accept to `type`, mapping values from `request.types`.
+	 *
+	 * Examples:
+	 *
+	 *      superagent.types.json = 'application/json';
+	 *
+	 *      request.get('/agent')
+	 *        .accept('json')
+	 *        .end(callback);
+	 *
+	 *      request.get('/agent')
+	 *        .accept('application/json')
+	 *        .end(callback);
+	 *
+	 * @param {String} accept
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	Request.prototype.accept = function(type){
+	  this.set('Accept', request.types[type] || type);
+	  return this;
+	};
+
+	/**
+	 * Set Authorization field value with `user` and `pass`.
+	 *
+	 * @param {String} user
+	 * @param {String} pass
+	 * @param {Object} options with 'type' property 'auto' or 'basic' (default 'basic')
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	Request.prototype.auth = function(user, pass, options){
+	  if (!options) {
+	    options = {
+	      type: 'basic'
+	    }
+	  }
+
+	  switch (options.type) {
+	    case 'basic':
+	      var str = btoa(user + ':' + pass);
+	      this.set('Authorization', 'Basic ' + str);
+	    break;
+
+	    case 'auto':
+	      this.username = user;
+	      this.password = pass;
+	    break;
+	  }
+	  return this;
+	};
+
+	/**
+	* Add query-string `val`.
+	*
+	* Examples:
+	*
+	*   request.get('/shoes')
+	*     .query('size=10')
+	*     .query({ color: 'blue' })
+	*
+	* @param {Object|String} val
+	* @return {Request} for chaining
+	* @api public
+	*/
+
+	Request.prototype.query = function(val){
+	  if ('string' != typeof val) val = serialize(val);
+	  if (val) this._query.push(val);
+	  return this;
+	};
+
+	/**
+	 * Queue the given `file` as an attachment to the specified `field`,
+	 * with optional `filename`.
+	 *
+	 * ``` js
+	 * request.post('/upload')
+	 *   .attach(new Blob(['<a id="a"><b id="b">hey!</b></a>'], { type: "text/html"}))
+	 *   .end(callback);
+	 * ```
+	 *
+	 * @param {String} field
+	 * @param {Blob|File} file
+	 * @param {String} filename
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	Request.prototype.attach = function(field, file, filename){
+	  this._getFormData().append(field, file, filename || file.name);
+	  return this;
+	};
+
+	Request.prototype._getFormData = function(){
+	  if (!this._formData) {
+	    this._formData = new root.FormData();
+	  }
+	  return this._formData;
+	};
+
+	/**
+	 * Send `data` as the request body, defaulting the `.type()` to "json" when
+	 * an object is given.
+	 *
+	 * Examples:
+	 *
+	 *       // manual json
+	 *       request.post('/user')
+	 *         .type('json')
+	 *         .send('{"name":"tj"}')
+	 *         .end(callback)
+	 *
+	 *       // auto json
+	 *       request.post('/user')
+	 *         .send({ name: 'tj' })
+	 *         .end(callback)
+	 *
+	 *       // manual x-www-form-urlencoded
+	 *       request.post('/user')
+	 *         .type('form')
+	 *         .send('name=tj')
+	 *         .end(callback)
+	 *
+	 *       // auto x-www-form-urlencoded
+	 *       request.post('/user')
+	 *         .type('form')
+	 *         .send({ name: 'tj' })
+	 *         .end(callback)
+	 *
+	 *       // defaults to x-www-form-urlencoded
+	  *      request.post('/user')
+	  *        .send('name=tobi')
+	  *        .send('species=ferret')
+	  *        .end(callback)
+	 *
+	 * @param {String|Object} data
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	Request.prototype.send = function(data){
+	  var obj = isObject(data);
+	  var type = this._header['content-type'];
+
+	  // merge
+	  if (obj && isObject(this._data)) {
+	    for (var key in data) {
+	      this._data[key] = data[key];
+	    }
+	  } else if ('string' == typeof data) {
+	    if (!type) this.type('form');
+	    type = this._header['content-type'];
+	    if ('application/x-www-form-urlencoded' == type) {
+	      this._data = this._data
+	        ? this._data + '&' + data
+	        : data;
+	    } else {
+	      this._data = (this._data || '') + data;
+	    }
+	  } else {
+	    this._data = data;
+	  }
+
+	  if (!obj || isHost(data)) return this;
+	  if (!type) this.type('json');
+	  return this;
+	};
+
+	/**
+	 * @deprecated
+	 */
+	Response.prototype.parse = function serialize(fn){
+	  if (root.console) {
+	    console.warn("Client-side parse() method has been renamed to serialize(). This method is not compatible with superagent v2.0");
+	  }
+	  this.serialize(fn);
+	  return this;
+	};
+
+	Response.prototype.serialize = function serialize(fn){
+	  this._parser = fn;
+	  return this;
+	};
+
+	/**
+	 * Invoke the callback with `err` and `res`
+	 * and handle arity check.
+	 *
+	 * @param {Error} err
+	 * @param {Response} res
+	 * @api private
+	 */
+
+	Request.prototype.callback = function(err, res){
+	  var fn = this._callback;
+	  this.clearTimeout();
+	  fn(err, res);
+	};
+
+	/**
+	 * Invoke callback with x-domain error.
+	 *
+	 * @api private
+	 */
+
+	Request.prototype.crossDomainError = function(){
+	  var err = new Error('Request has been terminated\nPossible causes: the network is offline, Origin is not allowed by Access-Control-Allow-Origin, the page is being unloaded, etc.');
+	  err.crossDomain = true;
+
+	  err.status = this.status;
+	  err.method = this.method;
+	  err.url = this.url;
+
+	  this.callback(err);
+	};
+
+	/**
+	 * Invoke callback with timeout error.
+	 *
+	 * @api private
+	 */
+
+	Request.prototype.timeoutError = function(){
+	  var timeout = this._timeout;
+	  var err = new Error('timeout of ' + timeout + 'ms exceeded');
+	  err.timeout = timeout;
+	  this.callback(err);
+	};
+
+	/**
+	 * Enable transmission of cookies with x-domain requests.
+	 *
+	 * Note that for this to work the origin must not be
+	 * using "Access-Control-Allow-Origin" with a wildcard,
+	 * and also must set "Access-Control-Allow-Credentials"
+	 * to "true".
+	 *
+	 * @api public
+	 */
+
+	Request.prototype.withCredentials = function(){
+	  this._withCredentials = true;
+	  return this;
+	};
+
+	/**
+	 * Initiate request, invoking callback `fn(res)`
+	 * with an instanceof `Response`.
+	 *
+	 * @param {Function} fn
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	Request.prototype.end = function(fn){
+	  var self = this;
+	  var xhr = this.xhr = request.getXHR();
+	  var query = this._query.join('&');
+	  var timeout = this._timeout;
+	  var data = this._formData || this._data;
+
+	  // store callback
+	  this._callback = fn || noop;
+
+	  // state change
+	  xhr.onreadystatechange = function(){
+	    if (4 != xhr.readyState) return;
+
+	    // In IE9, reads to any property (e.g. status) off of an aborted XHR will
+	    // result in the error "Could not complete the operation due to error c00c023f"
+	    var status;
+	    try { status = xhr.status } catch(e) { status = 0; }
+
+	    if (0 == status) {
+	      if (self.timedout) return self.timeoutError();
+	      if (self.aborted) return;
+	      return self.crossDomainError();
+	    }
+	    self.emit('end');
+	  };
+
+	  // progress
+	  var handleProgress = function(e){
+	    if (e.total > 0) {
+	      e.percent = e.loaded / e.total * 100;
+	    }
+	    e.direction = 'download';
+	    self.emit('progress', e);
+	  };
+	  if (this.hasListeners('progress')) {
+	    xhr.onprogress = handleProgress;
+	  }
+	  try {
+	    if (xhr.upload && this.hasListeners('progress')) {
+	      xhr.upload.onprogress = handleProgress;
+	    }
+	  } catch(e) {
+	    // Accessing xhr.upload fails in IE from a web worker, so just pretend it doesn't exist.
+	    // Reported here:
+	    // https://connect.microsoft.com/IE/feedback/details/837245/xmlhttprequest-upload-throws-invalid-argument-when-used-from-web-worker-context
+	  }
+
+	  // timeout
+	  if (timeout && !this._timer) {
+	    this._timer = setTimeout(function(){
+	      self.timedout = true;
+	      self.abort();
+	    }, timeout);
+	  }
+
+	  // querystring
+	  if (query) {
+	    query = request.serializeObject(query);
+	    this.url += ~this.url.indexOf('?')
+	      ? '&' + query
+	      : '?' + query;
+	  }
+
+	  // initiate request
+	  if (this.username && this.password) {
+	    xhr.open(this.method, this.url, true, this.username, this.password);
+	  } else {
+	    xhr.open(this.method, this.url, true);
+	  }
+
+	  // CORS
+	  if (this._withCredentials) xhr.withCredentials = true;
+
+	  // body
+	  if ('GET' != this.method && 'HEAD' != this.method && 'string' != typeof data && !isHost(data)) {
+	    // serialize stuff
+	    var contentType = this._header['content-type'];
+	    var serialize = this._parser || request.serialize[contentType ? contentType.split(';')[0] : ''];
+	    if (!serialize && isJSON(contentType)) serialize = request.serialize['application/json'];
+	    if (serialize) data = serialize(data);
+	  }
+
+	  // set header fields
+	  for (var field in this.header) {
+	    if (null == this.header[field]) continue;
+	    xhr.setRequestHeader(field, this.header[field]);
+	  }
+
+	  if (this._responseType) {
+	    xhr.responseType = this._responseType;
+	  }
+
+	  // send stuff
+	  this.emit('request', this);
+
+	  // IE11 xhr.send(undefined) sends 'undefined' string as POST payload (instead of nothing)
+	  // We need null here if data is undefined
+	  xhr.send(typeof data !== 'undefined' ? data : null);
+	  return this;
+	};
+
+
+	/**
+	 * Expose `Request`.
+	 */
+
+	request.Request = Request;
+
+	/**
+	 * GET `url` with optional callback `fn(res)`.
+	 *
+	 * @param {String} url
+	 * @param {Mixed|Function} data or fn
+	 * @param {Function} fn
+	 * @return {Request}
+	 * @api public
+	 */
+
+	request.get = function(url, data, fn){
+	  var req = request('GET', url);
+	  if ('function' == typeof data) fn = data, data = null;
+	  if (data) req.query(data);
+	  if (fn) req.end(fn);
+	  return req;
+	};
+
+	/**
+	 * HEAD `url` with optional callback `fn(res)`.
+	 *
+	 * @param {String} url
+	 * @param {Mixed|Function} data or fn
+	 * @param {Function} fn
+	 * @return {Request}
+	 * @api public
+	 */
+
+	request.head = function(url, data, fn){
+	  var req = request('HEAD', url);
+	  if ('function' == typeof data) fn = data, data = null;
+	  if (data) req.send(data);
+	  if (fn) req.end(fn);
+	  return req;
+	};
+
+	/**
+	 * DELETE `url` with optional callback `fn(res)`.
+	 *
+	 * @param {String} url
+	 * @param {Function} fn
+	 * @return {Request}
+	 * @api public
+	 */
+
+	function del(url, fn){
+	  var req = request('DELETE', url);
+	  if (fn) req.end(fn);
+	  return req;
+	};
+
+	request['del'] = del;
+	request['delete'] = del;
+
+	/**
+	 * PATCH `url` with optional `data` and callback `fn(res)`.
+	 *
+	 * @param {String} url
+	 * @param {Mixed} data
+	 * @param {Function} fn
+	 * @return {Request}
+	 * @api public
+	 */
+
+	request.patch = function(url, data, fn){
+	  var req = request('PATCH', url);
+	  if ('function' == typeof data) fn = data, data = null;
+	  if (data) req.send(data);
+	  if (fn) req.end(fn);
+	  return req;
+	};
+
+	/**
+	 * POST `url` with optional `data` and callback `fn(res)`.
+	 *
+	 * @param {String} url
+	 * @param {Mixed} data
+	 * @param {Function} fn
+	 * @return {Request}
+	 * @api public
+	 */
+
+	request.post = function(url, data, fn){
+	  var req = request('POST', url);
+	  if ('function' == typeof data) fn = data, data = null;
+	  if (data) req.send(data);
+	  if (fn) req.end(fn);
+	  return req;
+	};
+
+	/**
+	 * PUT `url` with optional `data` and callback `fn(res)`.
+	 *
+	 * @param {String} url
+	 * @param {Mixed|Function} data or fn
+	 * @param {Function} fn
+	 * @return {Request}
+	 * @api public
+	 */
+
+	request.put = function(url, data, fn){
+	  var req = request('PUT', url);
+	  if ('function' == typeof data) fn = data, data = null;
+	  if (data) req.send(data);
+	  if (fn) req.end(fn);
+	  return req;
+	};
+
+
+/***/ },
+/* 421 */
+/***/ function(module, exports) {
+
+	
+	/**
+	 * Expose `Emitter`.
+	 */
+
+	module.exports = Emitter;
+
+	/**
+	 * Initialize a new `Emitter`.
+	 *
+	 * @api public
+	 */
+
+	function Emitter(obj) {
+	  if (obj) return mixin(obj);
+	};
+
+	/**
+	 * Mixin the emitter properties.
+	 *
+	 * @param {Object} obj
+	 * @return {Object}
+	 * @api private
+	 */
+
+	function mixin(obj) {
+	  for (var key in Emitter.prototype) {
+	    obj[key] = Emitter.prototype[key];
+	  }
+	  return obj;
+	}
+
+	/**
+	 * Listen on the given `event` with `fn`.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+
+	Emitter.prototype.on =
+	Emitter.prototype.addEventListener = function(event, fn){
+	  this._callbacks = this._callbacks || {};
+	  (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
+	    .push(fn);
+	  return this;
+	};
+
+	/**
+	 * Adds an `event` listener that will be invoked a single
+	 * time then automatically removed.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+
+	Emitter.prototype.once = function(event, fn){
+	  function on() {
+	    this.off(event, on);
+	    fn.apply(this, arguments);
+	  }
+
+	  on.fn = fn;
+	  this.on(event, on);
+	  return this;
+	};
+
+	/**
+	 * Remove the given callback for `event` or all
+	 * registered callbacks.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+
+	Emitter.prototype.off =
+	Emitter.prototype.removeListener =
+	Emitter.prototype.removeAllListeners =
+	Emitter.prototype.removeEventListener = function(event, fn){
+	  this._callbacks = this._callbacks || {};
+
+	  // all
+	  if (0 == arguments.length) {
+	    this._callbacks = {};
+	    return this;
+	  }
+
+	  // specific event
+	  var callbacks = this._callbacks['$' + event];
+	  if (!callbacks) return this;
+
+	  // remove all handlers
+	  if (1 == arguments.length) {
+	    delete this._callbacks['$' + event];
+	    return this;
+	  }
+
+	  // remove specific handler
+	  var cb;
+	  for (var i = 0; i < callbacks.length; i++) {
+	    cb = callbacks[i];
+	    if (cb === fn || cb.fn === fn) {
+	      callbacks.splice(i, 1);
+	      break;
+	    }
+	  }
+	  return this;
+	};
+
+	/**
+	 * Emit `event` with the given args.
+	 *
+	 * @param {String} event
+	 * @param {Mixed} ...
+	 * @return {Emitter}
+	 */
+
+	Emitter.prototype.emit = function(event){
+	  this._callbacks = this._callbacks || {};
+	  var args = [].slice.call(arguments, 1)
+	    , callbacks = this._callbacks['$' + event];
+
+	  if (callbacks) {
+	    callbacks = callbacks.slice(0);
+	    for (var i = 0, len = callbacks.length; i < len; ++i) {
+	      callbacks[i].apply(this, args);
+	    }
+	  }
+
+	  return this;
+	};
+
+	/**
+	 * Return array of callbacks for `event`.
+	 *
+	 * @param {String} event
+	 * @return {Array}
+	 * @api public
+	 */
+
+	Emitter.prototype.listeners = function(event){
+	  this._callbacks = this._callbacks || {};
+	  return this._callbacks['$' + event] || [];
+	};
+
+	/**
+	 * Check if this emitter has `event` handlers.
+	 *
+	 * @param {String} event
+	 * @return {Boolean}
+	 * @api public
+	 */
+
+	Emitter.prototype.hasListeners = function(event){
+	  return !! this.listeners(event).length;
+	};
+
+
+/***/ },
+/* 422 */
+/***/ function(module, exports) {
+
+	
+	/**
+	 * Reduce `arr` with `fn`.
+	 *
+	 * @param {Array} arr
+	 * @param {Function} fn
+	 * @param {Mixed} initial
+	 *
+	 * TODO: combatible error handling?
+	 */
+
+	module.exports = function(arr, fn, initial){  
+	  var idx = 0;
+	  var len = arr.length;
+	  var curr = arguments.length == 3
+	    ? initial
+	    : arr[idx++];
+
+	  while (idx < len) {
+	    curr = fn.call(null, curr, arr[idx], ++idx, arr);
+	  }
+	  
+	  return curr;
+	};
+
+/***/ },
+/* 423 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Module of mixed-in functions shared between node and client code
+	 */
+	var isObject = __webpack_require__(424);
+
+	/**
+	 * Clear previous timeout.
+	 *
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	exports.clearTimeout = function _clearTimeout(){
+	  this._timeout = 0;
+	  clearTimeout(this._timer);
+	  return this;
+	};
+
+	/**
+	 * Force given parser
+	 *
+	 * Sets the body parser no matter type.
+	 *
+	 * @param {Function}
+	 * @api public
+	 */
+
+	exports.parse = function parse(fn){
+	  this._parser = fn;
+	  return this;
+	};
+
+	/**
+	 * Set timeout to `ms`.
+	 *
+	 * @param {Number} ms
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	exports.timeout = function timeout(ms){
+	  this._timeout = ms;
+	  return this;
+	};
+
+	/**
+	 * Faux promise support
+	 *
+	 * @param {Function} fulfill
+	 * @param {Function} reject
+	 * @return {Request}
+	 */
+
+	exports.then = function then(fulfill, reject) {
+	  return this.end(function(err, res) {
+	    err ? reject(err) : fulfill(res);
+	  });
+	}
+
+	/**
+	 * Allow for extension
+	 */
+
+	exports.use = function use(fn) {
+	  fn(this);
+	  return this;
+	}
+
+
+	/**
+	 * Get request header `field`.
+	 * Case-insensitive.
+	 *
+	 * @param {String} field
+	 * @return {String}
+	 * @api public
+	 */
+
+	exports.get = function(field){
+	  return this._header[field.toLowerCase()];
+	};
+
+	/**
+	 * Get case-insensitive header `field` value.
+	 * This is a deprecated internal API. Use `.get(field)` instead.
+	 *
+	 * (getHeader is no longer used internally by the superagent code base)
+	 *
+	 * @param {String} field
+	 * @return {String}
+	 * @api private
+	 * @deprecated
+	 */
+
+	exports.getHeader = exports.get;
+
+	/**
+	 * Set header `field` to `val`, or multiple fields with one object.
+	 * Case-insensitive.
+	 *
+	 * Examples:
+	 *
+	 *      req.get('/')
+	 *        .set('Accept', 'application/json')
+	 *        .set('X-API-Key', 'foobar')
+	 *        .end(callback);
+	 *
+	 *      req.get('/')
+	 *        .set({ Accept: 'application/json', 'X-API-Key': 'foobar' })
+	 *        .end(callback);
+	 *
+	 * @param {String|Object} field
+	 * @param {String} val
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+
+	exports.set = function(field, val){
+	  if (isObject(field)) {
+	    for (var key in field) {
+	      this.set(key, field[key]);
+	    }
+	    return this;
+	  }
+	  this._header[field.toLowerCase()] = val;
+	  this.header[field] = val;
+	  return this;
+	};
+
+	/**
+	 * Remove header `field`.
+	 * Case-insensitive.
+	 *
+	 * Example:
+	 *
+	 *      req.get('/')
+	 *        .unset('User-Agent')
+	 *        .end(callback);
+	 *
+	 * @param {String} field
+	 */
+	exports.unset = function(field){
+	  delete this._header[field.toLowerCase()];
+	  delete this.header[field];
+	  return this;
+	};
+
+	/**
+	 * Write the field `name` and `val` for "multipart/form-data"
+	 * request bodies.
+	 *
+	 * ``` js
+	 * request.post('/upload')
+	 *   .field('foo', 'bar')
+	 *   .end(callback);
+	 * ```
+	 *
+	 * @param {String} name
+	 * @param {String|Blob|File|Buffer|fs.ReadStream} val
+	 * @return {Request} for chaining
+	 * @api public
+	 */
+	exports.field = function(name, val) {
+	  this._getFormData().append(name, val);
+	  return this;
+	};
+
+
+/***/ },
+/* 424 */
+/***/ function(module, exports) {
+
+	/**
+	 * Check if `obj` is an object.
+	 *
+	 * @param {Object} obj
+	 * @return {Boolean}
+	 * @api private
+	 */
+
+	function isObject(obj) {
+	  return null != obj && 'object' == typeof obj;
+	}
+
+	module.exports = isObject;
+
+
+/***/ },
+/* 425 */
+/***/ function(module, exports) {
+
+	// The node and browser modules expose versions of this with the
+	// appropriate constructor function bound as first argument
+	/**
+	 * Issue a request:
+	 *
+	 * Examples:
+	 *
+	 *    request('GET', '/users').end(callback)
+	 *    request('/users').end(callback)
+	 *    request('/users', callback)
+	 *
+	 * @param {String} method
+	 * @param {String|Function} url or callback
+	 * @return {Request}
+	 * @api public
+	 */
+
+	function request(RequestConstructor, method, url) {
+	  // callback
+	  if ('function' == typeof url) {
+	    return new RequestConstructor('GET', method).end(url);
+	  }
+
+	  // url first
+	  if (2 == arguments.length) {
+	    return new RequestConstructor('GET', method);
+	  }
+
+	  return new RequestConstructor(method, url);
+	}
+
+	module.exports = request;
+
+
+/***/ },
+/* 426 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	 * JavaScript Cookie v2.1.1
+	 * https://github.com/js-cookie/js-cookie
+	 *
+	 * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+	 * Released under the MIT license
+	 */
+	;(function (factory) {
+		if (true) {
+			!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else if (typeof exports === 'object') {
+			module.exports = factory();
+		} else {
+			var OldCookies = window.Cookies;
+			var api = window.Cookies = factory();
+			api.noConflict = function () {
+				window.Cookies = OldCookies;
+				return api;
+			};
+		}
+	}(function () {
+		function extend () {
+			var i = 0;
+			var result = {};
+			for (; i < arguments.length; i++) {
+				var attributes = arguments[ i ];
+				for (var key in attributes) {
+					result[key] = attributes[key];
+				}
+			}
+			return result;
+		}
+
+		function init (converter) {
+			function api (key, value, attributes) {
+				var result;
+				if (typeof document === 'undefined') {
+					return;
+				}
+
+				// Write
+
+				if (arguments.length > 1) {
+					attributes = extend({
+						path: '/'
+					}, api.defaults, attributes);
+
+					if (typeof attributes.expires === 'number') {
+						var expires = new Date();
+						expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
+						attributes.expires = expires;
+					}
+
+					try {
+						result = JSON.stringify(value);
+						if (/^[\{\[]/.test(result)) {
+							value = result;
+						}
+					} catch (e) {}
+
+					if (!converter.write) {
+						value = encodeURIComponent(String(value))
+							.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+					} else {
+						value = converter.write(value, key);
+					}
+
+					key = encodeURIComponent(String(key));
+					key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
+					key = key.replace(/[\(\)]/g, escape);
+
+					return (document.cookie = [
+						key, '=', value,
+						attributes.expires && '; expires=' + attributes.expires.toUTCString(), // use expires attribute, max-age is not supported by IE
+						attributes.path    && '; path=' + attributes.path,
+						attributes.domain  && '; domain=' + attributes.domain,
+						attributes.secure ? '; secure' : ''
+					].join(''));
+				}
+
+				// Read
+
+				if (!key) {
+					result = {};
+				}
+
+				// To prevent the for loop in the first place assign an empty array
+				// in case there are no cookies at all. Also prevents odd result when
+				// calling "get()"
+				var cookies = document.cookie ? document.cookie.split('; ') : [];
+				var rdecode = /(%[0-9A-Z]{2})+/g;
+				var i = 0;
+
+				for (; i < cookies.length; i++) {
+					var parts = cookies[i].split('=');
+					var name = parts[0].replace(rdecode, decodeURIComponent);
+					var cookie = parts.slice(1).join('=');
+
+					if (cookie.charAt(0) === '"') {
+						cookie = cookie.slice(1, -1);
+					}
+
+					try {
+						cookie = converter.read ?
+							converter.read(cookie, name) : converter(cookie, name) ||
+							cookie.replace(rdecode, decodeURIComponent);
+
+						if (this.json) {
+							try {
+								cookie = JSON.parse(cookie);
+							} catch (e) {}
+						}
+
+						if (key === name) {
+							result = cookie;
+							break;
+						}
+
+						if (!key) {
+							result[name] = cookie;
+						}
+					} catch (e) {}
+				}
+
+				return result;
+			}
+
+			api.set = api;
+			api.get = function (key) {
+				return api(key);
+			};
+			api.getJSON = function () {
+				return api.apply({
+					json: true
+				}, [].slice.call(arguments));
+			};
+			api.defaults = {};
+
+			api.remove = function (key, attributes) {
+				api(key, '', extend(attributes, {
+					expires: -1
+				}));
+			};
+
+			api.withConverter = init;
+
+			return api;
+		}
+
+		return init(function () {});
+	}));
+
 
 /***/ }
 /******/ ]);

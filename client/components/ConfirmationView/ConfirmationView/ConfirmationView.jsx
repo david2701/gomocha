@@ -26,35 +26,35 @@ var ConfirmationView = React.createClass({
     render: function() {
         return (
             <div>
-            <div className="title-cover">
-                <h1>Order Confirmation</h1>
-                <div className="userProgress">
-                    <div id="fiveOfFive">
+                <div className="main-wrap">
+                <div className="confirmation-view-container">
+                    <div className="title-cover">
+                        <h1>Order Confirmation</h1>
+                        <div className="userProgress">
+                            <div id="fiveOfFive">
+                            </div>
+                        </div>
                     </div>
+
+                    <OrderReadyTime
+                    methodOfTrans={this.props.methodOfTrans}
+                    duration={this.props.duration} />
+                    <ShopDetails
+                    selectedShop={this.props.selectedShop}
+                    distance={this.props.distance} />
+                    <DirectionsAndCall
+                    selectedShop={this.props.selectedShop}
+                    userLocation={this.props.userLocation}
+                    selectedShopLocation={this.props.selectedShopLocation} />
+                </div>
+                    <Link to="/" className="back-to-dashboard">
+                        <button className="next-button">
+                            Dashboard
+                            <i className="fa fa-home fa-lg" aria-hidden="true"></i>
+                        </button>
+                    </Link>
                 </div>
             </div>
-
-            <div className="main-wrap">
-            <div className="confirmation-view-container">
-                <OrderReadyTime
-                methodOfTrans={this.props.methodOfTrans}
-                duration={this.props.duration} />
-                <ShopDetails
-                selectedShop={this.props.selectedShop}
-                distance={this.props.distance} />
-                <DirectionsAndCall
-                selectedShop={this.props.selectedShop}
-                userLocation={this.props.userLocation}
-                selectedShopLocation={this.props.selectedShopLocation} />
-            </div>
-                <Link to="/" className="back-to-dashboard">
-                    <button className="next-button">
-                        Dashboard
-                        <i className="fa fa-home fa-lg" aria-hidden="true"></i>
-                    </button>
-                </Link>
-            </div>
-        </div>
         )
     }
 });

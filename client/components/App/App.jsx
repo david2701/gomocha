@@ -44,7 +44,8 @@ var App = React.createClass({
                 cvv: undefined
             },
             previousOrders: [],
-            favoriteOrders: []
+            favoriteOrders: [],
+            menuShow: false
         }
     },
 
@@ -404,19 +405,42 @@ var App = React.createClass({
         })
     },
 
+    _handleMenuToggle: function() {
+        this.setState({
+            menuShow: !this.state.menuShow
+        });
+    },
+
     render: function() {
         return (
             <div>
                 <nav className="top-nav">
-                    <div className="nav-links">
-                        <ul role="nav">
-
-                        </ul>
+                    <div
+                        className="menu-bars"
+                        onClick={() => {this._handleMenuToggle()}}>
+                        <i className={this.state.menuShow ? 'fa fa-times fa-2x' : 'fa fa-bars fa-2x'} aria-hidden="true"></i>
                     </div>
+                        <div className="top-nav-logo">
+                            <img src="/img/gomocha-logo-sml.png" />
+                        </div>
+                    <ul className={this.state.menuShow ? 'menu-show' : 'menu-hide'}>
+                        <Link to="/" onlyActiveOnIndex={true} className='router-link'>
+                            <li onClick={() => {this._handleMenuToggle()}}>Dashboard</li>
+                        </Link>
+                        <Link to="/previous-orders" className="prev-orders-link">
+                            <li onClick={() => {this._handleMenuToggle()}}>Previous Orders</li>
+                        </Link>
+                        <Link to="favorite-orders" className="fav-orders-link">
+                            <li onClick={() => {this._handleMenuToggle()}}>Favorite Orders</li>
+                        </Link>
+                        <Link to="/" className='router-link' onClick={this._handleUsernameRemove}>
+                            <li className="sign-out" onClick={() => {this._handleMenuToggle()}}>Sign Out</li>
+                        </Link>
+                    </ul>
                 </nav>
                 <nav className="side-nav">
                     <Link to="/" onlyActiveOnIndex={true} className='router-link'>
-                        <div className="nav-logo">
+                        <div className="side-nav-logo">
                             <img src="/img/gomocha-logo-sml.png" />
                         </div>
                     </Link>
@@ -470,7 +494,9 @@ var App = React.createClass({
                          handlePreviousOrders: this._handlePreviousOrders,
                          handleFavoriteOrders: this._handleFavoriteOrders,
                          previousOrders: this.state.previousOrders,
-                         favoriteOrders: this.state.favoriteOrders
+                         favoriteOrders: this.state.favoriteOrders,
+                         handleMenuToggle:this._handleMenuToggle,
+                         menuShow:this.state.menuShow
                      })
                     }
             </div>

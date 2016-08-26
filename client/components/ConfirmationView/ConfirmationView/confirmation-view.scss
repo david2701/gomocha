@@ -1,25 +1,10 @@
 .confirmation-view-container {
-    width: 28em;
-    margin: 0 auto;
+    width: 90%;
     border: 1px solid #E4E4E4;
     border-radius: 3px;
     background: #fff;
-}
-
-@media only screen and (min-width: 600px) {
-
-    .confirmation-view-container {
-        width: 28em;
-        margin: 0em auto 2.5em auto;
-    }
-}
-
-@media only screen and (max-width: 599px) {
-
-    .confirmation-view-container {
-        width: 90%;
-        margin: 0em auto 2.5em auto;
-    }
+    margin-top: 4em;
+    margin: 4em auto 2.5em auto;
 }
 
 .back-to-dashboard {
@@ -47,4 +32,18 @@
     height: 100%;
     background: #3FB083;
     border-radius: 5px 5px 5px 5px;
+}
+
+@media only screen and (min-width: 600px) {
+    .confirmation-view-container {
+        width: 28em;
+        margin: 4em auto 2.5em auto;
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    .confirmation-view-container {
+        margin-top: 0em;
+        margin: 4em auto 2.5em auto;
+    }
 }

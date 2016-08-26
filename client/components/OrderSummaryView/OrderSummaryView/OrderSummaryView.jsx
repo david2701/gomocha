@@ -17,21 +17,22 @@ var OrderSummaryView = React.createClass({
     render: function() {
         return (
             <div>
-            <div className="title-cover">
-                <h1>Order Summary</h1>
-                <div className="userProgress">
-                    <div id="fourOfFive">
-                    </div>
-                </div>
-            </div>
-
             <div className="main-wrap">
             <div className="order-summary-container">
+                <div className="title-cover">
+                    <h1>Order Summary</h1>
+                    <div className="userProgress">
+                        <div id="fourOfFive">
+                        </div>
+                    </div>
+                </div>
+
                 <div className="os-order-total-container">
                     <OrderTotal
                         orderItems={this.props.items}
                         handleDeleteItemFromOrder={this.props.handleDeleteItemFromOrder} />
                 </div>
+
                 <SpecialInstructionsOS
                     specialInstructions={this.props.specialInstructions} />
                 <Link to="/confirmation" className="order-summary-link">

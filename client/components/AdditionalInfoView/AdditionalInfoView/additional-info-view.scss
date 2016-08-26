@@ -1,3 +1,8 @@
+.additional-info-container {
+    margin-left: 0em;
+    margin-top: 4em;
+}
+
 .next-button-container {
 
 }
@@ -20,7 +25,6 @@
 }
 
 .additional-info-container {
-    margin-left: 6em;
     margin-right: 1em;
     overflow-x: hidden;
 }
@@ -28,5 +32,13 @@
 @media only screen and (min-width: 700px) {
     .additional-info-container {
         margin-left: 0em;
+        margin-top: 4em;
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    .additional-info-container {
+        margin-top: 0em;
+        margin-left: 5em;
     }
 }
