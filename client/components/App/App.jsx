@@ -415,9 +415,11 @@ var App = React.createClass({
                     </div>
                 </nav>
                 <nav className="side-nav">
-                    <div className="nav-logo">
-                        <img src="/img/gomocha-logo-sml.png" />
-                    </div>
+                    <Link to="/" onlyActiveOnIndex={true} className='router-link'>
+                        <div className="nav-logo">
+                            <img src="/img/gomocha-logo-sml.png" />
+                        </div>
+                    </Link>
                     <Link to="/" onlyActiveOnIndex={true} className='router-link'>
                         <i className="fa fa-home fa-2x" aria-hidden="true"></i>
                     </Link>

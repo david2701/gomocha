@@ -25604,9 +25604,13 @@
 	                'nav',
 	                { className: 'side-nav' },
 	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'nav-logo' },
-	                    _react2.default.createElement('img', { src: '/img/gomocha-logo-sml.png' })
+	                    _reactRouter.Link,
+	                    { to: '/', onlyActiveOnIndex: true, className: 'router-link' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'nav-logo' },
+	                        _react2.default.createElement('img', { src: '/img/gomocha-logo-sml.png' })
+	                    )
 	                ),
 	                _react2.default.createElement(
 	                    _reactRouter.Link,
@@ -26873,7 +26877,7 @@
 
 
 	// module
-	exports.push([module.id, ".top-nav {\n  display: none;\n  position: fixed;\n  background: #fff;\n  width: 100%;\n  margin: 0 auto 0 auto;\n  text-align: right;\n  box-shadow: 0px 1px 1px #efefef; }\n  .top-nav .nav-links ul {\n    width: 100%;\n    margin: 0 2em 0 0;\n    padding: 0 0em 0 0; }\n    .top-nav .nav-links ul .router-link {\n      font-size: 0.85em;\n      text-decoration: none;\n      color: #1987FE; }\n      .top-nav .nav-links ul .router-link li {\n        display: inline-block;\n        font-size: 16px;\n        padding: 0.75em 1em 0.75em 0.75em;\n        border-radius: 5px;\n        margin-right: 5px;\n        color: #8F8F8F; }\n        .top-nav .nav-links ul .router-link li:hover {\n          color: #333333; }\n\n.side-nav {\n  width: 5em;\n  height: 100%;\n  background: #3E474F;\n  position: fixed;\n  top: 0;\n  left: 0;\n  padding-top: 5.5em; }\n  .side-nav .nav-logo {\n    position: absolute;\n    left: 1.4em;\n    top: 0.4em; }\n    .side-nav .nav-logo img {\n      width: 2em; }\n  .side-nav .side-nav-divider {\n    background: #6a6c71;\n    width: 3em;\n    height: 2px;\n    margin-left: 1em;\n    margin-top: 1em; }\n  .side-nav .fa-clock-o, .side-nav .fa-heart, .side-nav .fa-home, .side-nav .fa-sign-out {\n    color: #ABACB0;\n    padding: 0.7em; }\n    .side-nav .fa-clock-o:hover, .side-nav .fa-heart:hover, .side-nav .fa-home:hover, .side-nav .fa-sign-out:hover {\n      color: #bdbec1; }\n  .side-nav .fa-sign-out {\n    position: absolute;\n    bottom: 4em;\n    left: 0; }\n\n.center-wrap {\n  width: 520px;\n  margin: 0 auto; }\n\n.next-button {\n  margin: 1em 0 0 0;\n  text-align: center;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer;\n    background: #4582db; }\n  .next-button .fa-arrow-right, .next-button .fa-check, .next-button .fa-pencil {\n    padding-left: 0.4em; }\n\n.main-wrap {\n  padding: 1em; }\n\n.title-cover {\n  padding: 2em;\n  min-height: 6em;\n  margin-bottom: 1em; }\n  .title-cover h1 {\n    color: #262933; }\n", ""]);
+	exports.push([module.id, ".top-nav {\n  display: none;\n  position: fixed;\n  background: #fff;\n  width: 100%;\n  margin: 0 auto 0 auto;\n  text-align: right;\n  box-shadow: 0px 1px 1px #efefef; }\n  .top-nav .nav-links ul {\n    width: 100%;\n    margin: 0 2em 0 0;\n    padding: 0 0em 0 0; }\n    .top-nav .nav-links ul .router-link {\n      font-size: 0.85em;\n      text-decoration: none;\n      color: #1987FE; }\n      .top-nav .nav-links ul .router-link li {\n        display: inline-block;\n        font-size: 16px;\n        padding: 0.75em 1em 0.75em 0.75em;\n        border-radius: 5px;\n        margin-right: 5px;\n        color: #8F8F8F; }\n        .top-nav .nav-links ul .router-link li:hover {\n          color: #333333; }\n\n.side-nav {\n  width: 5em;\n  height: 100%;\n  background: #3E474F;\n  position: fixed;\n  top: 0;\n  left: 0;\n  padding-top: 5.5em; }\n  .side-nav .nav-logo {\n    position: absolute;\n    left: 1.4em;\n    top: 0.6em; }\n    .side-nav .nav-logo img {\n      width: 2em; }\n  .side-nav .side-nav-divider {\n    background: #6a6c71;\n    width: 3em;\n    height: 2px;\n    margin-left: 1em;\n    margin-top: 1em; }\n  .side-nav .fa-clock-o, .side-nav .fa-heart, .side-nav .fa-home, .side-nav .fa-sign-out {\n    color: #ABACB0;\n    padding: 0.7em; }\n    .side-nav .fa-clock-o:hover, .side-nav .fa-heart:hover, .side-nav .fa-home:hover, .side-nav .fa-sign-out:hover {\n      color: #bdbec1; }\n  .side-nav .fa-sign-out {\n    position: absolute;\n    bottom: 4em;\n    left: 0; }\n\n.center-wrap {\n  width: 520px;\n  margin: 0 auto; }\n\n.next-button {\n  margin: 1em 0 0 0;\n  text-align: center;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer;\n    background: #4582db; }\n  .next-button .fa-arrow-right, .next-button .fa-check, .next-button .fa-pencil {\n    padding-left: 0.4em; }\n\n.main-wrap {\n  padding: 1em; }\n\n.title-cover {\n  padding: 2em;\n  min-height: 6em;\n  margin-bottom: 1em; }\n  .title-cover h1 {\n    color: #262933; }\n", ""]);
 
 	// exports
 
@@ -44038,6 +44042,40 @@
 	                        'Start'
 	                    )
 	                )
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'landing-icon-wrap' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'landing-icon landing-icon-1' },
+	                    _react2.default.createElement('img', { src: '/img/landing-icon-1.png' }),
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        'Select a shop'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'landing-icon landing-icon-2' },
+	                    _react2.default.createElement('img', { src: '/img/landing-icon-2.png' }),
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        'Place your order'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'landing-icon landing-icon-3' },
+	                    _react2.default.createElement('img', { src: '/img/landing-icon-3.png' }),
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        'Ready when you arrive!'
+	                    )
+	                )
 	            )
 	        );
 	    }
@@ -44172,7 +44210,7 @@
 
 
 	// module
-	exports.push([module.id, ".dashboard-container {\n  margin-left: 5em; }\n  .dashboard-container .start-button-wrap {\n    display: block;\n    text-align: center;\n    margin: 2em auto 3em auto; }\n    .dashboard-container .start-button-wrap button.start-button {\n      background: #3FB083;\n      margin: 0em;\n      padding: 1.5em 3em;\n      font-size: 1.75em; }\n      .dashboard-container .start-button-wrap button.start-button:hover {\n        background: #43bb8b; }\n    .dashboard-container .start-button-wrap .fa-coffee {\n      margin-right: 0.35em; }\n", ""]);
+	exports.push([module.id, ".dashboard-container {\n  margin-left: 5em; }\n  .dashboard-container .start-button-wrap {\n    display: block;\n    text-align: center;\n    margin: 2em auto 3em auto; }\n    .dashboard-container .start-button-wrap button.start-button {\n      background: #3FB083;\n      margin: 0em;\n      padding: 1.5em 3em;\n      font-size: 1.75em; }\n      .dashboard-container .start-button-wrap button.start-button:hover {\n        background: #43bb8b; }\n    .dashboard-container .start-button-wrap .fa-coffee {\n      margin-right: 0.35em; }\n\n.landing-icon-wrap .landing-icon {\n  display: inline-block;\n  width: 33%;\n  text-align: center; }\n\n.landing-icon-wrap img {\n  width: 60%; }\n\n.landing-icon-wrap h2 {\n  text-align: center; }\n\n@media only screen and (min-width: 600px) {\n  .username-wrap {\n    width: 28em;\n    margin: 3em auto 1em auto; }\n  .landing-icon-wrap {\n    margin-bottom: 5em; } }\n\n@media only screen and (max-width: 635px) {\n  .landing-icon-wrap .landing-icon {\n    display: block;\n    width: 30%;\n    margin: 0 auto; }\n  .landing-icon-wrap img {\n    width: 8em; }\n  .landing-icon-wrap h2 {\n    margin-bottom: 1.5em; } }\n\n@media only screen and (max-width: 680px) {\n  .landing-icon-3 h2 {\n    font-size: 1.4em; } }\n", ""]);
 
 	// exports
 
