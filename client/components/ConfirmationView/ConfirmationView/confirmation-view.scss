@@ -3,6 +3,7 @@
     margin: 0 auto;
     border: 1px solid #E4E4E4;
     border-radius: 3px;
+    background: #fff;
 }
 
 @media only screen and (min-width: 600px) {
@@ -25,6 +26,10 @@
     width: 13em;
     margin: 2em auto 0 auto;
     display: block;
+
+    .fa-home {
+        padding-left: .4em;
+    }
 }
 
 .userProgress {

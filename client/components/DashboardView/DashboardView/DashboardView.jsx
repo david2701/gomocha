@@ -14,7 +14,7 @@ var DashboardView = React.createClass({
         return (
             <div className="dashboard-container">
                 <div className="title-cover">
-                <h1>Hey! Just click start to be on your way!</h1>
+                <h1>Hey! Just click start to begin placing your order!</h1>
                 </div>
 
                 <div className="main-wrap">
@@ -24,6 +24,10 @@ var DashboardView = React.createClass({
                                     Start
                             </button></Link>
                         { /*<PrevAndFavorites /> */}
+
+                <div className="dashboard-divider"></div>
+                <h2 className="how-it-works">Wait, how does this work?</h2>
+
                 </div>
                 <div className="landing-icon-wrap">
                     <div className="landing-icon landing-icon-1">

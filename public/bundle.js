@@ -44026,7 +44026,7 @@
 	                _react2.default.createElement(
 	                    'h1',
 	                    null,
-	                    'Hey! Just click start to be on your way!'
+	                    'Hey! Just click start to begin placing your order!'
 	                )
 	            ),
 	            _react2.default.createElement(
@@ -44041,6 +44041,12 @@
 	                        _react2.default.createElement('i', { className: 'fa fa-coffee', 'aria-hidden': 'true' }),
 	                        'Start'
 	                    )
+	                ),
+	                _react2.default.createElement('div', { className: 'dashboard-divider' }),
+	                _react2.default.createElement(
+	                    'h2',
+	                    { className: 'how-it-works' },
+	                    'Wait, how does this work?'
 	                )
 	            ),
 	            _react2.default.createElement(
@@ -44210,7 +44216,7 @@
 
 
 	// module
-	exports.push([module.id, ".dashboard-container {\n  margin-left: 5em; }\n  .dashboard-container .start-button-wrap {\n    display: block;\n    text-align: center;\n    margin: 2em auto 3em auto; }\n    .dashboard-container .start-button-wrap button.start-button {\n      background: #3FB083;\n      margin: 0em;\n      padding: 1.5em 3em;\n      font-size: 1.75em; }\n      .dashboard-container .start-button-wrap button.start-button:hover {\n        background: #43bb8b; }\n    .dashboard-container .start-button-wrap .fa-coffee {\n      margin-right: 0.35em; }\n\n.landing-icon-wrap .landing-icon {\n  display: inline-block;\n  width: 33%;\n  text-align: center; }\n\n.landing-icon-wrap img {\n  width: 60%; }\n\n.landing-icon-wrap h2 {\n  text-align: center; }\n\n@media only screen and (min-width: 600px) {\n  .username-wrap {\n    width: 28em;\n    margin: 3em auto 1em auto; }\n  .landing-icon-wrap {\n    margin-bottom: 5em; } }\n\n@media only screen and (max-width: 635px) {\n  .landing-icon-wrap .landing-icon {\n    display: block;\n    width: 30%;\n    margin: 0 auto; }\n  .landing-icon-wrap img {\n    width: 8em; }\n  .landing-icon-wrap h2 {\n    margin-bottom: 1.5em; } }\n\n@media only screen and (max-width: 680px) {\n  .landing-icon-3 h2 {\n    font-size: 1.4em; } }\n", ""]);
+	exports.push([module.id, ".dashboard-container {\n  margin-left: 5em; }\n  .dashboard-container .start-button-wrap {\n    display: block;\n    text-align: center;\n    margin: 1em auto 3em auto; }\n    .dashboard-container .start-button-wrap button.start-button {\n      background: #3FB083;\n      margin: 0em;\n      padding: 1.5em 3em;\n      font-size: 1.75em; }\n      .dashboard-container .start-button-wrap button.start-button:hover {\n        background: #43bb8b; }\n    .dashboard-container .start-button-wrap .fa-coffee {\n      margin-right: 0.35em; }\n  .dashboard-container .dashboard-divider {\n    width: 70%;\n    height: 2px;\n    background: #BDBEC1;\n    margin: 5em auto 0 auto; }\n  .dashboard-container h2.how-it-works {\n    text-align: center;\n    margin-top: 2em;\n    margin-bottom: 2em; }\n\n.landing-icon-wrap .landing-icon {\n  display: block;\n  width: 30%;\n  margin: 0 auto; }\n\n.landing-icon-wrap img {\n  width: 8em; }\n\n.landing-icon-wrap h2 {\n  margin-bottom: 1.5em; }\n\n@media only screen and (min-width: 685px) {\n  .landing-icon-wrap {\n    margin-bottom: 5em; }\n    .landing-icon-wrap .landing-icon {\n      display: inline-block;\n      width: 33%;\n      text-align: center; }\n      .landing-icon-wrap .landing-icon img {\n        width: 60%; }\n      .landing-icon-wrap .landing-icon h2 {\n        text-align: center; }\n    .landing-icon-wrap .landing-icon-3 h2 {\n      font-size: 1.4em; } }\n", ""]);
 
 	// exports
 
@@ -44229,7 +44235,7 @@
 
 	var _MenuFormContainer2 = _interopRequireDefault(_MenuFormContainer);
 
-	var _OrderTotal = __webpack_require__(268);
+	var _OrderTotal = __webpack_require__(265);
 
 	var _OrderTotal2 = _interopRequireDefault(_OrderTotal);
 
@@ -44237,7 +44243,7 @@
 
 	var _AddItemNotification2 = _interopRequireDefault(_AddItemNotification);
 
-	var _SpecialInstructions = __webpack_require__(263);
+	var _SpecialInstructions = __webpack_require__(273);
 
 	var _SpecialInstructions2 = _interopRequireDefault(_SpecialInstructions);
 
@@ -44347,7 +44353,7 @@
 
 	var _MenuSection2 = _interopRequireDefault(_MenuSection);
 
-	var _menuFormContainer = __webpack_require__(266);
+	var _menuFormContainer = __webpack_require__(263);
 
 	var _menuFormContainer2 = _interopRequireDefault(_menuFormContainer);
 
@@ -45145,89 +45151,10 @@
 /* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _specialInstructions = __webpack_require__(264);
-
-	var _specialInstructions2 = _interopRequireDefault(_specialInstructions);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var SpecialInstructions = _react2.default.createClass({
-	    displayName: 'SpecialInstructions',
-
-
-	    propTypes: {
-	        handleSpecialInstructions: _react2.default.PropTypes.func
-	    },
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'section',
-	            { id: 'special-instructions' },
-	            _react2.default.createElement('textarea', {
-	                onChange: this.props.handleSpecialInstructions,
-	                placeholder: 'Special instructions for your order',
-	                rows: '2',
-	                cols: '100' })
-	        );
-	    }
-	});
-
-	module.exports = SpecialInstructions;
-
-/***/ },
-/* 264 */
-/***/ function(module, exports, __webpack_require__) {
-
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(265);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./special-instructions.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./special-instructions.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 265 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "#special-instructions {\n  margin-top: 2em; }\n  #special-instructions textarea {\n    border: 1px solid #E4E4E4;\n    padding: 0.5em;\n    width: 16.9em;\n    font-size: 1em; }\n\n@media only screen and (min-width: 600px) {\n  #special-instructions {\n    margin: 0.5em auto 0em auto; } }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 266 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(267);
+	var content = __webpack_require__(264);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -45247,7 +45174,7 @@
 	}
 
 /***/ },
-/* 267 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -45261,7 +45188,7 @@
 
 
 /***/ },
-/* 268 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45270,19 +45197,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _OrderTotalRow = __webpack_require__(269);
+	var _OrderTotalRow = __webpack_require__(266);
 
 	var _OrderTotalRow2 = _interopRequireDefault(_OrderTotalRow);
 
-	var _OrderTax = __webpack_require__(272);
+	var _OrderTax = __webpack_require__(269);
 
 	var _OrderTax2 = _interopRequireDefault(_OrderTax);
 
-	var _OrderTotalTotal = __webpack_require__(273);
+	var _OrderTotalTotal = __webpack_require__(270);
 
 	var _OrderTotalTotal2 = _interopRequireDefault(_OrderTotalTotal);
 
-	var _orderTotal = __webpack_require__(274);
+	var _orderTotal = __webpack_require__(271);
 
 	var _orderTotal2 = _interopRequireDefault(_orderTotal);
 
@@ -45349,7 +45276,7 @@
 	module.exports = OrderTotal;
 
 /***/ },
-/* 269 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45362,7 +45289,7 @@
 
 	var _AddItemNotification2 = _interopRequireDefault(_AddItemNotification);
 
-	var _orderTotalRow = __webpack_require__(270);
+	var _orderTotalRow = __webpack_require__(267);
 
 	var _orderTotalRow2 = _interopRequireDefault(_orderTotalRow);
 
@@ -45461,13 +45388,13 @@
 	module.exports = OrderTotalRow;
 
 /***/ },
-/* 270 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(271);
+	var content = __webpack_require__(268);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -45487,7 +45414,7 @@
 	}
 
 /***/ },
-/* 271 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -45501,7 +45428,7 @@
 
 
 /***/ },
-/* 272 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -45542,7 +45469,7 @@
 	module.exports = OrderTax;
 
 /***/ },
-/* 273 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45584,13 +45511,13 @@
 	module.exports = OrderTotalTotal;
 
 /***/ },
-/* 274 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(275);
+	var content = __webpack_require__(272);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -45610,7 +45537,7 @@
 	}
 
 /***/ },
-/* 275 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -45619,6 +45546,85 @@
 
 	// module
 	exports.push([module.id, "#order-total h2 {\n  text-align: left; }\n\n.next-button-container {\n  width: 28em;\n  margin: 2em auto 2em auto; }\n\n.order-total-table {\n  margin: 0 auto;\n  width: 100%;\n  border: 1px solid #E4E4E4;\n  background: #fff;\n  border-collapse: collapse; }\n\n@media only screen and (min-width: 600px) {\n  #order-total {\n    max-width: 28em;\n    margin: 0 auto; } }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 273 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _specialInstructions = __webpack_require__(274);
+
+	var _specialInstructions2 = _interopRequireDefault(_specialInstructions);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SpecialInstructions = _react2.default.createClass({
+	    displayName: 'SpecialInstructions',
+
+
+	    propTypes: {
+	        handleSpecialInstructions: _react2.default.PropTypes.func
+	    },
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'section',
+	            { id: 'special-instructions' },
+	            _react2.default.createElement('textarea', {
+	                onChange: this.props.handleSpecialInstructions,
+	                placeholder: 'Special instructions for your order',
+	                rows: '2',
+	                cols: '100' })
+	        );
+	    }
+	});
+
+	module.exports = SpecialInstructions;
+
+/***/ },
+/* 274 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(275);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./special-instructions.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./special-instructions.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 275 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#special-instructions {\n  margin-top: 2em; }\n  #special-instructions textarea {\n    border: 1px solid #E4E4E4;\n    padding: 0.5em;\n    width: 16.9em;\n    font-size: 1em; }\n\n@media only screen and (min-width: 600px) {\n  #special-instructions {\n    margin: 0.5em auto 0em auto; } }\n", ""]);
 
 	// exports
 
@@ -60014,7 +60020,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _OrderTotal = __webpack_require__(268);
+	var _OrderTotal = __webpack_require__(265);
 
 	var _OrderTotal2 = _interopRequireDefault(_OrderTotal);
 
@@ -60282,7 +60288,8 @@
 	                    _react2.default.createElement(
 	                        'button',
 	                        { className: 'next-button' },
-	                        'Go to Dashboard'
+	                        'Dashboard',
+	                        _react2.default.createElement('i', { className: 'fa fa-home fa-lg', 'aria-hidden': 'true' })
 	                    )
 	                )
 	            )
@@ -60574,7 +60581,8 @@
 	                _react2.default.createElement(
 	                    'button',
 	                    { className: 'next-button confirmation-button' },
-	                    'Directions'
+	                    'Directions',
+	                    _react2.default.createElement('i', { className: 'fa fa-map-marker fa-lg', 'aria-hidden': 'true' })
 	                )
 	            ),
 	            _react2.default.createElement(
@@ -60583,7 +60591,8 @@
 	                _react2.default.createElement(
 	                    'button',
 	                    { className: 'next-button confirmation-button' },
-	                    'Call Shop'
+	                    'Call Shop',
+	                    _react2.default.createElement('i', { className: 'fa fa-mobile fa-lg', 'aria-hidden': 'true' })
 	                )
 	            )
 	        );
@@ -60627,7 +60636,7 @@
 
 
 	// module
-	exports.push([module.id, "button.confirmation-button {\n  width: 13em;\n  display: block;\n  margin: 0 auto 0.5em auto; }\n\n.confirmation-button-wrap {\n  text-align: center;\n  padding-bottom: 1.75em;\n  padding-top: 1.75em; }\n  .confirmation-button-wrap a {\n    text-decoration: none; }\n", ""]);
+	exports.push([module.id, "button.confirmation-button {\n  width: 13em;\n  display: block;\n  margin: 0 auto 0.5em auto; }\n\n.confirmation-button-wrap {\n  text-align: center;\n  padding-bottom: 1.75em;\n  padding-top: 1.75em; }\n  .confirmation-button-wrap a {\n    text-decoration: none; }\n  .confirmation-button-wrap .fa-map-marker, .confirmation-button-wrap .fa-mobile {\n    padding-left: .4em; }\n", ""]);
 
 	// exports
 
@@ -60667,7 +60676,7 @@
 
 
 	// module
-	exports.push([module.id, ".confirmation-view-container {\n  width: 28em;\n  margin: 0 auto;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px; }\n\n@media only screen and (min-width: 600px) {\n  .confirmation-view-container {\n    width: 28em;\n    margin: 0em auto 2.5em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .confirmation-view-container {\n    width: 90%;\n    margin: 0em auto 2.5em auto; } }\n\n.back-to-dashboard {\n  width: 13em;\n  margin: 2em auto 0 auto;\n  display: block; }\n\n.userProgress {\n  position: relative;\n  width: 50%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto; }\n\n#fiveOfFive {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 5px 5px 5px; }\n", ""]);
+	exports.push([module.id, ".confirmation-view-container {\n  width: 28em;\n  margin: 0 auto;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff; }\n\n@media only screen and (min-width: 600px) {\n  .confirmation-view-container {\n    width: 28em;\n    margin: 0em auto 2.5em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .confirmation-view-container {\n    width: 90%;\n    margin: 0em auto 2.5em auto; } }\n\n.back-to-dashboard {\n  width: 13em;\n  margin: 2em auto 0 auto;\n  display: block; }\n  .back-to-dashboard .fa-home {\n    padding-left: .4em; }\n\n.userProgress {\n  position: relative;\n  width: 50%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto; }\n\n#fiveOfFive {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 5px 5px 5px; }\n", ""]);
 
 	// exports
 

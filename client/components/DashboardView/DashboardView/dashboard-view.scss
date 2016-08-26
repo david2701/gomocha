@@ -4,7 +4,7 @@
     .start-button-wrap {
         display: block;
         text-align: center;
-        margin: 2em auto 3em auto;
+        margin: 1em auto 3em auto;
 
         button.start-button {
             background: #3FB083;
@@ -21,58 +21,75 @@
             margin-right: 0.35em;
         }
     }
+
+    .dashboard-divider {
+        width: 70%;
+        height: 2px;
+        background: #BDBEC1;
+        margin: 5em auto 0 auto;
+    }
+
+    h2.how-it-works {
+        text-align: center;
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+}
+
+.landing-icon-wrap {
+    .landing-icon {
+        display: block;
+        width: 30%;
+        margin: 0 auto;
+    }
+
+    img {
+        width: 8em;
+    }
+
+    h2 {
+        margin-bottom: 1.5em;
+    }
 }
 
 .landing-icon-wrap {
 
-    .landing-icon {
-        display: inline-block;
-        width: 33%;
-        text-align: center;
-    }
 
-    img {
-        width: 60%;
-    }
-
-    h2 {
-        text-align: center;
-    }
 }
 
-@media only screen and (min-width: 600px) {
-    .username-wrap {
-        width: 28em;
-        margin: 3em auto 1em auto;
-    }
+@media only screen and (min-width: 685px) {
 
     .landing-icon-wrap {
         margin-bottom: 5em;
-    }
-}
 
-@media only screen and (max-width: 635px) {
-    .landing-icon-wrap {
         .landing-icon {
-            display: block;
-            width: 30%;
-            margin: 0 auto;
+            display: inline-block;
+            width: 33%;
+            text-align: center;
+
+            img {
+                width: 60%;
+            }
+
+            h2 {
+                text-align: center;
+            }
         }
 
-        img {
-            width: 8em;
-        }
-
-        h2 {
-            margin-bottom: 1.5em;
+        .landing-icon-3 {
+            h2 {
+                font-size: 1.4em;
+            }
         }
     }
 }
 
-@media only screen and (max-width: 680px) {
-    .landing-icon-3 {
-        h2 {
-            font-size: 1.4em;
-        }
-    }
-}
+// @media only screen and (min-width: 762px) {
+//     .landing-icon-wrap {
+//         .landing-icon-3 {
+//             h2 {
+//                 font-size: 1.5em;
+//             }
+//         }
+//     }
+// }

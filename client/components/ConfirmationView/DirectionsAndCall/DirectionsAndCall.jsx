@@ -30,8 +30,18 @@ var DirectionsAndCall = React.createClass({
 
         return (
             <div className="confirmation-button-wrap">
-                <a href={directions} target="_blank"><button className="next-button confirmation-button">Directions</button></a>
-                <a href={callPhone}><button className="next-button confirmation-button">Call Shop</button></a>
+                <a href={directions} target="_blank">
+                    <button className="next-button confirmation-button">
+                        Directions
+                        <i className="fa fa-map-marker fa-lg" aria-hidden="true"></i>
+                    </button>
+                </a>
+                <a href={callPhone}>
+                    <button className="next-button confirmation-button">
+                        Call Shop
+                        <i className="fa fa-mobile fa-lg" aria-hidden="true"></i>
+                    </button>
+                </a>
             </div>
         )
     }
