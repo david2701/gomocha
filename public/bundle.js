@@ -78,20 +78,21 @@
 
 	// have a conditional that checks if userLocation is taken, and promps user if not. ex: Justin's phone stuck in loop because didn't have userLocation
 	// payment info section can be fancier
-	// be able to start order from previous and favorites pages. replace items in state with items in prev/fav order
+
 	// add date to each order
-	// share your order on Facebook.
+
 	// Can't click on shop that's closed.
-	// Reorder from favorites and previous orders.
 	// Section marks for progress bar
 
-	// make calls for time it will take to walk/bike/drive at same time you call getDetails
 	// redo loading icon
-	// be able to search for shops in the area
-	// make left nav mobile responsive
-	// additional margin left when minimizing screen
 
+	// make calls for time it will take to walk/bike/drive at same time you call getDetails
+	// share your order on Facebook.
+
+	// be able to search for shops in the area
+	// be able to start order from previous and favorites pages. replace items in state with items in prev/fav order
 	// add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for additional info page condition
+	// Reorder from favorites and previous orders.
 
 /***/ },
 /* 1 */
@@ -25789,7 +25790,7 @@
 	                _react2.default.createElement(
 	                    'h1',
 	                    null,
-	                    'Hey! Just click start to begin placing your order!'
+	                    'Hey! Just click start to begin!'
 	                )
 	            ),
 	            _react2.default.createElement(
@@ -25809,7 +25810,7 @@
 	                _react2.default.createElement(
 	                    'h2',
 	                    { className: 'how-it-works' },
-	                    'Wait, how does this work?'
+	                    'Wait...how does this work?'
 	                )
 	            ),
 	            _react2.default.createElement(
@@ -25979,7 +25980,7 @@
 
 
 	// module
-	exports.push([module.id, ".top-nav {\n  width: 100%;\n  height: 4em;\n  background: #3E474F;\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 9999; }\n  .top-nav .menu-bars .fa-bars, .top-nav .menu-bars .fa-times {\n    color: #ABACB0;\n    margin: 0.5em; }\n    .top-nav .menu-bars .fa-bars:hover, .top-nav .menu-bars .fa-times:hover {\n      cursor: pointer; }\n  .top-nav .top-nav-logo {\n    position: absolute;\n    left: 48.3%;\n    top: 0.6em;\n    margin: 0 auto; }\n    .top-nav .top-nav-logo img {\n      width: 2em; }\n  .top-nav .menu-show {\n    width: 100%;\n    background: #3E474F;\n    padding-left: 0;\n    text-align: center;\n    margin: 0; }\n    .top-nav .menu-show .router-link, .top-nav .menu-show .prev-orders-link, .top-nav .menu-show .fav-orders-link {\n      text-decoration: none; }\n    .top-nav .menu-show li {\n      display: block;\n      color: #ABACB0;\n      padding: 0.5em 0 0.5em 0;\n      font-size: 1.1em; }\n      .top-nav .menu-show li:hover {\n        color: #fff; }\n    .top-nav .menu-show .sign-out {\n      padding-bottom: 1.5em; }\n  .top-nav .menu-hide {\n    display: none; }\n  .top-nav .fa-clock-o, .top-nav .fa-heart, .top-nav .fa-home, .top-nav .fa-sign-out {\n    color: #ABACB0;\n    padding: 0.7em; }\n    .top-nav .fa-clock-o:hover, .top-nav .fa-heart:hover, .top-nav .fa-home:hover, .top-nav .fa-sign-out:hover {\n      color: #bdbec1; }\n  .top-nav .fa-sign-out {\n    position: absolute;\n    bottom: 4em;\n    left: 0; }\n\n.side-nav {\n  display: none;\n  width: 5em;\n  height: 100%;\n  background: #3E474F;\n  position: fixed;\n  top: 0;\n  left: 0;\n  padding-top: 5.5em; }\n  .side-nav .side-nav-logo {\n    position: absolute;\n    left: 1.4em;\n    top: 0.6em; }\n    .side-nav .side-nav-logo img {\n      width: 2em; }\n  .side-nav .side-nav-divider {\n    background: #6a6c71;\n    width: 3em;\n    height: 2px;\n    margin-left: 1em;\n    margin-top: 1em; }\n  .side-nav .fa-clock-o, .side-nav .fa-heart, .side-nav .fa-home, .side-nav .fa-sign-out {\n    color: #ABACB0;\n    padding: 0.7em; }\n    .side-nav .fa-clock-o:hover, .side-nav .fa-heart:hover, .side-nav .fa-home:hover, .side-nav .fa-sign-out:hover {\n      color: #bdbec1; }\n  .side-nav .fa-sign-out {\n    position: absolute;\n    bottom: 4em;\n    left: 0; }\n\n.center-wrap {\n  width: 520px;\n  margin: 0 auto; }\n\n.next-button {\n  margin: 1em 0 0 0;\n  text-align: center;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer;\n    background: #4582db; }\n  .next-button .fa-arrow-right, .next-button .fa-check, .next-button .fa-pencil {\n    padding-left: 0.4em; }\n\n.main-wrap {\n  padding: 1em; }\n\n.title-cover {\n  padding: 2em;\n  min-height: 6em;\n  margin-bottom: 1em; }\n  .title-cover h1 {\n    color: #262933; }\n\n@media only screen and (min-width: 960px) {\n  .top-nav {\n    display: none; }\n  .side-nav {\n    display: block; } }\n", ""]);
+	exports.push([module.id, ".top-nav {\n  width: 100%;\n  height: 4em;\n  background: #3E474F;\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 10; }\n  .top-nav .menu-bars .fa-bars, .top-nav .menu-bars .fa-times {\n    color: #ABACB0;\n    margin: 0.5em; }\n    .top-nav .menu-bars .fa-bars:hover, .top-nav .menu-bars .fa-times:hover {\n      cursor: pointer; }\n  .top-nav .top-nav-logo {\n    position: absolute;\n    left: 48.3%;\n    top: 0.6em;\n    margin: 0 auto; }\n    .top-nav .top-nav-logo img {\n      width: 2em; }\n  .top-nav .menu-show {\n    width: 100%;\n    background: #3E474F;\n    padding-left: 0;\n    text-align: center;\n    margin: 0; }\n    .top-nav .menu-show .router-link, .top-nav .menu-show .prev-orders-link, .top-nav .menu-show .fav-orders-link {\n      text-decoration: none; }\n    .top-nav .menu-show li {\n      display: block;\n      color: #ABACB0;\n      padding: 0.5em 0 0.5em 0;\n      font-size: 1.1em; }\n      .top-nav .menu-show li:hover {\n        color: #fff; }\n    .top-nav .menu-show .sign-out {\n      padding-bottom: 1.5em; }\n  .top-nav .menu-hide {\n    display: none; }\n  .top-nav .fa-clock-o, .top-nav .fa-heart, .top-nav .fa-home, .top-nav .fa-sign-out {\n    color: #ABACB0;\n    padding: 0.7em; }\n    .top-nav .fa-clock-o:hover, .top-nav .fa-heart:hover, .top-nav .fa-home:hover, .top-nav .fa-sign-out:hover {\n      color: #bdbec1; }\n  .top-nav .fa-sign-out {\n    position: absolute;\n    bottom: 4em;\n    left: 0; }\n\n.side-nav {\n  display: none;\n  width: 5em;\n  height: 100%;\n  background: #3E474F;\n  position: fixed;\n  top: 0;\n  left: 0;\n  padding-top: 5.5em; }\n  .side-nav .side-nav-logo {\n    position: absolute;\n    left: 1.4em;\n    top: 0.6em; }\n    .side-nav .side-nav-logo img {\n      width: 2em; }\n  .side-nav .side-nav-divider {\n    background: #6a6c71;\n    width: 3em;\n    height: 2px;\n    margin-left: 1em;\n    margin-top: 1em; }\n  .side-nav .fa-clock-o, .side-nav .fa-heart, .side-nav .fa-home, .side-nav .fa-sign-out {\n    color: #ABACB0;\n    padding: 0.7em; }\n    .side-nav .fa-clock-o:hover, .side-nav .fa-heart:hover, .side-nav .fa-home:hover, .side-nav .fa-sign-out:hover {\n      color: #bdbec1; }\n  .side-nav .fa-sign-out {\n    position: absolute;\n    bottom: 4em;\n    left: 0; }\n\n.center-wrap {\n  width: 520px;\n  margin: 0 auto; }\n\n.next-button {\n  margin: 1em 0 0 0;\n  text-align: center;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer;\n    background: #4582db; }\n  .next-button .fa-arrow-right, .next-button .fa-check, .next-button .fa-pencil {\n    padding-left: 0.4em; }\n\n.main-wrap {\n  padding: 1em; }\n\n.title-cover {\n  padding: 2em;\n  min-height: 6em;\n  margin-bottom: 1em; }\n  .title-cover h1 {\n    color: #262933; }\n\n@media only screen and (min-width: 960px) {\n  .top-nav {\n    display: none; }\n  .side-nav {\n    display: block; } }\n", ""]);
 
 	// exports
 
@@ -42381,7 +42382,7 @@
 
 
 	// module
-	exports.push([module.id, ".item-notification-text {\n  color: #f6f6f6;\n  text-align: center;\n  text-decoration: none; }\n\n.item-notification {\n  color: #f6f6f6;\n  font-size: 1.1em;\n  padding-top: 0.7em;\n  height: 38px;\n  position: fixed;\n  left: 0;\n  text-align: center;\n  text-decoration: none;\n  top: -45px;\n  width: 100%;\n  animation: item-notification 1s ease forwards; }\n\n.add-item-notification {\n  background-color: #3FB083; }\n\n.delete-item-notification {\n  background-color: #E2514E; }\n\n.error-item-notification {\n  background-color: #FAD675; }\n\n.item-notification-show {\n  display: block; }\n\n.item-notification-hide {\n  display: none; }\n\n@keyframes item-notification {\n  0% {\n    opacity: 0; }\n  50% {\n    opacity: 1; }\n  100% {\n    top: 0; } }\n\n@keyframes item-notification-hide {\n  0% {\n    top: 0; }\n  50% {\n    top: -25; }\n  100% {\n    top: -45; } }\n", ""]);
+	exports.push([module.id, ".item-notification-text {\n  color: #f6f6f6;\n  text-align: center;\n  text-decoration: none; }\n\n.item-notification {\n  color: #f6f6f6;\n  font-size: 1.1em;\n  padding-top: 0.7em;\n  height: 38px;\n  position: fixed;\n  left: 0;\n  text-align: center;\n  text-decoration: none;\n  top: -45px;\n  width: 100%;\n  animation: item-notification 1s ease forwards;\n  z-index: 999999; }\n\n.add-item-notification {\n  background-color: #3FB083; }\n\n.delete-item-notification {\n  background-color: #E2514E; }\n\n.error-item-notification {\n  background-color: #FAD675; }\n\n.item-notification-show {\n  display: block; }\n\n.item-notification-hide {\n  display: none; }\n\n@keyframes item-notification {\n  0% {\n    opacity: 0; }\n  50% {\n    opacity: 1; }\n  100% {\n    top: 0; } }\n\n@keyframes item-notification-hide {\n  0% {\n    top: 0; }\n  50% {\n    top: -25; }\n  100% {\n    top: -45; } }\n", ""]);
 
 	// exports
 
