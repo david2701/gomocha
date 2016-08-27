@@ -76,19 +76,23 @@
 	        return window.scrollTo(0, 0);
 	    } }), document.getElementById('root'));
 
-	// have a conditional that checks if userLocation is taken, and promps user if not. ex: Justin's phone stuck in loop because didn't have userLocation
-	// payment info section can be fancier
-
+	// STYLING BUGG FIXES
 	// add date to each order
-
-	// Can't click on shop that's closed.
+	// orderTotalRow padding styling on CustomOrderView and OrderSummaryView
+	// next button on AdditionalInfo
+	// width of progress bar on ConfirmationView
 	// Section marks for progress bar
-
 	// redo loading icon
 
+	// BASIC JS BUGGS FIXES
+	// have a conditional that checks if userLocation is taken, and promps user if not. ex: Justin's phone stuck in loop because didn't have userLocation
+	// payment info section can be fancier
 	// make calls for time it will take to walk/bike/drive at same time you call getDetails
 	// share your order on Facebook.
 
+	// LONG TERM MAJOR FEATURES
+	// Authentication using StormPath - Google and Facebook auth
+	// get previous and favorite orders to work (need auth first)
 	// be able to search for shops in the area
 	// be able to start order from previous and favorites pages. replace items in state with items in prev/fav order
 	// add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for additional info page condition
@@ -26020,7 +26024,7 @@
 
 
 	// module
-	exports.push([module.id, ".dashboard-container {\n  margin-left: 0em;\n  margin-top: 4em; }\n  .dashboard-container .start-button-wrap {\n    display: block;\n    text-align: center;\n    margin: 1em auto 3em auto; }\n    .dashboard-container .start-button-wrap button.start-button {\n      background: #3FB083;\n      margin: 0em;\n      padding: 1.5em 3em;\n      font-size: 1.75em; }\n      .dashboard-container .start-button-wrap button.start-button:hover {\n        background: #43bb8b; }\n    .dashboard-container .start-button-wrap .fa-coffee {\n      margin-right: 0.35em; }\n  .dashboard-container .dashboard-divider {\n    width: 70%;\n    height: 2px;\n    background: #BDBEC1;\n    margin: 5em auto 0 auto; }\n  .dashboard-container h2.how-it-works {\n    text-align: center;\n    margin-top: 2em;\n    margin-bottom: 2em; }\n\n.landing-icon-wrap .landing-icon {\n  display: block;\n  width: 30%;\n  margin: 0 auto; }\n\n.landing-icon-wrap img {\n  width: 8em; }\n\n.landing-icon-wrap h2 {\n  margin-bottom: 1.5em; }\n\n@media only screen and (min-width: 685px) {\n  .landing-icon-wrap {\n    margin-bottom: 5em; }\n    .landing-icon-wrap .landing-icon {\n      display: inline-block;\n      width: 33%;\n      text-align: center; }\n      .landing-icon-wrap .landing-icon img {\n        width: 60%; }\n      .landing-icon-wrap .landing-icon h2 {\n        text-align: center; }\n    .landing-icon-wrap .landing-icon-3 h2 {\n      font-size: 1.4em; } }\n\n@media only screen and (min-width: 960px) {\n  .dashboard-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
+	exports.push([module.id, ".dashboard-container {\n  margin-left: 0em;\n  margin-top: 4em; }\n  .dashboard-container .start-button-wrap {\n    display: block;\n    text-align: center;\n    margin: 1em auto 3em auto; }\n    .dashboard-container .start-button-wrap button.start-button {\n      background: #3FB083;\n      margin: 0em;\n      padding: 1.5em 3em;\n      font-size: 1.75em; }\n      .dashboard-container .start-button-wrap button.start-button:hover {\n        background: #43bb8b; }\n    .dashboard-container .start-button-wrap .fa-coffee {\n      margin-right: 0.35em; }\n  .dashboard-container .dashboard-divider {\n    width: 100%;\n    height: 2px;\n    background: #BDBEC1;\n    margin: 5em auto 0 auto; }\n  .dashboard-container h2.how-it-works {\n    text-align: center;\n    margin-top: 2em;\n    margin-bottom: 2em; }\n\n.landing-icon-wrap .landing-icon {\n  display: block;\n  width: 30%;\n  margin: 0 auto; }\n\n.landing-icon-wrap img {\n  width: 8em; }\n\n.landing-icon-wrap h2 {\n  margin-bottom: 1.5em; }\n\n@media only screen and (min-width: 685px) {\n  .landing-icon-wrap {\n    margin-bottom: 5em; }\n    .landing-icon-wrap .landing-icon {\n      display: inline-block;\n      width: 33%;\n      text-align: center; }\n      .landing-icon-wrap .landing-icon img {\n        width: 60%; }\n      .landing-icon-wrap .landing-icon h2 {\n        text-align: center; }\n    .landing-icon-wrap .landing-icon-3 h2 {\n      font-size: 1.4em; } }\n\n@media only screen and (min-width: 960px) {\n  .dashboard-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
 
 	// exports
 
