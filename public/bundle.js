@@ -85,6 +85,8 @@
 	// redo loading icon
 	// payment info section can be fancier
 	// delete item notification doesn't occur when deleting from order summary
+	// add footer to all Views. Then figure out if using UsernameView or cookies to store Prev and Fav orders
+	// CustomOrderView menu and order total overlap for a small width interval
 
 	// BASIC JS BUGGS FIXES AND FEATURES
 	// have a conditional that checks if userLocation is taken, and promps user if not. ex: Justin's phone stuck in loop because didn't have userLocation
@@ -25434,7 +25436,7 @@
 	        _superagent2.default.post('/api/orders').set('Content-Type', 'application/json') // not required
 	        .send({
 	            username: this.state.username,
-	            items: this.state.items, // array
+	            items: this.state.items,
 	            specialInstructions: this.state.specialInstructions,
 	            selectedShop: this.state.selectedShop.name,
 	            selectedShop_id: this.state.selectedShop.place_id,
@@ -44065,9 +44067,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _PrevAndFavorites = __webpack_require__(242);
+	var _Footer = __webpack_require__(429);
 
-	var _PrevAndFavorites2 = _interopRequireDefault(_PrevAndFavorites);
+	var _Footer2 = _interopRequireDefault(_Footer);
 
 	var _reactRouter = __webpack_require__(164);
 
@@ -44155,7 +44157,8 @@
 	                        'Ready when you arrive!'
 	                    )
 	                )
-	            )
+	            ),
+	            _react2.default.createElement(_Footer2.default, null)
 	        );
 	    }
 	});
@@ -44163,98 +44166,9 @@
 	module.exports = DashboardView;
 
 /***/ },
-/* 242 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _prevAndFavorites = __webpack_require__(243);
-
-	var _prevAndFavorites2 = _interopRequireDefault(_prevAndFavorites);
-
-	var _reactRouter = __webpack_require__(164);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var PrevAndFavorites = _react2.default.createClass({
-	    displayName: 'PrevAndFavorites',
-
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            { className: 'prev-and-fav-wrap' },
-	            _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: '/previous-orders', className: 'prev-orders-link' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'prev-orders-button' },
-	                    _react2.default.createElement('i', { className: 'fa fa-reply fa-lg' }),
-	                    '  Previous Orders'
-	                )
-	            ),
-	            _react2.default.createElement(
-	                _reactRouter.Link,
-	                { to: 'favorite-orders', className: 'fav-orders-link' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'fav-orders-button' },
-	                    _react2.default.createElement('i', { className: 'fa fa-heart fa-lg' }),
-	                    '  Fav Orders'
-	                )
-	            )
-	        );
-	    }
-	});
-
-	module.exports = PrevAndFavorites;
-
-/***/ },
-/* 243 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(244);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./prev-and-favorites.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./prev-and-favorites.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 244 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".prev-and-fav-wrap {\n  width: 100%;\n  margin: 0 auto; }\n  .prev-and-fav-wrap .prev-orders-link, .prev-and-fav-wrap .fav-orders-link {\n    text-decoration: none; }\n    .prev-and-fav-wrap .prev-orders-link .prev-orders-button, .prev-and-fav-wrap .prev-orders-link .fav-orders-button, .prev-and-fav-wrap .fav-orders-link .prev-orders-button, .prev-and-fav-wrap .fav-orders-link .fav-orders-button {\n      width: 11em;\n      border: 1px solid #3879D9;\n      text-align: center;\n      font-size: 24px;\n      padding: 1.75em 0em 1.75em 0em;\n      border-radius: 5px;\n      margin: 0em auto 1em auto;\n      color: #3879D9; }\n      .prev-and-fav-wrap .prev-orders-link .prev-orders-button:hover, .prev-and-fav-wrap .prev-orders-link .fav-orders-button:hover, .prev-and-fav-wrap .fav-orders-link .prev-orders-button:hover, .prev-and-fav-wrap .fav-orders-link .fav-orders-button:hover {\n        cursor: pointer;\n        background: #fafafa; }\n    .prev-and-fav-wrap .prev-orders-link .fa-heart, .prev-and-fav-wrap .prev-orders-link .fa-reply, .prev-and-fav-wrap .fav-orders-link .fa-heart, .prev-and-fav-wrap .fav-orders-link .fa-reply {\n      color: #3879D9; }\n", ""]);
-
-	// exports
-
-
-/***/ },
+/* 242 */,
+/* 243 */,
+/* 244 */,
 /* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -44319,6 +44233,10 @@
 	var _SpecialInstructions = __webpack_require__(275);
 
 	var _SpecialInstructions2 = _interopRequireDefault(_SpecialInstructions);
+
+	var _Footer = __webpack_require__(429);
+
+	var _Footer2 = _interopRequireDefault(_Footer);
 
 	var _reactRouter = __webpack_require__(164);
 
@@ -44405,7 +44323,8 @@
 	                        )
 	                    )
 	                )
-	            )
+	            ),
+	            _react2.default.createElement(_Footer2.default, null)
 	        );
 	    }
 	});
@@ -45781,7 +45700,7 @@
 
 
 	// module
-	exports.push([module.id, ".custom-order-container {\n  margin-left: 0em;\n  margin-top: 4em;\n  padding-right: 0.4em; }\n  .custom-order-container .userProgress {\n    position: relative;\n    width: 100%;\n    height: 30px;\n    background-color: #fff;\n    border-radius: 5px;\n    margin: 0 auto;\n    border: 1px solid #E4E4E4; }\n  .custom-order-container #twoOfFive {\n    position: absolute;\n    width: 40%;\n    height: 100%;\n    background: #3FB083;\n    border-radius: 5px 0px 0px 5px; }\n  .custom-order-container .order-total-container {\n    text-align: center; }\n\n@media only screen and (min-width: 600px) {\n  .custom-order-container .userProgress {\n    width: 25em; } }\n\n@media only screen and (min-width: 750px) {\n  .custom-order-container {\n    margin-left: 2.5em; }\n    .custom-order-container .custom-order-view-wrap {\n      position: relative;\n      width: 100%; }\n      .custom-order-container .custom-order-view-wrap .menu-form-container {\n        float: left; }\n      .custom-order-container .custom-order-view-wrap .order-total-container {\n        position: fixed;\n        right: 1em;\n        width: 18em; } }\n\n@media only screen and (min-width: 960px) {\n  .custom-order-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
+	exports.push([module.id, ".custom-order-container {\n  margin-left: 0em;\n  margin-top: 4em;\n  padding-right: 0.4em; }\n  .custom-order-container .custom-order-view-wrap {\n    margin-bottom: 3em; }\n  .custom-order-container .userProgress {\n    position: relative;\n    width: 100%;\n    height: 30px;\n    background-color: #fff;\n    border-radius: 5px;\n    margin: 0 auto;\n    border: 1px solid #E4E4E4; }\n  .custom-order-container #twoOfFive {\n    position: absolute;\n    width: 40%;\n    height: 100%;\n    background: #3FB083;\n    border-radius: 5px 0px 0px 5px; }\n  .custom-order-container .order-total-container {\n    text-align: center; }\n\n@media only screen and (min-width: 600px) {\n  .custom-order-container .userProgress {\n    width: 25em; } }\n\n@media only screen and (min-width: 750px) {\n  .custom-order-container {\n    margin-left: 2.5em; }\n    .custom-order-container .custom-order-view-wrap {\n      position: relative;\n      width: 100%; }\n      .custom-order-container .custom-order-view-wrap .menu-form-container {\n        float: left; }\n      .custom-order-container .custom-order-view-wrap .order-total-container {\n        position: fixed;\n        right: 1em;\n        width: 18em; } }\n\n@media only screen and (min-width: 960px) {\n  .custom-order-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
 
 	// exports
 
@@ -45799,6 +45718,10 @@
 	var _ShopList = __webpack_require__(281);
 
 	var _ShopList2 = _interopRequireDefault(_ShopList);
+
+	var _Footer = __webpack_require__(429);
+
+	var _Footer2 = _interopRequireDefault(_Footer);
 
 	var _reactRouter = __webpack_require__(164);
 
@@ -45857,7 +45780,8 @@
 	                _react2.default.createElement(_ShopList2.default, {
 	                    shops: this.props.shops,
 	                    handleSelectedShop: this.props.handleSelectedShop })
-	            )
+	            ),
+	            _react2.default.createElement(_Footer2.default, null)
 	        );
 	    }
 	});
@@ -46144,6 +46068,10 @@
 
 	var _EnterPaymentInfo2 = _interopRequireDefault(_EnterPaymentInfo);
 
+	var _Footer = __webpack_require__(429);
+
+	var _Footer2 = _interopRequireDefault(_Footer);
+
 	var _reactRouter = __webpack_require__(164);
 
 	var _app = __webpack_require__(223);
@@ -46230,7 +46158,8 @@
 	                        )
 	                    )
 	                )
-	            )
+	            ),
+	            _react2.default.createElement(_Footer2.default, null)
 	        );
 	    }
 	});
@@ -60145,6 +60074,10 @@
 
 	var _SpecialInstructionsOS2 = _interopRequireDefault(_SpecialInstructionsOS);
 
+	var _Footer = __webpack_require__(429);
+
+	var _Footer2 = _interopRequireDefault(_Footer);
+
 	var _reactRouter = __webpack_require__(164);
 
 	var _app = __webpack_require__(223);
@@ -60224,7 +60157,8 @@
 	                        )
 	                    )
 	                )
-	            )
+	            ),
+	            _react2.default.createElement(_Footer2.default, null)
 	        );
 	    }
 	});
@@ -60306,7 +60240,7 @@
 
 
 	// module
-	exports.push([module.id, ".order-summary-container {\n  text-align: center;\n  margin-left: 0em;\n  margin-top: 4em; }\n\n.os-order-total-container {\n  width: 50%;\n  margin: 0 auto; }\n\n.order-summary-button {\n  display: block;\n  background: #3FB083;\n  margin: 0 auto; }\n  .order-summary-button:hover {\n    background: #43BB8B; }\n\n.order-summary-edit-button {\n  border: 2px solid #f9d266;\n  background: #fff;\n  color: #f9d266; }\n  .order-summary-edit-button:hover {\n    background: #fad675;\n    color: #fff; }\n\n.order-summary-link {\n  text-decoration: none; }\n\n.userProgress {\n  position: relative;\n  width: 50%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto;\n  border: 1px solid #E4E4E4; }\n\n#fourOfFive {\n  position: absolute;\n  width: 80%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 0px 0px 5px; }\n\n@media only screen and (min-width: 960px) {\n  .order-summary-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
+	exports.push([module.id, ".order-summary-container {\n  text-align: center;\n  margin-left: 0em;\n  margin-top: 4em; }\n\n.os-order-total-container {\n  width: 50%;\n  margin: 0 auto; }\n\n.order-summary-button {\n  display: block;\n  background: #3FB083;\n  margin: 0 auto; }\n  .order-summary-button:hover {\n    background: #43BB8B; }\n\n.order-summary-edit-button {\n  border: 2px solid #f9d266;\n  background: #fff;\n  color: #f9d266; }\n  .order-summary-edit-button:hover {\n    background: #fad675;\n    color: #fff; }\n\n.order-summary-link {\n  text-decoration: none; }\n\n.userProgress {\n  position: relative;\n  width: 50%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto;\n  border: 1px solid #E4E4E4; }\n\n#fourOfFive {\n  position: absolute;\n  width: 80%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 0px 0px 5px; }\n\n@media only screen and (min-width: 960px) {\n  .order-summary-container {\n    margin-top: 0em;\n    margin-left: 1em;\n    padding-bottom: 3em; } }\n", ""]);
 
 	// exports
 
@@ -60332,6 +60266,10 @@
 	var _DirectionsAndCall = __webpack_require__(414);
 
 	var _DirectionsAndCall2 = _interopRequireDefault(_DirectionsAndCall);
+
+	var _Footer = __webpack_require__(429);
+
+	var _Footer2 = _interopRequireDefault(_Footer);
 
 	var _reactRouter = __webpack_require__(164);
 
@@ -60370,46 +60308,43 @@
 	            null,
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'main-wrap' },
+	                { className: 'confirmation-view-container' },
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'confirmation-view-container' },
+	                    { className: 'title-cover' },
+	                    _react2.default.createElement(
+	                        'h1',
+	                        null,
+	                        'Order Confirmation'
+	                    ),
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'title-cover' },
-	                        _react2.default.createElement(
-	                            'h1',
-	                            null,
-	                            'Order Confirmation'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'userProgress' },
-	                            _react2.default.createElement('div', { id: 'fiveOfFive' })
-	                        )
-	                    ),
-	                    _react2.default.createElement(_OrderReadyTime2.default, {
-	                        methodOfTrans: this.props.methodOfTrans,
-	                        duration: this.props.duration }),
-	                    _react2.default.createElement(_ShopDetails2.default, {
-	                        selectedShop: this.props.selectedShop,
-	                        distance: this.props.distance }),
-	                    _react2.default.createElement(_DirectionsAndCall2.default, {
-	                        selectedShop: this.props.selectedShop,
-	                        userLocation: this.props.userLocation,
-	                        selectedShopLocation: this.props.selectedShopLocation })
-	                ),
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: '/', className: 'back-to-dashboard' },
-	                    _react2.default.createElement(
-	                        'button',
-	                        { className: 'next-button' },
-	                        'Dashboard',
-	                        _react2.default.createElement('i', { className: 'fa fa-home fa-lg', 'aria-hidden': 'true' })
+	                        { className: 'userProgress' },
+	                        _react2.default.createElement('div', { id: 'fiveOfFive' })
 	                    )
+	                ),
+	                _react2.default.createElement(_OrderReadyTime2.default, {
+	                    methodOfTrans: this.props.methodOfTrans,
+	                    duration: this.props.duration }),
+	                _react2.default.createElement(_ShopDetails2.default, {
+	                    selectedShop: this.props.selectedShop,
+	                    distance: this.props.distance }),
+	                _react2.default.createElement(_DirectionsAndCall2.default, {
+	                    selectedShop: this.props.selectedShop,
+	                    userLocation: this.props.userLocation,
+	                    selectedShopLocation: this.props.selectedShopLocation })
+	            ),
+	            _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/', className: 'back-to-dashboard' },
+	                _react2.default.createElement(
+	                    'button',
+	                    { className: 'next-button' },
+	                    'Dashboard',
+	                    _react2.default.createElement('i', { className: 'fa fa-home fa-lg', 'aria-hidden': 'true' })
 	                )
-	            )
+	            ),
+	            _react2.default.createElement(_Footer2.default, null)
 	        );
 	    }
 	});
@@ -60793,7 +60728,7 @@
 
 
 	// module
-	exports.push([module.id, ".confirmation-view-container {\n  width: 90%;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff;\n  margin-top: 4em;\n  margin: 4em auto 2.5em auto; }\n\n.back-to-dashboard {\n  width: 13em;\n  margin: 2em auto 0 auto;\n  display: block; }\n  .back-to-dashboard .fa-home {\n    padding-left: .4em; }\n\n.userProgress {\n  position: relative;\n  width: 50%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto; }\n\n#fiveOfFive {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 5px 5px 5px; }\n\n@media only screen and (min-width: 600px) {\n  .confirmation-view-container {\n    width: 28em;\n    margin: 4em auto 2.5em auto; } }\n\n@media only screen and (min-width: 960px) {\n  .confirmation-view-container {\n    margin-top: 0em;\n    margin: 4em auto 2.5em auto; } }\n", ""]);
+	exports.push([module.id, ".confirmation-view-container {\n  width: 90%;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff;\n  margin-top: 4em;\n  margin: 4em auto 4em auto; }\n\n.back-to-dashboard {\n  width: 13em;\n  margin: 2em auto 3em auto;\n  display: block; }\n  .back-to-dashboard .fa-home {\n    padding-left: .4em; }\n\n.userProgress {\n  position: relative;\n  width: 50%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto; }\n\n#fiveOfFive {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 5px 5px 5px; }\n\n@media only screen and (min-width: 600px) {\n  .confirmation-view-container {\n    width: 28em;\n    margin: 4em auto 2.5em auto; } }\n\n@media only screen and (min-width: 960px) {\n  .confirmation-view-container {\n    margin-top: 0em;\n    margin: 4em auto 2.5em auto; } }\n", ""]);
 
 	// exports
 
@@ -61193,6 +61128,113 @@
 	});
 
 	module.exports = FavoriteOrdersView;
+
+/***/ },
+/* 429 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _footer = __webpack_require__(430);
+
+	var _footer2 = _interopRequireDefault(_footer);
+
+	var _reactRouter = __webpack_require__(164);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Footer = _react2.default.createClass({
+	    displayName: 'Footer',
+
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'footer-container' },
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'footer-col-1' },
+	                _react2.default.createElement('i', { className: 'fa fa-facebook-square fa-2x', 'aria-hidden': 'true' }),
+	                _react2.default.createElement('i', { className: 'fa fa-twitter-square fa-2x', 'aria-hidden': 'true' }),
+	                _react2.default.createElement('i', { className: 'fa fa-youtube-square fa-2x', 'aria-hidden': 'true' }),
+	                _react2.default.createElement('i', { className: 'fa fa-google-plus-square fa-2x', 'aria-hidden': 'true' }),
+	                _react2.default.createElement('i', { className: 'fa fa-instagram fa-2x', 'aria-hidden': 'true' }),
+	                _react2.default.createElement('i', { className: 'fa fa-linkedin-square fa-2x', 'aria-hidden': 'true' }),
+	                _react2.default.createElement(
+	                    'p',
+	                    { className: 'footer-text footer-text-1' },
+	                    'About GoMocha'
+	                ),
+	                _react2.default.createElement(
+	                    'p',
+	                    { className: 'footer-text' },
+	                    'GoMocha Blog'
+	                ),
+	                _react2.default.createElement(
+	                    'p',
+	                    { className: 'footer-text' },
+	                    'Privacy Policy'
+	                ),
+	                _react2.default.createElement(
+	                    'p',
+	                    { className: 'footer-text' },
+	                    'Terms and Conditions'
+	                ),
+	                _react2.default.createElement(
+	                    'p',
+	                    { className: 'footer-copyright' },
+	                    '©2016 GoMocha, Inc.'
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = Footer;
+
+/***/ },
+/* 430 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(431);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./footer.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./footer.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 431 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".footer-container {\n  background: #d1d6d9;\n  width: 100%;\n  padding-bottom: 0.5em;\n  text-align: center;\n  clear: both; }\n  .footer-container .footer-col-1 {\n    padding-left: 0.5em; }\n    .footer-container .footer-col-1 .fa-facebook-square, .footer-container .footer-col-1 .fa-twitter-square, .footer-container .footer-col-1 .fa-youtube-square, .footer-container .footer-col-1 .fa-google-plus-square, .footer-container .footer-col-1 .fa-instagram, .footer-container .footer-col-1 .fa-linkedin-square {\n      color: #6b7a88;\n      margin: 0.5em 0em 0em 0.25em; }\n      .footer-container .footer-col-1 .fa-facebook-square:hover, .footer-container .footer-col-1 .fa-twitter-square:hover, .footer-container .footer-col-1 .fa-youtube-square:hover, .footer-container .footer-col-1 .fa-google-plus-square:hover, .footer-container .footer-col-1 .fa-instagram:hover, .footer-container .footer-col-1 .fa-linkedin-square:hover {\n        color: #8694a0;\n        cursor: pointer; }\n  .footer-container p {\n    color: #6b7a88;\n    padding-left: 0.5em;\n    font-weight: 400; }\n  .footer-container .footer-text {\n    margin-bottom: 0.25em;\n    margin-top: 0.25em; }\n    .footer-container .footer-text:hover {\n      text-decoration: underline;\n      color: #8694a0;\n      cursor: pointer; }\n  .footer-container .footer-text-1 {\n    margin-top: 1em; }\n", ""]);
+
+	// exports
+
 
 /***/ }
 /******/ ]);

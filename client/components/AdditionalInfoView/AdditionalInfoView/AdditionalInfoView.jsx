@@ -3,6 +3,7 @@ import SelectMethodOfTrans from '../SelectMethodOfTrans/SelectMethodOfTrans'
 import SelectPickUpTime from '../SelectPickUpTime/SelectPickUpTime'
 import SelectIfFavorite from '../SelectIfFavorite/SelectIfFavorite'
 import EnterPaymentInfo from '../EnterPaymentInfo/EnterPaymentInfo'
+import Footer from '../../DashboardView/Footer/Footer'
 import { Link } from 'react-router'
 import sass from '../../App/app.scss'
 import sass2 from './additional-info-view.scss'
@@ -63,6 +64,7 @@ var AdditionalInfoView = React.createClass({
                         </Link>
                     </div>
                 </div>
+                <Footer />
             </div>
         )
     }

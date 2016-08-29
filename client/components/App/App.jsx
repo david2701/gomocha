@@ -233,7 +233,7 @@ var App = React.createClass({
             .set('Content-Type', 'application/json') // not required
             .send({
                 username: this.state.username,
-                items: this.state.items, // array
+                items: this.state.items,
                 specialInstructions: this.state.specialInstructions,
                 selectedShop: this.state.selectedShop.name,
                 selectedShop_id: this.state.selectedShop.place_id,

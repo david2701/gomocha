@@ -1,6 +1,7 @@
 import React from 'react'
 import OrderTotal from '../../CustomOrderView/OrderTotal/OrderTotal'
 import SpecialInstructionsOS from '../SpecialInstructionsOS/SpecialInstructionsOS'
+import Footer from '../../DashboardView/Footer/Footer'
 import { Link } from 'react-router'
 import sass from '../../App/app.scss'
 import sass2 from './order-summary.scss'
@@ -52,6 +53,7 @@ var OrderSummaryView = React.createClass({
                 </Link>
             </div>
             </div>
+            <Footer />
         </div>
         )
     }

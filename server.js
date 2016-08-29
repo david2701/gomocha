@@ -66,7 +66,7 @@ app.get('/api/users/:username/orders/previous', function(req, res) {
         res.json(listOfOrders);
     })
 })
-//
+
 app.get('/api/users/:username/orders/favorites', function(req, res) {
     console.log(req.params);
     read({

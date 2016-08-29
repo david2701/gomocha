@@ -1,0 +1,49 @@
+$font-color: lighten(#3E474F, 20%);
+
+.footer-container {
+    background: darken(#EDEFF0, 10%);
+    // border-top: 1px solid #BDBEC1;
+    width: 100%;
+    padding-bottom: 0.5em;
+    text-align: center;
+    clear: both;
+
+    .footer-col-1 {
+        padding-left: 0.5em;
+
+        .fa-facebook-square, .fa-twitter-square, .fa-youtube-square, .fa-google-plus-square, .fa-instagram, .fa-linkedin-square {
+            color: $font-color;
+            margin: 0.5em 0em 0em 0.25em;
+
+            &:hover {
+                color: lighten($font-color, 10%);
+                cursor: pointer;
+            }
+        }
+    }
+
+    p {
+        color: $font-color;
+        padding-left: 0.5em;
+        font-weight: 400;
+    }
+
+    .footer-text {
+        margin-bottom: 0.25em;
+        margin-top: 0.25em;
+
+        &:hover {
+            text-decoration: underline;
+            color: lighten($font-color, 10%);
+            cursor: pointer;
+        }
+    }
+
+    .footer-text-1 {
+        margin-top: 1em;
+    }
+
+    .footer-copyright {
+
+    }
+}

@@ -1,5 +1,6 @@
 import React from 'react'
 import ShopList from '../ShopList/ShopList'
+import Footer from '../../DashboardView/Footer/Footer'
 import { Link } from 'react-router'
 import sass from '../../App/app.scss'
 import sass2 from './select-shop-view.scss'
@@ -36,6 +37,7 @@ var SelectShopView = React.createClass({
                     shops={this.props.shops}
                     handleSelectedShop={this.props.handleSelectedShop} />
                 </div>
+                <Footer />
             </div>
         )
     }

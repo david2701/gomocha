@@ -2,6 +2,7 @@ import React from 'react'
 import OrderReadyTime from '../OrderReadyTime/OrderReadyTime'
 import ShopDetails from '../ShopDetails/ShopDetails'
 import DirectionsAndCall from '../DirectionsAndCall/DirectionsAndCall'
+import Footer from '../../DashboardView/Footer/Footer'
 import { Link } from 'react-router'
 import sass from './confirmation-view.scss'
 import sass2 from '../../App/app.scss'
@@ -26,7 +27,6 @@ var ConfirmationView = React.createClass({
     render: function() {
         return (
             <div>
-                <div className="main-wrap">
                 <div className="confirmation-view-container">
                     <div className="title-cover">
                         <h1>Order Confirmation</h1>
@@ -53,7 +53,7 @@ var ConfirmationView = React.createClass({
                             <i className="fa fa-home fa-lg" aria-hidden="true"></i>
                         </button>
                     </Link>
-                </div>
+                <Footer />
             </div>
         )
     }

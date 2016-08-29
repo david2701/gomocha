@@ -1,5 +1,5 @@
 import React from 'react'
-import PrevAndFavorites from '../PrevAndFavorites/PrevAndFavorites'
+import Footer from '../Footer/Footer'
 import { Link } from 'react-router'
 import sass from '../../App/app.scss'
 import sass2 from './dashboard-view.scss'
@@ -43,6 +43,7 @@ var DashboardView = React.createClass({
                         <h2>Ready when you arrive!</h2>
                     </div>
                 </div>
+                <Footer />
             </div>
         )
     }
