@@ -26,6 +26,7 @@ ReactDOM.render(
 // delete item notification doesn't occur when deleting from order summary
 // add footer to all Views. Then figure out if using UsernameView or cookies to store Prev and Fav orders
 // CustomOrderView menu and order total overlap for a small width interval
+// fix footer from flying during SelectShopView loading
 
 // BASIC JS BUGGS FIXES AND FEATURES
 // have a conditional that checks if userLocation is taken, and promps user if not. ex: Justin's phone stuck in loop because didn't have userLocation
