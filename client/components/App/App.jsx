@@ -230,7 +230,7 @@ var App = React.createClass({
 
     _handlePostOrder: function() {
         request.post('/api/orders')
-            .set('Content-Type', 'application/json') // not required
+            .set('Content-Type', 'application/json')
             .send({
                 username: this.state.username,
                 items: this.state.items,
@@ -246,6 +246,7 @@ var App = React.createClass({
     },
 
     _handlePreviousOrders: function() {
+        console.log('handling previous orders');
         request.get('/api/users/' + String(this.state.username) + '/orders/previous')
            .end((err, res) => {
                this.setState({
@@ -414,91 +415,97 @@ var App = React.createClass({
     render: function() {
         return (
             <div>
-                <nav className="top-nav">
-                    <div
-                        className="menu-bars"
-                        onClick={() => {this._handleMenuToggle()}}>
-                        <i className={this.state.menuShow ? 'fa fa-times fa-2x' : 'fa fa-bars fa-2x'} aria-hidden="true"></i>
-                    </div>
-                        <div className="top-nav-logo">
-                            <img src="/img/gomocha-logo-sml.png" />
+
+                {!this.state.username ?
+                    <UsernameView handleUsername={this._handleUsername} /> :
+                <div>
+                    <nav className="top-nav">
+                        <div
+                            className="menu-bars"
+                            onClick={() => {this._handleMenuToggle()}}>
+                            <i className={this.state.menuShow ? 'fa fa-times fa-2x' : 'fa fa-bars fa-2x'} aria-hidden="true"></i>
                         </div>
-                    <ul className={this.state.menuShow ? 'menu-show' : 'menu-hide'}>
+                            <div className="top-nav-logo">
+                                <img src="/img/gomocha-logo-sml.png" />
+                            </div>
+                        <ul className={this.state.menuShow ? 'menu-show' : 'menu-hide'}>
+                            <Link to="/" onlyActiveOnIndex={true} className='router-link'>
+                                <li onClick={() => {this._handleMenuToggle()}}>Dashboard</li>
+                            </Link>
+                            <Link to="/previous-orders" className="prev-orders-link">
+                                <li onClick={() => {this._handleMenuToggle()}}>Previous Orders</li>
+                            </Link>
+                            <Link to="favorite-orders" className="fav-orders-link">
+                                <li onClick={() => {this._handleMenuToggle()}}>Favorite Orders</li>
+                            </Link>
+                            <Link to="/" className='router-link' onClick={this._handleUsernameRemove}>
+                                <li className="sign-out" onClick={() => {this._handleMenuToggle()}}>Sign Out</li>
+                            </Link>
+                        </ul>
+                    </nav>
+                    <nav className="side-nav">
                         <Link to="/" onlyActiveOnIndex={true} className='router-link'>
-                            <li onClick={() => {this._handleMenuToggle()}}>Dashboard</li>
+                            <div className="side-nav-logo">
+                                <img src="/img/gomocha-logo-sml.png" />
+                            </div>
+                        </Link>
+                        <Link to="/" onlyActiveOnIndex={true} className='router-link'>
+                            <i className="fa fa-home fa-2x" aria-hidden="true"></i>
                         </Link>
                         <Link to="/previous-orders" className="prev-orders-link">
-                            <li onClick={() => {this._handleMenuToggle()}}>Previous Orders</li>
+                            <i className="fa fa-clock-o fa-2x"></i>
                         </Link>
                         <Link to="favorite-orders" className="fav-orders-link">
-                            <li onClick={() => {this._handleMenuToggle()}}>Favorite Orders</li>
+                            <i className="fa fa-heart fa-2x"></i>
                         </Link>
-                        <Link to="/" className='router-link' onClick={this._handleUsernameRemove}>
-                            <li className="sign-out" onClick={() => {this._handleMenuToggle()}}>Sign Out</li>
-                        </Link>
-                    </ul>
-                </nav>
-                <nav className="side-nav">
-                    <Link to="/" onlyActiveOnIndex={true} className='router-link'>
-                        <div className="side-nav-logo">
-                            <img src="/img/gomocha-logo-sml.png" />
-                        </div>
-                    </Link>
-                    <Link to="/" onlyActiveOnIndex={true} className='router-link'>
-                        <i className="fa fa-home fa-2x" aria-hidden="true"></i>
-                    </Link>
-                    <Link to="/previous-orders" className="prev-orders-link">
-                        <i className="fa fa-clock-o fa-2x"></i>
-                    </Link>
-                    <Link to="favorite-orders" className="fav-orders-link">
-                        <i className="fa fa-heart fa-2x"></i>
-                    </Link>
-                    <div className="side-nav-divider"></div>
-                    <Link to="/" className='router-link' onClick={this._handleUsernameRemove}><i className="fa fa-sign-out fa-2x" aria-hidden="true"></i></Link>
-                </nav>
+                        <div className="side-nav-divider"></div>
+                        <Link to="/" className='router-link' onClick={this._handleUsernameRemove}><i className="fa fa-sign-out fa-2x" aria-hidden="true"></i></Link>
+                    </nav>
 
-                {React.cloneElement(this.props.children,
-                      {
-                         data: dummyData,
-                         username: this.state.username,
-                         userLocation: this.state.userLocation,
-                         selectedShopLocation: this.state.selectedShopLocation,
-                         shops: this.state.shops,
-                         selectedShop: this.state.selectedShop,
-                         items: this.state.items,
-                         handleSelectedShop: this._handleSelectedShop,
-                         distance: this.state.distance,
-                         duration: this.state.duration,
-                         handleSpecialInstructions: this._handleSpecialInstructions,
-                         specialInstructions: this.state.specialInstructions,
-                         notification: this.state.notification,
-                         toggleAddNotification: this._toggleAddNotification,
-                         toggleDeleteNotification: this._toggleDeleteNotification,
-                         toggleErrorNotification: this._toggleErrorNotification,
-                         handleAddItemToOrder: this._handleAddItemToOrder,
-                         handleDeleteItemFromOrder: this._handleDeleteItemFromOrder,
-                         handleMethodOfTrans: this._handleMethodOfTrans,
-                         methodOfTrans: this.state.methodOfTrans,
-                         handlePickupTime: this._handlePickupTime,
-                         pickupTime: this.state.pickupTime,
-                         handleFavorite: this._handleFavorite,
-                         favorite: this.state.favorite,
-                         handleCCName: this._handleCCName,
-                         handleCCNumber: this._handleCCNumber,
-                         handleCCExpMonth: this._handleCCExpMonth,
-                         expMonth: this.state.paymentInfo.expMonth,
-                         handleCCExpYear: this._handleCCExpYear,
-                         expYear: this.state.paymentInfo.expYear,
-                         handleCCCVV: this._handleCCCVV,
-                         handlePostOrder: this._handlePostOrder,
-                         handlePreviousOrders: this._handlePreviousOrders,
-                         handleFavoriteOrders: this._handleFavoriteOrders,
-                         previousOrders: this.state.previousOrders,
-                         favoriteOrders: this.state.favoriteOrders,
-                         handleMenuToggle:this._handleMenuToggle,
-                         menuShow:this.state.menuShow
-                     })
-                    }
+                    {React.cloneElement(this.props.children,
+                          {
+                             data: dummyData,
+                             username: this.state.username,
+                             userLocation: this.state.userLocation,
+                             selectedShopLocation: this.state.selectedShopLocation,
+                             shops: this.state.shops,
+                             selectedShop: this.state.selectedShop,
+                             items: this.state.items,
+                             handleSelectedShop: this._handleSelectedShop,
+                             distance: this.state.distance,
+                             duration: this.state.duration,
+                             handleSpecialInstructions: this._handleSpecialInstructions,
+                             specialInstructions: this.state.specialInstructions,
+                             notification: this.state.notification,
+                             toggleAddNotification: this._toggleAddNotification,
+                             toggleDeleteNotification: this._toggleDeleteNotification,
+                             toggleErrorNotification: this._toggleErrorNotification,
+                             handleAddItemToOrder: this._handleAddItemToOrder,
+                             handleDeleteItemFromOrder: this._handleDeleteItemFromOrder,
+                             handleMethodOfTrans: this._handleMethodOfTrans,
+                             methodOfTrans: this.state.methodOfTrans,
+                             handlePickupTime: this._handlePickupTime,
+                             pickupTime: this.state.pickupTime,
+                             handleFavorite: this._handleFavorite,
+                             favorite: this.state.favorite,
+                             handleCCName: this._handleCCName,
+                             handleCCNumber: this._handleCCNumber,
+                             handleCCExpMonth: this._handleCCExpMonth,
+                             expMonth: this.state.paymentInfo.expMonth,
+                             handleCCExpYear: this._handleCCExpYear,
+                             expYear: this.state.paymentInfo.expYear,
+                             handleCCCVV: this._handleCCCVV,
+                             handlePostOrder: this._handlePostOrder,
+                             handlePreviousOrders: this._handlePreviousOrders,
+                             handleFavoriteOrders: this._handleFavoriteOrders,
+                             previousOrders: this.state.previousOrders,
+                             favoriteOrders: this.state.favoriteOrders,
+                             handleMenuToggle:this._handleMenuToggle,
+                             menuShow:this.state.menuShow
+                         })
+                        }
+                    </div>
+                }
             </div>
         )
     }

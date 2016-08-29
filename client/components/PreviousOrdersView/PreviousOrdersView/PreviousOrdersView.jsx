@@ -11,6 +11,7 @@ var PreviousOrdersView = React.createClass({
     },
 
     componentWillMount: function() {
+        console.log('previous orders mount');
         this.props.handlePreviousOrders();
     },
 
@@ -23,7 +24,7 @@ var PreviousOrdersView = React.createClass({
         })
 
         return (
-            <div>
+            <div className="previous-orders-container">
                 <div className="title-cover">
                     <h1>Previous Orders</h1>
                 </div>

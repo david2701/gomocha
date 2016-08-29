@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../../DashboardView/Footer/Footer'
 import sass from './username-view.scss'
 import sass2 from '../../App/app.scss'
 import { Link } from 'react-router'
@@ -45,6 +46,7 @@ var UsernameView = React.createClass({
                         <h2>Ready when you arrive!</h2>
                     </div>
                 </div>
+                <Footer />
             </div>
         )
     }

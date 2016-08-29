@@ -66,9 +66,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// import dummyData from '../dummy-data.json'
-
-
 	_reactDom2.default.render(_react2.default.createElement(_reactRouter.Router, {
 	    routes: _routes2.default,
 	    history: _reactRouter.browserHistory,
@@ -77,19 +74,21 @@
 	    } }), document.getElementById('root'));
 
 	// STYLING BUGG FIXES AND FEATURES
-	// add date to each order
+	// add name to DashboardView greeting
+	// payment info section can be fancier
 	// orderTotalRow styling OrderSummaryView
-	// next button on AdditionalInfo
 	// width of progress bar on ConfirmationView
 	// Section marks for progress bar
 	// redo loading icon
-	// payment info section can be fancier
 	// delete item notification doesn't occur when deleting from order summary
-	// add footer to all Views. Then figure out if using UsernameView or cookies to store Prev and Fav orders
 	// CustomOrderView menu and order total overlap for a small width interval
 	// fix footer from flying during SelectShopView loading
+	// style selects
+	// add smooth transitions between views
+	// add previous and favorite orders to dashboard view. Or show the last order. Or a sneak peak of each with a see all link.
 
 	// BASIC JS BUGGS FIXES AND FEATURES
+	// Figure out if using UsernameView or cookies to store Prev and Fav orders. Add date to each order regardless
 	// have a conditional that checks if userLocation is taken, and promps user if not. ex: Justin's phone stuck in loop because didn't have userLocation
 	// add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for additional info page condition
 	// make calls for time it will take to walk/bike/drive at same time you call getDetails
@@ -25434,8 +25433,7 @@
 	    // --------------SERVER API REQUESTS--------------
 
 	    _handlePostOrder: function _handlePostOrder() {
-	        _superagent2.default.post('/api/orders').set('Content-Type', 'application/json') // not required
-	        .send({
+	        _superagent2.default.post('/api/orders').set('Content-Type', 'application/json').send({
 	            username: this.state.username,
 	            items: this.state.items,
 	            specialInstructions: this.state.specialInstructions,
@@ -25451,6 +25449,7 @@
 	    _handlePreviousOrders: function _handlePreviousOrders() {
 	        var _this2 = this;
 
+	        console.log('handling previous orders');
 	        _superagent2.default.get('/api/users/' + String(this.state.username) + '/orders/previous').end(function (err, res) {
 	            _this2.setState({
 	                previousOrders: res.body
@@ -25608,146 +25607,150 @@
 	        return _react2.default.createElement(
 	            'div',
 	            null,
-	            _react2.default.createElement(
-	                'nav',
-	                { className: 'top-nav' },
+	            !this.state.username ? _react2.default.createElement(_UsernameView2.default, { handleUsername: this._handleUsername }) : _react2.default.createElement(
+	                'div',
+	                null,
 	                _react2.default.createElement(
-	                    'div',
-	                    {
-	                        className: 'menu-bars',
-	                        onClick: function onClick() {
-	                            _this7._handleMenuToggle();
-	                        } },
-	                    _react2.default.createElement('i', { className: this.state.menuShow ? 'fa fa-times fa-2x' : 'fa fa-bars fa-2x', 'aria-hidden': 'true' })
+	                    'nav',
+	                    { className: 'top-nav' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        {
+	                            className: 'menu-bars',
+	                            onClick: function onClick() {
+	                                _this7._handleMenuToggle();
+	                            } },
+	                        _react2.default.createElement('i', { className: this.state.menuShow ? 'fa fa-times fa-2x' : 'fa fa-bars fa-2x', 'aria-hidden': 'true' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'top-nav-logo' },
+	                        _react2.default.createElement('img', { src: '/img/gomocha-logo-sml.png' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'ul',
+	                        { className: this.state.menuShow ? 'menu-show' : 'menu-hide' },
+	                        _react2.default.createElement(
+	                            _reactRouter.Link,
+	                            { to: '/', onlyActiveOnIndex: true, className: 'router-link' },
+	                            _react2.default.createElement(
+	                                'li',
+	                                { onClick: function onClick() {
+	                                        _this7._handleMenuToggle();
+	                                    } },
+	                                'Dashboard'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactRouter.Link,
+	                            { to: '/previous-orders', className: 'prev-orders-link' },
+	                            _react2.default.createElement(
+	                                'li',
+	                                { onClick: function onClick() {
+	                                        _this7._handleMenuToggle();
+	                                    } },
+	                                'Previous Orders'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactRouter.Link,
+	                            { to: 'favorite-orders', className: 'fav-orders-link' },
+	                            _react2.default.createElement(
+	                                'li',
+	                                { onClick: function onClick() {
+	                                        _this7._handleMenuToggle();
+	                                    } },
+	                                'Favorite Orders'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactRouter.Link,
+	                            { to: '/', className: 'router-link', onClick: this._handleUsernameRemove },
+	                            _react2.default.createElement(
+	                                'li',
+	                                { className: 'sign-out', onClick: function onClick() {
+	                                        _this7._handleMenuToggle();
+	                                    } },
+	                                'Sign Out'
+	                            )
+	                        )
+	                    )
 	                ),
 	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'top-nav-logo' },
-	                    _react2.default.createElement('img', { src: '/img/gomocha-logo-sml.png' })
-	                ),
-	                _react2.default.createElement(
-	                    'ul',
-	                    { className: this.state.menuShow ? 'menu-show' : 'menu-hide' },
+	                    'nav',
+	                    { className: 'side-nav' },
 	                    _react2.default.createElement(
 	                        _reactRouter.Link,
 	                        { to: '/', onlyActiveOnIndex: true, className: 'router-link' },
 	                        _react2.default.createElement(
-	                            'li',
-	                            { onClick: function onClick() {
-	                                    _this7._handleMenuToggle();
-	                                } },
-	                            'Dashboard'
+	                            'div',
+	                            { className: 'side-nav-logo' },
+	                            _react2.default.createElement('img', { src: '/img/gomocha-logo-sml.png' })
 	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: '/', onlyActiveOnIndex: true, className: 'router-link' },
+	                        _react2.default.createElement('i', { className: 'fa fa-home fa-2x', 'aria-hidden': 'true' })
 	                    ),
 	                    _react2.default.createElement(
 	                        _reactRouter.Link,
 	                        { to: '/previous-orders', className: 'prev-orders-link' },
-	                        _react2.default.createElement(
-	                            'li',
-	                            { onClick: function onClick() {
-	                                    _this7._handleMenuToggle();
-	                                } },
-	                            'Previous Orders'
-	                        )
+	                        _react2.default.createElement('i', { className: 'fa fa-clock-o fa-2x' })
 	                    ),
 	                    _react2.default.createElement(
 	                        _reactRouter.Link,
 	                        { to: 'favorite-orders', className: 'fav-orders-link' },
-	                        _react2.default.createElement(
-	                            'li',
-	                            { onClick: function onClick() {
-	                                    _this7._handleMenuToggle();
-	                                } },
-	                            'Favorite Orders'
-	                        )
+	                        _react2.default.createElement('i', { className: 'fa fa-heart fa-2x' })
 	                    ),
+	                    _react2.default.createElement('div', { className: 'side-nav-divider' }),
 	                    _react2.default.createElement(
 	                        _reactRouter.Link,
 	                        { to: '/', className: 'router-link', onClick: this._handleUsernameRemove },
-	                        _react2.default.createElement(
-	                            'li',
-	                            { className: 'sign-out', onClick: function onClick() {
-	                                    _this7._handleMenuToggle();
-	                                } },
-	                            'Sign Out'
-	                        )
-	                    )
-	                )
-	            ),
-	            _react2.default.createElement(
-	                'nav',
-	                { className: 'side-nav' },
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: '/', onlyActiveOnIndex: true, className: 'router-link' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'side-nav-logo' },
-	                        _react2.default.createElement('img', { src: '/img/gomocha-logo-sml.png' })
+	                        _react2.default.createElement('i', { className: 'fa fa-sign-out fa-2x', 'aria-hidden': 'true' })
 	                    )
 	                ),
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: '/', onlyActiveOnIndex: true, className: 'router-link' },
-	                    _react2.default.createElement('i', { className: 'fa fa-home fa-2x', 'aria-hidden': 'true' })
-	                ),
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: '/previous-orders', className: 'prev-orders-link' },
-	                    _react2.default.createElement('i', { className: 'fa fa-clock-o fa-2x' })
-	                ),
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: 'favorite-orders', className: 'fav-orders-link' },
-	                    _react2.default.createElement('i', { className: 'fa fa-heart fa-2x' })
-	                ),
-	                _react2.default.createElement('div', { className: 'side-nav-divider' }),
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: '/', className: 'router-link', onClick: this._handleUsernameRemove },
-	                    _react2.default.createElement('i', { className: 'fa fa-sign-out fa-2x', 'aria-hidden': 'true' })
-	                )
-	            ),
-	            _react2.default.cloneElement(this.props.children, {
-	                data: _dummyData2.default,
-	                username: this.state.username,
-	                userLocation: this.state.userLocation,
-	                selectedShopLocation: this.state.selectedShopLocation,
-	                shops: this.state.shops,
-	                selectedShop: this.state.selectedShop,
-	                items: this.state.items,
-	                handleSelectedShop: this._handleSelectedShop,
-	                distance: this.state.distance,
-	                duration: this.state.duration,
-	                handleSpecialInstructions: this._handleSpecialInstructions,
-	                specialInstructions: this.state.specialInstructions,
-	                notification: this.state.notification,
-	                toggleAddNotification: this._toggleAddNotification,
-	                toggleDeleteNotification: this._toggleDeleteNotification,
-	                toggleErrorNotification: this._toggleErrorNotification,
-	                handleAddItemToOrder: this._handleAddItemToOrder,
-	                handleDeleteItemFromOrder: this._handleDeleteItemFromOrder,
-	                handleMethodOfTrans: this._handleMethodOfTrans,
-	                methodOfTrans: this.state.methodOfTrans,
-	                handlePickupTime: this._handlePickupTime,
-	                pickupTime: this.state.pickupTime,
-	                handleFavorite: this._handleFavorite,
-	                favorite: this.state.favorite,
-	                handleCCName: this._handleCCName,
-	                handleCCNumber: this._handleCCNumber,
-	                handleCCExpMonth: this._handleCCExpMonth,
-	                expMonth: this.state.paymentInfo.expMonth,
-	                handleCCExpYear: this._handleCCExpYear,
-	                expYear: this.state.paymentInfo.expYear,
-	                handleCCCVV: this._handleCCCVV,
-	                handlePostOrder: this._handlePostOrder,
-	                handlePreviousOrders: this._handlePreviousOrders,
-	                handleFavoriteOrders: this._handleFavoriteOrders,
-	                previousOrders: this.state.previousOrders,
-	                favoriteOrders: this.state.favoriteOrders,
-	                handleMenuToggle: this._handleMenuToggle,
-	                menuShow: this.state.menuShow
-	            })
+	                _react2.default.cloneElement(this.props.children, {
+	                    data: _dummyData2.default,
+	                    username: this.state.username,
+	                    userLocation: this.state.userLocation,
+	                    selectedShopLocation: this.state.selectedShopLocation,
+	                    shops: this.state.shops,
+	                    selectedShop: this.state.selectedShop,
+	                    items: this.state.items,
+	                    handleSelectedShop: this._handleSelectedShop,
+	                    distance: this.state.distance,
+	                    duration: this.state.duration,
+	                    handleSpecialInstructions: this._handleSpecialInstructions,
+	                    specialInstructions: this.state.specialInstructions,
+	                    notification: this.state.notification,
+	                    toggleAddNotification: this._toggleAddNotification,
+	                    toggleDeleteNotification: this._toggleDeleteNotification,
+	                    toggleErrorNotification: this._toggleErrorNotification,
+	                    handleAddItemToOrder: this._handleAddItemToOrder,
+	                    handleDeleteItemFromOrder: this._handleDeleteItemFromOrder,
+	                    handleMethodOfTrans: this._handleMethodOfTrans,
+	                    methodOfTrans: this.state.methodOfTrans,
+	                    handlePickupTime: this._handlePickupTime,
+	                    pickupTime: this.state.pickupTime,
+	                    handleFavorite: this._handleFavorite,
+	                    favorite: this.state.favorite,
+	                    handleCCName: this._handleCCName,
+	                    handleCCNumber: this._handleCCNumber,
+	                    handleCCExpMonth: this._handleCCExpMonth,
+	                    expMonth: this.state.paymentInfo.expMonth,
+	                    handleCCExpYear: this._handleCCExpYear,
+	                    expYear: this.state.paymentInfo.expYear,
+	                    handleCCCVV: this._handleCCCVV,
+	                    handlePostOrder: this._handlePostOrder,
+	                    handlePreviousOrders: this._handlePreviousOrders,
+	                    handleFavoriteOrders: this._handleFavoriteOrders,
+	                    previousOrders: this.state.previousOrders,
+	                    favoriteOrders: this.state.favoriteOrders,
+	                    handleMenuToggle: this._handleMenuToggle,
+	                    menuShow: this.state.menuShow
+	                })
+	            )
 	        );
 	    }
 	});
@@ -26953,7 +26956,7 @@
 
 
 	// module
-	exports.push([module.id, ".top-nav {\n  width: 100%;\n  height: 4em;\n  background: #3E474F;\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 10; }\n  .top-nav .menu-bars .fa-bars, .top-nav .menu-bars .fa-times {\n    color: #ABACB0;\n    margin: 0.5em; }\n    .top-nav .menu-bars .fa-bars:hover, .top-nav .menu-bars .fa-times:hover {\n      cursor: pointer; }\n  .top-nav .top-nav-logo {\n    position: absolute;\n    left: 48.3%;\n    top: 0.6em;\n    margin: 0 auto; }\n    .top-nav .top-nav-logo img {\n      width: 2em; }\n  .top-nav .menu-show {\n    width: 100%;\n    background: #3E474F;\n    padding-left: 0;\n    text-align: center;\n    margin: 0; }\n    .top-nav .menu-show .router-link, .top-nav .menu-show .prev-orders-link, .top-nav .menu-show .fav-orders-link {\n      text-decoration: none; }\n    .top-nav .menu-show li {\n      display: block;\n      color: #ABACB0;\n      padding: 0.5em 0 0.5em 0;\n      font-size: 1.1em; }\n      .top-nav .menu-show li:hover {\n        color: #fff; }\n    .top-nav .menu-show .sign-out {\n      padding-bottom: 1.5em; }\n  .top-nav .menu-hide {\n    display: none; }\n  .top-nav .fa-clock-o, .top-nav .fa-heart, .top-nav .fa-home, .top-nav .fa-sign-out {\n    color: #ABACB0;\n    padding: 0.7em; }\n    .top-nav .fa-clock-o:hover, .top-nav .fa-heart:hover, .top-nav .fa-home:hover, .top-nav .fa-sign-out:hover {\n      color: #bdbec1; }\n  .top-nav .fa-sign-out {\n    position: absolute;\n    bottom: 4em;\n    left: 0; }\n\n.side-nav {\n  display: none;\n  width: 5em;\n  height: 100%;\n  background: #3E474F;\n  position: fixed;\n  top: 0;\n  left: 0;\n  padding-top: 5.5em; }\n  .side-nav .side-nav-logo {\n    position: absolute;\n    left: 1.4em;\n    top: 0.6em; }\n    .side-nav .side-nav-logo img {\n      width: 2em; }\n  .side-nav .side-nav-divider {\n    background: #6a6c71;\n    width: 3em;\n    height: 2px;\n    margin-left: 1em;\n    margin-top: 1em; }\n  .side-nav .fa-clock-o, .side-nav .fa-heart, .side-nav .fa-home, .side-nav .fa-sign-out {\n    color: #ABACB0;\n    padding: 0.7em; }\n    .side-nav .fa-clock-o:hover, .side-nav .fa-heart:hover, .side-nav .fa-home:hover, .side-nav .fa-sign-out:hover {\n      color: #bdbec1; }\n  .side-nav .fa-sign-out {\n    position: absolute;\n    bottom: 4em;\n    left: 0; }\n\n.center-wrap {\n  width: 520px;\n  margin: 0 auto; }\n\n.next-button {\n  margin: 1em 0 0 0;\n  text-align: center;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer;\n    background: #4582db; }\n  .next-button .fa-arrow-right, .next-button .fa-check, .next-button .fa-pencil {\n    padding-left: 0.4em; }\n\n.main-wrap {\n  padding: 1em; }\n\n.title-cover {\n  padding: 2em;\n  min-height: 6em;\n  margin-bottom: 1em; }\n  .title-cover h1 {\n    color: #262933; }\n\n@media only screen and (min-width: 960px) {\n  .top-nav {\n    display: none; }\n  .side-nav {\n    display: block; } }\n", ""]);
+	exports.push([module.id, ".top-nav {\n  width: 100%;\n  height: 4em;\n  background: #3E474F;\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 10; }\n  .top-nav .menu-bars .fa-bars, .top-nav .menu-bars .fa-times {\n    color: #ABACB0;\n    margin: 0.5em; }\n    .top-nav .menu-bars .fa-bars:hover, .top-nav .menu-bars .fa-times:hover {\n      cursor: pointer; }\n  .top-nav .top-nav-logo {\n    position: absolute;\n    left: 48.3%;\n    top: 0.6em;\n    margin: 0 auto; }\n    .top-nav .top-nav-logo img {\n      width: 2em; }\n  .top-nav .menu-show {\n    width: 100%;\n    background: #3E474F;\n    padding-left: 0;\n    text-align: center;\n    margin: 0; }\n    .top-nav .menu-show .router-link, .top-nav .menu-show .prev-orders-link, .top-nav .menu-show .fav-orders-link {\n      text-decoration: none; }\n    .top-nav .menu-show li {\n      display: block;\n      color: #ABACB0;\n      padding: 0.5em 0 0.5em 0;\n      font-size: 1.1em; }\n      .top-nav .menu-show li:hover {\n        color: #fff; }\n    .top-nav .menu-show .sign-out {\n      padding-bottom: 1.5em; }\n  .top-nav .menu-hide {\n    display: none; }\n  .top-nav .fa-clock-o, .top-nav .fa-heart, .top-nav .fa-home, .top-nav .fa-sign-out {\n    color: #ABACB0;\n    padding: 0.7em; }\n    .top-nav .fa-clock-o:hover, .top-nav .fa-heart:hover, .top-nav .fa-home:hover, .top-nav .fa-sign-out:hover {\n      color: #bdbec1; }\n  .top-nav .fa-sign-out {\n    position: absolute;\n    bottom: 4em;\n    left: 0; }\n\n.side-nav {\n  display: none;\n  width: 5em;\n  height: 100%;\n  background: #3E474F;\n  position: fixed;\n  top: 0;\n  left: 0;\n  padding-top: 5.5em; }\n  .side-nav .side-nav-logo {\n    position: absolute;\n    left: 1.4em;\n    top: 0.6em; }\n    .side-nav .side-nav-logo img {\n      width: 2em; }\n  .side-nav .side-nav-divider {\n    background: #6a6c71;\n    width: 3em;\n    height: 2px;\n    margin-left: 1em;\n    margin-top: 1em; }\n  .side-nav .fa-clock-o, .side-nav .fa-heart, .side-nav .fa-home, .side-nav .fa-sign-out {\n    color: #ABACB0;\n    padding: 0.7em; }\n    .side-nav .fa-clock-o:hover, .side-nav .fa-heart:hover, .side-nav .fa-home:hover, .side-nav .fa-sign-out:hover {\n      color: #bdbec1; }\n  .side-nav .fa-sign-out {\n    margin-top: 7em; }\n\n.center-wrap {\n  width: 520px;\n  margin: 0 auto; }\n\n.next-button {\n  margin: 1em 0 0 0;\n  text-align: center;\n  padding: 1.2em 3em;\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: #3879D9;\n  color: #fff; }\n  .next-button:hover {\n    cursor: pointer;\n    background: #4582db; }\n  .next-button .fa-arrow-right, .next-button .fa-check, .next-button .fa-pencil {\n    padding-left: 0.4em; }\n\n.main-wrap {\n  padding: 1em; }\n\n.title-cover {\n  padding: 2em;\n  min-height: 6em;\n  margin-bottom: 1em; }\n  .title-cover h1 {\n    color: #262933; }\n\n@media only screen and (min-width: 960px) {\n  .top-nav {\n    display: none; }\n  .side-nav {\n    display: block; } }\n", ""]);
 
 	// exports
 
@@ -27068,6 +27071,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _Footer = __webpack_require__(429);
+
+	var _Footer2 = _interopRequireDefault(_Footer);
+
 	var _usernameView = __webpack_require__(229);
 
 	var _usernameView2 = _interopRequireDefault(_usernameView);
@@ -27159,7 +27166,8 @@
 	                        'Ready when you arrive!'
 	                    )
 	                )
-	            )
+	            ),
+	            _react2.default.createElement(_Footer2.default, null)
 	        );
 	    }
 	});
@@ -44102,7 +44110,9 @@
 	                _react2.default.createElement(
 	                    'h1',
 	                    null,
-	                    'Hey! Just click start to begin!'
+	                    'Hey ',
+	                    this.props.username,
+	                    '! Just click start to begin!'
 	                )
 	            ),
 	            _react2.default.createElement(
@@ -60769,6 +60779,7 @@
 	    },
 
 	    componentWillMount: function componentWillMount() {
+	        console.log('previous orders mount');
 	        this.props.handlePreviousOrders();
 	    },
 
@@ -60782,7 +60793,7 @@
 
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'previous-orders-container' },
 	            _react2.default.createElement(
 	                'div',
 	                { className: 'title-cover' },
@@ -60838,7 +60849,7 @@
 
 
 	// module
-	exports.push([module.id, ".previous-orders-wrap {\n  width: 28em;\n  margin: 0 auto;\n  border-radius: 3px; }\n\n@media only screen and (min-width: 600px) {\n  .previous-orders-wrap {\n    width: 28em;\n    margin: 0em auto 2.5em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .previous-orders-wrap {\n    width: 90%;\n    margin: 0em auto 2.5em auto; } }\n", ""]);
+	exports.push([module.id, ".previous-orders-container {\n  width: 90%;\n  margin: 4em auto 0em auto;\n  border-radius: 3px; }\n\n@media only screen and (min-width: 600px) {\n  .previous-orders-wrap {\n    width: 28em;\n    margin: 4em auto 2.5em auto; } }\n\n@media only screen and (min-width: 960px) {\n  .previous-orders-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
 
 	// exports
 
@@ -61072,9 +61083,9 @@
 
 	var _reactRouter = __webpack_require__(164);
 
-	var _previousOrdersView = __webpack_require__(420);
+	var _favoriteOrdersView = __webpack_require__(432);
 
-	var _previousOrdersView2 = _interopRequireDefault(_previousOrdersView);
+	var _favoriteOrdersView2 = _interopRequireDefault(_favoriteOrdersView);
 
 	var _app = __webpack_require__(223);
 
@@ -61109,7 +61120,7 @@
 
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'favorite-orders-container' },
 	            _react2.default.createElement(
 	                'div',
 	                { className: 'title-cover' },
@@ -61233,6 +61244,46 @@
 
 	// module
 	exports.push([module.id, ".footer-container {\n  background: #d1d6d9;\n  width: 100%;\n  padding-bottom: 0.5em;\n  text-align: center;\n  clear: both; }\n  .footer-container .footer-col-1 {\n    padding-left: 0.5em; }\n    .footer-container .footer-col-1 .fa-facebook-square, .footer-container .footer-col-1 .fa-twitter-square, .footer-container .footer-col-1 .fa-youtube-square, .footer-container .footer-col-1 .fa-google-plus-square, .footer-container .footer-col-1 .fa-instagram, .footer-container .footer-col-1 .fa-linkedin-square {\n      color: #6b7a88;\n      margin: 0.5em 0em 0em 0.25em; }\n      .footer-container .footer-col-1 .fa-facebook-square:hover, .footer-container .footer-col-1 .fa-twitter-square:hover, .footer-container .footer-col-1 .fa-youtube-square:hover, .footer-container .footer-col-1 .fa-google-plus-square:hover, .footer-container .footer-col-1 .fa-instagram:hover, .footer-container .footer-col-1 .fa-linkedin-square:hover {\n        color: #8694a0;\n        cursor: pointer; }\n  .footer-container p {\n    color: #6b7a88;\n    padding-left: 0.5em;\n    font-weight: 400; }\n  .footer-container .footer-text {\n    margin-bottom: 0.25em;\n    margin-top: 0.25em; }\n    .footer-container .footer-text:hover {\n      text-decoration: underline;\n      color: #8694a0;\n      cursor: pointer; }\n  .footer-container .footer-text-1 {\n    margin-top: 1em; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 432 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(433);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./favorite-orders-view.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./favorite-orders-view.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 433 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".favorite-orders-container {\n  width: 90%;\n  margin: 4em auto 0em auto;\n  border-radius: 3px; }\n\n@media only screen and (min-width: 600px) {\n  .favorite-orders-wrap {\n    width: 28em;\n    margin: 4em auto 2.5em auto; } }\n\n@media only screen and (min-width: 960px) {\n  .favorite-orders-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
 
 	// exports
 

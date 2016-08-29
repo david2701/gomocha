@@ -1,7 +1,6 @@
 import sass from './style.scss'
 import React from 'react'
 import ReactDOM from 'react-dom'
-// import dummyData from '../dummy-data.json'
 import Routes from './routes'
 import { Router, browserHistory } from 'react-router'
 
@@ -16,19 +15,21 @@ ReactDOM.render(
 
 
 // STYLING BUGG FIXES AND FEATURES
-// add date to each order
+// add name to DashboardView greeting
+// payment info section can be fancier
 // orderTotalRow styling OrderSummaryView
-// next button on AdditionalInfo
 // width of progress bar on ConfirmationView
 // Section marks for progress bar
 // redo loading icon
-// payment info section can be fancier
 // delete item notification doesn't occur when deleting from order summary
-// add footer to all Views. Then figure out if using UsernameView or cookies to store Prev and Fav orders
 // CustomOrderView menu and order total overlap for a small width interval
 // fix footer from flying during SelectShopView loading
+// style selects
+// add smooth transitions between views
+// add previous and favorite orders to dashboard view. Or show the last order. Or a sneak peak of each with a see all link.
 
 // BASIC JS BUGGS FIXES AND FEATURES
+// Figure out if using UsernameView or cookies to store Prev and Fav orders. Add date to each order regardless
 // have a conditional that checks if userLocation is taken, and promps user if not. ex: Justin's phone stuck in loop because didn't have userLocation
 // add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for additional info page condition
 // make calls for time it will take to walk/bike/drive at same time you call getDetails
