@@ -10,6 +10,12 @@
 
 tr.order-total-row {
 
+    td {
+        p {
+            margin: 0em 0em 0.25em 0em;
+        }
+    }
+
     .delete-item {
         color: #E2514E;
         margin-left: 20px;

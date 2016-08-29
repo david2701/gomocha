@@ -1,4 +1,5 @@
 import React from 'react'
+import sass from './order-total-total.scss'
 
 var OrderTotalTotal = React.createClass({
 
@@ -10,7 +11,7 @@ var OrderTotalTotal = React.createClass({
     render: function() {
         return (
                 <tr>
-                    <td>Total</td>
+                    <td className="order-total-total">Total</td>
                     <td>${this.props.orderTotal}</td>
                 </tr>
         )
