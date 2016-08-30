@@ -27116,14 +27116,18 @@
 	                    'ul',
 	                    null,
 	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        'How it works'
+	                        'a',
+	                        { href: '#how-it-works' },
+	                        _react2.default.createElement(
+	                            'li',
+	                            null,
+	                            'How it works'
+	                        )
 	                    ),
 	                    _react2.default.createElement(
 	                        'li',
 	                        null,
-	                        'Log in'
+	                        'About'
 	                    ),
 	                    _react2.default.createElement(
 	                        'li',
@@ -27169,6 +27173,7 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'how-it-works' },
+	                    _react2.default.createElement('a', { name: 'how-it-works' }),
 	                    'How it works'
 	                ),
 	                _react2.default.createElement(
@@ -27208,10 +27213,22 @@
 	                _react2.default.createElement(
 	                    'button',
 	                    null,
-	                    'Learn more!'
+	                    'Get Started!'
 	                )
 	            ),
-	            _react2.default.createElement('div', { className: 'company-logo-container' }),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'company-logo-container' },
+	                _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    'As Used By'
+	                ),
+	                _react2.default.createElement('img', { src: 'img/starbucks.png' }),
+	                _react2.default.createElement('img', { src: 'img/blue-bottle.png' }),
+	                _react2.default.createElement('img', { src: 'img/philz.png' }),
+	                _react2.default.createElement('img', { src: 'img/peets.png' })
+	            ),
 	            _react2.default.createElement(_Footer2.default, null)
 	        );
 	    }
@@ -27254,7 +27271,7 @@
 
 
 	// module
-	exports.push([module.id, ".username-container {\n  background: #fff; }\n  .username-container nav {\n    width: 100%;\n    height: 4em;\n    background: #fff; }\n    .username-container nav img {\n      width: 9em;\n      padding-top: 0.4em;\n      padding-left: 1em; }\n    .username-container nav ul {\n      float: right; }\n      .username-container nav ul li {\n        display: inline-block;\n        text-decoration: none;\n        font-size: 1.2em;\n        margin-right: 1.5em;\n        color: #3E474F; }\n        .username-container nav ul li:hover {\n          text-decoration: underline;\n          color: #41B486;\n          cursor: pointer; }\n\n.landing-icon-wrap {\n  margin-bottom: 0em; }\n  .landing-icon-wrap .how-it-works {\n    font-size: 2em; }\n  .landing-icon-wrap .landing-icon {\n    display: block;\n    width: 30%;\n    margin: 0 auto; }\n  .landing-icon-wrap img {\n    width: 8em; }\n  .landing-icon-wrap h2 {\n    margin-bottom: 1.5em; }\n\n.landing-icon-button {\n  text-align: center;\n  background: #EDEFF0;\n  height: 10em; }\n  .landing-icon-button button {\n    margin-top: 2em;\n    padding: 0.5em 1.8em;\n    color: #41B486;\n    border: 2px solid #41B486;\n    background: #EDEFF0;\n    font-size: 1.4em;\n    border-radius: 5px; }\n    .landing-icon-button button:hover {\n      color: #fff;\n      background: #41B486; }\n\n.title-cover-landing {\n  background-image: url(\"/img/coffee-cover-amit.png\");\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 7em;\n  min-height: 7em;\n  margin-bottom: 3em; }\n  .title-cover-landing .title-cover-left {\n    display: inline-block;\n    width: 40%; }\n  .title-cover-landing .title-cover-right {\n    display: inline-block;\n    width: 60%; }\n    .title-cover-landing .title-cover-right h1 {\n      color: #fff;\n      font-size: 2.5em; }\n    .title-cover-landing .title-cover-right h2 {\n      color: #fff;\n      text-align: center; }\n    .title-cover-landing .title-cover-right form {\n      text-align: center; }\n    .title-cover-landing .title-cover-right input[type=\"text\"] {\n      width: 12em;\n      text-align: center;\n      font-size: 1.4em;\n      height: 1.5em;\n      border-radius: 3px;\n      border: 2px solid #E4E4E4;\n      margin: 0.5em auto 0 auto;\n      padding: 0.25em; }\n    .title-cover-landing .title-cover-right button {\n      display: block;\n      width: 8em;\n      margin: 1.5em auto 0 auto;\n      background: #3FB083;\n      border: none;\n      border-radius: 7px;\n      padding: 0.5em 0.1em;\n      color: #fff;\n      border: 2px solid #fff;\n      font-size: 1.7em; }\n      .title-cover-landing .title-cover-right button:hover {\n        background: #43BB8B; }\n      .title-cover-landing .title-cover-right button .fa-rocket {\n        margin-right: 5px; }\n    .title-cover-landing .title-cover-right a {\n      text-decoration: none; }\n\n@media only screen and (min-width: 685px) {\n  .landing-icon-wrap {\n    margin-bottom: 2em;\n    text-align: center; }\n    .landing-icon-wrap .landing-icon {\n      display: inline-block;\n      width: 33%;\n      text-align: center; }\n      .landing-icon-wrap .landing-icon img {\n        width: 60%; }\n      .landing-icon-wrap .landing-icon h2 {\n        text-align: center; }\n    .landing-icon-wrap .landing-icon-3 h2 {\n      font-size: 1.4em; } }\n", ""]);
+	exports.push([module.id, ".username-container {\n  background: #fff; }\n  .username-container nav {\n    width: 100%;\n    height: 4em;\n    background: #fff; }\n    .username-container nav img {\n      width: 9em;\n      padding-top: 0.4em;\n      padding-left: 1em; }\n    .username-container nav ul {\n      float: right; }\n      .username-container nav ul li {\n        display: inline-block;\n        text-decoration: none;\n        font-size: 1.2em;\n        margin-right: 1.5em;\n        color: #3E474F; }\n        .username-container nav ul li:hover {\n          text-decoration: underline;\n          color: #41B486;\n          cursor: pointer; }\n\n.title-cover-landing {\n  background-image: url(\"/img/coffee-cover-amit.png\");\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 7em;\n  min-height: 7em;\n  margin-bottom: 3em; }\n  .title-cover-landing .title-cover-left {\n    display: inline-block;\n    width: 40%; }\n  .title-cover-landing .title-cover-right {\n    display: inline-block;\n    width: 60%; }\n    .title-cover-landing .title-cover-right h1 {\n      color: #fff;\n      font-size: 2.5em; }\n    .title-cover-landing .title-cover-right h2 {\n      color: #fff;\n      text-align: center; }\n    .title-cover-landing .title-cover-right form {\n      text-align: center; }\n    .title-cover-landing .title-cover-right input[type=\"text\"] {\n      width: 12em;\n      text-align: center;\n      font-size: 1.4em;\n      height: 1.5em;\n      border-radius: 3px;\n      border: 2px solid #E4E4E4;\n      margin: 0.5em auto 0 auto;\n      padding: 0.25em; }\n    .title-cover-landing .title-cover-right button {\n      display: block;\n      width: 8em;\n      margin: 1.5em auto 0 auto;\n      background: #3FB083;\n      border: none;\n      border-radius: 7px;\n      padding: 0.5em 0.1em;\n      color: #fff;\n      border: 2px solid #fff;\n      font-size: 1.7em; }\n      .title-cover-landing .title-cover-right button:hover {\n        background: #43BB8B; }\n      .title-cover-landing .title-cover-right button .fa-rocket {\n        margin-right: 5px; }\n    .title-cover-landing .title-cover-right a {\n      text-decoration: none; }\n\n.landing-icon-wrap {\n  margin-bottom: 0em; }\n  .landing-icon-wrap .how-it-works {\n    font-size: 2em; }\n  .landing-icon-wrap .landing-icon {\n    display: block;\n    width: 30%;\n    margin: 0 auto; }\n  .landing-icon-wrap img {\n    width: 8em; }\n  .landing-icon-wrap h2 {\n    margin-bottom: 1.5em; }\n\n.landing-icon-button {\n  text-align: center;\n  background: #EDEFF0;\n  height: 10em; }\n  .landing-icon-button button {\n    margin-top: 2em;\n    padding: 0.5em 1.8em;\n    color: #41B486;\n    border: 2px solid #41B486;\n    background: #EDEFF0;\n    font-size: 1.4em;\n    border-radius: 5px; }\n    .landing-icon-button button:hover {\n      color: #fff;\n      background: #41B486; }\n\n.company-logo-container {\n  padding-top: 3em;\n  padding-bottom: 3em;\n  text-align: center; }\n  .company-logo-container img {\n    width: 15em;\n    padding-left: 1em;\n    padding-right: 1em; }\n\n@media only screen and (min-width: 685px) {\n  .landing-icon-wrap {\n    margin-bottom: 2em;\n    text-align: center; }\n    .landing-icon-wrap .landing-icon {\n      display: inline-block;\n      width: 33%;\n      text-align: center; }\n      .landing-icon-wrap .landing-icon img {\n        width: 60%; }\n      .landing-icon-wrap .landing-icon h2 {\n        text-align: center; }\n    .landing-icon-wrap .landing-icon-3 h2 {\n      font-size: 1.4em; } }\n", ""]);
 
 	// exports
 

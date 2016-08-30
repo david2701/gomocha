@@ -31,53 +31,8 @@
     }
 }
 
-.landing-icon-wrap {
-    margin-bottom: 0em;
-
-    .how-it-works {
-        font-size: 2em;
-    }
-
-    .landing-icon {
-        display: block;
-        width: 30%;
-        margin: 0 auto;
-    }
-
-    img {
-        width: 8em;
-    }
-
-    h2 {
-        margin-bottom: 1.5em;
-    }
-}
-
-.landing-icon-button {
-    text-align: center;
-    background: #EDEFF0;
-    height: 10em;
-
-    button {
-        margin-top: 2em;
-        padding: 0.5em 1.8em;
-        color: #41B486;
-        border: 2px solid #41B486;
-        background: #EDEFF0;
-        font-size: 1.4em;
-        border-radius: 5px;
-
-    &:hover {
-        color: #fff;
-        background: #41B486;
-    }
-    }
-}
-
-
 .title-cover-landing {
     background-image: url("/img/coffee-cover-amit.png");
-    // background: #3879D9;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -144,6 +99,63 @@
             text-decoration: none;
         }
     }
+}
+
+
+.landing-icon-wrap {
+    margin-bottom: 0em;
+
+    .how-it-works {
+        font-size: 2em;
+    }
+
+    .landing-icon {
+        display: block;
+        width: 30%;
+        margin: 0 auto;
+    }
+
+    img {
+        width: 8em;
+    }
+
+    h2 {
+        margin-bottom: 1.5em;
+    }
+}
+
+.landing-icon-button {
+    text-align: center;
+    background: #EDEFF0;
+    height: 10em;
+
+    button {
+        margin-top: 2em;
+        padding: 0.5em 1.8em;
+        color: #41B486;
+        border: 2px solid #41B486;
+        background: #EDEFF0;
+        font-size: 1.4em;
+        border-radius: 5px;
+
+    &:hover {
+        color: #fff;
+        background: #41B486;
+    }
+    }
+}
+
+.company-logo-container {
+    padding-top: 3em;
+    padding-bottom: 3em;
+    text-align: center;
+
+    img {
+        width: 15em;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
 }
 
 @media only screen and (min-width: 685px) {

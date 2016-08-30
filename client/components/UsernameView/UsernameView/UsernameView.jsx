@@ -22,8 +22,8 @@ var UsernameView = React.createClass({
                 <nav>
                     <img src="img/gomocha-logo-lg.png" />
                     <ul>
-                        <li>How it works</li>
-                        <li>Log in</li>
+                        <a href="#how-it-works"><li>How it works</li></a>
+                        <li>About</li>
                         <li>Blog</li>
                     </ul>
                 </nav>
@@ -43,7 +43,7 @@ var UsernameView = React.createClass({
                     </div>
                 </div>
                 <div className="landing-icon-wrap">
-                    <div className="how-it-works">How it works</div>
+                    <div className="how-it-works"><a name="how-it-works"></a>How it works</div>
                     <div className="landing-icon landing-icon-1">
                         <img src="/img/landing-icon-1.png" />
                         <h2>Select a shop</h2>
@@ -57,9 +57,13 @@ var UsernameView = React.createClass({
                         <h2>Ready when you arrive!</h2>
                     </div>
                 </div>
-                <div className="landing-icon-button"><button>Learn more!</button></div>
+                <div className="landing-icon-button"><button>Get Started!</button></div>
                 <div className="company-logo-container">
-
+                    <h2>As Used By</h2>
+                    <img src="img/starbucks.png" />
+                    <img src="img/blue-bottle.png" />
+                    <img src="img/philz.png" />
+                    <img src="img/peets.png" />
                 </div>
                 <Footer />
             </div>
