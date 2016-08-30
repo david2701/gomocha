@@ -1,3 +1,7 @@
+.username-container {
+    background: #fff;
+}
+
 .landing-icon-wrap {
 
     .landing-icon {
@@ -12,6 +16,24 @@
 
     h2 {
         text-align: center;
+    }
+
+    .landing-icon-button {
+        text-align: center;
+
+        button {
+        padding: 0.5em 1.8em;
+        color: #41B486;
+        border: 2px solid #41B486;
+        background: #fff;
+        font-size: 1.4em;
+        border-radius: 5px;
+
+        &:hover {
+            color: #fff;
+            background: #41B486;
+        }
+        }
     }
 }
 

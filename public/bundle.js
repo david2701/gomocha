@@ -25433,6 +25433,7 @@
 	    // --------------SERVER API REQUESTS--------------
 
 	    _handlePostOrder: function _handlePostOrder() {
+	        console.log('posting order');
 	        _superagent2.default.post('/api/orders').set('Content-Type', 'application/json').send({
 	            username: this.state.username,
 	            items: this.state.items,
@@ -27106,7 +27107,7 @@
 
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'username-container' },
 	            _react2.default.createElement(
 	                'div',
 	                { className: 'title-cover-landing' },
@@ -27165,6 +27166,15 @@
 	                        null,
 	                        'Ready when you arrive!'
 	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'landing-icon-button' },
+	                    _react2.default.createElement(
+	                        'button',
+	                        null,
+	                        'Learn more!'
+	                    )
 	                )
 	            ),
 	            _react2.default.createElement(_Footer2.default, null)
@@ -27209,7 +27219,7 @@
 
 
 	// module
-	exports.push([module.id, ".landing-icon-wrap .landing-icon {\n  display: inline-block;\n  width: 33%;\n  text-align: center; }\n\n.landing-icon-wrap img {\n  width: 60%; }\n\n.landing-icon-wrap h2 {\n  text-align: center; }\n\n@media only screen and (min-width: 600px) {\n  .username-wrap {\n    width: 28em;\n    margin: 3em auto 1em auto; }\n  .landing-icon-wrap {\n    margin-bottom: 5em; } }\n\n@media only screen and (max-width: 635px) {\n  .landing-icon-wrap .landing-icon {\n    display: block;\n    width: 30%;\n    margin: 0 auto; }\n  .landing-icon-wrap img {\n    width: 8em; }\n  .landing-icon-wrap h2 {\n    margin-bottom: 1.5em; } }\n\n@media only screen and (max-width: 680px) {\n  .landing-icon-3 h2 {\n    font-size: 1.4em; } }\n\n@media only screen and (max-width: 599px) {\n  .username-wrap {\n    width: 90%;\n    margin: 3em auto 1em auto; } }\n\n.title-cover-landing {\n  background-image: url(\"/img/coffee-cover5.jpg\");\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 7em;\n  min-height: 7em;\n  margin-bottom: 3em; }\n  .title-cover-landing h1 {\n    color: #fff; }\n  .title-cover-landing h2 {\n    color: #fff;\n    text-align: center; }\n  .title-cover-landing form {\n    text-align: center; }\n  .title-cover-landing input[type=\"text\"] {\n    width: 12em;\n    text-align: center;\n    font-size: 1.4em;\n    height: 1.5em;\n    border-radius: 3px;\n    border: 2px solid #E4E4E4;\n    margin: 0.5em auto 0 auto;\n    padding: 0.25em; }\n  .title-cover-landing button {\n    display: block;\n    width: 8em;\n    margin: 1.5em auto 0 auto;\n    background: #3FB083;\n    border: none;\n    border-radius: 3px;\n    padding: 0.9em 0.7em 0.9em 0.7em;\n    color: #fff;\n    font-size: 1.2em; }\n    .title-cover-landing button:hover {\n      background: #43BB8B; }\n    .title-cover-landing button .fa-rocket {\n      margin-right: 5px; }\n  .title-cover-landing a {\n    text-decoration: none; }\n", ""]);
+	exports.push([module.id, ".username-container {\n  background: #fff; }\n\n.landing-icon-wrap .landing-icon {\n  display: inline-block;\n  width: 33%;\n  text-align: center; }\n\n.landing-icon-wrap img {\n  width: 60%; }\n\n.landing-icon-wrap h2 {\n  text-align: center; }\n\n.landing-icon-wrap .landing-icon-button {\n  text-align: center; }\n  .landing-icon-wrap .landing-icon-button button {\n    padding: 0.5em 1.8em;\n    color: #41B486;\n    border: 2px solid #41B486;\n    background: #fff;\n    font-size: 1.4em;\n    border-radius: 5px; }\n    .landing-icon-wrap .landing-icon-button button:hover {\n      color: #fff;\n      background: #41B486; }\n\n@media only screen and (min-width: 600px) {\n  .username-wrap {\n    width: 28em;\n    margin: 3em auto 1em auto; }\n  .landing-icon-wrap {\n    margin-bottom: 5em; } }\n\n@media only screen and (max-width: 635px) {\n  .landing-icon-wrap .landing-icon {\n    display: block;\n    width: 30%;\n    margin: 0 auto; }\n  .landing-icon-wrap img {\n    width: 8em; }\n  .landing-icon-wrap h2 {\n    margin-bottom: 1.5em; } }\n\n@media only screen and (max-width: 680px) {\n  .landing-icon-3 h2 {\n    font-size: 1.4em; } }\n\n@media only screen and (max-width: 599px) {\n  .username-wrap {\n    width: 90%;\n    margin: 3em auto 1em auto; } }\n\n.title-cover-landing {\n  background-image: url(\"/img/coffee-cover5.jpg\");\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 7em;\n  min-height: 7em;\n  margin-bottom: 3em; }\n  .title-cover-landing h1 {\n    color: #fff; }\n  .title-cover-landing h2 {\n    color: #fff;\n    text-align: center; }\n  .title-cover-landing form {\n    text-align: center; }\n  .title-cover-landing input[type=\"text\"] {\n    width: 12em;\n    text-align: center;\n    font-size: 1.4em;\n    height: 1.5em;\n    border-radius: 3px;\n    border: 2px solid #E4E4E4;\n    margin: 0.5em auto 0 auto;\n    padding: 0.25em; }\n  .title-cover-landing button {\n    display: block;\n    width: 8em;\n    margin: 1.5em auto 0 auto;\n    background: #3FB083;\n    border: none;\n    border-radius: 3px;\n    padding: 0.9em 0.7em 0.9em 0.7em;\n    color: #fff;\n    font-size: 1.2em; }\n    .title-cover-landing button:hover {\n      background: #43BB8B; }\n    .title-cover-landing button .fa-rocket {\n      margin-right: 5px; }\n  .title-cover-landing a {\n    text-decoration: none; }\n", ""]);
 
 	// exports
 
@@ -60950,7 +60960,7 @@
 
 
 	// module
-	exports.push([module.id, ".prev-orders {\n  border: 1px solid #E4E4E4;\n  margin: 0 auto 1.2em auto;\n  padding: 0.5em 0em 0.5em 0em;\n  border-radius: 3px; }\n  .prev-orders h2 {\n    border-bottom: 2px solid #E4E4E4;\n    padding: 0em 0.5em 0.25em 0.5em;\n    font-size: 1.2em; }\n  .prev-orders p {\n    padding: 0em 0.5em 0.25em 0.5em;\n    margin: 0; }\n", ""]);
+	exports.push([module.id, ".prev-orders {\n  border: 1px solid #E4E4E4;\n  margin: 0 auto 1.2em auto;\n  padding: 0.5em 0em 0.5em 0em;\n  background: #fff;\n  border-radius: 3px; }\n  .prev-orders h2 {\n    border-bottom: 2px solid #E4E4E4;\n    padding: 0em 0.5em 0.25em 0.5em;\n    font-size: 1.2em; }\n  .prev-orders p {\n    padding: 0em 0.5em 0.25em 0.5em;\n    margin: 0; }\n", ""]);
 
 	// exports
 

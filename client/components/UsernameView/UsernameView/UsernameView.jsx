@@ -18,7 +18,7 @@ var UsernameView = React.createClass({
 
     render: function() {
         return (
-            <div>
+            <div className="username-container">
                 <div className="title-cover-landing">
                     <h1>The fastest way to your morning coffee.</h1>
                         <form onSubmit={this._handleUsernameSubmit}>
@@ -45,6 +45,7 @@ var UsernameView = React.createClass({
                         <img src="/img/landing-icon-3.png" />
                         <h2>Ready when you arrive!</h2>
                     </div>
+                    <div className="landing-icon-button"><button>Learn more!</button></div>
                 </div>
                 <Footer />
             </div>

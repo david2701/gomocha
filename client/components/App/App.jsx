@@ -229,6 +229,7 @@ var App = React.createClass({
     // --------------SERVER API REQUESTS--------------
 
     _handlePostOrder: function() {
+        console.log('posting order');
         request.post('/api/orders')
             .set('Content-Type', 'application/json')
             .send({
@@ -243,6 +244,7 @@ var App = React.createClass({
                 console.log(err);
                 console.log(res);
             })
+
     },
 
     _handlePreviousOrders: function() {
