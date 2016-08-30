@@ -37,64 +37,6 @@
     }
 }
 
-.landing-icon-wrap {
-    .landing-icon {
-        display: block;
-        width: 30%;
-        margin: 0 auto;
-    }
-
-    img {
-        width: 8em;
-    }
-
-    h2 {
-        margin-bottom: 1.5em;
-    }
-}
-
-.landing-icon-wrap {
-
-
-}
-
-@media only screen and (min-width: 685px) {
-
-    .landing-icon-wrap {
-        margin-bottom: 5em;
-
-        .landing-icon {
-            display: inline-block;
-            width: 33%;
-            text-align: center;
-
-            img {
-                width: 60%;
-            }
-
-            h2 {
-                text-align: center;
-            }
-        }
-
-        .landing-icon-3 {
-            h2 {
-                font-size: 1.4em;
-            }
-        }
-    }
-}
-
-// @media only screen and (min-width: 762px) {
-//     .landing-icon-wrap {
-//         .landing-icon-3 {
-//             h2 {
-//                 font-size: 1.5em;
-//             }
-//         }
-//     }
-// }
-
 @media only screen and (min-width: 960px) {
     .dashboard-container {
         margin-top: 0em;

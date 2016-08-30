@@ -1,89 +1,82 @@
 .username-container {
     background: #fff;
+
+    nav {
+        width: 100%;
+        height: 4em;
+        background: #fff;
+
+        img {
+            width: 9em;
+            padding-top: 0.4em;
+            padding-left: 1em;
+        }
+
+        ul {
+            float: right;
+            li {
+                display: inline-block;
+                text-decoration: none;
+                font-size: 1.2em;
+                margin-right: 1.5em;
+                color: #3E474F;
+
+                &:hover {
+                    text-decoration: underline;
+                    color: #41B486;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
 }
 
 .landing-icon-wrap {
+    margin-bottom: 0em;
+
+    .how-it-works {
+        font-size: 2em;
+    }
 
     .landing-icon {
-        display: inline-block;
-        width: 33%;
-        text-align: center;
+        display: block;
+        width: 30%;
+        margin: 0 auto;
     }
 
     img {
-        width: 60%;
+        width: 8em;
     }
 
     h2 {
-        text-align: center;
+        margin-bottom: 1.5em;
     }
+}
 
-    .landing-icon-button {
-        text-align: center;
+.landing-icon-button {
+    text-align: center;
+    background: #EDEFF0;
+    height: 10em;
 
-        button {
+    button {
+        margin-top: 2em;
         padding: 0.5em 1.8em;
         color: #41B486;
         border: 2px solid #41B486;
-        background: #fff;
+        background: #EDEFF0;
         font-size: 1.4em;
         border-radius: 5px;
 
-        &:hover {
-            color: #fff;
-            background: #41B486;
-        }
-        }
+    &:hover {
+        color: #fff;
+        background: #41B486;
     }
-}
-
-@media only screen and (min-width: 600px) {
-    .username-wrap {
-        width: 28em;
-        margin: 3em auto 1em auto;
-    }
-
-    .landing-icon-wrap {
-        margin-bottom: 5em;
-    }
-}
-
-@media only screen and (max-width: 635px) {
-    .landing-icon-wrap {
-        .landing-icon {
-            display: block;
-            width: 30%;
-            margin: 0 auto;
-        }
-
-        img {
-            width: 8em;
-        }
-
-        h2 {
-            margin-bottom: 1.5em;
-        }
-    }
-}
-
-@media only screen and (max-width: 680px) {
-    .landing-icon-3 {
-        h2 {
-            font-size: 1.4em;
-        }
-    }
-}
-
-@media only screen and (max-width: 599px) {
-    .username-wrap {
-        width: 90%;
-        margin: 3em auto 1em auto;
     }
 }
 
 
 .title-cover-landing {
-    background-image: url("/img/coffee-cover5.jpg");
+    background-image: url("/img/coffee-cover-amit.png");
     // background: #3879D9;
     background-repeat: no-repeat;
     background-position: center;
@@ -92,51 +85,91 @@
     min-height: 7em;
     margin-bottom: 3em;
 
-    h1 {
-        color: #fff;
+    .title-cover-left {
+        display: inline-block;
+        width: 40%;
     }
 
-    h2 {
-        color: #fff;
-        text-align: center;
-    }
+    .title-cover-right {
+        display: inline-block;
+        width: 60%;
 
-    form {
-        text-align: center;
-    }
-
-    input[type="text"] {
-        width: 12em;
-        text-align: center;
-        font-size: 1.4em;
-        height: 1.5em;
-        border-radius: 3px;
-        border: 2px solid #E4E4E4;
-        margin: 0.5em auto 0 auto;
-        padding: 0.25em;
-    }
-
-    button {
-        display: block;
-        width: 8em;
-        margin: 1.5em auto 0 auto;
-        background: #3FB083;
-        border: none;
-        border-radius: 3px;
-        padding: 0.9em 0.7em 0.9em 0.7em;
-        color: #fff;
-        font-size: 1.2em;
-
-        &:hover {
-            background: #43BB8B;
+        h1 {
+            color: #fff;
+            font-size: 2.5em;
         }
 
-        .fa-rocket {
-            margin-right: 5px;
+        h2 {
+            color: #fff;
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 12em;
+            text-align: center;
+            font-size: 1.4em;
+            height: 1.5em;
+            border-radius: 3px;
+            border: 2px solid #E4E4E4;
+            margin: 0.5em auto 0 auto;
+            padding: 0.25em;
+        }
+
+        button {
+            display: block;
+            width: 8em;
+            margin: 1.5em auto 0 auto;
+            background: #3FB083;
+            border: none;
+            border-radius: 7px;
+            padding: 0.5em 0.1em;
+            color: #fff;
+            border: 2px solid #fff;
+            font-size: 1.7em;
+
+            &:hover {
+                background: #43BB8B;
+            }
+
+            .fa-rocket {
+                margin-right: 5px;
+            }
+        }
+
+        a {
+            text-decoration: none;
         }
     }
+}
 
-    a {
-        text-decoration: none;
+@media only screen and (min-width: 685px) {
+
+    .landing-icon-wrap {
+        margin-bottom: 2em;
+        text-align: center;
+
+        .landing-icon {
+            display: inline-block;
+            width: 33%;
+            text-align: center;
+
+            img {
+                width: 60%;
+            }
+
+            h2 {
+                text-align: center;
+            }
+        }
+
+        .landing-icon-3 {
+            h2 {
+                font-size: 1.4em;
+            }
+        }
     }
 }

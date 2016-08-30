@@ -19,8 +19,18 @@ var UsernameView = React.createClass({
     render: function() {
         return (
             <div className="username-container">
+                <nav>
+                    <img src="img/gomocha-logo-lg.png" />
+                    <ul>
+                        <li>How it works</li>
+                        <li>Log in</li>
+                        <li>Blog</li>
+                    </ul>
+                </nav>
                 <div className="title-cover-landing">
-                    <h1>The fastest way to your morning coffee.</h1>
+                    <div className="title-cover-left"></div>
+                    <div className="title-cover-right">
+                        <h1>The fastest way to your morning coffee.</h1>
                         <form onSubmit={this._handleUsernameSubmit}>
                             <input
                                 type="text"
@@ -29,10 +39,11 @@ var UsernameView = React.createClass({
                                 ref={(c) => this._usernameInput = c}
                                 required />
                             <button>Go!</button>
-
                         </form>
+                    </div>
                 </div>
                 <div className="landing-icon-wrap">
+                    <div className="how-it-works">How it works</div>
                     <div className="landing-icon landing-icon-1">
                         <img src="/img/landing-icon-1.png" />
                         <h2>Select a shop</h2>
@@ -45,7 +56,10 @@ var UsernameView = React.createClass({
                         <img src="/img/landing-icon-3.png" />
                         <h2>Ready when you arrive!</h2>
                     </div>
-                    <div className="landing-icon-button"><button>Learn more!</button></div>
+                </div>
+                <div className="landing-icon-button"><button>Learn more!</button></div>
+                <div className="company-logo-container">
+
                 </div>
                 <Footer />
             </div>
