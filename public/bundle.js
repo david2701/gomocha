@@ -27111,7 +27111,11 @@
 	            _react2.default.createElement(
 	                'nav',
 	                null,
-	                _react2.default.createElement('img', { src: 'img/gomocha-logo-lg.png' }),
+	                _react2.default.createElement(
+	                    'a',
+	                    { href: '/' },
+	                    _react2.default.createElement('img', { src: 'img/gomocha-logo-lg.png' })
+	                ),
 	                _react2.default.createElement(
 	                    'ul',
 	                    null,
@@ -27144,25 +27148,29 @@
 	                    'div',
 	                    { className: 'title-cover-right' },
 	                    _react2.default.createElement(
-	                        'h1',
-	                        null,
-	                        'The fastest way to your morning coffee.'
-	                    ),
-	                    _react2.default.createElement(
-	                        'form',
-	                        { onSubmit: this._handleUsernameSubmit },
-	                        _react2.default.createElement('input', {
-	                            type: 'text',
-	                            placeholder: 'Enter a username to begin',
-	                            name: 'username',
-	                            ref: function ref(c) {
-	                                return _this._usernameInput = c;
-	                            },
-	                            required: true }),
+	                        'div',
+	                        { className: 'title-cover-right-child' },
 	                        _react2.default.createElement(
-	                            'button',
+	                            'h1',
 	                            null,
-	                            'Go!'
+	                            'The fastest way to your morning coffee.'
+	                        ),
+	                        _react2.default.createElement(
+	                            'form',
+	                            { onSubmit: this._handleUsernameSubmit },
+	                            _react2.default.createElement('input', {
+	                                type: 'text',
+	                                placeholder: 'Enter a username to begin',
+	                                name: 'username',
+	                                ref: function ref(c) {
+	                                    return _this._usernameInput = c;
+	                                },
+	                                required: true }),
+	                            _react2.default.createElement(
+	                                'button',
+	                                null,
+	                                'Go!'
+	                            )
 	                        )
 	                    )
 	                )
@@ -61238,6 +61246,7 @@
 	                _react2.default.createElement('i', { className: 'fa fa-google-plus-square fa-2x', 'aria-hidden': 'true' }),
 	                _react2.default.createElement('i', { className: 'fa fa-instagram fa-2x', 'aria-hidden': 'true' }),
 	                _react2.default.createElement('i', { className: 'fa fa-linkedin-square fa-2x', 'aria-hidden': 'true' }),
+	                _react2.default.createElement('img', { src: 'img/gomocha-logo-sml.png' }),
 	                _react2.default.createElement(
 	                    'p',
 	                    { className: 'footer-text footer-text-1' },
@@ -61305,7 +61314,7 @@
 
 
 	// module
-	exports.push([module.id, ".footer-container {\n  background: #d1d6d9;\n  width: 100%;\n  padding-bottom: 0.5em;\n  text-align: center;\n  clear: both; }\n  .footer-container .footer-col-1 {\n    padding-left: 0.5em; }\n    .footer-container .footer-col-1 .fa-facebook-square, .footer-container .footer-col-1 .fa-twitter-square, .footer-container .footer-col-1 .fa-youtube-square, .footer-container .footer-col-1 .fa-google-plus-square, .footer-container .footer-col-1 .fa-instagram, .footer-container .footer-col-1 .fa-linkedin-square {\n      color: #6b7a88;\n      margin: 0.5em 0em 0em 0.25em; }\n      .footer-container .footer-col-1 .fa-facebook-square:hover, .footer-container .footer-col-1 .fa-twitter-square:hover, .footer-container .footer-col-1 .fa-youtube-square:hover, .footer-container .footer-col-1 .fa-google-plus-square:hover, .footer-container .footer-col-1 .fa-instagram:hover, .footer-container .footer-col-1 .fa-linkedin-square:hover {\n        color: #8694a0;\n        cursor: pointer; }\n  .footer-container p {\n    color: #6b7a88;\n    padding-left: 0.5em;\n    font-weight: 400; }\n  .footer-container .footer-text {\n    margin-bottom: 0.25em;\n    margin-top: 0.25em; }\n    .footer-container .footer-text:hover {\n      text-decoration: underline;\n      color: #8694a0;\n      cursor: pointer; }\n  .footer-container .footer-text-1 {\n    margin-top: 1em; }\n", ""]);
+	exports.push([module.id, ".footer-container {\n  background: #d1d6d9;\n  width: 100%;\n  padding-bottom: 0.5em;\n  text-align: center;\n  clear: both; }\n  .footer-container .footer-col-1 {\n    padding-left: 0.5em;\n    text-align: center; }\n    .footer-container .footer-col-1 .fa-facebook-square, .footer-container .footer-col-1 .fa-twitter-square, .footer-container .footer-col-1 .fa-youtube-square, .footer-container .footer-col-1 .fa-google-plus-square, .footer-container .footer-col-1 .fa-instagram, .footer-container .footer-col-1 .fa-linkedin-square {\n      color: #6b7a88;\n      margin: 0.5em 0em 0em 0.25em; }\n      .footer-container .footer-col-1 .fa-facebook-square:hover, .footer-container .footer-col-1 .fa-twitter-square:hover, .footer-container .footer-col-1 .fa-youtube-square:hover, .footer-container .footer-col-1 .fa-google-plus-square:hover, .footer-container .footer-col-1 .fa-instagram:hover, .footer-container .footer-col-1 .fa-linkedin-square:hover {\n        color: #8694a0;\n        cursor: pointer; }\n    .footer-container .footer-col-1 img {\n      width: 2em;\n      display: block;\n      margin: 0 auto;\n      padding-top: 0.3em; }\n  .footer-container p {\n    color: #6b7a88;\n    padding-left: 0.5em;\n    font-weight: 400; }\n  .footer-container .footer-text {\n    margin-bottom: 0.25em;\n    margin-top: 0.25em; }\n    .footer-container .footer-text:hover {\n      text-decoration: underline;\n      color: #8694a0;\n      cursor: pointer; }\n  .footer-container .footer-text-1 {\n    margin-top: 0.5em; }\n", ""]);
 
 	// exports
 

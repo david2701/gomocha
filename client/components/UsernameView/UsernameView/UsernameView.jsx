@@ -20,7 +20,7 @@ var UsernameView = React.createClass({
         return (
             <div className="username-container">
                 <nav>
-                    <img src="img/gomocha-logo-lg.png" />
+                    <a href="/"><img src="img/gomocha-logo-lg.png" /></a>
                     <ul>
                         <a href="#how-it-works"><li>How it works</li></a>
                         <li>About</li>
@@ -30,16 +30,18 @@ var UsernameView = React.createClass({
                 <div className="title-cover-landing">
                     <div className="title-cover-left"></div>
                     <div className="title-cover-right">
-                        <h1>The fastest way to your morning coffee.</h1>
-                        <form onSubmit={this._handleUsernameSubmit}>
-                            <input
-                                type="text"
-                                placeholder="Enter a username to begin"
-                                name="username"
-                                ref={(c) => this._usernameInput = c}
-                                required />
-                            <button>Go!</button>
-                        </form>
+                        <div className="title-cover-right-child">
+                            <h1>The fastest way to your morning coffee.</h1>
+                            <form onSubmit={this._handleUsernameSubmit}>
+                                <input
+                                    type="text"
+                                    placeholder="Enter a username to begin"
+                                    name="username"
+                                    ref={(c) => this._usernameInput = c}
+                                    required />
+                                <button>Go!</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <div className="landing-icon-wrap">

@@ -10,6 +10,7 @@ $font-color: lighten(#3E474F, 20%);
 
     .footer-col-1 {
         padding-left: 0.5em;
+        text-align: center;
 
         .fa-facebook-square, .fa-twitter-square, .fa-youtube-square, .fa-google-plus-square, .fa-instagram, .fa-linkedin-square {
             color: $font-color;
@@ -19,6 +20,13 @@ $font-color: lighten(#3E474F, 20%);
                 color: lighten($font-color, 10%);
                 cursor: pointer;
             }
+        }
+
+        img {
+            width: 2em;
+            display: block;
+            margin: 0 auto;
+            padding-top: 0.3em;
         }
     }
 
@@ -40,7 +48,7 @@ $font-color: lighten(#3E474F, 20%);
     }
 
     .footer-text-1 {
-        margin-top: 1em;
+        margin-top: 0.5em;
     }
 
     .footer-copyright {
