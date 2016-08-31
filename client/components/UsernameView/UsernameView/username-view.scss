@@ -7,8 +7,8 @@
         background: #fff;
 
         img {
-            width: 9em;
-            padding-top: 0.4em;
+            width: 6em;
+            padding-top: 0.75em;
             padding-left: 1em;
         }
 
@@ -17,7 +17,7 @@
             li {
                 display: inline-block;
                 text-decoration: none;
-                font-size: 1.2em;
+                font-size: 0.75em;
                 margin-right: 1.5em;
                 color: #3E474F;
 
@@ -161,6 +161,18 @@
 
 }
 
+@media only screen and (min-width: 414px) {
+    .username-container {
+        nav {
+            ul {
+                li {
+                    font-size: 1em;
+                }
+            }
+        }
+    }
+}
+
 @media only screen and (min-width: 685px) {
 
     .landing-icon-wrap {
@@ -190,6 +202,15 @@
 }
 
 @media only screen and (min-width: 753px) {
+    .username-container {
+        nav {
+            img {
+                width: 9em;
+                padding-top: 0.4em;
+            }
+        }
+    }
+
     .title-cover-landing {
         background-image: url("/img/coffee-cover-amit.png");
         padding: 7em;
