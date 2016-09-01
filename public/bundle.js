@@ -74,7 +74,6 @@
 	    } }), document.getElementById('root'));
 
 	// STYLING BUGG FIXES AND FEATURES
-	// add name to DashboardView greeting
 	// payment info section can be fancier
 	// orderTotalRow styling OrderSummaryView
 	// width of progress bar on ConfirmationView
@@ -88,14 +87,16 @@
 	// add previous and favorite orders to dashboard view. Or show the last order. Or a sneak peak of each with a see all link.
 
 	// BASIC JS BUGGS FIXES AND FEATURES
-	// Figure out if using UsernameView or cookies to store Prev and Fav orders. Add date to each order regardless
+	// Add date to each order regardless
 	// have a conditional that checks if userLocation is taken, and promps user if not. ex: Justin's phone stuck in loop because didn't have userLocation
 	// add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for additional info page condition
 	// make calls for time it will take to walk/bike/drive at same time you call getDetails
-	// share your order on Facebook.
 	// can't access prev or fav orders from SelectShopView
+	// change time output on ConfirmationView if user selects pickup time
+	// fix console errors on previous and favorited orders
 
 	// LONG TERM MAJOR FEATURES
+	// share your order on Facebook.
 	// Authentication using StormPath/Auth0 (passwordless?) - Google and Facebook auth
 	// get previous and favorite orders to work (need auth first)
 	// be able to search for shops in the area
@@ -25433,7 +25434,6 @@
 	    // --------------SERVER API REQUESTS--------------
 
 	    _handlePostOrder: function _handlePostOrder() {
-	        console.log('posting order');
 	        _superagent2.default.post('/api/orders').set('Content-Type', 'application/json').send({
 	            username: this.state.username,
 	            items: this.state.items,
@@ -25596,6 +25596,13 @@
 	        });
 	    },
 
+	    _handleClearItemsFromOrder: function _handleClearItemsFromOrder() {
+	        console.log('clearing items from order!');
+	        this.setState({
+	            items: []
+	        });
+	    },
+
 	    _handleMenuToggle: function _handleMenuToggle() {
 	        this.setState({
 	            menuShow: !this.state.menuShow
@@ -25730,6 +25737,7 @@
 	                    toggleErrorNotification: this._toggleErrorNotification,
 	                    handleAddItemToOrder: this._handleAddItemToOrder,
 	                    handleDeleteItemFromOrder: this._handleDeleteItemFromOrder,
+	                    handleClearItemsFromOrder: this._handleClearItemsFromOrder,
 	                    handleMethodOfTrans: this._handleMethodOfTrans,
 	                    methodOfTrans: this.state.methodOfTrans,
 	                    handlePickupTime: this._handlePickupTime,
@@ -27279,7 +27287,7 @@
 
 
 	// module
-	exports.push([module.id, ".username-container {\n  background: #fff; }\n  .username-container nav {\n    width: 100%;\n    height: 4em;\n    background: #fff; }\n    .username-container nav img {\n      width: 6em;\n      padding-top: 0.75em;\n      padding-left: 1em; }\n    .username-container nav ul {\n      float: right; }\n      .username-container nav ul li {\n        display: inline-block;\n        text-decoration: none;\n        font-size: 0.75em;\n        margin-right: 1.5em;\n        color: #3E474F; }\n        .username-container nav ul li:hover {\n          text-decoration: underline;\n          color: #41B486;\n          cursor: pointer; }\n\n.title-cover-landing {\n  background-color: #41B486;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 2em;\n  min-height: 7em;\n  margin-bottom: 3em; }\n  .title-cover-landing .title-cover-left {\n    display: inline-block;\n    width: 0%; }\n  .title-cover-landing .title-cover-right {\n    display: inline-block;\n    width: 100%; }\n    .title-cover-landing .title-cover-right h1 {\n      color: #fff;\n      font-size: 2.5em; }\n    .title-cover-landing .title-cover-right h2 {\n      color: #fff;\n      text-align: center; }\n    .title-cover-landing .title-cover-right form {\n      text-align: center; }\n    .title-cover-landing .title-cover-right input[type=\"text\"] {\n      width: 12em;\n      text-align: center;\n      font-size: 1.4em;\n      height: 1.5em;\n      border-radius: 3px;\n      border: 2px solid #E4E4E4;\n      margin: 0.5em auto 0 auto;\n      padding: 0.25em; }\n    .title-cover-landing .title-cover-right button {\n      display: block;\n      width: 8em;\n      margin: 1.5em auto 0 auto;\n      background: #3FB083;\n      border: none;\n      border-radius: 7px;\n      padding: 0.5em 0.1em;\n      color: #fff;\n      border: 2px solid #fff;\n      font-size: 1.7em; }\n      .title-cover-landing .title-cover-right button:hover {\n        background: #43BB8B; }\n      .title-cover-landing .title-cover-right button .fa-rocket {\n        margin-right: 5px; }\n    .title-cover-landing .title-cover-right a {\n      text-decoration: none; }\n\n.landing-icon-wrap {\n  margin-bottom: 0em;\n  text-align: center; }\n  .landing-icon-wrap .how-it-works {\n    font-size: 2em;\n    margin-bottom: 1em; }\n  .landing-icon-wrap .landing-icon {\n    display: block;\n    width: 30%;\n    margin: 0 auto; }\n  .landing-icon-wrap img {\n    width: 8em; }\n  .landing-icon-wrap h2 {\n    margin-bottom: 1.5em; }\n\n.landing-icon-button {\n  text-align: center;\n  background: #EDEFF0;\n  height: 10em; }\n  .landing-icon-button button {\n    margin-top: 2em;\n    padding: 0.5em 1.8em;\n    color: #41B486;\n    border: 2px solid #41B486;\n    background: #EDEFF0;\n    font-size: 1.4em;\n    border-radius: 5px; }\n    .landing-icon-button button:hover {\n      color: #fff;\n      background: #41B486; }\n\n.company-logo-container {\n  padding-top: 3em;\n  padding-bottom: 3em;\n  text-align: center; }\n  .company-logo-container img {\n    width: 15em;\n    padding-left: 1em;\n    padding-right: 1em; }\n\n@media only screen and (min-width: 414px) {\n  .username-container nav ul li {\n    font-size: 1em; } }\n\n@media only screen and (min-width: 685px) {\n  .landing-icon-wrap {\n    margin-bottom: 2em;\n    text-align: center; }\n    .landing-icon-wrap .landing-icon {\n      display: inline-block;\n      width: 33%;\n      text-align: center; }\n      .landing-icon-wrap .landing-icon img {\n        width: 60%; }\n      .landing-icon-wrap .landing-icon h2 {\n        text-align: center; }\n    .landing-icon-wrap .landing-icon-3 h2 {\n      font-size: 1.4em; } }\n\n@media only screen and (min-width: 753px) {\n  .username-container nav img {\n    width: 9em;\n    padding-top: 0.4em; }\n  .title-cover-landing {\n    background-image: url(\"/img/coffee-cover-amit.png\");\n    padding: 7em; }\n    .title-cover-landing .title-cover-left {\n      display: inline-block;\n      width: 35%; }\n    .title-cover-landing .title-cover-right {\n      display: inline-block;\n      width: 65%; } }\n", ""]);
+	exports.push([module.id, ".username-container {\n  background: #fff; }\n  .username-container nav {\n    width: 100%;\n    height: 4em;\n    background: #fff; }\n    .username-container nav img {\n      width: 6em;\n      padding-top: 0.75em;\n      padding-left: 1em; }\n    .username-container nav ul {\n      float: right; }\n      .username-container nav ul li {\n        display: inline-block;\n        text-decoration: none;\n        font-size: 0.75em;\n        margin-right: 1.5em;\n        color: #3E474F; }\n        .username-container nav ul li:hover {\n          color: #41B486;\n          cursor: pointer; }\n\n.title-cover-landing {\n  background-color: #41B486;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n  padding: 2em;\n  min-height: 7em;\n  margin-bottom: 3em; }\n  .title-cover-landing .title-cover-left {\n    display: inline-block;\n    width: 0%; }\n  .title-cover-landing .title-cover-right {\n    display: inline-block;\n    width: 100%; }\n    .title-cover-landing .title-cover-right h1 {\n      color: #fff;\n      font-size: 2.5em; }\n    .title-cover-landing .title-cover-right h2 {\n      color: #fff;\n      text-align: center; }\n    .title-cover-landing .title-cover-right form {\n      text-align: center; }\n    .title-cover-landing .title-cover-right input[type=\"text\"] {\n      width: 12em;\n      text-align: center;\n      font-size: 1.4em;\n      height: 1.5em;\n      border-radius: 3px;\n      border: 2px solid #E4E4E4;\n      margin: 0.5em auto 0 auto;\n      padding: 0.25em; }\n    .title-cover-landing .title-cover-right button {\n      display: block;\n      width: 8em;\n      margin: 1.5em auto 0 auto;\n      background: #3FB083;\n      border: none;\n      border-radius: 7px;\n      padding: 0.5em 0.1em;\n      color: #fff;\n      border: 2px solid #fff;\n      font-size: 1.7em; }\n      .title-cover-landing .title-cover-right button:hover {\n        background: #43BB8B; }\n      .title-cover-landing .title-cover-right button .fa-rocket {\n        margin-right: 5px; }\n    .title-cover-landing .title-cover-right a {\n      text-decoration: none; }\n\n.landing-icon-wrap {\n  margin-bottom: 0em;\n  text-align: center; }\n  .landing-icon-wrap .how-it-works {\n    font-size: 2em;\n    margin-bottom: 1em; }\n  .landing-icon-wrap .landing-icon {\n    display: block;\n    width: 30%;\n    margin: 0 auto; }\n  .landing-icon-wrap img {\n    width: 8em; }\n  .landing-icon-wrap h2 {\n    margin-bottom: 1.5em; }\n\n.landing-icon-button {\n  text-align: center;\n  background: #EDEFF0;\n  height: 10em; }\n  .landing-icon-button button {\n    margin-top: 2em;\n    padding: 0.5em 1.8em;\n    color: #41B486;\n    border: 2px solid #41B486;\n    background: #EDEFF0;\n    font-size: 1.4em;\n    border-radius: 5px; }\n    .landing-icon-button button:hover {\n      color: #fff;\n      background: #41B486; }\n\n.company-logo-container {\n  padding-top: 3em;\n  padding-bottom: 3em;\n  text-align: center; }\n  .company-logo-container img {\n    width: 15em;\n    padding-left: 1em;\n    padding-right: 1em; }\n\n@media only screen and (min-width: 414px) {\n  .username-container nav ul li {\n    font-size: 1em; } }\n\n@media only screen and (min-width: 685px) {\n  .landing-icon-wrap {\n    margin-bottom: 2em;\n    text-align: center; }\n    .landing-icon-wrap .landing-icon {\n      display: inline-block;\n      width: 33%;\n      text-align: center; }\n      .landing-icon-wrap .landing-icon img {\n        width: 60%; }\n      .landing-icon-wrap .landing-icon h2 {\n        text-align: center; }\n    .landing-icon-wrap .landing-icon-3 h2 {\n      font-size: 1.4em; } }\n\n@media only screen and (min-width: 753px) {\n  .username-container nav img {\n    width: 9em;\n    padding-top: 0.4em; }\n  .title-cover-landing {\n    background-image: url(\"/img/coffee-cover-amit.png\");\n    padding: 7em; }\n    .title-cover-landing .title-cover-left {\n      display: inline-block;\n      width: 35%; }\n    .title-cover-landing .title-cover-right {\n      display: inline-block;\n      width: 65%; } }\n", ""]);
 
 	// exports
 
@@ -44167,7 +44175,8 @@
 
 
 	    propTypes: {
-	        username: _react2.default.PropTypes.string
+	        username: _react2.default.PropTypes.string,
+	        handleClearItemsFromOrder: _react2.default.PropTypes.func
 	    },
 
 	    render: function render() {
@@ -44193,7 +44202,9 @@
 	                    { to: '/select-shop', className: 'start-button-wrap' },
 	                    _react2.default.createElement(
 	                        'button',
-	                        { className: 'next-button start-button' },
+	                        {
+	                            onClick: this.props.handleClearItemsFromOrder,
+	                            className: 'next-button start-button' },
 	                        _react2.default.createElement('i', { className: 'fa fa-coffee', 'aria-hidden': 'true' }),
 	                        'Start'
 	                    )
@@ -60849,7 +60860,6 @@
 	    },
 
 	    componentWillMount: function componentWillMount() {
-	        console.log('previous orders mount');
 	        this.props.handlePreviousOrders();
 	    },
 
@@ -60949,7 +60959,7 @@
 
 
 	    propTypes: {
-	        previousOrder: _react2.default.PropTypes.node
+	        previousOrder: _react2.default.PropTypes.array
 	    },
 
 	    render: function render() {
@@ -61046,7 +61056,7 @@
 
 
 	    propTypes: {
-	        previousOrderItem: _react2.default.PropTypes.node
+	        previousOrderItem: _react2.default.PropTypes.object
 	    },
 
 	    render: function render() {

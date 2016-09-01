@@ -229,7 +229,6 @@ var App = React.createClass({
     // --------------SERVER API REQUESTS--------------
 
     _handlePostOrder: function() {
-        console.log('posting order');
         request.post('/api/orders')
             .set('Content-Type', 'application/json')
             .send({
@@ -408,6 +407,13 @@ var App = React.createClass({
         })
     },
 
+    _handleClearItemsFromOrder: function() {
+        console.log('clearing items from order!');
+        this.setState({
+            items: []
+        })
+    },
+
     _handleMenuToggle: function() {
         this.setState({
             menuShow: !this.state.menuShow
@@ -484,6 +490,7 @@ var App = React.createClass({
                              toggleErrorNotification: this._toggleErrorNotification,
                              handleAddItemToOrder: this._handleAddItemToOrder,
                              handleDeleteItemFromOrder: this._handleDeleteItemFromOrder,
+                             handleClearItemsFromOrder: this._handleClearItemsFromOrder,
                              handleMethodOfTrans: this._handleMethodOfTrans,
                              methodOfTrans: this.state.methodOfTrans,
                              handlePickupTime: this._handlePickupTime,

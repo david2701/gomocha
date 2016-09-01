@@ -15,7 +15,6 @@ ReactDOM.render(
 
 
 // STYLING BUGG FIXES AND FEATURES
-// add name to DashboardView greeting
 // payment info section can be fancier
 // orderTotalRow styling OrderSummaryView
 // width of progress bar on ConfirmationView
@@ -29,15 +28,17 @@ ReactDOM.render(
 // add previous and favorite orders to dashboard view. Or show the last order. Or a sneak peak of each with a see all link.
 
 // BASIC JS BUGGS FIXES AND FEATURES
-// Figure out if using UsernameView or cookies to store Prev and Fav orders. Add date to each order regardless
+// Add date to each order regardless
 // have a conditional that checks if userLocation is taken, and promps user if not. ex: Justin's phone stuck in loop because didn't have userLocation
 // add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for additional info page condition
 // make calls for time it will take to walk/bike/drive at same time you call getDetails
-// share your order on Facebook.
 // can't access prev or fav orders from SelectShopView
+// change time output on ConfirmationView if user selects pickup time
+// fix console errors on previous and favorited orders
 
 
 // LONG TERM MAJOR FEATURES
+// share your order on Facebook.
 // Authentication using StormPath/Auth0 (passwordless?) - Google and Facebook auth
 // get previous and favorite orders to work (need auth first)
 // be able to search for shops in the area

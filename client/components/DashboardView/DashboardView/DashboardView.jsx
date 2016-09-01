@@ -7,7 +7,8 @@ import sass2 from './dashboard-view.scss'
 var DashboardView = React.createClass({
 
     propTypes: {
-        username: React.PropTypes.string
+        username: React.PropTypes.string,
+        handleClearItemsFromOrder: React.PropTypes.func
     },
 
     render: function() {
@@ -19,7 +20,9 @@ var DashboardView = React.createClass({
 
                 <div className="main-wrap">
                         <Link to="/select-shop" className="start-button-wrap">
-                            <button className="next-button start-button">
+                            <button
+                                onClick={this.props.handleClearItemsFromOrder} 
+                                className="next-button start-button">
                                 <i className="fa fa-coffee" aria-hidden="true"></i>
                                     Start
                             </button></Link>

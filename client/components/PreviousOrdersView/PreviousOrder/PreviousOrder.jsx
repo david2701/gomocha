@@ -5,7 +5,7 @@ import PreviousOrderItem from '../PreviousOrderItem/PreviousOrderItem'
 var PreviousOrder = React.createClass({
 
     propTypes: {
-        previousOrder: React.PropTypes.node
+        previousOrder: React.PropTypes.array
     },
 
     render: function() {

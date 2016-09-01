@@ -4,7 +4,7 @@ import sass from './previous-order-item.scss'
 var PreviousOrderItem = React.createClass({
 
     propTypes: {
-        previousOrderItem: React.PropTypes.node
+        previousOrderItem: React.PropTypes.object
     },
 
     render: function() {
