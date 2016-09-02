@@ -38,3 +38,33 @@
         }
     }
 }
+
+.milk-type, .size, .quantity {
+    display: inline-block;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 0.3em 0.5em;
+    border-radius: 3px;
+    background: url('/img/down-arrow.png') no-repeat #F8F8F8;
+    font-size: 1em;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.milk-type {
+    background-position: 90% 55%;
+    width: 6.25em;
+}
+
+.size {
+    background-position: 85% 55%;
+    width: 3.9em;
+}
+
+.quantity {
+    background-position: 85% 55%;
+    width: 3.9em;
+}

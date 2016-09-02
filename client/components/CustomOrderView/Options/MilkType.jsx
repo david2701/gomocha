@@ -12,7 +12,7 @@ var MilkType = React.createClass({
     render: function() {
 
         return (
-            <select name="milk-type" value={this.props.value} onChange={this.props.handleChange}>
+            <select className="milk-type" name="milk-type" value={this.props.value} onChange={this.props.handleChange}>
                 <option value="default" disabled>Milk Type</option>
                 <option value="almond-milk">Almond Milk</option>
                 <option value="soy-milk">Soy Milk</option>

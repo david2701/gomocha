@@ -8,10 +8,10 @@ var Quantity = React.createClass({
         key: React.PropTypes.string,
         value: React.PropTypes.string
     },
-    
+
     render: function() {
         return (
-            <select value={this.props.value} name="quantity" className="quantity-select" onChange={
+            <select value={this.props.value} name="quantity" className="quantity" onChange={
                     (e) => {
                         this.props.handleChange(e)
                     }}>

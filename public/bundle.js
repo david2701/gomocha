@@ -44858,7 +44858,7 @@
 
 
 	// module
-	exports.push([module.id, ".decaf-option {\n  display: inline-block; }\n\n.decaf-input {\n  margin-left: 0.5em; }\n\n.hot-or-cold-option {\n  display: inline-block; }\n\n.hot-or-cold-option label {\n  margin-left: 1em; }\n\n.hot-input, .cold-input {\n  margin-left: 0.4em; }\n\n.add-to-order-wrap {\n  display: inline-block;\n  float: right;\n  margin-right: 1em;\n  margin-top: -0.1em; }\n  .add-to-order-wrap .add-to-order {\n    color: #fff;\n    background: #3FB083;\n    margin-left: 1em;\n    border-radius: 3px;\n    font-size: 0.7em;\n    padding: 0.3em 0.5em 0.3em 0.5em; }\n    .add-to-order-wrap .add-to-order:hover {\n      cursor: pointer;\n      background: #52c195; }\n", ""]);
+	exports.push([module.id, ".decaf-option {\n  display: inline-block; }\n\n.decaf-input {\n  margin-left: 0.5em; }\n\n.hot-or-cold-option {\n  display: inline-block; }\n\n.hot-or-cold-option label {\n  margin-left: 1em; }\n\n.hot-input, .cold-input {\n  margin-left: 0.4em; }\n\n.add-to-order-wrap {\n  display: inline-block;\n  float: right;\n  margin-right: 1em;\n  margin-top: -0.1em; }\n  .add-to-order-wrap .add-to-order {\n    color: #fff;\n    background: #3FB083;\n    margin-left: 1em;\n    border-radius: 3px;\n    font-size: 0.7em;\n    padding: 0.3em 0.5em 0.3em 0.5em; }\n    .add-to-order-wrap .add-to-order:hover {\n      cursor: pointer;\n      background: #52c195; }\n\n.milk-type, .size, .quantity {\n  display: inline-block;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  padding: 0.3em 0.5em;\n  border-radius: 3px;\n  background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n  font-size: 1em; }\n  .milk-type:hover, .size:hover, .quantity:hover {\n    cursor: pointer; }\n\n.milk-type {\n  background-position: 90% 55%;\n  width: 6.25em; }\n\n.size {\n  background-position: 85% 55%;\n  width: 3.9em; }\n\n.quantity {\n  background-position: 85% 55%;\n  width: 3.9em; }\n", ""]);
 
 	// exports
 
@@ -44893,7 +44893,7 @@
 
 	        return _react2.default.createElement(
 	            'select',
-	            { name: 'milk-type', value: this.props.value, onChange: this.props.handleChange },
+	            { className: 'milk-type', name: 'milk-type', value: this.props.value, onChange: this.props.handleChange },
 	            _react2.default.createElement(
 	                'option',
 	                { value: 'default', disabled: true },
@@ -44959,7 +44959,7 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'select',
-	            { name: 'size', value: this.props.value, onChange: this.props.handleChange },
+	            { className: 'size', name: 'size', value: this.props.value, onChange: this.props.handleChange },
 	            _react2.default.createElement(
 	                'option',
 	                { value: 'default', disabled: true },
@@ -45017,7 +45017,7 @@
 
 	        return _react2.default.createElement(
 	            'select',
-	            { value: this.props.value, name: 'quantity', className: 'quantity-select', onChange: function onChange(e) {
+	            { value: this.props.value, name: 'quantity', className: 'quantity', onChange: function onChange(e) {
 	                    _this.props.handleChange(e);
 	                } },
 	            _react2.default.createElement(
