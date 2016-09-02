@@ -12,7 +12,6 @@ var FavoriteOrdersView = React.createClass({
     },
 
     componentWillMount: function() {
-        console.log('favorite orders mount');
         this.props.handleFavoriteOrders();
     },
 

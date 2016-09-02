@@ -91,14 +91,12 @@
 	// have a conditional that checks if userLocation is taken, and promps user if not. ex: Justin's phone stuck in loop because didn't have userLocation
 	// add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for additional info page condition
 	// make calls for time it will take to walk/bike/drive at same time you call getDetails
-	// can't access prev or fav orders from SelectShopView
 	// change time output on ConfirmationView if user selects pickup time
 	// fix console errors on previous and favorited orders
 
 	// LONG TERM MAJOR FEATURES
 	// share your order on Facebook.
 	// Authentication using StormPath/Auth0 (passwordless?) - Google and Facebook auth
-	// get previous and favorite orders to work (need auth first)
 	// be able to search for shops in the area
 	// be able to start order from previous and favorites pages. replace items in state with items in prev/fav order
 
@@ -46645,7 +46643,7 @@
 
 
 	// module
-	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .select-pick-up-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .select-pick-up-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.select-pick-up-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff; }\n  .select-pick-up-container h2 {\n    margin: 0 0.25em 0.25em 0.25em;\n    padding-bottom: 0.75em;\n    font-size: 1.2em; }\n\n.select-pick-up-now {\n  margin-right: 4em;\n  display: inline-block; }\n\n.select-pick-up-time {\n  display: inline-block; }\n", ""]);
+	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .select-pick-up-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .select-pick-up-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.select-pick-up-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff; }\n  .select-pick-up-container h2 {\n    margin: 0 0.25em 0.25em 0.25em;\n    padding-bottom: 0.75em;\n    font-size: 1.2em; }\n\n.select-pick-up-now {\n  margin-right: 4em;\n  display: inline-block; }\n\n.select-pick-up-time {\n  display: inline-block; }\n  .select-pick-up-time select {\n    display: inline-block;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    appearance: none;\n    padding: 0.3em 0.5em;\n    border-radius: 3px;\n    background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n    background-position: 85% 55%;\n    width: 4.6em;\n    margin-left: 0.5em; }\n    .select-pick-up-time select:hover {\n      cursor: pointer; }\n", ""]);
 
 	// exports
 
@@ -59871,106 +59869,30 @@
 	            ),
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'payment-info-section' },
-	                _react2.default.createElement(
-	                    'label',
-	                    null,
-	                    'Name on Card',
-	                    _react2.default.createElement(
-	                        'span',
-	                        null,
-	                        '  '
-	                    ),
-	                    _react2.default.createElement('input', {
-	                        onChange: this.props.handleCCName,
-	                        type: 'text',
-	                        placeholder: 'Card Holder\'s Name',
-	                        required: true })
-	                )
+	                { className: 'payment-info-section payment-name' },
+	                _react2.default.createElement('input', {
+	                    onChange: this.props.handleCCName,
+	                    type: 'text',
+	                    placeholder: 'Name',
+	                    required: true })
 	            ),
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'payment-info-section' },
-	                _react2.default.createElement(
-	                    'label',
-	                    null,
-	                    'Card Number',
-	                    _react2.default.createElement(
-	                        'span',
-	                        null,
-	                        '  '
-	                    ),
-	                    _react2.default.createElement('input', {
-	                        onChange: this.props.handleCCNumber,
-	                        type: 'number',
-	                        placeholder: 'Debit/Credit Card Number',
-	                        maxLength: '16',
-	                        required: true })
-	                )
+	                { className: 'payment-info-section payment-card-number' },
+	                _react2.default.createElement('input', {
+	                    onChange: this.props.handleCCNumber,
+	                    type: 'text',
+	                    placeholder: 'Card number',
+	                    maxLength: '16',
+	                    required: true })
 	            ),
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'payment-info-section' },
-	                _react2.default.createElement(
-	                    'label',
-	                    null,
-	                    'Expiration Date',
-	                    _react2.default.createElement(
-	                        'span',
-	                        null,
-	                        '  '
-	                    )
-	                ),
+	                { className: 'payment-info-section payment-month-year' },
 	                _react2.default.createElement(
 	                    'select',
 	                    {
-	                        onChange: this.props.handleCCExpYear,
-	                        value: this.props.expYearValue,
-	                        name: 'exp-year' },
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: 'default' },
-	                        'Year'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '2016' },
-	                        '2016'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '2017' },
-	                        '2017'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '2018' },
-	                        '2018'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '2019' },
-	                        '2019'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '2020' },
-	                        '2020'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '2021' },
-	                        '2021'
-	                    ),
-	                    _react2.default.createElement(
-	                        'option',
-	                        { value: '2022' },
-	                        '2022'
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'select',
-	                    {
+	                        className: 'payment-month',
 	                        onChange: this.props.handleCCExpMonth,
 	                        value: this.props.expMonthValue,
 	                        name: 'exp-month'
@@ -60040,27 +59962,65 @@
 	                        { value: '12' },
 	                        'Dec (12)'
 	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'select',
+	                    {
+	                        className: 'payment-year',
+	                        onChange: this.props.handleCCExpYear,
+	                        value: this.props.expYearValue,
+	                        name: 'exp-year' },
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: 'default' },
+	                        'Year'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '2016' },
+	                        '2016'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '2017' },
+	                        '2017'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '2018' },
+	                        '2018'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '2019' },
+	                        '2019'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '2020' },
+	                        '2020'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '2021' },
+	                        '2021'
+	                    ),
+	                    _react2.default.createElement(
+	                        'option',
+	                        { value: '2022' },
+	                        '2022'
+	                    )
 	                )
 	            ),
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'payment-info-section' },
-	                _react2.default.createElement(
-	                    'label',
-	                    null,
-	                    'CVV',
-	                    _react2.default.createElement(
-	                        'span',
-	                        null,
-	                        '  '
-	                    ),
-	                    _react2.default.createElement('input', {
-	                        onChange: this.props.handleCCCVV,
-	                        type: 'number',
-	                        placeholder: 'Security Code',
-	                        maxLength: '3',
-	                        required: true })
-	                )
+	                { className: 'payment-info-section payment-csv' },
+	                _react2.default.createElement('input', {
+	                    onChange: this.props.handleCCCVV,
+	                    type: 'text',
+	                    placeholder: 'CSV',
+	                    maxLength: '3',
+	                    required: true })
 	            )
 	        );
 	    }
@@ -60103,7 +60063,7 @@
 
 
 	// module
-	exports.push([module.id, ".payment-info-section {\n  padding: 0 0 1em 0; }\n  .payment-info-section input {\n    float: right; }\n  .payment-info-section select {\n    float: right; }\n\n@media only screen and (min-width: 600px) {\n  .enter-payment-info-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .enter-payment-info-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.enter-payment-info-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff; }\n", ""]);
+	exports.push([module.id, ".payment-info-section {\n  padding: 0 0 1em 0; }\n\n.payment-name input, .payment-card-number input {\n  width: 18em;\n  padding: 0.5em;\n  display: block;\n  border-radius: 3px;\n  border: 1px solid #A6A6A6; }\n\n.payment-month-year select {\n  display: inline-block;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  padding: 0.5em;\n  border-radius: 3px; }\n  .payment-month-year select:first-child {\n    margin-right: 0.5em; }\n  .payment-month-year select:hover {\n    cursor: pointer; }\n\n.payment-month-year .payment-month {\n  background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n  background-position: 85% 55%;\n  width: 5.3em; }\n\n.payment-month-year .payment-year {\n  background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n  background-position: 85% 55%;\n  width: 4.3em; }\n\n.payment-csv input {\n  width: 2em;\n  padding: 0.5em;\n  border: 1px solid #A6A6A6; }\n\n@media only screen and (min-width: 600px) {\n  .enter-payment-info-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .enter-payment-info-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.enter-payment-info-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff; }\n", ""]);
 
 	// exports
 
@@ -61056,7 +61016,7 @@
 
 
 	    propTypes: {
-	        previousOrderItem: _react2.default.PropTypes.object
+	        previousOrderItem: _react2.default.PropTypes.array
 	    },
 
 	    render: function render() {
@@ -61187,7 +61147,6 @@
 	    },
 
 	    componentWillMount: function componentWillMount() {
-	        console.log('favorite orders mount');
 	        this.props.handleFavoriteOrders();
 	    },
 

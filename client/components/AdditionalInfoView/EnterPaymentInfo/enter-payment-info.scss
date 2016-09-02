@@ -1,12 +1,55 @@
 .payment-info-section {
     padding: 0 0 1em 0;
+}
 
+.payment-name, .payment-card-number {
     input {
-        float: right;
+        width: 18em;
+        padding: 0.5em;
+        display: block;
+        border-radius: 3px;
+        border: 1px solid #A6A6A6;
     }
 
+}
+
+.payment-month-year {
     select {
-        float: right;
+        display: inline-block;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        padding: 0.5em;
+        border-radius: 3px;
+
+        &:first-child {
+            margin-right: 0.5em;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .payment-month {
+        background: url('/img/down-arrow.png') no-repeat #F8F8F8;
+        background-position: 85% 55%;
+        width: 5.3em;
+
+    }
+
+    .payment-year {
+        background: url('/img/down-arrow.png') no-repeat #F8F8F8;
+        background-position: 85% 55%;
+        width: 4.3em;
+    }
+}
+
+.payment-csv {
+    input {
+        width: 2em;
+        padding: 0.5em;
+        border: 1px solid #A6A6A6;
     }
 }
 

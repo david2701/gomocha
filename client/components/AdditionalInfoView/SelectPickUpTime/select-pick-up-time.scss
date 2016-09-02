@@ -32,4 +32,21 @@
 
 .select-pick-up-time  {
     display: inline-block;
+
+    select {
+        display: inline-block;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        padding: 0.3em 0.5em;
+        border-radius: 3px;
+        background: url('/img/down-arrow.png') no-repeat #F8F8F8;
+        background-position: 85% 55%;
+        width: 4.6em;
+        margin-left: 0.5em;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }
