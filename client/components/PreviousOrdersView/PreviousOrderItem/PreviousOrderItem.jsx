@@ -3,10 +3,6 @@ import sass from './previous-order-item.scss'
 
 var PreviousOrderItem = React.createClass({
 
-    propTypes: {
-        previousOrderItem: React.PropTypes.array
-    },
-
     render: function() {
 
         var item = this.props.previousOrderItem;

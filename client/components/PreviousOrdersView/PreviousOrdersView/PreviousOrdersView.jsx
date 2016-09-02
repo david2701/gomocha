@@ -6,10 +6,6 @@ import PreviousOrder from '../PreviousOrder/PreviousOrder'
 
 var PreviousOrdersView = React.createClass({
 
-    propTypes: {
-        previousOrders: React.PropTypes.array
-    },
-
     componentWillMount: function() {
         this.props.handlePreviousOrders();
     },

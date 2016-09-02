@@ -5,6 +5,7 @@ var OrderReadyTime = React.createClass({
 
     propTypes: {
         methodOfTrans: React.PropTypes.string,
+        pickupTime: React.PropTypes.string,
         duration: React.PropTypes.string
     },
 
@@ -23,16 +24,28 @@ var OrderReadyTime = React.createClass({
             break;
         default:
             methodOfTransIcon = <div className="method-of-trans-icon">No user input :(</div>
-
         }
 
-        return (
-            <div className="order-ready-time-container">
+        var pickupTime;
+        if (this.props.pickupTime === 'true') {
+            pickupTime = <div className="order-ready-time-container">
                 <h2>Your order will be ready in...</h2>
             <div className="order-ready-time">{this.props.duration}</div>
                 <p>by</p>
             {methodOfTransIcon}
             <div className="order-ready-time-divider"></div>
+            </div>
+        } else {
+            pickupTime = <div className="order-ready-time-container">
+                <h2>Your order will be ready at {this.props.pickupTime}</h2>
+            <div className="order-ready-time-divider"></div>
+            </div>
+        }
+
+
+        return (
+            <div>
+                {pickupTime}
             </div>
         )
     }

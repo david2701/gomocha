@@ -44,10 +44,10 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    padding: 0.3em 0.5em;
+    padding: 0.2em 0.5em;
     border-radius: 3px;
     background: url('/img/down-arrow.png') no-repeat #F8F8F8;
-    font-size: 1em;
+    font-size: 0.95em;
 
     &:hover {
         cursor: pointer;
@@ -56,12 +56,12 @@
 
 .milk-type {
     background-position: 90% 55%;
-    width: 6.25em;
+    width: 7.5em;
 }
 
 .size {
     background-position: 85% 55%;
-    width: 3.9em;
+    width: 4.5em;
 }
 
 .quantity {

@@ -4,10 +4,6 @@ import PreviousOrderItem from '../PreviousOrderItem/PreviousOrderItem'
 
 var PreviousOrder = React.createClass({
 
-    propTypes: {
-        previousOrder: React.PropTypes.array
-    },
-
     render: function() {
 
         var previousOrderItems = this.props.previousOrder.items.map(function(item, index) {

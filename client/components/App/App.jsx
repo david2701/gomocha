@@ -34,7 +34,7 @@ var App = React.createClass({
                 error: false
             },
             methodOfTrans: '',
-            pickupTime: '',
+            pickupTime: 'true',
             favorite: false,
             paymentInfo: {
                 nameOnCard: '',

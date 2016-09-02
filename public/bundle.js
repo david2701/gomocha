@@ -74,15 +74,11 @@
 	    } }), document.getElementById('root'));
 
 	// STYLING BUGG FIXES AND FEATURES
-	// payment info section can be fancier
 	// orderTotalRow styling OrderSummaryView
 	// width of progress bar on ConfirmationView
 	// Section marks for progress bar
 	// redo loading icon
 	// delete item notification doesn't occur when deleting from order summary
-	// CustomOrderView menu and order total overlap for a small width interval
-	// fix footer from flying during SelectShopView loading
-	// style selects
 	// add smooth transitions between views
 	// add previous and favorite orders to dashboard view. Or show the last order. Or a sneak peak of each with a see all link.
 
@@ -91,8 +87,6 @@
 	// have a conditional that checks if userLocation is taken, and promps user if not. ex: Justin's phone stuck in loop because didn't have userLocation
 	// add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for additional info page condition
 	// make calls for time it will take to walk/bike/drive at same time you call getDetails
-	// change time output on ConfirmationView if user selects pickup time
-	// fix console errors on previous and favorited orders
 
 	// LONG TERM MAJOR FEATURES
 	// share your order on Facebook.
@@ -25252,7 +25246,7 @@
 	                error: false
 	            },
 	            methodOfTrans: '',
-	            pickupTime: '',
+	            pickupTime: 'true',
 	            favorite: false,
 	            paymentInfo: {
 	                nameOnCard: '',
@@ -44858,7 +44852,7 @@
 
 
 	// module
-	exports.push([module.id, ".decaf-option {\n  display: inline-block; }\n\n.decaf-input {\n  margin-left: 0.5em; }\n\n.hot-or-cold-option {\n  display: inline-block; }\n\n.hot-or-cold-option label {\n  margin-left: 1em; }\n\n.hot-input, .cold-input {\n  margin-left: 0.4em; }\n\n.add-to-order-wrap {\n  display: inline-block;\n  float: right;\n  margin-right: 1em;\n  margin-top: -0.1em; }\n  .add-to-order-wrap .add-to-order {\n    color: #fff;\n    background: #3FB083;\n    margin-left: 1em;\n    border-radius: 3px;\n    font-size: 0.7em;\n    padding: 0.3em 0.5em 0.3em 0.5em; }\n    .add-to-order-wrap .add-to-order:hover {\n      cursor: pointer;\n      background: #52c195; }\n\n.milk-type, .size, .quantity {\n  display: inline-block;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  padding: 0.3em 0.5em;\n  border-radius: 3px;\n  background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n  font-size: 1em; }\n  .milk-type:hover, .size:hover, .quantity:hover {\n    cursor: pointer; }\n\n.milk-type {\n  background-position: 90% 55%;\n  width: 6.25em; }\n\n.size {\n  background-position: 85% 55%;\n  width: 3.9em; }\n\n.quantity {\n  background-position: 85% 55%;\n  width: 3.9em; }\n", ""]);
+	exports.push([module.id, ".decaf-option {\n  display: inline-block; }\n\n.decaf-input {\n  margin-left: 0.5em; }\n\n.hot-or-cold-option {\n  display: inline-block; }\n\n.hot-or-cold-option label {\n  margin-left: 1em; }\n\n.hot-input, .cold-input {\n  margin-left: 0.4em; }\n\n.add-to-order-wrap {\n  display: inline-block;\n  float: right;\n  margin-right: 1em;\n  margin-top: -0.1em; }\n  .add-to-order-wrap .add-to-order {\n    color: #fff;\n    background: #3FB083;\n    margin-left: 1em;\n    border-radius: 3px;\n    font-size: 0.7em;\n    padding: 0.3em 0.5em 0.3em 0.5em; }\n    .add-to-order-wrap .add-to-order:hover {\n      cursor: pointer;\n      background: #52c195; }\n\n.milk-type, .size, .quantity {\n  display: inline-block;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  padding: 0.2em 0.5em;\n  border-radius: 3px;\n  background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n  font-size: 0.95em; }\n  .milk-type:hover, .size:hover, .quantity:hover {\n    cursor: pointer; }\n\n.milk-type {\n  background-position: 90% 55%;\n  width: 7.5em; }\n\n.size {\n  background-position: 85% 55%;\n  width: 4.5em; }\n\n.quantity {\n  background-position: 85% 55%;\n  width: 3.9em; }\n", ""]);
 
 	// exports
 
@@ -46643,7 +46637,7 @@
 
 
 	// module
-	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .select-pick-up-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .select-pick-up-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.select-pick-up-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff;\n  box-shadow: #999999 0px 1px; }\n  .select-pick-up-container h2 {\n    margin: 0 0.25em 0.25em 0.25em;\n    padding-bottom: 0.75em;\n    font-size: 1.2em; }\n\n.select-pick-up-now {\n  margin-right: 4em;\n  display: inline-block; }\n\n.select-pick-up-time {\n  display: inline-block; }\n  .select-pick-up-time select {\n    display: inline-block;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    appearance: none;\n    padding: 0.3em 0.5em;\n    border-radius: 3px;\n    background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n    background-position: 85% 55%;\n    width: 4.6em;\n    margin-left: 0.5em; }\n    .select-pick-up-time select:hover {\n      cursor: pointer; }\n", ""]);
+	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .select-pick-up-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .select-pick-up-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.select-pick-up-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff;\n  box-shadow: #999999 0px 1px; }\n  .select-pick-up-container h2 {\n    margin: 0 0.25em 0.25em 0.25em;\n    padding-bottom: 0.75em;\n    font-size: 1.2em; }\n\n.select-pick-up-now {\n  margin-right: 4em;\n  display: inline-block; }\n\n.select-pick-up-time {\n  display: inline-block; }\n  .select-pick-up-time select {\n    display: inline-block;\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    appearance: none;\n    padding: 0.3em 0.5em;\n    border-radius: 3px;\n    background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n    background-position: 85% 55%;\n    width: 6.5em;\n    margin-left: 0.5em; }\n    .select-pick-up-time select:hover {\n      cursor: pointer; }\n", ""]);
 
 	// exports
 
@@ -60063,7 +60057,7 @@
 
 
 	// module
-	exports.push([module.id, ".payment-info-section {\n  padding: 0 0 1em 0; }\n\n.payment-name input, .payment-card-number input {\n  width: 18em;\n  padding: 0.5em;\n  display: block;\n  border-radius: 3px;\n  border: 1px solid #A6A6A6; }\n\n.payment-month-year select {\n  display: inline-block;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  padding: 0.5em;\n  border-radius: 3px; }\n  .payment-month-year select:first-child {\n    margin-right: 0.5em; }\n  .payment-month-year select:hover {\n    cursor: pointer; }\n\n.payment-month-year .payment-month {\n  background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n  background-position: 85% 55%;\n  width: 5.3em; }\n\n.payment-month-year .payment-year {\n  background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n  background-position: 85% 55%;\n  width: 4.3em; }\n\n.payment-csv input {\n  width: 2em;\n  padding: 0.5em;\n  border: 1px solid #A6A6A6; }\n\n@media only screen and (min-width: 600px) {\n  .enter-payment-info-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .enter-payment-info-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.enter-payment-info-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff;\n  box-shadow: #999999 0px 1px; }\n", ""]);
+	exports.push([module.id, ".payment-info-section {\n  padding: 0 0 1em 0; }\n\n.payment-name input, .payment-card-number input {\n  width: 18em;\n  padding: 0.5em;\n  display: block;\n  border-radius: 3px;\n  border: 1px solid #A6A6A6; }\n\n.payment-month-year select {\n  display: inline-block;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  padding: 0.5em;\n  border-radius: 3px; }\n  .payment-month-year select:first-child {\n    margin-right: 0.5em; }\n  .payment-month-year select:hover {\n    cursor: pointer; }\n\n.payment-month-year .payment-month {\n  background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n  background-position: 85% 55%;\n  width: 6em; }\n\n.payment-month-year .payment-year {\n  background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n  background-position: 85% 55%;\n  width: 4.5em; }\n\n.payment-csv input {\n  width: 2em;\n  padding: 0.5em;\n  border: 1px solid #A6A6A6; }\n\n@media only screen and (min-width: 600px) {\n  .enter-payment-info-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .enter-payment-info-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.enter-payment-info-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff;\n  box-shadow: #999999 0px 1px; }\n", ""]);
 
 	// exports
 
@@ -60341,6 +60335,7 @@
 
 	    propTypes: {
 	        methodOfTrans: _react2.default.PropTypes.string,
+	        pickupTime: _react2.default.PropTypes.string,
 	        duration: _react2.default.PropTypes.string,
 	        selectedShop: _react2.default.PropTypes.object,
 	        distance: _react2.default.PropTypes.string,
@@ -60377,6 +60372,7 @@
 	                ),
 	                _react2.default.createElement(_OrderReadyTime2.default, {
 	                    methodOfTrans: this.props.methodOfTrans,
+	                    pickupTime: this.props.pickupTime,
 	                    duration: this.props.duration }),
 	                _react2.default.createElement(_ShopDetails2.default, {
 	                    selectedShop: this.props.selectedShop,
@@ -60425,6 +60421,7 @@
 
 	    propTypes: {
 	        methodOfTrans: _react2.default.PropTypes.string,
+	        pickupTime: _react2.default.PropTypes.string,
 	        duration: _react2.default.PropTypes.string
 	    },
 
@@ -60459,29 +60456,49 @@
 	                    { className: 'method-of-trans-icon' },
 	                    'No user input :('
 	                );
+	        }
 
+	        var pickupTime;
+	        if (this.props.pickupTime === 'true') {
+	            pickupTime = _react2.default.createElement(
+	                'div',
+	                { className: 'order-ready-time-container' },
+	                _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    'Your order will be ready in...'
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'order-ready-time' },
+	                    this.props.duration
+	                ),
+	                _react2.default.createElement(
+	                    'p',
+	                    null,
+	                    'by'
+	                ),
+	                methodOfTransIcon,
+	                _react2.default.createElement('div', { className: 'order-ready-time-divider' })
+	            );
+	        } else {
+	            pickupTime = _react2.default.createElement(
+	                'div',
+	                { className: 'order-ready-time-container' },
+	                _react2.default.createElement(
+	                    'h2',
+	                    null,
+	                    'Your order will be ready at ',
+	                    this.props.pickupTime
+	                ),
+	                _react2.default.createElement('div', { className: 'order-ready-time-divider' })
+	            );
 	        }
 
 	        return _react2.default.createElement(
 	            'div',
-	            { className: 'order-ready-time-container' },
-	            _react2.default.createElement(
-	                'h2',
-	                null,
-	                'Your order will be ready in...'
-	            ),
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'order-ready-time' },
-	                this.props.duration
-	            ),
-	            _react2.default.createElement(
-	                'p',
-	                null,
-	                'by'
-	            ),
-	            methodOfTransIcon,
-	            _react2.default.createElement('div', { className: 'order-ready-time-divider' })
+	            null,
+	            pickupTime
 	        );
 	    }
 	});
@@ -60523,7 +60540,7 @@
 
 
 	// module
-	exports.push([module.id, ".order-ready-time {\n  font-size: 36px;\n  text-align: center; }\n\n.order-ready-time-container {\n  padding-top: 1em;\n  border-bottom: 1px solid #E4E4E4; }\n\n.order-ready-time-container h2 {\n  margin-top: 0;\n  text-align: center;\n  font-size: 1.2em; }\n\n.order-ready-time-container p {\n  text-align: center;\n  font-size: 1em;\n  margin: 0em 0em 0.8em 0em; }\n\n.method-of-trans-icon {\n  text-align: center;\n  margin-bottom: 1.75em; }\n\n.order-ready-time-divider {\n  width: 100%;\n  margin: 0 auto; }\n", ""]);
+	exports.push([module.id, ".order-ready-time {\n  font-size: 36px;\n  text-align: center; }\n\n.order-ready-time-container {\n  padding-top: 1em;\n  border-bottom: 1px solid #E4E4E4; }\n\n.order-ready-time-container h2 {\n  margin-top: 0;\n  text-align: center;\n  font-size: 1.2em; }\n\n.order-ready-time-container p {\n  text-align: center;\n  font-size: 1em;\n  margin: 0em 0em 0.8em 0em; }\n\n.method-of-trans-icon {\n  text-align: center;\n  margin-bottom: 1.75em; }\n\n.order-ready-time-divider {\n  width: 100%;\n  margin: 0 auto;\n  padding-top: 1em; }\n", ""]);
 
 	// exports
 
@@ -60815,10 +60832,6 @@
 	    displayName: 'PreviousOrdersView',
 
 
-	    propTypes: {
-	        previousOrders: _react2.default.PropTypes.array
-	    },
-
 	    componentWillMount: function componentWillMount() {
 	        this.props.handlePreviousOrders();
 	    },
@@ -60918,10 +60931,6 @@
 	    displayName: 'PreviousOrder',
 
 
-	    propTypes: {
-	        previousOrder: _react2.default.PropTypes.array
-	    },
-
 	    render: function render() {
 
 	        var previousOrderItems = this.props.previousOrder.items.map(function (item, index) {
@@ -61014,10 +61023,6 @@
 	var PreviousOrderItem = _react2.default.createClass({
 	    displayName: 'PreviousOrderItem',
 
-
-	    propTypes: {
-	        previousOrderItem: _react2.default.PropTypes.array
-	    },
 
 	    render: function render() {
 

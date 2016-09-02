@@ -11,6 +11,7 @@ var ConfirmationView = React.createClass({
 
     propTypes: {
         methodOfTrans: React.PropTypes.string,
+        pickupTime: React.PropTypes.string,
         duration: React.PropTypes.string,
         selectedShop: React.PropTypes.object,
         distance: React.PropTypes.string,
@@ -38,6 +39,7 @@ var ConfirmationView = React.createClass({
 
                     <OrderReadyTime
                     methodOfTrans={this.props.methodOfTrans}
+                    pickupTime={this.props.pickupTime}
                     duration={this.props.duration} />
                     <ShopDetails
                     selectedShop={this.props.selectedShop}
