@@ -23,10 +23,29 @@ var CustomOrderView = React.createClass({
         handleDeleteItemFromOrder: React.PropTypes.func,
         toggleAddNotification: React.PropTypes.func,
         toggleDeleteNotification: React.PropTypes.func,
-        toggleErrorNotification: React.PropTypes.func
+        toggleErrorNotification: React.PropTypes.func,
+        toggleFormNotification: React.PropTypes.func,
     },
 
     render: function() {
+
+        var nextButton;
+        if (this.props.items.length > 0) {
+            nextButton = <Link to="/additional-info">
+                            <button className="next-button">
+                                Next
+                                <i className="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
+                            </button>
+                        </Link>
+        } else {
+            nextButton = <button
+                            onClick={this.props.toggleFormNotification}
+                            className="next-button">
+                            Next
+                            <i className="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
+                        </button>
+        }
+
         return (
             <div className="custom-order-container">
                 <div className="title-cover">
@@ -35,12 +54,10 @@ var CustomOrderView = React.createClass({
                         <div id="twoOfFive"></div>
                     </div>
                 </div>
-
                 <div className="custom-order-view-wrap">
                     <AddItemNotification
                     notification={this.props.notification} />
                     <div className="menu-form-container">
-
                             <MenuFormContainer
                                 data={this.props.data}
                                 handleSpecialInstructions={this.props.handleSpecialInstructions}
@@ -56,12 +73,7 @@ var CustomOrderView = React.createClass({
                              toggleDeleteNotification={this.props.toggleDeleteNotification} />
                              <SpecialInstructions
                                 handleSpecialInstructions={this.props.handleSpecialInstructions} />
-                            <Link to="/additional-info">
-                                <button className="next-button">
-                                    Next
-                                    <i className="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
-                                </button>
-                            </Link>
+                            {nextButton}
                     </div>
                  </div>
                  <Footer />

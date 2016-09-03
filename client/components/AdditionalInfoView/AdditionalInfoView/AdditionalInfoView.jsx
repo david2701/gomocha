@@ -3,6 +3,7 @@ import SelectMethodOfTrans from '../SelectMethodOfTrans/SelectMethodOfTrans'
 import SelectPickUpTime from '../SelectPickUpTime/SelectPickUpTime'
 import SelectIfFavorite from '../SelectIfFavorite/SelectIfFavorite'
 import EnterPaymentInfo from '../EnterPaymentInfo/EnterPaymentInfo'
+import AdditionalInfoNotification from '../AdditionalInfoNotification/AdditionalInfoNotification'
 import Footer from '../../DashboardView/Footer/Footer'
 import { Link } from 'react-router'
 import sass from '../../App/app.scss'
@@ -22,10 +23,30 @@ var AdditionalInfoView = React.createClass({
         expMonth: React.PropTypes.string,
         handleCCExpYear: React.PropTypes.func,
         expYear: React.PropTypes.string,
-        handleCCCVV: React.PropTypes.func
+        handleCCCVV: React.PropTypes.func,
+        toggleAdditionalInfoNotification: React.PropTypes.func,
+        methodOfTrans: React.PropTypes.string
     },
 
     render: function() {
+
+        var nextButton;
+        if (this.props.methodOfTrans) {
+            nextButton = <Link to="/order-summary">
+                            <button className="next-button">
+                                Next
+                                <i className="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
+                            </button>
+                        </Link>
+        } else {
+            nextButton = <button
+                            onClick={this.props.toggleAdditionalInfoNotification}
+                            className="next-button">
+                            Next
+                            <i className="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
+                        </button>
+        }
+
         return (
             <div className="additional-info-container">
                 <div className="title-cover">
@@ -35,7 +56,8 @@ var AdditionalInfoView = React.createClass({
                         </div>
                     </div>
                 </div>
-
+                <AdditionalInfoNotification
+                    notification={this.props.notification} />
                 <div>
                     <form>
                         <SelectMethodOfTrans
@@ -56,12 +78,7 @@ var AdditionalInfoView = React.createClass({
                             handleCCCVV={this.props.handleCCCVV} />
                     </form>
                     <div className="next-button-container">
-                        <Link to="/order-summary">
-                            <button className="next-button">
-                                Next
-                                <i className="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
-                            </button>
-                        </Link>
+                        {nextButton}
                     </div>
                 </div>
                 <Footer />

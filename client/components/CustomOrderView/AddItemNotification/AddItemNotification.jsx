@@ -7,7 +7,8 @@ var AddItemNotification = React.createClass({
         notification: React.PropTypes.shape({
             add: React.PropTypes.bool,
             delete: React.PropTypes.bool,
-            error: React.PropTypes.bool
+            error: React.PropTypes.bool,
+            form: React.PropTypes.bool,
         })
     },
 
@@ -25,8 +26,10 @@ var AddItemNotification = React.createClass({
         } else if (this.props.notification.error) {
             notificationType = 'item-notification error-item-notification item-notification-show';
             notificationText = 'You need to fill in the item details!'
-        }
-        else {
+        } else if (this.props.notification.form) {
+            notificationType = 'item-notification error-item-notification item-notification-show';
+            notificationText = 'Add an item to your order to continue'
+        } else {
             notificationType = 'item-notification item-notification-hide';
         }
 

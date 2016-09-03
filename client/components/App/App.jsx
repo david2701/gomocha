@@ -31,7 +31,9 @@ var App = React.createClass({
             notification: {
                 add: false,
                 delete: false,
-                error: false
+                error: false,
+                form: false,
+                additionalInfo: false
             },
             methodOfTrans: '',
             pickupTime: 'true',
@@ -387,6 +389,39 @@ var App = React.createClass({
         setTimeout(clearNotification, 3000);
     },
 
+    _toggleFormNotification: function() {
+        this.setState({
+            notification: {
+                form: true
+            }
+        });
+        var clearNotification = () => {
+            this.setState({
+                notification: {
+                    form: false
+                }
+            })
+        };
+        setTimeout(clearNotification, 3000);
+    },
+
+    _toggleAdditionalInfoNotification: function() {
+        this.setState({
+            notification: {
+                additionalInfo: true
+            }
+        });
+        var clearNotification = () => {
+            this.setState({
+                notification: {
+                    additionalInfo: false
+                }
+            })
+        };
+        setTimeout(clearNotification, 3000);
+        console.log('toggle additionalInfo not');
+    },
+
     _handleSpecialInstructions: function(event) {
         this.setState({
             specialInstructions: event.target.value
@@ -488,6 +523,8 @@ var App = React.createClass({
                              toggleAddNotification: this._toggleAddNotification,
                              toggleDeleteNotification: this._toggleDeleteNotification,
                              toggleErrorNotification: this._toggleErrorNotification,
+                             toggleFormNotification: this._toggleFormNotification,
+                             toggleAdditionalInfoNotification: this._toggleAdditionalInfoNotification,
                              handleAddItemToOrder: this._handleAddItemToOrder,
                              handleDeleteItemFromOrder: this._handleDeleteItemFromOrder,
                              handleClearItemsFromOrder: this._handleClearItemsFromOrder,

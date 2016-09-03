@@ -20061,7 +20061,7 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _DashboardView = __webpack_require__(241);
+	var _DashboardView = __webpack_require__(244);
 
 	var _DashboardView2 = _interopRequireDefault(_DashboardView);
 
@@ -25201,19 +25201,19 @@
 
 	var _UsernameView2 = _interopRequireDefault(_UsernameView);
 
-	var _lodash = __webpack_require__(231);
+	var _lodash = __webpack_require__(234);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _api = __webpack_require__(233);
+	var _api = __webpack_require__(236);
 
 	var _api2 = _interopRequireDefault(_api);
 
-	var _superagent = __webpack_require__(234);
+	var _superagent = __webpack_require__(237);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _jsCookie = __webpack_require__(240);
+	var _jsCookie = __webpack_require__(243);
 
 	var _jsCookie2 = _interopRequireDefault(_jsCookie);
 
@@ -25243,7 +25243,9 @@
 	            notification: {
 	                add: false,
 	                delete: false,
-	                error: false
+	                error: false,
+	                form: false,
+	                additionalInfo: false
 	            },
 	            methodOfTrans: '',
 	            pickupTime: 'true',
@@ -25568,6 +25570,43 @@
 	        setTimeout(clearNotification, 3000);
 	    },
 
+	    _toggleFormNotification: function _toggleFormNotification() {
+	        var _this7 = this;
+
+	        this.setState({
+	            notification: {
+	                form: true
+	            }
+	        });
+	        var clearNotification = function clearNotification() {
+	            _this7.setState({
+	                notification: {
+	                    form: false
+	                }
+	            });
+	        };
+	        setTimeout(clearNotification, 3000);
+	    },
+
+	    _toggleAdditionalInfoNotification: function _toggleAdditionalInfoNotification() {
+	        var _this8 = this;
+
+	        this.setState({
+	            notification: {
+	                additionalInfo: true
+	            }
+	        });
+	        var clearNotification = function clearNotification() {
+	            _this8.setState({
+	                notification: {
+	                    additionalInfo: false
+	                }
+	            });
+	        };
+	        setTimeout(clearNotification, 3000);
+	        console.log('toggle additionalInfo not');
+	    },
+
 	    _handleSpecialInstructions: function _handleSpecialInstructions(event) {
 	        this.setState({
 	            specialInstructions: event.target.value
@@ -25602,7 +25641,7 @@
 	    },
 
 	    render: function render() {
-	        var _this7 = this;
+	        var _this9 = this;
 
 	        return _react2.default.createElement(
 	            'div',
@@ -25618,7 +25657,7 @@
 	                        {
 	                            className: 'menu-bars',
 	                            onClick: function onClick() {
-	                                _this7._handleMenuToggle();
+	                                _this9._handleMenuToggle();
 	                            } },
 	                        _react2.default.createElement('i', { className: this.state.menuShow ? 'fa fa-times fa-2x' : 'fa fa-bars fa-2x', 'aria-hidden': 'true' })
 	                    ),
@@ -25636,7 +25675,7 @@
 	                            _react2.default.createElement(
 	                                'li',
 	                                { onClick: function onClick() {
-	                                        _this7._handleMenuToggle();
+	                                        _this9._handleMenuToggle();
 	                                    } },
 	                                'Dashboard'
 	                            )
@@ -25647,7 +25686,7 @@
 	                            _react2.default.createElement(
 	                                'li',
 	                                { onClick: function onClick() {
-	                                        _this7._handleMenuToggle();
+	                                        _this9._handleMenuToggle();
 	                                    } },
 	                                'Previous Orders'
 	                            )
@@ -25658,7 +25697,7 @@
 	                            _react2.default.createElement(
 	                                'li',
 	                                { onClick: function onClick() {
-	                                        _this7._handleMenuToggle();
+	                                        _this9._handleMenuToggle();
 	                                    } },
 	                                'Favorite Orders'
 	                            )
@@ -25669,7 +25708,7 @@
 	                            _react2.default.createElement(
 	                                'li',
 	                                { className: 'sign-out', onClick: function onClick() {
-	                                        _this7._handleMenuToggle();
+	                                        _this9._handleMenuToggle();
 	                                    } },
 	                                'Sign Out'
 	                            )
@@ -25727,6 +25766,8 @@
 	                    toggleAddNotification: this._toggleAddNotification,
 	                    toggleDeleteNotification: this._toggleDeleteNotification,
 	                    toggleErrorNotification: this._toggleErrorNotification,
+	                    toggleFormNotification: this._toggleFormNotification,
+	                    toggleAdditionalInfoNotification: this._toggleAdditionalInfoNotification,
 	                    handleAddItemToOrder: this._handleAddItemToOrder,
 	                    handleDeleteItemFromOrder: this._handleDeleteItemFromOrder,
 	                    handleClearItemsFromOrder: this._handleClearItemsFromOrder,
@@ -26986,7 +27027,8 @@
 	        notification: _react2.default.PropTypes.shape({
 	            add: _react2.default.PropTypes.bool,
 	            delete: _react2.default.PropTypes.bool,
-	            error: _react2.default.PropTypes.bool
+	            error: _react2.default.PropTypes.bool,
+	            form: _react2.default.PropTypes.bool
 	        })
 	    },
 
@@ -27004,6 +27046,9 @@
 	        } else if (this.props.notification.error) {
 	            notificationType = 'item-notification error-item-notification item-notification-show';
 	            notificationText = 'You need to fill in the item details!';
+	        } else if (this.props.notification.form) {
+	            notificationType = 'item-notification error-item-notification item-notification-show';
+	            notificationText = 'Add an item to your order to continue';
 	        } else {
 	            notificationType = 'item-notification item-notification-hide';
 	        }
@@ -27072,11 +27117,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Footer = __webpack_require__(429);
+	var _Footer = __webpack_require__(229);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
-	var _usernameView = __webpack_require__(229);
+	var _usernameView = __webpack_require__(232);
 
 	var _usernameView2 = _interopRequireDefault(_usernameView);
 
@@ -27248,10 +27293,118 @@
 /* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _footer = __webpack_require__(230);
+
+	var _footer2 = _interopRequireDefault(_footer);
+
+	var _reactRouter = __webpack_require__(164);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Footer = _react2.default.createClass({
+	    displayName: 'Footer',
+
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'footer-container' },
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'footer-col-1' },
+	                _react2.default.createElement('i', { className: 'fa fa-facebook-square fa-2x', 'aria-hidden': 'true' }),
+	                _react2.default.createElement('i', { className: 'fa fa-twitter-square fa-2x', 'aria-hidden': 'true' }),
+	                _react2.default.createElement('i', { className: 'fa fa-youtube-square fa-2x', 'aria-hidden': 'true' }),
+	                _react2.default.createElement('i', { className: 'fa fa-google-plus-square fa-2x', 'aria-hidden': 'true' }),
+	                _react2.default.createElement('i', { className: 'fa fa-instagram fa-2x', 'aria-hidden': 'true' }),
+	                _react2.default.createElement('i', { className: 'fa fa-linkedin-square fa-2x', 'aria-hidden': 'true' }),
+	                _react2.default.createElement('img', { src: 'img/gomocha-logo-sml.png' }),
+	                _react2.default.createElement(
+	                    'p',
+	                    { className: 'footer-text footer-text-1' },
+	                    'About GoMocha'
+	                ),
+	                _react2.default.createElement(
+	                    'p',
+	                    { className: 'footer-text' },
+	                    'GoMocha Blog'
+	                ),
+	                _react2.default.createElement(
+	                    'p',
+	                    { className: 'footer-text' },
+	                    'Privacy Policy'
+	                ),
+	                _react2.default.createElement(
+	                    'p',
+	                    { className: 'footer-text' },
+	                    'Terms and Conditions'
+	                ),
+	                _react2.default.createElement(
+	                    'p',
+	                    { className: 'footer-copyright' },
+	                    '©2016 GoMocha, Inc.'
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = Footer;
+
+/***/ },
+/* 230 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(230);
+	var content = __webpack_require__(231);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./footer.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./footer.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".footer-container {\n  background: #d1d6d9;\n  width: 100%;\n  padding-bottom: 0.5em;\n  text-align: center;\n  clear: both; }\n  .footer-container .footer-col-1 {\n    padding-left: 0.5em;\n    text-align: center; }\n    .footer-container .footer-col-1 .fa-facebook-square, .footer-container .footer-col-1 .fa-twitter-square, .footer-container .footer-col-1 .fa-youtube-square, .footer-container .footer-col-1 .fa-google-plus-square, .footer-container .footer-col-1 .fa-instagram, .footer-container .footer-col-1 .fa-linkedin-square {\n      color: #6b7a88;\n      margin: 0.5em 0em 0em 0.25em; }\n      .footer-container .footer-col-1 .fa-facebook-square:hover, .footer-container .footer-col-1 .fa-twitter-square:hover, .footer-container .footer-col-1 .fa-youtube-square:hover, .footer-container .footer-col-1 .fa-google-plus-square:hover, .footer-container .footer-col-1 .fa-instagram:hover, .footer-container .footer-col-1 .fa-linkedin-square:hover {\n        color: #8694a0;\n        cursor: pointer; }\n    .footer-container .footer-col-1 img {\n      width: 2em;\n      display: block;\n      margin: 0 auto;\n      padding-top: 0.3em; }\n  .footer-container p {\n    color: #6b7a88;\n    padding-left: 0.5em;\n    font-weight: 400; }\n  .footer-container .footer-text {\n    margin-bottom: 0.25em;\n    margin-top: 0.25em; }\n    .footer-container .footer-text:hover {\n      text-decoration: underline;\n      color: #8694a0;\n      cursor: pointer; }\n  .footer-container .footer-text-1 {\n    margin-top: 0.5em; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(233);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -27271,7 +27424,7 @@
 	}
 
 /***/ },
-/* 230 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -27285,7 +27438,7 @@
 
 
 /***/ },
-/* 231 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
@@ -42362,10 +42515,10 @@
 	  }
 	}.call(this));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(232)(module), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(235)(module), (function() { return this; }())))
 
 /***/ },
-/* 232 */
+/* 235 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -42381,7 +42534,7 @@
 
 
 /***/ },
-/* 233 */
+/* 236 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -42472,17 +42625,17 @@
 	};
 
 /***/ },
-/* 234 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 
-	var Emitter = __webpack_require__(235);
-	var reduce = __webpack_require__(236);
-	var requestBase = __webpack_require__(237);
-	var isObject = __webpack_require__(238);
+	var Emitter = __webpack_require__(238);
+	var reduce = __webpack_require__(239);
+	var requestBase = __webpack_require__(240);
+	var isObject = __webpack_require__(241);
 
 	/**
 	 * Root reference for iframes.
@@ -42531,7 +42684,7 @@
 	 * Expose `request`.
 	 */
 
-	var request = module.exports = __webpack_require__(239).bind(null, Request);
+	var request = module.exports = __webpack_require__(242).bind(null, Request);
 
 	/**
 	 * Determine XHR.
@@ -43555,7 +43708,7 @@
 
 
 /***/ },
-/* 235 */
+/* 238 */
 /***/ function(module, exports) {
 
 	
@@ -43722,7 +43875,7 @@
 
 
 /***/ },
-/* 236 */
+/* 239 */
 /***/ function(module, exports) {
 
 	
@@ -43751,13 +43904,13 @@
 	};
 
 /***/ },
-/* 237 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module of mixed-in functions shared between node and client code
 	 */
-	var isObject = __webpack_require__(238);
+	var isObject = __webpack_require__(241);
 
 	/**
 	 * Clear previous timeout.
@@ -43923,7 +44076,7 @@
 
 
 /***/ },
-/* 238 */
+/* 241 */
 /***/ function(module, exports) {
 
 	/**
@@ -43942,7 +44095,7 @@
 
 
 /***/ },
-/* 239 */
+/* 242 */
 /***/ function(module, exports) {
 
 	// The node and browser modules expose versions of this with the
@@ -43980,7 +44133,7 @@
 
 
 /***/ },
-/* 240 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -44137,7 +44290,7 @@
 
 
 /***/ },
-/* 241 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44146,7 +44299,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Footer = __webpack_require__(429);
+	var _Footer = __webpack_require__(229);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -44250,9 +44403,6 @@
 	module.exports = DashboardView;
 
 /***/ },
-/* 242 */,
-/* 243 */,
-/* 244 */,
 /* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -44318,7 +44468,7 @@
 
 	var _SpecialInstructions2 = _interopRequireDefault(_SpecialInstructions);
 
-	var _Footer = __webpack_require__(429);
+	var _Footer = __webpack_require__(229);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -44351,10 +44501,35 @@
 	        handleDeleteItemFromOrder: _react2.default.PropTypes.func,
 	        toggleAddNotification: _react2.default.PropTypes.func,
 	        toggleDeleteNotification: _react2.default.PropTypes.func,
-	        toggleErrorNotification: _react2.default.PropTypes.func
+	        toggleErrorNotification: _react2.default.PropTypes.func,
+	        toggleFormNotification: _react2.default.PropTypes.func
 	    },
 
 	    render: function render() {
+
+	        var nextButton;
+	        if (this.props.items.length > 0) {
+	            nextButton = _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/additional-info' },
+	                _react2.default.createElement(
+	                    'button',
+	                    { className: 'next-button' },
+	                    'Next',
+	                    _react2.default.createElement('i', { className: 'fa fa-arrow-right fa-lg', 'aria-hidden': 'true' })
+	                )
+	            );
+	        } else {
+	            nextButton = _react2.default.createElement(
+	                'button',
+	                {
+	                    onClick: this.props.toggleFormNotification,
+	                    className: 'next-button' },
+	                'Next',
+	                _react2.default.createElement('i', { className: 'fa fa-arrow-right fa-lg', 'aria-hidden': 'true' })
+	            );
+	        }
+
 	        return _react2.default.createElement(
 	            'div',
 	            { className: 'custom-order-container' },
@@ -44396,16 +44571,7 @@
 	                        toggleDeleteNotification: this.props.toggleDeleteNotification }),
 	                    _react2.default.createElement(_SpecialInstructions2.default, {
 	                        handleSpecialInstructions: this.props.handleSpecialInstructions }),
-	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: '/additional-info' },
-	                        _react2.default.createElement(
-	                            'button',
-	                            { className: 'next-button' },
-	                            'Next',
-	                            _react2.default.createElement('i', { className: 'fa fa-arrow-right fa-lg', 'aria-hidden': 'true' })
-	                        )
-	                    )
+	                    nextButton
 	                )
 	            ),
 	            _react2.default.createElement(_Footer2.default, null)
@@ -44495,7 +44661,7 @@
 
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-	var _lodash = __webpack_require__(231);
+	var _lodash = __webpack_require__(234);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -44588,7 +44754,7 @@
 
 	var _menuItem2 = _interopRequireDefault(_menuItem);
 
-	var _lodash = __webpack_require__(231);
+	var _lodash = __webpack_require__(234);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -44757,7 +44923,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _lodash = __webpack_require__(231);
+	var _lodash = __webpack_require__(234);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -45803,7 +45969,7 @@
 
 	var _ShopList2 = _interopRequireDefault(_ShopList);
 
-	var _Footer = __webpack_require__(429);
+	var _Footer = __webpack_require__(229);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -45890,7 +46056,7 @@
 
 	var _ShopListItem2 = _interopRequireDefault(_ShopListItem);
 
-	var _lodash = __webpack_require__(231);
+	var _lodash = __webpack_require__(234);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -45998,44 +46164,48 @@
 
 	        return _react2.default.createElement(
 	            'div',
-	            { className: 'shop-list-item-container',
-	                onClick: function onClick() {
-	                    return _this.props.handleSelectedShop(_this.props.shop);
-	                } },
+	            null,
 	            _react2.default.createElement(
 	                _reactRouter.Link,
 	                { to: '/custom-order' },
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'shop-list-item-details' },
-	                    _react2.default.createElement(
-	                        'h2',
-	                        null,
-	                        this.props.shop.name
-	                    ),
-	                    _react2.default.createElement(
-	                        'p',
-	                        null,
-	                        this.props.shop.vicinity
-	                    ),
+	                    { className: 'shop-list-item-container',
+	                        onClick: function onClick() {
+	                            return _this.props.handleSelectedShop(_this.props.shop);
+	                        } },
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'shop-list-bottom-row' },
-	                        this.props.shop.hasOwnProperty('opening_hours') ? this.props.shop.opening_hours.open_now ? _react2.default.createElement(
-	                            'div',
-	                            { className: 'open-now' },
-	                            _react2.default.createElement('i', { className: 'fa fa-clock-o', 'aria-hidden': 'true' }),
-	                            ' Open now!'
-	                        ) : _react2.default.createElement(
-	                            'div',
-	                            { className: 'closed-now' },
-	                            _react2.default.createElement('i', { className: 'fa fa-clock-o', 'aria-hidden': 'true' }),
-	                            ' Currently closed'
-	                        ) : '',
+	                        { className: 'shop-list-item-details' },
+	                        _react2.default.createElement(
+	                            'h2',
+	                            null,
+	                            this.props.shop.name
+	                        ),
 	                        _react2.default.createElement(
 	                            'p',
-	                            { className: 'shop-list-distance' },
-	                            this.props.shop.shopDistance
+	                            null,
+	                            this.props.shop.vicinity
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'shop-list-bottom-row' },
+	                            this.props.shop.hasOwnProperty('opening_hours') ? this.props.shop.opening_hours.open_now ? _react2.default.createElement(
+	                                'div',
+	                                { className: 'open-now' },
+	                                _react2.default.createElement('i', { className: 'fa fa-clock-o', 'aria-hidden': 'true' }),
+	                                ' Open now!'
+	                            ) : _react2.default.createElement(
+	                                'div',
+	                                { className: 'closed-now' },
+	                                _react2.default.createElement('i', { className: 'fa fa-clock-o', 'aria-hidden': 'true' }),
+	                                ' Currently closed'
+	                            ) : '',
+	                            _react2.default.createElement(
+	                                'p',
+	                                { className: 'shop-list-distance' },
+	                                this.props.shop.shopDistance
+	                            )
 	                        )
 	                    )
 	                )
@@ -46152,7 +46322,11 @@
 
 	var _EnterPaymentInfo2 = _interopRequireDefault(_EnterPaymentInfo);
 
-	var _Footer = __webpack_require__(429);
+	var _AdditionalInfoNotification = __webpack_require__(431);
+
+	var _AdditionalInfoNotification2 = _interopRequireDefault(_AdditionalInfoNotification);
+
+	var _Footer = __webpack_require__(229);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -46184,10 +46358,36 @@
 	        expMonth: _react2.default.PropTypes.string,
 	        handleCCExpYear: _react2.default.PropTypes.func,
 	        expYear: _react2.default.PropTypes.string,
-	        handleCCCVV: _react2.default.PropTypes.func
+	        handleCCCVV: _react2.default.PropTypes.func,
+	        toggleAdditionalInfoNotification: _react2.default.PropTypes.func,
+	        methodOfTrans: _react2.default.PropTypes.string
 	    },
 
 	    render: function render() {
+
+	        var nextButton;
+	        if (this.props.methodOfTrans) {
+	            nextButton = _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/order-summary' },
+	                _react2.default.createElement(
+	                    'button',
+	                    { className: 'next-button' },
+	                    'Next',
+	                    _react2.default.createElement('i', { className: 'fa fa-arrow-right fa-lg', 'aria-hidden': 'true' })
+	                )
+	            );
+	        } else {
+	            nextButton = _react2.default.createElement(
+	                'button',
+	                {
+	                    onClick: this.props.toggleAdditionalInfoNotification,
+	                    className: 'next-button' },
+	                'Next',
+	                _react2.default.createElement('i', { className: 'fa fa-arrow-right fa-lg', 'aria-hidden': 'true' })
+	            );
+	        }
+
 	        return _react2.default.createElement(
 	            'div',
 	            { className: 'additional-info-container' },
@@ -46205,6 +46405,8 @@
 	                    _react2.default.createElement('div', { id: 'threeOfFive' })
 	                )
 	            ),
+	            _react2.default.createElement(_AdditionalInfoNotification2.default, {
+	                notification: this.props.notification }),
 	            _react2.default.createElement(
 	                'div',
 	                null,
@@ -46231,16 +46433,7 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'next-button-container' },
-	                    _react2.default.createElement(
-	                        _reactRouter.Link,
-	                        { to: '/order-summary' },
-	                        _react2.default.createElement(
-	                            'button',
-	                            { className: 'next-button' },
-	                            'Next',
-	                            _react2.default.createElement('i', { className: 'fa fa-arrow-right fa-lg', 'aria-hidden': 'true' })
-	                        )
-	                    )
+	                    nextButton
 	                )
 	            ),
 	            _react2.default.createElement(_Footer2.default, null)
@@ -50334,7 +50527,7 @@
 	    return _moment;
 
 	}));
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(232)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(235)(module)))
 
 /***/ },
 /* 297 */
@@ -60120,7 +60313,7 @@
 
 	var _SpecialInstructionsOS2 = _interopRequireDefault(_SpecialInstructionsOS);
 
-	var _Footer = __webpack_require__(429);
+	var _Footer = __webpack_require__(229);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -60313,7 +60506,7 @@
 
 	var _DirectionsAndCall2 = _interopRequireDefault(_DirectionsAndCall);
 
-	var _Footer = __webpack_require__(429);
+	var _Footer = __webpack_require__(229);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -61128,7 +61321,7 @@
 
 	var _reactRouter = __webpack_require__(164);
 
-	var _favoriteOrdersView = __webpack_require__(432);
+	var _favoriteOrdersView = __webpack_require__(429);
 
 	var _favoriteOrdersView2 = _interopRequireDefault(_favoriteOrdersView);
 
@@ -61189,118 +61382,10 @@
 /* 429 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _footer = __webpack_require__(430);
-
-	var _footer2 = _interopRequireDefault(_footer);
-
-	var _reactRouter = __webpack_require__(164);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Footer = _react2.default.createClass({
-	    displayName: 'Footer',
-
-
-	    render: function render() {
-	        return _react2.default.createElement(
-	            'div',
-	            { className: 'footer-container' },
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'footer-col-1' },
-	                _react2.default.createElement('i', { className: 'fa fa-facebook-square fa-2x', 'aria-hidden': 'true' }),
-	                _react2.default.createElement('i', { className: 'fa fa-twitter-square fa-2x', 'aria-hidden': 'true' }),
-	                _react2.default.createElement('i', { className: 'fa fa-youtube-square fa-2x', 'aria-hidden': 'true' }),
-	                _react2.default.createElement('i', { className: 'fa fa-google-plus-square fa-2x', 'aria-hidden': 'true' }),
-	                _react2.default.createElement('i', { className: 'fa fa-instagram fa-2x', 'aria-hidden': 'true' }),
-	                _react2.default.createElement('i', { className: 'fa fa-linkedin-square fa-2x', 'aria-hidden': 'true' }),
-	                _react2.default.createElement('img', { src: 'img/gomocha-logo-sml.png' }),
-	                _react2.default.createElement(
-	                    'p',
-	                    { className: 'footer-text footer-text-1' },
-	                    'About GoMocha'
-	                ),
-	                _react2.default.createElement(
-	                    'p',
-	                    { className: 'footer-text' },
-	                    'GoMocha Blog'
-	                ),
-	                _react2.default.createElement(
-	                    'p',
-	                    { className: 'footer-text' },
-	                    'Privacy Policy'
-	                ),
-	                _react2.default.createElement(
-	                    'p',
-	                    { className: 'footer-text' },
-	                    'Terms and Conditions'
-	                ),
-	                _react2.default.createElement(
-	                    'p',
-	                    { className: 'footer-copyright' },
-	                    '©2016 GoMocha, Inc.'
-	                )
-	            )
-	        );
-	    }
-	});
-
-	module.exports = Footer;
-
-/***/ },
-/* 430 */
-/***/ function(module, exports, __webpack_require__) {
-
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(431);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./footer.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./footer.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 431 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".footer-container {\n  background: #d1d6d9;\n  width: 100%;\n  padding-bottom: 0.5em;\n  text-align: center;\n  clear: both; }\n  .footer-container .footer-col-1 {\n    padding-left: 0.5em;\n    text-align: center; }\n    .footer-container .footer-col-1 .fa-facebook-square, .footer-container .footer-col-1 .fa-twitter-square, .footer-container .footer-col-1 .fa-youtube-square, .footer-container .footer-col-1 .fa-google-plus-square, .footer-container .footer-col-1 .fa-instagram, .footer-container .footer-col-1 .fa-linkedin-square {\n      color: #6b7a88;\n      margin: 0.5em 0em 0em 0.25em; }\n      .footer-container .footer-col-1 .fa-facebook-square:hover, .footer-container .footer-col-1 .fa-twitter-square:hover, .footer-container .footer-col-1 .fa-youtube-square:hover, .footer-container .footer-col-1 .fa-google-plus-square:hover, .footer-container .footer-col-1 .fa-instagram:hover, .footer-container .footer-col-1 .fa-linkedin-square:hover {\n        color: #8694a0;\n        cursor: pointer; }\n    .footer-container .footer-col-1 img {\n      width: 2em;\n      display: block;\n      margin: 0 auto;\n      padding-top: 0.3em; }\n  .footer-container p {\n    color: #6b7a88;\n    padding-left: 0.5em;\n    font-weight: 400; }\n  .footer-container .footer-text {\n    margin-bottom: 0.25em;\n    margin-top: 0.25em; }\n    .footer-container .footer-text:hover {\n      text-decoration: underline;\n      color: #8694a0;\n      cursor: pointer; }\n  .footer-container .footer-text-1 {\n    margin-top: 0.5em; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 432 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(433);
+	var content = __webpack_require__(430);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -61320,7 +61405,7 @@
 	}
 
 /***/ },
-/* 433 */
+/* 430 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -61329,6 +61414,102 @@
 
 	// module
 	exports.push([module.id, ".favorite-orders-container {\n  width: 90%;\n  margin: 4em auto 0em auto;\n  border-radius: 3px; }\n\n@media only screen and (min-width: 600px) {\n  .favorite-orders-wrap {\n    width: 28em;\n    margin: 4em auto 2.5em auto; } }\n\n@media only screen and (min-width: 960px) {\n  .favorite-orders-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 431 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _additionalInfoNotification = __webpack_require__(432);
+
+	var _additionalInfoNotification2 = _interopRequireDefault(_additionalInfoNotification);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AdditionalInfoNotification = _react2.default.createClass({
+	    displayName: 'AdditionalInfoNotification',
+
+
+	    propTypes: {
+	        notification: _react2.default.PropTypes.shape({
+	            add: _react2.default.PropTypes.bool,
+	            delete: _react2.default.PropTypes.bool,
+	            error: _react2.default.PropTypes.bool,
+	            form: _react2.default.PropTypes.bool,
+	            additionalInfo: _react2.default.PropTypes.bool
+	        })
+	    },
+
+	    render: function render() {
+
+	        var notificationType = '';
+	        var notificationText = '';
+
+	        if (this.props.notification.additionalInfo) {
+	            notificationType = 'item-notification error-item-notification item-notification-show';
+	            notificationText = 'Select your method of transportation to continue';
+	        } else {
+	            notificationType = 'item-notification item-notification-hide';
+	        }
+
+	        return _react2.default.createElement(
+	            'div',
+	            { className: notificationType },
+	            _react2.default.createElement(
+	                'a',
+	                { className: 'item-notification-text' },
+	                notificationText
+	            )
+	        );
+	    }
+	});
+
+	module.exports = AdditionalInfoNotification;
+
+/***/ },
+/* 432 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(433);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./additional-info-notification.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./additional-info-notification.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 433 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".item-notification-text {\n  color: #f6f6f6;\n  text-align: center;\n  text-decoration: none; }\n\n.item-notification {\n  color: #f6f6f6;\n  font-size: 1.1em;\n  padding-top: 0.7em;\n  height: 38px;\n  position: fixed;\n  left: 0;\n  text-align: center;\n  text-decoration: none;\n  top: -45px;\n  width: 100%;\n  animation: item-notification 1s ease forwards;\n  z-index: 999999; }\n\n.add-item-notification {\n  background-color: #3FB083; }\n\n.delete-item-notification {\n  background-color: #E2514E; }\n\n.error-item-notification {\n  background-color: #FAD675; }\n\n.item-notification-show {\n  display: block; }\n\n.item-notification-hide {\n  display: none; }\n\n@keyframes item-notification {\n  0% {\n    opacity: 0; }\n  50% {\n    opacity: 1; }\n  100% {\n    top: 0; } }\n\n@keyframes item-notification-hide {\n  0% {\n    top: 0; }\n  50% {\n    top: -25; }\n  100% {\n    top: -45; } }\n", ""]);
 
 	// exports
 
