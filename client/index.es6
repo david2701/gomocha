@@ -19,6 +19,7 @@ ReactDOM.render(
 // width of progress bar on ConfirmationView
 // Section marks for progress bar
 // redo loading icon
+// checkbox styling
 // delete item notification doesn't occur when deleting from order summary
 // add smooth transitions between views
 // add previous and favorite orders to dashboard view. Or show the last order. Or a sneak peak of each with a see all link.
@@ -26,7 +27,6 @@ ReactDOM.render(
 // BASIC JS BUGGS FIXES AND FEATURES
 // Add date to each order regardless
 // have a conditional that checks if userLocation is taken, and promps user if not. ex: Justin's phone stuck in loop because didn't have userLocation
-// add conditions to Link buttons -- add class based on length of items array -- use addItemToOrderButton logic for additional info page condition
 // make calls for time it will take to walk/bike/drive at same time you call getDetails
 
 
