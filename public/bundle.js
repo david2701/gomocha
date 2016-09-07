@@ -46164,48 +46164,44 @@
 
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'shop-list-item-container',
+	                onClick: function onClick() {
+	                    return _this.props.handleSelectedShop(_this.props.shop);
+	                } },
 	            _react2.default.createElement(
 	                _reactRouter.Link,
 	                { to: '/custom-order' },
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'shop-list-item-container',
-	                        onClick: function onClick() {
-	                            return _this.props.handleSelectedShop(_this.props.shop);
-	                        } },
+	                    { className: 'shop-list-item-details' },
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        this.props.shop.name
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        this.props.shop.vicinity
+	                    ),
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'shop-list-item-details' },
-	                        _react2.default.createElement(
-	                            'h2',
-	                            null,
-	                            this.props.shop.name
-	                        ),
+	                        { className: 'shop-list-bottom-row' },
+	                        this.props.shop.hasOwnProperty('opening_hours') ? this.props.shop.opening_hours.open_now ? _react2.default.createElement(
+	                            'div',
+	                            { className: 'open-now' },
+	                            _react2.default.createElement('i', { className: 'fa fa-clock-o', 'aria-hidden': 'true' }),
+	                            ' Open now!'
+	                        ) : _react2.default.createElement(
+	                            'div',
+	                            { className: 'closed-now' },
+	                            _react2.default.createElement('i', { className: 'fa fa-clock-o', 'aria-hidden': 'true' }),
+	                            ' Currently closed'
+	                        ) : '',
 	                        _react2.default.createElement(
 	                            'p',
-	                            null,
-	                            this.props.shop.vicinity
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'shop-list-bottom-row' },
-	                            this.props.shop.hasOwnProperty('opening_hours') ? this.props.shop.opening_hours.open_now ? _react2.default.createElement(
-	                                'div',
-	                                { className: 'open-now' },
-	                                _react2.default.createElement('i', { className: 'fa fa-clock-o', 'aria-hidden': 'true' }),
-	                                ' Open now!'
-	                            ) : _react2.default.createElement(
-	                                'div',
-	                                { className: 'closed-now' },
-	                                _react2.default.createElement('i', { className: 'fa fa-clock-o', 'aria-hidden': 'true' }),
-	                                ' Currently closed'
-	                            ) : '',
-	                            _react2.default.createElement(
-	                                'p',
-	                                { className: 'shop-list-distance' },
-	                                this.props.shop.shopDistance
-	                            )
+	                            { className: 'shop-list-distance' },
+	                            this.props.shop.shopDistance
 	                        )
 	                    )
 	                )
