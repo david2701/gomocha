@@ -9,6 +9,10 @@
         display: block;
         border-radius: 3px;
         border: 1px solid #A6A6A6;
+
+        &:focus {
+            border: 2px solid #3FB083;
+        }
     }
 
 }
@@ -50,6 +54,11 @@
         width: 2em;
         padding: 0.5em;
         border: 1px solid #A6A6A6;
+        border-radius: 3px;
+
+        &:focus {
+            border: 2px solid #3FB083;
+        }
     }
 }
 

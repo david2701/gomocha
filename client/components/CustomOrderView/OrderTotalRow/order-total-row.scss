@@ -19,7 +19,6 @@ tr.order-total-row {
     .delete-item {
         color: #E2514E;
         margin-left: 20px;
-        display: none;
         cursor: pointer;
     }
 
@@ -31,6 +30,11 @@ tr.order-total-row {
     }
 }
 
-.td-price {
-    // width: 75px;
+.delete-button {
+
+    &:hover {
+        .fa-times {
+                color: lighten(#E2514E, 15%);
+        }
+    }
 }

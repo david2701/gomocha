@@ -45618,9 +45618,11 @@
 	                (price * quantity).toFixed(2),
 	                _react2.default.createElement(
 	                    'span',
-	                    { title: 'Delete item from order',
-	                        onClick: this._handleDeleteItem },
-	                    _react2.default.createElement('i', { className: 'fa fa-times delete-item hide' })
+	                    {
+	                        title: 'Delete item from order',
+	                        onClick: this._handleDeleteItem,
+	                        className: 'delete-button' },
+	                    _react2.default.createElement('i', { className: 'fa fa-times fa-lg delete-item' })
 	                )
 	            )
 	        );
@@ -45664,7 +45666,7 @@
 
 
 	// module
-	exports.push([module.id, ".order-total-table td {\n  padding: 0.4em 0.7em;\n  border-bottom: 1px solid #E4E4E4;\n  text-align: left; }\n\ntr.order-total-row td p {\n  margin: 0em 0em 0.25em 0em; }\n\ntr.order-total-row .delete-item {\n  color: #E2514E;\n  margin-left: 20px;\n  display: none;\n  cursor: pointer; }\n\ntr.order-total-row:hover .delete-item {\n  display: inline-block; }\n", ""]);
+	exports.push([module.id, ".order-total-table td {\n  padding: 0.4em 0.7em;\n  border-bottom: 1px solid #E4E4E4;\n  text-align: left; }\n\ntr.order-total-row td p {\n  margin: 0em 0em 0.25em 0em; }\n\ntr.order-total-row .delete-item {\n  color: #E2514E;\n  margin-left: 20px;\n  cursor: pointer; }\n\ntr.order-total-row:hover .delete-item {\n  display: inline-block; }\n\n.delete-button:hover .fa-times {\n  color: #ed9290; }\n", ""]);
 
 	// exports
 
@@ -45831,7 +45833,7 @@
 
 
 	// module
-	exports.push([module.id, "#order-total h2 {\n  text-align: left; }\n\n.next-button-container {\n  width: 28em;\n  margin: 2em auto 2em auto; }\n\n.order-total-table {\n  margin: 0 auto;\n  width: 100%;\n  border: 1px solid #E4E4E4;\n  background: #fff;\n  border-collapse: collapse; }\n\n@media only screen and (min-width: 600px) {\n  #order-total {\n    max-width: 28em;\n    margin: 0 auto; } }\n", ""]);
+	exports.push([module.id, "#order-total {\n  box-shadow: #999999 0px 1px; }\n  #order-total h2 {\n    text-align: left; }\n\n.next-button-container {\n  width: 28em;\n  margin: 2em auto 2em auto; }\n\n.order-total-table {\n  margin: 0 auto;\n  width: 100%;\n  border: 1px solid #E4E4E4;\n  background: #fff;\n  border-collapse: collapse; }\n\n@media only screen and (min-width: 600px) {\n  #order-total {\n    max-width: 28em;\n    margin: 0 auto; } }\n", ""]);
 
 	// exports
 
@@ -45910,7 +45912,7 @@
 
 
 	// module
-	exports.push([module.id, "#special-instructions {\n  margin-top: 2em; }\n  #special-instructions textarea {\n    border: 1px solid #E4E4E4;\n    padding: 0.5em;\n    width: 16.9em;\n    font-size: 1em; }\n\n@media only screen and (min-width: 600px) {\n  #special-instructions {\n    margin: 0.5em auto 0em auto; } }\n", ""]);
+	exports.push([module.id, "#special-instructions {\n  margin-top: 2em; }\n  #special-instructions textarea {\n    border: 1px solid #E4E4E4;\n    padding: 0.5em;\n    width: 16.9em;\n    font-size: 1em; }\n    #special-instructions textarea:focus {\n      border: 1px solid #3FB083; }\n\n@media only screen and (min-width: 600px) {\n  #special-instructions {\n    margin: 0.5em auto 0em auto; } }\n", ""]);
 
 	// exports
 
@@ -60249,7 +60251,7 @@
 
 
 	// module
-	exports.push([module.id, ".payment-info-section {\n  padding: 0 0 1em 0; }\n\n.payment-name input, .payment-card-number input {\n  width: 18em;\n  padding: 0.5em;\n  display: block;\n  border-radius: 3px;\n  border: 1px solid #A6A6A6; }\n\n.payment-month-year select {\n  display: inline-block;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  padding: 0.5em;\n  border-radius: 3px; }\n  .payment-month-year select:first-child {\n    margin-right: 0.5em; }\n  .payment-month-year select:hover {\n    cursor: pointer; }\n\n.payment-month-year .payment-month {\n  background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n  background-position: 85% 55%;\n  width: 6em; }\n\n.payment-month-year .payment-year {\n  background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n  background-position: 85% 55%;\n  width: 4.5em; }\n\n.payment-csv input {\n  width: 2em;\n  padding: 0.5em;\n  border: 1px solid #A6A6A6; }\n\n@media only screen and (min-width: 600px) {\n  .enter-payment-info-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .enter-payment-info-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.enter-payment-info-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff;\n  box-shadow: #999999 0px 1px; }\n", ""]);
+	exports.push([module.id, ".payment-info-section {\n  padding: 0 0 1em 0; }\n\n.payment-name input, .payment-card-number input {\n  width: 18em;\n  padding: 0.5em;\n  display: block;\n  border-radius: 3px;\n  border: 1px solid #A6A6A6; }\n  .payment-name input:focus, .payment-card-number input:focus {\n    border: 2px solid #3FB083; }\n\n.payment-month-year select {\n  display: inline-block;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  padding: 0.5em;\n  border-radius: 3px; }\n  .payment-month-year select:first-child {\n    margin-right: 0.5em; }\n  .payment-month-year select:hover {\n    cursor: pointer; }\n\n.payment-month-year .payment-month {\n  background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n  background-position: 85% 55%;\n  width: 6em; }\n\n.payment-month-year .payment-year {\n  background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n  background-position: 85% 55%;\n  width: 4.5em; }\n\n.payment-csv input {\n  width: 2em;\n  padding: 0.5em;\n  border: 1px solid #A6A6A6;\n  border-radius: 3px; }\n  .payment-csv input:focus {\n    border: 2px solid #3FB083; }\n\n@media only screen and (min-width: 600px) {\n  .enter-payment-info-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .enter-payment-info-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.enter-payment-info-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff;\n  box-shadow: #999999 0px 1px; }\n", ""]);
 
 	// exports
 
