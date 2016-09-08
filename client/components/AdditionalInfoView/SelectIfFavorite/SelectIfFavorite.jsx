@@ -12,12 +12,15 @@ var SelectIfFavorite = React.createClass({
         return (
             <div className="select-if-favorite-container">
                 <h2>Favorite this order?</h2>
+                <p>Yes!</p>
             <div className="select-if-favorite">
-                    <label>Yes! <input
-                                    onChange={this.props.handleFavorite}
-                                    type="checkbox"
-                                    value={this.props.value} />
-                    </label>
+                    <input
+                        onChange={this.props.handleFavorite}
+                        type="checkbox"
+                        value={this.props.value}
+                        id="select-if-favorite"
+                        name="favorite" />
+                    <label htmlFor="select-if-favorite"></label>
                 </div>
             </div>
         )

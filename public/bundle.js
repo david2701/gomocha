@@ -59953,17 +59953,20 @@
 	                'Favorite this order?'
 	            ),
 	            _react2.default.createElement(
+	                'p',
+	                null,
+	                'Yes!'
+	            ),
+	            _react2.default.createElement(
 	                'div',
 	                { className: 'select-if-favorite' },
-	                _react2.default.createElement(
-	                    'label',
-	                    null,
-	                    'Yes! ',
-	                    _react2.default.createElement('input', {
-	                        onChange: this.props.handleFavorite,
-	                        type: 'checkbox',
-	                        value: this.props.value })
-	                )
+	                _react2.default.createElement('input', {
+	                    onChange: this.props.handleFavorite,
+	                    type: 'checkbox',
+	                    value: this.props.value,
+	                    id: 'select-if-favorite',
+	                    name: 'favorite' }),
+	                _react2.default.createElement('label', { htmlFor: 'select-if-favorite' })
 	            )
 	        );
 	    }
@@ -60006,7 +60009,7 @@
 
 
 	// module
-	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .select-if-favorite-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .select-if-favorite-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.select-if-favorite-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff;\n  box-shadow: #999999 0px 1px; }\n  .select-if-favorite-container h2 {\n    font-size: 1.2em; }\n", ""]);
+	exports.push([module.id, "@media only screen and (min-width: 600px) {\n  .select-if-favorite-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .select-if-favorite-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.select-if-favorite-container {\n  padding: 0.75em 0.75em 0em 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff;\n  box-shadow: #999999 0px 1px; }\n  .select-if-favorite-container h2 {\n    font-size: 1.2em; }\n  .select-if-favorite-container p {\n    margin: 0; }\n\n.select-if-favorite {\n  width: 20px;\n  position: relative;\n  left: 2.3em;\n  top: -1.3em;\n  margin: 0; }\n  .select-if-favorite label {\n    width: 20px;\n    height: 20px;\n    cursor: pointer;\n    position: absolute;\n    top: 0;\n    left: 0;\n    background: #F8F8F8;\n    border-radius: 3px;\n    border: 1px solid #A6A6A6; }\n    .select-if-favorite label:after {\n      content: '';\n      width: 9px;\n      height: 5px;\n      position: absolute;\n      top: 4px;\n      left: 4px;\n      border: 3px solid #40B284;\n      border-top: none;\n      border-right: none;\n      background: transparent;\n      opacity: 0;\n      transform: rotate(-45deg); }\n    .select-if-favorite label:hover::after {\n      opacity: 0.5; }\n  .select-if-favorite input[type=checkbox] {\n    visibility: hidden; }\n    .select-if-favorite input[type=checkbox]:checked + label:after {\n      opacity: 1; }\n", ""]);
 
 	// exports
 
