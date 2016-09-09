@@ -60058,6 +60058,11 @@
 	            _react2.default.createElement(
 	                'div',
 	                { className: 'payment-info-section payment-name' },
+	                _react2.default.createElement(
+	                    'p',
+	                    null,
+	                    'First and Last Name'
+	                ),
 	                _react2.default.createElement('input', {
 	                    onChange: this.props.handleCCName,
 	                    type: 'text',
@@ -60067,6 +60072,11 @@
 	            _react2.default.createElement(
 	                'div',
 	                { className: 'payment-info-section payment-card-number' },
+	                _react2.default.createElement(
+	                    'p',
+	                    null,
+	                    'Credit Card Number'
+	                ),
 	                _react2.default.createElement('input', {
 	                    onChange: this.props.handleCCNumber,
 	                    type: 'text',
@@ -60077,6 +60087,11 @@
 	            _react2.default.createElement(
 	                'div',
 	                { className: 'payment-info-section payment-month-year' },
+	                _react2.default.createElement(
+	                    'p',
+	                    null,
+	                    'Expiration Date'
+	                ),
 	                _react2.default.createElement(
 	                    'select',
 	                    {
@@ -60203,6 +60218,11 @@
 	            _react2.default.createElement(
 	                'div',
 	                { className: 'payment-info-section payment-csv' },
+	                _react2.default.createElement(
+	                    'p',
+	                    null,
+	                    'CSV'
+	                ),
 	                _react2.default.createElement('input', {
 	                    onChange: this.props.handleCCCVV,
 	                    type: 'text',
@@ -60251,7 +60271,7 @@
 
 
 	// module
-	exports.push([module.id, ".payment-info-section {\n  padding: 0 0 1em 0; }\n\n.payment-name input, .payment-card-number input {\n  width: 18em;\n  padding: 0.5em;\n  display: block;\n  border-radius: 3px;\n  border: 1px solid #A6A6A6; }\n  .payment-name input:focus, .payment-card-number input:focus {\n    border: 2px solid #3FB083; }\n\n.payment-month-year select {\n  display: inline-block;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  padding: 0.5em;\n  border-radius: 3px; }\n  .payment-month-year select:first-child {\n    margin-right: 0.5em; }\n  .payment-month-year select:hover {\n    cursor: pointer; }\n\n.payment-month-year .payment-month {\n  background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n  background-position: 85% 55%;\n  width: 6em; }\n\n.payment-month-year .payment-year {\n  background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n  background-position: 85% 55%;\n  width: 4.5em; }\n\n.payment-csv input {\n  width: 2em;\n  padding: 0.5em;\n  border: 1px solid #A6A6A6;\n  border-radius: 3px; }\n  .payment-csv input:focus {\n    border: 2px solid #3FB083; }\n\n@media only screen and (min-width: 600px) {\n  .enter-payment-info-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .enter-payment-info-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.enter-payment-info-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff;\n  box-shadow: #999999 0px 1px; }\n", ""]);
+	exports.push([module.id, ".payment-info-section {\n  padding: 0 0 1em 0; }\n  .payment-info-section p {\n    margin: 0.5em 0 0.5em 0; }\n\n.payment-name input, .payment-card-number input {\n  width: 18em;\n  padding: 0.5em;\n  display: block;\n  border-radius: 3px;\n  border: 1px solid #A6A6A6; }\n  .payment-name input:focus, .payment-card-number input:focus {\n    border: 2px solid #3FB083; }\n\n.payment-month-year select {\n  display: inline-block;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  padding: 0.5em;\n  border-radius: 3px; }\n  .payment-month-year select:hover {\n    cursor: pointer; }\n\n.payment-month-year .payment-month {\n  background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n  background-position: 85% 55%;\n  width: 6em;\n  margin-right: 0.5em; }\n\n.payment-month-year .payment-year {\n  background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n  background-position: 85% 55%;\n  width: 4.5em; }\n\n.payment-csv input {\n  width: 2em;\n  padding: 0.5em;\n  border: 1px solid #A6A6A6;\n  border-radius: 3px; }\n  .payment-csv input:focus {\n    border: 2px solid #3FB083; }\n\n@media only screen and (min-width: 600px) {\n  .enter-payment-info-container {\n    width: 28em;\n    margin: 0 auto 1em auto; } }\n\n@media only screen and (max-width: 599px) {\n  .enter-payment-info-container {\n    width: 90%;\n    margin: 0 auto 1em auto; } }\n\n.enter-payment-info-container {\n  padding: 0.75em;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff;\n  box-shadow: #999999 0px 1px; }\n", ""]);
 
 	// exports
 

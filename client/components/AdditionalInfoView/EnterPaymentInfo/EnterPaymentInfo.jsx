@@ -18,6 +18,7 @@ var EnterPaymentInfo = React.createClass({
             <div className="enter-payment-info-container">
                 <h2>Enter Payment Info</h2>
                 <div className="payment-info-section payment-name">
+                    <p>First and Last Name</p>
                         <input
                             onChange={this.props.handleCCName}
                             type="text"
@@ -25,6 +26,7 @@ var EnterPaymentInfo = React.createClass({
                             required />
                 </div>
                 <div className="payment-info-section payment-card-number">
+                    <p>Credit Card Number</p>
                         <input
                             onChange={this.props.handleCCNumber}
                             type="text"
@@ -33,6 +35,7 @@ var EnterPaymentInfo = React.createClass({
                             required />
                 </div>
                 <div className="payment-info-section payment-month-year">
+                    <p>Expiration Date</p>
             <select
                 className="payment-month"
                 onChange={this.props.handleCCExpMonth}
@@ -69,6 +72,7 @@ var EnterPaymentInfo = React.createClass({
             </select>
                 </div>
                 <div className="payment-info-section payment-csv">
+                    <p>CSV</p>
                         <input
                             onChange={this.props.handleCCCVV}
                             type="text"

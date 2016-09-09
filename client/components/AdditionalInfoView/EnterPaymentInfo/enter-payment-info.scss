@@ -1,5 +1,9 @@
 .payment-info-section {
     padding: 0 0 1em 0;
+
+    p {
+        margin: 0.5em 0 0.5em 0;
+    }
 }
 
 .payment-name, .payment-card-number {
@@ -26,10 +30,6 @@
         padding: 0.5em;
         border-radius: 3px;
 
-        &:first-child {
-            margin-right: 0.5em;
-        }
-
         &:hover {
             cursor: pointer;
         }
@@ -39,7 +39,7 @@
         background: url('/img/down-arrow.png') no-repeat #F8F8F8;
         background-position: 85% 55%;
         width: 6em;
-
+        margin-right: 0.5em;
     }
 
     .payment-year {
