@@ -45912,7 +45912,7 @@
 
 
 	// module
-	exports.push([module.id, "#special-instructions {\n  margin-top: 2em; }\n  #special-instructions textarea {\n    border: 1px solid #E4E4E4;\n    padding: 0.5em;\n    width: 16.9em;\n    font-size: 1em; }\n    #special-instructions textarea:focus {\n      border: 1px solid #3FB083; }\n\n@media only screen and (min-width: 600px) {\n  #special-instructions {\n    margin: 0.5em auto 0em auto; } }\n", ""]);
+	exports.push([module.id, "#special-instructions {\n  margin-top: 2em; }\n  #special-instructions textarea {\n    border: 1px solid #E4E4E4;\n    padding: 0.5em;\n    width: 16.9em;\n    font-size: 1em; }\n    #special-instructions textarea:focus {\n      border: 2px solid #3FB083; }\n\n@media only screen and (min-width: 600px) {\n  #special-instructions {\n    margin: 0.5em auto 0em auto; } }\n", ""]);
 
 	// exports
 
