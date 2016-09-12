@@ -118,15 +118,6 @@ var MenuItem = React.createClass({
                     <div className="item-name"><label htmlFor="hot-drink">{this.props.itemName}</label></div>
 
                     {/* AddToOrderButton */}
-                    <AddToOrderButton
-                        handleAddItemToOrder={this._handleAddItemToOrder}
-                        handleItemFormComplete={this._handleItemFormComplete}
-                        toggleAddNotification={this.props.toggleAddNotification}
-                        toggleErrorNotification={this.props.toggleErrorNotification}
-                        checkFormComplete={this._checkFormComplete}
-                        itemName={this.props.itemName}
-                        price={this.props.price}
-                        itemDetails={this.state} />
                 </div>
 
                 <div className="item-top-row">
@@ -145,6 +136,15 @@ var MenuItem = React.createClass({
                 {/* Decaf - HotOrCold */}
                 <div className="item-other-options">
                 {this.props.options.map(this._renderOption2)}
+                    <AddToOrderButton
+                        handleAddItemToOrder={this._handleAddItemToOrder}
+                        handleItemFormComplete={this._handleItemFormComplete}
+                        toggleAddNotification={this.props.toggleAddNotification}
+                        toggleErrorNotification={this.props.toggleErrorNotification}
+                        checkFormComplete={this._checkFormComplete}
+                        itemName={this.props.itemName}
+                        price={this.props.price}
+                        itemDetails={this.state} />
                 </div>
             </div>
         )
