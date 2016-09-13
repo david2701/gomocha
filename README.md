@@ -5,9 +5,7 @@ GoMocha is a geolocation food and drink ordering application that calculates how
 
 <a href="http://gomocha.herokuapp.com/" target="_blank">Click here</a> for a demo.
 
-<img src="public/img/select-a-shop.png" style="width: 400px" />
-
-<img src="public/img/custom-order.png" style="width: 400px" />
+<img src="public/img/select-shop-custom-order.png" style="width: 400px" />
 
 ## Overview
 The user story is as follows: A customer logs on to the app, selects a coffee shop in their area, creates their order, selects their method of transportation, and submits their order. The coffee shop is then notified of the order and receives the customer's estimated time of arrival based on their selected method of transportation. The customer then heads to the shop, and the order is ready when they arrive. All payment is handled through the app, to give an end to end seamless transaction.
@@ -26,10 +24,7 @@ The user story is as follows: A customer logs on to the app, selects a coffee sh
 •Travis CI is used for distributed continuous integration
 
 
-<img src="public/img/additional-info.png" style="width: 400px" />
-
-<img src="public/img/order-confirmation.png" style="width: 400px" />
-
+<img src="public/img/additional-info-order-confirm.png" style="width: 400px" />
 
 ## Development Roadmap
 Future developments of the app will include:<br />
