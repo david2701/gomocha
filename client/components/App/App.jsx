@@ -245,7 +245,6 @@ var App = React.createClass({
                 console.log(err);
                 console.log(res);
             })
-
     },
 
     _handlePreviousOrders: function() {

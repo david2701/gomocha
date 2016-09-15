@@ -73,31 +73,6 @@
 	        return window.scrollTo(0, 0);
 	    } }), document.getElementById('root'));
 
-	// STYLING BUGG FIXES AND FEATURES
-	// orderTotalRow styling OrderSummaryView
-	// width of progress bar on ConfirmationView
-	// Section marks for progress bar
-	// redo loading icon
-	// checkbox styling
-	// delete item notification doesn't occur when deleting from order summary
-	// add smooth transitions between views
-	// add previous and favorite orders to dashboard view. Or show the last order. Or a sneak peak of each with a see all link.
-
-	// BASIC JS BUGGS FIXES AND FEATURES
-	// Add date to each order regardless
-	// have a conditional that checks if userLocation is taken, and promps user if not. ex: Justin's phone stuck in loop because didn't have userLocation
-	// make calls for time it will take to walk/bike/drive at same time you call getDetails
-	// change UX of adding items to order. Basic click with modal to choose options
-	// ask for location after user logs in
-	// only display method of trans if user selects "Now"
-	// display the time the order will be ready
-
-	// LONG TERM MAJOR FEATURES
-	// share your order on Facebook.
-	// Authentication using StormPath/Auth0 (passwordless?) - Google and Facebook auth
-	// be able to search for shops in the area or wherever you want
-	// be able to start order from previous and favorites pages. replace items in state with items in prev/fav order
-
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
@@ -20097,6 +20072,10 @@
 
 	var _FavoriteOrdersView2 = _interopRequireDefault(_FavoriteOrdersView);
 
+	var _BusinessAdminView = __webpack_require__(434);
+
+	var _BusinessAdminView2 = _interopRequireDefault(_BusinessAdminView);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Routes = _react2.default.createElement(
@@ -20109,7 +20088,8 @@
 	                _react2.default.createElement(_reactRouter.Route, { path: 'order-summary', component: _OrderSummaryView2.default }),
 	                _react2.default.createElement(_reactRouter.Route, { path: 'confirmation', component: _ConfirmationView2.default }),
 	                _react2.default.createElement(_reactRouter.Route, { path: 'previous-orders', component: _PreviousOrdersView2.default }),
-	                _react2.default.createElement(_reactRouter.Route, { path: 'favorite-orders', component: _FavoriteOrdersView2.default })
+	                _react2.default.createElement(_reactRouter.Route, { path: 'favorite-orders', component: _FavoriteOrdersView2.default }),
+	                _react2.default.createElement(_reactRouter.Route, { path: 'business-admin', component: _BusinessAdminView2.default })
 	);
 
 	module.exports = Routes;
@@ -61535,6 +61515,258 @@
 
 	// module
 	exports.push([module.id, ".item-notification-text {\n  color: #f6f6f6;\n  text-align: center;\n  text-decoration: none; }\n\n.item-notification {\n  color: #f6f6f6;\n  font-size: 1.1em;\n  padding-top: 0.7em;\n  height: 38px;\n  position: fixed;\n  left: 0;\n  text-align: center;\n  text-decoration: none;\n  top: -45px;\n  width: 100%;\n  animation: item-notification 1s ease forwards;\n  z-index: 999999; }\n\n.add-item-notification {\n  background-color: #3FB083; }\n\n.delete-item-notification {\n  background-color: #E2514E; }\n\n.error-item-notification {\n  background-color: #FAD675; }\n\n.item-notification-show {\n  display: block; }\n\n.item-notification-hide {\n  display: none; }\n\n@keyframes item-notification {\n  0% {\n    opacity: 0; }\n  50% {\n    opacity: 1; }\n  100% {\n    top: 0; } }\n\n@keyframes item-notification-hide {\n  0% {\n    top: 0; }\n  50% {\n    top: -25; }\n  100% {\n    top: -45; } }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 434 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _businessAdminView = __webpack_require__(435);
+
+	var _businessAdminView2 = _interopRequireDefault(_businessAdminView);
+
+	var _OrdersContainer = __webpack_require__(437);
+
+	var _OrdersContainer2 = _interopRequireDefault(_OrdersContainer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var BusinessAdminView = _react2.default.createClass({
+	    displayName: 'BusinessAdminView',
+
+
+	    render: function render() {
+
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'ba-view-container' },
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'ba-view-wrap' },
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    'Today\'s Orders'
+	                ),
+	                _react2.default.createElement(_OrdersContainer2.default, null)
+	            )
+	        );
+	    }
+	});
+
+	module.exports = BusinessAdminView;
+
+/***/ },
+/* 435 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(436);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./business-admin-view.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./business-admin-view.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 436 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".ba-view-container {\n  width: 100%;\n  border: 5px solid red;\n  height: 100%; }\n  .ba-view-container .ba-view-wrap {\n    width: 960px;\n    margin: 0 auto;\n    border: 5px solid green;\n    height: 100%; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 437 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _ordersContainer = __webpack_require__(438);
+
+	var _ordersContainer2 = _interopRequireDefault(_ordersContainer);
+
+	var _BAOrder = __webpack_require__(440);
+
+	var _BAOrder2 = _interopRequireDefault(_BAOrder);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var OrdersContainer = _react2.default.createClass({
+	    displayName: 'OrdersContainer',
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'ba-orders-container' },
+	            _react2.default.createElement(_BAOrder2.default, null),
+	            _react2.default.createElement(_BAOrder2.default, null),
+	            _react2.default.createElement(_BAOrder2.default, null),
+	            _react2.default.createElement(_BAOrder2.default, null),
+	            _react2.default.createElement(_BAOrder2.default, null)
+	        );
+	    }
+	});
+
+	module.exports = OrdersContainer;
+
+/***/ },
+/* 438 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(439);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./orders-container.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./orders-container.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 439 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".ba-orders-container {\n  width: 900px;\n  border: 5px solid blue; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 440 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _baOrder = __webpack_require__(441);
+
+	var _baOrder2 = _interopRequireDefault(_baOrder);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var BAOrder = function (_React$Component) {
+	    _inherits(BAOrder, _React$Component);
+
+	    function BAOrder() {
+	        _classCallCheck(this, BAOrder);
+
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(BAOrder).apply(this, arguments));
+	    }
+
+	    _createClass(BAOrder, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'ba-orders' },
+	                'I\'m an order'
+	            );
+	        }
+	    }]);
+
+	    return BAOrder;
+	}(_react2.default.Component);
+
+	module.exports = BAOrder;
+
+/***/ },
+/* 441 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(442);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./ba-order.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./ba-order.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 442 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".ba-orders {\n  width: 800px;\n  border: 5px solid orange;\n  height: 3em; }\n", ""]);
 
 	// exports
 

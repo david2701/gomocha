@@ -5,8 +5,9 @@ var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 // var database = require('./database');
 var MongoClient = require('mongodb').MongoClient;
-
 var mongoose = require('mongoose');
+
+
 console.log(process.env.MONGODB_URI);
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -86,12 +87,10 @@ app.post('/api/orders', jsonParser, function(req, res) {
 
 app.post('/api/orders/remove', jsonParser, function(req, res) {
     Orders.remove({}, function(err) {
-        console.log('collection removed')
+        console.log('collection removed');
         res.status(201);
     });
 })
-
-// once send method
 
 app.get('*', requestHandler);
 
