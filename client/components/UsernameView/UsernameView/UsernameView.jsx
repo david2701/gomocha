@@ -35,7 +35,7 @@ var UsernameView = React.createClass({
                             <form onSubmit={this._handleUsernameSubmit}>
                                 <input
                                     type="text"
-                                    placeholder="Enter a username to begin"
+                                    placeholder="What's your name?"
                                     name="username"
                                     ref={(c) => this._usernameInput = c}
                                     required />
