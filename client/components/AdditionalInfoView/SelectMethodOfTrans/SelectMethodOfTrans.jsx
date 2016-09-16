@@ -10,7 +10,7 @@ var SelectMethodOfTrans = React.createClass({
     render: function() {
         return (
             <div className="method-of-trans-container">
-                <h2>Select Method of Transportation</h2>
+                <h2>How will you get to the shop?</h2>
 
                         <input
                             onChange={this.props.handleMethodOfTrans}

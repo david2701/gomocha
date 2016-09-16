@@ -95,7 +95,7 @@ app.post('/api/orders/remove', jsonParser, function(req, res) {
 app.get('*', requestHandler);
 
 var test = function() {
-    console.log('app listening on port 4001');
+    console.log('app listening on port 4000');
 }
 
-app.listen(process.env.PORT || 4001, test);
+app.listen(process.env.PORT || 4000, test);

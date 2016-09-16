@@ -37,6 +37,64 @@
     }
 }
 
+
+.dash-landing-icon-wrap {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+
+    .how-it-works {
+        font-size: 1em;
+        margin-bottom: 1em;
+    }
+
+    .dash-landing-icon {
+        display: block;
+        width: 30%;
+        margin: 0 auto;
+
+        h2 {
+            font-size: 1.2em;
+        }
+    }
+
+    img {
+        width: 8em;
+    }
+
+    h2 {
+        margin-bottom: 1.5em;
+    }
+}
+
+@media only screen and (min-width: 685px) {
+
+    .dash-landing-icon-wrap {
+        margin-bottom: 2em;
+        text-align: center;
+
+        .dash-landing-icon {
+            display: inline-block;
+            width: 33%;
+            text-align: center;
+
+            img {
+                width: 40%;
+            }
+
+            h2 {
+                text-align: center;
+            }
+        }
+
+        .dash-landing-icon-3 {
+            h2 {
+                font-size: 1em;
+            }
+        }
+    }
+}
+
 @media only screen and (min-width: 960px) {
     .dashboard-container {
         margin-top: 0em;

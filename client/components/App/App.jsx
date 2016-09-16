@@ -442,7 +442,6 @@ var App = React.createClass({
     },
 
     _handleClearItemsFromOrder: function() {
-        console.log('clearing items from order!');
         this.setState({
             items: []
         })

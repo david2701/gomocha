@@ -20,7 +20,7 @@
 
 .userProgress {
     position: relative;
-    width: 50%;
+    width: 100%;
     height: 30px;
     background-color: #fff;
     border-radius: 5px;
@@ -39,6 +39,10 @@
     .confirmation-view-container {
         width: 28em;
         margin: 4em auto 2.5em auto;
+    }
+
+    .userProgress {
+        width: 25em;
     }
 }
 

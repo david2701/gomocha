@@ -73,6 +73,11 @@
 	        return window.scrollTo(0, 0);
 	    } }), document.getElementById('root'));
 
+	// fix responsiveness of dashboard icons
+	// add amazon etc payment options to credit card section
+	// make the confirmation page sexy!
+	// see if you can make the app more playful
+
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
@@ -25612,7 +25617,6 @@
 	    },
 
 	    _handleClearItemsFromOrder: function _handleClearItemsFromOrder() {
-	        console.log('clearing items from order!');
 	        this.setState({
 	            items: []
 	        });
@@ -44320,7 +44324,12 @@
 	                    null,
 	                    'Hey ',
 	                    this.props.username,
-	                    '! Just click start to begin!'
+	                    '!'
+	                ),
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    'Your coffee is just minutes away.'
 	                )
 	            ),
 	            _react2.default.createElement(
@@ -44337,20 +44346,14 @@
 	                        _react2.default.createElement('i', { className: 'fa fa-coffee', 'aria-hidden': 'true' }),
 	                        'Start'
 	                    )
-	                ),
-	                _react2.default.createElement('div', { className: 'dashboard-divider' }),
-	                _react2.default.createElement(
-	                    'h2',
-	                    { className: 'how-it-works' },
-	                    'Wait...how does this work?'
 	                )
 	            ),
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'landing-icon-wrap' },
+	                { className: 'dash-landing-icon-wrap' },
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'landing-icon landing-icon-1' },
+	                    { className: 'dash-landing-icon dash-landing-icon-1' },
 	                    _react2.default.createElement('img', { src: '/img/landing-icon-1.png' }),
 	                    _react2.default.createElement(
 	                        'h2',
@@ -44360,7 +44363,7 @@
 	                ),
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'landing-icon landing-icon-2' },
+	                    { className: 'dash-landing-icon dash-landing-icon-2' },
 	                    _react2.default.createElement('img', { src: '/img/landing-icon-2.png' }),
 	                    _react2.default.createElement(
 	                        'h2',
@@ -44370,7 +44373,7 @@
 	                ),
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'landing-icon landing-icon-3' },
+	                    { className: 'dash-landing-icon dash-landing-icon-3' },
 	                    _react2.default.createElement('img', { src: '/img/landing-icon-3.png' }),
 	                    _react2.default.createElement(
 	                        'h2',
@@ -44421,7 +44424,7 @@
 
 
 	// module
-	exports.push([module.id, ".dashboard-container {\n  margin-left: 0em;\n  margin-top: 4em; }\n  .dashboard-container .start-button-wrap {\n    display: block;\n    text-align: center;\n    margin: 1em auto 3em auto; }\n    .dashboard-container .start-button-wrap button.start-button {\n      background: #3FB083;\n      margin: 0em;\n      padding: 1.5em 3em;\n      font-size: 1.75em; }\n      .dashboard-container .start-button-wrap button.start-button:hover {\n        background: #43bb8b; }\n    .dashboard-container .start-button-wrap .fa-coffee {\n      margin-right: 0.35em; }\n  .dashboard-container .dashboard-divider {\n    width: 100%;\n    height: 2px;\n    background: #BDBEC1;\n    margin: 5em auto 0 auto; }\n  .dashboard-container h2.how-it-works {\n    text-align: center;\n    margin-top: 2em;\n    margin-bottom: 2em; }\n\n@media only screen and (min-width: 960px) {\n  .dashboard-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
+	exports.push([module.id, ".dashboard-container {\n  margin-left: 0em;\n  margin-top: 4em; }\n  .dashboard-container .start-button-wrap {\n    display: block;\n    text-align: center;\n    margin: 1em auto 3em auto; }\n    .dashboard-container .start-button-wrap button.start-button {\n      background: #3FB083;\n      margin: 0em;\n      padding: 1.5em 3em;\n      font-size: 1.75em; }\n      .dashboard-container .start-button-wrap button.start-button:hover {\n        background: #43bb8b; }\n    .dashboard-container .start-button-wrap .fa-coffee {\n      margin-right: 0.35em; }\n  .dashboard-container .dashboard-divider {\n    width: 100%;\n    height: 2px;\n    background: #BDBEC1;\n    margin: 5em auto 0 auto; }\n  .dashboard-container h2.how-it-works {\n    text-align: center;\n    margin-top: 2em;\n    margin-bottom: 2em; }\n\n.dash-landing-icon-wrap {\n  text-align: center;\n  width: 80%;\n  margin: 0 auto; }\n  .dash-landing-icon-wrap .how-it-works {\n    font-size: 1em;\n    margin-bottom: 1em; }\n  .dash-landing-icon-wrap .dash-landing-icon {\n    display: block;\n    width: 30%;\n    margin: 0 auto; }\n    .dash-landing-icon-wrap .dash-landing-icon h2 {\n      font-size: 1.2em; }\n  .dash-landing-icon-wrap img {\n    width: 8em; }\n  .dash-landing-icon-wrap h2 {\n    margin-bottom: 1.5em; }\n\n@media only screen and (min-width: 685px) {\n  .dash-landing-icon-wrap {\n    margin-bottom: 2em;\n    text-align: center; }\n    .dash-landing-icon-wrap .dash-landing-icon {\n      display: inline-block;\n      width: 33%;\n      text-align: center; }\n      .dash-landing-icon-wrap .dash-landing-icon img {\n        width: 40%; }\n      .dash-landing-icon-wrap .dash-landing-icon h2 {\n        text-align: center; }\n    .dash-landing-icon-wrap .dash-landing-icon-3 h2 {\n      font-size: 1em; } }\n\n@media only screen and (min-width: 960px) {\n  .dashboard-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
 
 	// exports
 
@@ -44952,14 +44955,14 @@
 	                        _this.props.handleAddItemToOrder(itemDetails);
 	                        _this.props.toggleAddNotification();
 	                    } },
-	                'Click to add'
+	                'Add to order'
 	            ) : _react2.default.createElement(
 	                'div',
 	                { className: 'add-to-order',
 	                    onClick: function onClick() {
 	                        _this.props.toggleErrorNotification();
 	                    } },
-	                'Click to add'
+	                'Add to order'
 	            )
 	        );
 	    }
@@ -45002,7 +45005,7 @@
 
 
 	// module
-	exports.push([module.id, ".decaf-option {\n  display: inline-block; }\n\n.decaf-input {\n  margin-left: 0.5em; }\n\n.hot-or-cold-option {\n  display: inline-block; }\n\n.hot-or-cold-option label {\n  margin-left: 1em; }\n\n.hot-input, .cold-input {\n  margin-left: 0.4em; }\n\n.add-to-order-wrap {\n  display: inline-block;\n  float: right;\n  margin-right: 1em;\n  margin-top: -0.1em; }\n  .add-to-order-wrap .add-to-order {\n    color: #fff;\n    background: #3FB083;\n    margin-left: 1em;\n    border-radius: 3px;\n    font-size: 0.7em;\n    padding: 0.3em 0.5em 0.3em 0.5em; }\n    .add-to-order-wrap .add-to-order:hover {\n      cursor: pointer;\n      background: #52c195; }\n\n.milk-type, .size, .quantity {\n  display: inline-block;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  padding: 0.2em 0.5em;\n  border-radius: 3px;\n  background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n  font-size: 0.95em; }\n  .milk-type:hover, .size:hover, .quantity:hover {\n    cursor: pointer; }\n\n.milk-type {\n  background-position: 90% 55%;\n  width: 7.5em; }\n\n.size {\n  background-position: 85% 55%;\n  width: 4.5em; }\n\n.quantity {\n  background-position: 85% 55%;\n  width: 3.9em; }\n", ""]);
+	exports.push([module.id, ".decaf-option {\n  display: inline-block; }\n\n.decaf-input {\n  margin-left: 0.5em; }\n\n.hot-or-cold-option {\n  display: inline-block; }\n\n.hot-or-cold-option label {\n  margin-left: 1em; }\n\n.hot-input, .cold-input {\n  margin-left: 0.4em; }\n\n.add-to-order-wrap {\n  display: inline-block;\n  float: right;\n  margin-right: 1em;\n  margin-top: -0.1em; }\n  .add-to-order-wrap .add-to-order {\n    color: #fff;\n    background: #3FB083;\n    margin-left: 1em;\n    border-radius: 3px;\n    font-size: 0.9em;\n    padding: 0.6em 0.9em; }\n    .add-to-order-wrap .add-to-order:hover {\n      cursor: pointer;\n      background: #52c195; }\n\n.milk-type, .size, .quantity {\n  display: inline-block;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  padding: 0.2em 0.5em;\n  border-radius: 3px;\n  background: url(\"/img/down-arrow.png\") no-repeat #F8F8F8;\n  font-size: 0.95em; }\n  .milk-type:hover, .size:hover, .quantity:hover {\n    cursor: pointer; }\n\n.milk-type {\n  background-position: 90% 55%;\n  width: 7.5em; }\n\n.size {\n  background-position: 85% 55%;\n  width: 4.5em; }\n\n.quantity {\n  background-position: 85% 55%;\n  width: 3.9em; }\n", ""]);
 
 	// exports
 
@@ -45368,7 +45371,7 @@
 
 
 	// module
-	exports.push([module.id, ".divider {\n  width: 100%;\n  border-bottom: 1px solid black; }\n\n@media only screen and (min-width: 600px) {\n  .menu-section {\n    width: 21em;\n    margin: 0em auto 2.5em auto; }\n    .menu-section:nth-child(odd) {\n      margin-left: 4em; }\n    .menu-section:nth-child(even) {\n      margin-left: 4em; } }\n\n@media only screen and (max-width: 599px) {\n  .menu-section {\n    width: 95%;\n    margin: 0em auto 2.5em auto; } }\n\n@media only screen and (min-width: 1160px) {\n  .menu-section {\n    display: inline-block; }\n    .menu-section:nth-child(odd) {\n      margin-left: 3.7em;\n      margin-right: 1em; }\n    .menu-section:nth-child(even) {\n      margin-left: 0em; }\n    .menu-section:nth-child(4) {\n      position: relative;\n      top: -5.3em; } }\n\n@media only screen and (min-width: 1200px) {\n  .menu-section:nth-child(even) {\n    margin-right: 21em; } }\n", ""]);
+	exports.push([module.id, ".divider {\n  width: 100%;\n  border-bottom: 1px solid black; }\n\n@media only screen and (min-width: 600px) {\n  .menu-section {\n    width: 21em;\n    margin: 0em auto 2.5em auto; }\n    .menu-section:nth-child(odd) {\n      margin-left: 4em; }\n    .menu-section:nth-child(even) {\n      margin-left: 4em; } }\n\n@media only screen and (max-width: 599px) {\n  .menu-section {\n    width: 95%;\n    margin: 0em auto 2.5em auto; } }\n\n@media only screen and (min-width: 1160px) {\n  .menu-section {\n    display: inline-block; }\n    .menu-section:nth-child(odd) {\n      margin-left: 3.7em;\n      margin-right: 1em; }\n    .menu-section:nth-child(even) {\n      margin-left: 0em; }\n    .menu-section:nth-child(4) {\n      position: relative; } }\n\n@media only screen and (min-width: 1200px) {\n  .menu-section:nth-child(even) {\n    margin-right: 21em; } }\n", ""]);
 
 	// exports
 
@@ -46273,7 +46276,7 @@
 
 
 	// module
-	exports.push([module.id, ".select-shop-container {\n  margin-left: 0em;\n  margin-top: 4em; }\n  .select-shop-container .main-wrap .loading-icon {\n    margin-top: 0em;\n    text-align: center; }\n  .select-shop-container .userProgress {\n    position: relative;\n    width: 50%;\n    height: 30px;\n    background-color: #fff;\n    border-radius: 5px;\n    margin: 0 auto;\n    border: 1px solid #E4E4E4; }\n    .select-shop-container .userProgress #oneOfFive {\n      position: absolute;\n      width: 20%;\n      height: 100%;\n      background: #3FB083;\n      border-radius: 5px 0px 0px 5px; }\n  .select-shop-container .hide {\n    display: none; }\n\n@media only screen and (min-width: 960px) {\n  .select-shop-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
+	exports.push([module.id, ".select-shop-container {\n  margin-left: 0em;\n  margin-top: 4em; }\n  .select-shop-container .main-wrap .loading-icon {\n    margin-top: 0em;\n    text-align: center; }\n  .select-shop-container .userProgress {\n    position: relative;\n    width: 100%;\n    height: 30px;\n    background-color: #fff;\n    border-radius: 5px;\n    margin: 0 auto;\n    border: 1px solid #E4E4E4; }\n    .select-shop-container .userProgress #oneOfFive {\n      position: absolute;\n      width: 20%;\n      height: 100%;\n      background: #3FB083;\n      border-radius: 5px 0px 0px 5px; }\n  .select-shop-container .hide {\n    display: none; }\n\n@media only screen and (min-width: 600px) {\n  .userProgress {\n    width: 25em; } }\n\n@media only screen and (min-width: 960px) {\n  .select-shop-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
 
 	// exports
 
@@ -46456,7 +46459,7 @@
 	            _react2.default.createElement(
 	                'h2',
 	                null,
-	                'Select Method of Transportation'
+	                'How will you get to the shop?'
 	            ),
 	            _react2.default.createElement('input', {
 	                onChange: this.props.handleMethodOfTrans,
@@ -60045,7 +60048,7 @@
 	                _react2.default.createElement(
 	                    'p',
 	                    null,
-	                    'First and Last Name'
+	                    'Name on card'
 	                ),
 	                _react2.default.createElement('input', {
 	                    onChange: this.props.handleCCName,
@@ -60391,7 +60394,7 @@
 
 
 	// module
-	exports.push([module.id, ".additional-info-container {\n  margin-left: 0em;\n  margin-top: 4em; }\n\n.next-button-container {\n  text-align: center;\n  margin-bottom: 3em; }\n\n.userProgress {\n  position: relative;\n  width: 50%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto; }\n\n#threeOfFive {\n  position: absolute;\n  width: 60%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 0px 0px 5px; }\n\n.additional-info-container {\n  margin-right: 1em;\n  overflow-x: hidden; }\n\n@media only screen and (min-width: 700px) {\n  .additional-info-container {\n    margin-left: 0em;\n    margin-top: 4em; } }\n\n@media only screen and (min-width: 960px) {\n  .additional-info-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
+	exports.push([module.id, ".additional-info-container {\n  margin-left: 0em;\n  margin-top: 4em; }\n\n.next-button-container {\n  text-align: center;\n  margin-bottom: 3em; }\n\n.userProgress {\n  position: relative;\n  width: 100%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto; }\n\n#threeOfFive {\n  position: absolute;\n  width: 60%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 0px 0px 5px; }\n\n.additional-info-container {\n  margin-right: 1em;\n  overflow-x: hidden; }\n\n@media only screen and (min-width: 600px) {\n  .userProgress {\n    width: 25em; } }\n\n@media only screen and (min-width: 700px) {\n  .additional-info-container {\n    margin-left: 0em;\n    margin-top: 4em; } }\n\n@media only screen and (min-width: 960px) {\n  .additional-info-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
 
 	// exports
 
@@ -61091,7 +61094,7 @@
 
 
 	// module
-	exports.push([module.id, ".confirmation-view-container {\n  width: 90%;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff;\n  margin-top: 4em;\n  margin: 4em auto 4em auto;\n  box-shadow: #999999 0px 1px; }\n\n.back-to-dashboard {\n  width: 13em;\n  margin: 2em auto 3em auto;\n  display: block; }\n  .back-to-dashboard .fa-home {\n    padding-left: .4em; }\n\n.userProgress {\n  position: relative;\n  width: 50%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto; }\n\n#fiveOfFive {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 5px 5px 5px; }\n\n@media only screen and (min-width: 600px) {\n  .confirmation-view-container {\n    width: 28em;\n    margin: 4em auto 2.5em auto; } }\n\n@media only screen and (min-width: 960px) {\n  .confirmation-view-container {\n    margin-top: 0em;\n    margin: 4em auto 2.5em auto; } }\n", ""]);
+	exports.push([module.id, ".confirmation-view-container {\n  width: 90%;\n  border: 1px solid #E4E4E4;\n  border-radius: 3px;\n  background: #fff;\n  margin-top: 4em;\n  margin: 4em auto 4em auto;\n  box-shadow: #999999 0px 1px; }\n\n.back-to-dashboard {\n  width: 13em;\n  margin: 2em auto 3em auto;\n  display: block; }\n  .back-to-dashboard .fa-home {\n    padding-left: .4em; }\n\n.userProgress {\n  position: relative;\n  width: 100%;\n  height: 30px;\n  background-color: #fff;\n  border-radius: 5px;\n  margin: 0 auto; }\n\n#fiveOfFive {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  background: #3FB083;\n  border-radius: 5px 5px 5px 5px; }\n\n@media only screen and (min-width: 600px) {\n  .confirmation-view-container {\n    width: 28em;\n    margin: 4em auto 2.5em auto; }\n  .userProgress {\n    width: 25em; } }\n\n@media only screen and (min-width: 960px) {\n  .confirmation-view-container {\n    margin-top: 0em;\n    margin: 4em auto 2.5em auto; } }\n", ""]);
 
 	// exports
 

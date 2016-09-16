@@ -18,7 +18,7 @@ var EnterPaymentInfo = React.createClass({
             <div className="enter-payment-info-container">
                 <h2>Enter Payment Info</h2>
                 <div className="payment-info-section payment-name">
-                    <p>First and Last Name</p>
+                    <p>Name on card</p>
                         <input
                             onChange={this.props.handleCCName}
                             type="text"

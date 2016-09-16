@@ -15,7 +15,8 @@ var DashboardView = React.createClass({
         return (
             <div className="dashboard-container">
                 <div className="title-cover">
-                <h1>Hey {this.props.username}! Just click start to begin!</h1>
+                <h1>Hey {this.props.username}!</h1>
+                <h1>Your coffee is just minutes away.</h1>
                 </div>
 
                 <div className="main-wrap">
@@ -26,21 +27,17 @@ var DashboardView = React.createClass({
                                 <i className="fa fa-coffee" aria-hidden="true"></i>
                                     Start
                             </button></Link>
-
-                <div className="dashboard-divider"></div>
-                <h2 className="how-it-works">Wait...how does this work?</h2>
-
                 </div>
-                <div className="landing-icon-wrap">
-                    <div className="landing-icon landing-icon-1">
+                <div className="dash-landing-icon-wrap">
+                    <div className="dash-landing-icon dash-landing-icon-1">
                         <img src="/img/landing-icon-1.png" />
                         <h2>Select a shop</h2>
                     </div>
-                    <div className="landing-icon landing-icon-2">
+                    <div className="dash-landing-icon dash-landing-icon-2">
                         <img src="/img/landing-icon-2.png" />
                         <h2>Place your order</h2>
                     </div>
-                    <div className="landing-icon landing-icon-3">
+                    <div className="dash-landing-icon dash-landing-icon-3">
                         <img src="/img/landing-icon-3.png" />
                         <h2>Ready when you arrive!</h2>
                     </div>

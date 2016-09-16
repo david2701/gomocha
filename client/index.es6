@@ -12,3 +12,9 @@ ReactDOM.render(
 
     ,document.getElementById('root')
 )
+
+
+// fix responsiveness of dashboard icons
+// add amazon etc payment options to credit card section
+// make the confirmation page sexy!
+// see if you can make the app more playful

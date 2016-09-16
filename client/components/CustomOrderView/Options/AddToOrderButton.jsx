@@ -31,14 +31,14 @@ var AddToOrderButton = React.createClass({
                              this.props.handleAddItemToOrder(itemDetails)
                              this.props.toggleAddNotification()
                          }}>
-                        Click to add
+                        Add to order
                     </div>
                 :
                 <div className='add-to-order'
                      onClick={() => {
                          this.props.toggleErrorNotification()
                      }}>
-                    Click to add
+                    Add to order
                 </div>
                  }
 
