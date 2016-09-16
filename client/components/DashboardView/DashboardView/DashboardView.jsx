@@ -21,12 +21,11 @@ var DashboardView = React.createClass({
                 <div className="main-wrap">
                         <Link to="/select-shop" className="start-button-wrap">
                             <button
-                                onClick={this.props.handleClearItemsFromOrder} 
+                                onClick={this.props.handleClearItemsFromOrder}
                                 className="next-button start-button">
                                 <i className="fa fa-coffee" aria-hidden="true"></i>
                                     Start
                             </button></Link>
-                        { /*<PrevAndFavorites /> */}
 
                 <div className="dashboard-divider"></div>
                 <h2 className="how-it-works">Wait...how does this work?</h2>
