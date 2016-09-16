@@ -14,7 +14,6 @@ var BusinessAdminView = React.createClass({
                     <h1>Today's Orders</h1>
                     <OrdersContainer />
                 </div>
-
             </div>
         )
     }

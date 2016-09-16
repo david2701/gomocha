@@ -20056,19 +20056,19 @@
 
 	var _AdditionalInfoView2 = _interopRequireDefault(_AdditionalInfoView);
 
-	var _OrderSummaryView = __webpack_require__(403);
+	var _OrderSummaryView = __webpack_require__(406);
 
 	var _OrderSummaryView2 = _interopRequireDefault(_OrderSummaryView);
 
-	var _ConfirmationView = __webpack_require__(407);
+	var _ConfirmationView = __webpack_require__(410);
 
 	var _ConfirmationView2 = _interopRequireDefault(_ConfirmationView);
 
-	var _PreviousOrdersView = __webpack_require__(419);
+	var _PreviousOrdersView = __webpack_require__(422);
 
 	var _PreviousOrdersView2 = _interopRequireDefault(_PreviousOrdersView);
 
-	var _FavoriteOrdersView = __webpack_require__(428);
+	var _FavoriteOrdersView = __webpack_require__(431);
 
 	var _FavoriteOrdersView2 = _interopRequireDefault(_FavoriteOrdersView);
 
@@ -46304,7 +46304,7 @@
 
 	var _EnterPaymentInfo2 = _interopRequireDefault(_EnterPaymentInfo);
 
-	var _AdditionalInfoNotification = __webpack_require__(431);
+	var _AdditionalInfoNotification = __webpack_require__(401);
 
 	var _AdditionalInfoNotification2 = _interopRequireDefault(_AdditionalInfoNotification);
 
@@ -46318,7 +46318,7 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _additionalInfoView = __webpack_require__(401);
+	var _additionalInfoView = __webpack_require__(404);
 
 	var _additionalInfoView2 = _interopRequireDefault(_additionalInfoView);
 
@@ -60264,10 +60264,106 @@
 /* 401 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var _react = __webpack_require__(5);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _additionalInfoNotification = __webpack_require__(402);
+
+	var _additionalInfoNotification2 = _interopRequireDefault(_additionalInfoNotification);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AdditionalInfoNotification = _react2.default.createClass({
+	    displayName: 'AdditionalInfoNotification',
+
+
+	    propTypes: {
+	        notification: _react2.default.PropTypes.shape({
+	            add: _react2.default.PropTypes.bool,
+	            delete: _react2.default.PropTypes.bool,
+	            error: _react2.default.PropTypes.bool,
+	            form: _react2.default.PropTypes.bool,
+	            additionalInfo: _react2.default.PropTypes.bool
+	        })
+	    },
+
+	    render: function render() {
+
+	        var notificationType = '';
+	        var notificationText = '';
+
+	        if (this.props.notification.additionalInfo) {
+	            notificationType = 'item-notification error-item-notification item-notification-show';
+	            notificationText = 'Select your method of transportation to continue';
+	        } else {
+	            notificationType = 'item-notification item-notification-hide';
+	        }
+
+	        return _react2.default.createElement(
+	            'div',
+	            { className: notificationType },
+	            _react2.default.createElement(
+	                'a',
+	                { className: 'item-notification-text' },
+	                notificationText
+	            )
+	        );
+	    }
+	});
+
+	module.exports = AdditionalInfoNotification;
+
+/***/ },
+/* 402 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(402);
+	var content = __webpack_require__(403);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./additional-info-notification.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./additional-info-notification.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 403 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".item-notification-text {\n  color: #f6f6f6;\n  text-align: center;\n  text-decoration: none; }\n\n.item-notification {\n  color: #f6f6f6;\n  font-size: 1.1em;\n  padding-top: 0.7em;\n  height: 38px;\n  position: fixed;\n  left: 0;\n  text-align: center;\n  text-decoration: none;\n  top: -45px;\n  width: 100%;\n  animation: item-notification 1s ease forwards;\n  z-index: 999999; }\n\n.add-item-notification {\n  background-color: #3FB083; }\n\n.delete-item-notification {\n  background-color: #E2514E; }\n\n.error-item-notification {\n  background-color: #FAD675; }\n\n.item-notification-show {\n  display: block; }\n\n.item-notification-hide {\n  display: none; }\n\n@keyframes item-notification {\n  0% {\n    opacity: 0; }\n  50% {\n    opacity: 1; }\n  100% {\n    top: 0; } }\n\n@keyframes item-notification-hide {\n  0% {\n    top: 0; }\n  50% {\n    top: -25; }\n  100% {\n    top: -45; } }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 404 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(405);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -60287,7 +60383,7 @@
 	}
 
 /***/ },
-/* 402 */
+/* 405 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -60301,7 +60397,7 @@
 
 
 /***/ },
-/* 403 */
+/* 406 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60314,7 +60410,7 @@
 
 	var _OrderTotal2 = _interopRequireDefault(_OrderTotal);
 
-	var _SpecialInstructionsOS = __webpack_require__(404);
+	var _SpecialInstructionsOS = __webpack_require__(407);
 
 	var _SpecialInstructionsOS2 = _interopRequireDefault(_SpecialInstructionsOS);
 
@@ -60328,7 +60424,7 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _orderSummary = __webpack_require__(405);
+	var _orderSummary = __webpack_require__(408);
 
 	var _orderSummary2 = _interopRequireDefault(_orderSummary);
 
@@ -60410,7 +60506,7 @@
 	module.exports = OrderSummaryView;
 
 /***/ },
-/* 404 */
+/* 407 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60450,13 +60546,13 @@
 	module.exports = SpecialInstructionsOS;
 
 /***/ },
-/* 405 */
+/* 408 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(406);
+	var content = __webpack_require__(409);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -60476,7 +60572,7 @@
 	}
 
 /***/ },
-/* 406 */
+/* 409 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -60490,7 +60586,7 @@
 
 
 /***/ },
-/* 407 */
+/* 410 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60499,15 +60595,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _OrderReadyTime = __webpack_require__(408);
+	var _OrderReadyTime = __webpack_require__(411);
 
 	var _OrderReadyTime2 = _interopRequireDefault(_OrderReadyTime);
 
-	var _ShopDetails = __webpack_require__(411);
+	var _ShopDetails = __webpack_require__(414);
 
 	var _ShopDetails2 = _interopRequireDefault(_ShopDetails);
 
-	var _DirectionsAndCall = __webpack_require__(414);
+	var _DirectionsAndCall = __webpack_require__(417);
 
 	var _DirectionsAndCall2 = _interopRequireDefault(_DirectionsAndCall);
 
@@ -60517,7 +60613,7 @@
 
 	var _reactRouter = __webpack_require__(164);
 
-	var _confirmationView = __webpack_require__(417);
+	var _confirmationView = __webpack_require__(420);
 
 	var _confirmationView2 = _interopRequireDefault(_confirmationView);
 
@@ -60598,7 +60694,7 @@
 	module.exports = ConfirmationView;
 
 /***/ },
-/* 408 */
+/* 411 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60607,7 +60703,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _orderReadyTime = __webpack_require__(409);
+	var _orderReadyTime = __webpack_require__(412);
 
 	var _orderReadyTime2 = _interopRequireDefault(_orderReadyTime);
 
@@ -60704,13 +60800,13 @@
 	module.exports = OrderReadyTime;
 
 /***/ },
-/* 409 */
+/* 412 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(410);
+	var content = __webpack_require__(413);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -60730,7 +60826,7 @@
 	}
 
 /***/ },
-/* 410 */
+/* 413 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -60744,7 +60840,7 @@
 
 
 /***/ },
-/* 411 */
+/* 414 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60753,7 +60849,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _shopDetails = __webpack_require__(412);
+	var _shopDetails = __webpack_require__(415);
 
 	var _shopDetails2 = _interopRequireDefault(_shopDetails);
 
@@ -60808,13 +60904,13 @@
 	module.exports = ShopDetails;
 
 /***/ },
-/* 412 */
+/* 415 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(413);
+	var content = __webpack_require__(416);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -60834,7 +60930,7 @@
 	}
 
 /***/ },
-/* 413 */
+/* 416 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -60848,7 +60944,7 @@
 
 
 /***/ },
-/* 414 */
+/* 417 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60857,7 +60953,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _directionsAndCall = __webpack_require__(415);
+	var _directionsAndCall = __webpack_require__(418);
 
 	var _directionsAndCall2 = _interopRequireDefault(_directionsAndCall);
 
@@ -60921,13 +61017,13 @@
 	module.exports = DirectionsAndCall;
 
 /***/ },
-/* 415 */
+/* 418 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(416);
+	var content = __webpack_require__(419);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -60947,7 +61043,7 @@
 	}
 
 /***/ },
-/* 416 */
+/* 419 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -60961,13 +61057,13 @@
 
 
 /***/ },
-/* 417 */
+/* 420 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(418);
+	var content = __webpack_require__(421);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -60987,7 +61083,7 @@
 	}
 
 /***/ },
-/* 418 */
+/* 421 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -61001,7 +61097,7 @@
 
 
 /***/ },
-/* 419 */
+/* 422 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61012,7 +61108,7 @@
 
 	var _reactRouter = __webpack_require__(164);
 
-	var _previousOrdersView = __webpack_require__(420);
+	var _previousOrdersView = __webpack_require__(423);
 
 	var _previousOrdersView2 = _interopRequireDefault(_previousOrdersView);
 
@@ -61020,7 +61116,7 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _PreviousOrder = __webpack_require__(422);
+	var _PreviousOrder = __webpack_require__(425);
 
 	var _PreviousOrder2 = _interopRequireDefault(_PreviousOrder);
 
@@ -61066,13 +61162,13 @@
 	module.exports = PreviousOrdersView;
 
 /***/ },
-/* 420 */
+/* 423 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(421);
+	var content = __webpack_require__(424);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -61092,7 +61188,7 @@
 	}
 
 /***/ },
-/* 421 */
+/* 424 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -61106,7 +61202,7 @@
 
 
 /***/ },
-/* 422 */
+/* 425 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61115,11 +61211,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _previousOrder = __webpack_require__(423);
+	var _previousOrder = __webpack_require__(426);
 
 	var _previousOrder2 = _interopRequireDefault(_previousOrder);
 
-	var _PreviousOrderItem = __webpack_require__(425);
+	var _PreviousOrderItem = __webpack_require__(428);
 
 	var _PreviousOrderItem2 = _interopRequireDefault(_PreviousOrderItem);
 
@@ -61163,13 +61259,13 @@
 	module.exports = PreviousOrder;
 
 /***/ },
-/* 423 */
+/* 426 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(424);
+	var content = __webpack_require__(427);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -61189,7 +61285,7 @@
 	}
 
 /***/ },
-/* 424 */
+/* 427 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -61203,7 +61299,7 @@
 
 
 /***/ },
-/* 425 */
+/* 428 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61212,7 +61308,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _previousOrderItem = __webpack_require__(426);
+	var _previousOrderItem = __webpack_require__(429);
 
 	var _previousOrderItem2 = _interopRequireDefault(_previousOrderItem);
 
@@ -61275,13 +61371,13 @@
 	module.exports = PreviousOrderItem;
 
 /***/ },
-/* 426 */
+/* 429 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(427);
+	var content = __webpack_require__(430);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -61301,7 +61397,7 @@
 	}
 
 /***/ },
-/* 427 */
+/* 430 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -61315,7 +61411,7 @@
 
 
 /***/ },
-/* 428 */
+/* 431 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -61326,7 +61422,7 @@
 
 	var _reactRouter = __webpack_require__(164);
 
-	var _favoriteOrdersView = __webpack_require__(429);
+	var _favoriteOrdersView = __webpack_require__(432);
 
 	var _favoriteOrdersView2 = _interopRequireDefault(_favoriteOrdersView);
 
@@ -61334,7 +61430,7 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _PreviousOrder = __webpack_require__(422);
+	var _PreviousOrder = __webpack_require__(425);
 
 	var _PreviousOrder2 = _interopRequireDefault(_PreviousOrder);
 
@@ -61384,13 +61480,13 @@
 	module.exports = FavoriteOrdersView;
 
 /***/ },
-/* 429 */
+/* 432 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(430);
+	var content = __webpack_require__(433);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -61410,102 +61506,6 @@
 	}
 
 /***/ },
-/* 430 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".favorite-orders-container {\n  width: 90%;\n  margin: 4em auto 0em auto;\n  border-radius: 3px; }\n\n@media only screen and (min-width: 600px) {\n  .favorite-orders-wrap {\n    width: 28em;\n    margin: 4em auto 2.5em auto; } }\n\n@media only screen and (min-width: 960px) {\n  .favorite-orders-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 431 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(5);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _additionalInfoNotification = __webpack_require__(432);
-
-	var _additionalInfoNotification2 = _interopRequireDefault(_additionalInfoNotification);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var AdditionalInfoNotification = _react2.default.createClass({
-	    displayName: 'AdditionalInfoNotification',
-
-
-	    propTypes: {
-	        notification: _react2.default.PropTypes.shape({
-	            add: _react2.default.PropTypes.bool,
-	            delete: _react2.default.PropTypes.bool,
-	            error: _react2.default.PropTypes.bool,
-	            form: _react2.default.PropTypes.bool,
-	            additionalInfo: _react2.default.PropTypes.bool
-	        })
-	    },
-
-	    render: function render() {
-
-	        var notificationType = '';
-	        var notificationText = '';
-
-	        if (this.props.notification.additionalInfo) {
-	            notificationType = 'item-notification error-item-notification item-notification-show';
-	            notificationText = 'Select your method of transportation to continue';
-	        } else {
-	            notificationType = 'item-notification item-notification-hide';
-	        }
-
-	        return _react2.default.createElement(
-	            'div',
-	            { className: notificationType },
-	            _react2.default.createElement(
-	                'a',
-	                { className: 'item-notification-text' },
-	                notificationText
-	            )
-	        );
-	    }
-	});
-
-	module.exports = AdditionalInfoNotification;
-
-/***/ },
-/* 432 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(433);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./additional-info-notification.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./additional-info-notification.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
 /* 433 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -61514,7 +61514,7 @@
 
 
 	// module
-	exports.push([module.id, ".item-notification-text {\n  color: #f6f6f6;\n  text-align: center;\n  text-decoration: none; }\n\n.item-notification {\n  color: #f6f6f6;\n  font-size: 1.1em;\n  padding-top: 0.7em;\n  height: 38px;\n  position: fixed;\n  left: 0;\n  text-align: center;\n  text-decoration: none;\n  top: -45px;\n  width: 100%;\n  animation: item-notification 1s ease forwards;\n  z-index: 999999; }\n\n.add-item-notification {\n  background-color: #3FB083; }\n\n.delete-item-notification {\n  background-color: #E2514E; }\n\n.error-item-notification {\n  background-color: #FAD675; }\n\n.item-notification-show {\n  display: block; }\n\n.item-notification-hide {\n  display: none; }\n\n@keyframes item-notification {\n  0% {\n    opacity: 0; }\n  50% {\n    opacity: 1; }\n  100% {\n    top: 0; } }\n\n@keyframes item-notification-hide {\n  0% {\n    top: 0; }\n  50% {\n    top: -25; }\n  100% {\n    top: -45; } }\n", ""]);
+	exports.push([module.id, ".favorite-orders-container {\n  width: 90%;\n  margin: 4em auto 0em auto;\n  border-radius: 3px; }\n\n@media only screen and (min-width: 600px) {\n  .favorite-orders-wrap {\n    width: 28em;\n    margin: 4em auto 2.5em auto; } }\n\n@media only screen and (min-width: 960px) {\n  .favorite-orders-container {\n    margin-top: 0em;\n    margin-left: 5em; } }\n", ""]);
 
 	// exports
 
@@ -61599,7 +61599,7 @@
 
 
 	// module
-	exports.push([module.id, ".ba-view-container {\n  width: 100%;\n  border: 5px solid red;\n  height: 100%; }\n  .ba-view-container .ba-view-wrap {\n    width: 960px;\n    margin: 0 auto;\n    border: 5px solid green;\n    height: 100%; }\n", ""]);
+	exports.push([module.id, ".ba-view-container {\n  width: 100%;\n  height: 100%; }\n  .ba-view-container .ba-view-wrap {\n    width: 960px;\n    margin: 5em auto 0 auto;\n    height: 100%; }\n    .ba-view-container .ba-view-wrap h1 {\n      margin-bottom: 3em; }\n", ""]);
 
 	// exports
 
@@ -61631,10 +61631,6 @@
 	        return _react2.default.createElement(
 	            'div',
 	            { className: 'ba-orders-container' },
-	            _react2.default.createElement(_BAOrder2.default, null),
-	            _react2.default.createElement(_BAOrder2.default, null),
-	            _react2.default.createElement(_BAOrder2.default, null),
-	            _react2.default.createElement(_BAOrder2.default, null),
 	            _react2.default.createElement(_BAOrder2.default, null)
 	        );
 	    }
@@ -61677,7 +61673,7 @@
 
 
 	// module
-	exports.push([module.id, ".ba-orders-container {\n  width: 900px;\n  border: 5px solid blue; }\n", ""]);
+	exports.push([module.id, ".ba-orders-container {\n  width: 900px;\n  margin: 0 auto; }\n", ""]);
 
 	// exports
 
@@ -61720,8 +61716,159 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
-	                { className: 'ba-orders' },
-	                'I\'m an order'
+	                null,
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'ba-order' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'ba-order-left' },
+	                        _react2.default.createElement(
+	                            'h2',
+	                            null,
+	                            'Amit R.'
+	                        ),
+	                        _react2.default.createElement(
+	                            'p',
+	                            null,
+	                            '1 - 16oz. Mocha Latte'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'ba-order-right' },
+	                        _react2.default.createElement(
+	                            'p',
+	                            null,
+	                            'Time until arrival: ',
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'ba-order-time' },
+	                                '3 min'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'button',
+	                            null,
+	                            'Complete',
+	                            _react2.default.createElement('i', { className: 'fa fa-check-circle fa-2x', 'aria-hidden': 'true' })
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'ba-order' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'ba-order-left' },
+	                        _react2.default.createElement(
+	                            'h2',
+	                            null,
+	                            'Robby Y.'
+	                        ),
+	                        _react2.default.createElement(
+	                            'p',
+	                            null,
+	                            '2 - 20oz. Caramel Frap'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'ba-order-right' },
+	                        _react2.default.createElement(
+	                            'p',
+	                            null,
+	                            'Time until arrival: ',
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'ba-order-time' },
+	                                '7 min'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'button',
+	                            null,
+	                            'Complete',
+	                            _react2.default.createElement('i', { className: 'fa fa-check-circle fa-2x', 'aria-hidden': 'true' })
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'ba-order' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'ba-order-left' },
+	                        _react2.default.createElement(
+	                            'h2',
+	                            null,
+	                            'Jake B.'
+	                        ),
+	                        _react2.default.createElement(
+	                            'p',
+	                            null,
+	                            '1 - 16oz. Green Tea'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'ba-order-right' },
+	                        _react2.default.createElement(
+	                            'p',
+	                            null,
+	                            'Time until arrival: ',
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'ba-order-time' },
+	                                '9 min'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'button',
+	                            null,
+	                            'Complete',
+	                            _react2.default.createElement('i', { className: 'fa fa-check-circle fa-2x', 'aria-hidden': 'true' })
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'ba-order' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'ba-order-left' },
+	                        _react2.default.createElement(
+	                            'h2',
+	                            null,
+	                            'Preston O.'
+	                        ),
+	                        _react2.default.createElement(
+	                            'p',
+	                            null,
+	                            '1 - 24oz. Americano'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'ba-order-right' },
+	                        _react2.default.createElement(
+	                            'p',
+	                            null,
+	                            'Time until arrival: ',
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'ba-order-time' },
+	                                '12 min'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'button',
+	                            null,
+	                            'Complete',
+	                            _react2.default.createElement('i', { className: 'fa fa-check-circle fa-2x', 'aria-hidden': 'true' })
+	                        )
+	                    )
+	                )
 	            );
 	        }
 	    }]);
@@ -61766,7 +61913,7 @@
 
 
 	// module
-	exports.push([module.id, ".ba-orders {\n  width: 800px;\n  border: 5px solid orange;\n  height: 3em; }\n", ""]);
+	exports.push([module.id, ".ba-order {\n  width: 34em;\n  height: 9em;\n  background: #fff;\n  border-bottom: 2px solid #b5bec2;\n  margin: 0 auto 1em auto;\n  border-radius: 5px; }\n  .ba-order .ba-order-left, .ba-order .ba-order-right {\n    display: inline-block;\n    vertical-align: top;\n    width: 44%;\n    height: 100%;\n    padding: 1em; }\n  .ba-order .ba-order-left h2 {\n    padding: 0em;\n    font-size: 2em;\n    color: #1c2024;\n    margin-bottom: 1.3em; }\n  .ba-order .ba-order-left p {\n    padding: 0em;\n    font-size: 1.6em;\n    margin: 0;\n    color: #1c2024; }\n  .ba-order .ba-order-right {\n    text-align: right; }\n    .ba-order .ba-order-right p {\n      margin: 0em 0 1.75em 0;\n      color: #1c2024; }\n      .ba-order .ba-order-right p .ba-order-time {\n        font-size: 2em; }\n    .ba-order .ba-order-right button {\n      margin: 0em;\n      border: none;\n      background: #40B284;\n      padding: 0.3em 1.3em;\n      border-radius: 10px;\n      color: #fff;\n      font-size: 1em; }\n      .ba-order .ba-order-right button .fa-check-circle {\n        vertical-align: middle;\n        padding-left: 0.4em; }\n", ""]);
 
 	// exports
 

@@ -7,10 +7,6 @@ var OrdersContainer = React.createClass({
         return (
             <div className="ba-orders-container">
                 <BAOrder />
-                <BAOrder />
-                <BAOrder />
-                <BAOrder />
-                <BAOrder />
             </div>
         )
     }

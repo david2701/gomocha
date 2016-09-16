@@ -1,5 +1,64 @@
-.ba-orders {
-    width: 800px;
-    border: 5px solid orange;
-    height: 3em;
+$border-color: darken(#EDEFF0, 20%);
+$font-color: darken(#3E474F, 15%);
+
+.ba-order {
+    width: 34em;
+    height: 9em;
+    background: #fff;
+    border-bottom: 2px solid $border-color;
+    margin: 0 auto 1em auto;
+    border-radius: 5px;
+
+    .ba-order-left, .ba-order-right {
+        display: inline-block;
+        vertical-align: top;
+        width: 44%;
+        height: 100%;
+        padding: 1em;
+    }
+
+    .ba-order-left {
+        h2 {
+            padding: 0em;
+            font-size: 2em;
+            color: $font-color;
+            margin-bottom: 1.3em;
+        }
+
+        p {
+            padding: 0em;
+            font-size: 1.6em;
+            margin: 0;
+            color: $font-color;
+        }
+    }
+
+    .ba-order-right {
+        text-align: right;
+
+        p {
+            margin: 0em 0 1.75em 0;
+            color: $font-color;
+
+            .ba-order-time {
+                font-size: 2em;
+            }
+        }
+
+        button {
+            margin: 0em;
+            border: none;
+            background: #40B284;
+            padding: 0.3em 1.3em;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1em;
+
+            .fa-check-circle {
+                vertical-align: middle;
+                padding-left: 0.4em;
+            }
+        }
+    }
+
 }
