@@ -65,16 +65,23 @@
 
         input[type="text"] {
             width: 12em;
-    text-align: center;
-    font-size: 1.5em;
-    height: 1.5em;
-    border-radius: 5px;
-    border: 1px solid #41b486;
-    margin: .5em auto 0;
-    outline: none;
-    padding: .75em;
-    box-shadow: 0px 0px 10px #459e7b;
+            text-align: center;
+            font-size: 1.5em;
+            height: 1.5em;
+            border-radius: 5px;
+            border: 1px solid #41b486;
+            margin: .5em auto 0;
+            outline: none;
+            padding: .75em;
+            box-shadow: 0px 0px 10px #459e7b;
 
+            &:hover {
+                background: #F5FAFF;
+            }
+
+            &:focus {
+                background: #F5FAFF;
+            }
         }
 
         button {
