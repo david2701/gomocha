@@ -7,13 +7,13 @@ var jsonParser = bodyParser.json();
 var MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
 
-
-console.log(process.env.MONGODB_URI);
 mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.connection.on('error', function(err) {
     console.error('Could not connect.  Error:', err);
 });
+
+console.log(process.env.MONGODB_URI);
 
 var orderSchema = mongoose.Schema({
     username: String,
