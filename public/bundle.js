@@ -25337,7 +25337,6 @@
 	                    return s;
 	                }
 	            });
-	            // console.log(shopsWithDistance);
 	            _this.setState({
 	                shops: shopsWithDistance
 	            });

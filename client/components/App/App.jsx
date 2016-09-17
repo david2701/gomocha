@@ -145,7 +145,6 @@ var App = React.createClass({
                     return s;
                 }
             })
-            // console.log(shopsWithDistance);
             this.setState({
                 shops: shopsWithDistance
             })

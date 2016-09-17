@@ -14,11 +14,12 @@ The user story is as follows: A customer logs on to the app, selects a coffee sh
 ## Technical
 • The front end of the app is built in React, using SASS as a CSS extension language, and webpack as a module bundler.<br />
 • The back end is built in Node.js with Express, and uses MongoDB with Mongoose as a database.<br />
-• The app uses the Google Maps API and HTML Geolocation API in order as follows:<br />
+• The app uses the Google Places API Web Service, Google Maps Distance Matrix API, and HTML Geolocation API in order as follows:<br />
    1. Once the user opens the app, navigator.geolocation.getCurrentPosition() is called to retrieve the users latitude and longitude coordinates.<br />
-   2. As soon as the user's location is retrieved, a call is made to the Google Maps API while passing in the user's latitude and longitude coordinates as an argument, to retrieve a list of restaurants with the tag "cafe" that are within 4,000 meters of the user's location. A list of coffee shops is then generated for the user to choose from.<br />
-   3. As soon as a user clicks on their desired coffee shop, another API call is made to the Google Maps API while passing in the coffee shop's unique google ID, to retrieve more information about the coffee shop (specifically the shop's coordinates).<br />
-   4. A final call to the Google Maps API is called upon the user selecting their method of transportation. This call passes in the user's coordinates, the shop's coordinates, and the selected method of transportation to estimate the time it will take for the customer to arrive at the coffee shop.<br />
+   2. As soon as the user's location is retrieved, a call is made to the Google Places API Web Service, while passing in the user's latitude and longitude coordinates as an argument, to retrieve a list of restaurants with the tag "cafe" that are within 4,000 meters of the user's location. A list of coffee shops is then generated for the user to choose from.<br />
+   3. A call is then made to the Google Maps Distance Matrix API to retrieve the distance from the user's location to each of the coffee shops that were retrieved in the previous call.
+   4. As soon as a user clicks on their desired coffee shop, another API call is made to the Google Places API Web Service while passing in the coffee shop's unique google ID, to retrieve more information about the coffee shop (specifically the shop's coordinates).<br />
+   5. A final call to the Google Maps Distance Matrix API is called upon the user selecting their method of transportation. This call passes in the user's coordinates, the shop's coordinates, and the selected method of transportation to estimate the time it will take for the customer to arrive at the coffee shop.<br />
 
 • Submitted orders are sent to the database along with the user's username, to allow the display of previous and favorited orders.<br />
 • Travis CI is used for distributed continuous integration.
